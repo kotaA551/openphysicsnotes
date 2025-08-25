@@ -1,3 +1,7 @@
+export const dynamic = 'force-static';
+export const runtime = 'nodejs';
+
+
 import Link from 'next/link';
 import { getAllTags } from '@/lib/mdx';
 

@@ -1,3 +1,6 @@
+export const dynamic = 'force-static';
+export const runtime = 'nodejs';
+
 import Link from 'next/link';
 import { getAllChapters } from '@/lib/mdx';
 import LevelBadge from '@/components/LevelBadge';
