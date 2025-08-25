@@ -6,7 +6,6 @@ import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Callout from '@/components/Callout';
-import LevelBadge from '@/components/LevelBadge';
 import type { Metadata } from 'next';
 
 export const dynamicParams = false;        // pre-render all chapters
@@ -34,7 +33,6 @@ export default function ChapterPage({ params }: any) {
   return (
     <article className="prose prose-zinc max-w-none">
       <h1 className="flex items-center gap-3">
-        <LevelBadge level={chapter.level} />
         <span>{chapter.title}</span>
       </h1>
       {chapter.description && <p className="lead">{chapter.description}</p>}
