@@ -17,29 +17,23 @@ export default function SiteShell({
 
   return (
     <div className="min-h-dvh flex flex-col bg-zinc-50 text-zinc-900">
-      {/* Sticky header lives inside Header component */}
+      {/* Header */}
       <Header onToggle={() => setOpen(true)} />
 
-      {/* CENTER ROW: sidebar | divider | main */}
+      {/* Center row: sidebar 30% | divider | main 70% */}
       <div className="flex flex-row flex-1 min-h-0">
-        {/* Sidebar (drawer on mobile, fixed rail on desktop) */}
-        <Sidebar chapters={chapters} open={open} onClose={() => setOpen(false)} />
+        {/* Sidebar (now inline, 30%) */}
+        <aside className="hidden md:block w-1/3 max-w-sm overflow-y-auto border-r border-black/30">
+          <Sidebar chapters={chapters} open={open} onClose={() => setOpen(false)} />
+        </aside>
 
-        {/* Transparent black divider (desktop only) */}
-        <div
-          className="hidden md:block w-px bg-black/30 self-stretch pointer-events-none"
-          aria-hidden="true"
-        />
-
-        {/* Main area */}
-        <main className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-6xl px-4 py-6 md:pl-6">
-            {children}
-          </div>
+        {/* Main (70%) */}
+        <main className="flex-1 w-2/3 overflow-y-auto">
+          <div className="mx-auto max-w-6xl px-4 py-6 md:pl-6">{children}</div>
         </main>
       </div>
 
-      {/* Footer pinned bottom */}
+      {/* Footer */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-4 py-10 text-xs text-zinc-500">
           © {new Date().getFullYear()} OpenPhysicsNotes
