@@ -9,7 +9,7 @@ export default function HomePage() {
 
   return (
     <main className="prose prose-zinc max-w-none">
-      <h1>Quantum Gravity Notes</h1>
+      <h1>Open Physics Notes</h1>
       <p>Open, beginner-friendly notes toward quantum gravity.</p>
       <ul>
         {chapters.map((c) => (

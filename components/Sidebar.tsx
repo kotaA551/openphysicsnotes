@@ -37,7 +37,7 @@ export default function Sidebar({
       {/* drawer on mobile; static rail on desktop */}
       <aside
         className={`fixed z-40 top-14 bottom-0 w-72 border-r bg-white overflow-y-auto transition-transform
-                    md:static md:translate-x-0 md:top-0 md:h-[calc(100dvh-3.5rem)]
+                    md:sticky md:top-14 md:translate-x-0 md:h-[calc(100dvh-3.5rem)]
                     ${open ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}
       >
         <nav className="p-4">
