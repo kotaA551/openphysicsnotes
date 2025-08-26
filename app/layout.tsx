@@ -65,13 +65,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="mx-auto max-w-6xl px-4 py-6 md:pl-6">{children}</div>
           </main>
         </div>
-
-        {/* Footer pinned to bottom */}
-        <footer className="border-t">
-          <div className="mx-auto max-w-7xl px-4 py-10 text-xs text-zinc-500">
-            © {new Date().getFullYear()} OpenPhysicsNotes
-          </div>
-        </footer>
       </body>
     </html>
   );
