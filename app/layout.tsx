@@ -43,14 +43,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 {chapters.map((c) => (
                   <div key={c.slug} className="leading-tight">
                   <Link
-                    href={`/${c.slug}`}
+                    href={`/chapters/${c.slug}`}
                     className="text-black visited:text-black underline underline-offset-2 hover:no-underline"
                   >
                     {c.title}
                   </Link>
-                    {c.description ? (
-                      <p className="text-sm text-zinc-600 mt-0.5">{c.description}</p>
-                    ) : null}
                   </div>
                 ))}
               </nav>
