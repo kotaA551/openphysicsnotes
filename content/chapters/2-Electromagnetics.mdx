@@ -1,23 +1,157 @@
-title: From Newton to the Principle of Least Action
+# Classical Electromagnetism
+
+## 1. Foundations
+
+Electromagnetism unifies the phenomena of electricity and magnetism into a single theoretical framework, elegantly expressed through **Maxwell’s equations**.  
+The theory explains how electric charges produce electric fields, how currents and changing electric fields produce magnetic fields, and how electromagnetic waves propagate through space.
+
 ---
 
+## 2. Electrostatics
 
-**Newton’s 2nd law**:
+### 2.1 Coulomb’s Law
+The force between two point charges $q_1$ and $q_2$ separated by vector $\vec r$:
+$$
+\vec F = \frac{1}{4 \pi \varepsilon_0} \frac{q_1 q_2}{r^2} \hat r.
+$$
 
+### 2.2 Electric Field
+Definition of the electric field as force per unit charge:
+$$
+\vec E(\vec r) = \frac{\vec F}{q}.
+$$
 
-$$ F = m\,a. $$
+For a point charge $q$:
+$$
+\vec E(\vec r) = \frac{1}{4 \pi \varepsilon_0} \frac{q}{r^2} \hat r.
+$$
 
+### 2.3 Gauss’s Law
+Electric flux through a closed surface equals enclosed charge divided by $\varepsilon_0$:
+$$
+\oint_S \vec E \cdot d\vec A = \frac{Q_\text{enc}}{\varepsilon_0}.
+$$
 
-**Principle of least action** (really: stationary action):
+---
 
+## 3. Magnetostatics
 
-$$ S[q] = \int_{t_1}^{t_2} L(q, \dot q, t)\,dt, \quad \delta S = 0. $$
+### 3.1 Biot–Savart Law
+Magnetic field produced by a steady current $I$ along wire element $d\vec l$:
+$$
+d\vec B = \frac{\mu_0}{4\pi} \frac{I \, d\vec l \times \hat r}{r^2}.
+$$
 
+### 3.2 Ampère’s Law
+For steady currents:
+$$
+\oint_C \vec B \cdot d\vec l = \mu_0 I_\text{enc}.
+$$
 
-This yields the **Euler–Lagrange** equations:
+---
 
+## 4. Maxwell’s Equations (Differential Form)
 
-$$ \frac{d}{dt}\frac{\partial L}{\partial \dot q} - \frac{\partial L}{\partial q} = 0. $$
+1. Gauss’s Law for Electricity  
+   $$
+   \nabla \cdot \vec E = \frac{\rho}{\varepsilon_0}.
+   $$
 
+2. Gauss’s Law for Magnetism  
+   $$
+   \nabla \cdot \vec B = 0.
+   $$
 
-> Pattern: Choose coordinates $q$, write $L$, compute and go.
+3. Faraday’s Law of Induction  
+   $$
+   \nabla \times \vec E = - \frac{\partial \vec B}{\partial t}.
+   $$
+
+4. Ampère–Maxwell Law  
+   $$
+   \nabla \times \vec B = \mu_0 \vec J + \mu_0 \varepsilon_0 \frac{\partial \vec E}{\partial t}.
+   $$
+
+---
+
+## 5. Electromagnetic Waves
+
+From Maxwell’s equations in vacuum:
+$$
+\nabla^2 \vec E - \mu_0 \varepsilon_0 \frac{\partial^2 \vec E}{\partial t^2} = 0,
+\quad
+\nabla^2 \vec B - \mu_0 \varepsilon_0 \frac{\partial^2 \vec B}{\partial t^2} = 0.
+$$
+
+Speed of propagation:
+$$
+c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}}.
+$$
+
+Thus, light is identified as an electromagnetic wave.
+
+---
+
+## 6. Energy and Momentum in Fields
+
+### 6.1 Energy Density
+The electromagnetic energy density:
+$$
+u = \tfrac{1}{2}\varepsilon_0 E^2 + \tfrac{1}{2\mu_0} B^2.
+$$
+
+### 6.2 Poynting Vector
+Energy flux (power per unit area) carried by the fields:
+$$
+\vec S = \frac{1}{\mu_0} \vec E \times \vec B.
+$$
+
+### 6.3 Momentum Density
+Electromagnetic momentum density:
+$$
+\vec g = \varepsilon_0 \vec E \times \vec B.
+$$
+
+---
+
+## 7. Potentials and Gauge Freedom
+
+### 7.1 Scalar and Vector Potentials
+Fields expressed as:
+$$
+\vec B = \nabla \times \vec A, \quad \vec E = - \nabla \phi - \frac{\partial \vec A}{\partial t}.
+$$
+
+### 7.2 Gauge Transformations
+Invariance under:
+$$
+\vec A' = \vec A + \nabla \chi, \quad \phi' = \phi - \frac{\partial \chi}{\partial t}.
+$$
+
+---
+
+## 8. Relativistic Formulation
+
+### 8.1 Four-Potential
+Combine potentials into:
+$$
+A^\mu = \left( \frac{\phi}{c}, \vec A \right).
+$$
+
+### 8.2 Electromagnetic Field Tensor
+$$
+F^{\mu\nu} = \partial^\mu A^\nu - \partial^\nu A^\mu.
+$$
+
+Maxwell’s equations reduce to compact tensor equations:
+$$
+\partial_\mu F^{\mu\nu} = \mu_0 J^\nu, 
+\quad \partial_{[\alpha} F_{\beta\gamma]} = 0.
+$$
+
+---
+
+## 9. Summary
+
+Electromagnetism unifies electric and magnetic phenomena under a single field theory.  
+From Coulomb’s law to Maxwell’s equations, it explains the structure of electromagnetic waves, energy transfer, and the relativistic invariance of field laws. This classical framework laid the foundation for both **special relativity** and **quantum electrodynamics**.

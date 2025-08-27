@@ -1,23 +1,159 @@
-title: Welcome to Quantum Gravity Notes
+# Newtonian Mechanics
+
+## 1. Foundations
+
+Newtonian mechanics treats **space**, **time**, and **mass** as absolute concepts.  
+It provides the classical framework of physics, built upon **Newton’s three laws of motion** and the **law of universal gravitation**.
+
+### 1.1 Newton’s Three Laws of Motion
+1. **Law of Inertia**  
+   A body remains at rest or in uniform motion in a straight line unless acted upon by a net external force:
+   $$
+   \frac{d\vec v}{dt} = 0 \quad (\vec F_\text{net} = 0).
+   $$
+
+2. **Law of Acceleration**  
+   The net force on a body equals mass times acceleration:
+   $$
+   \vec F_\text{net} = m \vec a = m \frac{d^2 \vec r}{dt^2}.
+   $$
+
+3. **Law of Action–Reaction**  
+   For every action force, there is an equal and opposite reaction:
+   $$
+   \vec F_{12} = - \vec F_{21}.
+   $$
+
 ---
 
+## 2. Elementary Motions
 
-<Callout type="info">
-**Mission:** make the path to quantum gravity feel **learnable**, not mystical. We’ll layer ideas: classical → relativity → quantum → fields → gravity → (hints of) quantum gravity.
-</Callout>
+### 2.1 Constant Acceleration
+For one-dimensional motion with constant acceleration $a$:
+$$
+x(t) = x_0 + v_0 t + \tfrac{1}{2} a t^2, \quad v(t) = v_0 + a t.
+$$
 
+### 2.2 Projectile Motion
+Two-dimensional motion with vertical acceleration $g$:
+$$
+x(t) = v_0 \cos\theta \, t, \quad 
+y(t) = v_0 \sin\theta \, t - \tfrac{1}{2} g t^2.
+$$
 
-### Why physics (in one paragraph)
-Physics is the art of writing short stories about reality, where the plot is logic, the characters are symmetries, and the punchlines are equations.
+---
 
+## 3. Conservation Laws and Symmetries
 
-### The staircase
-1. **Classical mechanics** (Newton, Hamilton, Lagrange) — how to summarize motion in a single function: the action.
-2. **Relativity** (special → general) — spacetime geometry, not forces, tells matter how to move.
-3. **Quantum mechanics** — amplitudes, not certainties.
-4. **Quantum fields** — particles are ripples in fields.
-5. **Gravity** — geometry itself becomes dynamical.
-6. **Quantum gravity** — make geometry play by quantum rules.
+### 3.1 Linear Momentum Conservation
+If no external force acts on a system:
+$$
+\frac{d}{dt}\sum_i m_i \vec v_i = 0.
+$$
 
+### 3.2 Angular Momentum Conservation
+For central forces (forces parallel to $\vec r$):
+$$
+\frac{d}{dt}\vec L = \frac{d}{dt} (\vec r \times m\vec v) = \vec r \times \vec F = 0.
+$$
 
-We’ll keep proofs honest but focus on **intuition** and **calculation patterns**.
+### 3.3 Mechanical Energy Conservation
+If the net force is conservative:
+$$
+E = T + V = \tfrac{1}{2} m v^2 + V(\vec r) = \text{constant}.
+$$
+
+---
+
+## 4. Work and Energy
+
+### 4.1 Work–Energy Theorem
+The work done by the net force equals the change in kinetic energy:
+$$
+W = \int \vec F \cdot d\vec r = \Delta T.
+$$
+
+### 4.2 Potential Energy
+For conservative forces, there exists a potential function $V$:
+$$
+\vec F = - \nabla V(\vec r).
+$$
+
+---
+
+## 5. Dynamics of Systems of Particles
+
+### 5.1 Center of Mass
+Definition of the center of mass position:
+$$
+\vec R = \frac{1}{M}\sum_i m_i \vec r_i, \quad M = \sum_i m_i.
+$$
+
+Equation of motion for the center of mass:
+$$
+M \frac{d^2 \vec R}{dt^2} = \vec F_\text{ext}.
+$$
+
+### 5.2 Two-Body Reduction
+Relative coordinate $\vec r = \vec r_1 - \vec r_2$ reduces the problem to an effective one-body system with reduced mass:
+$$
+\mu = \frac{m_1 m_2}{m_1 + m_2}.
+$$
+
+---
+
+## 6. Central Forces and Orbital Motion
+
+### 6.1 Kepler Problem
+Under inverse-square law:
+$$
+\vec F = - \frac{G m_1 m_2}{r^2} \hat r.
+$$
+
+Leads to conic-section orbits:
+$$
+r(\theta) = \frac{p}{1 + e \cos \theta}, \quad p = \frac{L^2}{\mu G m_1 m_2}.
+$$
+
+### 6.2 Kepler’s Laws
+1. Orbits are ellipses with the sun at one focus.  
+2. Equal areas are swept in equal times.  
+3. Orbital period $T$ satisfies:
+   $$
+   T^2 \propto a^3,
+   $$
+   where $a$ is the semi-major axis.
+
+---
+
+## 7. Rigid Body Mechanics
+
+### 7.1 Rotation About a Fixed Axis
+Angular momentum:
+$$
+L = I \omega, \quad T = \tfrac{1}{2} I \omega^2,
+$$
+with moment of inertia $I = \sum_i m_i r_i^2$.
+
+### 7.2 Euler’s Equations
+For a rigid body rotating with angular velocity $\vec \omega$:
+$$
+\frac{d}{dt}(I \vec \omega) + \vec \omega \times (I \vec \omega) = \vec \tau.
+$$
+
+---
+
+## 8. Non-Inertial Frames
+
+### 8.1 Fictitious Forces
+In a rotating frame with angular velocity $\vec \Omega$, acceleration is:
+$$
+\vec a' = \vec a - 2 \vec \Omega \times \vec v' - \vec \Omega \times (\vec \Omega \times \vec r),
+$$
+where the extra terms correspond to **Coriolis** and **centrifugal** forces.
+
+---
+
+## 9. Summary
+
+Newtonian mechanics provides a comprehensive framework for analyzing the motion of particles, systems, and rigid bodies under forces. Its conservation laws stem from underlying symmetries (time translation $\to$ energy, spatial translation $\to$ momentum, rotational invariance $\to$ angular momentum). While ultimately superseded by relativity and quantum mechanics, it remains indispensable for describing the macroscopic world.
