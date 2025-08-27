@@ -1,0 +1,290 @@
+# 2-Oscillations and Waves  
+
+---
+
+## 1. Galileo and the Lamp of Pisa
+
+In 1583, a young medical student named **Galileo Galilei** attended mass at the Cathedral of Pisa.  
+Looking upward, he noticed a great lamp swaying on its chain. With no watch at hand, he timed it against the beating of his own pulse. To his surprise, the swings — whether wide or narrow — seemed to take the same time.  
+
+This observation, later called **isochronism**, suggested that pendulums keep time by nature. It was a small insight, yet it carried the seed of modern timekeeping and the mathematical study of oscillations.
+
+### Mathematical Model: The Pendulum
+
+For a pendulum of length $L$ and angle $\theta$ from the vertical, the equation of motion is:
+
+$$
+mL^2\ddot{\theta} + mgL\sin\theta = 0.
+$$
+
+This nonlinear equation cannot be solved exactly in simple functions.  
+But for **small angles** ($\sin \theta \approx \theta$):
+
+$$
+\ddot{\theta} + \frac{g}{L}\theta = 0.
+$$
+
+Thus the pendulum is a **simple harmonic oscillator** with angular frequency:
+
+$$
+\omega_0 = \sqrt{\tfrac{g}{L}}, \quad T = 2\pi\sqrt{\tfrac{L}{g}}.
+$$
+
+Galileo’s lamp revealed the deep link between time and oscillation.  
+A universal rhythm, hidden in swinging chains.
+
+---
+
+## 2. Robert Hooke – The Law in the Spring
+
+If Galileo glimpsed rhythm, **Robert Hooke** gave it form.  
+Hooke was brilliant, quarrelsome, endlessly inventive. He studied elasticity in metals and springs, publishing in 1678 his famous law:
+
+> *“Ut tensio, sic vis”* — *As the extension, so the force.*
+
+### Hooke’s Law
+
+$$
+F = -kx,
+$$
+
+where $k$ is the spring constant, and $x$ the displacement from equilibrium.
+
+From Newton’s second law:
+
+$$
+m\ddot{x} + kx = 0.
+$$
+
+**Solution:**
+
+$$
+x(t) = A\cos(\omega_0 t + \phi),\quad \omega_0 = \sqrt{\tfrac{k}{m}}.
+$$
+
+This is the **simple harmonic motion (SHM)**, the prototype for all oscillations.
+
+Hooke’s law became the foundation of mechanics, materials science, and beyond. Yet Hooke’s personal life was full of friction. He clashed bitterly with Newton, accusing him of stealing ideas in optics and gravitation. History remembers their quarrel, but physics remembers the law that bears Hooke’s name — the restoring heartbeat of oscillation.
+
+---
+
+## 3. Christiaan Huygens – Timekeepers and Synchrony
+
+In the 17th century, accurate time was an unsolved problem. Sailors needed it to determine longitude at sea.  
+Enter **Christiaan Huygens**, Dutch mathematician and inventor, who in 1656 built the first **pendulum clock**. It transformed Galileo’s insight into a practical device, accurate to within seconds per day.
+
+### Isochronous Stability
+
+Huygens refined the pendulum, adding a cycloidal constraint that made the oscillations more isochronous even for larger amplitudes.  
+He proved mathematically that the cycloid was the tautochrone curve — the curve on which a bead sliding under gravity always takes the same time to reach the bottom.
+
+Equation of motion (cycloidal pendulum):
+
+$$
+\ddot{\theta} + \omega_0^2 \theta = 0,
+$$
+
+with corrections reducing amplitude dependence.
+
+### The Mystery of Synchrony
+
+Later, Huygens noticed two pendulum clocks mounted on the same wall would spontaneously **synchronize**.  
+He called it “an odd sympathy.” Today we know it as **coupled oscillators**, a concept vital in modern physics, from lasers to heartbeats.
+
+Huygens gave society not just theory, but rhythm: clocks that ordered cities, commerce, and science.  
+He also gave physics a lesson: when oscillators interact, new harmonies emerge.
+
+---
+
+## 4. Jean le Rond d’Alembert – The String and the Equation
+
+In the mid-18th century, **Jean le Rond d’Alembert**, a child found abandoned at a Paris church and later raised to become one of the leading minds of the Enlightenment, turned his attention to the vibration of strings. Musicians had long known the beauty of resonant tones, but what law governed their form?
+
+In 1746, d’Alembert derived the first **wave equation**, describing the motion of a taut string:
+
+$$
+\frac{\partial^2 y}{\partial t^2} = c^2 \frac{\partial^2 y}{\partial x^2},
+\qquad c = \sqrt{\tfrac{T}{\mu}},
+$$
+
+where $T$ is the tension in the string and $\mu$ the linear mass density.
+
+This partial differential equation captured something fundamental: disturbances travel with finite speed, $c$.  
+It was the first time physics wrote down the mathematics of a wave.
+
+For d’Alembert, who also co-edited the monumental *Encyclopédie*, this equation symbolized the Enlightenment ideal: to compress the variety of nature into elegant law.
+
+---
+
+## 5. Daniel Bernoulli & Leonhard Euler – Harmony of Modes
+
+Soon after, **Daniel Bernoulli** (of the famous Bernoulli family) argued that the motion of a vibrating string is not one pure tone, but a superposition of many. He suggested that any initial shape of a string can be expressed as a sum of **normal modes**.
+
+For a string of length $L$ fixed at both ends, the allowed modes are:
+
+$$
+y_n(x,t) = A_n \sin\left(\frac{n\pi x}{L}\right)\cos(\omega_n t + \phi_n),
+\quad \omega_n = n\pi \frac{c}{L}.
+$$
+
+Here $n=1,2,3,\dots$ labels the harmonics.  
+
+**Euler**, Bernoulli’s contemporary, provided the rigorous mathematical framework, giving precise meaning to such expansions. Their debates sometimes grew heated, but together they established the principle that waves could be built from simpler oscillations.
+
+This idea — that the complex is a superposition of the simple — foreshadowed Fourier and underpins modern physics, from quantum mechanics to electrical engineering.
+
+---
+
+## 6. Joseph Fourier – Heat and Frequency
+
+In the early 19th century, **Joseph Fourier** studied heat conduction in solids. He proposed a radical method: represent arbitrary initial conditions as sums of sines and cosines. His **Fourier series** shocked his peers, but became one of the most powerful tools in mathematics and physics.
+
+### Fourier’s Theorem
+
+Any periodic function $f(x)$ of period $2\pi$ can be expressed as:
+
+$$
+f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty} 
+\left[a_n \cos(nx) + b_n \sin(nx)\right],
+$$
+
+with coefficients:
+
+$$
+a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos(nx)\,dx,
+\qquad
+b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin(nx)\,dx.
+$$
+
+Though Fourier’s work began with heat, its legacy lies in waves: any waveform, however jagged, can be decomposed into harmonic oscillations.  
+The heartbeat of music, the spectrum of light, the data streams of our digital world — all flow from Fourier’s vision.
+
+---
+
+# 2-Oscillations and Waves  
+**Part 3: Young, Fresnel, Chladni, Doppler, and Rayleigh**
+
+---
+
+## 7. Thomas Young – Two Slits, Two Paths
+
+In 1801, English polymath **Thomas Young** performed a simple but profound experiment.  
+He allowed light to pass through two narrow slits and fall on a screen. Instead of two bright patches, he saw a series of alternating bright and dark fringes: an **interference pattern**.  
+
+This was decisive evidence that light behaves as a wave. Against Newton’s corpuscular theory, Young had revealed nature’s preference for superposition.
+
+### Interference Condition
+
+For two slits separated by distance $d$, with wavelength $\lambda$, constructive interference occurs when:
+
+$$
+d \sin \theta = m\lambda, \quad m \in \mathbb{Z}.
+$$
+
+Destructive interference occurs when:
+
+$$
+d \sin \theta = \left(m + \tfrac{1}{2}\right)\lambda.
+$$
+
+Young’s fringes showed that oscillations, when combined, could amplify or annihilate.  
+This principle of superposition lies at the heart of all wave physics.
+
+---
+
+## 8. Augustin Fresnel – Diffraction and Completion
+
+French engineer **Augustin-Jean Fresnel** extended Young’s insights.  
+Through careful experiments and bold mathematics, he developed a theory of **diffraction**, explaining how waves bend around obstacles and spread after apertures.
+
+### Fresnel Integrals
+
+The intensity pattern of a single slit can be expressed via Fresnel integrals:
+
+$$
+I(\theta) \propto \left( \frac{\sin(\beta)}{\beta} \right)^2,
+\quad \beta = \frac{\pi a \sin \theta}{\lambda},
+$$
+
+where $a$ is the slit width.
+
+Fresnel’s work completed the **wave theory of light**. In a famous test before the French Academy, his theory predicted a bright spot at the center of a circular shadow. When observed, the so-called “Fresnel spot” silenced critics and crowned wave optics.
+
+---
+
+## 9. Ernst Chladni – Sand and the Singing Plates
+
+Not all discoveries came from laboratories of great academies.  
+In the late 18th century, German musician-physicist **Ernst Chladni** sprinkled sand on metal plates and drew a violin bow along their edges.  
+The sand leapt and settled into intricate patterns — now called **Chladni figures** — revealing the nodal lines of standing waves.
+
+### Vibrating Plate Equation
+
+For a thin plate, the equation of motion is:
+
+$$
+D\nabla^4 w + \rho h \frac{\partial^2 w}{\partial t^2} = 0,
+$$
+
+where $D$ is the flexural rigidity, $\rho$ the density, $h$ the thickness, and $w$ the displacement.
+
+These mesmerizing patterns made the invisible visible, turning wave physics into art.  
+Napoleon himself once summoned Chladni to demonstrate the phenomenon.
+
+---
+
+## 10. Christian Doppler – The Sound of Motion
+
+In 1842, Austrian physicist **Christian Doppler** proposed a simple yet transformative idea:  
+the pitch of sound changes if the source or observer is moving.  
+
+He illustrated with the example of musicians on a moving train (or in his day, a horse-drawn carriage). The effect soon became known as the **Doppler effect**.
+
+### Doppler Shift Formula
+
+For sound waves:
+
+$$
+f' = f \frac{v \pm v_o}{v \mp v_s},
+$$
+
+where $f$ is the source frequency, $v$ the speed of sound, $v_o$ the observer’s velocity, and $v_s$ the source’s velocity.  
+Signs depend on direction of motion.
+
+For light (in relativity):
+
+$$
+f' = f \sqrt{\frac{1+\beta}{1-\beta}}, \quad \beta = \frac{v}{c}.
+$$
+
+From sirens to redshifts of galaxies, Doppler’s insight resonates across physics.
+
+---
+
+## 11. Lord Rayleigh – Acoustics and the Group
+
+In the late 19th century, **John William Strutt, Lord Rayleigh** authored *The Theory of Sound*, a monumental treatise that laid the foundations of modern acoustics.  
+He analyzed resonance, vibrations, and the propagation of waves in air and solids.
+
+### Group Velocity
+
+For a wave packet with dispersion relation $\omega(k)$, the **group velocity** is:
+
+$$
+v_g = \frac{d\omega}{dk}.
+$$
+
+This concept distinguishes between the phase velocity (speed of individual crests) and the speed at which energy or information travels.  
+Rayleigh’s clarity made wave physics precise, guiding acoustics, optics, and later quantum mechanics.
+
+---
+
+# Epilogue of Chapter 2
+
+From Galileo’s lamp to Rayleigh’s acoustics, oscillations and waves evolved from curiosity to universal principle.  
+They govern clocks and violins, tides and telecommunication, light and sound.  
+
+The pioneers — Galileo, Hooke, Huygens, d’Alembert, Bernoulli, Euler, Fourier, Young, Fresnel, Chladni, Doppler, and Rayleigh — each added a note to the great symphony.  
+Together, they revealed that the world vibrates, resonates, and interferes — and that physics is the art of understanding those harmonies.
+
+---
