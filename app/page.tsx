@@ -45,11 +45,6 @@ export default function HomePage() {
           </figure>
         ))}
       </div>
-
-      <p>Open, beginner-friendly notes toward quantum gravity.</p>
-
-      <img src="" alt="top image" />
-
       <p>
         We’ll start with classical mechanics and slowly build up to the strange world of quantum fields.
         Along the way, expect short explanations, simple diagrams, and pointers for deeper study.
