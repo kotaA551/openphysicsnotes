@@ -2,6 +2,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import SiteShell from '@/components/SiteShell';
+import 'katex/dist/katex.min.css';
+
 
 export const metadata: Metadata = {
   title: 'OpenPhysicsNotes',
