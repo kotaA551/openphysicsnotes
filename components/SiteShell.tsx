@@ -29,7 +29,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           <Link
             href="/"
             aria-label="Go to home"
-            className="font-semibold hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded px-1"
+            className="text-lg font-bold hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded px-1"
           >
             Open Physics Notes
           </Link>
@@ -41,14 +41,14 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         {/* Sidebar (desktop) — flush-left, subtle divider */}
         <aside className="hidden md:block w-[30%] border-r border-black/20">
           {/* remove left padding; keep right & vertical */}
-          <div className="py-4 pr-4">
+          <div className="py-4 px-4">
             <h2 className="font-semibold mb-3">Chapters</h2>
             <nav className="space-y-2">
               {chapters.map((c) => (
                 <div key={c.slug}>
                   <Link
                     href={`/chapters/${c.slug}`}
-                    className="text-black visited:text-black underline underline-offset-2 hover:no-underline"
+                    className="text-black"
                   >
                     {c.title}
                   </Link>
