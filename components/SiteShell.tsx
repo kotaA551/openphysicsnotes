@@ -10,7 +10,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh flex flex-col">
       {/* Header — full-bleed & no left gap */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur">
         <div className="w-full h-12 flex items-center gap-3 px-0">
           {/* Hamburger (mobile only) */}
           <button
