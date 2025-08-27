@@ -9,9 +9,9 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-dvh flex flex-col">
-      {/* Header */}
+      {/* Header — full-bleed & no left gap */}
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
-        <div className="mx-auto max-w-6xl px-3 h-12 flex items-center gap-3">
+        <div className="w-full h-12 flex items-center gap-3 px-0">
           {/* Hamburger (mobile only) */}
           <button
             type="button"
@@ -26,15 +26,22 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             <span className="block h-0.5 w-6 bg-gray-800"></span>
           </button>
 
-          <span className="font-semibold">OpenPhysicsNotes</span>
+          <Link
+            href="/"
+            aria-label="Go to home"
+            className="font-semibold hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded px-1"
+          >
+            Open Physics Notes
+          </Link>
         </div>
       </header>
 
-      {/* Body */}
-      <div className="flex-1 mx-auto max-w-6xl w-full flex">
-        {/* Sidebar (desktop) */}
-        <aside className="hidden md:block w-[30%] border-r">
-          <div className="p-4">
+      {/* Body — full-bleed */}
+      <div className="flex-1 w-full flex">
+        {/* Sidebar (desktop) — flush-left, subtle divider */}
+        <aside className="hidden md:block w-[30%] border-r border-black/20">
+          {/* remove left padding; keep right & vertical */}
+          <div className="py-4 pr-4">
             <h2 className="font-semibold mb-3">Chapters</h2>
             <nav className="space-y-2">
               {chapters.map((c) => (
@@ -51,20 +58,19 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           </div>
         </aside>
 
-        {/* Main */}
-        <main className="w-full md:w-[70%]">{children}</main>
+        {/* Main — use padding (no margins) for spacing */}
+        <main className="w-full md:w-[70%] p-4 md:p-6 lg:p-8">
+          {children}
+        </main>
       </div>
 
       {/* Mobile Drawer + Overlay */}
-      <div
-        className={`fixed inset-0 z-50 md:hidden ${open ? '' : 'pointer-events-none'}`}
-      >
+      <div className={`fixed inset-0 z-50 md:hidden ${open ? '' : 'pointer-events-none'}`}>
         {/* Overlay */}
         <div
           className={`absolute inset-0 bg-black/40 transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}
           onClick={() => setOpen(false)}
         />
-
         {/* Drawer */}
         <aside
           id="mobile-sidebar"
