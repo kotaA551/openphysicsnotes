@@ -10,14 +10,8 @@ export default function HomePage() {
   const imagePaths = [
     '/images/Isaac-Neweton.png',
     '/images/James-Clerk-Maxwell.png',
-    '/images/Charles-Augustin-de-Coulomb.png',
-    '/images/Carl-Friedrich-Gauss.png',
-    '/images/Michael-Faraday.png',
-    '/images/André-Marie-Ampère.png',
-    '/images/Félix-Savart.png',
-    '/images/Jean-Baptiste-Biot.png',
     '/images/Albert-Einstein.png',
-
+    '/images/Paul-Dirac.png',
   ];
 
   return (
@@ -53,312 +47,53 @@ export default function HomePage() {
         ))}
       </div>
 
-      {/* Table of Contents */}
-      <section className="mx-auto max-w-3xl px-4 py-10 sm:py-12">
-        <nav
-          aria-label="Table of contents"
-          className="mt-8 rounded-2xl border border-gray-200 p-4 sm:p-6"
-        >
-          <h2 className="text-lg font-semibold">Contents</h2>
-          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            <li><a className="hover:underline" href="#principles">0. Study Principles</a></li>
-            <li><a className="hover:underline" href="#prereqs">1. Prerequisites</a></li>
-            <li><a className="hover:underline" href="#foundations">2. Foundations (Year 1)</a></li>
-            <li><a className="hover:underline" href="#math">3. Math Toolkit</a></li>
-            <li><a className="hover:underline" href="#intermediate">4. Intermediate (Year 2)</a></li>
-            <li><a className="hover:underline" href="#advanced-ug">5. Advanced UG Core</a></li>
-            <li><a className="hover:underline" href="#grad-core">6. Graduate Core</a></li>
-            <li><a className="hover:underline" href="#modern-fields">7. Modern Fields</a></li>
-            <li><a className="hover:underline" href="#research-stack">8. Research Stack</a></li>
-            <li><a className="hover:underline" href="#projects">9. Capstone Projects</a></li>
-            <li><a className="hover:underline" href="#how-to-use-opn">10. How to Use OPN</a></li>
-            <li><a className="hover:underline" href="#books">11. Recommended References</a></li>
-            <li><a className="hover:underline" href="#schedule">12. Suggested Weekly Rhythm</a></li>
-            <li><a className="hover:underline" href="#ethos">13. Openness & Ethos</a></li>
-          </ul>
-        </nav>
-      </section>
+      <p>
+        Physics is the human attempt to listen to the quiet symphony of the cosmos. It is the discipline that asks not merely *what* happens, but *why*, and *how*, and *under what universal law*. To study physics is to trace the logic of the universe, written not in ink or myth, but in mathematics — precise, abstract, and deeply profound.<br/><br/>
 
-      {/* 0. Study Principles */}
-      <section id="principles" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">0. Study Principles</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li><strong>Concept → Problem → Feedback.</strong> Read, then solve. Iterate fast.</li>
-          <li><strong>Layering beats cramming.</strong> Revisit topics with increasing rigor.</li>
-          <li><strong>Computation is part of physics.</strong> Simulate what you can’t measure.</li>
-          <li><strong>Primary sources matter.</strong> Textbooks teach; papers reveal the frontier.</li>
-          <li><strong>Write to learn.</strong> Maintain a lab-style notebook (LaTeX + Git).</li>
-        </ul>
-      </section>
+        This journey began long before the word “physics” was coined. In ancient Greece, philosophers such as Thales and Democritus proposed that nature followed rules — that water or atoms might be the fundamental substance. Aristotle, though deeply flawed in hindsight, constructed an early systematic approach to motion, matter, and the heavens. Yet it would take nearly two thousand years for these ideas to evolve beyond philosophical speculation into measurable, testable science.<br/><br/>
 
-      {/* 1. Prerequisites */}
-      <section id="prereqs" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">1. Prerequisites</h2>
-        <p className="mt-3">
-          Comfortable high-school math/physics: algebra, trigonometry, basic calculus ideas, vectors,
-          and a first pass at kinematics & Newton’s laws. If you’re rusty, spend 2–4 weeks refreshing.
-        </p>
-      </section>
+        That transformation began in earnest during the Scientific Revolution. In the early 17th century, **Galileo Galilei** turned his telescope to the sky and shattered the geocentric illusion. He saw moons orbiting Jupiter, mountains on the Moon, and stars far more numerous than previously imagined. But Galileo’s deeper revolution lay in his insistence that motion could be described mathematically — that falling objects accelerated in predictable ways, independent of their weight. This insight severed the ancient bond between terrestrial and celestial mechanics and opened the door to a new kind of understanding.<br/><br/>
 
-      {/* 2. Foundations */}
-      <section id="foundations" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">2. Foundations (Year 1)</h2>
-        <div className="mt-4 space-y-3">
-          <p><strong>Mechanics I:</strong> vectors, kinematics, Newton’s laws, energy, momentum, rotations.</p>
-          <p><strong>E&M I:</strong> electrostatics, circuits, magnetic fields, Maxwell preview.</p>
-          <p><strong>Intro to Waves & Optics:</strong> oscillations, interference, diffraction.</p>
-          <p><strong>Problem sets:</strong> 30–50 problems per chapter tiered by difficulty.</p>
-        </div>
-      </section>
+        The next step was monumental. In 1687, **Isaac Newton** published *Philosophiæ Naturalis Principia Mathematica*, in which he articulated the three laws of motion and the law of universal gravitation. Suddenly, the same set of equations could explain an apple falling to Earth and the Moon orbiting the Earth. Newton’s universe was a clockwork of precise and deterministic motion. It could be predicted, modeled, and controlled. The age of classical mechanics had arrived, and it would dominate the next two centuries of scientific thought.<br/><br/>
 
-      {/* 3. Math Toolkit */}
-      <section id="math" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">3. Math Toolkit</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li>Calculus (single & multi), series, vector calculus (div, grad, curl, Stokes & Gauss).</li>
-          <li>Linear algebra (eigenstuff, diagonalization, spectral theorems).</li>
-          <li>Differential equations (ODE/PDE, Green’s functions, Sturm–Liouville).</li>
-          <li>Complex analysis (contours, residues, analytic continuation, special functions).</li>
-          <li>Probability & statistics (Bayes, MLE, CLT, Markov chains).</li>
-        </ul>
-      </section>
+        This Newtonian paradigm empowered minds like **Leonhard Euler**, **Joseph-Louis Lagrange**, and **Pierre-Simon Laplace** to generalize mechanics to broader systems, from pendulums to planetary orbits. **Laplace**, in particular, imagined a universe so deterministic that, given perfect knowledge of initial conditions, the future could be calculated in its entirety. It was an elegant and terrifying vision — a cosmos with no room for chance, mystery, or free will.<br/><br/>
 
-      {/* 4. Intermediate */}
-      <section id="intermediate" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">4. Intermediate (Year 2)</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li><strong>Thermodynamics & Statistical Mechanics:</strong> micro/macro states, ensembles, partition function.</li>
-          <li><strong>Classical Mechanics II:</strong> Lagrangian & Hamiltonian formalisms, canonical transformations.</li>
-          <li><strong>E&M II:</strong> Maxwell’s equations in matter, waveguides, radiation.</li>
-          <li><strong>Intro Quantum Mechanics:</strong> postulates, 1D problems, angular momentum, perturbation theory.</li>
-        </ul>
-      </section>
+        And yet, cracks were already forming. The 19th century saw the emergence of **thermodynamics**, the study of heat, energy, and entropy. Experiments by **James Prescott Joule**, **Sadi Carnot**, and **Rudolf Clausius** revealed that energy was conserved, but its *quality* degraded. The concept of **entropy** was born — a measure of disorder that always increased in isolated systems. This irreversibility hinted at a deeper tension within the otherwise time-symmetric laws of mechanics. The arrow of time had appeared.<br/><br/>
 
-      {/* 5. Advanced UG Core */}
-      <section id="advanced-ug" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">5. Advanced Undergraduate Core</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li><strong>Quantum I–II:</strong> Hilbert spaces, scattering, identical particles, spin, variational methods.</li>
-          <li><strong>Electrodynamics:</strong> boundary value problems, radiation, relativistic electrodynamics.</li>
-          <li><strong>Relativity (SR intro):</strong> Minkowski spacetime, tensors, electromagnetism in covariant form.</li>
-        </ul>
-      </section>
+        Simultaneously, **Michael Faraday**, a self-taught experimental genius, uncovered the invisible structure of electric and magnetic fields. His intuitive grasp of forces acting through space paved the way for **James Clerk Maxwell**, whose equations unified electricity and magnetism into one electromagnetic field. Published in the 1860s, **Maxwell’s equations** did more than describe existing phenomena — they predicted that light itself was an electromagnetic wave, traveling through empty space at a constant speed *c*. This was not just a theory of light; it was a glimpse into a universe where fields, not particles, were fundamental.<br/><br/>
 
-      {/* 6. Graduate Core */}
-      <section id="grad-core" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">6. Graduate Core</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li><strong>Quantum Field Theory I:</strong> path integrals, canonical quantization, symmetries, perturbation theory.</li>
-          <li><strong>General Relativity:</strong> differential geometry, Einstein equations, black holes, cosmology basics.</li>
-          <li><strong>Statistical Physics (grad):</strong> renormalization ideas, critical phenomena, nonequilibrium basics.</li>
-        </ul>
-      </section>
+        But here lay a paradox: Newtonian mechanics assumed time and space were absolute, while Maxwell’s equations implied a preferred frame of reference. To resolve this, scientists hypothesized a luminiferous “aether” through which light propagated. However, in 1887, the **Michelson-Morley experiment** failed to detect any such aether. Nature, it seemed, cared not for our assumptions.<br/><br/>
 
-      {/* 7. Modern Fields */}
-      <section id="modern-fields" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">7. Modern Fields (Choose tracks)</h2>
-        <div className="mt-4 grid gap-6 sm:grid-cols-2">
-          <div>
-            <h3 className="font-semibold">High-Energy / Theory</h3>
-            <ul className="mt-2 list-disc pl-6 space-y-1">
-              <li>QFT II, Gauge theory, Standard Model, QCD, EFT, CFT, SUSY (as taste).</li>
-              <li>Cosmology, early Universe, inflation, LSS, CMB.</li>
-              <li>Amplitudes, scattering, bootstrap (advanced).</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold">Condensed Matter</h3>
-            <ul className="mt-2 list-disc pl-6 space-y-1">
-              <li>Many-body theory, second quantization, Fermi liquids, BCS.</li>
-              <li>Topological phases, quantum Hall, Chern insulators.</li>
-              <li>Numerics: DMRG, QMC (intro level), exact diagonalization.</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold">AMO / Quantum Tech</h3>
-            <ul className="mt-2 list-disc pl-6 space-y-1">
-              <li>Cold atoms, trapped ions, cavity QED, quantum control.</li>
-              <li>Quantum information, error correction, NISQ algorithms.</li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold">Plasma / Astro</h3>
-            <ul className="mt-2 list-disc pl-6 space-y-1">
-              <li>Plasma kinetics & MHD, fusion basics.</li>
-              <li>Astrophysics & GR applications, neutron stars, accretion.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+        Enter **Albert Einstein**. In 1905 — his *annus mirabilis* — Einstein proposed the **special theory of relativity**, abolishing the need for aether altogether. He showed that the laws of physics are the same in all inertial frames, and that the speed of light is invariant. Time and space were not separate absolutes, but part of a unified spacetime continuum. In 1915, Einstein expanded his vision into the **general theory of relativity**, redefining gravity as the curvature of spacetime itself, governed by the distribution of mass and energy. This was not a mere improvement upon Newtonian gravity — it was a radical shift in worldview. Suddenly, space bent, time dilated, and black holes became not science fiction but scientific prediction.<br/><br/>
 
-      {/* 8. Research Stack */}
-      <section id="research-stack" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">8. Research Stack (Tools & Workflow)</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li><strong>Computation:</strong> Python (NumPy, SciPy, Matplotlib, JAX), SymPy, Julia (optional), Mathematica/Maple.</li>
-          <li><strong>Reproducibility:</strong> Git/GitHub, unit tests, notebooks → reports (nbconvert or LaTeX).</li>
-          <li><strong>Writing:</strong> LaTeX (Overleaf), BibTeX/Zotero, citation hygiene.</li>
-          <li><strong>Paper flow:</strong> arXiv alerts (RSS), weekly digests, implement & replicate key results.</li>
-        </ul>
-        <div className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm">
-          <strong>Pro tip:</strong> keep a “Replication Logbook” repo:
-          problem statement → assumptions → derivations → code → plots → takeaways.
-        </div>
-      </section>
+        Meanwhile, another revolution was brewing — one even stranger, even more unsettling. Classical physics could not explain why atoms radiated energy in discrete lines, or why the ultraviolet catastrophe didn’t burn the universe. In 1900, **Max Planck** reluctantly introduced the idea of quantized energy — that light was emitted in discrete packets called **quanta**. In 1905, Einstein extended this to explain the **photoelectric effect**, proposing that light behaves not just as a wave, but also as a **particle** — a **photon**.<br/><br/>
 
-      {/* 9. Capstone */}
-      <section id="projects" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">9. Capstone Projects (Examples)</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li>Derive & simulate solitons for a nonlinear PDE; compare numerics vs analytics.</li>
-          <li>QFT: 1-loop correction in a simple scalar theory; visualize running couplings.</li>
-          <li>GR: geodesics around Schwarzschild/Kerr; lensing visualizations.</li>
-          <li>CondMat: tight-binding bands + Berry curvature; topological invariants.</li>
-          <li>AMO: simulate two-level control & Rabi oscillations; noise sensitivity.</li>
-        </ul>
-      </section>
+        In the 1920s, quantum mechanics erupted into full bloom. **Niels Bohr** proposed a model of the atom with quantized orbits. **Werner Heisenberg** developed **matrix mechanics**, while **Erwin Schrödinger** introduced **wave mechanics**. The two formalisms were soon shown to be mathematically equivalent. The famous **uncertainty principle** emerged, placing fundamental limits on how precisely we can know a particle’s position and momentum. Observation itself seemed to affect reality.<br/><br/>
 
-      {/* 10. How to use OPN */}
-      <section id="how-to-use-opn" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">10. How to Use Open Physics Notes</h2>
-        <ol className="mt-4 list-decimal pl-6 space-y-2">
-          <li>Pick your level (Foundations → Grad Core → Track).</li>
-          <li>Read OPN sections, then crush the problem sets.</li>
-          <li>Use the “Further Reading” box to jump into textbooks/papers.</li>
-          <li>Build mini-projects every 2–3 weeks to cement skills.</li>
-          <li>Publish your notes & code. The world needs your replication results.</li>
-        </ol>
-      </section>
+        In 1928, **Paul Dirac** took quantum theory further by incorporating Einstein’s relativity. His **Dirac equation** not only described the electron, but predicted the existence of its mirror image — the **positron** — before it was ever observed. Dirac’s work was a triumph of mathematical elegance, and a sign that beauty and truth in physics often walk hand in hand.<br/><br/>
 
-      {/* 11. Recommended References (with affiliate slots) */}
-      <section id="books" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">11. Recommended References</h2>
-        <p className="mt-3 text-gray-700">
-          These are classic, time-tested texts. Links marked “(aff)” are affiliate links that help keep OPN free.
-        </p>
+        And yet quantum mechanics remained deeply weird. The **double-slit experiment**, quantum tunneling, superposition, entanglement — these phenomena defy classical intuition. **Schrödinger’s cat**, both dead and alive until observed, became the symbol of this bizarre realm. Is the universe inherently probabilistic? Does observation create reality? These questions remain unresolved, not due to lack of answers, but due to the unsettling nature of the answers we do have.<br/><br/>
 
-        <div className="mt-6 space-y-6">
-          <div>
-            <h3 className="font-semibold">Foundations / Broad</h3>
-            <ul className="mt-2 list-disc pl-6">
-              <li>
-                The Feynman Lectures on Physics — Vol I–III{" "}
-                <Link href="https://example.com/feynman-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-              <li>
-                Young & Freedman, University Physics{" "}
-                <Link href="https://example.com/univ-physics-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-            </ul>
-          </div>
+        By mid-century, quantum mechanics and special relativity were united into a new framework: **quantum field theory (QFT)**. Here, particles are not fundamental, but rather excitations of underlying quantum fields. The electromagnetic field yields photons, the electron field yields electrons, and so on. This framework, though abstract, proved astonishingly accurate. **Quantum Electrodynamics (QED)**, developed by **Richard Feynman**, **Julian Schwinger**, and **Sin-Itiro Tomonaga**, achieved predictions verified to over 12 decimal places. Feynman’s diagrams made the invisible world of particle interactions visual and calculable.<br/><br/>
 
-          <div>
-            <h3 className="font-semibold">Classical Mechanics</h3>
-            <ul className="mt-2 list-disc pl-6">
-              <li>
-                Goldstein, Classical Mechanics{" "}
-                <Link href="https://example.com/goldstein-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-              <li>
-                Taylor, Classical Mechanics{" "}
-                <Link href="https://example.com/taylor-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-            </ul>
-          </div>
+        In time, this approach was extended to other forces. The **Standard Model** of particle physics emerged — a grand synthesis describing all known particles and interactions (except gravity). It introduced **quarks**, **gluons**, **W and Z bosons**, and the **Higgs boson**, predicted in the 1960s and finally discovered in 2012 at CERN’s **Large Hadron Collider**. The Standard Model is among the most successful theories in science, yet it is incomplete. It cannot explain **dark matter**, **dark energy**, **neutrino masses**, or gravity itself.<br/><br/>
 
-          <div>
-            <h3 className="font-semibold">Electrodynamics</h3>
-            <ul className="mt-2 list-disc pl-6">
-              <li>
-                Griffiths, Introduction to Electrodynamics{" "}
-                <Link href="https://example.com/griffiths-em-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-              <li>
-                Jackson, Classical Electrodynamics{" "}
-                <Link href="https://example.com/jackson-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-            </ul>
-          </div>
+        Gravity, that oldest of forces, remains the most elusive at quantum scales. Attempts to merge general relativity and quantum mechanics — through **string theory**, **loop quantum gravity**, or other approaches — have yet to succeed. The dream of a **theory of everything** remains, tantalizingly, just out of reach.<br/><br/>
 
-          <div>
-            <h3 className="font-semibold">Quantum Mechanics / QFT</h3>
-            <ul className="mt-2 list-disc pl-6">
-              <li>
-                Griffiths & Schroeter, Intro to Quantum Mechanics{" "}
-                <Link href="https://example.com/griffiths-qm-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-              <li>
-                Sakurai & Napolitano, Modern Quantum Mechanics{" "}
-                <Link href="https://example.com/sakurai-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-              <li>
-                Peskin & Schroeder, An Introduction to QFT{" "}
-                <Link href="https://example.com/peskin-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-            </ul>
-          </div>
+        At the cosmological scale, **Big Bang theory**, **cosmic inflation**, and **observations of cosmic microwave background radiation** have revealed that the universe had a beginning — a singularity from which space, time, matter, and energy emerged. The discovery of the universe’s **accelerating expansion**, driven by some unknown **dark energy**, has only deepened the mystery.<br/><br/>
 
-          <div>
-            <h3 className="font-semibold">Statistical Physics</h3>
-            <ul className="mt-2 list-disc pl-6">
-              <li>
-                Reif / Kittel / Pathria (choose one track){" "}
-                <Link href="https://example.com/statphys-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-            </ul>
-          </div>
+        The 21st century has brought experimental triumphs — **gravitational wave detection**, **precision cosmology**, and **quantum computing** — yet also theoretical crisis. Physics today stands at a strange frontier: we understand more than ever, yet the most fundamental questions remain unanswered.<br/><br/>
 
-          <div>
-            <h3 className="font-semibold">Relativity / GR</h3>
-            <ul className="mt-2 list-disc pl-6">
-              <li>
-                Schutz, A First Course in General Relativity{" "}
-                <Link href="https://example.com/schutz-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-              <li>
-                Carroll, Spacetime and Geometry{" "}
-                <Link href="https://example.com/carroll-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-            </ul>
-          </div>
+        What is time? Why is there something rather than nothing? Why does mathematics — a product of human thought — describe the universe so well? These are no longer just philosophical musings. They are the edge of physics.<br/><br/>
 
-          <div>
-            <h3 className="font-semibold">Mathematical Methods</h3>
-            <ul className="mt-2 list-disc pl-6">
-              <li>
-                Boas / Arfken / Riley-Hobson-Bence{" "}
-                <Link href="https://example.com/mathmethods-aff" className="text-blue-600 underline">(aff)</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+        To study physics is to walk in the footsteps of giants — Galileo, Newton, Faraday, Maxwell, Einstein, Planck, Bohr, Heisenberg, Schrödinger, Dirac, Feynman, Hawking — and to continue the quest they began. It is to believe that the universe is knowable, that its rules can be written, and that those rules matter.<br/><br/>
 
-        <p className="mt-4 text-sm text-gray-500">
-          Replace the example links with your Amazon Associates or other affiliate URLs.
-        </p>
-      </section>
+        This project — *Open Physics Notes* — is a continuation of that tradition. It is an invitation to journey through the most profound ideas ever conceived. It is not merely a collection of formulas, but a map of the intellectual landscape that defines our reality. It is meant for students, teachers, wanderers, and dreamers — for all who believe that understanding is the first step toward wonder.<br/><br/>
 
-      {/* 12. Weekly Rhythm */}
-      <section id="schedule" className="mx-auto max-w-3xl px-4 py-8">
-        <h2 className="text-2xl font-bold">12. Suggested Weekly Rhythm</h2>
-        <ul className="mt-4 list-disc pl-6 space-y-2">
-          <li><strong>Mon–Tue:</strong> New theory (reading + derivations)</li>
-          <li><strong>Wed:</strong> Problem-solving marathon</li>
-          <li><strong>Thu:</strong> Mini-project or simulation</li>
-          <li><strong>Fri:</strong> Paper digest (1–2 arXiv abstracts + 1 deep read)</li>
-          <li><strong>Sat:</strong> Write-up & refactor notes/code</li>
-          <li><strong>Sun:</strong> Rest or light review (spaced repetition)</li>
-        </ul>
-      </section>
+        Welcome to the most ambitious conversation humanity has ever begun. It’s time to join it.
+      </p>
 
-      {/* 13. Ethos */}
-      <section id="ethos" className="mx-auto max-w-3xl px-4 py-10">
-        <h2 className="text-2xl font-bold">13. Openness & Ethos</h2>
-        <p className="mt-3">
-          Education should be borderless. OPN is free to read for everyone. If you find it useful,
-          consider supporting via affiliate links or donations so others can learn without barriers.
-        </p>
-      </section>
+
     </main>
   );
 }
