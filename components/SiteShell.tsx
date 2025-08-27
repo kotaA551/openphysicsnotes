@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { chapters } from '@/lib/mdx';
+import { chapters } from '@/lib/chapters';
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
