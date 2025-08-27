@@ -9,9 +9,15 @@ export default function HomePage() {
 
   const imagePaths = [
     '/images/Isaac-Neweton.png',
-    '/images/James-Maxwell.png',
+    '/images/James-Clerk-Maxwell.png',
     '/images/Charles-Augustin-de-Coulomb.png',
     '/images/Carl-Friedrich-Gauss.png',
+    '/images/Michael-Faraday.png',
+    '/images/André-Marie-Ampère.png',
+    '/images/Félix-Savart.png',
+    '/images/Jean-Baptiste-Biot.png',
+    '/images/Albert-Einstein.png',
+
   ];
 
   return (
