@@ -8,7 +8,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Callout from '@/components/Callout';
 import type { Metadata } from 'next';
 
-export const dynamicParams = false;        // pre-render all chapters
+export const dynamicParams = false;
 export const dynamic = 'force-static';
 export const runtime = 'nodejs';
 

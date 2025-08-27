@@ -48,7 +48,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                 <div key={c.slug}>
                   <Link
                     href={`/chapters/${c.slug}`}
-                    className="text-black"
+                    className="text-black hover:opacity-80"
                   >
                     {c.title}
                   </Link>
