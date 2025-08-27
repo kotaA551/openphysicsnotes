@@ -40,16 +40,13 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       <div className="flex-1 w-full flex">
         {/* Sidebar (desktop) — flush-left, subtle divider */}
         <aside className="hidden md:block w-[20%] border-r border-black/20">
-          {/* remove left padding; keep right & vertical */}
-          <div className="py-4 px-4">
+          {/* sticky: pin under 48px header, fill viewport, scroll own content */}
+          <div className="sticky top-12 h-[calc(100dvh-3rem)] overflow-y-auto py-4 px-4">
             <h2 className="font-semibold mb-3">Chapters</h2>
             <nav className="space-y-2">
               {chapters.map((c) => (
                 <div key={c.slug}>
-                  <Link
-                    href={`/chapters/${c.slug}`}
-                    className="text-black hover:opacity-80"
-                  >
+                  <Link href={`/chapters/${c.slug}`} className="text-black hover:opacity-80">
                     {c.title}
                   </Link>
                 </div>
@@ -57,6 +54,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             </nav>
           </div>
         </aside>
+
 
         {/* Main — use padding (no margins) for spacing */}
         <main className="w-full md:w-[80%] p-4 md:p-6 lg:p-8">
