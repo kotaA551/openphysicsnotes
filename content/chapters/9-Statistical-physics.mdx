@@ -1547,3 +1547,265 @@ For electrons with $n=8\times 10^{28}\ \mathrm{m^{-3}}$, compute $\epsilon_{F}$ 
 ---
 
 **In summary:** BEC happens when the excited-state phase space can’t hold everyone. Below $T_{c}$, $\mu$ pins to zero and the condensate soaks up the overflow; interactions turn that pile into a **superfluid** with sound and a healing length. Fermions never condense into one state but build a Fermi sea whose pressure and linear-$T$ heat capacity rule low-temperature metals and dwarf stars. Two different personalities, one statistical engine
+
+
+## 9.8 Mean-Field & Landau Theory: Order Parameters, van der Waals, Curie–Weiss
+
+Mean-field is the “group project” approximation: every degree of freedom feels the **average** of everyone else. It often nails the **shape** of phase diagrams and gives analytic critical exponents. **Landau theory** turns that idea into a controlled expansion in the **order parameter** and symmetries. This section builds Curie–Weiss magnetism, the van der Waals fluid with Maxwell construction, Landau free energies and exponents, correlation length from Landau–Ginzburg, the Ginzburg criterion, and where first-order and tricritical points sneak in.
+
+---
+
+### 9.8.1 What mean-field assumes
+
+Pick an order parameter $\phi$ that flips sign under the broken symmetry:
+
+- Ferromagnet: $\phi \equiv m$ (magnetization density), symmetry $m\to -m$  
+- Liquid–gas: $\phi \equiv n-n_{c}$ (density deviation), no Ising symmetry but same math near $T_{c}$
+
+**Mean-field idea:** Replace neighbors by their average. Fluctuations are ignored when coordination is high or the interaction is long-ranged, which gets increasingly true in higher spatial dimension $d$.
+
+---
+
+### 9.8.2 Curie–Weiss ferromagnet (Ising-like, z neighbors)
+
+Start with Ising spins $\sigma_{i}=\pm 1$, coupling $J>0$, field $h$. In mean-field each spin sees an effective field $h_{\text{eff}}=h + z J m$ with $m\equiv \langle \sigma\rangle$. The single-site partition function is $z_{1}=2\cosh(\beta h_{\text{eff}})$, giving the **self-consistency** equation
+
+$$
+m = \tanh\!\left[\beta\,(h + z J m)\right]
+$$
+
+At $h=0$, expand for small $m$ to get the **Curie–Weiss** critical temperature
+
+$$
+k_{B}T_{c} = z J
+$$
+
+Critical behavior:
+
+- $T>T_{c}$ small $h$: $m \approx \chi h$ with
+
+$$
+\chi = \frac{1}{k_{B}(T-T_{c})}
+$$
+
+so $\gamma_{\text{MF}}=1$
+
+- $T<T_{c}$ at $h=0$: nonzero solutions appear
+
+$$
+m \sim \left(1-\frac{T}{T_{c}}\right)^{1/2}
+$$
+
+so $\beta_{\text{MF}}=1/2$
+
+- At $T=T_{c}$, $m \propto h^{1/3}$, so $\delta_{\text{MF}}=3$
+
+Specific heat has a **finite jump** (no divergence): $\alpha_{\text{MF}}=0$
+
+---
+
+### 9.8.3 Landau free energy: symmetry dictates the form
+
+Write an **analytic** expansion in the order parameter consistent with symmetries. For an Ising-like scalar $m$ in a uniform system
+
+$$
+F(m;T,h) = F_{0}(T) + a_{2}\,t\,m^{2} + a_{4}\,m^{4} + a_{6}\,m^{6} - h\,m
+$$
+
+with reduced temperature $t\equiv T-T_{c}$ and $a_{4}>0$ for a standard second-order transition. Minimize:
+
+$$
+\frac{\partial F}{\partial m} = 2 a_{2}\,t\,m + 4 a_{4}\,m^{3} - h = 0
+$$
+
+Consequences at $h=0$:
+
+- For $t>0$: minimum at $m=0$  
+- For $t<0$: minima at
+
+$$
+m_{\star}(t) = \pm \sqrt{\frac{-a_{2}\,t}{2 a_{4}}}
+$$
+
+so $\beta_{\text{MF}}=1/2$
+
+Susceptibility above $T_{c}$ from linear response:
+
+$$
+\chi^{-1} = \left.\frac{\partial^{2}F}{\partial m^{2}}\right|_{m=0} = 2 a_{2}\,t
+$$
+
+so $\chi \propto t^{-1}$ and $\gamma_{\text{MF}}=1$
+
+At $t=0$ with $h\neq 0$:
+
+$$
+4 a_{4}\,m^{3} = h \quad\Rightarrow\quad m \propto h^{1/3}
+$$
+
+so $\delta_{\text{MF}}=3$
+
+**Specific heat jump.** Plug $m_{\star}$ into $F$:
+
+$$
+F_{\min}(t<0) = F_{0}(T) - \frac{a_{2}^{2}}{4 a_{4}}\,t^{2}
+$$
+
+Therefore $C = -T\,\partial^{2}F/\partial T^{2}$ gets a finite step at $T_{c}$, i.e., $\alpha_{\text{MF}}=0$ with a discontinuity.
+
+---
+
+### 9.8.4 First order and tricritical
+
+If microscopic physics drives $a_{4}<0$, the $m^{4}$ term destabilizes. Stabilize with $a_{6}>0$. Then as $t$ varies, **two minima** at $\pm m$ appear **before** $t=0$ and the system jumps at coexistence $t=t_{\text{coex}}$ where the wells are equal depth. That jump is a **first-order** transition with latent heat.
+
+The point where $a_{4}$ changes sign at $t=0$ is a **tricritical point**. Landau analysis with $a_{4}=0$ predicts different exponents, e.g., $m\sim (-t)^{1/4}$.
+
+---
+
+### 9.8.5 Landau–Ginzburg functional and correlation length
+
+Allow slow spatial variations of the order parameter. The **Landau–Ginzburg** free-energy functional is
+
+$$
+\mathcal F[\phi] = \int d^{d}r\;\left[\frac{r_{0}}{2}\,\phi^{2} + \frac{c}{2}\,(\nabla \phi)^{2} + \frac{u}{4}\,\phi^{4} - h\,\phi\right]
+$$
+
+with $r_{0}\propto t$. In the **Gaussian** regime ($u$ small, $t>0$), the two-point correlator in Fourier space has Ornstein–Zernike form
+
+$$
+S(\mathbf k) \equiv \langle|\phi_{\mathbf k}|^{2}\rangle \propto \frac{1}{r_{0} + c k^{2}}
+$$
+
+Define the **correlation length**
+
+$$
+\xi^{2} = \frac{c}{r_{0}} \propto t^{-1}
+$$
+
+hence $\nu_{\text{MF}}=1/2$ and the real-space correlator decays as $e^{-r/\xi}/r^{d-2}$, implying $\eta_{\text{MF}}=0$.
+
+---
+
+### 9.8.6 Ginzburg criterion: when mean-field breaks
+
+Mean-field ignores order-parameter fluctuations. Compare fluctuation size in a correlation volume $\xi^{d}$ to $m_{\star}^{2}$. Roughly,
+
+$$
+\frac{\langle \delta \phi^{2}\rangle_{\xi}}{m_{\star}^{2}} \sim \frac{k_{B}T}{u\,\xi^{d}\,m_{\star}^{2}}
+$$
+
+Using $m_{\star}^{2}\sim |t|/u$ and $\xi\sim t^{-1/2}$ gives a **Ginzburg number** $\mathrm{Gi}$ such that mean-field is valid only for
+
+$$
+|t| \gg \mathrm{Gi}
+$$
+
+In short: for $d>4$ the fluctuation integral is benign and mean-field is asymptotically exact. For $d\le 4$, a window close to $T_{c}$ is **fluctuation dominated** and requires RG (§9.10).
+
+---
+
+### 9.8.7 van der Waals fluid: mean-field liquid–gas
+
+Write the equation of state in number-density form $n=N/V$:
+
+$$
+p(n,T) = \frac{n\,k_{B}T}{1 - b n} - a\,n^{2}
+$$
+
+with excluded-volume $b$ and attraction $a$. The **critical point** satisfies $(\partial p/\partial n)_{T_{c}}=(\partial^{2}p/\partial n^{2})_{T_{c}}=0$, giving
+
+$$
+n_{c} = \frac{1}{3b},\qquad
+k_{B}T_{c} = \frac{8 a}{27 b},\qquad
+p_{c} = \frac{a}{27 b^{2}}
+$$
+
+In molar form $p = RT/(V_{m}-b) - a/V_{m}^{2}$ one gets $V_{c}=3b$, $T_{c}=8a/(27 b R)$, $p_{c}=a/(27 b^{2})$.
+
+Define **reduced variables** $p_{r}\equiv p/p_{c}$, $v_{r}\equiv V_{m}/V_{c}$, $T_{r}\equiv T/T_{c}$ to get the **law of corresponding states**
+
+$$
+p_{r} = \frac{8 T_{r}}{3 v_{r}-1} - \frac{3}{v_{r}^{2}}
+$$
+
+Below $T_{c}$, $p(V)$ has an S-shape. The mechanical instability region satisfies $(\partial p/\partial V)_{T}>0$; the **spinodals** solve $(\partial p/\partial V)_{T}=0$. The **coexistence** pressure at a given $T<T_{c}$ is set by the **Maxwell equal-area** rule (since $g=\mu$ must be equal in both phases).
+
+Near $T_{c}$ the density difference obeys the mean-field law
+
+$$
+\Delta n \propto (T_{c}-T)^{1/2}
+$$
+
+matching $\beta_{\text{MF}}=1/2$.
+
+---
+
+### 9.8.8 Metastability, nucleation, and spinodals
+
+Landau’s double-well for $t<0$ with a small field $h$ shows two minima of unequal depth: the higher is **metastable**. Decay proceeds by **nucleation** of critical droplets, not captured by static mean-field but hinted by the barrier between minima. Approaching a **spinodal** the barrier vanishes; susceptibility and correlation length blow up along that limit in mean-field.
+
+---
+
+### 9.8.9 Cheat sheet: mean-field exponents and scaling relations
+
+**Mean-field exponents (Ising-like):**
+
+| Exponent | Meaning | Value |
+|---|---|---|
+| $\alpha$ | $C \sim \lvert t\rvert^{-\alpha}$ | $0$ with jump |
+| $\beta$ | $m \sim (-t)^{\beta}$ | $1/2$ |
+| $\gamma$ | $\chi \sim \lvert t\rvert^{-\gamma}$ | $1$ |
+| $\delta$ | $m \sim h^{1/\delta}$ at $t=0$ | $3$ |
+| $\nu$ | $\xi \sim \lvert t\rvert^{-\nu}$ | $1/2$ |
+| $\eta$ | $G(r)\sim r^{-(d-2+\eta)}$ at $t=0$ | $0$ |
+
+
+**Scaling relations (satisfied by MF):**
+
+- Widom: $\gamma = \beta(\delta-1)$  
+- Rushbrooke: $\alpha + 2\beta + \gamma = 2$  
+- Josephson (hyperscaling): $2 - \alpha = d\,\nu$  
+  - Holds in MF only for $d \ge d_{c}=4$; below $d_{c}$ hyperscaling fails without RG corrections
+
+---
+
+### 9.8.10 Common pitfalls
+
+- **Forcing $m\neq 0$ above $T_{c}$ at $h=0$.** In Landau with $a_{4}>0$, the only minimum for $t>0$ is $m=0$  
+- **Confusing coexistence with spinodal.** Maxwell construction sets coexistence; spinodal is the limit of metastability where $(\partial p/\partial V)_{T}=0$  
+- **Ignoring symmetry.** If the symmetry forbids odd terms, don’t insert them by hand. If a field $h$ breaks it, include $-h m$  
+- **Declaring MF “exact”.** Good far from $T_{c}$, in high $d$, or with long-range interactions; close to $T_{c}$ in $d\le 4$ see §9.10
+
+---
+
+### 9.8.11 Worked mini-examples
+
+**(a) Curie–Weiss $\chi$**  
+Linearize $m=\tanh[\beta(zJ m + h)]$ for small $m$ at $h=0$ to derive $\chi=1/[k_{B}(T-T_{c})]$ and identify $T_{c}$.
+
+**(b) Landau $m(T)$ and $C$-jump**  
+Minimize $F= a_{2} t m^{2} + a_{4} m^{4}$ at $h=0$ for $t<0$ to get $m_{\star}^{2}=-a_{2}t/(2a_{4})$. Insert into $F$ and compute the specific-heat discontinuity at $T_{c}$.
+
+**(c) Ornstein–Zernike**  
+From the quadratic LG functional, derive $S(k)\propto 1/(r_{0}+c k^{2})$ and identify $\xi=\sqrt{c/r_{0}}$.
+
+**(d) van der Waals critical point**  
+Using $p = n k_{B}T/(1-b n) - a n^{2}$, set $\partial_{n}p=\partial_{n}^{2}p=0$ to find $(n_{c},T_{c},p_{c})$; then write the reduced EOS.
+
+**(e) Tricritical scaling**  
+Set $a_{4}=0$, keep $a_{6}>0$, minimize $F=a_{2} t m^{2}+a_{6} m^{6}$. Show $m\sim (-t)^{1/4}$ and extract $\beta_{\text{tri}}$.
+
+---
+
+### 9.8.12 Minimal problem kit
+
+- Derive the MF exponents $\alpha,\beta,\gamma,\delta$ from the Landau polynomial and verify Widom and Rushbrooke relations  
+- Starting from the LG functional, compute the real-space correlator $G(r)$ in $d$ dimensions and confirm $\eta_{\text{MF}}=0$  
+- Apply the Ginzburg criterion to estimate the width $|t|\lesssim \mathrm{Gi}$ of the non-MF critical region for a 3D Ising-like magnet with given $u$ and $c$  
+- For van der Waals, implement the Maxwell equal-area construction analytically near $T_{c}$ and show $\Delta n \propto (T_{c}-T)^{1/2}$  
+- Explore the first-order case with $a_{4}<0$: find coexistence $t_{\text{coex}}$ by equating well depths and locate the spinodals where the second derivative at a minimum vanishes
+
+---
+
+**In summary:** Mean-field turns a many-body mess into a solvable polynomial. Landau then lets symmetry lead, predicting order-parameter scaling, susceptibility, and specific-heat jumps, while Landau–Ginzburg adds gradients to unveil $\xi$ and $S(k)$. It gets the **right universality skeleton** but misses fluctuation muscle near $T_{c}$ unless $d>4$. Fluids, magnets, alloys—the same math runs across them, with van der Waals and Curie–Weiss as textbook avatars
