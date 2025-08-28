@@ -1,3 +1,1871 @@
-# 6-Early-quantum-theory
+# Chapter 6: Early Quantum Theory
 
-_Draft placeholder. Replace with content._
+---
+
+## 6.1 Introduction: Cracks in the Classical Edifice
+
+By the end of the 19th century, physics flexed like it had the final boss down. Newtonian mechanics ruled motion, Maxwell’s equations ruled fields, thermodynamics ruled heat. Yet precision experiments began posting L’s for classical theory. A new playbook—quantum—was loading.
+
+What broke first? Three pillars:
+
+1) **Radiation and heat.** The spectrum of an ideal glowing cavity (a blackbody) refused to follow classical predictions. Equipartition and Maxwell’s waves led to infinite ultraviolet energy—an “ultraviolet catastrophe.”  
+
+2) **Light and electrons.** Shining light on a clean metal knocked out electrons with sharp rules that defied wave-only intuition.  
+
+3) **Atoms and spectra.** Gases glowed at razor-thin frequencies described by simple formulas, yet any classical electron orbiting a nucleus should radiate and spiral inward.
+
+These cracks weren’t edge cases; they were mainstream physics behaving weirdly.
+
+---
+
+### 6.1.1 Characters entering the stage
+
+**Max Planck (1900).** A thermodynamics purist backed into heresy. To fit blackbody data, he quantized energy exchange in chunks of $h\nu$. He thought it was a mathematical trick; the universe took him literally.
+
+**Albert Einstein (1905).** The “patent-clerk energy.” He said the quiet part out loud: light itself comes in quanta (photons). With that, the photoelectric rules suddenly made sense, and $E=h\nu$ stepped out of the blackbody and into matter.
+
+**Ernest Rutherford (1911).** He yeeted Thomson’s “plum pudding” and installed a nuclear atom after alpha particles bounced at wild angles from gold foil. But a classical electron racing around a tiny nucleus should radiate energy and crash. Stable atoms? Not in classical land.
+
+**Niels Bohr (1913).** He proposed that electrons live only on special orbits with quantized angular momentum and jump between them by absorbing or emitting light at specific frequencies. The hydrogen spectrum clicked into place—partial victory, but weird rules demanded deeper logic.
+
+**Louis de Broglie (1923–24).** If light acts like particles, maybe matter acts like waves. He proposed $\lambda=h/p$, a hypothesis begging for an experiment.
+
+---
+
+### 6.1.2 The “classical no-go”s (with minimal math)
+
+**Blackbody catastrophe.** Classical equipartition feeds every electromagnetic cavity mode an average energy $k_B T$. Counting modes yields a spectral energy density that rises $\propto \nu^2$, blowing up at high frequency. Data said “nope”—the spectrum peaks and falls.
+
+We will show in §6.2 that introducing energy quanta leads to Planck’s distribution and cures the divergence
+
+$$
+u(\nu,T) = \frac{8\pi h \nu^{3}}{c^{3}}\,\frac{1}{\exp\!\left(\frac{h\nu}{k_B T}\right)-1}
+$$
+
+No ultraviolet apocalypse appears in this curve
+
+---
+
+**Photoelectric rules.** Experiments found: (i) no electrons below a threshold frequency, however intense the light, (ii) above threshold, the **maximum** electron kinetic energy is linear in frequency, not intensity, (iii) emission is effectively instantaneous. Einstein’s one-liner,
+
+$$
+K_{\max} = h\nu - W
+$$
+
+nailed it, where $W$ is the work function. Intensity controls how many photons hit, not their individual energy
+
+---
+
+**Atomic spectra.** Balmer and Rydberg wrote beautiful empirical formulas for hydrogen lines. Rutherford’s nuclear atom raised the stakes: a tiny, charged nucleus should make orbiting electrons radiate continuously and smear the spectrum—contradiction. Bohr’s move was to **quantize** angular momentum and energy levels, producing discrete lines and a frequency rule that matched Rydberg’s data. But why those orbits? Old quantum theory worked, then stalled.
+
+---
+
+### 6.1.3 The vibe: discrete meets wave
+
+The early quantum story is a series of “wait, both?” moments:
+
+- Light interferes like a wave but trades energy like a particle  
+- Electrons behave like particles in tracks yet diffract like waves through crystals  
+- Energy in atoms is not continuous real estate; it’s a floor plan of levels with allowed transitions
+
+The common thread is **discreteness** sneaking into systems previously modeled as continuous. That discreteness shows up in spectra, specific heats, threshold effects, and stability.
+
+---
+
+### 6.1.4 Minimal mathematical promises (to be delivered in later sections)
+
+- **Planck spectrum.** From counting quanta with weight $\exp(-nh\nu/k_B T)$ we will derive the energy density above and recover the Stefan–Boltzmann law and Wien’s displacement
+
+$$
+\lambda_{\text{peak}}\,T = \text{constant}
+$$
+
+- **Einstein photoelectric equation.** Straight line plots of $K_{\max}$ vs $\,\nu$ give slope $h$ and intercept $W$—that is how early experiments measured Planck’s constant with electrons
+
+- **Bohr energies.** For hydrogen-like atoms we will get
+
+$$
+E_n = -\,\frac{m_e e^4}{2\hbar^2}\,\frac{1}{n^2}
+$$
+
+and the emitted photon frequency from a jump $n\to n'$ will satisfy $h\nu = E_n - E_{n'}$ with Rydberg constant emerging naturally
+
+- **de Broglie hypothesis.** Assuming $p=h/\lambda$ and $E=h\nu$ makes group velocity match particle velocity and predicts electron diffraction, later seen in labs
+
+---
+
+### 6.1.5 What “early quantum theory” is (scope note)
+
+We will live mostly in **1900–1925**: the **old quantum theory** (Planck → Einstein → Bohr–Sommerfeld → de Broglie) and its decisive experiments (Franck–Hertz, Davisson–Germer, Stern–Gerlach). Full quantum mechanics (Heisenberg’s matrices and Schrödinger’s waves, 1925–26) is the bridge to the next chapter, but we will aim the runway here: when classical intuition finally yields and a consistent quantum calculus becomes inevitable.
+
+---
+
+**In summary:** Around 1900, exquisitely careful experiments found phenomena that classical physics, however beloved, could not parse: blackbody spectra, photoelectric thresholds, stable atoms with sharp spectral lines. Planck quantized energy exchange, Einstein quantized light, Rutherford found the nucleus, Bohr quantized orbits, and de Broglie quantized **us** (matter has wavelength). The rest of this chapter turns those punchlines into derivations and data, building the case that discreteness is not a bug—it is the operating system.
+
+## 6.2 Blackbody Radiation and Planck’s Hypothesis
+
+Blackbody radiation is where classical physics face-planted and quantum theory quietly spawned. A **blackbody** is an ideal cavity with a tiny hole: light that enters bounces around and is essentially absorbed; light that leaves carries the equilibrium spectrum of the cavity walls. The mission in the 1890s was to predict the energy density of this radiation as a function of frequency $\nu$ and temperature $T$ and to explain why the measured curve rises, peaks, and then crashes instead of diverging. Spoiler: classical equipartition said “infinite UV energy,” nature said “lol, no,” and Max Planck invented quanta to get the curve right.
+
+---
+
+### 6.2.1 The experimental scene: precision burns theory
+
+German labs (Lummer, Pringsheim, Rubens, Kurlbaum) built exquisitely calibrated cavities and detectors. At moderate and high frequencies, the data followed **Wien’s law** remarkably well; at low frequencies (long wavelengths), new measurements started to **bend away** from Wien’s exponential falloff, demanding a better formula. Planck followed these plots obsessively—enough that when Rubens showed him fresh long-wavelength data in October 1900, he went home and cooked up the curve that matched everything.
+
+Two common ways to describe the spectrum are by frequency and by wavelength. They are related but not identical in shape because $\nu=c/\lambda$ changes the measure:
+
+$$
+u_\nu(\nu,T)\,d\nu = u_\lambda(\lambda,T)\,d\lambda
+$$
+
+You’ll see two standard forms. By frequency:
+
+$$
+u_\nu(\nu,T) \equiv \text{energy density per unit frequency} 
+$$
+
+By wavelength:
+
+$$
+u_\lambda(\lambda,T) \equiv \text{energy density per unit wavelength}
+$$
+
+We’ll derive $u_\nu$ first and then convert to $u_\lambda$.
+
+---
+
+### 6.2.2 Mode counting in a cavity: the $8\pi \nu^{2}/c^{3}$ factor
+
+Take a cubic cavity with perfectly conducting walls. Electromagnetic standing waves fit only certain wavevectors $\mathbf k$; each allowed mode is a harmonic oscillator. Counting modes with frequencies between $\nu$ and $\nu+d\nu$ gives a **density of states** per unit volume
+
+$$
+g(\nu)\,d\nu = \frac{8\pi \nu^{2}}{c^{3}}\,d\nu
+$$
+
+The $8\pi$ comes from spherical shells in $\mathbf k$-space and from two polarization states. This factor is pure geometry/kinematics and will be the same in classical and quantum derivations. The physics enters when we decide how much average energy to assign to **each** mode at equilibrium.
+
+---
+
+### 6.2.3 Classical attempt: equipartition and the ultraviolet catastrophe
+
+In classical statistical mechanics, every quadratic degree of freedom contributes $\tfrac{1}{2}k_B T$ to the mean energy. A harmonic oscillator (one mode) has two quadratic pieces (potential and kinetic), so the **mean energy per mode** would be
+
+$$
+\langle \varepsilon \rangle_{\text{classical}} = k_B T
+$$
+
+Multiply by the mode density to get the spectral energy density
+
+$$
+u_\nu^{\text{RJ}}(\nu,T) = g(\nu)\,\langle \varepsilon \rangle = \frac{8\pi \nu^{2}}{c^{3}}\,k_B T
+$$
+
+This is the **Rayleigh–Jeans law**. It works at low frequencies but skyrockets as $\nu^{2}$ and, when integrated over all frequencies, diverges. That divergence—the **ultraviolet catastrophe**—is not a cute nickname; it is classical physics predicting infinite energy in any warm room. Reality declines.
+
+---
+
+### 6.2.4 Wien’s law: a great half-truth
+
+Empirically, Wien proposed
+
+$$
+u_\nu^{\text{Wien}}(\nu,T) = A\,\nu^{3}\,\exp\!\left(-\,\frac{B\,\nu}{T}\right)
+$$
+
+with constants $A,B$ fit to data. This law nails the **high-frequency** tail (it decays exponentially) and implies the correct **displacement law** (the peak slides linearly with $T$), but it fails at **low frequencies**, where experiments show $u_\nu\propto \nu^{2}T$ (Rayleigh–Jeans behavior), not $\nu^{3}$. In short, Wien gets the UV, Rayleigh–Jeans gets the IR, and neither gets the full mixtape.
+
+---
+
+### 6.2.5 Planck’s move: discretize the energy exchange
+
+Planck’s radical idea was to treat the cavity walls as a set of microscopic **oscillators** (resonators) that exchange energy with the radiation field **in discrete packets** of size $h\nu$:
+
+$$
+\varepsilon_n = n\,h\nu,\qquad n=0,1,2,\dots
+$$
+
+Given Boltzmann weights, the partition function for one oscillator of frequency $\nu$ is
+
+$$
+Z = \sum_{n=0}^\infty e^{-n h\nu/(k_B T)} = \frac{1}{1-e^{-h\nu/(k_B T)}}
+$$
+
+The mean energy per oscillator is then
+
+$$
+\langle \varepsilon \rangle_{\text{Planck}} = -\,\frac{\partial}{\partial \beta}\ln Z 
+= \frac{h\nu}{e^{h\nu/(k_B T)}-1},\qquad \beta \equiv \frac{1}{k_B T}
+$$
+
+Multiply by the density of modes $g(\nu)$ to get the full spectrum:
+
+$$
+u_\nu(\nu,T) = \frac{8\pi h \nu^{3}}{c^{3}}\;\frac{1}{e^{h\nu/(k_B T)}-1}
+$$
+
+This is **Planck’s law**, 1900. It reduces to Rayleigh–Jeans at low frequency (expand the exponential) and to Wien’s exponential at high frequency. One curve to rule them all.
+
+---
+
+### 6.2.6 Low- and high-frequency limits (sanity checks)
+
+Let $x \equiv h\nu/(k_B T)$.
+
+- **Low frequency** ($x\ll 1$): $e^{x}-1 \approx x$, so
+
+$$
+u_\nu \approx \frac{8\pi h \nu^{3}}{c^{3}}\,\frac{1}{x}
+= \frac{8\pi \nu^{2}}{c^{3}}\,k_B T
+$$
+
+which is Rayleigh–Jeans
+
+- **High frequency** ($x\gg 1$): $e^{x}-1 \approx e^{x}$, so
+
+$$
+u_\nu \approx \frac{8\pi h \nu^{3}}{c^{3}}\,e^{-\,h\nu/(k_B T)}
+$$
+
+which is Wien’s law with $A=8\pi h/c^{3}$ and $B=h/k_B$
+
+So Planck’s formula gracefully bridges the two regimes that classical and empirical laws captured separately.
+
+---
+
+### 6.2.7 Total energy and Stefan–Boltzmann law
+
+Integrate $u_\nu$ over all frequencies to get the **total energy density** $u(T)$:
+
+$$
+u(T) = \int_{0}^{\infty} u_\nu(\nu,T)\,d\nu
+= \frac{8\pi h}{c^{3}}\int_{0}^{\infty}\frac{\nu^{3}\,d\nu}{e^{h\nu/(k_B T)}-1}
+$$
+
+Change variables $x=h\nu/(k_B T)$; then $d\nu = (k_B T/h)\,dx$ and
+
+$$
+u(T) = \frac{8\pi (k_B T)^{4}}{h^{3} c^{3}} \int_{0}^{\infty}\frac{x^{3}\,dx}{e^{x}-1}
+$$
+
+The integral is a famous one:
+
+$$
+\int_{0}^{\infty}\frac{x^{3}\,dx}{e^{x}-1} = \frac{\pi^{4}}{15}
+$$
+
+So
+
+$$
+u(T) = a\,T^{4},\qquad a \equiv \frac{8\pi^{5} k_B^{4}}{15\,h^{3} c^{3}}
+$$
+
+The **radiated power per unit area** from a black surface follows by $I=\tfrac{c}{4}u$ (kinematic factor for isotropic radiation):
+
+$$
+I = \sigma T^{4},\qquad \sigma = \frac{2\pi^{5} k_B^{4}}{15\,h^{3} c^{2}}
+$$
+
+This is the **Stefan–Boltzmann law** with its constant $\sigma$ expressed in terms of $k_B,h,c$.
+
+---
+
+### 6.2.8 Where is the peak? Wien’s displacement law
+
+Maximize $u_\nu(\nu,T)$ with respect to $\nu$ at fixed $T$. Setting $x=h\nu/(k_B T)$, the condition reduces to
+
+$$
+\frac{d}{dx}\left(\frac{x^{3}}{e^{x}-1}\right)=0 \quad\Rightarrow\quad 
+3\,(e^{x}-1) - x\,e^{x} = 0
+$$
+
+This transcendental equation has a root
+
+$$
+x_\ast \approx 2.821439\ldots
+$$
+
+Hence the **frequency of the peak** scales as
+
+$$
+\nu_{\text{peak}} = \frac{x_\ast k_B}{h}\,T
+$$
+
+If you instead work with the wavelength form
+
+$$
+u_\lambda(\lambda,T) = \frac{8\pi h c}{\lambda^{5}}\;\frac{1}{e^{hc/(\lambda k_B T)}-1}
+$$
+
+and maximize with respect to $\lambda$, you get **Wien’s displacement law**
+
+$$
+\lambda_{\text{peak}}\,T = b
+$$
+
+with a constant $b$ fixed by the root of a slightly different transcendental equation. Important PSA: the peak in $u_\nu$ and the peak in $u_\lambda$ are **not** at the same photon energy because the Jacobian $|d\nu/d\lambda|$ reshapes the curve.
+
+---
+
+### 6.2.9 Converting between frequency and wavelength spectra
+
+Use $u_\lambda\,d\lambda = u_\nu\,d\nu$ with $\nu=c/\lambda$ and $d\nu = -\,c/\lambda^{2}\,d\lambda$. Then
+
+$$
+u_\lambda(\lambda,T) = u_\nu\!\left(\frac{c}{\lambda},T\right)\;\frac{c}{\lambda^{2}}
+$$
+
+Plugging Planck’s $u_\nu$ gives the standard $u_\lambda$ quoted above. The minus sign drops because decreasing $\lambda$ increases $\nu$.
+
+---
+
+### 6.2.10 A statistical-mechanics view (why quantization matters)
+
+Classically, energy is continuous and equipartition dumps $k_B T$ into each mode no matter how high its frequency. Quantum statistically, the occupation of a mode with energy spacing $h\nu$ is **Bose–Einstein** with zero chemical potential:
+
+$$
+\bar n(\nu) = \frac{1}{e^{h\nu/(k_B T)} - 1}
+$$
+
+and the mean energy per mode is $h\nu\,\bar n(\nu)$. High-frequency modes are exponentially hard to populate because you must pay $h\nu$ upfront; low-frequency modes behave classically because $h\nu \ll k_B T$ makes $\bar n$ large and $\langle \varepsilon \rangle \to k_B T$. The catastrophe disappears because **discrete energy spacing throttles the UV**.
+
+---
+
+### 6.2.11 Planck’s “I didn’t mean to be a revolutionary” arc
+
+Planck was a dyed-in-the-wool thermodynamics guy who wanted a principled derivation of Wien’s empirical law. After the Rubens data contradicted Wien at low $\nu$, he sought an interpolation that matched both limits and then reverse-engineered a statistical story to justify it. He later called the quantization step “an act of desperation.” The act stuck. Within five years Einstein gave those energy packets—photons—independent life in the photoelectric effect. Planck’s constant $h$ went from curve-fitting fudge to a fundamental unit of nature.
+
+---
+
+### 6.2.12 Practical knobs: emissivity and real surfaces
+
+Real materials are not perfect blackbodies. If a surface has **emissivity** $\epsilon(\nu,T)$ between 0 and 1, its spectral radiance is
+
+$$
+I_\nu^{\text{real}}(\nu,T) = \epsilon(\nu,T)\,I_\nu^{\text{black}}(\nu,T)
+$$
+
+Kirchhoff’s law of thermal radiation says emissivity equals absorptivity at each frequency, so cavities with a small aperture are effectively black even if the walls are not—rays bounce until they hit an absorptive patch. This is why laboratory blackbodies are cavities.
+
+---
+
+### 6.2.13 Worked mini-examples
+
+**(a) Power of a star.** Approximating a star as a blackbody of radius $R$ and surface temperature $T$, its luminosity is
+
+$$
+L = 4\pi R^{2}\,\sigma T^{4}
+$$
+
+**(b) Peak color of a filament.** Using $\lambda_{\text{peak}}\,T=b$, heating a filament so $T$ doubles halves the peak wavelength, shifting from red toward blue. Photographs feel the shift because camera sensors respond to $u_\lambda$ weighting.
+
+**(c) Cavity photon number density.** The photon number spectrum is $n_\nu = u_\nu/(h\nu)$, hence the total number density is
+
+$$
+n(T) = \int_{0}^{\infty}\frac{u_\nu}{h\nu}\,d\nu 
+= \frac{8\pi}{c^{3}}\int_{0}^{\infty}\frac{\nu^{2}\,d\nu}{e^{h\nu/(k_B T)} - 1}
+$$
+
+Changing variables $x=h\nu/(k_B T)$ yields $n(T)\propto T^{3}$ with a proportionality constant involving $\zeta(3)$.
+
+---
+
+### 6.2.14 What to remember (exam-tier TL;DR)
+
+- Geometry gives the density of modes $g(\nu) = 8\pi \nu^{2}/c^{3}$; physics gives the average energy per mode  
+- Classical equipartition $\Rightarrow$ Rayleigh–Jeans $\propto \nu^{2}T$ $\Rightarrow$ ultraviolet catastrophe  
+- Planck: energy exchange in quanta $h\nu$ $\Rightarrow$ $\langle \varepsilon \rangle = h\nu/(e^{h\nu/(k_B T)}-1)$  
+- Multiply them to get Planck’s law; integrate to get Stefan–Boltzmann $I=\sigma T^{4}$; maximize to get Wien’s displacement  
+- Quantization is not optional decoration; it is the only way to make thermodynamics and electromagnetism coexist peacefully in a cavity
+
+---
+
+**In summary:** Counting modes is classical; assigning energy per mode must be quantum. Planck’s hypothesis—energy chunks of size $h\nu$—kills the UV divergence, unifies the low- and high-frequency limits, and hardwires $h$ into nature. From here, Einstein will push the logic onto light itself (photoelectric effect), and Bohr will deploy $h$ inside the atom. The era of “continuous everything” is over; the grid has pixels.
+
+## 6.3 Photoelectric Effect and Einstein’s Light Quanta
+
+Shine light on a clean metal and electrons pop out. Classical waves could explain “more light → more energy,” but experiments in the early 1900s said “frequency first, intensity second.” That plot twist pushed Einstein to a bold take: light energy arrives in discrete packets of size $h\nu$. The photoelectric effect is where photons stop being poetry and start being accounting.
+
+---
+
+### 6.3.1 The experimental rules (what needed explaining)
+
+Laboratories found a crisp set of facts:
+
+- There exists a **threshold frequency** $\nu_0$ below which no electrons are emitted, however intense the light  
+- Above threshold, the **maximum kinetic energy** of emitted electrons depends **linearly on frequency**, not intensity  
+- The **emission is prompt** on the scale of the light cycle; no measurable delay even at low intensities  
+- The **photoelectric current** (number of electrons per second) scales with light **intensity** for fixed frequency, up to a saturation set by the apparatus
+
+These rules are weird in a pure wave picture where energy is spread out over the wavefront and can accumulate continuously.
+
+---
+
+### 6.3.2 Einstein’s one-liner
+
+Einstein’s 1905 hypothesis: light of frequency $\nu$ behaves as a stream of quanta (photons), each carrying energy $h\nu$. An electron in the solid that absorbs **one** photon spends part of that energy to escape the material—this is the **work function** $W$—and keeps the rest as kinetic energy. Thus
+
+$$
+K_{\max} = h\nu - W
+$$
+
+The threshold frequency is therefore
+
+$$
+\nu_0 = \frac{W}{h}
+$$
+
+Intensity controls how many photons arrive per second, hence how many electrons can be emitted per second, but **not** the maximum energy of each electron. Frequency sets the budget per electron.
+
+---
+
+### 6.3.3 Measuring $h$ and $W$ with stopping potentials
+
+Experimenters measure the maximum kinetic energy by applying a retarding voltage $V_s$ to stop the most energetic electrons from reaching the collector. The definition is
+
+$$
+e\,V_s = K_{\max}
+$$
+
+Combining with Einstein’s relation gives a straight-line plot
+
+$$
+e\,V_s = h\nu - W
+$$
+
+So a graph of $V_s$ versus $\nu$ has **slope** $h/e$ and **intercept** $-W/e$. That is how early experiments extracted Planck’s constant and the work function directly from electron kinetics.
+
+---
+
+### 6.3.4 Why the classical wave picture face-plants
+
+A classical wave deposits energy continuously at a rate proportional to intensity. If that were the whole story, then at **low** intensities electrons should need a long time to accumulate enough energy to escape (a measurable delay), and for sufficiently intense **low-frequency** light the effect should happen anyway—no threshold. Neither occurs. The data scream “energy arrives in lumps,” with each electron grabbing at most one lump.
+
+---
+
+### 6.3.5 Millikan’s reluctant confirmation
+
+Robert Millikan spent a decade trying to break Einstein’s interpretation by doing gold-standard measurements. He refined vacuum systems, surface preparation, and electronics. The result was the cleanest straight lines in physics: $eV_s$ versus $\nu$ with slope $h$ and a frequency intercept at $W/h$. Millikan didn’t like the photon idea philosophically, but his data left no wiggle room. If your enemy measures your theory and it wins, that’s a W.
+
+---
+
+### 6.3.6 From intensity to flux: how many electrons?
+
+Hold $\nu$ fixed above threshold. Doubling **intensity** doubles the **photon flux** at the surface. If the surface is clean and space-charge effects are controlled, the **saturation current** $I_{\text{sat}}$ scales linearly with intensity because each absorbed photon can liberate at most one electron. The fraction that actually escape is the **quantum efficiency** $\eta$; thus
+
+$$
+I_{\text{sat}} \approx \eta\,\frac{P}{h\nu}\,e
+$$
+
+where $P$ is the optical power absorbed on the active area. Real values of $\eta$ depend on the material, surface state, and whether photoelectrons are backscattered or trapped before reaching the collector.
+
+---
+
+### 6.3.7 Energy distribution and the role of the solid
+
+$K_{\max}$ is the upper edge. The **distribution** of kinetic energies depends on the band structure and scattering within the solid. In simple metals one can sketch an “initial state” between the Fermi level and a few $k_B T$ below it; an electron that absorbs a photon emerges with energy roughly $h\nu - W$ minus any losses to inelastic scattering on the way out. That is why measured spectra are broad, not delta functions, even though the top edge follows $h\nu - W$ cleanly.
+
+---
+
+### 6.3.8 Time-of-flight and “instantaneous” emission
+
+Modern fast electronics confirm the old claim: emission is prompt within picoseconds or faster, consistent with a **single-photon** process instead of a long integration. In photon language, a single absorption event transfers $h\nu$ in one go; there is no need to “wait” for energy to build up.
+
+---
+
+### 6.3.9 Surface physics and work function engineering
+
+The work function $W$ is a surface property: it depends on the material, crystal face, cleanliness, and adsorbates. Alkali metals with low $W$ respond to red light; clean noble metals require blue/UV. Coatings and cesiation can lower $W$, tuning $\nu_0=W/h$ downward. This is why phototubes and photocathodes care deeply about surface preparation.
+
+---
+
+### 6.3.10 Typical lab analysis workflow
+
+1) Illuminate a freshly prepared metal surface with monochromatic light at several frequencies  
+2) For each $\nu$, sweep the collector voltage negative until the photocurrent drops to zero to find $V_s$  
+3) Plot $eV_s$ versus $\nu$; fit a line to extract **slope** $h$ and **intercept** $-W$  
+4) Independently, measure saturation current versus intensity at fixed $\nu$ to confirm linear scaling of electron count with photon flux
+
+The two experiments probe different pieces of Einstein’s model: the **energy per photon** and the **counting** of photons.
+
+---
+
+### 6.3.11 What about intensity at fixed frequency?
+
+At fixed $\nu>\nu_0$, increasing intensity raises the **number** of emitted electrons (current) but leaves the **maximum energy** unchanged because $h\nu$ is unchanged. Conversely, at fixed intensity, increasing frequency raises $K_{\max}$ linearly. On the $V_s$–$\nu$ plot, intensity just changes how quickly you reach saturation, not the slope or intercept.
+
+---
+
+### 6.3.12 Photons, momentum, and consistency checks
+
+Photons also carry momentum $p=h/\lambda$. In photoemission from a flat surface, most of the photon momentum is small compared with electron Fermi momenta, so $p$ is less central than $h\nu$ for escape energetics, but radiation pressure and light-driven forces make sense in the same bookkeeping. Later phenomena—**Compton scattering** of X-rays—extend the particle-like picture by showing wavelength shifts that require both photon energy and photon momentum conservation. The photoelectric effect is the gentle on-ramp; Compton is the highway.
+
+---
+
+### 6.3.13 Why “one photon → one electron” has caveats
+
+At high intensities and short pulses, **multi-photon** photoemission can occur: two (or more) photons combine to eject an electron even when $h\nu$ is below $W$. The signature is a nonlinear dependence of current on intensity. The original continuous-wave experiments lived in a regime where the single-photon process dominates, which is why Einstein’s linear law described them. Quantum mechanics contains both regimes—you just move along the intensity axis.
+
+---
+
+### 6.3.14 Quick derivations you can do on a napkin
+
+**Threshold.** Set $K_{\max}=0$ in Einstein’s law to get $\nu_0=W/h$. This is the cleanest way to **define** $W$ experimentally with light.
+
+**Slope extraction.** From $eV_s=h\nu - W$, the slope of $V_s$ vs $\nu$ is $h/e$. Measure it and you have a value of $h$ independent of blackbody fits or spectroscopy.
+
+**Work function units.** If $W$ is reported in electron-volts, then the threshold in hertz is
+
+$$
+\nu_0 = \frac{W\,\text{(eV)}}{h/e}
+$$
+
+and in wavelength
+
+$$
+\lambda_0 = \frac{c}{\nu_0}
+$$
+
+It is common to quote $\lambda_0$ for a photocathode because engineers think in wavelengths.
+
+---
+
+### 6.3.15 Photoelectric devices: from bench to tech
+
+- **Vacuum photodiodes and photomultipliers.** Use photoemission from a low-$W$ cathode to seed electrons, then multiply via dynodes. The $V_s$ method turns into gain calibration and noise analysis  
+- **Solar cells (not the same effect).** Photovoltaic junctions convert light to electricity via **electron–hole** pairs and built-in fields, not vacuum photoemission, but the $h\nu$ threshold idea still sets which photons can be absorbed  
+- **Ultrafast electron sources.** Femtosecond lasers drive single- or few-photon emission to produce short electron bunches for diffraction and microscopy
+
+---
+
+### 6.3.16 Conceptual audit
+
+- **Particle-like energy transfer.** $h\nu$ per photon, one photon per primary electron escape event  
+- **Material gatekeeper.** The work function $W$ sets the doorway; $\nu_0=W/h$ is the key frequency  
+- **Linear edge.** $K_{\max}$ tracks $h\nu-W$ regardless of intensity; stopping potential nails it as $eV_s$  
+- **Counting vs energy.** Intensity changes **how many** electrons, frequency changes **how energetic** they can be
+
+Quantum takes the wheel precisely where classical physics insists on the wrong dependencies.
+
+---
+
+**In summary:** The photoelectric effect is a tight transaction ledger: each emitted electron settles the bill $h\nu=W+K$. The slope–intercept plot of $eV_s$ versus $\nu$ measures $h$ and $W$ with brutal clarity. Intensity counts photons; frequency sets their budget. This is the experiment that made “photon” more than a metaphor and locked $h$ into the hardware of light–matter interaction.
+
+## 6.4 Atomic Spectra and Bohr’s Model
+
+Spectral lines were the OG QR codes of atoms—thin, repeatable, and screaming “there’s structure in here.” Long before quantum mechanics became a full theory, careful spectroscopy mapped those lines into simple integer patterns. The old quantum theory’s biggest W was Bohr’s 1913 model: a semi-classical atom with quantized orbits that nailed hydrogen’s spectrum and hinted at a deeper wave picture.
+
+---
+
+### 6.4.1 Empirical prelude: Balmer–Rydberg patterns
+
+Hydrogen’s visible lines fit Balmer’s 1885 formula; Rydberg soon generalized it to a **wavenumber** series
+
+$$
+\tilde\nu \equiv \frac{1}{\lambda} = R\,\left(\frac{1}{n_f^{2}} - \frac{1}{n_i^{2}}\right),\qquad n_i>n_f
+$$
+
+Here $R$ is the Rydberg constant and $(n_i,n_f)$ are positive integers labeling initial and final “levels.” Famous series:
+
+- **Lyman** $n_f=1$ (ultraviolet)  
+- **Balmer** $n_f=2$ (visible; Hα is $n_i=3\to2$ at $\sim 656\,$nm)  
+- **Paschen** $n_f=3$ (infrared)
+
+These were pure numerology—but spookily consistent across gases once you inserted effective constants.
+
+---
+
+### 6.4.2 Rutherford’s atom and the classical fail
+
+Rutherford’s 1911 scattering showed a tiny, charged nucleus. Classical electrons orbiting such a nucleus are **accelerated charges**; Maxwell says they radiate and spiral in. That predicts continuous spectra and no stable atoms. Yet nature flexed discrete lines and stability. Enter Bohr.
+
+---
+
+### 6.4.3 Bohr’s postulates
+
+Bohr’s model stapled three rules onto classical mechanics:
+
+1) **Stationary states.** Certain orbits are allowed and do not radiate despite acceleration  
+2) **Quantum of action.** Angular momentum is quantized
+
+$$
+m_e v r = n\,\hbar,\qquad n=1,2,3,\dots
+$$
+
+3) **Frequency condition.** Radiation occurs only when jumping between stationary states, with photon energy
+
+$$
+h\nu = E_i - E_f
+$$
+
+These hacks were audacious—and shockingly predictive for one-electron atoms.
+
+---
+
+### 6.4.4 Coulomb plus quantization: solving for radii, speeds, energies
+
+For a nucleus of charge $+Ze$ and an electron in a circular orbit of radius $r$ and speed $v$, centripetal force equals Coulomb attraction
+
+$$
+\frac{m_e v^{2}}{r} = \frac{1}{4\pi \varepsilon_0}\,\frac{Z e^{2}}{r^{2}}
+$$
+
+Combine with the quantization $m_e v r = n\hbar$ to eliminate $v$ and solve for $r_n$:
+
+$$
+r_n = \frac{4\pi \varepsilon_0\,\hbar^{2}}{m_e e^{2}}\,\frac{n^{2}}{Z}
+$$
+
+The bracket is the **Bohr radius**
+
+$$
+a_0 \equiv \frac{4\pi \varepsilon_0\,\hbar^{2}}{m_e e^{2}} = \frac{\hbar}{m_e c\,\alpha}
+$$
+
+so $r_n = \dfrac{n^{2}}{Z}\,a_0$. The orbital speed follows as
+
+$$
+v_n = \frac{Z\,\alpha\,c}{n}
+$$
+
+where
+
+$$
+\alpha \equiv \frac{e^{2}}{4\pi \varepsilon_0 \hbar c}
+$$
+
+is the fine-structure constant. The total energy is kinetic plus potential
+
+$$
+E_n = \frac{1}{2} m_e v_n^{2} - \frac{1}{4\pi \varepsilon_0}\,\frac{Z e^{2}}{r_n}
+$$
+
+which evaluates to
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi \varepsilon_0)^{2} \hbar^{2}}\,\frac{Z^{2}}{n^{2}} 
+= -\,\frac{1}{2}\,m_e c^{2}\,\alpha^{2}\,\frac{Z^{2}}{n^{2}}
+$$
+
+For hydrogen ($Z=1$), the ground state is
+
+$$
+E_1 = -\,13.6\,\text{eV}
+$$
+
+and levels scale like $-13.6\,\text{eV}/n^{2}$.
+
+---
+
+### 6.4.5 From Bohr levels to the Rydberg formula
+
+Bohr’s frequency condition with $E_i$ and $E_f$ gives a photon wavenumber
+
+$$
+\tilde\nu = \frac{\nu}{c} = \frac{E_i - E_f}{h c} 
+= \frac{m_e c\,\alpha^{2}}{2 h}\,Z^{2}\left(\frac{1}{n_f^{2}} - \frac{1}{n_i^{2}}\right)
+$$
+
+Thus the Rydberg constant in the **infinite nuclear mass** limit is
+
+$$
+R_\infty = \frac{\alpha^{2} m_e c}{2 h}
+$$
+
+For real hydrogen, the electron orbits the **center of mass**; replace $m_e$ by the **reduced mass**
+
+$$
+\mu = \frac{m_e m_N}{m_e + m_N}
+$$
+
+to get
+
+$$
+R_{\text{H}} = R_\infty\,\frac{\mu}{m_e}
+$$
+
+This tiny correction produces **isotope shifts** between H and D.
+
+---
+
+### 6.4.6 Why $m v r = n\hbar$ felt less random over time
+
+A decade later, de Broglie proposed matter waves with $\lambda = h/p$. Demanding an integer number of wavelengths around a circular orbit,
+
+$$
+2\pi r_n = n\,\lambda = n\,\frac{h}{p}
+$$
+
+implies
+
+$$
+p r_n = n\,\hbar
+$$
+
+i.e., Bohr’s rule. The **standing wave** picture explains why only certain radii are stable: destructive interference kicks out the rest. This wave logic is what Schrödinger will formalize in Chapter 7.
+
+---
+
+### 6.4.7 Correspondence principle and large $n$
+
+Bohr insisted that for large quantum numbers, quantum predictions must approach classical results. For $n\gg1$, the **orbital frequency** of the electron matches the **emission frequency** between neighboring levels, and the pattern of allowed transitions mimics the classical Fourier components of a Coulomb orbit. This “correspondence principle” guided the old quantum theory when full mechanics was still loading.
+
+---
+
+### 6.4.8 Selection rules and intensities (why some lines are strong)
+
+Bohr’s model locates levels but doesn’t compute line intensities. Empirically, strong lines obey angular-momentum-like **selection rules** such as $\Delta l=\pm 1$ that later emerge from dipole transition matrix elements in wave mechanics. The old theory guessed at them via classical radiation patterns; quantum mechanics derives them cleanly.
+
+---
+
+### 6.4.9 Worked mini-derivations
+
+**(a) Lyman-α wavelength.** From $n_i=2\to n_f=1$,
+
+$$
+\tilde\nu = R_{\text{H}}\left(1 - \frac{1}{4}\right) = \frac{3}{4} R_{\text{H}}
+$$
+
+so
+
+$$
+\lambda_{\text{Ly}\alpha} = \frac{4}{3 R_{\text{H}}}
+$$
+
+Numerically this lands near $121.6\,$nm once $\mu$ is included.
+
+**(b) Balmer Hα line.** For $n_i=3\to n_f=2$,
+
+$$
+\tilde\nu = R_{\text{H}}\left(\frac{1}{4} - \frac{1}{9}\right) = \frac{5}{36} R_{\text{H}}
+$$
+
+so
+
+$$
+\lambda_{\text{H}\alpha} = \frac{36}{5 R_{\text{H}}}
+$$
+
+which evaluates to about $656.3\,$nm.
+
+**(c) Ionization energy from level $n$.** Send $n\to\infty$; the needed energy is
+
+$$
+E_{\text{ion}}(n) = -E_n = \frac{13.6\,\text{eV}}{n^{2}}
+$$
+
+for hydrogen.
+
+---
+
+### 6.4.10 Sommerfeld’s ellipses and early fine structure
+
+To push further, Sommerfeld allowed **elliptical** orbits and quantized both the radial and angular actions. Adding a relativistic mass–velocity correction produced a partial account of **fine structure** (small level splittings) and the anomalous spacing of closely lying lines. It was clever but messy, and ran out of road on multi-electron atoms and precision details.
+
+---
+
+### 6.4.11 Where Bohr wins, where it breaks
+
+**Wins**
+
+- Predicts $E_n \propto -1/n^{2}$ and the exact hydrogen and hydrogenic spectra when reduced mass is included  
+- Explains **series limits** and **ionization energies**  
+- Anticipates de Broglie and provides a clean bridge to wave mechanics
+
+**Breaks**
+
+- Cannot explain **line intensities** and **polarizations** from first principles  
+- Fumbles **fine structure** fully and the **Zeeman effect** anomalies  
+- Faceplants on **helium** and other multi-electron atoms  
+- Treats non-radiating “accelerated” electrons by fiat rather than mechanism
+
+These failures are not bugs—they are breadcrumbs pointing to a wave equation and spin.
+
+---
+
+### 6.4.12 Practical constants and forms you will use
+
+Equivalent and handy expressions:
+
+$$
+a_0 = \frac{4\pi \varepsilon_0 \hbar^{2}}{m_e e^{2}} = \frac{\hbar}{m_e c\,\alpha}
+$$
+
+$$
+E_n = -\,\frac{1}{2} m_e c^{2} \alpha^{2}\,\frac{Z^{2}}{n^{2}}
+$$
+
+$$
+R_\infty = \frac{\alpha^{2} m_e c}{2 h}
+$$
+
+For a hydrogenic ion with nuclear charge $Z$, replace $R_{\text{H}}$ by $Z^{2} R_{\text{H}}$ and $E_n$ by $-13.6\,Z^{2}\,\text{eV}/n^{2}$.
+
+---
+
+### 6.4.13 Concept check: Bohr vs wave mechanics
+
+Bohr’s radii $r_n$ correspond to maxima in the radial probability density of the exact hydrogen wavefunctions. The quantum number $n$ remains, but $l$ and $m$ split levels and determine shapes; stationary states become **standing waves** in three dimensions. The photon frequency condition survives as **energy eigenvalue differences**, while selection rules arise from matrix elements of the dipole operator.
+
+---
+
+### 6.4.14 Minimal problem kit
+
+- Derive $r_n$ and $E_n$ from force balance plus $m v r=n\hbar$ and check $a_0$ numerically  
+- Starting from $E_n$, recover the Rydberg formula and identify $R_\infty$ in terms of $\alpha$  
+- Include the reduced mass and estimate the H–D isotope shift of Hα  
+- Use $v_n=Z\alpha c/n$ to check nonrelativistic consistency ($v_1\approx \alpha c$ for H)
+
+---
+
+**In summary:** Bohr’s model is a beautifully wrong theory: wrong in mechanism, right in spectrum. Quantized angular momentum and photon energy differences generate exact hydrogen lines, hint at matter waves, and put $a_0$ and $R_\infty$ on the constants menu. Its cracks—fine structure, Zeeman, helium—are invitations to a fuller story, which arrives when waves and matrices take over in the next chapter.
+
+## 6.5 Rutherford Scattering and the Nuclear Atom
+
+Sometimes one experiment deletes an entire worldview. The Geiger–Marsden gold-foil experiment did exactly that. They fired **alpha particles** (helium nuclei) at an ultra-thin gold foil and counted scintillations on a screen. Most alphas zipped through with tiny deflections, but a surprising few bounced at **large angles**, even backward. If positive charge were smeared throughout the atom (Thomson’s “plum pudding”), big-angle kicks would be essentially impossible. The data demanded a concentrated, tiny, positively charged **nucleus**.
+
+---
+
+### 6.5.1 What was measured and why it shocked people
+
+- **Beam**: alpha particles around a few MeV  
+- **Target**: sub-micron gold foil, atomic number $Z=79$  
+- **Detector**: zinc sulfide screen counting single scintillations  
+- **Surprise**: an exceedingly small fraction scattered through tens of degrees or more, some near $180^\circ$
+
+Classically, if positive charge were diffuse, only small, cumulative nudges add up. Large-angle events practically require a short-range, strong encounter with a compact center—i.e., a nucleus.
+
+---
+
+### 6.5.2 Coulomb repulsion and hyperbolic orbits
+
+Treat the interaction as repulsive Coulomb between an alpha of charge $z e$ (with $z=2$) and a nuclear charge $+Ze$:
+
+$$
+V(r) = \frac{1}{4\pi\varepsilon_0}\,\frac{Z z e^2}{r}
+$$
+
+It is convenient to define
+
+$$
+k \equiv \frac{Z z e^2}{4\pi\varepsilon_0}
+$$
+
+Nonrelativistic trajectories are hyperbolae. The relation between scattering angle $\theta$ and **impact parameter** $b$ for a projectile of kinetic energy $E$ is
+
+$$
+\theta = 2\,\arctan\!\left(\frac{k}{2 E b}\right)
+$$
+
+which inverts to
+
+$$
+b(\theta) = \frac{k}{2E}\,\cot\!\left(\frac{\theta}{2}\right)
+$$
+
+Here $E=\tfrac{1}{2}\mu v^2$ with reduced mass $\mu$; for a very heavy target, $\mu\approx m_{\alpha}$ and lab $\approx$ CM.
+
+---
+
+### 6.5.3 The Rutherford differential cross section
+
+The measurable is the angular distribution, i.e. the **differential cross section**:
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{b}{\sin\theta}\,\left|\frac{db}{d\theta}\right|
+$$
+
+Using $b(\theta)$ above and $db/d\theta = -\tfrac{k}{4E}\csc^2(\theta/2)$ gives the famed Rutherford formula
+
+$$
+\frac{d\sigma}{d\Omega} = \left(\frac{k}{4E}\right)^{2}\,\csc^{4}\!\left(\frac{\theta}{2}\right)
+$$
+
+Key scalings:
+- $\propto Z^{2} z^{2}$, so heavier nuclei punch harder  
+- $\propto E^{-2}$, so higher beam energy suppresses scattering  
+- Diverges at small angles like $\theta^{-4}$
+
+That $1/\sin^{4}(\theta/2)$ falloff matches the data over a wide range—until other physics (screening, nuclear forces, relativity) kicks in.
+
+---
+
+### 6.5.4 Distance of closest approach and nuclear scale
+
+For **head-on** approach ($b=0$, $\theta=\pi$) the kinetic energy converts into potential energy at the turning point $r_{\min}$:
+
+$$
+E = \frac{k}{r_{\min}}
+$$
+
+so
+
+$$
+r_{\min} = \frac{k}{E}
+$$
+
+Numerically, the handy constant is $e^{2}/(4\pi\varepsilon_{0}) \approx 1.44\ \text{eV·nm}$. For $z=2$ alphas on gold ($Z=79$), $k \approx 79\times 2\times 1.44\ \text{eV·nm} \approx 227.5\ \text{eV·nm}$. With $E=5\ \text{MeV}$,
+
+$$
+r_{\min} \approx \frac{227.5\ \text{eV·nm}}{5\times 10^{6}\ \text{eV}} \approx 4.6\times 10^{-5}\ \text{nm} = 4.6\times 10^{-14}\ \text{m}
+$$
+
+That is tens of femtometers—orders of magnitude smaller than the atomic size ($\sim 10^{-10}\ \text{m}$). Pushing to higher energies drives $r_{\min}$ down toward a few femtometers, the scale of nuclear radii, consistent with a **tiny** dense core.
+
+---
+
+### 6.5.5 From counts to cross sections in a foil
+
+For a thin target with atomic number density $n$ and thickness $t$, the expected rate into solid angle $\Delta\Omega$ at angle $\theta$ is
+
+$$
+\text{counts} \propto N_{\text{beam}}\; n t\; \frac{d\sigma}{d\Omega}(\theta)\; \Delta\Omega
+$$
+
+“Thin” means single scattering dominates and attenuation is negligible. At larger $t$ or for softer beams, **multiple scattering** blurs the pure Rutherford shape at small angles.
+
+---
+
+### 6.5.6 Where the classical picture bends
+
+- **Atomic screening (small $\theta$).** At large $b$ the projectile sees a nearly neutral atom; bound electrons screen nuclear charge. Effective $Z$ drops, taming the $\theta^{-4}$ divergence. A crude cutoff angle corresponds to impact parameters beyond the screening length $\sim a_{0}/Z^{1/3}$
+
+- **Nuclear size and strong force (large $\theta$, high $E$).** When $r_{\min}$ approaches a few fm, the finite nuclear radius and the **strong interaction** spoil the pure Coulomb potential. Deviations at the largest angles or highest energies carry nuclear-structure info
+
+- **Relativity and spin.** For faster beams and electrons as projectiles, one needs **Mott scattering**, i.e., Dirac theory corrections and spin–orbit effects. The qualitative $\csc^{4}(\theta/2)$ survives as a backbone but with spin-dependent factors
+
+- **Quantum mechanics.** The quantum calculation (partial waves or Born approximation) reproduces the Rutherford formula for Coulomb potentials—remarkable agreement between classical and quantum for this case
+
+---
+
+### 6.5.7 What the experiment **proved**
+
+1) **Positive charge and most mass live in a tiny volume** compared to the atom  
+2) Electrons are peripheral; the atom is mostly empty space  
+3) Long-range deflection is **Coulombic** and centered, not a diffuse push
+
+Those facts killed the plum-pudding model and launched the **nuclear atom**, setting the stage for Bohr’s quantized orbits (§6.4) and, later, quantum mechanics proper.
+
+---
+
+### 6.5.8 Worked mini-derivations
+
+**(a) Differential cross section**
+
+Start from $b(\theta)=\tfrac{k}{2E}\cot(\theta/2)$
+
+$$
+\frac{d\sigma}{d\Omega}
+= \frac{b}{\sin\theta}\left|\frac{db}{d\theta}\right|
+= \left(\frac{k}{2E}\frac{\cot(\theta/2)}{\sin\theta}\right)\left(\frac{k}{4E}\csc^{2}\!\frac{\theta}{2}\right)
+= \left(\frac{k}{4E}\right)^{2} \csc^{4}\!\frac{\theta}{2}
+$$
+
+**(b) Integrated yield beyond a cut angle $\theta_{0}$**
+
+Using $d\sigma/d\Omega \propto \csc^{4}(\theta/2)$ and $d\Omega=2\pi\sin\theta\,d\theta$,
+
+$$
+\sigma(\theta>\theta_{0}) = 2\pi \int_{\theta_{0}}^{\pi}\! \left(\frac{k}{4E}\right)^{2} \csc^{4}\!\frac{\theta}{2}\,\sin\theta\,d\theta
+= \pi \left(\frac{k}{2E}\right)^{2}\,\cot^{2}\!\frac{\theta_{0}}{2}
+$$
+
+Handy for estimating count rates when your detector subtends large angles
+
+**(c) Closest approach at nonzero $b$**
+
+Conserve energy and angular momentum $L=\mu v b$; the turning point $r_{\min}$ satisfies
+
+$$
+E = \frac{L^{2}}{2\mu r_{\min}^{2}} + \frac{k}{r_{\min}}
+$$
+
+Solve the quadratic for $1/r_{\min}$ to link geometry $(b)$ to how near the alpha gets
+
+---
+
+### 6.5.9 Problem kit
+
+- Use $d\sigma/d\Omega$ to predict the ratio of counts at $30^\circ$ and $60^\circ$ for the same detector solid angle  
+- For $5\ \text{MeV}$ alphas on Au, compute $r_{\min}$ at $b=0$ and compare to an estimate of the nuclear radius $R\approx r_{0} A^{1/3}$ with $r_{0}\sim 1.2\ \text{fm}$  
+- Include screening by imposing a maximum impact parameter equal to a screening length and show how it regularizes the small-angle divergence  
+- Derive the lab–CM relation for $E$ and show why using lab $E$ is an excellent approximation for $\text{Au}$ targets
+
+---
+
+**In summary:** The gold-foil experiment showed that atoms are mostly vacuum with a tiny, massive, positively charged nucleus at the center. The Coulomb scattering math predicts a sharp, parameter-free angular law,
+
+$$
+\frac{d\sigma}{d\Omega} = \left(\frac{Z z e^{2}}{16\pi\varepsilon_0 E}\right)^{2} \csc^{4}\!\left(\frac{\theta}{2}\right)
+$$
+
+and the observed large-angle events made the nuclear atom unavoidable. Once you accept a compact nucleus, Bohr’s quantized orbits and discrete spectra stop being magic tricks and start being architecture.
+
+## 6.6 Matter Waves: de Broglie to Davisson–Germer
+
+If light can act like particles, maybe particles can act like waves. That was Louis de Broglie’s audacious 1923–24 symmetry flex. He guessed that every material particle with momentum $p$ carries a wavelength $\lambda=h/p$. Wild? Sure. But the prediction stuck landing after a few years: electrons diffracted from crystals exactly like X-rays, with the measured angles matching $\lambda=h/p$. Matter waves were not a metaphor; they were lab reality.
+
+---
+
+### 6.6.1 The hypothesis
+
+de Broglie’s one-liner is
+
+$$
+\lambda = \frac{h}{p}
+$$
+
+Together with photon $E=h\nu=\hbar \omega$ and $p=\hbar k$, he suggested the **wave–particle dictionary**
+
+$$
+E = \hbar \omega,\qquad p = \hbar k
+$$
+
+The two equalities say: if something carries energy–momentum $(E,\mathbf p)$, there is a wave with angular frequency $\omega$ and wavevector $\mathbf k$ marching in step.
+
+---
+
+### 6.6.2 Phase and group velocities
+
+For a free particle with dispersion relation $E(\mathbf p)$, define
+
+$$
+\omega = \frac{E}{\hbar},\qquad \mathbf k = \frac{\mathbf p}{\hbar}
+$$
+
+Then
+
+$$
+v_{\text{phase}} \equiv \frac{\omega}{k} = \frac{E}{p},\qquad
+\mathbf v_{\text{group}} \equiv \nabla_{\mathbf k}\,\omega = \nabla_{\mathbf p} E
+$$
+
+- **Relativistic** $E=\gamma m c^{2}$ and $p=\gamma m v$ give
+
+$$
+v_{\text{phase}} = \frac{c^{2}}{v},\qquad v_{\text{group}} = v
+$$
+
+Phase can be superluminal with no drama (it carries no information); **group** velocity equals the particle speed
+
+- **Nonrelativistic** $E=p^{2}/(2m)$ gives
+
+$$
+\omega = \frac{\hbar k^{2}}{2m},\qquad v_{\text{group}} = \frac{\hbar k}{m} = \frac{p}{m} = v
+$$
+
+This is why wave packets can track particles
+
+---
+
+### 6.6.3 Wave packets and uncertainty (sneak preview)
+
+A localized particle corresponds to a superposition of plane waves—a **wave packet**. If the momentum spread is $\Delta p$ (i.e., spread in $k$), then the spatial width obeys
+
+$$
+\Delta x \,\Delta p \gtrsim \frac{\hbar}{2}
+$$
+
+The packet moves at $v_{\text{group}}$ but **disperses** in time for nonrelativistic $E\propto k^{2}$, because different $k$ components travel at slightly different speeds. This is the seed of the uncertainty principle and of Schrödinger dynamics.
+
+---
+
+### 6.6.4 Electrons from a potential: handy formulas
+
+Accelerate an electron through a potential difference $V$; it gains kinetic energy $eV$. The **nonrelativistic** momentum is
+
+$$
+p = \sqrt{2 m_e e V}
+$$
+
+so
+
+$$
+\lambda = \frac{h}{\sqrt{2 m_e e V}}
+$$
+
+Engineers love the quick constant (with $\lambda$ in ångström, $V$ in eV):
+
+$$
+\lambda(\text{Å}) \approx \frac{12.27}{\sqrt{V(\text{eV})}}
+$$
+
+For higher voltages, include relativity:
+
+$$
+\lambda = \frac{h c}{\sqrt{(eV)\,(eV + 2 m_e c^{2})}}
+$$
+
+which reduces to the nonrelativistic result when $eV \ll m_e c^{2}$
+
+---
+
+### 6.6.5 Diffraction: crystals as electron gratings
+
+A crystal is a 3D diffraction grating. For planes of spacing $d$, constructive interference follows **Bragg’s law**
+
+$$
+n\,\lambda = 2 d \sin\theta,\qquad n=1,2,\dots
+$$
+
+Given $\lambda=h/p$, electrons should diffract with angles set by $d$—just like X-rays. This was the smoking gun de Broglie asked the world to look for.
+
+---
+
+### 6.6.6 Davisson–Germer (and G. P. Thomson): the receipts
+
+**Davisson & Germer (1927).** Electrons of tens of eV scattered from a nickel single crystal produced sharp intensity peaks at angles consistent with Bragg’s law when you plug in $\lambda=h/p$. Varying the accelerating voltage shifted the peak exactly as $\lambda\propto 1/\sqrt{V}$ predicts. 
+
+**G. P. Thomson** (also 1927) sent keV electrons through thin polycrystalline foils and recorded **ring patterns**—the powder-diffraction version of Bragg. Two independent routes, one conclusion: matter waves are real.
+
+Rule of thumb: $V\sim 150\ \text{eV}$ gives $\lambda\sim 1\ \text{Å}$ (interatomic distances), perfect for crystal diffraction.
+
+---
+
+### 6.6.7 From Bohr to de Broglie: standing waves
+
+Bohr’s angular-momentum postulate $m v r = n\hbar$ stops feeling arbitrary once you impose **standing waves** on a circular orbit:
+
+$$
+2\pi r = n\,\lambda = n\,\frac{h}{p}
+$$
+
+which gives
+
+$$
+p r = n\,\hbar
+$$
+
+Same quantization, now with wave logic. Unstable radii are those where the phase does not fit—destructive interference kicks them out. de Broglie supplied the mechanism Bohr’s model lacked.
+
+---
+
+### 6.6.8 Schrödinger’s motivation (why a wave equation exists)
+
+Take the free-particle dispersion $E=p^{2}/(2m)$ and the de Broglie dictionary $E\to i\hbar\,\partial_t$, $\mathbf p\to -i\hbar\nabla$. Demand a linear differential equation whose plane-wave solutions have $\omega=\hbar k^{2}/(2m)$. You land on
+
+$$
+i\hbar\,\frac{\partial \psi}{\partial t} = -\,\frac{\hbar^{2}}{2m}\,\nabla^{2}\psi + V\psi
+$$
+
+the time-dependent **Schrödinger equation**. In other words, de Broglie’s $E(\mathbf p)$ is the dispersion law that Schrödinger’s PDE realizes in real space.
+
+A complementary viewpoint uses Hamilton–Jacobi theory: write $\psi \sim \exp(i S/\hbar)$; then $\nabla S$ behaves like momentum. Quantum mechanics is classical mechanics plus **phase** and **interference**.
+
+---
+
+### 6.6.9 Electron double-slit: the mic drop
+
+Send single electrons through two slits; record impacts one by one. The screen builds an **interference pattern** over time—then vanishes when you measure **which slit** each electron took. The pattern wavelength matches $\lambda=h/p$. The message is not that electrons smear; it is that probabilities **interfere** with phases set by action differences.
+
+---
+
+### 6.6.10 Matter-wave tech: microscopes and metrology
+
+- **Electron microscopes.** Resolution scales roughly like $\sim \lambda$, so swapping visible light ($\sim 500\ \text{nm}$) for 100 keV electrons ($\lambda\sim 0.004\ \text{nm}$ with relativistic correction) makes nanoworld imaging routine  
+- **LEED/RHEED.** Low- and reflection-energy electron diffraction fingerprint surface structures and growth in real time  
+- **Atom interferometry.** Neutral atoms also carry de Broglie waves; splitting and recombining them measures gravity, rotations, and fundamental constants with absurd precision
+
+---
+
+### 6.6.11 Worked mini-examples
+
+**(a) De Broglie wavelength at $54\ \text{eV}$.**
+
+Using $\lambda(\text{Å})\approx 12.27/\sqrt{V(\text{eV})}$,
+
+$$
+\lambda \approx \frac{12.27}{\sqrt{54}}\ \text{Å} \approx 1.67\ \text{Å}
+$$
+
+Squarely in the range of crystal spacings—no wonder early peaks showed up near modest voltages
+
+**(b) Voltage for $\lambda=1.0\ \text{Å}$.**
+
+Invert the same rule:
+
+$$
+V \approx \left(\frac{12.27}{\lambda(\text{Å})}\right)^{2}\ \text{eV} \approx 150\ \text{eV}
+$$
+
+**(c) Group velocity check (nonrelativistic).**
+
+With $\omega=\hbar k^{2}/(2m)$,
+
+$$
+v_{\text{group}} = \frac{d\omega}{dk} = \frac{\hbar k}{m} = \frac{p}{m} = v
+$$
+
+The packet moves like the particle—consistency unlocked
+
+**(d) Bragg angle estimate.**
+
+For $d=2.0\ \text{Å}$, $\lambda=1.0\ \text{Å}$, first order $n=1$,
+
+$$
+\sin\theta = \frac{\lambda}{2d} = \frac{1}{4}\quad\Rightarrow\quad \theta \approx 14.5^\circ
+$$
+
+Real experiments include geometry factors (incidence vs detection), but the scaling is right on the nose
+
+---
+
+### 6.6.12 Subtleties and limits
+
+- **Wave packet spread.** Nonrelativistic packets broaden with time; real beams are continually collimated or detected before big dispersion  
+- **Scattering versus bound states.** In crystals, elastic diffraction uses the crystal as a giant phase grating; in atoms, bound-state standing waves quantize energies  
+- **Heavy particles.** $\lambda=h/p$ shrinks fast with mass; neutron and atom interferometers compensate by running at ultra-low velocities to get usable wavelengths  
+- **Relativistic electrons.** Use the corrected $\lambda$; at 100 keV, nonrelativistic formulas understate the momentum (and overstate $\lambda$)
+
+---
+
+### 6.6.13 Problem kit
+
+- Show that $v_{\text{phase}}\,v_{\text{group}}=c^{2}$ for a free relativistic particle  
+- For an electron beam at $200\ \text{keV}$, compute $\lambda$ with and without relativistic correction and compare  
+- Given a cubic crystal with lattice constant $a$, list $d$-spacings for $(100)$, $(110)$, $(111)$ and predict first-order Bragg angles for a chosen $\lambda$  
+- Build a Gaussian wave packet $\psi(x,0)$, evolve it with the free Schrödinger kernel, and extract the time dependence of the rms width
+
+---
+
+**In summary:** de Broglie’s $\lambda=h/p$ turns out to be the Rosetta stone: it explains Bohr’s quantization as standing waves, predicts diffraction from crystals, and leads straight to Schrödinger’s equation via the dispersion relation. Phase zips superluminally, group speed tracks the particle, and interference is no longer just for light. Matter waves are how the micro-world writes its receipts.
+
+## 6.7 Old Quantum Theory: Hits and Misses
+
+Before full quantum mechanics landed in 1925–26, physicists hacked classical mechanics with a few bold patches. They quantized certain integrals, imposed selection rules, and stitched in Bohr’s frequency condition. This **old quantum theory** nailed hydrogen’s spectrum and hinted at deeper structure, but it stumbled on multi-electron atoms, intensities, and magnetic quirks. This section is the status report: what worked, what broke, and what carried over into modern QM.
+
+---
+
+### 6.7.1 What “old quantum” meant
+
+The playbook had three pillars:
+
+1) **Stationary states** exist that do not radiate while the electron whirls in a Coulomb orbit  
+2) **Bohr–Sommerfeld quantum conditions** select allowed motions  
+3) **Bohr frequency condition** connects level differences to light
+
+In symbols, energy levels $E_n$ and jumps $n\to n'$ emit or absorb photons with
+
+$$
+h\nu = E_n - E_{n'}
+$$
+
+The deep math piece was the quantization of **actions**.
+
+---
+
+### 6.7.2 Bohr–Sommerfeld quantum conditions
+
+For a system with separable coordinates $q_i$ and conjugate momenta $p_i$, allowed orbits satisfy
+
+$$
+\oint p_i\,dq_i = n_i\,h,\qquad n_i=0,1,2,\dots
+$$
+
+The line integral runs over one full period of motion in coordinate $q_i$. Define the **action variables**
+
+$$
+J_i \equiv \oint p_i\,dq_i
+$$
+
+Then the rule is simply $J_i = n_i h$. These $J_i$ are **adiabatic invariants**: under slow changes of parameters, they remain constant, a fact Ehrenfest elevated into the **adiabatic principle**. Where the dynamics is integrable and separable, the rules bite; where it is not, they flail.
+
+---
+
+### 6.7.3 Hydrogen, again but more general
+
+Bohr’s circular orbits are a special case. With Sommerfeld’s ellipses, the Coulomb problem has two actions: **radial** $J_r$ and **angular** $J_\phi$. Quantization gives
+
+$$
+J_\phi = \ell\,h,\qquad J_r = n_r\,h,\qquad n = n_r + \ell
+$$
+
+and the total energy depends only on $n$:
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi\varepsilon_0)^2 \hbar^2}\,\frac{1}{n^{2}}
+$$
+
+The principal quantum number $n$ counts nodes in the old theory too, but without a wavefunction to say it out loud. Sommerfeld also added a relativistic mass–velocity correction and extracted a qualitative **fine structure** splitting, a hint of what Dirac would do properly.
+
+---
+
+### 6.7.4 Harmonic oscillator: the “almost right” spectrum
+
+For a 1D harmonic oscillator with frequency $\omega$, the action integral evaluates to
+
+$$
+J = \oint p\,dq = \frac{2\pi E}{\omega}
+$$
+
+Bohr–Sommerfeld demands $J = n h$, hence
+
+$$
+E_n = n\,\hbar\omega
+$$
+
+This is **close** to the truth; modern QM gives $E_n=(n+\tfrac12)\hbar\omega$. The missing $\tfrac12$ is the vacuum’s **zero-point energy**, one of several places where old quantum theory is off by a half.
+
+---
+
+### 6.7.5 Correspondence principle and selection rules
+
+Bohr’s **correspondence principle** guided guesses: in the limit of large quantum numbers $n\gg 1$, quantum predictions must morph into classical ones. For bound motion one can Fourier-expand a classical trajectory and show that the strongest allowed quantum transitions tend to frequencies present in the classical spectrum. This logic nudged the empirical dipole **selection rule**
+
+$$
+\Delta \ell = \pm 1
+$$
+
+and explained why transitions with wildly different frequencies are feeble. The principle later reappeared as actual mathematics in the **Kramers–Heisenberg** dispersion formula and sum rules.
+
+---
+
+### 6.7.6 Einstein’s $A$ and $B$ coefficients: blackbody from jumps
+
+In 1916–17 Einstein wrote a kinetic model of radiative transitions between two levels $1$ and $2$ with degeneracies $g_1,g_2$. In a radiation field of spectral energy density $\rho(\nu)$, the rates are
+
+$$
+\text{absorption: } N_1 B_{12}\,\rho(\nu),\qquad
+\text{stimulated emission: } N_2 B_{21}\,\rho(\nu),\qquad
+\text{spontaneous emission: } N_2 A_{21}
+$$
+
+Thermal equilibrium plus Boltzmann factors $N_2/N_1=(g_2/g_1)\exp(-h\nu/k_B T)$ then enforce
+
+$$
+\frac{A_{21}}{B_{21}} = \frac{8\pi h \nu^{3}}{c^{3}},\qquad
+\frac{g_1\,B_{12}}{g_2\,B_{21}} = 1
+$$
+
+and reproduce **Planck’s law** for $\rho(\nu)$. This was the first theoretical appearance of **stimulated emission**, which lasers would monetize decades later. Old quantum theory could balance the books for radiation.
+
+---
+
+### 6.7.7 Dispersion theory and the first sum rules
+
+Kramers recast optical dispersion in terms of virtual jumps between levels and, using correspondence, derived frequency-dependent polarizabilities that matched classical Lorentz–Drude behavior at low frequency but respected quantum selection rules. Heisenberg and Born then took the hint and replaced classical amplitudes by **arrays** of transition amplitudes—Heisenberg’s bridge to **matrix mechanics**. Even before that leap, **sum rules** relating oscillator strengths to charges were early “no free lunch” constraints on spectra.
+
+---
+
+### 6.7.8 Thermodynamics wins: specific heats of solids
+
+Classical equipartition predicts a constant molar heat capacity $C_V=3R$ (Dulong–Petit). Data at low $T$ tank that prediction. **Einstein’s model** (1907) treats each atom as an independent quantum oscillator of frequency $\omega_E$:
+
+$$
+C_V = 3R\,\left(\frac{\theta_E}{T}\right)^2 \frac{e^{\theta_E/T}}{\left(e^{\theta_E/T}-1\right)^2},\qquad \theta_E \equiv \frac{\hbar\omega_E}{k_B}
+$$
+
+It captures the drop but not the exact low-$T$ power. **Debye** improved it by quantizing acoustic modes up to a cutoff $\omega_D$, yielding $C_V\propto T^3$ at low $T$ and $3R$ at high $T$. While not part of orbital quantization, these successes showed that **discreteness** fixes thermodynamics too.
+
+---
+
+### 6.7.9 Where old quantum theory face-planted
+
+- **Helium and many-electron atoms.** The three-body Coulomb problem has no closed integrals of motion to quantize cleanly. Ad hoc quantum conditions gave conflicting energies and wrong term structures. Helium was the “here be dragons” sign until wave mechanics and **spin** arrived
+
+- **Anomalous Zeeman effect.** In weak magnetic fields, many spectral lines split into more components than classical or orbital angular momentum alone can explain. The fix needs **electron spin** and spin–orbit coupling, which the old theory lacked
+
+- **Intensities and polarizations.** Level positions were OK for hydrogenic systems; **line strengths**, **polarizations**, and **lifetimes** demanded matrix elements of operators between wavefunctions—tools old quantum did not possess
+
+- **Radiation from accelerated charges.** Old quantum declared stationary orbits non-radiating by fiat, while classical electrodynamics says accelerating charges radiate. The rule worked phenomenologically but had no mechanism until wave mechanics turned “orbit” into a stationary **standing wave**
+
+- **Nonseparable systems and chaos.** The action-quantization rule needs separable coordinates and closed invariant tori in phase space. Many motions (think coupled anharmonic oscillators, generic molecules) do not cooperate. Without a PDE for $\psi$, the method stalls
+
+- **Zero-point energy.** The oscillator’s missing $\tfrac12\hbar\omega$ showed up in experiments sensitive to low-temperature fluctuations and later in field quantization. Old quantum had no universal way to assign it
+
+---
+
+### 6.7.10 What survived into modern quantum mechanics
+
+- **Actions and adiabatic invariants** became the semiclassical **WKB/EBK** quantization rules
+
+$$
+\oint p\,dq = \left(n + \frac{\mu}{4}\right)h
+$$
+
+with **Maslov indices** $\mu$ supplying the missing halves
+
+- **Correspondence principle** remains a sanity check and underlies sum rules, selection rules, and semiclassical approximations
+
+- **Einstein $A$/$B$ coefficients** and oscillator strengths live on in atomic physics, lasers, and astrophysical diagnostics
+
+- **Quantum numbers** $(n,\ell,m)$ are still the labels; they are now eigenvalue data of commuting operators rather than areas under curves
+
+- **De Broglie’s standing waves** turned into the full **eigenfunction** story, explaining stability and radiation probabilities from overlaps, not orbits
+
+---
+
+### 6.7.11 Worked mini-examples
+
+**(a) Action of the Kepler problem**
+
+For the Coulomb potential, the radial action can be computed from the periapsis–apoapsis bounds. One finds $J_\phi=\ell h$ and
+
+$$
+J_r = h\,(n - \ell)
+$$
+
+so $E$ depends only on $n$, reproducing $E_n\propto -1/n^2$ and degeneracy in $\ell$ that wave mechanics later lifts via spin–orbit coupling and Lamb shifts
+
+**(b) Oscillator’s missing half**
+
+Given $J=2\pi E/\omega$, $J=n h$ yields $E_n=n\hbar\omega$. WKB with turning points adds a phase $\pi/2$ at each boundary, shifting the rule to $J=(n+\tfrac12)h$ and fixing $E_n=(n+\tfrac12)\hbar\omega$
+
+**(c) Dipole selection**
+
+Take a classical circular orbit and expand its dipole moment into Fourier modes at multiples of the orbital frequency. The strongest harmonic is the first, mirroring $\Delta \ell=\pm 1$ and nearest-neighbor $n$ transitions in the large-$n$ limit
+
+---
+
+### 6.7.12 Problem kit
+
+- Starting from $\oint p\,dq = n h$, derive $E_n$ for the harmonic oscillator and compare to the WKB-corrected $(n+\tfrac12)\hbar\omega$  
+- For Coulomb motion, compute $J_\phi$ and $J_r$ and show $E$ depends only on $n=n_r+\ell$  
+- Use Einstein’s rate equations to re-derive $\rho(\nu)$ and extract $A_{21}/B_{21}$ and $B_{12}/B_{21}$ in terms of $(g_1,g_2)$  
+- Show how Kramers’ dispersion reduces to the classical Lorentz model when $\hbar\omega \ll k_B T$ and transitions crowd densely  
+- Identify one system where variables are not separable and explain why Bohr–Sommerfeld quantization stalls without wave mechanics
+
+---
+
+**In summary:** Old quantum theory was a brilliant stopgap. It guessed the right invariants to quantize, respected a correspondence to classical physics, and even anticipated stimulated emission. But without wavefunctions, operators, and spin, it could not compute intensities, multi-electron spectra, or magnetic fine print. The successes became the scaffolding for Heisenberg’s matrices and Schrödinger’s waves; the failures marked the exact spots where the full theory had to grow
+
+## 6.8 Spin, Stern–Gerlach, and Exclusion
+
+Atoms were shouting a secret in the 1910s–20s: angular momentum was coming in half-units and electron seats were limited. Two experiments and one principle sealed the deal—**Stern–Gerlach** split neutral beams into discrete tracks, **spin** explained “anomalous” Zeeman splittings, and **Pauli’s exclusion principle** organized the periodic table and built the stability of matter. This section introduces spin as a bona fide quantum degree of freedom, its magnetic moment, how fields act on it, and why “no two identical fermions in the same state” is the rule holding up chemistry and white dwarfs.
+
+---
+
+### 6.8.1 Stern–Gerlach: space quantization goes brrr
+
+In 1922, Otto Stern and Walther Gerlach sent a beam of neutral silver atoms through a **non-uniform** magnetic field. Classically, the component of magnetic moment along the field gradient would vary continuously, giving a smear on the screen. Instead they saw **two** sharp spots. Conclusion: the $z$-component of angular momentum is **quantized**.
+
+Silver was clutch because its valence structure leaves a single unpaired electron dominating the atom’s magnetic moment while the atom remains neutral (no Lorentz deflection). The force is
+
+$$
+F_z = \mu_z\,\frac{\partial B_z}{\partial z}
+$$
+
+and the observed two-way split screams that $\mu_z$ only takes two values. That is spin shouting “$m_s=\pm \tfrac12$.”
+
+---
+
+### 6.8.2 Spin-$\tfrac12$ algebra and eigenvalues
+
+Quantum mechanically, spin components do not commute:
+
+$$
+[S_i,S_j]=i\hbar\,\epsilon_{ijk}\,S_k
+$$
+
+For an electron, the total spin and its $z$-projection are
+
+$$
+S^2 = s(s+1)\hbar^2,\qquad s=\frac12
+$$
+
+$$
+S_z\,\ket{\uparrow}=\frac{\hbar}{2}\ket{\uparrow},\qquad
+S_z\,\ket{\downarrow}=-\frac{\hbar}{2}\ket{\downarrow}
+$$
+
+A convenient matrix representation uses the **Pauli matrices** $\boldsymbol{\sigma}$ with $S_i=\tfrac{\hbar}{2}\sigma_i$:
+
+$$
+\sigma_x=\begin{pmatrix}0&1\\[2pt]1&0\end{pmatrix},\quad
+\sigma_y=\begin{pmatrix}0&-i\\[2pt]i&0\end{pmatrix},\quad
+\sigma_z=\begin{pmatrix}1&0\\[2pt]0&-1\end{pmatrix}
+$$
+
+Spin states are two-component **spinors**. Rotations act via these matrices, and measurement along any axis picks one of two outcomes.
+
+---
+
+### 6.8.3 Magnetic moment, Zeeman splitting, and Larmor precession
+
+The electron’s spin carries a magnetic moment
+
+$$
+\boldsymbol{\mu}_s = -\,g_s\,\frac{e}{2m_e}\,\mathbf{S}
+$$
+
+where $g_s\approx 2$ from Dirac theory (with small QED corrections). Define the **Bohr magneton**
+
+$$
+\mu_B \equiv \frac{e\hbar}{2m_e}
+$$
+
+In a uniform magnetic field $\mathbf{B}=B\hat{\mathbf{z}}$, the interaction energy is
+
+$$
+H_Z = -\,\boldsymbol{\mu}\cdot\mathbf{B} = g_s\,\mu_B\,m_s\,B
+$$
+
+so a spin-$\tfrac12$ splits into two levels separated by
+
+$$
+\Delta E = g_s\,\mu_B\,B
+$$
+
+Classically flavored but quantum-exact, spins also **precess** about $\mathbf{B}$ at the **Larmor frequency**
+
+$$
+\omega_L = \frac{g_s\,\mu_B\,B}{\hbar}
+$$
+
+This underlies magnetic resonance (NMR/EPR) and shows up as beat frequencies in time-dependent spin dynamics.
+
+---
+
+### 6.8.4 Normal vs “anomalous” Zeeman: spin to the rescue
+
+Old spectroscopy found that many lines in a magnetic field split into patterns beyond the **normal Zeeman triplet**. The fix is the total angular momentum
+
+$$
+\mathbf{J}=\mathbf{L}+\mathbf{S}
+$$
+
+with a level-specific Landé factor $g_J$. The Zeeman energy shift is
+
+$$
+\Delta E = \mu_B\,g_J\,m_J\,B
+$$
+
+where $m_J=-J,-J+1,\dots,J$. Spin explains the “anomalous” patterns immediately: $g_J$ comes out of vector-coupling algebra and selection rules $\Delta m_J=0,\pm 1$ handle line multiplicities and polarizations. No epicycles required.
+
+---
+
+### 6.8.5 Spin–orbit coupling and Thomas factor
+
+In atoms, an electron moving in the nuclear field sees, in its rest frame, a magnetic field that couples $\mathbf{L}$ and $\mathbf{S}$:
+
+$$
+H_{SO} = \xi(r)\,\mathbf{L}\cdot\mathbf{S}
+$$
+
+A careful relativistic treatment adds the **Thomas precession** factor $\tfrac12$, bringing predictions in line with observed **fine structure**. The result: terms split by $J$ even when $n$ and $\ell$ are fixed, e.g., the famous doublets in alkali spectra.
+
+---
+
+### 6.8.6 Pauli’s exclusion principle: the two-per-seat rule
+
+In 1925 Wolfgang Pauli proposed: **no two identical fermions can occupy the same quantum state**. For electrons in atoms that means at most two per spatial orbital, with **opposite spins**. Label a one-electron state by $(n,\ell,m_\ell,m_s)$; exclusion forbids duplicate quadruples. Immediate wins:
+
+- **Periodic table architecture.** Shells and subshells fill in the observed order (with correlation and screening tweaks), explaining chemical valence. Two per orbital gives the $2,\,8,\,18,\dots$ shell capacities  
+- **Magnetism.** Most electrons are spin-paired; unpaired spins produce paramagnetism. In metals, **Pauli paramagnetism** of conduction electrons is weak and temperature-independent compared to Curie’s law for localized moments  
+- **Stability of matter.** Electrons cannot all collapse into the lowest orbital; packed fermions build **degeneracy pressure** that counters compression, from metals’ mechanical properties to **white dwarf** support
+
+Under the hood, exclusion is a theorem in relativistic quantum field theory: **spin–statistics**. Particles with half-integer spin (fermions) have antisymmetric many-body wavefunctions and obey **Fermi–Dirac** statistics; integer-spin particles (bosons) are symmetric and obey **Bose–Einstein** statistics.
+
+---
+
+### 6.8.7 Fermi–Dirac distribution and the Fermi sea
+
+For identical fermions with single-particle energies $\epsilon$ and chemical potential $\mu$,
+
+$$
+\bar n(\epsilon) = \frac{1}{\exp\!\left(\frac{\epsilon-\mu}{k_B T}\right)+1}
+$$
+
+At $T=0$, states fill up to the **Fermi energy** $\epsilon_F$. The factor of 2 for spin-$\tfrac12$ doubles the density of states per energy, shifting $\epsilon_F$ and controlling metallic properties. Pauli paramagnetic susceptibility in a simple metal scales with the density of states at $\epsilon_F$—tiny but nonzero.
+
+---
+
+### 6.8.8 Sequential Stern–Gerlach (the measurement vibes)
+
+Run a beam through three magnets: SG$_z$ (keep only $\uparrow$), then SG$_x$ (split into $\rightarrow$ and $\leftarrow$; keep $\rightarrow$), then SG$_z$ again. The last stage shows **both** $\uparrow$ and $\downarrow$. Lesson: measuring along $x$ **re-prepares** the spin state and erases previous $z$ information. Algebraically,
+
+$$
+\ket{\uparrow_z}=\frac{1}{\sqrt2}\!\left(\ket{\rightarrow_x}+\ket{\leftarrow_x}\right)
+$$
+
+so a projective measurement in $x$ randomizes $z$ outcomes. This is the cleanest tabletop demo that incompatible observables do not share simultaneous sharp values.
+
+---
+
+### 6.8.9 Electron beams and why Stern–Gerlach used neutrals
+
+You might ask: why not a spin split with **electrons**? Free electrons in inhomogeneous fields feel huge Lorentz forces $q\,\mathbf{v}\times\mathbf{B}$ and electric-field forces from fringe fields, which swamp the tiny $\nabla(\boldsymbol{\mu}\cdot\mathbf{B})$ splitting. Neutral atoms dodge that, so Stern–Gerlach reached the quantum without EM steering drama.
+
+---
+
+### 6.8.10 Tiny but real deviations: $g-2$
+
+Dirac’s $g_s=2$ is insanely accurate but not perfect. Quantum electrodynamics adds a small **anomalous magnetic moment**
+
+$$
+a_e \equiv \frac{g_s-2}{2}
+$$
+
+whose leading term is $\alpha/(2\pi)$ and higher orders keep theorists busy. Precision measurements of $a_e$ are stress tests for the Standard Model and help pin the fine-structure constant $\alpha$.
+
+---
+
+### 6.8.11 Worked mini-examples
+
+**(a) Zeeman splitting size**
+
+For $B=1\ \text{T}$ and $g_s\approx 2$,
+
+$$
+\Delta E = g_s\,\mu_B\,B \approx 2\times 5.788\times 10^{-5}\ \text{eV/T}\times 1\ \text{T}\approx 1.16\times 10^{-4}\ \text{eV}
+$$
+
+Corresponding frequency $\nu=\Delta E/h\sim 28\ \text{GHz}$, i.e., microwave EPR territory
+
+**(b) SG deflection estimate**
+
+With gradient $\partial B_z/\partial z = 10\ \text{T/m}$, flight time $\tau=10^{-4}\ \text{s}$, and mass of Ag atom, the $z$-kick is
+
+$$
+\Delta p_z \approx \mu_B\,\frac{\partial B_z}{\partial z}\,\tau
+$$
+
+Translate to a spot separation on a screen a few tens of cm away to see that mm-scale splits are reasonable
+
+**(c) White dwarf scale (order-of-magnitude)**
+
+Electron degeneracy pressure $P\sim \frac{\hbar^2}{m_e} n_e^{5/3}$ balances gravity; pushing $n_e$ up increases $P$ without heat—exclusion is literally structural support. Details live in astrophysics, but the scaling rests on spin-$\tfrac12$ plus antisymmetry
+
+---
+
+### 6.8.12 Problem kit
+
+- Derive the two-outcome split of Stern–Gerlach using $S_z$ eigenvalues and estimate spot separation for given field gradient and flight time  
+- Starting from $H_Z=-\boldsymbol{\mu}\cdot\mathbf{B}$ and $S_i=\tfrac{\hbar}{2}\sigma_i$, show that spinors precess with $\omega_L=g_s\mu_B B/\hbar$  
+- Using vector addition rules, compute $g_J$ for a given term symbol $^{2S+1}L_J$ and predict Zeeman components and polarizations  
+- Show how $H_{SO}=\xi(r)\,\mathbf{L}\cdot\mathbf{S}$ splits a given $n,\ell$ multiplet into $J=\ell\pm \tfrac12$ and sketch selection-rule-allowed lines  
+- From the Fermi–Dirac distribution, derive the zero-temperature electron number density and Fermi energy of a free-electron metal including spin degeneracy
+
+---
+
+**In summary:** Spin is not a tiny orbit; it is an intrinsic two-level degree of freedom with algebra, matrices, and a magnetic moment. Stern–Gerlach revealed its discreteness, Zeeman patterns and fine structure confirmed its coupling to fields and orbital motion, and Pauli’s exclusion principle turned spin into architecture—filling shells, setting chemistry, and propping up stars. Add in Fermi–Dirac statistics and $g\approx 2$, and you have the modern, compact story behind a century of “anomalies” that were really just spin waiting to be named
+
+## 6.9 From Old Quantum to Wave/Matrix Mechanics
+
+By 1925, the “old quantum” patches were running out of duct tape. Selection rules worked, spectra mostly matched, but intensities, multi-electron messiness, and the logic behind the rules begged for a fresh OS. Two different apps booted almost simultaneously: **Heisenberg’s matrix mechanics** (with Born and Jordan) and **Schrödinger’s wave mechanics**. Same physics, wildly different vibes. By 1926, they were proved equivalent, and quantum theory finally had a consistent calculus.
+
+---
+
+### 6.9.1 From dispersion to Umdeutung
+
+Heisenberg’s leap started with optical **dispersion**. Classical electrons driven by light oscillate and emit at combination frequencies. Old quantum theory rephrased this via **transition frequencies** between stationary states, $\omega_{mn}=(E_m-E_n)/\hbar$, and **amplitudes** linked to line strengths. Heisenberg’s “Umdeutung” (reinterpretation) was to ditch unobservable electron orbits and keep only **observable** transition data, organizing them into arrays $X_{mn}$ with rows and columns indexed by energy levels. Composition of motions became matrix multiplication. Out went trajectories; in came **algebras of transitions**.
+
+---
+
+### 6.9.2 Matrix mechanics in one page
+
+Observables are matrices $A$ with elements $A_{mn}$ in the energy eigenbasis. Time dependence carries the Bohr frequencies:
+
+$$
+A_{mn}(t) = A_{mn}\,e^{i\omega_{mn} t}
+$$
+
+The product rule that respects composition of transitions is matrix multiplication. The Newtonian equation $m\ddot x = -\partial V/\partial x$ becomes, after the dictionary $x\to X$, $p\to P$,
+
+$$
+m\,\ddot X = -\,\frac{\partial V(X)}{\partial X}
+$$
+
+Time derivatives act elementwise via the phases, and one demands consistency with the **correspondence principle** at large quantum numbers. The crucial structure constant is the **canonical commutator**
+
+$$
+[X,P] \equiv X P - P X = i\hbar\,\mathbb I
+$$
+
+This is not an optional spice; it is the algebraic heartbeat that replaces Poisson brackets. With it, the harmonic oscillator, rotor, and hydrogen spectrum drop out in purely algebraic fashion.
+
+---
+
+### 6.9.3 Uncertainty from noncommutation
+
+Once $[X,P]=i\hbar$ is law, spreads of incompatible observables cannot both be squeezed to zero. The general inequality reads
+
+$$
+\Delta A\,\Delta B \ge \frac{1}{2}\,\big|\langle [A,B] \rangle\big|
+$$
+
+Take $A=X$ and $B=P$ to get the famous bound
+
+$$
+\Delta x\,\Delta p \ge \frac{\hbar}{2}
+$$
+
+This is not about measurement sloppiness; it is geometry in Hilbert space. The bound follows from Cauchy–Schwarz and the operator algebra, independent of any postulated “disturbance.”
+
+---
+
+### 6.9.4 Schrödinger’s wave mechanics
+
+Schrödinger arrived from the opposite coast: **waves**. Starting with de Broglie’s $E=\hbar\omega$, $p=\hbar k$, require a wave equation whose plane-wave solutions carry the correct dispersion. The result is the **time-dependent Schrödinger equation**
+
+$$
+i\hbar\,\frac{\partial \psi(\mathbf r,t)}{\partial t} = \left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\mathbf r)\right]\psi(\mathbf r,t)
+$$
+
+Looking for stationary states $\psi(\mathbf r,t)=\phi(\mathbf r)\,e^{-iEt/\hbar}$ yields the **time-independent** form
+
+$$
+\left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\mathbf r)\right]\phi(\mathbf r) = E\,\phi(\mathbf r)
+$$
+
+Boundary conditions discretize $E$ and generate the spectral lines Bohr had cataloged.
+
+---
+
+### 6.9.5 Born’s rule and the meaning of $\psi$
+
+Max Born supplied the interpretive key in 1926: $|\psi|^{2}$ is a **probability density**. Expectation values are integrals with that weight. For a normalized state,
+
+$$
+\int |\psi(\mathbf r,t)|^{2}\,d^{3}r = 1
+$$
+
+and for an operator $\hat A$ acting on wavefunctions,
+
+$$
+\langle A \rangle = \int \psi^{\ast}(\mathbf r,t)\,(\hat A \psi)(\mathbf r,t)\,d^{3}r
+$$
+
+Probability current and continuity follow from Schrödinger’s equation, making the probabilistic reading self-consistent.
+
+---
+
+### 6.9.6 Operators and the canonical dictionary
+
+Wave mechanics uses differential operators that mirror the matrix commutators:
+
+$$
+\hat x = x,\qquad \hat p = -\,i\hbar\,\nabla
+$$
+
+These satisfy
+
+$$
+[\hat x_i,\hat p_j] = i\hbar\,\delta_{ij}\,\mathbb I
+$$
+
+so the uncertainty relation and algebra of observables match matrix mechanics. Potentials become multiplication operators $V(\hat x)$; kinetic energy becomes $-\hbar^{2}\nabla^{2}/(2m)$. The **correspondence principle** is codified as “replace Poisson brackets by $(1/i\hbar)$ times commutators” in the classical–quantum dictionary.
+
+---
+
+### 6.9.7 Equivalence: showing the two apps are the same OS
+
+Schrödinger himself showed that wave mechanics and matrix mechanics are unitarily equivalent. In the basis of energy eigenfunctions $\{\phi_n\}$,
+
+$$
+A_{mn} = \int \phi_m^{\ast}(\mathbf r)\,(\hat A \phi_n)(\mathbf r)\,d^{3}r
+$$
+
+That integral is exactly the matrix element used by Heisenberg–Born–Jordan. Conversely, given a matrix $A_{mn}$ one builds $\hat A$ by its action on expansion coefficients. Same spectra, same transition amplitudes, same selection rules—different clothes. Dirac later packaged this as bra–ket notation and spectral theory, but the core equivalence is already here.
+
+---
+
+### 6.9.8 Worked snapshots: harmonic oscillator and hydrogen
+
+**Harmonic oscillator.** In matrix mechanics, define ladder operators
+
+$$
+a = \frac{1}{\sqrt{2\hbar m\omega}}\left(m\omega X + i P\right),\qquad
+a^{\dagger} = \frac{1}{\sqrt{2\hbar m\omega}}\left(m\omega X - i P\right)
+$$
+
+which satisfy
+
+$$
+[a,a^{\dagger}] = 1
+$$
+
+The Hamiltonian becomes
+
+$$
+H = \hbar\omega\left(a^{\dagger}a + \frac{1}{2}\right)
+$$
+
+giving eigenvalues
+
+$$
+E_n = \hbar\omega\left(n + \frac{1}{2}\right)
+$$
+
+Wave mechanics solves the differential equation and gets the same ladder and energies; Hermite polynomials appear, but the spectrum is identical.
+
+**Hydrogen.** In wave mechanics, separability in spherical coordinates produces radial equations with bound-state quantization
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi\varepsilon_0)^{2} \hbar^{2}}\,\frac{1}{n^{2}}
+$$
+
+Degeneracies match the old $n$-only dependence. In matrix mechanics, one uses hidden **Runge–Lenz** symmetry to reproduce the same $1/n^{2}$ spectrum algebraically.
+
+---
+
+### 6.9.9 Ehrenfest’s theorem and the classical limit
+
+Quantum expectation values obey equations that mirror classical motion:
+
+$$
+\frac{d}{dt}\langle \hat x \rangle = \frac{\langle \hat p \rangle}{m},\qquad
+\frac{d}{dt}\langle \hat p \rangle = -\,\left\langle \frac{\partial V}{\partial x} \right\rangle
+$$
+
+This is **Ehrenfest’s theorem**. When the wave packet is narrow and the potential is smooth, $\langle \partial V/\partial x\rangle\approx \partial V(\langle x\rangle)/\partial x$, and the centroid follows Newton. That is the correspondence principle rephrased as dynamics.
+
+---
+
+### 6.9.10 Stationary states, transitions, and selection rules
+
+In wave language, stationary states $\phi_n$ are energy eigenfunctions. Time dependence is a global phase $e^{-iE_n t/\hbar}$, so **expectation values in a stationary state are time-independent**. Driving the system with a weak periodic field $H'=-\hat d\cdot \mathbf E_0\cos\omega t$ and using **time-dependent perturbation theory** yields **transition rates** proportional to matrix elements $\langle m|\hat d|n\rangle$ and a resonance at $\hbar\omega=E_m-E_n$. The dipole operator enforces selection rules like $\Delta \ell=\pm 1$, matching old empirical rules while giving the intensities from first principles.
+
+---
+
+### 6.9.11 Commutators, Poisson brackets, and quantization rules
+
+The formal bridge from classical mechanics uses
+
+$$
+\{A,B\}_{\text{PB}} \longrightarrow \frac{1}{i\hbar}\,[\hat A,\hat B]
+$$
+
+and promotes canonical variables $(x,p)$ to operators obeying $[x,p]=i\hbar$. Ordering ambiguities appear when turning nonlinear classical expressions into operators; early prescriptions by Born–Jordan and Weyl tried to systematize this. In practice, symmetries and experimental checks decide the correct operator form. For quadratic Hamiltonians and central potentials, the naive promotion works cleanly.
+
+---
+
+### 6.9.12 Variational and spectral viewpoints
+
+Schrödinger also wrote a variational principle: stationary states extremize the functional
+
+$$
+\mathcal E[\phi] = \frac{\int \phi^{\ast}\left[-\frac{\hbar^{2}}{2m}\nabla^{2}+V\right]\phi\,d^{3}r}{\int |\phi|^{2}\,d^{3}r}
+$$
+
+Minimizing $\mathcal E$ under normalization yields the lowest eigenvalue; constraining orthogonality gives excited states. This is the ancestor of modern **Rayleigh–Ritz** methods central to atomic, molecular, and solid-state calculations.
+
+---
+
+### 6.9.13 Continuum, scattering, and phase shifts
+
+Not all spectra are discrete. For energies above binding, solutions are scattering states normalized to delta functions in energy or momentum. In 3D with short-range $V(r)$, asymptotic wavefunctions look like plane waves plus **outgoing spherical waves**, and the physics hides in partial-wave **phase shifts** $\delta_\ell(E)$. Cross sections follow from them. Matrix mechanics encodes the same data in the **$S$-matrix**, whose unitarity expresses probability conservation.
+
+---
+
+### 6.9.14 What changed conceptually
+
+- **Observables as operators.** No more hidden orbits; measurable quantities are spectra and expectation values of operators  
+- **States as vectors.** A system is a vector in a complex inner-product space, evolved by a linear equation  
+- **Incompatibility via algebra.** Noncommutation replaces classical simultaneity; uncertainty is structural, not instrumental  
+- **Probabilities from amplitudes.** Interference is about complex phases of amplitudes, not only waves in space
+
+The old rules become corollaries of a single linear framework.
+
+---
+
+### 6.9.15 Minimal problem kit
+
+- Show that $[x,p]=i\hbar$ implies $\Delta x\,\Delta p\ge \hbar/2$ using Cauchy–Schwarz  
+- Solve the 1D infinite square well with Schrödinger’s equation and extract energies and orthonormal eigenfunctions  
+- Build the oscillator ladder operators and prove $[a,a^{\dagger}]=1$ and $E_n=\hbar\omega(n+\tfrac12)$  
+- For hydrogen, separate variables in spherical coordinates and identify the three quantum numbers $(n,\ell,m)$ and their degeneracies  
+- Derive Fermi’s golden rule for a weak periodic perturbation and recover the dipole selection rule $\Delta \ell=\pm 1$
+
+---
+
+**In summary:** Heisenberg replaced paths by algebra of transitions; Schrödinger replaced orbits by waves whose squared magnitude is probability. Born provided the measurement rule; commutators supplied the logic; the two formalisms proved equivalent and complete. With this, quantum physics leveled up from clever hacks to a unified theory that predicts spectra and dynamics, computes intensities, and explains why “classical” is just a special zoomed-out limit. Chapter 7 will take this machinery for a spin, solving canonical systems and building the perturbation toolbox that powers modern physics and chemistry
