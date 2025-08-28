@@ -975,3 +975,385 @@ For an ideal gas, partition a box into two volumes $V'$ and $V-V'$. With fixed t
 ---
 
 **In summary:** Equilibrium fluctuations aren’t noise—they’re **thermometers**. Variances of $E$, $N$, $V$, $M$ equal the corresponding response coefficients times $k_{B}T$; pair correlations feed macroscopic compressibility; and curvature of thermodynamic potentials sets Gaussian widths until phase transitions wreck the approximation. Away from criticality, $1/\sqrt{N}$ keeps the macroscopic world calm; near a critical point, correlation length and susceptibilities blow up and fluctuations take center stage
+
+
+## 9.5 Quantum Gases: Bose & Fermi Statistics, Polylogs, and the Road to Degeneracy
+
+Classical MB stats are great… until $n\lambda_{T}^{3}$ isn’t tiny. Then indistinguishability and exchange symmetry flip the table. This section derives Bose–Einstein and Fermi–Dirac from the grand ensemble, computes thermodynamics with polylog functions, connects to the classical limit via virial expansions, and builds the degenerate Fermi-gas toolkit including the Sommerfeld expansion. We also map how the chemical potential moves with $T$ and $n$.
+
+---
+
+### 9.5.1 Grand ensemble → BE/FD distributions
+
+Put noninteracting identical particles in the grand canonical ensemble at $(T,V,\mu)$. With fugacity $z\equiv e^{\beta \mu}$ and one–particle levels $\{\epsilon_{\alpha}\}$,
+
+$$
+\ln \Xi = \pm \sum_{\alpha}\ln\!\left(1 \mp z\,e^{-\beta\epsilon_{\alpha}}\right)
+$$
+
+upper sign for bosons, lower for fermions. Occupations are
+
+$$
+\langle n_{\alpha}\rangle = \frac{1}{z^{-1}e^{\beta\epsilon_{\alpha}} \mp 1}
+$$
+
+The minus in the denominator gives **Bose–Einstein** bunching, the plus gives **Fermi–Dirac** blocking.
+
+---
+
+### 9.5.2 Density of states in 3D and continuum replacement
+
+For spin degeneracy $g$ and nonrelativistic dispersion $\epsilon=\mathbf p^{2}/2m$ in volume $V$,
+
+$$
+g(\epsilon)\,d\epsilon = g\,\frac{V}{4\pi^{2}}\left(\frac{2m}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}\,d\epsilon
+$$
+
+Sums become integrals $\sum_{\alpha}\to \int d\epsilon\,g(\epsilon)$.
+
+Define the thermal wavelength
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi \hbar^{2}}{m k_{B} T}}
+$$
+
+and the polylogarithm $\operatorname{Li}_{s}(x) \equiv \sum_{k\ge1} x^{k}/k^{s}$.
+
+---
+
+### 9.5.3 Polylog thermodynamics: N, U, and p
+
+For both bosons and fermions, results compactify via polylogs. Let
+
+$$
+g_{s}(z) \equiv \operatorname{Li}_{s}(z),\qquad f_{s}(z) \equiv -\,\operatorname{Li}_{s}(-z)
+$$
+
+Then in $d=3$ for a uniform nonrelativistic gas,
+
+- **Bosons** $(\text{BE})$
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,g_{3/2}(z),\qquad 
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,g_{5/2}(z),\qquad 
+U = \frac{3}{2}\,pV
+$$
+
+- **Fermions** $(\text{FD})$
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,f_{3/2}(z),\qquad 
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,f_{5/2}(z),\qquad 
+U = \frac{3}{2}\,pV
+$$
+
+The virial identity $U=\tfrac{3}{2}pV$ holds for any ideal nonrelativistic gas with quadratic dispersion.
+
+---
+
+### 9.5.4 Classical limit and the first quantum correction
+
+When $z\ll 1$ (high $T$ or low $n$), both stats reduce to MB since $g_{s}(z)\approx z$ and $f_{s}(z)\approx z$. Expanding further gives the leading quantum correction to the ideal–gas law
+
+$$
+\frac{p}{n k_{B}T} = 1 \pm \frac{1}{2^{5/2}}\,n\,\lambda_{T}^{3} + \mathcal O\!\left((n\lambda_{T}^{3})^{2}\right)
+$$
+
+upper sign for **fermions** (Pauli “repulsion” raises pressure), lower sign for **bosons** (Bose “attraction” lowers it)
+
+---
+
+### 9.5.5 Chemical potential behavior
+
+- **Bosons**: $\mu \le 0$. At fixed $n$ as $T$ decreases, $\mu$ rises toward $0^{-}$. For an ideal uniform gas, the excited-state capacity is capped by $g_{3/2}(1)=\zeta(3/2)$, leading to Bose–Einstein condensation when $n\lambda_{T}^{3}$ exceeds a constant. We detail BEC in §9.7.
+- **Fermions**: $\mu$ is positive at low $T$ and approaches the **Fermi energy** $\epsilon_{F}$ as $T\to 0$. With $n\equiv N/V$ and spin degeneracy $g$,
+
+$$
+\epsilon_{F} = \frac{\hbar^{2}}{2m}\left(\frac{6\pi^{2} n}{g}\right)^{2/3},\qquad 
+k_{B}T_{F} \equiv \epsilon_{F}
+$$
+
+At finite but small $T/T_{F}$, $\mu(T)$ decreases from $\epsilon_{F}$ by $\sim (T/T_{F})^{2}$.
+
+---
+
+### 9.5.6 Degenerate Fermi gas and the Sommerfeld expansion
+
+For $T\ll T_{F}$, evaluate Fermi integrals asymptotically. Let $x\equiv T/T_{F}\ll 1$.
+
+- **Chemical potential**
+
+$$
+\mu(T) = \epsilon_{F}\left[1 - \frac{\pi^{2}}{12}x^{2} - \frac{\pi^{4}}{80}x^{4} + \cdots\right]
+$$
+
+- **Internal energy and pressure at low $T$**
+
+$$
+U = \frac{3}{5}N\epsilon_{F}\left[1 + \frac{5\pi^{2}}{12}x^{2} + \cdots\right],\qquad 
+p = \frac{2}{5} n \epsilon_{F}\left[1 + \frac{5\pi^{2}}{12}x^{2} + \cdots\right]
+$$
+
+- **Heat capacity per particle**
+
+$$
+\frac{C_{V}}{N k_{B}} = \frac{\pi^{2}}{2}\,x + \mathcal O(x^{3})
+$$
+
+Linear in $T$ is the signature of a Fermi surface with a thin shell of thermally active states of thickness $\sim k_{B}T$.
+
+---
+
+### 9.5.7 Nondegenerate Bose gas and the edge of BEC
+
+Above condensation (no macroscopic ground-state occupation), $\mu<0$ solves $n\lambda_{T}^{3} = g\,g_{3/2}(z)$. Thermodynamics follows from §9.5.3 with $z<1$. As $T$ is lowered at fixed $n$, $z\to 1^{-}$, $g_{s}(z)\to \zeta(s)$, and the excited-state density saturates at
+
+$$
+n_{\text{ex,max}} = \frac{g}{\lambda_{T}^{3}}\,\zeta(3/2)
+$$
+
+The “excess” particles must go into the ground state at and below the critical temperature found in §9.7.
+
+---
+
+### 9.5.8 Relativistic and massless limits (teaser)
+
+For $\epsilon=pc$ or $\epsilon=\sqrt{p^{2}c^{2}+m^{2}c^{4}}$, the density of states changes to $g(\epsilon)\propto \epsilon^{2}$ and $U\propto VT^{4}$ for massless bosons (photons), with $p=U/3V$. We develop photons and phonons in §9.6.
+
+---
+
+### 9.5.9 Worked mini-examples
+
+**(a) Classical limit check**
+
+Show that taking $z\ll 1$ in $N = gV\lambda_{T}^{-3} g_{3/2}(z)$ and $p = g k_{B}T \lambda_{T}^{-3} g_{5/2}(z)$ reproduces $pV=Nk_{B}T$ to leading order and yields the $\pm 2^{-5/2} n\lambda_{T}^{3}$ correction next.
+
+**(b) 3D density of states**
+
+Derive $g(\epsilon)$ by counting momentum states in a box and using $\epsilon=\mathbf p^{2}/2m$.
+
+**(c) Fermi energy numerics**
+
+For electrons in a metal with $n\approx 8.5\times 10^{28}\ \mathrm{m}^{-3}$ and $g=2$, compute $\epsilon_{F}$ and $T_{F}$, then estimate $C_{V}/(Nk_{B})$ at $T=300\ \mathrm{K}$.
+
+**(d) Low-$T$ $\mu(T)$ for fermions**
+
+Use the Sommerfeld expansion of $\int d\epsilon\,\epsilon^{1/2}/(e^{\beta(\epsilon-\mu)}+1)$ to obtain the $\mu(T)$ series up to $\mathcal O(x^{4})$.
+
+**(e) Bose gas near $z\to 1^{-}$**
+
+Evaluate $g_{3/2}(z)$ numerically close to $z=1$ using the polylog expansion and show how $n\lambda_{T}^{3}$ approaches $g\,\zeta(3/2)$.
+
+---
+
+### 9.5.10 Minimal problem kit
+
+- Starting from $\ln\Xi$, derive $\langle n_{\alpha}\rangle$ and the BE/FD forms  
+- Replace sums by $\int d\epsilon\,g(\epsilon)$ to obtain the polylog formulas for $N$, $p$, and $U$ in $d=3$  
+- Expand $p/(n k_{B}T)$ in powers of $n\lambda_{T}^{3}$ and identify the second virial coefficient sign for bosons vs fermions  
+- Derive the Fermi energy $\epsilon_{F}$ and $p(T=0)=\tfrac{2}{5}n\epsilon_{F}$, then use Sommerfeld to obtain $C_{V}\propto T$  
+- At fixed $n$ for an ideal Bose gas, show $\mu\to 0^{-}$ as $T\downarrow T_{c}$ and compute the slope $d\mu/dT$ at $z\lesssim 1$ from the number equation
+
+---
+
+**In summary:** Quantum gases swap MB’s “independent coins” for exchange-correlated dice. Polylogs make the algebra one-liners; virial corrections expose quantum statistics in the classical limit; fermions freeze into a Fermi sea with $C_{V}\propto T$; bosons stack toward $z\to 1^{-}$ and run out of excited-state room—the prelude to condensation in §9.7
+
+## 9.6 Photons & Phonons: Blackbody Radiation and Heat Capacity of Solids
+
+Two archetypal Bose gases, two very different worlds. **Photons**: massless, spin-1, number not conserved, $\mu=0$, pressure $p=U/3V$, the $T^{4}$ law. **Phonons**: lattice vibrations with linear dispersion at long wavelengths, three polarizations, and a Debye cutoff that enforces $3N$ modes. Together they explain the spectrum of light and why solids’ specific heats crash to zero at low $T$.
+
+---
+
+### 9.6.1 Photon gas basics
+
+Photons are created/annihilated freely in thermal equilibrium, so the chemical potential **must** be zero. Put EM waves in a large cubic cavity of volume $V$ with periodic boundary conditions. Counting transverse modes per angular frequency $\omega$ gives the density of states
+
+$$
+g(\omega)\,d\omega = \frac{V}{\pi^{2}c^{3}}\,\omega^{2}\,d\omega
+$$
+
+Bose occupation with $\mu=0$ is $n_{B}(\omega)=\left(e^{\beta\hbar\omega}-1\right)^{-1}$, yielding the **Planck energy density**
+
+$$
+u(\omega)\,d\omega \equiv \frac{U}{V} = \frac{\hbar\omega^{3}}{\pi^{2}c^{3}}\;\frac{d\omega}{e^{\beta\hbar\omega}-1}
+$$
+
+The **number** spectrum follows by dividing by $\hbar\omega$
+
+$$
+n(\omega)\,d\omega = \frac{\omega^{2}}{\pi^{2}c^{3}}\;\frac{d\omega}{e^{\beta\hbar\omega}-1}
+$$
+
+---
+
+### 9.6.2 Stefan–Boltzmann and Wien: two famous corollaries
+
+Integrating $u(\omega)$ over all $\omega$ gives
+
+$$
+\frac{U}{V} \equiv a\,T^{4},\qquad a = \frac{\pi^{2}k_{B}^{4}}{15\,\hbar^{3}c^{3}}
+$$
+
+Radiation pressure for an isotropic photon gas is
+
+$$
+p = \frac{1}{3}\,\frac{U}{V}
+$$
+
+The **radiative flux** from a black surface is $\Phi=\sigma T^{4}$ with
+
+$$
+\sigma = \frac{a c}{4} = \frac{\pi^{2}k_{B}^{4}}{60\,\hbar^{3}c^{2}}
+$$
+
+The wavelength of peak spectral exitance satisfies **Wien’s displacement**
+
+$$
+\lambda_{\text{max}}\,T = b,\qquad b \approx 2.898\times 10^{-3}\ \text{m}\cdot\text{K}
+$$
+
+obtained by maximizing the $\lambda$-form of Planck’s law.
+
+Entropy density and enthalpy follow from $p=U/3V$:
+
+$$
+s \equiv \frac{S}{V} = \frac{4}{3}aT^{3},\qquad h \equiv \frac{U+pV}{V} = \frac{4}{3}aT^{4}
+$$
+
+---
+
+### 9.6.3 Phonons: quantized sound with linear dispersion
+
+In a crystal, small lattice displacements form normal modes. At long wavelengths the **acoustic** branches have
+
+$$
+\omega = v_{s}\,k
+$$
+
+with sound speed $v_{s}$ and three polarizations (one longitudinal, two transverse). Treating them as a gas of noninteracting bosons, the Bose occupation is the same $n_{B}(\omega)$, but the density of states uses $v_{s}$ instead of $c$ and must be **cut off** to enforce a finite number of modes.
+
+Debye’s key move: approximate the acoustic branches as linear up to a cutoff $k_{D}$ chosen so that the **total number of modes equals $3N$** for $N$ atoms
+
+$$
+\frac{V}{2\pi^{2}}\int_{0}^{k_{D}} k^{2}\,dk\times 3 = 3N \;\Rightarrow\; k_{D} = \left(6\pi^{2}\frac{N}{V}\right)^{1/3}
+$$
+
+Define the **Debye frequency** and **Debye temperature**
+
+$$
+\omega_{D} \equiv v_{s}\,k_{D},\qquad \Theta_{D} \equiv \frac{\hbar\omega_{D}}{k_{B}}
+$$
+
+A single “average” $v_{s}$ captures the three polarizations to good accuracy for bulk thermodynamics.
+
+---
+
+### 9.6.4 Debye model
+
+The phonon internal energy omitting zero-point pieces is
+
+$$
+U = \int_{0}^{\omega_{D}} d\omega\; g_{D}(\omega)\,\hbar\omega\,n_{B}(\omega)
+$$
+
+with Debye density of states
+
+$$
+g_{D}(\omega) = \frac{9N}{\omega_{D}^{3}}\,\omega^{2}
+$$
+
+Change variables $x \equiv \hbar\omega/k_{B}T$ to obtain the standard Debye heat capacity
+
+$$
+C_{V} = 9N k_{B}\left(\frac{T}{\Theta_{D}}\right)^{3} \int_{0}^{\Theta_{D}/T} dx\; \frac{x^{4} e^{x}}{(e^{x}-1)^{2}}
+$$
+
+Asymptotics:
+
+- **Low $T$** $\left(T\ll \Theta_{D}\right)$
+
+$$
+C_{V} \simeq \frac{12\pi^{4}}{5}\,N k_{B}\left(\frac{T}{\Theta_{D}}\right)^{3}
+$$
+
+- **High $T$** $\left(T\gg \Theta_{D}\right)$
+
+$$
+C_{V} \to 3N k_{B}
+$$
+
+recovering Dulong–Petit.
+
+---
+
+### 9.6.5 Einstein model: optical modes and the crossover
+
+Einstein imagined each atom as an independent oscillator of a single frequency $\omega_{E}$. Then
+
+$$
+C_{V}^{\text{Ein}} = 3N k_{B}\;\frac{x^{2} e^{x}}{(e^{x}-1)^{2}},\qquad x \equiv \frac{\hbar\omega_{E}}{k_{B}T}
+$$
+
+It captures the **high-$T$** limit and the **exponential** freeze-out at low $T$, but misses the **$T^{3}$** law because it lacks low-frequency acoustic modes. Real crystals often interpolate: optical modes look Einstein-like, acoustic modes look Debye-like.
+
+---
+
+### 9.6.6 Phonon gas thermodynamics
+
+With $\omega=v_{s}k$ and three polarizations, the **energy density** of a free phonon gas at low $T\ll \Theta_{D}$ mirrors photons with $c\to v_{s}$ and an extra factor $3$ from polarizations
+
+$$
+u_{\text{ph}}(T) \propto \frac{(k_{B}T)^{4}}{\hbar^{3} v_{s}^{3}}
+$$
+
+Differentiating gives $C_{V}\propto T^{3}$ as in Debye. In a solid, the “pressure” of phonons modifies the elastic response rather than pushing on a volume like a gas, but the scaling intuition is identical.
+
+---
+
+### 9.6.7 Blackbodies in nature: quick tour
+
+- **Cosmic microwave background** is a near-perfect blackbody at $T\approx 2.725\ \text{K}$, a fossil photon gas filling the universe  
+- **Stars** approximate blackbodies over parts of their spectrum; deviations encode atmospheres and lines  
+- **Laboratory cavities** with small apertures mimic blackbody emitters and set radiometry standards
+
+---
+
+### 9.6.8 Common pitfalls
+
+- **Forgetting $\mu=0$ for photons.** Any attempt to fix photon **number** in equilibrium is unphysical unless you also constrain the spectrum with pumping  
+- **Mixing $\omega$ and $\lambda$ peaks.** The maximum of $u_{\omega}$ and of $u_{\lambda}$ occur at different places; Wien’s $b$ refers to the **wavelength** peak  
+- **Ignoring polarizations or cutoffs.** Debye needs $3N$ modes total; missing the factor 3 or the cutoff breaks $C_{V}$  
+- **High-$T$ limit with quantum units.** Always check $\Theta_{D}/T$ or $x=\hbar\omega/k_{B}T$ before claiming “classical” behavior
+
+---
+
+### 9.6.9 Worked mini-examples
+
+**(a) Recover Stefan–Boltzmann.**  
+Integrate $u(\omega)$ using $\int_{0}^{\infty} dx\,x^{3}/(e^{x}-1)=\pi^{4}/15$ after $x=\beta\hbar\omega$ to obtain $U/V=aT^{4}$ and $p=U/3V$.
+
+**(b) Wien’s displacement.**  
+Maximize the wavelength spectral density to show $\lambda_{\text{max}}T=b$ and extract $b$ numerically from the transcendental equation.
+
+**(c) Debye low-$T$ asymptotic.**  
+Expand the Debye integral for $\Theta_{D}/T\to\infty$ to derive $C_{V}\simeq(12\pi^{4}/5)N k_{B}(T/\Theta_{D})^{3}$.
+
+**(d) Einstein vs Debye at intermediate $T$.**  
+Plot $C_{V}/(3Nk_{B})$ vs $T/\Theta$ for both models and explain why real data usually bends between them.
+
+**(e) Photon gas entropy density.**  
+Using $p=U/3V$ and $dU=TdS-p\,dV$, derive $s=(4/3)aT^{3}$.
+
+---
+
+### 9.6.10 Minimal problem kit
+
+- Starting from the cavity mode count, derive $g(\omega)$ and Planck’s $u(\omega)$  
+- Prove $p=U/3V$ by averaging the Maxwell stress tensor for isotropic radiation  
+- Show that the phonon mode count with Debye cutoff equals $3N$ and obtain $k_{D}$  
+- Evaluate the Debye heat capacity integral numerically for $T/\Theta_{D}=\{0.05,0.2,1,3\}$ and compare to Einstein’s prediction at the same $T$ using $\omega_{E}\approx 0.806\,\omega_{D}$  
+- Derive the $T^{4}$ scaling of the low-$T$ phonon energy density by mapping the photon calculation with $c\to v_{s}$
+
+---
+
+**In summary:** Photons are the cleanest Bose gas—no chemical potential, universal $T^{4}$ energy, pressure $U/3V$, and a spectrum set by Planck’s law. Phonons are quantized sound; with a Debye cutoff they produce the celebrated $C_{V}\propto T^{3}$ at low $T$ and Dulong–Petit at high $T$. Between them, light and lattice teach the same lesson: count modes right, feed them Bose factors, and thermodynamics falls out on the first try
