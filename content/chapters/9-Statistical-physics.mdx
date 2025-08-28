@@ -1809,3 +1809,859 @@ Set $a_{4}=0$, keep $a_{6}>0$, minimize $F=a_{2} t m^{2}+a_{6} m^{6}$. Show $m\s
 ---
 
 **In summary:** Mean-field turns a many-body mess into a solvable polynomial. Landau then lets symmetry lead, predicting order-parameter scaling, susceptibility, and specific-heat jumps, while Landau–Ginzburg adds gradients to unveil $\xi$ and $S(k)$. It gets the **right universality skeleton** but misses fluctuation muscle near $T_{c}$ unless $d>4$. Fluids, magnets, alloys—the same math runs across them, with van der Waals and Curie–Weiss as textbook avatars
+
+## 9.9 The Ising Model: Transfer Matrices, Duality, and Exact 2D Criticality
+
+If statistical physics had a mascot, it’d be the Ising model: spins $\sigma_{i}=\pm 1$ talking only to neighbors, yet somehow recreating the drama of phase transitions. In 1D it’s chill (no finite-$T$ transition). In 2D it’s iconic: an exact critical point with non-mean-field exponents and logarithmic specific-heat blow-up. This section does the 1D exact solution, domain-wall intuition, Kramers–Wannier duality, Onsager’s highlights, and the scaling data you actually use.
+
+---
+
+### 9.9.1 Definition and notation
+
+On a lattice with nearest neighbors $\langle ij\rangle$ and external field $H$,
+
+$$
+H(\{\sigma\}) = -J \sum_{\langle ij\rangle} \sigma_{i}\sigma_{j} - H \sum_{i} \sigma_{i}
+$$
+
+We will also use the **dimensionless** couplings
+
+$$
+K \equiv \beta J,\qquad \tilde h \equiv \beta H
+$$
+
+Positive $J$ favors alignment (ferromagnet). Partition function $Z=\sum_{\{\sigma\}} e^{-\beta H(\{\sigma\})}$.
+
+---
+
+### 9.9.2 1D chain: transfer matrix exact solution
+
+For a ring of $N$ spins (periodic boundary conditions), build the $2\times 2$ transfer matrix
+
+$$
+T_{\sigma,\sigma'} = \exp\!\left[K\,\sigma\sigma' + \frac{\tilde h}{2}(\sigma+\sigma')\right]
+$$
+
+Its eigenvalues are
+
+$$
+\lambda_{\pm} = e^{K}\cosh \tilde h \pm \sqrt{e^{2K}\sinh^{2}\tilde h + e^{-2K}}
+$$
+
+Thermodynamics in the $N\to\infty$ limit is governed by $\lambda_{+}$:
+
+$$
+f \equiv -\frac{1}{\beta N}\ln Z = -\frac{1}{\beta}\ln \lambda_{+}
+$$
+
+In **zero field** $\tilde h=0$,
+
+$$
+\lambda_{+}=2\cosh K,\qquad \lambda_{-}=2\sinh K
+$$
+
+There is **no** spontaneous magnetization at any $T>0$, i.e., $m=\lim_{\tilde h\to 0}\frac{1}{N}\partial_{\tilde h}\ln Z=0$. The connected two-point function decays exponentially,
+
+$$
+\langle \sigma_{0}\sigma_{r}\rangle_{c} = \left(\frac{\lambda_{-}}{\lambda_{+}}\right)^{r}
+$$
+
+so the correlation length is
+
+$$
+\xi^{-1} = -\ln \tanh K
+$$
+
+Finite at all $T>0$, blowing up only at $T=0$. Verdict: 1D Ising has **no finite-$T$ phase transition**.
+
+---
+
+### 9.9.3 Domain-wall (kink) intuition: why 1D stays disordered
+
+Flip a contiguous block and you create **two** domain walls, each costing energy $2J$. But their **entropy** grows like $\ln N$ (many places to put them). The free energy of a wall pair is $\Delta F \sim 2\cdot 2J - k_{B}T\ln N$, so for any $T>0$ and large $N$ the entropic term wins → domain walls proliferate → long-range order is washed out. In 2D the energy grows with **perimeter**, and entropy competes differently, allowing a finite $T_{c}$.
+
+---
+
+### 9.9.4 2D square lattice
+
+Kramers–Wannier duality maps the partition function at coupling $K$ to that at a **dual** coupling $K^{\star}$ via
+
+$$
+\sinh(2K)\,\sinh(2K^{\star}) = 1
+$$
+
+The critical point sits at **self-duality**, $K=K^{\star}$, giving
+
+$$
+\sinh(2K_{c}) = 1
+$$
+
+Equivalently,
+
+$$
+\frac{k_{B}T_{c}}{J} = \frac{2}{\ln(1+\sqrt{2})}
+$$
+
+For anisotropic couplings $J_{x},J_{y}$, the critical line is $\sinh(2K_{x})\sinh(2K_{y})=1$.
+
+---
+
+### 9.9.5 Onsager’s solution: exact critical behavior (at H=0)
+
+The full free energy at $H=0$ is exactly known (we won’t rewrite the integral here), but the **key outputs** are:
+
+- **Specific heat** diverges logarithmically
+
+$$
+C \sim -\ln|t|,\qquad t \equiv \frac{T-T_{c}}{T_{c}}
+$$
+
+so $\alpha=0$ with a log
+
+- **Spontaneous magnetization** for $T<T_{c}$ (Yang)
+
+$$
+m(T) = \left[\,1 - \sinh^{-4}(2K)\,\right]^{1/8}
+$$
+
+- **Critical exponents** (2D Ising universality)
+
+$$
+\alpha=0,\quad \beta=\frac{1}{8},\quad \gamma=\frac{7}{4},\quad \delta=15,\quad \nu=1,\quad \eta=\frac{1}{4}
+$$
+
+- **Correlation length** diverges as $\xi \sim |t|^{-\nu}$ with $\nu=1$; the critical correlator decays as $G(r)\sim r^{-d+2-\eta}=r^{-1/4}$ in 2D
+
+The 2D Ising critical point is also a conformal field theory with central charge $c=\tfrac{1}{2}$ (useful later for finite-size scaling and exact amplitude ratios).
+
+---
+
+### 9.9.6 Transfer matrices, scaling, and finite-size tricks
+
+- **Transfer-matrix ↔ quantum mapping.** The 2D classical Ising model maps to the **1D quantum transverse-field Ising** chain via Trotter decomposition. Classical $T=T_{c}$ $\leftrightarrow$ quantum zero-temperature critical point. Many finite-size formulas port directly.
+- **Finite-size scaling.** In a box of linear size $L$, susceptibilities and order parameter moments scale at $T_{c}$ as
+
+$$
+\chi_{\max}(L) \propto L^{\gamma/\nu} = L^{7/4},\qquad m(T_{c},L) \propto L^{-\beta/\nu} = L^{-1/8}
+$$
+
+Binder cumulants and crossing methods are practical ways to locate $T_{c}$ in simulations.
+
+---
+
+### 9.9.7 What universality buys you
+
+You never need the lattice-level math again. Any 2D short-range system with a $\mathbb Z_{2}$ symmetry breaking (liquid–gas along the critical isotherm, uniaxial magnets, binary alloys) shares the **same** exponents and scaling functions near criticality. Landau mean-field (§9.8) is qualitatively right but its exponents differ; renormalization (§9.10) explains why.
+
+---
+
+### 9.9.8 Common pitfalls
+
+- **Forgetting 1D has no finite-$T$ order.** If your code finds $m\neq 0$ in 1D at $T>0$ with $H=0$, you’re finite-size–fooled or symmetry-broken by the algorithm  
+- **Mixing fields.** The closed-form $m(T)$ above is only for $H=0$; turning on $H$ destroys the critical singularities in that exact way  
+- **Wrong $T_{c}$.** It’s $\sinh(2K_{c})=1$, not $\tanh$ or $\cosh$; equivalently $k_{B}T_{c}/J = 2/\ln(1+\sqrt{2})$  
+- **Mean-field exponents in 2D.** MF gives $\beta=1/2$, $\gamma=1$, etc.—**not** correct for 2D Ising; use the exact set above  
+- **Correlation length sign errors.** In 1D, $\xi^{-1}=-\ln(\tanh K)$; note the minus sign and that $\tanh K<1$ for $T>0$
+
+---
+
+### 9.9.9 Worked mini-examples
+
+**(a) 1D transfer matrix at $H=0$.**  
+Derive $\lambda_{\pm}=2(\cosh K,\ \sinh K)$, get $f=-k_{B}T\ln(2\cosh K)$, and show $\xi^{-1}=-\ln\tanh K$.
+
+**(b) Kramers–Wannier duality.**  
+Starting from high-temperature and low-temperature series for $\ln Z$, show that up to a prefactor they coincide under $\sinh(2K)\sinh(2K^{\star})=1$, then deduce $K_{c}$ from self-duality.
+
+**(c) Magnetization check.**  
+Verify $m(T\!\to\!0)\to 1$ from $m(T)=\left[1-\sinh^{-4}(2K)\right]^{1/8}$ and that $m(T\!\to\!T_{c}^{-})\sim |t|^{1/8}$.
+
+**(d) Finite-size scaling of $\chi$.**  
+Assuming $\chi(t,L)=L^{\gamma/\nu}\,\Phi(t L^{1/\nu})$, show that the peak value scales as $L^{7/4}$ in 2D and how you’d extract $\nu$ from data collapse.
+
+**(e) 1D domain-wall gas.**  
+Treat kinks as noninteracting with fugacity $y\equiv e^{-2K}$. Show the two-point function $\propto (1-2y)^{r}$ at leading order, reproducing $\xi^{-1}\approx -\ln(1-2y)$ for $y\ll 1$.
+
+---
+
+### 9.9.10 Minimal problem kit
+
+- Build the 1D transfer matrix with field $\tilde h$ and derive $\lambda_{\pm}$ and $f(T,\tilde h)$; compute $m=\partial_{\tilde h}\ln \lambda_{+}$ and check $m(\tilde h\to 0)=0$ for $T>0$  
+- Use duality to get the anisotropic 2D critical line $\sinh(2K_{x})\sinh(2K_{y})=1$; reduce to the isotropic $\sinh(2K_{c})=1$  
+- From the exact $m(T)$, extract $\beta=1/8$ and confirm the Widom relation $\gamma=\beta(\delta-1)$ with $\delta=15$ and $\gamma=7/4$  
+- Show that the 2D specific heat behaves as $C \sim -\ln|t|$ by expanding Onsager’s free-energy integral near $T_{c}$  
+- Map the 2D classical model to the 1D quantum transverse-field Ising chain and identify the quantum critical point in terms of transverse field and exchange
+
+---
+
+**In summary:** Ising is the sandbox where exact math and universality shake hands. In 1D, transfer matrices say “no transition.” In 2D, duality calls the shot for $T_{c}$, Onsager delivers the receipts, and the exponents land on beautiful rationals. Once you know this template, you can spot Ising behavior across magnets, fluids, and beyond—and you’ll know when mean-field is fronting
+
+## 9.10 Critical Phenomena & Renormalization Group Basics
+
+Close to a continuous phase transition the system forgets microscopic details and becomes **scale invariant**. Correlation length $\xi$ blows up, fluctuations span all sizes, and thermodynamics develops power laws with universal exponents. The **renormalization group (RG)** turns this into math: coarse-grain, rescale, track how couplings flow. Fixed points rule the neighborhood, and their eigenvalues set the exponents.
+
+---
+
+### 9.10.1 Why mean-field breaks
+
+Mean-field pretends fluctuations are small. But at a critical point the correlation length
+
+$$
+\xi \sim |t|^{-\nu},\qquad t \equiv \frac{T-T_{c}}{T_{c}}
+$$
+
+diverges, the correlator at $t=0$ becomes a power law
+
+$$
+G(r) \equiv \langle \phi(\mathbf r)\phi(\mathbf 0)\rangle_{c} \sim \frac{1}{r^{d-2+\eta}}
+$$
+
+and the free-energy density’s singular part scales like $f_{s}\sim \xi^{-d}$. You cannot expand around a single length scale when there isn’t one.
+
+---
+
+### 9.10.2 Scaling hypothesis and homogeneity laws
+
+Assume the **singular** free-energy density satisfies a homogeneity relation under rescaling by factor $b>0$
+
+$$
+f_{s}(t,h) = b^{-d}\, f_{s}\!\left(t\,b^{y_{t}},\, h\,b^{y_{h}}\right)
+$$
+
+Here $h$ is the field conjugate to the order parameter. Choose $b=|t|^{-1/y_{t}}$ and identify exponents:
+
+- Specific heat $C \sim -\partial^{2}f_{s}/\partial T^{2} \sim |t|^{-\alpha}$ with
+
+$$
+2 - \alpha = \frac{d}{y_{t}} \equiv d\,\nu
+$$
+
+- Order parameter $m \equiv -\partial f_{s}/\partial h|_{h\to 0} \sim |t|^{\beta}$ with
+
+$$
+\beta = \frac{d - y_{h}}{y_{t}}
+$$
+
+- Susceptibility $\chi \equiv \partial m/\partial h|_{h\to 0} \sim |t|^{-\gamma}$ with
+
+$$
+\gamma = \frac{2 y_{h} - d}{y_{t}}
+$$
+
+At $t=0$, pick $b=h^{-1/y_{h}}$ to get $m \sim h^{1/\delta}$ with
+
+$$
+\delta = \frac{y_{h}}{d - y_{h}}
+$$
+
+Fisher’s relation links $\eta$ to $y_{h}$ via the critical correlator:
+
+$$
+2 - \eta = \frac{2 y_{h}}{y_{t}}\,\nu
+$$
+
+Collecting the classic **scaling relations**
+
+- Widom: $\gamma = \beta(\delta - 1)$  
+- Rushbrooke: $\alpha + 2\beta + \gamma = 2$  
+- Josephson (hyperscaling): $2 - \alpha = d\,\nu$  
+- Fisher: $\gamma = (2 - \eta)\,\nu$
+
+Hyperscaling typically holds **below** the **upper critical dimension** $d_{c}$.
+
+---
+
+### 9.10.3 Kadanoff’s block spin: the cartoon that works
+
+Coarse-grain spins into blocks of size $b$, average to get a new field $\phi'$, and rescale lengths back to the original lattice. Couplings $\{K\}$ flow to new couplings $\{K'\}$. Iterate:
+
+- **Relevant** directions grow under RG ($K'\!-\!K^{\star}\sim b^{y} (K-K^{\star})$ with $y>0$)  
+- **Irrelevant** directions shrink ($y<0$)  
+- **Marginal** need higher-order analysis
+
+Criticality is a flow to a **nontrivial fixed point** $K^{\star}$ with at least one relevant direction (temperature). The correlation length exponent is the inverse of the thermal eigenvalue:
+
+$$
+\nu = \frac{1}{y_{t}}
+$$
+
+and the field eigenvalue controls $y_{h}$ and thus $\eta,\beta,\gamma,\delta$ via §9.10.2.
+
+---
+
+### 9.10.4 Wilson’s momentum-shell RG and beta functions
+
+For a scalar order parameter, the Landau–Ginzburg–Wilson (LGW) functional
+
+$$
+\mathcal F[\phi] = \int d^{d}x\left[\frac{1}{2}(\nabla\phi)^{2} + \frac{r}{2}\phi^{2} + \frac{u}{4!}\phi^{4} - h\,\phi\right]
+$$
+
+Coarse-grain by integrating out modes in a momentum shell $\Lambda/b < |\mathbf k| < \Lambda$, then rescale $\mathbf x\to \mathbf x/b$ and $\phi\to b^{(d-2+\eta)/2}\phi$. Couplings flow with “RG time” $\ell\equiv \ln b$:
+
+$$
+\frac{dr}{d\ell} = 2 r - c_{1} u + \cdots,\qquad
+\frac{du}{d\ell} = \beta(u) = -\epsilon\,u + c_{2}\,u^{2} + \cdots
+$$
+
+with $\epsilon \equiv 4 - d$. Constants $c_{1},c_{2}$ depend on conventions; what matters:
+
+- For $d<4$ ($\epsilon>0$) there is a **Wilson–Fisher** fixed point $u^{\star}\sim \epsilon/c_{2}$ giving non-mean-field exponents  
+- For $d>4$ ($\epsilon<0$) the Gaussian fixed point $u^{\star}=0$ is stable and mean-field exponents hold (with possible logs at $d=4$)
+
+At one loop for the $O(N)$ model, the $\epsilon$-expansion yields
+
+$$
+\nu = \frac{1}{2} + \frac{N+2}{4(N+8)}\,\epsilon + \mathcal O(\epsilon^{2})
+$$
+
+$$
+\eta = \frac{(N+2)}{2(N+8)^{2}}\,\epsilon^{2} + \mathcal O(\epsilon^{3})
+$$
+
+For **Ising** universality ($N=1$):
+
+$$
+\nu = \frac{1}{2} + \frac{1}{12}\,\epsilon + \cdots,\qquad
+\eta = \frac{1}{54}\,\epsilon^{2} + \cdots
+$$
+
+Plugging $\epsilon=1$ gives rough 3D estimates; higher loops plus resummation refine them.
+
+---
+
+### 9.10.5 Upper critical dimension and dangerous irrelevant variables
+
+The $\phi^{4}$ coupling $u$ is **marginal** at $d=4$ and **irrelevant** for $d>4$. Yet for $d>4$ it can be **dangerously irrelevant**: it vanishes under RG but still controls the amplitude of $m$ below $T_{c}$, modifying naive hyperscaling. Consequences:
+
+- Mean-field exponents $\alpha=0,\beta=1/2,\gamma=1,\delta=3,\nu=1/2,\eta=0$ hold for $d\ge d_{c}=4$  
+- Hyperscaling $2-\alpha=d\nu$ fails for $d>4$ (free-energy density does not scale as $\xi^{-d}$ without $u$-dependent rescaling)
+
+Logs at $d=4$ show up, e.g., $C \sim |\ln t|^{p}$.
+
+---
+
+### 9.10.6 Finite-size scaling and data collapse
+
+With periodic box size $L$, RG/homogeneity imply the **finite-size scaling (FSS)** ansatz for the singular part of the free energy
+
+$$
+f_{s}(t,h;L) = L^{-d}\,\mathcal F\!\left(t\,L^{1/\nu},\ h\,L^{y_{h}}\right)
+$$
+
+Observable templates:
+
+- Order parameter: $m(t,h=0;L) = L^{-\beta/\nu}\,\mathcal M(t\,L^{1/\nu})$  
+- Susceptibility: $\chi(t;L) = L^{\gamma/\nu}\,\mathcal X(t\,L^{1/\nu})$  
+- Specific heat: $C(t;L) = L^{\alpha/\nu}\,\mathcal C(t\,L^{1/\nu})$ up to additive analytic background
+
+**Practical wins:** Curves for different $L$ collapse when plotted vs $t L^{1/\nu}$ with vertical rescaling by $L^{-\beta/\nu}$ or $L^{-\gamma/\nu}$, and pseudo-critical temperatures shift as
+
+$$
+T_{c}(L) - T_{c}(\infty) \propto L^{-1/\nu}
+$$
+
+---
+
+### 9.10.7 Universality classes (quick map)
+
+- **Ising ($O(1)$, $\mathbb Z_{2}$ symmetry):** uniaxial magnets, liquid–gas along the critical isotherm, binary alloys  
+- **XY ($O(2)$):** superfluid helium, planar spins, thin-film superconductors; in 2D has a **Kosterlitz–Thouless** transition (essential, not power-law)  
+- **Heisenberg ($O(3)$):** isotropic magnets  
+- **Percolation:** geometric connectivity transition with its own exponents  
+- **Directed percolation:** absorbing-state phase transitions (nonequilibrium)
+
+Same dimension + same symmetries + similar conservation rules → same exponents.
+
+---
+
+### 9.10.8 KT interlude (2D XY)
+
+In 2D, vortices unbind at $T_{\mathrm{KT}}$ with correlation length
+
+$$
+\xi \sim \exp\!\left(\frac{b}{\sqrt{|T-T_{\mathrm{KT}}|}}\right)
+$$
+
+No standard power-law exponents; instead there is a universal jump of the superfluid stiffness. This is still RG—just on a different flow diagram with vortex fugacity and stiffness as couplings.
+
+---
+
+### 9.10.9 Worked mini-examples
+
+**(a) Scaling relations in two lines**  
+Start from $f_{s}(t,h)=b^{-d} f_{s}(t b^{y_{t}}, h b^{y_{h}})$. Derive $\alpha,\beta,\gamma,\delta$ and verify Widom and Rushbrooke.
+
+**(b) One-loop $\phi^{4}$ shell RG**  
+Integrate modes in $\Lambda/b<k<\Lambda$ for LGW, rescale, and show schematically $du/d\ell=-\epsilon u + c_{2}u^{2}$ and $dr/d\ell=2r - c_{1}u$. Identify $u^{\star}$ and extract $\nu=1/y_{t}$ to $\mathcal O(\epsilon)$.
+
+**(c) Finite-size shift**  
+Assuming $\chi(t,L)=L^{\gamma/\nu}\,\mathcal X(t L^{1/\nu})$, show the susceptibility peak location $t^{\ast}(L)\propto L^{-1/\nu}$.
+
+**(d) Data collapse recipe**  
+Given Monte Carlo data for $m(T;L)$ in 2D Ising at $H=0$, rescale $m\to L^{\beta/\nu} m$ and $T\to (T-T_{c}) L^{1/\nu}$ with $\beta=1/8$, $\nu=1$. Explain the adjustable parameters and quality checks.
+
+**(e) Dangerous irrelevant $u$ above $d_{c}$**  
+In $d>4$, show that $m\propto (-t)^{1/2} u^{-1/2}$ at mean-field level, illustrating how an “irrelevant” coupling sets amplitudes and breaks naive hyperscaling.
+
+---
+
+### 9.10.10 Common pitfalls
+
+- **Using hyperscaling where it fails.** Above $d_{c}=4$ for Ising-like systems, $2-\alpha=d\nu$ is not valid without caveats  
+- **Confusing crossover with criticality.** A flow near but not at a fixed point shows **effective** exponents that drift with scale  
+- **Ignoring analytic backgrounds.** Specific heat often has a non-singular part that can mask small $\alpha$  
+- **Forgetting boundary conditions in FSS.** Exponents are universal; scaling functions and subleading corrections are **not**  
+- **Mixing KT with power-law scaling.** In 2D XY, expect essential singularities and a stiffness jump, not $\beta,\gamma$ etc.
+
+---
+
+### 9.10.11 Minimal problem kit
+
+- From the homogeneity hypothesis, derive the four standard scaling relations and identify the independent exponent set  
+- Compute $\nu$ and $\eta$ to $\mathcal O(\epsilon)$ for the $O(N)$ model and specialize to $N=1,2,3$  
+- Show that at $d=4$ the Gaussian fixed point is marginal and derive a logarithmic correction to $C$ in $\phi^{4}$ theory  
+- Use FSS to estimate $\nu$ from synthetic or simulated Ising susceptibility peaks at sizes $L=\{16,32,64,128\}$  
+- For the KT RG flow, write the lowest-order equations for stiffness $K$ and vortex fugacity $y$, and show the separatrix corresponding to $T_{\mathrm{KT}}$
+
+---
+
+**In summary:** Critical points are scale-invariant fixed points of the RG. Exponents are eigenvalues of linearized flows; scaling relations tie them together; finite-size scaling turns divergence into data collapse. Below $d_{c}$, fluctuations rewrite mean-field; above it, mean-field holds with logarithmic or amplitude caveats. Once you can see the flow, universality classes stop being a list and start being a map
+
+## 9.11 Linear Response & Fluctuation–Dissipation
+
+Kick a system gently, watch it wiggle. **Linear response theory** turns small perturbations into universal formulas linking **dissipation** to **equilibrium fluctuations**. The retarded correlator sets the response, causality gives Kramers–Kronig, and the **fluctuation–dissipation theorem (FDT)** glues noise spectra to the imaginary part of susceptibilities. Transport coefficients then drop out from time integrals of current autocorrelations (Green–Kubo).
+
+---
+
+### 9.11.1 Setup: source, observable, and response kernel
+
+Perturb an equilibrium Hamiltonian by a weak time-dependent field $h(t)$ coupled to an operator $A$:
+
+$$
+H'(t) = -\,h(t)\,A
+$$
+
+Measure another observable $B$. To linear order,
+
+$$
+\delta\langle B(t)\rangle = \int_{-\infty}^{\infty} dt'\; \chi_{BA}(t-t')\,h(t')
+$$
+
+with **causal** susceptibility $\chi_{BA}(t<0)=0$. In frequency space,
+
+$$
+\delta\langle B(\omega)\rangle = \chi_{BA}(\omega)\,h(\omega)
+$$
+
+The **power absorbed** by a sinusoidal drive $h(t)=h_{0}\cos\omega t$ is set by the dissipative part $\chi_{BA}''(\omega)$.
+
+---
+
+### 9.11.2 Kubo formula: quantum and classical limits
+
+In the Heisenberg picture with equilibrium average $\langle\cdots\rangle$, the **retarded** susceptibility is
+
+$$
+\chi_{BA}(t) = \frac{i}{\hbar}\,\Theta(t)\,\langle\,[B(t),A(0)]\,\rangle
+$$
+
+Equivalently,
+
+$$
+\chi_{BA}(\omega) = \int_{0}^{\infty} dt\; e^{i\omega t}\,\frac{i}{\hbar}\,\langle\,[B(t),A(0)]\,\rangle
+$$
+
+**Classical limit.** Replace commutators by $i\hbar$ times Poisson brackets and obtain
+
+$$
+\chi_{BA}(t) = \Theta(t)\,\beta\,\frac{d}{dt}\,C_{BA}(t),\qquad C_{BA}(t)\equiv \langle \delta B(t)\,\delta A(0)\rangle
+$$
+
+This is the time-domain FDT form for conjugate variables.
+
+---
+
+### 9.11.3 Causality ⇒ Kramers–Kronig
+
+Causality makes $\chi_{BA}(\omega)$ **analytic** in the upper half-plane. Real and imaginary parts are Hilbert transforms:
+
+$$
+\mathrm{Re}\,\chi(\omega) = \frac{1}{\pi}\,\mathcal P\!\int_{-\infty}^{\infty} d\omega'\,\frac{\chi''(\omega')}{\omega'-\omega}
+$$
+
+$$
+\chi''(\omega) = -\frac{1}{\pi}\,\mathcal P\!\int_{-\infty}^{\infty} d\omega'\,\frac{\mathrm{Re}\,\chi(\omega')}{\omega'-\omega}
+$$
+
+Dissipation $\Leftrightarrow$ dispersion: you cannot have one without the other.
+
+---
+
+### 9.11.4 Fluctuation–dissipation theorem in frequency space
+
+Define the **symmetrized** equilibrium spectral density of $A$,
+
+$$
+S_{AA}(\omega) \equiv \int_{-\infty}^{\infty} dt\; e^{i\omega t}\,\frac{1}{2}\,\langle \{ \delta A(t),\delta A(0) \} \rangle
+$$
+
+Then the **quantum FDT** states
+
+$$
+S_{AA}(\omega) = \hbar\,\coth\!\left(\frac{\beta\hbar\omega}{2}\right)\,\chi_{AA}''(\omega)
+$$
+
+Classical limit $\beta\hbar\omega\ll 1$ gives
+
+$$
+S_{AA}(\omega) = \frac{2 k_{B} T}{\omega}\,\chi_{AA}''(\omega)
+$$
+
+Interpretation: the same modes that dissipate energy when driven also fluctuate at equilibrium, and the ratio is fixed by $T$ (or by $\hbar\omega$ at high frequency).
+
+---
+
+### 9.11.5 Green–Kubo relations: transport from autocorrelations
+
+Transport coefficients are **time integrals of current autocorrelations**.
+
+- **Self-diffusion** in $d$ dimensions with velocity $\mathbf v$:
+
+$$
+D = \frac{1}{d}\int_{0}^{\infty} dt\;\langle \mathbf v(t)\cdot \mathbf v(0)\rangle
+$$
+
+- **Electrical conductivity** for total current $J_{x}$ in volume $V$:
+
+$$
+\sigma = \frac{\beta}{V}\int_{0}^{\infty} dt\;\langle J_{x}(t)\,J_{x}(0)\rangle
+$$
+
+- **Shear viscosity** from the stress tensor component $\sigma_{xy}$:
+
+$$
+\eta = \frac{\beta}{V}\int_{0}^{\infty} dt\;\langle \sigma_{xy}(t)\,\sigma_{xy}(0)\rangle
+$$
+
+- **Thermal conductivity** with heat current $\mathbf J_{Q}$:
+
+$$
+\kappa = \frac{\beta^{2}}{V}\int_{0}^{\infty} dt\;\langle \mathbf J_{Q}(t)\cdot \mathbf J_{Q}(0)\rangle
+$$
+
+All are equilibrium averages with the **unperturbed** dynamics.
+
+---
+
+### 9.11.6 Langevin, Fokker–Planck, and Einstein relation
+
+For a Brownian particle of position $x$ in a viscous fluid,
+
+$$
+m\dot v = -\gamma v + \xi(t)
+$$
+
+with Gaussian white noise $\langle \xi(t)\xi(0)\rangle = 2\gamma k_{B}T\,\delta(t)$. Solving gives the **Einstein relation**
+
+$$
+D = \frac{k_{B} T}{\gamma}
+$$
+
+and velocity autocorrelation $\langle v(t)v(0)\rangle = (k_{B}T/m)\,e^{-t/\tau}$ with $\tau=m/\gamma$. The associated Fokker–Planck equation evolves the probability density and relaxes to the Maxwell–Boltzmann steady state.
+
+---
+
+### 9.11.7 Noise examples: Johnson–Nyquist and friends
+
+For a resistor $R$ in classical regime $\hbar\omega\ll k_{B}T$, the **voltage** noise spectral density is
+
+$$
+S_{V}(\omega) = 4 k_{B} T\,R
+$$
+
+The **quantum** correction multiplies by $\tfrac{\hbar\omega}{2k_{B}T}\coth(\beta\hbar\omega/2)$. Current noise follows as $S_{I}(\omega)=4 k_{B} T/R$ for a resistor alone. Same logic underlies magnetic noise in NMR, force noise in AFM, and shot-noise limits in mesoscopic conductors.
+
+---
+
+### 9.11.8 Onsager reciprocity and microscopic reversibility
+
+When generalized fluxes $J_{i}$ respond to thermodynamic forces $X_{j}$ linearly,
+
+$$
+J_{i} = \sum_{j} L_{ij}\,X_{j}
+$$
+
+time-reversal symmetry implies **Onsager–Casimir** relations
+
+$$
+L_{ij}(B) = \epsilon_{i}\epsilon_{j}\,L_{ji}(-B)
+$$
+
+where $\epsilon_{i}=\pm 1$ is the time-reversal parity of $J_{i}$. At zero magnetic field and for forces/fluxes with the same parity, $L_{ij}=L_{ji}$. Reciprocity is a macroscopic echo of equilibrium correlation symmetry.
+
+---
+
+### 9.11.9 Causality, passivity, and sum rules
+
+- **Passivity:** $\chi''(\omega)\ge 0$ for $\omega>0$ for stable, passive systems; it encodes positive dissipation.  
+- **Sum rules:** Moments of $\chi''(\omega)$ tie to equal-time commutators or static susceptibilities, e.g., an $f$-sum rule for charge response.  
+- **High-frequency tails:** Often fixed by short-time operator algebra; useful for checking numerics or truncated models.
+
+---
+
+### 9.11.10 Common pitfalls
+
+- **Using symmetric instead of retarded correlators in $\chi$.** The Kubo $\chi$ needs the **commutator** and $\Theta(t)$.  
+- **Forgetting ensemble choice.** Green–Kubo averages are taken in the **equilibrium** ensemble matching conserved quantities.  
+- **Abusing classical FDT at high frequency.** Use the quantum $\coth(\beta\hbar\omega/2)$ factor when $\hbar\omega\gtrsim k_{B}T$.  
+- **Mixing response channels.** Coupling $H'=-hA$ means the correct FDT relates $S_{AA}$ to $\chi_{AA}''$, not to some other operator.  
+- **Ignoring conservation laws.** Currents tied to conserved densities have hydrodynamic long-time tails that can alter naive integral convergence.
+
+---
+
+### 9.11.11 Worked mini-examples
+
+**(a) Kramers–Kronig from causality**  
+Assume $\chi(t)=0$ for $t<0$, Fourier transform, and show the Hilbert-transform relations for $\mathrm{Re}\,\chi$ and $\chi''$.
+
+**(b) Classical FDT in time domain**  
+With $H'=-h(t)A$ and $B=A$, prove $\chi_{AA}(t)=\Theta(t)\beta\,\frac{d}{dt}C_{AA}(t)$ and recover $S_{AA}(\omega)=\tfrac{2k_{B}T}{\omega}\chi_{AA}''(\omega)$.
+
+**(c) Johnson noise**  
+Take a circuit with a resistor only. Using $I(\omega)=V(\omega)/R$ and FDT, derive $S_{V}=4k_{B}TR$ in the classical band.
+
+**(d) Diffusion from velocity correlations**  
+For an exponential velocity correlator $\langle v(t)v(0)\rangle=v_{0}^{2}e^{-t/\tau}$, integrate to get $D=v_{0}^{2}\tau/d$ and compare to $D=k_{B}T/\gamma$ with $v_{0}^{2}=k_{B}T/m$ and $\tau=m/\gamma$.
+
+**(e) Conductivity Green–Kubo**  
+Show that a uniform electric field couples as $H'=-E_{x}J_{x}t$ in the appropriate gauge and derive $\sigma=(\beta/V)\int_{0}^{\infty}dt\,\langle J_{x}(t)J_{x}(0)\rangle$.
+
+**(f) Onsager reciprocity check**  
+For thermoelectric transport with electric and heat currents, write the $2\times 2$ $L$-matrix and argue $L_{12}(B)=L_{21}(-B)$.
+
+---
+
+### 9.11.12 Minimal problem kit
+
+- Starting from the Kubo formula, prove the quantum FDT $S_{AA}(\omega)=\hbar\coth(\beta\hbar\omega/2)\chi_{AA}''(\omega)$  
+- Derive the Einstein relation $D=\mu k_{B}T$ by relating mobility $\mu$ to the low-frequency limit of the velocity response  
+- Show that $\chi''(\omega)\ge 0$ for a passive system by evaluating average absorbed power for a sinusoidal drive  
+- From the continuity equation, connect long-time tails of current correlations to hydrodynamic diffusion and discuss convergence of Green–Kubo integrals  
+- Compute $\eta$ from a microscopic hard-sphere model via the stress autocorrelation and compare to kinetic-theory scaling
+
+---
+
+**In summary:** Linear response says “retarded commutator = response.” Causality enforces Kramers–Kronig, and FDT equates **noise** with **dissipation** via $T$ or the quantum $\coth$ factor. Green–Kubo turns transport into equilibrium time integrals. Once you see these correspondences, measuring fluctuations becomes a shortcut to predicting how a system will react when you poke it
+
+## 9.12 Kinetic Theory & the Boltzmann Equation
+
+Stat mech taught us **what** equilibrium looks like. Kinetic theory explains **how** systems move toward it, and what happens while they’re not there. The star is the **Boltzmann equation**, a mesoscopic evolution law for the one-particle distribution $f(\mathbf r,\mathbf v,t)$. From it, we’ll derive transport coefficients, connect to hydrodynamics, and see where and why the theory breaks.
+
+---
+
+### 9.12.1 From micro to meso: the distribution function
+
+Define $f(\mathbf r,\mathbf v,t)$ so that $f\,d^{3}r\,d^{3}v$ is the **expected number** of particles in the phase-space cell. Normalize to $N=\int d^{3}r\,d^{3}v\,f$. Conserved densities are moments of $f$:
+
+$$
+n(\mathbf r,t) = \int d^{3}v\, f,\quad
+\mathbf u(\mathbf r,t) = \frac{1}{n}\int d^{3}v\, \mathbf v\, f,\quad
+\varepsilon(\mathbf r,t) = \int d^{3}v\, \tfrac{1}{2} m v^{2}\, f
+$$
+
+Pressure tensor and heat flux are higher moments of the **peculiar velocity** $\mathbf c\equiv\mathbf v-\mathbf u$.
+
+---
+
+### 9.12.2 The Boltzmann equation and molecular chaos
+
+In external force $\mathbf F$,
+
+$$
+\frac{\partial f}{\partial t} + \mathbf v\cdot\nabla_{\mathbf r} f + \frac{\mathbf F}{m}\cdot\nabla_{\mathbf v} f = C[f]
+$$
+
+The collision integral $C[f]$ encodes binary collisions. For short-range interactions and **molecular chaos** (Stosszahlansatz: pre-collision velocities uncorrelated),
+
+$$
+C[f](\mathbf r,\mathbf v) = \int d^{3}v_{2}\int d\Omega\; g\,\sigma(g,\Omega)\,\big[f'f_{2}' - f f_{2}\big]
+$$
+
+with $g=|\mathbf v-\mathbf v_{2}|$, differential cross section $\sigma$, and $f'=f(\mathbf r,\mathbf v',t)$ the post-collision values determined by energy–momentum conservation.
+
+**Collision invariants.** For any $\psi(\mathbf v)$ equal to $1$, $\mathbf v$, or $v^{2}$,
+
+$$
+\int d^{3}v\; \psi(\mathbf v)\,C[f] = 0
+$$
+
+leading to local conservation of mass, momentum, and energy.
+
+---
+
+### 9.12.3 Local equilibrium = Maxwell–Boltzmann
+
+$C[f]=0$ (for all cross sections) iff $f$ is a **local Maxwellian**,
+
+$$
+f_{\mathrm{LE}}(\mathbf r,\mathbf v,t) = n(\mathbf r,t) \left(\frac{m}{2\pi k_{B} T(\mathbf r,t)}\right)^{3/2} \exp\!\left[-\frac{m|\mathbf v-\mathbf u(\mathbf r,t)|^{2}}{2k_{B}T(\mathbf r,t)}\right]
+$$
+
+This $f_{\mathrm{LE}}$ maximizes local entropy density given $n,\mathbf u,T$ and is the fixed point of collisions.
+
+---
+
+### 9.12.4 The H-theorem: entropy grows
+
+Define Boltzmann’s $H\equiv \int d^{3}r\,d^{3}v\, f\ln f$. Using the collision integral,
+
+$$
+\frac{dH}{dt} = \int d^{3}r\,d^{3}v\, C[f]\,(1+\ln f) \le 0
+$$
+
+with equality only for $f=f_{\mathrm{LE}}$. Identifying $S=-k_{B} H + \text{const}$ gives **monotone entropy increase** toward local equilibrium. Caveats: relies on molecular chaos and binary, dilute collisions; long-range forces and correlated pre-collisions can spoil the proof.
+
+---
+
+### 9.12.5 Hydrodynamics as moment equations
+
+Take moments of Boltzmann and use collision invariants to get the **Euler** (ideal) or **Navier–Stokes–Fourier** (dissipative) equations. Let $\rho=mn$, $p=nk_{B}T$.
+
+- **Continuity**
+
+$$
+\partial_{t}\rho + \nabla\cdot(\rho\,\mathbf u) = 0
+$$
+
+- **Momentum**
+
+$$
+\partial_{t}(\rho \mathbf u) + \nabla\cdot(\rho \mathbf u\mathbf u + p\,\mathbb I + \boldsymbol{\Pi}) = n\mathbf F
+$$
+
+- **Energy**
+
+$$
+\partial_{t}\varepsilon + \nabla\cdot\big[(\varepsilon+p)\mathbf u + \boldsymbol{\Pi}\cdot\mathbf u + \mathbf q\big] = n\mathbf F\cdot\mathbf u
+$$
+
+$\boldsymbol{\Pi}$ is the viscous stress, $\mathbf q$ the heat flux. To **close** these, expand around $f_{\mathrm{LE}}$.
+
+---
+
+### 9.12.6 Chapman–Enskog and transport coefficients
+
+Assume weak gradients (small Knudsen number $K\!n\equiv \ell/L$) and write $f=f_{\mathrm{LE}} + f^{(1)} + \cdots$ where $f^{(1)}$ is linear in gradients. Solving Boltzmann at first order gives **Newtonian viscosity** and **Fourier heat law**:
+
+$$
+\boldsymbol{\Pi} = -\eta\left[\nabla\mathbf u + (\nabla\mathbf u)^{T} - \tfrac{2}{3}(\nabla\cdot\mathbf u)\mathbb I\right] - \zeta\,(\nabla\cdot\mathbf u)\,\mathbb I
+$$
+
+$$
+\mathbf q = -\kappa\,\nabla T
+$$
+
+For hard spheres (mass $m$, diameter $d$) at number density $n$ and temperature $T$,
+
+$$
+\eta \sim \frac{5}{16 d^{2}} \sqrt{\frac{m k_{B} T}{\pi}},\qquad
+\kappa \sim \frac{75 k_{B}}{64 d^{2}} \sqrt{\frac{k_{B} T}{\pi m}}
+$$
+
+up to modest Sonine-polynomial correction factors; the **bulk viscosity** $\zeta$ vanishes for monatomic ideal gases.
+
+---
+
+### 9.12.7 Relaxation-time and BGK models
+
+Exact collision integrals are painful. The **Bhatnagar–Gross–Krook** (BGK) model replaces $C[f]$ by a single relaxation rate toward local equilibrium:
+
+$$
+C_{\mathrm{BGK}}[f] = -\frac{f - f_{\mathrm{LE}}}{\tau}
+$$
+
+Choosing $\tau$ to match $\eta$ and $\kappa$ reproduces first-order hydrodynamics and is widely used in lattice Boltzmann and semiconductor transport. The simpler **relaxation time approximation** in solids does the same for electron scattering.
+
+---
+
+### 9.12.8 Knudsen number, boundary layers, and breakdowns
+
+- **Hydro regime** $K\!n\ll 1$: Navier–Stokes–Fourier valid.  
+- **Transition** $K\!n \sim 0.1$: slip flows, Knudsen layers near walls; need kinetic boundary conditions.  
+- **Ballistic** $K\!n\gtrsim 1$: free-molecular flow; Boltzmann without gradient expansions or even collisionless Vlasov dynamics (for long-range forces).  
+- **Dense gases**: Enskog corrections modify $C[f]$ and transport.  
+- **Long-range Coulomb**: many small-angle deflections → **Landau** (Fokker–Planck) collision operator.
+
+---
+
+### 9.12.9 Quantum Boltzmann and Pauli/Bose factors
+
+For dilute quantum gases at high enough $T$ that coherence lengths are short, the collision term acquires **stimulated/blocked** final states:
+
+$$
+C_{\mathrm{Q}}[f] \propto \int\! d\Gamma\; \big[f' f_{2}' (1 \pm f)(1 \pm f_{2}) - f f_{2} (1 \pm f')(1 \pm f_{2}')\big]
+$$
+
+upper sign for bosons, lower for fermions. This is the **Uehling–Uhlenbeck** modification. At very low $T$ in superfluids, kinetic theory must include collective modes (phonons, Bogoliubov quasiparticles).
+
+---
+
+### 9.12.10 Boltzmann transport in solids (electrons and phonons)
+
+In crystals, $f(\mathbf k,\mathbf r,t)$ evolves in **$\mathbf k$-space** with band velocity $\mathbf v_{\mathbf k}=\nabla_{\mathbf k}\epsilon_{\mathbf k}/\hbar$ and forces from electric fields and Berry curvature (advanced topic). With a relaxation time $\tau(\mathbf k)$,
+
+$$
+\sigma_{xx} = e^{2}\!\int\!\frac{d^{3}k}{(2\pi)^{3}}\; \tau(\mathbf k)\, v_{x}^{2}\, \left(-\frac{\partial f_{0}}{\partial \epsilon}\right)
+$$
+
+reproduces **Drude** in free-electron bands, while phonon Boltzmann explains lattice thermal conductivity via three-phonon scattering and boundary limits.
+
+---
+
+### 9.12.11 Linear response vs kinetic theory: same game, different screens
+
+Green–Kubo (9.11) says transport = time integrals of autocorrelators. Chapman–Enskog says transport = solutions of Boltzmann to first order in gradients. They agree when both apply. Kinetic theory wins when **mean free paths** and **cross sections** are explicit; Green–Kubo wins for interacting liquids where quasiparticles are murky but simulations can measure correlations.
+
+---
+
+### 9.12.12 Worked mini-examples
+
+**(a) Mean free path and viscosity**  
+For hard spheres at number density $n$ with cross section $\sigma=\pi d^{2}$, show $\ell\simeq 1/(\sqrt{2}\,n\sigma)$ and estimate $\eta\sim \tfrac{1}{3} n m \bar v\,\ell$; compare to the Chapman–Enskog value.
+
+**(b) BGK to Navier–Stokes**  
+Insert $C_{\mathrm{BGK}}$ into Boltzmann, solve for $f^{(1)}$, and derive $\eta = p \tau$ and $\kappa = \tfrac{5}{2} k_{B} n \tau/m$ for a monatomic gas.
+
+**(c) Sound attenuation**  
+Linearize Boltzmann around $f_{\mathrm{LE}}$ for a plane wave $e^{i(\mathbf k\cdot\mathbf r - \omega t)}$ and compute the attenuation coefficient in terms of $\eta$ and $\kappa$.
+
+**(d) Lorentz gas**  
+For light particles scattering elastically off fixed hard centers of density $n_{i}$, compute $D$ and show how anisotropic cross sections reshape transport.
+
+**(e) Quantum modification**  
+Derive detailed balance with Pauli blocking for a two-state fermion collision and show how it suppresses $\sigma$-limited conductivity at low $T$.
+
+---
+
+### 9.12.13 Common pitfalls
+
+- **Forgetting conservation constraints in $C[f]$.** Any model collision operator must conserve mass, momentum, and energy (BGK does by construction if $f_{\mathrm{LE}}$ matches local moments).  
+- **Using Navier–Stokes at large $K\!n$.** Expect slip, Knudsen layers, or ballistic behavior; go kinetic.  
+- **Assuming $\zeta=0$ generically.** True only for monatomic ideal gases; internal modes create bulk viscosity.  
+- **Ignoring boundary conditions.** Specular vs diffuse reflection at walls changes near-wall transport by order one.  
+- **Treating Coulomb like hard spheres.** Many-body small-angle dominance calls for Landau/Fokker–Planck, not Boltzmann with rare hard kicks.
+
+---
+
+### 9.12.14 Minimal problem kit
+
+- Starting from the Boltzmann equation, derive the continuity, momentum, and energy equations and identify $\boldsymbol{\Pi}$ and $\mathbf q$  
+- Carry out the first Sonine-polynomial step for hard spheres to compute $\eta$ to leading order and compare to the heuristic $\tfrac{1}{3} n m \bar v \ell$  
+- Implement BGK and show $\eta=p\tau$; fit $\tau$ to a measured viscosity to predict thermal conductivity and Prandtl number  
+- For a dilute electron gas with elastic impurity scattering, compute $\sigma$ in the relaxation-time approximation and discuss the Matthiessen rule qualitatively  
+- Derive the Uehling–Uhlenbeck collision term for indistinguishable particles and show how it reduces to classical Boltzmann when $f\ll 1$
+
+---
+
+**In summary:** Boltzmann’s equation is the bridge from micro collisions to macro flows. With molecular chaos and short-range scatter, it drives $f$ to a local Maxwellian, whose slow gradients birth hydrodynamics with $\eta,\kappa,\zeta$ computable from cross sections. Push the mean free path too large, the density too high, or the interactions too long-ranged, and the equation changes costume—but the core idea survives: dynamics of **distributions**, not just particles, rule nonequilibrium physics
