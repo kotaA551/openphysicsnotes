@@ -1398,3 +1398,709 @@ Given $B=10^{-10}\ \mathrm{cm^{3}/s}$, $n=p=10^{15}\ \mathrm{cm^{-3}}$, estimate
 ---
 
 **In summary:** Start with parabolic band edges and effective masses, sprinkle statistics to get $n,p$, then steer carriers with drift–diffusion and the Einstein relation. Doping sets the script (majority/minority), recombination edits the runtime (lifetimes, diffusion lengths), optics reveals the gap character, and the pn junction is the minimal playground where it all meets. Master these moves and you can read a semiconductor’s band diagram like a storyboard
+
+
+## 10.7 Fermi Surfaces & Transport
+
+The **Fermi surface (FS)** is the VIP section of a metal: at low temperature almost everything transporty—conductivity, Hall, magnetoresistance, quantum oscillations—comes from quasiparticles living right on it. Geometry in $k$-space becomes measurable physics in the lab. This section builds the semiclassical equations of motion, the Boltzmann/Chambers machinery, magnetotransport including multiband and compensation, and the quantum‐oscillation toolkit (Onsager + Lifshitz–Kosevich). We’ll also flag how FS topology (closed vs open orbits) controls magnetoresponse.
+
+---
+
+### 10.7.1 Semiclassical equations of motion (no Berry yet)
+
+For a band $\epsilon(\mathbf k)$ in fields $(\mathbf E,\mathbf B)$ the semiclassical dynamics are
+
+$$
+\hbar\,\dot{\mathbf k} = -e\left(\mathbf E + \dot{\mathbf r}\times \mathbf B\right),\qquad
+\dot{\mathbf r} = \frac{1}{\hbar}\,\nabla_{\mathbf k}\epsilon(\mathbf k)
+$$
+
+With $\mathbf E=0$ you get **cyclotron motion** in $k$-space along constant-energy contours perpendicular to $\mathbf B$; real-space velocity is $\mathbf v=\dot{\mathbf r}$. We postpone Berry curvature and anomalous velocity to §10.11.
+
+---
+
+### 10.7.2 Cyclotron frequency and mass
+
+Closed orbits have frequency
+
+$$
+\omega_{c} = \frac{eB}{m_{c}}
+$$
+
+where the **cyclotron mass** is set by the extremal $k$-space orbit area $A(E)$ normal to $\mathbf B$:
+
+$$
+m_{c}(E) = \frac{\hbar^{2}}{2\pi}\,\frac{\partial A(E)}{\partial E}\Big|_{E=\epsilon_{F}}
+$$
+
+For an isotropic parabola $E=\hbar^{2}k^{2}/2m^{\ast}$, $m_{c}=m^{\ast}$; for anisotropic ellipsoids, $m_{c}$ depends on field orientation.
+
+---
+
+### 10.7.3 Boltzmann transport: relaxation time and Chambers
+
+Linearizing the Boltzmann equation in a steady field with relaxation time $\tau(\mathbf k)$ gives the current
+
+$$
+\mathbf J = -e \int \frac{d^{3}k}{4\pi^{3}}\,\mathbf v(\mathbf k)\,\delta f(\mathbf k),\qquad
+\delta f = -\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \mathbf E
+$$
+
+In **Chambers’ formula** the vector mean free path is a history average along the orbit
+
+$$
+\boldsymbol{\Lambda}(\mathbf k) = \int_{0}^{\infty} dt\; e^{-t/\tau(\mathbf k_{-t})}\,\mathbf v(\mathbf k_{-t})
+$$
+
+leading to the conductivity tensor (schematically)
+
+$$
+\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\mathbf v|}\, v_{\alpha}\,\bar v_{\beta}
+$$
+
+where $\bar v_{\beta}$ is the orbit-averaged, decay-weighted velocity. For an isotropic, single-$\tau$ metal this collapses to Drude.
+
+---
+
+### 10.7.4 Hall angle, mobility tensor, mean free path
+
+Define **mobility** $\boldsymbol{\mu}=\tau\,\mathbf m^{\ast -1}\,e$ and **Hall angle** $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx \omega_{c}\tau$ (single band). The **mean free path**
+
+$$
+\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{for good quasiparticles}
+$$
+
+Close to the **Ioffe–Regel** limit $k_{F}\ell\sim 1$ metals “bad” out, and semiclassical transport starts to crumble.
+
+---
+
+### 10.7.5 Magnetoresistance: why single-band Drude lies flat
+
+In a single, isotropic band with constant $\tau$, the resistivity $\rho_{xx}$ is **field-independent** even though $\sigma_{xx}$ shrinks; tensor inversion cancels it. Real materials show MR because of (i) multiple carrier types, (ii) FS anisotropy/warping, (iii) angle-dependent $\tau(\mathbf k)$, or (iv) open orbits. A practical summary is **Kohler’s rule**
+
+$$
+\frac{\Delta \rho}{\rho_{0}} \equiv \frac{\rho(B)-\rho_{0}}{\rho_{0}} = F\!\left(\frac{B}{\rho_{0}}\right) \approx F(\omega_{c}\tau)
+$$
+
+If a single scattering time controls everything, curves at different $T$ collapse when plotted vs $B/\rho_{0}(T)$.
+
+---
+
+### 10.7.6 Two-band model (electrons + holes)
+
+Let $(n_{e},\mu_{e})$ and $(n_{h},\mu_{h})$ be densities and mobilities; $s_{e}=-1$, $s_{h}=+1$ charge signs. The conductivities sum:
+
+$$
+\sigma_{xx} = \sum_{i=e,h} \frac{n_{i} e \mu_{i}}{1+(\mu_{i}B)^{2}},\qquad
+\sigma_{xy} = \sum_{i=e,h} \frac{s_{i} n_{i} e \mu_{i}^{2} B}{1+(\mu_{i}B)^{2}}
+$$
+
+Invert to get $\rho_{xx},\rho_{xy}$. Key regimes:
+
+- **Compensation** $n_{e}\approx n_{h}$ with high mobilities ⇒ large, nearly quadratic **unsaturating MR**  
+- **Dominant carrier** $n_{e}\gg n_{h}$ ⇒ Hall sign fixed, MR smaller and tends to saturate
+
+Multiband fits to $\rho_{xx}(B)$ and $\rho_{xy}(B)$ are the day-one way to read carrier types and mobilities.
+
+---
+
+### 10.7.7 Open vs closed orbits; angle dependence
+
+- **Closed orbits** on closed FS pockets give conventional $\omega_{c}$ and oscillations.  
+- **Open orbits** (e.g., warped quasi-1D sheets) allow carriers to stream along a direction; MR becomes strongly **anisotropic** and can grow linearly or quadratically without saturation depending on geometry.  
+- **AMRO** (angle-dependent MR oscillations) in layered metals arise when tilting $\mathbf B$ threads Landau orbits across a warped quasi-2D FS; minima occur at **Yamaji angles** set by interlayer warping.
+
+---
+
+### 10.7.8 Quantum oscillations: Onsager + Lifshitz–Kosevich
+
+Landau quantization turns orbit areas into discrete levels. The **Onsager relation** ties the oscillation frequency $F$ (in $1/B$) to the extremal FS cross-section area $A_{F}$ perpendicular to $\mathbf B$:
+
+$$
+F = \frac{\hbar}{2\pi e}\,A_{F}
+$$
+
+The **Lifshitz–Kosevich (LK)** amplitude has three classic factors:
+
+$$
+\Delta M,\ \Delta \rho \ \propto\ R_{T}\,R_{D}\,R_{S}\,\cos\!\left(2\pi\frac{F}{B} - \gamma\right)
+$$
+
+with
+
+$$
+R_{T} = \frac{X}{\sinh X},\quad X=\frac{2\pi^{2} k_{B} T}{\hbar \omega_{c}}
+$$
+
+$$
+R_{D} = \exp\!\left(-\frac{\pi}{\omega_{c}\tau}\right) = \exp\!\left(-\frac{2\pi^{2} k_{B} T_{D}}{\hbar \omega_{c}}\right)
+$$
+
+$$
+R_{S} = \cos\!\left(\frac{\pi g m_{c}}{2 m_{e}}\right)
+$$
+
+$R_{T}$ gives the **mass plot** to read $m_{c}$, $R_{D}$ the **Dingle** factor for scattering, and $R_{S}$ the spin-splitting modulation. The phase $\gamma$ can encode Berry phase for Dirac/Weyl systems (see §10.11).
+
+---
+
+### 10.7.9 Cyclotron resonance and optical probes
+
+In clean samples, an AC field picks up resonances at $\omega=n\,\omega_{c}$ giving $m_{c}$ directly. **Optical conductivity** decomposes into a Drude piece and interband contributions; the **f-sum rule** sets the total spectral weight (see §10.3). In layered conductors, **interlayer conductivity** vs tilt reveals FS warping.
+
+---
+
+### 10.7.10 Practical FS metrology (ARPES vs oscillations)
+
+- **ARPES** maps occupied bands and FS contours directly in $k_{\parallel}$; great for 2D and surfaces, trickier for bulk $k_{z}$.  
+- **Quantum oscillations** see only **extremal** areas but with exquisite precision and bulk sensitivity.  
+- **Quantum oscillation angle sweeps** reconstruct full FS shapes from $F(\theta)$; combine with ARPES to de-ambiguate pockets and 3D warping.
+
+---
+
+### 10.7.11 Thermoelectric and Nernst hints
+
+Near the FS, the **Mott formula** relates the Seebeck coefficient to the energy derivative of conductivity at $\epsilon_{F}$:
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+The **Nernst effect** (transverse voltage from a thermal gradient in $B$) is extremely sensitive to FS curvature and quasiparticle lifetime asymmetries—often a canary for small pockets.
+
+---
+
+### 10.7.12 Strong-field and quantum-limit quirks
+
+At very large $B$, carriers collapse into a few lowest Landau levels. In the **quantum limit** (only $n=0$ occupied), MR and thermoelectrics can behave non-Drude, sometimes **linear in $B$** or with sign flips. Dirac/Weyl materials can show a chiral-anomaly contribution to longitudinal MR when $\mathbf E\parallel \mathbf B$ (details in §10.11).
+
+---
+
+### 10.7.13 Worked mini-examples
+
+**(a) Onsager area from frequency**  
+You measure $F=1.0\ \mathrm{kT}$ for $\mathbf B\parallel \hat z$. Compute the extremal area
+
+$$
+A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \mathrm{\AA^{-2}}
+$$
+
+and an equivalent circular Fermi wavevector $k_{F}=\sqrt{A_{F}/\pi}$.
+
+**(b) LK mass plot**  
+Given oscillation amplitudes vs $T$ at fixed $B$, fit $R_{T}=X/\sinh X$ to extract $m_{c}$ from $X=(2\pi^{2}k_{B}T m_{c})/(e\hbar B)$.
+
+**(c) Two-band MR**  
+Take $n_{e}=n_{h}=5\times 10^{25}\ \mathrm{m^{-3}}$, $\mu_{e}=1.5\ \mathrm{m^{2}/Vs}$, $\mu_{h}=0.8\ \mathrm{m^{2}/Vs}$. Evaluate $\rho_{xx}(B)$ and show quadratic growth up to several tesla without saturation.
+
+**(d) AMRO/Yamaji**  
+For a quasi-2D FS with interlayer dispersion $-2t_{\perp}\cos k_{z}c$, show that MR minima occur when $\tan\theta \approx \pi \nu/(k_{F} c)$ with integer $\nu$, giving $k_{F}$ from the angular period.
+
+**(e) Ioffe–Regel check**  
+With $k_{F}=0.8\ \mathrm{\AA^{-1}}$, $v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$, and $\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$ in a single band, estimate $\tau=m^{\ast}/(ne^{2}\rho_{0})$, compute $\ell=v_{F}\tau$, and comment on $k_{F}\ell$.
+
+---
+
+### 10.7.14 Common pitfalls
+
+- **Mixing masses**: $m^{\ast}$ (band curvature), $m_{c}$ (cyclotron), and optical/thermodynamic masses differ in anisotropic or multiband systems  
+- **Forgetting tensor inversion**: trends in $\sigma_{xx}$ don’t translate 1:1 to $\rho_{xx}$; always invert the full tensor  
+- **Assuming single $\tau$**: hot/cold spots and anisotropic scattering wreck Kohler collapse and mimic multiband MR  
+- **Misreading oscillation phase**: Berry phase extraction needs careful background subtraction and index conventions; spin zeros can shift apparent phase  
+- **Ignoring geometry**: sample misalignment and current jetting can fake huge linear MR in high-mobility, compensated crystals  
+- **Open-orbit blinders**: seeing “saturating MR” and blaming impurities when the real culprit is FS topology and field orientation
+
+---
+
+**In summary:** The Fermi surface is transport’s control room. Semiclassical dynamics move carriers around it, Boltzmann/Chambers turns geometry into tensors, and multiband/compensation plus orbit topology set magnetoresponse. Quantum oscillations then read off extremal areas and effective masses with laser precision. Get fluent with these moves and you can diagnose a metal from a couple of field sweeps and a phase plot
+
+## 10.8 Magnetism
+
+Magnetism comes in two big flavors: **localized** moments that behave like tiny quantum spins coupled by exchange, and **itinerant** magnetism where the Fermi sea itself polarizes. From Curie–Weiss laws to spin waves and ferromagnetic resonance, this section builds the standard playbook: Heisenberg models and exchange mechanisms (direct, superexchange, double exchange, RKKY), Stoner ferromagnets, magnons in ferro/antiferromagnets, anisotropy and domains, and the Mermin–Wagner no-go in 1D/2D without symmetry breaking fields. We keep the math tight and the takeaways actionable.
+
+---
+
+### 10.8.1 Magnetic moments, $g$ factors, and units
+
+An electron carries spin $\mathbf S$ and possibly orbital $\mathbf L$ contributions. The magnetic moment operator is
+
+$$
+\boldsymbol{\mu} = -g_{S}\mu_{B}\,\mathbf S/\hbar - g_{L}\mu_{B}\,\mathbf L/\hbar
+$$
+
+with Bohr magneton $\mu_{B}=e\hbar/(2m_{e})$ and $g_{S}\approx 2$. In solids, **quenching** of orbital angular momentum by the crystal field often leaves effective spin moments, sometimes with spin–orbit dressing that yields anisotropy.
+
+The **magnetization** $\mathbf M$ is moment per volume. Linear response defines susceptibility $\chi$ via $\mathbf M=\chi \mathbf H$ (isotropic case), with $\mathbf B=\mu_{0}(\mathbf H+\mathbf M)$.
+
+---
+
+### 10.8.2 Local-moment models: Ising/Heisenberg/XXZ
+
+For localized spins $\{\mathbf S_{i}\}$ on a lattice the minimal Hamiltonians are
+
+- **Ising**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,S_{i}^{z} S_{j}^{z} - h\sum_{i} S_{i}^{z}
+$$
+
+- **Heisenberg (SU(2)-symmetric)**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,\mathbf S_{i}\cdot \mathbf S_{j} - g\mu_{B} B \sum_{i} S_{i}^{z}
+$$
+
+- **XXZ anisotropy**
+
+$$
+H = -\sum_{\langle ij\rangle} \left[J_{\perp}\,(S_{i}^{x} S_{j}^{x}+S_{i}^{y} S_{j}^{y}) + J_{z}\,S_{i}^{z} S_{j}^{z}\right]
+$$
+
+Here $J>0$ favors **ferromagnetism** (FM) and $J<0$ **antiferromagnetism** (AFM) in our sign convention.
+
+**Curie–Weiss** phenomenology for paramagnets: above the ordering temperature,
+
+$$
+\chi(T) = \frac{C}{T-\Theta_{\mathrm{CW}}},\qquad
+C = \frac{\mu_{0} N g^{2} \mu_{B}^{2} S(S+1)}{3k_{B}}
+$$
+
+The sign of $\Theta_{\mathrm{CW}}$ hints at dominant FM ($>0$) or AFM ($<0$) exchange.
+
+---
+
+### 10.8.3 Exchange mechanisms: where $J$ comes from
+
+- **Direct exchange**: overlap of neighboring local orbitals; Pauli + Coulomb yield an energy difference between parallel and antiparallel spin alignments.  
+- **Superexchange**: virtual hopping via a nonmagnetic ligand (e.g., TM–O–TM). For a half-filled Hubbard-like situation,
+
+$$
+J \sim \frac{4t^{2}}{U}
+$$
+
+often **antiferromagnetic**.  
+- **Double exchange** (mixed valence manganites): itinerant electrons align local core spins to maximize hopping, favoring FM and metallicity.  
+- **RKKY** (in metals with localized moments): conduction electrons mediate an oscillatory coupling
+
+$$
+J(r) \propto \frac{\cos(2k_{F} r)}{r^{3}}
+$$
+
+driving complex order or spin glass when disorder scrambles phases.
+
+---
+
+### 10.8.4 Itinerant ferromagnetism: Stoner criterion
+
+In a simple band, exchange lowers energy if spin polarization splits the bands by $\pm \Delta/2$. The **Stoner** mean-field yields a criterion
+
+$$
+I\,N(\epsilon_{F}) > 1
+$$
+
+with $I$ an interaction parameter and $N(\epsilon_{F})$ the DOS per spin at the Fermi level. Consequences:
+
+- Finite **Pauli susceptibility** enhanced to
+
+$$
+\chi = \frac{\chi_{0}}{1 - I N(\epsilon_{F})}
+$$
+
+- **Spin-wave stiffness** emerges in the broken-symmetry phase (see §10.8.6)
+
+Itinerant magnets mix band structure with interactions; ARPES, quantum oscillations, and optical sum rules help disentangle.
+
+---
+
+### 10.8.5 Mean-field ordering temperatures
+
+On a $z$-coordination lattice with exchange $J$ between near neighbors, Weiss mean-field predicts
+
+- **FM Heisenberg**
+
+$$
+k_{B} T_{C}^{\mathrm{MF}} = \frac{2}{3}\,z J S(S+1)
+$$
+
+- **AFM (bipartite)**
+
+$$
+k_{B} T_{N}^{\mathrm{MF}} = \frac{2}{3}\,z |J| S(S+1)
+$$
+
+Real $T_{C/N}$ are reduced by fluctuations, especially in low dimensions or small $S$.
+
+---
+
+### 10.8.6 Spin waves (magnons) in ferromagnets
+
+In a FM Heisenberg model, small transverse oscillations are **magnons**. Holstein–Primakoff mapping gives, to leading order,
+
+$$
+H \approx E_{0} + \sum_{\mathbf k} \hbar \omega_{\mathbf k}\, b_{\mathbf k}^{\dagger} b_{\mathbf k}
+$$
+
+with dispersion near $\mathbf k=0$
+
+$$
+\hbar \omega_{\mathbf k} \approx D\,k^{2} + \Delta_{\mathrm{ani}}
+$$
+
+Here $D$ is the **spin-wave stiffness** set by $J$ and lattice geometry, and $\Delta_{\mathrm{ani}}$ comes from anisotropy (otherwise Goldstone gapless). Thermal excitation of magnons reduces the magnetization:
+
+$$
+M(T) \approx M(0)\left[1 - A\,T^{3/2}\right]
+$$
+
+This is the **Bloch $T^{3/2}$ law** in 3D FMs.
+
+**Specific heat** of magnons in 3D scales as $C_{\mathrm{mag}}\propto T^{3/2}$ at low $T$ (quadratic dispersion → DOS $\propto \sqrt{E}$).
+
+---
+
+### 10.8.7 Antiferromagnets: two-sublattice spin waves
+
+For a collinear AFM on a bipartite lattice, linear spin-wave theory yields two branches with **linear** dispersion at small $k$:
+
+$$
+\hbar \omega_{\mathbf k} \approx c\,|\mathbf k|
+$$
+
+Velocity $c$ depends on $|J|$, $S$, and lattice spacing. Anisotropy produces a small gap. The uniform susceptibility often shows a cusp at $T_{N}$; below, transverse and longitudinal components differ.
+
+---
+
+### 10.8.8 Magnetic anisotropy, demagnetizing fields, and domains
+
+- **Magnetocrystalline anisotropy** from spin–orbit coupling selects easy axes/planes. Minimal model
+
+$$
+E_{\mathrm{ani}} = K_{1} \sin^{2}\theta + K_{2} \sin^{4}\theta + \cdots
+$$
+
+affects coercivity and domain structure.  
+- **Demagnetizing fields** arise because $\nabla\cdot \mathbf M$ at surfaces acts like “magnetic charge.” Shape defines a demag tensor $\mathsf N$ with field $\mathbf H_{d}=-\mathsf N \mathbf M$.  
+- **Domains** form to balance wall energy and magnetostatic energy. **Domain walls** have width $\delta \sim \sqrt{A/K}$ and energy $\sigma \sim \sqrt{A K}$ where $A$ is exchange stiffness and $K$ anisotropy.
+
+---
+
+### 10.8.9 Ferromagnetic resonance (FMR) and dynamics
+
+Magnetization dynamics obey **Landau–Lifshitz–Gilbert** (LLG)
+
+$$
+\frac{d\mathbf M}{dt} = -\gamma\,\mathbf M\times \mathbf H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\mathbf M\times \frac{d\mathbf M}{dt}
+$$
+
+with gyromagnetic ratio $\gamma$ and damping $\alpha$. For a uniform mode in an in-plane thin film (Kittel formula, simple case),
+
+$$
+\omega^{2} = \gamma^{2}\,(H+H_{k})(H+H_{k}+4\pi M_{s})
+$$
+
+FMR reads out anisotropy fields $H_{k}$ and damping.
+
+---
+
+### 10.8.10 Dimensionality: Mermin–Wagner and Kosterlitz–Thouless
+
+Continuous-symmetry magnets in strictly 1D/2D with short-range exchange cannot order at finite $T$ (no gap, Goldstone modes kill long-range order): the **Mermin–Wagner theorem**. Workarounds:
+
+- Add **anisotropy** (Ising-like discretization), long-range dipolar terms, or interlayer coupling  
+- In 2D XY, expect a **Kosterlitz–Thouless** transition with vortex unbinding and algebraic order rather than conventional $T_{C}$
+
+---
+
+### 10.8.11 Magnetotransport cliffs notes
+
+- **Anomalous Hall effect (AHE)** in FMs: $\rho_{xy}=R_{0}B + R_{s} M$, with intrinsic Berry-curvature and extrinsic skew/side-jump mechanisms.  
+- **Spin waves and resistivity**: additional $T^{2}$ or $T^{3/2}$ contributions at low $T$ in FMs from magnon scattering.  
+- **Spin caloritronics**: spin Seebeck and magnon-drag signals link magnon and charge/heat transport.
+
+---
+
+### 10.8.12 Worked mini-examples
+
+**(a) Curie–Weiss slope**  
+Given $S=5/2$, $g=2$, number density $N$, show that the high-$T$ slope of $1/\chi(T)$ is $k_{B}/(C)$ with $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$. Fit data to extract $N$ or $S$.
+
+**(b) Spin-wave stiffness in a cubic FM**  
+Nearest-neighbor Heisenberg on cubic lattice (spacing $a$): show
+
+$$
+\hbar \omega_{\mathbf k} = 2 J S z \left(1-\gamma_{\mathbf k}\right)
+$$
+
+with $z=6$ and $\gamma_{\mathbf k}=\tfrac{1}{3}[\cos(k_{x}a)+\cos(k_{y}a)+\cos(k_{z}a)]$. Expand for small $k$ to extract $D$.
+
+**(c) AFM two-sublattice dispersion**  
+For a bipartite AFM with nn exchange $J<0$, derive the linear small-$k$ magnon velocity $c=a\sqrt{2|J|S z/\hbar^{2}}$ up to geometry factors.
+
+**(d) Stoner enhancement**  
+Given $\chi/\chi_{0}=5$, estimate $I N(\epsilon_{F})$ and comment on proximity to instability $=1$.
+
+**(e) Domain wall width**  
+With $A=1\times 10^{-11}\ \mathrm{J/m}$ and $K=5\times 10^{4}\ \mathrm{J/m^{3}}$, estimate $\delta=\sqrt{A/K}$ and $\sigma\sim\sqrt{A K}$.
+
+**(f) RKKY sign changes**  
+For $k_{F}=1.2\ \mathrm{\AA^{-1}}$, compute the first few zeros/sign flips of $\cos(2k_{F} r)$ to see at what separations the coupling toggles FM/AFM.
+
+---
+
+### 10.8.13 Common pitfalls
+
+- **Sign conventions for $J$**: check whether your Hamiltonian uses $-J \mathbf S_{i}\cdot \mathbf S_{j}$ or $+J$; FM/AFM flip with the choice.  
+- **Curie–Weiss overreach**: it is a **high-$T$** law; near and below $T_{C/N}$ critical fluctuations break mean-field straightness.  
+- **Ignoring anisotropy**: in 2D, no finite-$T$ order without anisotropy or long-range terms; tiny $K$ matters a lot.  
+- **Confusing Pauli and Curie**: itinerant paramagnets (Pauli) have $T$-independent $\chi$; local moments (Curie) go like $1/T$. Real compounds can have both.  
+- **Mixing demag and intrinsic**: raw magnetization loops are geometry-dependent; correct for demagnetization to get intrinsic $M(H)$.  
+- **Magnon gap blind spot**: any observed finite-frequency intercept in FM/AFM spin-wave spectra signals anisotropy or Zeeman gaps—don’t fit as purely gapless.
+
+---
+
+### 10.8.14 Minimal problem kit
+
+- Derive Curie–Weiss susceptibility from a Weiss field $H_{\mathrm{eff}}=\lambda M$ for spins $S$ and connect $\Theta_{\mathrm{CW}}$ to $\lambda$ and microscopic $J$  
+- Compute $T_{C}^{\mathrm{MF}}$ and $M(T)$ within mean-field for a cubic Heisenberg FM; compare to Bloch $T^{3/2}$ at low $T$ and discuss regimes of validity  
+- Do linear spin-wave theory (Holstein–Primakoff) for a 1D FM chain, obtain $\omega_{k}$ and show why 1D FM lacks finite-$T$ long-range order (infrared divergence)  
+- Starting from LLG, derive the Kittel formula for a thin film with uniaxial anisotropy and identify $H_{k}=2K/\mu_{0} M_{s}$  
+- For a simple parabolic band with Stoner parameter $I$, compute the magnetization $m$ vs $T$ at mean-field and sketch the phase diagram in $(I N(\epsilon_{F}),T)$ space
+
+---
+
+**In summary:** Local moments couple via exchange (direct, super, double, RKKY) and order into FM/AFM patterns; itinerant electrons can self-polarize if Stoner’s $I N(\epsilon_{F})>1$. Low-energy excitations are magnons—quadratic in FMs, linear in AFMs—setting $M(T)$, $C(T)$, and spin dynamics. Anisotropy and demag fields sculpt real textures and resonances. In 1D/2D, symmetry and fluctuations rewrite the rules unless anisotropy steps in. Learn these moves and most magnetic data—$\chi(T)$, $M(H)$, inelastic spectra—start reading like sheet music
+
+## 10.9 Superconductivity
+
+Superconductors are the drama queens of condensed matter: below a critical temperature they drop their DC resistance to (effectively) zero **and** expel magnetic fields (Meissner effect). Microscopically, electrons form **Cooper pairs** that condense into a phase-coherent quantum state. This section builds the phenomenology (London, Meissner), the mesoscopic field theory (Ginzburg–Landau), the microscopic BCS results (gap, $T_{c}$, DOS), and the real-world signatures: Type I vs II, vortices, critical fields/currents, and Josephson effects.
+
+---
+
+### 10.9.1 London equations and the Meissner effect
+
+Phenomenology first. The **London equations** for the supercurrent $\mathbf J_{s}$ are
+
+$$
+\frac{\partial \mathbf J_{s}}{\partial t} = \frac{n_{s} e^{2}}{m}\,\mathbf E
+$$
+
+$$
+\mathbf J_{s} = -\frac{1}{\mu_{0}\lambda^{2}}\,\mathbf A,\qquad
+\lambda^{2} \equiv \frac{m}{\mu_{0} n_{s} e^{2}}
+$$
+
+Combine with Maxwell to eliminate $\mathbf J_{s}$ and get **magnetic field screening**
+
+$$
+\nabla^{2}\mathbf B = \frac{\mathbf B}{\lambda^{2}}
+$$
+
+so a static field decays inside the superconductor as $B(x)=B_{0} e^{-x/\lambda}$. This **Meissner effect** distinguishes superconductors from ideal (non-superconducting) perfect conductors, which would merely freeze whatever $B$ they had when cooled.
+
+---
+
+### 10.9.2 Ginzburg–Landau (GL) theory
+
+GL is a Landau free energy for a complex order parameter $\psi(\mathbf r)$ (Cooper-pair wavefunction) minimally coupled to the vector potential:
+
+$$
+\mathcal F[\psi,\mathbf A] = \alpha |\psi|^{2} + \frac{\beta}{2} |\psi|^{4}
++ \frac{1}{2m^{\ast}} \left| \left(-i\hbar \nabla - 2e\,\mathbf A\right)\psi \right|^{2}
++ \frac{|\mathbf B|^{2}}{2\mu_{0}}
+$$
+
+Minimizing yields the **GL equations**
+
+$$
+\alpha \psi + \beta |\psi|^{2}\psi + \frac{1}{2m^{\ast}}\left(-i\hbar \nabla - 2e\mathbf A\right)^{2}\psi = 0
+$$
+
+$$
+\mathbf J_{s} = \frac{2e}{m^{\ast}}\,\mathrm{Re}\left\{\psi^{\ast}\left(-i\hbar \nabla - 2e\mathbf A\right)\psi\right\}
+$$
+
+Key GL lengths:
+
+$$
+\xi = \sqrt{\frac{\hbar^{2}}{2 m^{\ast} |\alpha|}},\qquad
+\lambda = \sqrt{\frac{m^{\ast}}{4 \mu_{0} e^{2} |\psi|^{2}}}
+$$
+
+The dimensionless **GL parameter** $\kappa \equiv \lambda/\xi$ classifies superconductors:
+
+- **Type I** if $\kappa < 1/\sqrt{2}$ (single critical field $H_{c}$, complete Meissner until abrupt breakdown)  
+- **Type II** if $\kappa > 1/\sqrt{2}$ (mixed state with vortices between $H_{c1}$ and $H_{c2}$)
+
+---
+
+### 10.9.3 BCS essentials: pairing, gap, and $T_{c}$
+
+BCS shows that any weak, retarded attraction between electrons near $\epsilon_{F}$ (e.g., phonon-mediated) causes a **Cooper instability** and a paired ground state with an energy gap $\Delta$.
+
+Zero-temperature gap and critical temperature (isotropic $s$-wave, weak coupling):
+
+$$
+\Delta(0) = 2\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+$$
+k_{B} T_{c} = 1.14\,\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+Universal BCS ratio:
+
+$$
+\frac{2\Delta(0)}{k_{B} T_{c}} \approx 3.53
+$$
+
+The quasiparticle **density of states** (per spin) becomes
+
+$$
+N_{s}(E) = N(0)\,\mathrm{Re}\,\frac{|E|}{\sqrt{E^{2}-\Delta^{2}}}
+$$
+
+with coherence peaks at $E=\pm \Delta$. The specific heat jumps by $\Delta C/C_{n}|_{T_{c}}=1.43$; the low-$T$ behavior is activated $C\sim e^{-\Delta/T}$ for fully gapped $s$-wave.
+
+**BCS coherence length** (clean limit):
+
+$$
+\xi_{0} = \frac{\hbar v_{F}}{\pi \Delta(0)}
+$$
+
+---
+
+### 10.9.4 Critical fields, currents, and the mixed state
+
+Type I has a **thermodynamic critical field** $H_{c}(T)$ that satisfies $F_{s}(H_{c})=F_{n}(0)$.
+
+Type II features three scales:
+
+$$
+\mu_{0} H_{c1} \approx \frac{\Phi_{0}}{4\pi \lambda^{2}} \ln \kappa
+$$
+
+$$
+\mu_{0} H_{c2} = \frac{\Phi_{0}}{2\pi \xi^{2}}
+$$
+
+$$
+\Phi_{0} = \frac{h}{2e}
+$$
+
+For $H_{c1}<H<H_{c2}$, magnetic field penetrates via **Abrikosov vortices** carrying one flux quantum $\Phi_{0}$. Vortex cores have radius $\sim \xi$ where $|\psi|$ is suppressed; circulating supercurrents decay over $\lambda$. Vortices form a triangular lattice in clean materials absent pinning.
+
+**Critical current density** (GL depairing estimate near $T_{c}$):
+
+$$
+J_{d} \sim \frac{H_{c}}{\mu_{0}\lambda}
+$$
+
+In practice, **vortex motion** (flux flow) limits current; strong pinning raises the **critical current** $J_{c}\ll J_{d}$ used in applications.
+
+---
+
+### 10.9.5 Flux quantization and phase stiffness
+
+Single-valuedness of the condensate phase $\varphi$ around a loop gives
+
+$$
+\oint \left(\nabla \varphi - \frac{2e}{\hbar}\mathbf A\right)\cdot d\boldsymbol\ell = 2\pi n
+$$
+
+which implies **flux quantization** $\Phi=n\Phi_{0}$ in a multiply connected superconductor. The phase rigidity is the origin of persistent currents and of the Josephson effects.
+
+---
+
+### 10.9.6 Josephson effects
+
+Two superconductors separated by a thin barrier (SIS) support a **supercurrent** without voltage:
+
+- **DC Josephson**:
+
+$$
+I = I_{c}\,\sin\phi
+$$
+
+where $\phi$ is the phase difference and $I_{c}$ the critical current. With magnetic field, interference across a junction of width $W$ gives a **Fraunhofer pattern** $I_{c}(B)\propto |\sin(\pi \Phi/\Phi_{0})/(\pi \Phi/\Phi_{0})|$.
+
+- **AC Josephson**: a DC voltage $V$ makes the phase run $\dot\phi = 2eV/\hbar$, yielding an AC current at
+
+$$
+f = \frac{2e}{h}\,V
+$$
+
+Microwave irradiation produces **Shapiro steps** at voltages $V_{n}=n\,h f/(2e)$. Two junctions in a loop form a **SQUID** with period $\Phi_{0}$ vs applied flux, enabling ultrasensitive magnetometry.
+
+In SNS junctions, transport below the gap proceeds via **Andreev reflection**, forming discrete Andreev bound states that carry the supercurrent.
+
+---
+
+### 10.9.7 Proximity and mesoscopic effects
+
+A normal metal in good contact with a superconductor inherits pair correlations over a **proximity length** (dirty limit $L_{\phi}\sim \sqrt{\hbar D/k_{B}T}$). Subgap conductance of an NS interface is enhanced by Andreev reflection, approaching a factor of 2 in the ideal BTK limit at zero bias for a perfectly transparent contact.
+
+---
+
+### 10.9.8 Unconventional and high-$T_{c}$ notes
+
+Not all superconductors are $s$-wave. **$d$-wave** pairing (cuprates) features line nodes, giving power-law thermodynamics ($C\sim T^{2}$ in 3D) and a V-shaped tunneling DOS. **$p$-wave** and other exotic states can host Majorana bound states in topological contexts. In many unconventional cases, the “glue” is not phonons but electron–electron interactions (spin fluctuations), and BCS ratios deviate from 3.53.
+
+---
+
+### 10.9.9 Experimental fingerprints
+
+- **Transport**: zero resistance below $T_{c}$; finite voltage only when current exceeds $J_{c}$ or vortices move  
+- **Magnetization**: Meissner expulsion, irreversible hysteresis from vortex pinning in Type II  
+- **Thermodynamics**: specific-heat jump at $T_{c}$; condensation energy from integrating $C/T$  
+- **Spectroscopy**: tunneling/STM coherence peaks at $\pm \Delta$; ARPES gap symmetry; optical conductivity with missing area transferred to the zero-frequency delta (Ferrell–Glover–Tinkham sum rule)  
+- **Microwave/THz**: AC conductivity shows a superfluid delta plus a finite-frequency quasiparticle response  
+- **Muon/NMR**: penetration depth, vortex lattice, and gap symmetry from relaxation rates
+
+---
+
+### 10.9.10 Worked mini-examples
+
+**(a) Penetration depth from carrier density**  
+Using $\lambda^{2}=m/(\mu_{0} n_{s} e^{2})$, estimate $\lambda$ for $n_{s}=10^{28}\ \mathrm{m^{-3}}$ and $m=m_{e}$.
+
+**(b) $H_{c2}$ estimate**  
+A Type II superconductor has $\xi=4\ \mathrm{nm}$. Compute $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$.
+
+**(c) Coherence length from gap and $v_{F}$**  
+With $v_{F}=2.0\times 10^{5}\ \mathrm{m/s}$ and $\Delta(0)=1.5\ \mathrm{meV}$, estimate $\xi_{0}=\hbar v_{F}/(\pi \Delta)$ and compare to the GL $\xi$ near $T_{c}$.
+
+**(d) Josephson frequency**  
+What microwave frequency results from $V=1.00\ \mathrm{mV}$ across a junction Using $f=(2e/h)V$, show $f\approx 483.6\ \mathrm{GHz/mV}\times 1.00\ \mathrm{mV}$.
+
+**(e) Flux quantization in a ring**  
+A superconducting loop of area $A=20\ \mu\mathrm{m}^{2}$ shows SQUID oscillations with period $\Delta B$. Verify $\Delta B=\Phi_{0}/A$ and compute the period.
+
+**(f) Depairing current (order of magnitude)**  
+Given $\mu_{0}H_{c}=0.2\ \mathrm{T}$ and $\lambda=120\ \mathrm{nm}$, estimate $J_{d}\sim H_{c}/(\mu_{0}\lambda)$ and compare with a measured $J_{c}$ limited by pinning.
+
+---
+
+### 10.9.11 Common pitfalls
+
+- **Meissner vs perfect conductor**: superconductors expel *newly applied* fields; perfect conductors merely lock in whatever field is present on cooling  
+- **Forgetting the $2e$**: Cooper pairs carry charge $2e$; flux quantum is $h/2e$, not $h/e$  
+- **Type I/II mix-ups**: classification uses $\kappa=\lambda/\xi$; it is not about “how strong the field is” but interfacial energy sign  
+- **Ignoring vortices**: in Type II, finite resistance under current + field often comes from vortex motion, not a destroyed gap  
+- **Using clean-limit formulas in dirty samples**: $\xi$ and $\lambda$ renormalize with impurity scattering; check mean free path $l$ vs $\xi_{0}$  
+- **Assuming $s$-wave**: gap symmetry matters; power laws in $C(T)$, $\lambda(T)$, and nodal quasiparticles betray unconventional pairing
+
+---
+
+### 10.9.12 Minimal problem kit
+
+- Starting from the London equations, derive $\nabla^{2}\mathbf B=\mathbf B/\lambda^{2}$ and show exponential decay of $B(x)$ in a half-space  
+- From GL, compute the surface energy between normal and superconducting regions and reproduce the Type I/II boundary at $\kappa=1/\sqrt{2}$  
+- Show that flux quantization follows from single-valuedness of $\psi$ and derive $\Phi_{0}=h/2e$  
+- Use the weak-coupling BCS gap equation to obtain $\Delta(0)$ and the ratio $2\Delta(0)/k_{B}T_{c}$  
+- Derive $H_{c2}=\Phi_{0}/(2\pi \xi^{2})$ by linearizing the GL equation in a field and mapping to Landau levels for the order parameter  
+- Compute the Fraunhofer $I_{c}(B)$ envelope for a rectangular Josephson junction and extract the junction area from the period
+
+---
+
+**In summary:** London + Meissner tell you fields are expelled over $\lambda$; GL adds a complex order parameter with coherence length $\xi$ and a universal Type I/II divider at $\kappa=1/\sqrt{2}$. BCS supplies the microscopic gap, $T_{c}$, and quasiparticle DOS. Type II superconductors host quantized vortices and a mixed state between $H_{c1}$ and $H_{c2}$. Phase coherence across barriers yields the Josephson effects, tying voltage directly to frequency via $2e/h$. Together, these ideas turn “zero resistance” into a complete, testable theory of one of nature’s cleanest macroscopic quantum phases
+
