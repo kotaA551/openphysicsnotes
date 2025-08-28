@@ -535,3 +535,228 @@ For $N$ independent two-level sites with energies $0$ and $\epsilon$, compute $Z
 ---
 
 **In summary:** Partition functions are the engines of thermodynamics. $Z$ gives you $F$ and all canonical data, $\Xi$ gives $\Phi_{G}$ and number fluctuations, and $\Delta$ hands you $G$ at fixed pressure. They are Laplace-transformed faces of the same microcanonical counting, glued together by Legendre transforms. Once you can push derivatives of $\ln$ partition functions with confidence, every equilibrium calculation becomes a few lines of algebra
+
+## 9.3 Classical Ideal Gas & Equipartition
+
+The classical ideal gas is the training montage of statistical physics: you learn to count states, take derivatives of $\ln$ partition functions, and watch macroscopic laws fall out like it’s nothing. We derive the Maxwell–Boltzmann distribution, prove equipartition, recover $pV=Nk_{B}T$, and build intuition for adiabats, sound speed, and when the classical picture breaks (hello, $\lambda_{T}$).
+
+---
+
+### 9.3.1 Canonical counting recap and the ideal-gas Z
+
+For $N$ indistinguishable point particles of mass $m$ in volume $V$ with Hamiltonian $H=\sum_{i=1}^{N}\mathbf p_{i}^{2}/2m$, the canonical partition function factorizes:
+
+$$
+Z(\beta,V,N) = \frac{1}{N!}\left[\frac{V}{\lambda_{T}^{3}}\right]^{N}
+$$
+
+with thermal wavelength
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi\hbar^{2}}{m k_{B} T}}
+$$
+
+Thermodynamics then follows immediately:
+
+$$
+F = -\,Nk_{B}T\left[\ln\!\left(\frac{V}{N\lambda_{T}^{3}}\right) + 1\right],\qquad
+U = \frac{3}{2}Nk_{B}T,\qquad
+pV = Nk_{B}T
+$$
+
+Heat capacities:
+
+$$
+C_{V} = \left(\frac{\partial U}{\partial T}\right)_{V,N} = \frac{3}{2}Nk_{B},\qquad
+C_{p} = C_{V} + Nk_{B} = \frac{5}{2}Nk_{B},\qquad
+\gamma \equiv \frac{C_{p}}{C_{V}} = \frac{5}{3}
+$$
+
+Entropy is the Sackur–Tetrode form:
+
+$$
+S = Nk_{B}\left[\ln\!\left(\frac{V}{N\lambda_{T}^{3}}\right) + \frac{5}{2}\right]
+$$
+
+The $1/N!$ kills the Gibbs paradox by encoding indistinguishability.
+
+---
+
+### 9.3.2 Maxwell–Boltzmann distribution (velocities, speeds, energies)
+
+Each momentum component is Gaussian:
+
+$$
+f(p_{x}) = \sqrt{\frac{\beta}{2\pi m}}\;\exp\!\left(-\frac{\beta p_{x}^{2}}{2m}\right)
+$$
+
+Equivalently, each velocity component is Gaussian with variance $\langle v_{x}^{2}\rangle = k_{B}T/m$. The **speed** distribution (radial in velocity space) is
+
+$$
+f(v) = 4\pi \left(\frac{m}{2\pi k_{B}T}\right)^{3/2} v^{2} \exp\!\left(-\frac{m v^{2}}{2k_{B}T}\right)
+$$
+
+Useful moments:
+
+$$
+v_{\text{mp}} = \sqrt{\frac{2k_{B}T}{m}},\qquad
+\langle v\rangle = \sqrt{\frac{8k_{B}T}{\pi m}},\qquad
+v_{\text{rms}} = \sqrt{\frac{3k_{B}T}{m}}
+$$
+
+The kinetic energy distribution is $\chi^{2}$-like with $3$ degrees of freedom:
+
+$$
+f(E) = \frac{2}{\sqrt{\pi}}\frac{1}{(k_{B}T)^{3/2}}\sqrt{E}\,e^{-E/k_{B}T},\qquad \langle E\rangle = \frac{3}{2}k_{B}T
+$$
+
+---
+
+### 9.3.3 Equipartition theorem
+
+**Statement.** Every quadratic degree of freedom in the Hamiltonian contributes $\tfrac{1}{2}k_{B}T$ to the mean energy.
+
+**Sketch of proof (canonical, integration by parts).** If $H$ contains a term $\alpha x^{2}$, then
+
+$$
+\langle x\,\partial H/\partial x \rangle = k_{B}T
+$$
+
+For $H=\sum p_{i}^{2}/2m + \cdots$, each quadratic $p_{i}^{2}/2m$ gives $\langle p_{i}^{2}/2m\rangle = \tfrac{1}{2}k_{B}T$. A monatomic gas has $3N$ translational momenta → $U=\tfrac{3}{2}Nk_{B}T$.
+
+**When it fails (and why that’s good).** If a degree of freedom isn’t effectively quadratic (e.g., quantized rotations/vibrations at $k_{B}T$ below level spacings), equipartition “freezes out.” This explains the drop of specific heats at low $T$ and the success/failure of Dulong–Petit.
+
+---
+
+### 9.3.4 Kinetic-theory
+
+From elastic impacts on a wall, the pressure can be written
+
+$$
+p = \frac{2}{3}\frac{U}{V}
+$$
+
+Combine with $U=\tfrac{3}{2}Nk_{B}T$ to get $pV=Nk_{B}T$. More generally, for pairwise interactions $u(r)$ the **virial theorem** yields
+
+$$
+pV = Nk_{B}T + \frac{1}{3}\left\langle \sum_{i<j} \mathbf r_{ij}\cdot \mathbf F_{ij} \right\rangle
+$$
+
+The ideal gas has $\mathbf F_{ij}=0$, so the second term vanishes.
+
+---
+
+### 9.3.5 Adiabats, sound speed, and quick thermodynamic moves
+
+For a **reversible adiabatic** change ($dQ=0$) in a monatomic ideal gas,
+
+$$
+p V^{\gamma} = \text{const},\qquad T V^{\gamma-1} = \text{const},\qquad T^{\gamma} p^{1-\gamma} = \text{const}
+$$
+
+with $\gamma=5/3$. The **speed of sound** (small adiabatic density waves) is
+
+$$
+c_{s} = \sqrt{\gamma \frac{k_{B}T}{m}}
+$$
+
+For mixtures, replace $m$ by the mean molecular mass and $\gamma$ by the appropriate ratio of heat capacities.
+
+---
+
+### 9.3.6 External fields: barometric formula and separability
+
+In a uniform gravitational field $U(z)=mgz$, the one-body Boltzmann weight factorizes:
+
+$$
+n(z) \propto e^{-\beta m g z},\qquad n(z) = n(0)\,e^{-z/H},\qquad H \equiv \frac{k_{B}T}{m g}
+$$
+
+The momentum and position parts separate, so kinetic-energy results (equipartition, MB speeds) survive untouched.
+
+---
+
+### 9.3.7 Transport in one screen: mean free path and friends
+
+For hard spheres of diameter $d$ at number density $n$, the mean free path is
+
+$$
+\ell \simeq \frac{1}{\sqrt{2}\,\pi d^{2}\,n}
+$$
+
+Using typical speed $\bar v \sim \langle v\rangle$,
+
+$$
+D \sim \frac{1}{3}\bar v\,\ell,\qquad
+\eta \sim \frac{1}{3} n m \bar v\,\ell,\qquad
+\kappa \sim \frac{1}{3} n C_{V}^{\text{per particle}} \bar v\,\ell
+$$
+
+These kinetic-theory scalings are remarkably good for dilute gases; real cross sections and mixtures refine the prefactors.
+
+---
+
+### 9.3.8 Validity of the classical picture
+
+Classical, nondegenerate behavior requires the **diluteness** parameter to be small:
+
+$$
+n\,\lambda_{T}^{3} \ll 1
+$$
+
+If $n\lambda_{T}^{3}\gtrsim 1$ (low $T$ or high $n$), quantum statistics kicks in: bosons want Bose–Einstein, fermions go Pauli, and the MB distribution is no longer the move.
+
+---
+
+### 9.3.9 Beyond monatomic: what equipartition counts
+
+For a rigid **linear diatomic** at intermediate $T$:
+
+- $3$ translational + $2$ rotational quadratic modes → $f=5$ effective d.o.f., so $C_{V} \approx \tfrac{5}{2}Nk_{B}$, $\gamma \approx 7/5$
+- Vibrations add $2$ more quadratic modes but only when $k_{B}T$ exceeds the vibrational quantum spacing; otherwise they’re frozen
+
+Moral: **count only the modes that are active at your $T$**.
+
+---
+
+### 9.3.10 Worked mini-examples
+
+**(a) RMS speed for air at room $T$**
+
+For $\mathrm{N}_{2}$ with $m\approx 28\,\mathrm{u}$ at $T=300\ \mathrm{K}$,
+
+$$
+v_{\text{rms}}=\sqrt{\frac{3k_{B}T}{m}}
+$$
+
+Plug numbers to get a few hundred $\mathrm{m/s}$; compare to $v_{\text{mp}}$ and $\langle v\rangle$.
+
+**(b) Adiabatic compression**
+
+A monatomic gas is compressed from $(p_{1},V_{1})$ to $(p_{2},V_{2})$ adiabatically. Use $pV^{\gamma}=\text{const}$ to find $T_{2}/T_{1}=(V_{1}/V_{2})^{\gamma-1}$.
+
+**(c) Barometric scale height of helium**
+
+For He at $T=300\ \mathrm{K}$, compute $H=k_{B}T/(m g)$ and compare to $\mathrm{N}_{2}$ to see the mass dependence pop.
+
+**(d) Mean free path at STP**
+
+Take $d\approx 0.3\ \mathrm{nm}$, $n\approx 2.5\times 10^{25}\ \mathrm{m}^{-3}$; estimate $\ell$ and comment on why smells diffuse fast.
+
+**(e) Equipartition sanity check**
+
+Show directly from $\int dp\;p^{2} e^{-\beta p^{2}/2m}$ that $\langle p^{2}/2m\rangle = \tfrac{1}{2}k_{B}T$ and extend to three components.
+
+---
+
+### 9.3.11 Minimal problem kit
+
+- Starting from $f(v)$, derive $v_{\text{mp}}$, $\langle v\rangle$, and $v_{\text{rms}}$  
+- Prove the equipartition identity $\langle x\,\partial H/\partial x\rangle=k_{B}T$ for a quadratic coordinate and apply it to $p^{2}/2m$  
+- Derive $p=\tfrac{2}{3}U/V$ via wall-collision counting and recover $pV=Nk_{B}T$  
+- For a linear diatomic with rotational constant $B$, estimate the temperature where rotations “turn on” by comparing $k_{B}T$ to $\hbar^{2}/(2I)$  
+- Check the classicality criterion for a cold atomic gas of density $n$ and temperature $T$: compute $n\lambda_{T}^{3}$ and discuss when quantum statistics is required
+
+---
+
+**In summary:** The ideal gas is a showcase: Gaussian components give Maxwell speeds; each quadratic mode chips in $\tfrac{1}{2}k_{B}T$; from that, $U$, $C_{V}$, $pV=Nk_{B}T$, adiabats, and sound speed fall out in two lines. When $n\lambda_{T}^{3}$ grows or level spacings matter, equipartition politely bows out and quantum statistics takes the mic
