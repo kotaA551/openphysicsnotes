@@ -760,3 +760,218 @@ Show directly from $\int dp\;p^{2} e^{-\beta p^{2}/2m}$ that $\langle p^{2}/2m\r
 ---
 
 **In summary:** The ideal gas is a showcase: Gaussian components give Maxwell speeds; each quadratic mode chips in $\tfrac{1}{2}k_{B}T$; from that, $U$, $C_{V}$, $pV=Nk_{B}T$, adiabats, and sound speed fall out in two lines. When $n\lambda_{T}^{3}$ grows or level spacings matter, equipartition politely bows out and quantum statistics takes the mic
+
+
+## 9.4 Fluctuations & the Fluctuation–Response Principle
+
+Macroscopic laws look crisp because relative fluctuations scale like $1/\sqrt{N}$—until they don’t. This section organizes **what fluctuates**, **how much**, and **why responses equal fluctuations**. We connect the canonical, grand-canonical, and isothermal–isobaric ensembles; introduce static fluctuation–dissipation relations; link pair correlations to compressibility; and preview what breaks near critical points.
+
+---
+
+### 9.4.1 Energy and number: the two flagship variances
+
+**Canonical (fixed $T,V,N$):**
+
+$$
+\langle(\Delta E)^{2}\rangle = \frac{\partial^{2}}{\partial \beta^{2}}\ln Z = k_{B}T^{2}\,C_{V}
+$$
+
+Relative size shrinks as $\langle(\Delta E)^{2}\rangle^{1/2}/U \sim 1/\sqrt{N}$ for normal systems.
+
+**Grand canonical (fixed $T,V,\mu$):**
+
+$$
+\langle(\Delta N)^{2}\rangle = k_{B}T\left(\frac{\partial N}{\partial \mu}\right)_{T,V}
+$$
+
+Equivalently, in terms of density $n=N/V$ and isothermal compressibility $\kappa_{T} \equiv -\frac{1}{V}\left(\frac{\partial V}{\partial p}\right)_{T,N}$,
+
+$$
+\langle(\Delta N)^{2}\rangle = N\,k_{B}T\,n\,\kappa_{T}
+$$
+
+for a single-component fluid where $dn = \chi_{\mu}\,d\mu$ and standard thermodynamic identities have been used.
+
+---
+
+### 9.4.2 Volume fluctuations at fixed pressure
+
+Holding $(T,p,N)$ fixed, the isothermal–isobaric partition function $\Delta$ generates
+
+$$
+\langle(\Delta V)^{2}\rangle = k_{B}T \left(\frac{\partial V}{\partial p}\right)_{T,N} = k_{B}T\,V\,\kappa_{T}
+$$
+
+Again, **fluctuation = response**: compressibility measures how much $V$ wiggles when $p$ nudges; that same coefficient sets the equilibrium variance.
+
+---
+
+### 9.4.3 Static fluctuation–response in one line
+
+Let a control $\lambda$ couple to an observable $X$ via $H \to H - \lambda X$ (so $X=-\partial H/\partial \lambda$). In the canonical ensemble,
+
+$$
+\chi_{XX} \equiv \left(\frac{\partial \langle X\rangle}{\partial \lambda}\right)_{T,V,N} = \beta\,\langle(\Delta X)^{2}\rangle
+$$
+
+Special cases:
+
+- $X=E$, $\lambda$ shifts $\beta$: $\chi_{EE}$ reduces to $C_{V}/T$ and reproduces $\langle(\Delta E)^{2}\rangle=k_{B}T^{2}C_{V}$  
+- $X=N$ in the grand ensemble gives $\left(\partial N/\partial \mu\right)_{T,V}=\beta\,\langle(\Delta N)^{2}\rangle$
+
+Positivity of variances $\Rightarrow$ **stability**: $C_{V}\ge 0$, $\kappa_{T}\ge 0$ in ensembles with fixed $T$.
+
+---
+
+### 9.4.4 Correlations, structure factor, and the compressibility sum rule
+
+Define the microscopic density $\hat n(\mathbf r)=\sum_{i}\delta(\mathbf r-\mathbf r_{i})$, the pair correlation $g(\mathbf r)$, and the **static structure factor**
+
+$$
+S(\mathbf k) \equiv \frac{1}{N}\left\langle \delta \hat n_{\mathbf k}\,\delta \hat n_{-\mathbf k}\right\rangle,\qquad \delta \hat n_{\mathbf k} \equiv \int d^{3}r\, e^{-i\mathbf k\cdot \mathbf r}\,[\hat n(\mathbf r)-n]
+$$
+
+In a uniform fluid,
+
+$$
+S(\mathbf k) = 1 + n \int d^{3}r\, e^{-i\mathbf k\cdot \mathbf r}\,[g(\mathbf r)-1]
+$$
+
+Taking $\mathbf k\to 0$ connects **microscopic correlations** to **macroscopic response**:
+
+$$
+S(0) = n\,k_{B}T\,\kappa_{T}
+$$
+
+This is the **compressibility sum rule**. Near a critical point, $\kappa_{T}\to \infty$ and $S(0)$ spikes—aka **critical opalescence**.
+
+---
+
+### 9.4.5 Saddle points, curvature, and large deviations
+
+Microcanonical entropy $S(E)$ controls fluctuations through its **curvature**. Expand around the most probable energy $E^{\ast}$:
+
+$$
+S(E) \approx S(E^{\ast}) + \frac{1}{2}(E-E^{\ast})^{2}\left(\frac{\partial^{2} S}{\partial E^{2}}\right)_{E^{\ast}}
+$$
+
+Performing the Laplace transform to the canonical ensemble gives a Gaussian for $E$ with variance $( -k_{B}/S'' )$, equivalent to $k_{B}T^{2}C_{V}$. More generally, additive observables obey a **large-deviation principle**:
+
+$$
+\mathbb P\!\left(\frac{A}{N}\approx a\right)\sim e^{-N I(a)}
+$$
+
+where $I(a)\ge 0$ is the **rate function** (Legendre transform of the cumulant generating function). At first-order transitions the relevant thermodynamic potential develops multiple competing saddles → **non-Gaussian** fluctuations and phase coexistence.
+
+---
+
+### 9.4.6 Critical fluctuations and correlation length
+
+Let $\phi$ be an order parameter (e.g., magnetization density). Define the connected correlator
+
+$$
+G(\mathbf r) \equiv \langle \phi(\mathbf r)\phi(\mathbf 0)\rangle_{c}
+$$
+
+Away from criticality,
+
+$$
+G(\mathbf r) \sim \frac{e^{-r/\xi}}{r^{d-2+\eta}}
+$$
+
+with finite correlation length $\xi$. The static susceptibility $\chi \equiv \int d^{d}r\, G(\mathbf r)$ scales as
+
+$$
+\chi \sim \xi^{2-\eta}
+$$
+
+Therefore, in a volume $V$, the variance of the spatially averaged order parameter scales like $\mathrm{Var}(\bar\phi) \sim \chi/V$. When $\xi$ is finite, relative fluctuations $\sim 1/\sqrt{V}$. As $T\to T_{c}$, $\xi\to\infty$ and the $1/\sqrt{N}$ law **breaks down**.
+
+---
+
+### 9.4.7 Finite-size scaling: when N is large but not infinite
+
+- For **noncritical** systems: $\mathrm{Var}(A) \propto N$ for additive $A$ → relative size $\propto N^{-1/2}$.  
+- Near criticality: with $\xi$ comparable to system size $L$, replace $\xi$ by $L$ in scaling formulas; peaks in specific heat or susceptibility **round** and **shift** with $L$ in predictable ways (used to extract critical exponents numerically).
+
+---
+
+### 9.4.8 Example: noninteracting paramagnet and Curie law
+
+$N$ spins $s=\tfrac12$ in field $B$ with Hamiltonian $H=-\mu B\sum_{i}\sigma_{i}$, $\sigma_{i}=\pm 1$. The single-spin partition function is $z=2\cosh(\beta\mu B)$, magnetization per spin
+
+$$
+m \equiv \frac{\langle M\rangle}{N} = \mu\,\tanh(\beta\mu B)
+$$
+
+Variance of $M$ is binomial:
+
+$$
+\langle(\Delta M)^{2}\rangle = N\,\mu^{2}\,\mathrm{sech}^{2}(\beta\mu B)
+$$
+
+Static susceptibility $\chi \equiv \left(\partial \langle M\rangle/\partial B\right)_{T}$ matches fluctuation–response:
+
+$$
+\chi = \beta\,\langle(\Delta M)^{2}\rangle = \frac{N\mu^{2}}{k_{B}T}\,\mathrm{sech}^{2}(\beta\mu B)
+$$
+
+In the weak-field limit, Curie law:
+
+$$
+\chi \approx \frac{N\mu^{2}}{k_{B}T}
+$$
+
+---
+
+### 9.4.9 Example: ideal gas density fluctuations and S(0)
+
+In a classical ideal gas, particles are uncorrelated: $g(\mathbf r)=1$. Then $S(\mathbf k)=1$ for all $\mathbf k$ and
+
+$$
+S(0) = 1 = n\,k_{B}T\,\kappa_{T}
+$$
+
+so $\kappa_{T}=1/(n k_{B}T)$, the ideal-gas result. Number variance in a subvolume $V'$ is **Poissonian**: $\langle(\Delta N')^{2}\rangle=\langle N'\rangle$.
+
+---
+
+### 9.4.10 Common pitfalls
+
+- **Mixing ensembles.** Don’t use canonical $C_{V}$ with grand-canonical number fluctuations unless you’ve matched the ensemble to the measurement.  
+- **Forcing Gaussian fits near transitions.** At first order, distributions are bimodal (two phases); at criticality, power-law tails win.  
+- **Ignoring constraints.** Conserved totals suppress variances (e.g., fixed total $N$ reduces subvolume fluctuations).  
+- **Calling negative $C_{V}$ “instability.”** In microcanonical small systems with long-range forces, $C_{V}<0$ can appear; it signals ensemble inequivalence, not algebra failure.
+
+---
+
+### 9.4.11 Worked mini-examples
+
+**(a) $N\!pT$ volume variance**  
+From $\Delta=\int dV\,e^{-\beta pV}Z$, show $\langle(\Delta V)^{2}\rangle = k_{B}T\,V\,\kappa_{T}$ and verify it for an ideal gas.
+
+**(b) Compressibility sum rule**  
+Starting with $S(\mathbf k)=1+n\int d^{3}r\,e^{-i\mathbf k\cdot\mathbf r}[g(r)-1]$, take $\mathbf k\to 0$ and use thermodynamics to derive $S(0)=n k_{B}T\kappa_{T}$.
+
+**(c) Energy large deviations**  
+From $Z=\int dE\,e^{S(E)/k_{B}-\beta E}$, do the quadratic expansion and read off $\langle(\Delta E)^{2}\rangle$; identify when the Gaussian approximation fails.
+
+**(d) Paramagnet variance → Curie**  
+Compute $\langle M\rangle$ and $\langle M^{2}\rangle$ from $z$ and show $\chi=\beta\langle(\Delta M)^{2}\rangle$; take $B\to 0$ to get $\chi\propto 1/T$.
+
+**(e) Subvolume fluctuations**  
+For an ideal gas, partition a box into two volumes $V'$ and $V-V'$. With fixed total $N$, show $\mathrm{Var}(N')=N(V'/V)(1-V'/V)$ (binomial), contrasting with grand-canonical Poisson variance.
+
+---
+
+### 9.4.12 Minimal problem kit
+
+- Prove the general static relation $\chi_{XX}=\beta\langle(\Delta X)^{2}\rangle$ from derivatives of $\ln Z$ with a source term  
+- Derive $\langle(\Delta N)^{2}\rangle = k_{B}T\left(\partial N/\partial\mu\right)_{T,V}$ and connect it to $\kappa_{T}$ for a single-component fluid  
+- Show that $S(0)=n k_{B}T\kappa_{T}$ implies $S(0)\to\infty$ as a liquid approaches its gas–liquid critical point and explain “critical opalescence” qualitatively  
+- Using a Landau $\phi^{4}$ free energy $f=a(T-T_{c})\phi^{2}+b\phi^{4}$, compute Gaussian fluctuations above $T_{c}$ and extract $\chi\propto 1/(T-T_{c})$ at mean-field level  
+- For a lattice model with conserved order parameter, discuss how conservation modifies long-time relaxation (but not equal-time static variances) at fixed $T$
+
+---
+
+**In summary:** Equilibrium fluctuations aren’t noise—they’re **thermometers**. Variances of $E$, $N$, $V$, $M$ equal the corresponding response coefficients times $k_{B}T$; pair correlations feed macroscopic compressibility; and curvature of thermodynamic potentials sets Gaussian widths until phase transitions wreck the approximation. Away from criticality, $1/\sqrt{N}$ keeps the macroscopic world calm; near a critical point, correlation length and susceptibilities blow up and fluctuations take center stage
