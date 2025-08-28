@@ -1,3 +1,239 @@
-# 5-Relativity
+# Chapter 5: Relativity
 
-_Draft placeholder. Replace with content._
+---
+
+## 5.1 Introduction: Space, Time, and the Speed of Light
+
+By the end of the nineteenth century, physics looked nearly complete. Newton’s mechanics explained planets and projectiles; Maxwell’s equations unified electricity, magnetism, and light. Yet the two giants disagreed about one crucial number: the speed of light $c$. Maxwell’s theory predicts a wave traveling through empty space at a fixed speed $c$, set by $\varepsilon_0$ と $\mu_0$. But “speed relative to **what**?” In Newton’s world, velocities are always measured against some frame. For sound, it’s air; for water waves, water. Physicists invented a hypothetical medium—the luminiferous ether—to carry light.
+
+If ether exists, Earth should plow through it, creating an “ether wind.” Light moving with or against that wind would have slightly different speeds. In 1887, Albert Michelson and Edward Morley built a beautiful interferometer to catch that effect. The result? Nothing. Rotate the apparatus, wait for seasons to change—still nothing. The speed of light seemed stubbornly frame-independent.
+
+You could patch the theory. George FitzGerald and Hendrik Lorentz suggested that moving objects shrink along the direction of motion by a factor $\sqrt{1-v^2/c^2}$, just enough to hide the ether wind. Clever, but ad hoc. The universe felt like it was hinting at a deeper rule.
+
+Enter a 26-year-old patent clerk, **Albert Einstein**. His 1905 move was less tweak and more **reboot**. He proposed two principles:
+
+1) **Relativity principle.** The laws of physics are the same in all inertial frames.  
+2) **Constancy of $c$.** Light in vacuum moves at speed $c$ for every inertial observer—sourceの運動状態に依らない。
+
+No ether. No preferred frame. Just laws and symmetry. From these, the math that Lorentz had engineered as a patch—the Lorentz transformation—falls out as the **only** way to keep both principles true simultaneously. Space and time, once separate ledgers, get merged into a single account: **spacetime**.
+
+### 5.1.1 Why simultaneity had to die
+
+Einstein’s first target was our everyday assumption that distant clocks can be made to agree absolutely. To define simultaneity between A and B, he suggested a physical protocol: send a light signal from A to B and back, and define B’s reading so that the one-way trip times are equal. That sounds innocent—until two observers move relative to each other. Then they disagree about which events are simultaneous because the equal-time light-signal construction yields different slices of spacetime. Lesson: **simultaneity is not absolute; it’s frame-dependent**.
+
+From this, dramatic corollaries follow:
+
+- **Time dilation.** Moving clocks tick slower by a factor $\gamma = 1/\sqrt{1-v^2/c^2}$.  
+- **Length contraction.** Moving rods shorten along the motion direction by the same factor.  
+- **Relativity of velocities.** Speeds don’t just add: $(u \oplus v) = (u+v)/(1+uv/c^2)$. No matter how you stack sub-light speeds, you never outrun $c$.
+
+None of these are philosophical quirks; they’re experimentally savage. Muons produced in the upper atmosphere live longer when racing toward Earth (time dilation). Particle accelerators require relativistic dynamics to aim beams and interpret collisions. Your phone’s GPS applies both special- and general-relativistic corrections to keep maps from drifting.
+
+### 5.1.2 What really stays the same
+
+If time and length change with motion, what is invariant? Not $t$ or $x$ individually, but the **spacetime interval** between two events:
+
+$$
+\Delta s^2 = c^2 \Delta t^2 - \Delta x^2 - \Delta y^2 - \Delta z^2.
+$$
+
+All inertial observers compute the same $\Delta s^2$. For light, $\Delta s^2=0$; for massive particles, $\Delta s^2>0$, defining a unique “proper time” $\Delta \tau = \Delta s/c$ along the worldline. This Minkowski geometry reframes dynamics as geometry: motion is about worldlines in a four-dimensional arena with a non-Euclidean signature.
+
+### 5.1.3 Energy has mass (and vibes)
+
+Relativity also upgrades the energy book-keeping. A particle of rest mass $m$ and momentum $p$ obeys
+
+$$
+E^2 = (pc)^2 + (m c^2)^2.
+$$
+
+At rest ($p=0$), this becomes the iconic $E = m c^2$: mass is frozen energy; energy gravitates like mass; converting a tiny bit of mass can unleash vast energy. Nuclear power and stellar fusion are footnotes to this line.
+
+### 5.1.4 Why electromagnetism *needed* relativity
+
+Maxwell’s equations don’t change form under Lorentz transformations; they **require** them. A pure electric field in one frame may appear as a mix of electric and magnetic fields in another—two faces of one tensor entity. Electromagnetism wasn’t just a chapter before relativity; it was the **seed**. Insisting that all observers agree on $c$ forced the demolition of absolute time and the rebuilding of mechanics on spacetime geometry.
+
+### 5.1.5 Roadmap for the chapter
+
+We’ll start by cleaning out the Galilean attic (5.2), then derive the Lorentz transformation from Einstein’s two postulates and play with its kinematic consequences (5.3). Next, we’ll learn to read spacetime diagrams and talk causality (5.4), upgrade to relativistic dynamics and $E=m c^2$ (5.5), and show how Maxwell’s theory looks pristine in tensor clothes (5.6). Finally, we’ll hit applications—from Doppler shifts to GPS—and peek toward gravity via等価原理 (5.7–5.8), before surveying tests and frontiers (5.9).
+
+---
+
+**In summary:** Special relativity doesn’t say “nothing exceeds the speed of light” as a slogan; it says the **laws** look the same to everyone, and the structure making that possible is spacetime with invariant light speed. Space and time flex; the interval holds steady. Maxwell lit the fuse, Michelson–Morley failed to snuff it, and Einstein let it explode—rearranging the furniture of reality.
+
+## 5.2 Galilean Relativity and the Death of Ether
+
+Special relativity did not fall from the sky. It grew out of the success and then the failure of an older framework: **Galilean relativity**. In this section we build that framework, push it against electromagnetism, watch it crack, and see why the ether had to go.
+
+---
+
+### 5.2.1 Galileo’s ship: the original relativity principle
+
+Galileo asked us to imagine a ship gliding smoothly on calm seas. Below deck, flies buzz, droplets fall, and a tossed key lands in your hand as if the ship were at rest. From these observations he distilled a principle:
+
+> **Galilean relativity.** The laws of mechanics have the same form in any inertial frame moving at constant velocity relative to another.
+
+---
+
+### 5.2.2 Mathematics of Galilean transformations
+
+Let two inertial frames S and S' be related by a uniform relative velocity v along the x-axis. The transformation is
+
+$$
+\begin{aligned}
+t' &= t,\\
+x' &= x - v t,\\
+y' &= y,\\
+z' &= z
+\end{aligned}
+$$
+
+Velocities transform as
+
+$$
+\begin{aligned}
+u'_x &= u_x - v,\\
+u'_y &= u_y,\\
+u'_z &= u_z
+\end{aligned}
+$$
+
+Accelerations are invariant
+
+$$
+\mathbf a' = \mathbf a
+$$
+
+A famous corollary is the velocity addition rule
+
+$$
+u_x = u'_x + v
+$$
+
+Because acceleration is the same in all inertial frames, Newton’s second law \(m\mathbf a=\mathbf F\) keeps its form so long as forces depend on relative positions and velocities in a way compatible with these rules.
+
+---
+
+### 5.2.3 Where waves crash into Galileo
+
+Consider a one-dimensional wave equation
+
+$$
+\frac{\partial^2 \phi}{\partial x^2} - \frac{1}{c^2}\,\frac{\partial^2 \phi}{\partial t^2} = 0
+$$
+
+Under a Galilean transformation \(x' = x - v t,\; t' = t\), the derivatives mix and the equation in S' becomes
+
+$$
+\frac{\partial^2 \phi}{\partial x'^2}
+- \frac{1}{c^2}\left(\frac{\partial}{\partial t'} + v\,\frac{\partial}{\partial x'}\right)^{\!2}\phi = 0
+$$
+
+which is not the same form. In Galilean kinematics, a wave equation implicitly names a preferred medium: the wave’s speed is measured relative to that stuff. For sound, the medium is air, and a ground observer measures approximately \(c_{\text{sound}}\pm v\).
+
+Maxwell’s equations in vacuum predict electromagnetic waves with speed c but introduce no material medium. Trying to force Maxwell into a Galilean world suggests different observers should measure \(c\pm v\), which experiments did not support.
+
+---
+
+### 5.2.4 The ether hypothesis
+
+Nineteenth-century physicists proposed a medium so subtle that it filled space without dragging planets: the **luminiferous ether**. Light would be a transverse vibration of this ether, just as sound is a vibration of air, so c would be the speed relative to the ether and ordinary Galilean addition would apply.
+
+Fizeau’s 1851 running-water experiment sent light through moving water and found that the light speed was not simply added as \(c/n \pm v\) but modified by a **Fresnel drag factor**. A compact way to encode the observed effective speed was
+
+$$
+v_{\text{light in water}} \approx \frac{c}{n} + v\left(1 - \frac{1}{n^2}\right)
+$$
+
+People interpreted this as partial entrainment of ether by matter. The ether survived—battered, patched, never directly observed.
+
+---
+
+### 5.2.5 Michelson–Morley: the null result that echoed
+
+If Earth moves through a stationary ether, there should be an ether wind. Light along or against that wind would have slightly different travel times compared with light across the wind. The Michelson–Morley interferometer (1887) split a beam, sent parts along perpendicular arms, recombined them, and watched for fringe shifts as the instrument rotated. They found essentially no shift. Repetitions at different times of year again gave null results. The expected \(v^2/c^2\) effect at orbital speeds did not appear.
+
+Other experiments piled on: Trouton–Noble attempted to detect a torque on a moving charged capacitor; Kennedy–Thorndike examined frequency stability in a different geometry. Null, null. If an ether exists, it is undetectable not just dynamically but kinematically.
+
+---
+
+### 5.2.6 Lorentz’s rescue attempts: contraction and local time
+
+Before Einstein, the best minds tried to save the ether by modifying matter, not spacetime. George FitzGerald and Hendrik Lorentz proposed that objects contract along the direction of motion by a factor
+
+$$
+\sqrt{1 - \frac{v^2}{c^2}}
+$$
+
+Lorentz went further. To preserve the equations of electromagnetism, he introduced a mathematical device he called local time, and then discovered the full transformation that keeps Maxwell’s equations invariant
+
+$$
+\begin{aligned}
+t' &= \gamma\!\left(t - \frac{v x}{c^2}\right),\\
+x' &= \gamma (x - v t),\\
+y' &= y,\\
+z' &= z,\\
+\gamma &= \frac{1}{\sqrt{1 - v^2/c^2}}
+\end{aligned}
+$$
+
+Lorentz still imagined a real ether and treated these relations as a masking effect that hid it. Mathematically, Lorentz had the right symmetry. Conceptually, the ether had become a spectator with no measurable role.
+
+---
+
+### 5.2.7 Why Galilean relativity fails for light
+
+We can now state the clash cleanly. Galilean kinematics assumes absolute time and simple velocity addition. Maxwell’s electrodynamics predicts a universal wave speed c in vacuum. Experiments do not see \(c\pm v\) or any ether wind. Keeping the Galilean structure forces a conspiracy of length contraction, clock distortions, and dynamical forces to cancel every observable effect, for all materials, orientations, seasons, and devices, which is implausible. Alternatively, keep c and the null results and replace the kinematics with one that respects a universal c.
+
+---
+
+### 5.2.8 Anatomy of the failure: a worked contrast
+
+Let a light pulse move along +x in frame S
+
+$$
+x = c t
+$$
+
+Under a Galilean transformation with \(x' = x - v t,\; t' = t\), the same worldline becomes
+
+$$
+x' = (c - v) t'
+$$
+
+so the measured speed would be \(c - v\). That is the collision with Maxwell.
+
+By contrast, under a Lorentz transformation the same worldline remains lightlike and satisfies \(x' = c t'\) for every inertial observer because Lorentz transformations are precisely the linear maps that keep the light cone unchanged.
+
+---
+
+### 5.2.9 What about Doppler, aberration, and Fizeau?
+
+Three often-confused phenomena align with relativity when analyzed carefully. Doppler shift is a change in observed frequency due to relative motion; its relativistic formula reduces to the classical one at low speeds and matches high-speed astronomical data. Aberration of starlight is the apparent tilt of stars due to finite light speed and Earth’s motion; it is consistent with relativity and does not require an ether wind inside instruments. Fizeau’s running-water result emerges from relativistic velocity addition for light in a moving medium of refractive index n and needs no ether substance.
+
+---
+
+### 5.2.10 Conceptual audit: what survives from Galileo?
+
+Galileo’s core idea—that physics is the same in all inertial frames—survives. What changes is the implementation. In Galilean kinematics, time is absolute and the transformation group preserves t. In relativistic kinematics, the invariant is the spacetime interval
+
+$$
+\Delta s^2 = c^2 \Delta t^2 - \Delta x^2 - \Delta y^2 - \Delta z^2
+$$
+
+and the transformation group (the Lorentz group) preserves this quantity.
+
+---
+
+### 5.2.11 The death of ether (and what replaced it)
+
+By the early twentieth century, the ether had been reduced to a metaphysical scaffold that explained nothing and predicted nothing new. Einstein’s 1905 paper did something radical by doing something minimal: he discarded the ether and kept only two principles—relativity and constant c—then showed that Lorentz’s mathematics flows from them. Space and time became spacetime; electric and magnetic fields became aspects of one tensor; simultaneity lost its absolute status. What replaced the ether was not a new material but a new geometry. The structure carrying electromagnetic waves is the metric of spacetime itself.
+
+---
+
+### 5.2.12 Takeaways
+
+- Galilean transformations encode absolute time and simple velocity addition; they keep Newton’s laws invariant but fail for Maxwell’s equations  
+- The ether hypothesis tried to reconcile a universal c with Galilean kinematics and collapsed under precise null experiments  
+- Lorentz found the right symmetry mathematically; Einstein made it the physics, elevating the invariance of c to a principle and retiring the ether  
+- What remains of Galileo is the relativity principle itself, now implemented by the Lorentz group and an invariant spacetime interval
