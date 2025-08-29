@@ -337,7 +337,7 @@ These identities are the workhorses behind cross sections and propagators.
 Electromagnetism enters via the **covariant derivative** $D_{\mu}=\partial_{\mu}+ieA_{\mu}$. The Dirac equation becomes $(i\gamma^{\mu}D_{\mu}-m)\psi=0$ and the Lagrangian $\mathcal L=\bar\psi(i\gamma^{\mu}D_{\mu}-m)\psi$. In the nonrelativistic limit this yields a magnetic interaction with moment
 
 $$
-\boldsymbol{\mu} = g\,\frac{e}{2m}\,\mathbf S,\qquad g_{\text{Dirac}}=2
+\boldsymbol{\mu} = g\,\frac{e}{2m}\,\boldsymbol S,\qquad g_{\text{Dirac}}=2
 $$
 
 Radiative corrections in QED make $g=2(1+a_{e})$ with tiny $a_{e}$.
@@ -346,10 +346,10 @@ Radiative corrections in QED make $g=2(1+a_{e})$ with tiny $a_{e}$.
 
 ### 8.2.6 Canonical quantization and anticommutators
 
-Promote $\psi$ to an operator **field**; impose equal-time **anticommutation**:
+Promote $\psi$ to an operator field; impose equal-time anticommutation:
 
 $$
-\{\hat\psi_{\alpha}(t,\mathbf x),\hat\psi_{\beta}^{\dagger}(t,\mathbf y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\mathbf x-\mathbf y)
+\{\hat\psi_{\alpha}(t,\boldsymbol x),\hat\psi_{\beta}^{\dagger}(t,\boldsymbol y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
 $$
 
 $$
@@ -359,26 +359,26 @@ $$
 Expand in modes (box normalization; later $\sum\to\int$):
 
 $$
-\hat\psi(x) = \sum_{s}\int\!\frac{d^{3}\mathbf p}{(2\pi)^{3}}\;\frac{1}{\sqrt{2E_{\mathbf p}}}\left[
-\hat b_{s}(\mathbf p)\,u_{s}(p)\,e^{-ip\cdot x} + \hat d_{s}^{\dagger}(\mathbf p)\,v_{s}(p)\,e^{+ip\cdot x}\right]
+\hat\psi(x) = \sum_{s}\int\!\frac{d^{3}\boldsymbol p}{(2\pi)^{3}}\;\frac{1}{\sqrt{2E_{\boldsymbol p}}}\left[
+\hat b_{s}(\boldsymbol p)\,u_{s}(p)\,e^{-ip\cdot x} + \hat d_{s}^{\dagger}(\boldsymbol p)\,v_{s}(p)\,e^{+ip\cdot x}\right]
 $$
 
-with $E_{\mathbf p}=\sqrt{\mathbf p^{2}+m^{2}}$ and
+with $E_{\boldsymbol p}=\sqrt{\boldsymbol p^{2}+m^{2}}$ and
 
 $$
-\{\hat b_{s}(\mathbf p),\hat b_{s'}^{\dagger}(\mathbf p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\mathbf p-\mathbf p')
+\{\hat b_{s}(\boldsymbol p),\hat b_{s'}^{\dagger}(\boldsymbol p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\boldsymbol p-\boldsymbol p')
 $$
 
 $$
-\{\hat d_{s}(\mathbf p),\hat d_{s'}^{\dagger}(\mathbf p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\mathbf p-\mathbf p')
+\{\hat d_{s}(\boldsymbol p),\hat d_{s'}^{\dagger}(\boldsymbol p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\boldsymbol p-\boldsymbol p')
 $$
 
-All other anticommutators vanish. Here $\hat b^{\dagger}$ creates a **particle** and $\hat d^{\dagger}$ an **antiparticle**.
+All other anticommutators vanish. Here $\hat b^{\dagger}$ creates a particle and $\hat d^{\dagger}$ an antiparticle.
 
 The normal-ordered Hamiltonian reads
 
 $$
-:\hat H: = \sum_{s}\int\!\frac{d^{3}\mathbf p}{(2\pi)^{3}}\;E_{\mathbf p}\left[\hat b_{s}^{\dagger}(\mathbf p)\hat b_{s}(\mathbf p)+\hat d_{s}^{\dagger}(\mathbf p)\hat d_{s}(\mathbf p)\right]
+:\hat H: = \sum_{s}\int\!\frac{d^{3}\boldsymbol p}{(2\pi)^{3}}\;E_{\boldsymbol p}\left[\hat b_{s}^{\dagger}(\boldsymbol p)\hat b_{s}(\boldsymbol p)+\hat d_{s}^{\dagger}(\boldsymbol p)\hat d_{s}(\boldsymbol p)\right]
 $$
 
 ---
@@ -394,7 +394,7 @@ $$
 In momentum space,
 
 $$
-S_{F}(p) = \frac{i}{\slashed{p} - m + i\epsilon} = i\,\frac{\slashed{p}+m}{p^{2}-m^{2}+i\epsilon}
+S_{F}(p) = \frac{i}{/\!\!p - m + i\epsilon} = i\,\frac{/\!\!p+m}{p^{2}-m^{2}+i\epsilon}
 $$
 
 A free Dirac line in a Feynman diagram carries this factor; interactions insert vertices (e.g., $-ie\gamma^{\mu}$ for QED).
@@ -452,10 +452,10 @@ Local Lorentz-invariant interactions built from the bilinears can be classified 
 Insert minimal coupling $D_{\mu}$ and separate “large” and “small” components in the Dirac basis. Eliminating the small component to order $1/m$ yields the **Pauli Hamiltonian**
 
 $$
-H_{\text{Pauli}} = \frac{1}{2m}\,(\mathbf p - e\mathbf A)^{2} + e\phi - \frac{e}{2m}\,\boldsymbol{\sigma}\cdot \mathbf B
+H_{\text{Pauli}} = \frac{1}{2m}\,(\boldsymbol p - e\boldsymbol A)^{2} + e\phi - \frac{e}{2m}\,\boldsymbol{\sigma}\cdot \boldsymbol B
 $$
 
-with $\mathbf B=\nabla\times\mathbf A$. The $\boldsymbol{\sigma}\cdot\mathbf B$ term gives $g=2$ at tree level. Higher orders add spin–orbit and Darwin terms (matching hydrogen fine structure).
+with $\boldsymbol B=\nabla\times\boldsymbol A$. The $\boldsymbol{\sigma}\cdot\boldsymbol B$ term gives $g=2$ at tree level. Higher orders add spin–orbit and Darwin terms (matching hydrogen fine structure).
 
 ---
 
@@ -465,16 +465,16 @@ with $\mathbf B=\nabla\times\mathbf A$. The $\boldsymbol{\sigma}\cdot\mathbf B$ 
 Use Dirac’s equation and its adjoint to show $\partial_{\mu}(\bar\psi\gamma^{\mu}\psi)=0$.
 
 **(b) Propagator inversion.**  
-Check that $(\slashed{p}-m)\,[(\slashed{p}+m)/(p^{2}-m^{2})] = \mathbb I$.
+Check that $(/\!\!p-m)\,[(/\!\!p+m)/(p^{2}-m^{2})] = \mathbb I$.
 
 **(c) Spin sums.**  
-Prove $\sum_{s}u_{s}(p)\bar u_{s}(p)=\slashed{p}+m$ by completeness of plane-wave solutions.
+Prove $\sum_{s}u_{s}(p)\bar u_{s}(p)=/\!\!p+m$ by completeness of plane-wave solutions.
 
 **(d) Pauli reduction.**  
-Starting from $(\boldsymbol{\alpha}\cdot\boldsymbol{\pi}+ \beta m + e\phi)\psi=i\partial_{t}\psi$, with $\boldsymbol{\pi}=\mathbf p-e\mathbf A$, eliminate the small component to order $1/m$ and recover $-\tfrac{e}{2m}\boldsymbol{\sigma}\cdot\mathbf B$.
+Starting from $(\boldsymbol{\alpha}\cdot\boldsymbol{\pi}+ \beta m + e\phi)\psi=i\partial_{t}\psi$, with $\boldsymbol{\pi}=\boldsymbol p-e\boldsymbol A$, eliminate the small component to order $1/m$ and recover $-\tfrac{e}{2m}\boldsymbol{\sigma}\cdot\boldsymbol B$.
 
 **(e) Helicity conservation for $m=0$.**  
-Show that $[H,\mathbf{\Sigma}\cdot \hat{\mathbf p}]=0$ for the free massless Dirac Hamiltonian, so helicity is conserved.
+Show that $[H,\boldsymbol{\Sigma}\cdot \hat{\boldsymbol p}]=0$ for the free massless Dirac Hamiltonian, so helicity is conserved.
 
 ---
 
@@ -499,7 +499,7 @@ Dirac spinors are great, but a lot of real work is tidier in **two-component** l
 
 ### 8.2A.1 Weyl equations and helicity
 
-For a **massless** fermion, left and right components decouple:
+For a massless fermion, left and right components decouple:
 
 $$
 i\,\sigma^{\mu}\partial_{\mu}\,\chi = 0,\qquad
@@ -687,16 +687,16 @@ Everywhere, external fermions carry spinors $u,\bar u$ or $v,\bar v$, and intern
 For an external photon with momentum $q=p'-p$ attaching to a fermion line, the amplitude piece is $\mathcal M^{\mu}=\bar u(p')\gamma^{\mu}u(p)$. Contract with $q_{\mu}$:
 
 $$
-q_{\mu}\,\mathcal M^{\mu} = \bar u(p')\,(\slashed{p'}-\slashed{p})\,u(p)
+q_{\mu}\,\mathcal M^{\mu} = \bar u(p')\,(/\!\!{p'}-/\!\!p)\,u(p)
 $$
 
-Insert $(\slashed{p}-m)u(p)=0$ and $\bar u(p')(\slashed{p'}-m)=0$ to get
+Insert $(/\!\!p-m)u(p)=0$ and $\bar u(p/\!\!{p'}-m)=0$ to get
 
 $$
 q_{\mu}\,\mathcal M^{\mu} = 0
 $$
 
-Thus replacing the photon polarization $\epsilon^{\mu}$ by $\epsilon^{\mu} + \alpha\,q^{\mu}$ leaves the amplitude unchanged—**gauge invariance** in action.
+Thus replacing the photon polarization $\epsilon^{\mu}$ by $\epsilon^{\mu} + \alpha\,q^{\mu}$ leaves the amplitude unchanged—gauge invariance in action.
 
 ---
 
@@ -1016,7 +1016,7 @@ Green’s functions are great for theory; experiments ask for **cross sections**
 - Correlators: $G^{(n)} = \langle 0|T\{\phi\cdots\phi\}|0\rangle$  
 - Connected pieces: $W=-i\ln Z$  
 - **Amputation**: remove external propagators  
-- **On-shell limit**: $p^{2}\to m^{2}$ (or $\slashed p\to m$ for fermions)  
+- **On-shell limit**: $p^{2}\to m^{2}$ (or $/\!\!p\to m$ for fermions)  
 - **Wavefunction renormalization**: residues of single-particle poles define $Z$ factors
 
 The output is $\mathcal M$ (the thing that goes under $|\mathcal M|^{2}$ in cross sections).
@@ -1036,7 +1036,7 @@ The **residue** $Z_{\phi}$ is the probability to create the one-particle state f
 For a Dirac field, similarly
 
 $$
-\tilde S(p) \equiv \int d^{4}x\,e^{ip\cdot x}\,\langle 0|T\{\psi(x)\bar\psi(0)\}|0\rangle \;\sim\; \frac{i\,Z_{\psi}(\slashed p+m)}{p^{2}-m^{2}+i\epsilon}
+\tilde S(p) \equiv \int d^{4}x\,e^{ip\cdot x}\,\langle 0|T\{\psi(x)\bar\psi(0)\}|0\rangle \;\sim\; \frac{i\,Z_{\psi}(/\!\!p+m)}{p^{2}-m^{2}+i\epsilon}
 $$
 
 ---
@@ -1061,9 +1061,9 @@ All external momenta are taken on shell after differentiations, $p_{a}^{2}=m^{2}
 For incoming fermions and outgoing antifermions you project with spinors and use Dirac operators. Schematic form for one incoming fermion of momentum $p$ and one outgoing fermion of momentum $p'$:
 
 $$
-\mathcal M \;\propto\; Z_{\psi}^{-1/2}\, \bar u(p') \left[ -i\!\int d^{4}y\,e^{-ip'\cdot y}\,\left(i\overleftarrow{\slashed\partial}_{y}+m\right)\right]
+\mathcal M \;\propto\; Z_{\psi}^{-1/2}\, \bar u(p') \left[ -i\!\int d^{4}y\,e^{-ip'\cdot y}\,\left(i\overleftarrow{/\!\!partial}_{y}+m\right)\right]
 \,\langle 0|T\{\psi(y)\cdots\bar\psi(x)\}|0\rangle\,
-\left[i\!\int d^{4}x\,e^{ip\cdot x}\,\left(i\slashed\partial_{x}-m\right)\right] Z_{\psi}^{-1/2}\, u(p)
+\left[i\!\int d^{4}x\,e^{ip\cdot x}\,\left(i/\!\!partial_{x}-m\right)\right] Z_{\psi}^{-1/2}\, u(p)
 $$
 
 Applying all external operators and taking on-shell limits reproduces the standard Feynman-rule amplitude. For external antifermions, replace $u\leftrightarrow v$ and $\psi\leftrightarrow \bar\psi$ projections accordingly.
@@ -1202,7 +1202,7 @@ with $s=(p_{1}+p_{2})^{2}$ and equal masses giving $|\mathbf p_{f}|=|\mathbf p_{
 Take the $s$-channel bubble; its imaginary part above threshold equals the $2\to 2$ phase-space integral of the tree-level amplitude squared.
 
 **(4) Fermion LSZ projector.**  
-Show that inserting $(i\overleftarrow{\slashed\partial}+m)$ on an outgoing $\psi$ line and contracting with $\bar u(p')$ reproduces the usual external spinor factor when $p'^{2}=m^{2}$.
+Show that inserting $(i\overleftarrow{/\!\!partial}+m)$ on an outgoing $\psi$ line and contracting with $\bar u(p')$ reproduces the usual external spinor factor when $p'^{2}=m^{2}$.
 
 ---
 
@@ -1647,7 +1647,7 @@ $$
 \mathcal L_{\mathrm{QED}}=\bar\psi(i\gamma^{\mu}D_{\mu}-m)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu},\qquad D_{\mu}=\partial_{\mu}+ieA_{\mu}
 $$
 
-Gauge invariance $\psi\to e^{i\alpha(x)}\psi$, $A_{\mu}\to A_{\mu}-\partial_{\mu}\alpha/e$ implies **current conservation** and the **Ward–Takahashi identity**
+Gauge invariance $\psi\to e^{i\alpha(x)}\psi$, $A_{\mu}\to A_{\mu}-\partial_{\mu}\alpha/e$ implies current conservation and the **Ward–Takahashi identity**
 
 $$
 q_{\mu}\,\Gamma^{\mu}(p',p) = S^{-1}(p') - S^{-1}(p)
@@ -1659,7 +1659,7 @@ which enforces $Z_{1}=Z_{2}$ (vertex and wavefunction renormalizations equal) an
 
 ### 8.7.2 Feynman rules you actually use
 
-- **Fermion propagator**: $i(\slashed p + m)/(p^{2}-m^{2}+i\epsilon)$  
+- **Fermion propagator**: $i(/\!\! p + m)/(p^{2}-m^{2}+i\epsilon)$  
 - **Photon propagator (covariant gauge)**:
 
 $$
@@ -1754,10 +1754,10 @@ Practical rule: when computing NLO, always add the soft+collinear real photon sl
 
 ### 8.7.8 One-loop self-energies and renormalization snapshots
 
-**Electron self-energy** $\Sigma(\slashed p)$ renormalizes mass and wavefunction. In $\overline{\mathrm{MS}}$ at one loop,
+**Electron self-energy** $\Sigma(/\!\! p)$ renormalizes mass and wavefunction. In $\overline{\mathrm{MS}}$ at one loop,
 
 $$
-\Sigma(\slashed p) = \frac{\alpha}{4\pi}\left[\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi\right)(-\slashed p + 4m) + \cdots\right]
+\Sigma(\/\!\! p) = \frac{\alpha}{4\pi}\left[\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi\right)(-/\!\! p + 4m) + \cdots\right]
 $$
 
 **Vacuum polarization** (photon self-energy) has tensor structure
@@ -1815,7 +1815,7 @@ after proving $q_{\mu}\mathcal M^{\mu}=0$ for each coupling current
 - For spin sums, standard traces:
 
 $$
-\sum_{s}u^{s}(p)\bar u^{s}(p)=\slashed p+m,\qquad \sum_{s}v^{s}(p)\bar v^{s}(p)=\slashed p-m
+\sum_{s}u^{s}(p)\bar u^{s}(p)=/\!\! p+m,\qquad \sum_{s}v^{s}(p)\bar v^{s}(p)=/\!\! p-m
 $$
 
 ---
@@ -2320,7 +2320,7 @@ $$
 \mathcal D\bar\psi\,\mathcal D\psi \;\to\; \mathcal D\bar\psi\,\mathcal D\psi\;\exp\!\left[i\int d^{4}x\;\alpha(x)\,\frac{e^{2}}{16\pi^{2}}\,F_{\mu\nu}\tilde F^{\mu\nu}\right]
 $$
 
-after regulating $\mathrm{Tr}\,\gamma^{5}\exp(-\slashed D^{2}/\Lambda^{2})$. That produces the same ABJ result and generalizes to non-Abelian cases.
+after regulating $\mathrm{Tr}\,\gamma^{5}\exp(-/\!\! D^{2}/\Lambda^{2})$. That produces the same ABJ result and generalizes to non-Abelian cases.
 
 ---
 
