@@ -1,18 +1,24 @@
+// /components/SiteShell.tsx
 'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { chapters } from '@/lib/chapters';
+import { curiosities } from '@/lib/curiosities';
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => pathname?.startsWith(href);
 
   return (
     <div className="min-h-dvh flex flex-col">
-      {/* Header — full-bleed & no left gap */}
-      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div className="w-full h-12 flex items-center gap-3 px-0">
-          {/* Hamburger (mobile only) */}
+          {/* Hamburger (mobile) */}
           <button
             type="button"
             aria-label="Open menu"
@@ -36,27 +42,61 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      {/* Body — full-bleed */}
+      {/* Body */}
       <div className="flex-1 w-full flex">
-        {/* Sidebar (desktop) — flush-left, subtle divider */}
+        {/* Sidebar (desktop) */}
         <aside className="hidden md:block w-[20%] border-r border-black/20">
-          {/* sticky: pin under 48px header, fill viewport, scroll own content */}
           <div className="sticky top-12 h-[calc(100dvh-3rem)] overflow-y-auto py-4 px-4">
+            {/* Chapters */}
             <h2 className="font-semibold mb-3">Chapters</h2>
             <nav className="space-y-2">
-              {chapters.map((c) => (
-                <div key={c.slug}>
-                  <Link href={`/chapters/${c.slug}`} className="text-black hover:opacity-80">
-                    {c.title}
-                  </Link>
-                </div>
-              ))}
+              {chapters.map((c) => {
+                const href = `/chapters/${c.slug}`;
+                const active = isActive(href);
+                return (
+                  <div key={c.slug}>
+                    <Link
+                      href={href}
+                      aria-current={active ? 'page' : undefined}
+                      className={`hover:opacity-80 ${
+                        active ? 'font-semibold text-black' : 'text-black'
+                      }`}
+                    >
+                      {c.title}
+                    </Link>
+                  </div>
+                );
+              })}
+            </nav>
+
+            {/* Divider */}
+            <div className="my-5 h-px w-full bg-black/10" />
+
+            {/* Curiosities */}
+            <h2 className="font-semibold mb-3">Curiosities</h2>
+            <nav className="space-y-2">
+              {curiosities.map((item) => {
+                const href = `/curiosities/${item.slug}`;
+                const active = isActive(href);
+                return (
+                  <div key={item.slug}>
+                    <Link
+                      href={href}
+                      aria-current={active ? 'page' : undefined}
+                      className={`hover:opacity-80 ${
+                        active ? 'font-semibold text-black' : 'text-black'
+                      }`}
+                    >
+                      {item.title}
+                    </Link>
+                  </div>
+                );
+              })}
             </nav>
           </div>
         </aside>
 
-
-        {/* Main — use padding (no margins) for spacing */}
+        {/* Main */}
         <main className="w-full md:w-[80%] p-4 md:p-6 lg:p-8">
           {children}
         </main>
@@ -69,6 +109,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           className={`absolute inset-0 bg-black/40 transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}
           onClick={() => setOpen(false)}
         />
+
         {/* Drawer */}
         <aside
           id="mobile-sidebar"
@@ -78,7 +119,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           aria-modal="true"
         >
           <div className="p-4 flex items-center justify-between border-b">
-            <h2 className="font-semibold">Chapters</h2>
+            <h2 className="font-semibold">Menu</h2>
             <button
               type="button"
               aria-label="Close menu"
@@ -88,19 +129,59 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
               ✕
             </button>
           </div>
-          <nav className="p-4 space-y-3">
-            {chapters.map((c) => (
-              <div key={c.slug}>
-                <Link
-                  href={`/chapters/${c.slug}`}
-                  className="text-black visited:text-black underline underline-offset-2 hover:no-underline"
-                  onClick={() => setOpen(false)}
-                >
-                  {c.title}
-                </Link>
-              </div>
-            ))}
-          </nav>
+
+          {/* Mobile: Chapters */}
+          <div className="p-4">
+            <h3 className="font-semibold mb-3">Chapters</h3>
+            <nav className="space-y-3">
+              {chapters.map((c) => {
+                const href = `/chapters/${c.slug}`;
+                const active = isActive(href);
+                return (
+                  <div key={c.slug}>
+                    <Link
+                      href={href}
+                      aria-current={active ? 'page' : undefined}
+                      className={`underline underline-offset-2 hover:no-underline visited:text-black ${
+                        active ? 'font-semibold text-black' : 'text-black'
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      {c.title}
+                    </Link>
+                  </div>
+                );
+              })}
+            </nav>
+          </div>
+
+          {/* Mobile divider */}
+          <div className="mx-4 h-px bg-black/10" />
+
+          {/* Mobile: Curiosities */}
+          <div className="p-4">
+            <h3 className="font-semibold mb-3">Curiosities</h3>
+            <nav className="space-y-3">
+              {curiosities.map((item) => {
+                const href = `/curiosities/${item.slug}`;
+                const active = isActive(href);
+                return (
+                  <div key={item.slug}>
+                    <Link
+                      href={href}
+                      aria-current={active ? 'page' : undefined}
+                      className={`underline underline-offset-2 hover:no-underline visited:text-black ${
+                        active ? 'font-semibold text-black' : 'text-black'
+                      }`}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.title}
+                    </Link>
+                  </div>
+                );
+              })}
+            </nav>
+          </div>
         </aside>
       </div>
     </div>

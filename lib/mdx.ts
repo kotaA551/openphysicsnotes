@@ -1,47 +1,158 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+// /lib/mdx.ts
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 
-const chaptersDir = path.join(process.cwd(), 'content/chapters');
+/** ---------- Types ---------- */
+export type Chapter = {
+  slug: string;
+  title: string;
+  description?: string;
+  content: string;
+  order?: number; // optional frontmatter sort key
+};
 
-export function getAllChapters() {
-  return fs.readdirSync(chaptersDir).map((file) => {
-    const slug = file.replace(/\.mdx$/, '');
-    const source = fs.readFileSync(path.join(chaptersDir, file), 'utf8');
-    const { data, content } = matter(source);
+export type Curiosity = {
+  slug: string;
+  title: string;
+  summary?: string;
+  content: string;
+  order?: number; // optional frontmatter sort key
+};
 
-    return {
-      slug,
-      title: data.title || slug,
-      description: data.description || '',
-      content,
-    };
-  }).sort((a, b) => a.slug.localeCompare(b.slug));
+/** ---------- Paths ---------- */
+const ROOT_DIR = process.cwd();
+const CHAPTERS_DIR = path.join(ROOT_DIR, "content", "chapters");
+const CURIOSITIES_DIR = path.join(ROOT_DIR, "content", "curiosities");
+
+/** ---------- Helpers ---------- */
+function listMdxFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.toLowerCase().endsWith(".mdx"))
+    .sort();
 }
 
-export function getChapter(slug: string) {
-  const file = path.join(chaptersDir, `${slug}.mdx`);
-  const source = fs.readFileSync(file, 'utf8');
-  const { data, content } = matter(source);
-  return {
-    slug,
-    title: data.title || slug,
-    description: data.description || '',
-    content,
-  };
+function fileToSlug(filename: string): string {
+  return filename.replace(/\.mdx$/i, "");
 }
 
-export const chapters = [
-  { slug: "1-Newton-mechanics",            title: "1 Newton mechanics" },
-  { slug: "2-Oscillations-and-waves",      title: "2 Oscillations and waves" },
-  { slug: "3-Thermodynamics",              title: "3 Thermodynamics" },
-  { slug: "4-Electromagnetics",            title: "4 Electromagnetics" },
-  { slug: "5-Relativity",                  title: "5 Relativity" },
-  { slug: "6-Early-quantum-theory.mdx",    title: "6 Early quantum theory" },
-  { slug: "7-Quantum-mechanics",           title: "7 Quantum mechanics" },
-  { slug: "8-Quantum-field-theory",        title: "8 Quantum field theory" },
-  { slug: "9-Statistical-physics",         title: "9 Statistical physics" },
-  { slug: "10-Condensed-matter-physics",   title: "10 Condensed matter physics" },
-  { slug: "11-Cosmology-and-astrophysics", title: "11 Cosmology and astrophysics" },
-  { slug: "12-Frontiers-of-physics",       title: "12 Frontiers of physics" },
-];
+// fallback: make a human title from slug like "1-Newton-mechanics" → "1 Newton mechanics"
+function titleFromSlug(slug: string): string {
+  return slug.replace(/-/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function readMdxFull(fp: string) {
+  const raw = fs.readFileSync(fp, "utf8");
+  const { content, data } = matter(raw);
+  return { content, data: (data ?? {}) as Record<string, any> };
+}
+
+/** ---------- Chapters API ---------- */
+export function getAllChapters(): Chapter[] {
+  const files = listMdxFiles(CHAPTERS_DIR);
+
+  const items: Chapter[] = files.map((filename) => {
+    const slug = fileToSlug(filename);
+    const { content, data } = readMdxFull(path.join(CHAPTERS_DIR, filename));
+
+    const title =
+      (typeof data.title === "string" && data.title.trim()) || titleFromSlug(slug);
+    const description =
+      typeof data.description === "string" ? data.description : undefined;
+    const order =
+      typeof data.order === "number"
+        ? data.order
+        : // try to parse leading numeric prefix in slug for ordering
+          (() => {
+            const m = slug.match(/^(\d+)[-_]/);
+            return m ? parseInt(m[1], 10) : undefined;
+          })();
+
+    return { slug, title, description, content, order };
+  });
+
+  // Sort: explicit order asc → fallback alphabetic by slug
+  items.sort((a, b) => {
+    const ao = a.order ?? Number.POSITIVE_INFINITY;
+    const bo = b.order ?? Number.POSITIVE_INFINITY;
+    if (ao !== bo) return ao - bo;
+    return a.slug.localeCompare(b.slug);
+  });
+
+  return items;
+}
+
+export function getChapter(slug: string): Chapter {
+  // try exact filename first
+  const fp = path.join(CHAPTERS_DIR, `${slug}.mdx`);
+  if (fs.existsSync(fp)) {
+    const { content, data } = readMdxFull(fp);
+    const title =
+      (typeof data.title === "string" && data.title.trim()) || titleFromSlug(slug);
+    const description =
+      typeof data.description === "string" ? data.description : undefined;
+    const order = typeof data.order === "number" ? data.order : undefined;
+    return { slug, title, description, content, order };
+  }
+
+  // otherwise search by basename (case-insensitive)
+  const match = listMdxFiles(CHAPTERS_DIR).find(
+    (f) => fileToSlug(f).toLowerCase() === slug.toLowerCase()
+  );
+  if (match) return getChapter(fileToSlug(match));
+
+  throw new Error(`Chapter not found for slug: ${slug}`);
+}
+
+/** ---------- Curiosities API ---------- */
+export function getAllCuriosities(): Curiosity[] {
+  const files = listMdxFiles(CURIOSITIES_DIR);
+
+  const items: Curiosity[] = files.map((filename) => {
+    const slug = fileToSlug(filename);
+    const { content, data } = readMdxFull(path.join(CURIOSITIES_DIR, filename));
+
+    const title =
+      (typeof data.title === "string" && data.title.trim()) || titleFromSlug(slug);
+    const summary =
+      typeof data.summary === "string" ? data.summary : undefined;
+    const order =
+      typeof data.order === "number"
+        ? data.order
+        : undefined;
+
+    return { slug, title, summary, content, order };
+  });
+
+  // Sort by optional order, then slug
+  items.sort((a, b) => {
+    const ao = a.order ?? Number.POSITIVE_INFINITY;
+    const bo = b.order ?? Number.POSITIVE_INFINITY;
+    if (ao !== bo) return ao - bo;
+    return a.slug.localeCompare(b.slug);
+  });
+
+  return items;
+}
+
+export function getCuriosity(slug: string): Curiosity {
+  const fp = path.join(CURIOSITIES_DIR, `${slug}.mdx`);
+  if (fs.existsSync(fp)) {
+    const { content, data } = readMdxFull(fp);
+    const title =
+      (typeof data.title === "string" && data.title.trim()) || titleFromSlug(slug);
+    const summary =
+      typeof data.summary === "string" ? data.summary : undefined;
+    const order = typeof data.order === "number" ? data.order : undefined;
+    return { slug, title, summary, content, order };
+  }
+
+  const match = listMdxFiles(CURIOSITIES_DIR).find(
+    (f) => fileToSlug(f).toLowerCase() === slug.toLowerCase()
+  );
+  if (match) return getCuriosity(fileToSlug(match));
+
+  throw new Error(`Curiosity not found for slug: ${slug}`);
+}

@@ -1,0 +1,174 @@
+---
+title: Unifying the Four Maxwell Equations
+summary: From the 3-vector Maxwell system to a single covariant equation $$\partial_{\mu}F^{\mu\nu}=\mu_{0}J^{\nu}$$ (plus its sourceless twin $$\partial_{\mu}\tilde F^{\mu\nu}=0$$). A compact proof with $\boldsymbol{E},\boldsymbol{B}$ mapped into the field tensor.
+order: 1
+---
+
+# Unifying the Four Maxwell Equations
+
+---
+
+> **Goal.** Show how the four Maxwell equations in 3-vector form,
+>
+> $$
+> \nabla\!\cdot\!\boldsymbol{E}=\frac{\rho}{\varepsilon_{0}},\quad
+> \nabla\!\times\!\boldsymbol{E}=-\frac{\partial\boldsymbol{B}}{\partial t},\quad
+> \nabla\!\cdot\!\boldsymbol{B}=0,\quad
+> \nabla\!\times\!\boldsymbol{B}=\mu_{0}\boldsymbol{J}+\mu_{0}\varepsilon_{0}\frac{\partial\boldsymbol{E}}{\partial t},
+> $$
+>
+> collapse into the covariant pair
+>
+> $$
+> \partial_{\mu}F^{\mu\nu}=\mu_{0}J^{\nu},
+> \qquad
+> \partial_{\mu}\tilde F^{\mu\nu}=0,
+> $$
+>
+> and, if desired, **one** complex equation by combining $F$ and its dual.
+
+---
+
+## 1. Setup: 4D notation & conventions
+
+We work in flat spacetime with metric $$\eta_{\mu\nu}=\mathrm{diag}(1,-1,-1,-1)$$ and coordinates $$x^{\mu}=(ct,x,y,z)$$.  
+We keep SI units explicit, so $$c=1/\sqrt{\mu_{0}\varepsilon_{0}}$$.
+
+- 4-gradient: $\partial^{\mu}=\left(\tfrac{1}{c}\tfrac{\partial}{\partial t},\,\nabla\right)$  
+- 4-current: $J^{\mu}=(c\rho,\,\boldsymbol{J})$  
+- 4-potential: $A^{\mu}=\!\left(\tfrac{\phi}{c},\,\boldsymbol{A}\right)$  
+
+Define the **field tensor**:
+
+$$
+F_{\mu\nu}\equiv \partial_{\mu}A_{\nu}-\partial_{\nu}A_{\mu},\qquad
+F^{\mu\nu}=\eta^{\mu\alpha}\eta^{\nu\beta}F_{\alpha\beta}.
+$$
+
+Dual:
+
+$$
+\tilde F^{\mu\nu}\equiv \tfrac{1}{2}\,\varepsilon^{\mu\nu\alpha\beta}F_{\alpha\beta},
+\qquad \varepsilon^{0123}=+1.
+$$
+
+:::callout{title="Component dictionary"}
+$$
+F^{i0}=+\frac{E^{i}}{c},\quad F^{0i}=-\frac{E^{i}}{c},\quad
+F^{ij}=-\varepsilon^{ijk}B_{k}.
+$$
+
+Matrix form:
+
+$$
+F^{\mu\nu}=
+\begin{pmatrix}
+0 & -E_{x}/c & -E_{y}/c & -E_{z}/c\\
+E_{x}/c & 0 & -B_{z} & B_{y}\\
+E_{y}/c & B_{z} & 0 & -B_{x}\\
+E_{z}/c & -B_{y} & B_{x} & 0
+\end{pmatrix}.
+$$
+:::
+
+And from potentials:
+
+$$
+\boldsymbol{E}=-\nabla\phi-\frac{\partial \boldsymbol{A}}{\partial t},\qquad
+\boldsymbol{B}=\nabla\times\boldsymbol{A}.
+$$
+
+---
+
+## 2. Homogeneous equations from geometry
+
+Because $F=dA$, we have
+
+$$
+\partial_{\alpha}F_{\beta\gamma}+\partial_{\beta}F_{\gamma\alpha}+\partial_{\gamma}F_{\alpha\beta}=0,
+$$
+
+which is
+
+$$
+\partial_{\mu}\tilde F^{\mu\nu}=0
+\quad\Longleftrightarrow\quad
+\nabla\!\cdot\!\boldsymbol{B}=0,\quad
+\nabla\!\times\!\boldsymbol{E}=-\frac{\partial\boldsymbol{B}}{\partial t}.
+$$
+
+---
+
+## 3. Inhomogeneous equations
+
+Equation:
+
+$$
+\partial_{\mu}F^{\mu\nu}=\mu_{0}J^{\nu},\quad J^{\nu}=(c\rho,\boldsymbol{J}).
+$$
+
+### (a) $\nu=0$
+
+$$
+\partial_{i}F^{i0}=\frac{1}{c}\nabla\!\cdot\!\boldsymbol{E}=\mu_{0}c\rho
+\;\;\Rightarrow\;\;
+\nabla\!\cdot\!\boldsymbol{E}=\frac{\rho}{\varepsilon_{0}}.
+$$
+
+### (b) $\nu=i$
+
+$$
+\partial_{0}F^{0i}+\partial_{j}F^{ji}
+=-\frac{1}{c^{2}}\frac{\partial E^{i}}{\partial t}+(\nabla\times\boldsymbol{B})^{i}
+=\mu_{0}J^{i}.
+$$
+
+So
+
+$$
+\nabla\times\boldsymbol{B}=\mu_{0}\boldsymbol{J}+\mu_{0}\varepsilon_{0}\frac{\partial\boldsymbol{E}}{\partial t}.
+$$
+
+---
+
+## 4. One complex equation
+
+Define
+
+$$
+\mathcal{F}^{\mu\nu}=F^{\mu\nu}-i\,\tilde F^{\mu\nu}.
+$$
+
+Then
+
+$$
+\partial_{\mu}\,\mathcal{F}^{\mu\nu}=\mu_{0}J^{\nu},
+$$
+
+which packages both the inhomogeneous and homogeneous equations.
+
+---
+
+## 5. Cheatsheet
+
+- Vector form:
+
+$$
+\nabla\!\cdot\!\boldsymbol{E}=\frac{\rho}{\varepsilon_{0}},\quad
+\nabla\!\times\!\boldsymbol{E}=-\frac{\partial\boldsymbol{B}}{\partial t},\quad
+\nabla\!\cdot\!\boldsymbol{B}=0,\quad
+\nabla\!\times\!\boldsymbol{B}=\mu_{0}\boldsymbol{J}+\mu_{0}\varepsilon_{0}\frac{\partial\boldsymbol{E}}{\partial t}.
+$$
+
+- Covariant pair:
+
+$$
+\partial_{\mu}F^{\mu\nu}=\mu_{0}J^{\nu},\qquad
+\partial_{\mu}\tilde F^{\mu\nu}=0.
+$$
+
+- One-liner:
+
+$$
+\partial_{\mu}\,(F^{\mu\nu}-i\,\tilde F^{\mu\nu})=\mu_{0}J^{\nu}.
+$$
