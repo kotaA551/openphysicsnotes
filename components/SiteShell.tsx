@@ -110,6 +110,20 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           {children}
         </main>
       </div>
+      
+      {/* Footer */}
+      <footer className="border-t mt-8 py-6 text-sm text-black/70">
+        <div className="mx-auto max-w-5xl px-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p>© {new Date().getFullYear()} Open Physics Notes</p>
+          <nav className="flex gap-4">
+            <Link href="/about" className="hover:underline">About</Link>
+            <Link href="/contact" className="hover:underline">Contact</Link>
+            <Link href="/privacy" className="hover:underline">Privacy Policy</Link>
+            <Link href="/affiliate" className="hover:underline">Affiliate Disclosure</Link>
+          </nav>
+        </div>
+      </footer>
+
 
       {/* Mobile Drawer + Overlay */}
       <div className={`fixed inset-0 z-50 md:hidden ${open ? '' : 'pointer-events-none'}`}>
@@ -151,7 +165,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                     <Link
                       href={href}
                       aria-current={active ? 'page' : undefined}
-                      className={`underline underline-offset-2 hover:no-underline visited:text-black ${
+                      className={`hover:opacity-80 ${
                         active ? 'font-semibold text-black' : 'text-black'
                       }`}
                       onClick={() => setOpen(false)}
@@ -179,7 +193,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                     <Link
                       href={href}
                       aria-current={active ? 'page' : undefined}
-                      className={`underline underline-offset-2 hover:no-underline visited:text-black ${
+                      className={`hover:opacity-80 ${
                         active ? 'font-semibold text-black' : 'text-black'
                       }`}
                       onClick={() => setOpen(false)}
