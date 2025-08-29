@@ -10,7 +10,7 @@ Quantum mechanics is a vibe only until you write the postulates. Then it’s a m
 
 ### 7.1.1 State space and Dirac essentials
 
-A **closed quantum system** lives in a complex Hilbert space $\mathcal H$. A pure state is a unit vector (a **ket**) $\ket{\psi}\in\mathcal H$. Global phase is unphysical: $\ket{\psi}$ and $e^{i\phi}\ket{\psi}$ describe the same physical state. The dual $\bra{\psi}$ is the complex-conjugate transpose (a **bra**). Inner products are $\braket{\phi}{\psi}$.
+A **closed quantum system** lives in a complex Hilbert space $\mathcal H$. A pure state is a unit vector (a ket) $\ket{\psi}\in\mathcal H$. Global phase is unphysical: $\ket{\psi}$ and $e^{i\phi}\ket{\psi}$ describe the same physical state. The dual $\bra{\psi}$ is the complex-conjugate transpose (a **bra**). Inner products are $\braket{\phi}{\psi}$.
 
 An orthonormal basis $\{\ket{n}\}$ resolves the identity
 
@@ -24,7 +24,7 @@ $$
 \int \ket{x}\bra{x}\,dx = \mathbb I,\qquad \braket{x}{x'}=\delta(x-x')
 $$
 
-The **wavefunction** in position space is $\psi(x)=\braket{x}{\psi}$, with normalization
+The wavefunction in position space is $\psi(x)=\braket{x}{\psi}$, with normalization
 
 $$
 \int |\psi(x)|^{2}\,dx = 1
@@ -42,7 +42,7 @@ and invert with the conjugate transform.
 
 ### 7.1.2 Observables and spectra
 
-Every **observable** $A$ is a self-adjoint (Hermitian) operator $\hat A$ on $\mathcal H$. Measurement outcomes are its **eigenvalues**; post-measurement states are the associated eigenvectors (modulo degeneracy). Spectral resolution:
+Every observable $A$ is a self-adjoint (Hermitian) operator $\hat A$ on $\mathcal H$. Measurement outcomes are its eigenvalues; post-measurement states are the associated eigenvectors (modulo degeneracy). Spectral resolution:
 
 $$
 \hat A = \sum_a a\,\Pi_a
@@ -56,7 +56,7 @@ $$
 \langle A \rangle_\psi = \bra{\psi}\,\hat A\,\ket{\psi}
 $$
 
-**Variance** $(\Delta A)^2=\langle A^2\rangle-\langle A\rangle^2$ quantifies spread. Noncommuting observables cannot be simultaneously sharp; the general inequality is
+Variance $(\Delta A)^2=\langle A^2\rangle-\langle A\rangle^2$ quantifies spread. Noncommuting observables cannot be simultaneously sharp; the general inequality is
 
 $$
 \Delta A\,\Delta B \ge \frac{1}{2}\,\big|\langle[\hat A,\hat B]\rangle\big|
@@ -216,7 +216,7 @@ $$
 \frac{d}{dt}\langle G\rangle = \frac{i}{\hbar}\langle [\hat H,G]\rangle
 $$
 
-so $[H,G]=0 \Rightarrow \langle G\rangle$ is constant. Translational invariance conserves $p$, rotational invariance conserves $\mathbf L$, and time invariance (no explicit $t$ in $H$) conserves energy.
+so $[H,G]=0 \Rightarrow \langle G\rangle$ is constant. Translational invariance conserves $p$, rotational invariance conserves $\boldsymbol L$, and time invariance (no explicit $t$ in $H$) conserves energy.
 
 ---
 
@@ -311,19 +311,19 @@ Dimension check: in 3D, $|\psi|^2$ is a probability **density**, so $[\psi]=\tex
 Schrödinger’s equation implies local probability conservation. Define the **probability current**
 
 $$
-\mathbf j(\mathbf r,t) = \frac{\hbar}{2mi}\left[\psi^{\ast}\,\nabla\psi - \psi\,\nabla\psi^{\ast}\right]
+\boldsymbol j(\boldsymbol r,t) = \frac{\hbar}{2mi}\left[\psi^{\ast}\,\nabla\psi - \psi\,\nabla\psi^{\ast}\right]
 $$
 
 Then
 
 $$
-\frac{\partial}{\partial t}|\psi|^{2} + \nabla\cdot \mathbf j = 0
+\frac{\partial}{\partial t}|\psi|^{2} + \nabla\cdot \boldsymbol j = 0
 $$
 
-With electromagnetic fields via minimal coupling $\hat{\mathbf p}\to \hat{\mathbf p}-q\mathbf A$ and $V\to V+q\phi$, the current becomes
+With electromagnetic fields via minimal coupling $\hat{\boldsymbol p}\to \hat{\boldsymbol p}-q\boldsymbol A$ and $V\to V+q\phi$, the current becomes
 
 $$
-\mathbf j = \frac{\hbar}{2mi}\left[\psi^{\ast}\,\nabla\psi - \psi\,\nabla\psi^{\ast}\right] - \frac{q}{m}\,\mathbf A\,|\psi|^{2}
+\boldsymbol j = \frac{\hbar}{2mi}\left[\psi^{\ast}\,\nabla\psi - \psi\,\nabla\psi^{\ast}\right] - \frac{q}{m}\,\boldsymbol A\,|\psi|^{2}
 $$
 
 showing gauge-covariant flow.
@@ -335,16 +335,16 @@ showing gauge-covariant flow.
 Promote classical quantities to **operators** acting on $\psi$
 
 $$
-\hat{\mathbf x}=\mathbf r,\qquad \hat{\mathbf p}=-\,i\hbar\,\nabla
+\hat{\boldsymbol x}=\boldsymbol r,\qquad \hat{\boldsymbol p}=-\,i\hbar\,\nabla
 $$
 
 The expectation of an observable $\hat A$ is
 
 $$
-\langle A \rangle(t) = \int \psi^{\ast}(\mathbf r,t)\,\hat A\,\psi(\mathbf r,t)\,d^{3}r
+\langle A \rangle(t) = \int \psi^{\ast}(\boldsymbol r,t)\,\hat A\,\psi(\boldsymbol r,t)\,d^{3}r
 $$
 
-Physical observables correspond to **self-adjoint** operators so that $\langle A\rangle$ is real and the spectral theorem applies. Canonical commutation
+Physical observables correspond to self-adjoint operators so that $\langle A\rangle$ is real and the spectral theorem applies. Canonical commutation
 
 $$
 [\hat x_i,\hat p_j]=i\hbar\,\delta_{ij}
@@ -356,16 +356,16 @@ implies the uncertainty bound $\Delta x\,\Delta p \ge \hbar/2$.
 
 ### 7.2.4 Stationary states and the time-independent equation
 
-If $V(\mathbf r)$ is time-independent, seek separable solutions
+If $V(\boldsymbol r)$ is time-independent, seek separable solutions
 
 $$
-\psi(\mathbf r,t) = \phi(\mathbf r)\,e^{-iEt/\hbar}
+\psi(\boldsymbol r,t) = \phi(\boldsymbol r)\,e^{-iEt/\hbar}
 $$
 
 Plugging in gives the **time-independent Schrödinger equation**
 
 $$
-\left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\mathbf r)\right]\phi(\mathbf r) = E\,\phi(\mathbf r)
+\left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\boldsymbol r)\right]\phi(\boldsymbol r) = E\,\phi(\boldsymbol r)
 $$
 
 Bound-state eigenvalues $\{E_n\}$ are discrete under confining $V$, and the corresponding $\{\phi_n\}$ can be chosen orthonormal
@@ -374,7 +374,7 @@ $$
 \int \phi_m^{\ast}\phi_n\,d^{3}r = \delta_{mn}
 $$
 
-Any solution evolves as a superposition $\psi(\mathbf r,t)=\sum_n c_n \phi_n(\mathbf r)\,e^{-iE_n t/\hbar}$ with $\sum_n |c_n|^{2}=1$.
+Any solution evolves as a superposition $\psi(\boldsymbol r,t)=\sum_n c_n \phi_n(\boldsymbol r)\,e^{-iE_n t/\hbar}$ with $\sum_n |c_n|^{2}=1$.
 
 ---
 
@@ -383,7 +383,7 @@ Any solution evolves as a superposition $\psi(\mathbf r,t)=\sum_n c_n \phi_n(\ma
 The Hamiltonian is self-adjoint only for states obeying appropriate boundary conditions. In practice:
 
 - For finite, piecewise-smooth $V$, both $\phi$ and its first derivative are continuous across finite steps  
-- At **infinite walls** (e.g., $\phi=0$ at the boundary), wavefunctions vanish  
+- At infinite walls (e.g., $\phi=0$ at the boundary), wavefunctions vanish  
 - For $\delta$-like spikes, $\phi$ is continuous but its derivative has a prescribed jump proportional to the spike strength  
 - Normalizable bound states must satisfy $\phi\to 0$ fast enough at infinity
 
@@ -399,7 +399,7 @@ $$
 \psi_k(x,t)=\frac{1}{\sqrt{2\pi}}\,e^{i(kx-\omega t)},\qquad \omega=\frac{\hbar k^{2}}{2m}
 $$
 
-Build **wave packets** by superposing $k$ values; packet center moves with group velocity $v_g=\hbar k/m$ and spreads over time.
+Build wave packets by superposing $k$ values; packet center moves with group velocity $v_g=\hbar k/m$ and spreads over time.
 
 **(b) Infinite square well** of width $L$ on $0<x<L$:
 
@@ -449,10 +449,10 @@ When $\psi$ is narrow and $V$ is smooth, $\langle \partial V/\partial x\rangle\a
 
 ### 7.2.9 Nodes, phases, and currents in bound states
 
-For time-independent, real $V$, stationary bound eigenfunctions can be chosen **real**, so
+For time-independent, real $V$, stationary bound eigenfunctions can be chosen real, so
 
 $$
-\mathbf j = \mathbf 0
+\boldsymbol j = \boldsymbol 0
 $$
 
 The quantum number $n$ counts nodes (zeros) of $\phi_n$ in 1D wells; higher $n$ means more oscillations and higher energy. Relative phases only matter in **superpositions**, where interference redistributes probability and can create nonzero currents even in confining potentials.
@@ -790,7 +790,7 @@ Before tackling hydrogen, we need the geometry engine of 3D quantum mechanics: *
 Define orbital angular momentum
 
 $$
-\mathbf L = \mathbf r \times \mathbf p,\qquad L_i = -\,i\hbar\,\epsilon_{ijk}\,x_j\,\partial_k
+\boldsymbol L = \boldsymbol r \times \boldsymbol p,\qquad L_i = -\,i\hbar\,\epsilon_{ijk}\,x_j\,\partial_k
 $$
 
 The commutators encode the rotation group
@@ -935,10 +935,10 @@ These conditions quantize $E$ for confining $V(r)$.
 
 ### 7.4.6 Rotational symmetry, Noether, and degeneracy
 
-If $V(r)$ is central, the Hamiltonian commutes with all rotations $U(R)=\exp\!\left(-\frac{i}{\hbar}\,\boldsymbol{\theta}\cdot\mathbf L\right)$. Noether’s theorem in the quantum language says
+If $V(r)$ is central, the Hamiltonian commutes with all rotations $U(R)=\exp\!\left(-\frac{i}{\hbar}\,\boldsymbol{\theta}\cdot\boldsymbol L\right)$. Noether’s theorem in the quantum language says
 
 $$
-[H,\mathbf L]=\mathbf 0
+[H,\boldsymbolf L]=\boldsymbol 0
 $$
 
 Hence $\ell$ and $m$ label eigenstates. Energies depend on $n$ and $\ell$ in general, but are **$m$-degenerate** by $(2\ell+1)$ because rotating a solution merely mixes $m$ values inside the same $\ell$ multiplet.
@@ -952,7 +952,7 @@ Special symmetries can enlarge degeneracy. For hydrogen, a hidden Runge–Lenz s
 Infinitesimal rotations act as
 
 $$
-\delta \psi(\mathbf r) = -\,\frac{i}{\hbar}\,\delta\boldsymbol{\theta}\cdot\mathbf L\,\psi(\mathbf r)
+\delta \psi(\boldsymbol r) = -\,\frac{i}{\hbar}\,\delta\boldsymbol{\theta}\cdot\boldsymbol L\,\psi(\boldsymbol r)
 $$
 
 For a finite rotation $R$, the transformed state is $U(R)\psi$, with coordinates rotating oppositely. On the sphere, the $Y_{\ell}^{m}$ furnish irreducible representations of $SO(3)$; under $R$, components mix within fixed $\ell$ via Wigner $D$-matrices $D^{(\ell)}_{m'm}(R)$.
@@ -961,10 +961,10 @@ For a finite rotation $R$, the transformed state is $U(R)\psi$, with coordinates
 
 ### 7.4.8 Orbital vs spin, and addition (teaser)
 
-Electrons carry **orbital** $\mathbf L$ and **spin** $\mathbf S$ angular momenta. The total
+Electrons carry **orbital** $\boldsymbol L$ and **spin** $\boldsymbol S$ angular momenta. The total
 
 $$
-\mathbf J = \mathbf L + \mathbf S
+\boldsymbol J = \boldsymbol L + \boldsymbol S
 $$
 
 obeys the same algebra as any angular momentum. When two angular momenta couple, the allowed totals $j$ follow triangle rules and states expand with **Clebsch–Gordan coefficients**. We will use these tools for fine structure, selection rules, and multi-particle systems later in the chapter.
@@ -1005,7 +1005,7 @@ For $V(r)=-k/r$ (Coulomb), plot $V_{\text{eff}}(r)=-k/r+\hbar^{2}\ell(\ell+1)/(2
 - Prove the ladder action of $L_{\pm}$ on $\ket{\ell m}$ and normalize the coefficients by demanding $\langle \ell m|\ell m\rangle=1$  
 - Verify orthonormality of $Y_{\ell}^{m}$ by integrating two explicit low-$\ell$ examples over the sphere  
 - For a central square well $V(r)=-V_{0}$ for $r<R$ and $0$ otherwise, write the bound-state matching conditions for $u(r)$ at $r=R$ and discuss $\ell$-dependence of the spectrum  
-- Show that $[H,\mathbf L]=\mathbf 0$ for any $V(r)$ and use it to argue $(2\ell+1)$ degeneracy in $m$
+- Show that $[H,\boldsymbol L]=\boldsymbol 0$ for any $V(r)$ and use it to argue $(2\ell+1)$ degeneracy in $m$
 
 ---
 
@@ -1142,8 +1142,8 @@ $$
 
 Node counting:
 
-- **Angular**: $\ell$ nodal planes/surfaces from $Y_{\ell}^{m}$  
-- **Radial**: $n-\ell-1$ nodes from $R_{n\ell}$
+- Angular: $\ell$ nodal planes/surfaces from $Y_{\ell}^{m}$  
+- Radial: $n-\ell-1$ nodes from $R_{n\ell}$
 
 Peaks move outward with $n$; for $1s$, $P$ peaks at $r=a$.
 
@@ -1171,7 +1171,7 @@ These nail orders of magnitude for atom size and screening estimates.
 
 ### 7.5.7 Dipole selection rules and lines
 
-For electric-dipole radiation with $\hat{\mathbf d}=-e\mathbf r$,
+For electric-dipole radiation with $\hat{\boldsymbol d}=-e\boldsymbol r$,
 
 $$
 \Delta \ell = \pm 1,\qquad \Delta m = 0,\pm 1
@@ -1180,7 +1180,7 @@ $$
 Line strengths follow from matrix elements
 
 $$
-\langle n'\ell'm' | \mathbf r | n\ell m \rangle
+\langle n'\ell'm' | \boldsymbol r | n\ell m \rangle
 $$
 
 which factor into angular pieces (Clebsch–Gordan algebra) and radial integrals built from the $R_{n\ell}(r)$. This reproduces the Balmer/Lyman series patterns and polarization rules.
@@ -1192,10 +1192,10 @@ which factor into angular pieces (Clebsch–Gordan algebra) and radial integrals
 The Coulomb problem has a conserved **Runge–Lenz vector** (quantum-symmetrized)
 
 $$
-\mathbf A = \frac{1}{2\mu}\,(\mathbf p \times \mathbf L - \mathbf L \times \mathbf p) - \frac{k}{r}\,\hat{\mathbf r}
+\boldsymbol A = \frac{1}{2\mu}\,(\boldsymbol p \times \boldsymbol L - \boldsymbol L \times \boldsymbol p) - \frac{k}{r}\,\hat{\boldsymbol r}
 $$
 
-Together, $\mathbf L$ and $\mathbf A$ generate an $SO(4)$ symmetry for bound states, explaining why $E_n$ depends on $n$ only, not on $\ell$ or $m$. Break that symmetry (e.g., by fields or relativity) and the degeneracy splits.
+Together, $\boldsymbol L$ and $\boldsymbol A$ generate an $SO(4)$ symmetry for bound states, explaining why $E_n$ depends on $n$ only, not on $\ell$ or $m$. Break that symmetry (e.g., by fields or relativity) and the degeneracy splits.
 
 ---
 
@@ -1374,10 +1374,10 @@ $$
 2) **Spin–orbit coupling** with Thomas factor
 
 $$
-H_{\mathrm{SO}} = \frac{1}{2 m_{e}^{2} c^{2}}\,\frac{1}{r}\frac{dV}{dr}\,\mathbf L\cdot \mathbf S
+H_{\mathrm{SO}} = \frac{1}{2 m_{e}^{2} c^{2}}\,\frac{1}{r}\frac{dV}{dr}\,\boldsymbol L\cdot \boldsymbolf S
 $$
 
-For Coulomb $V(r)=-e^{2}/4\pi\varepsilon_{0}r$, this is $\propto +\,\mathbf L\cdot\mathbf S/r^{3}$
+For Coulomb $V(r)=-e^{2}/4\pi\varepsilon_{0}r$, this is $\propto +\,\boldsymbol L\cdot\boldsymbol S/r^{3}$
 
 3) **Darwin term** (contact term from Zitterbewegung, nonzero only for $\ell=0$)
 
@@ -1385,7 +1385,7 @@ $$
 H_{\mathrm{D}} = \frac{\hbar^{2}}{8 m_{e}^{2} c^{2}}\,\nabla^{2}V(r)
 $$
 
-Combine expectation values using hydrogen eigenstates and angular momentum algebra. The sum depends on $n$ and the **total** $j=\ell\pm \tfrac12$ but **not** on $m$, giving the textbook fine-structure shift
+Combine expectation values using hydrogen eigenstates and angular momentum algebra. The sum depends on $n$ and the **total** $j=\ell\pm \tfrac12$ but not on $m$, giving the textbook fine-structure shift
 
 $$
 \Delta E_{n,j}^{(\mathrm{fs})} = \frac{\mu c^{2}\,(Z\alpha)^{4}}{2 n^{3}}\left(\frac{1}{j+\tfrac12} - \frac{3}{4n}\right)
@@ -1397,7 +1397,7 @@ Here $\mu$ is the reduced mass and $\alpha\equiv e^{2}/4\pi\varepsilon_{0}\hbar 
 
 ### 7.6.6 Zeeman effect: weak magnetic fields
 
-Add a uniform magnetic field $\mathbf B = B\,\hat{\mathbf z}$. The leading coupling is
+Add a uniform magnetic field $\boldsymbol B = B\,\hat{\boldsymbol z}$. The leading coupling is
 
 $$
 H'_{\mathrm{Z}} = \mu_{B}\,(L_{z} + g_{s} S_{z})\,B
@@ -1423,7 +1423,7 @@ For $s=\tfrac12$, this reproduces the familiar “anomalous” Zeeman patterns. 
 
 ### 7.6.7 Stark effect: electric fields and parity trouble
 
-For a static electric field $\mathbf E=E\,\hat{\mathbf z}$,
+For a static electric field $\boldsymbol E=E\,\hat{\boldsymbol z}$,
 
 $$
 H'_{\mathrm{S}} = e E z

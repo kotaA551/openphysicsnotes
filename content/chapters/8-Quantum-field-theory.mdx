@@ -2,7 +2,7 @@
 
 ## 8.1 From Particles to Fields: Why Quantum Field Theory
 
-Quantum mechanics nails atoms; special relativity nails fast things. Together, they disagree about headcount. Relativity allows particles to be created and destroyed; single-particle quantum mechanics does not. **Quantum Field Theory (QFT)** is the fix: the basic objects are **fields**, and particles are **quanta** (excitations) of those fields. This section sets the stage—why fields are necessary, how to quantize a simple field, how particles emerge, and which principles (locality, symmetry) keep everything sane.
+Quantum mechanics nails atoms; special relativity nails fast things. Together, they disagree about headcount. Relativity allows particles to be created and destroyed; single-particle quantum mechanics does not. **Quantum Field Theory (QFT)** is the fix: the basic objects are fields, and particles are quanta (excitations) of those fields. This section sets the stage—why fields are necessary, how to quantize a simple field, how particles emerge, and which principles (locality, symmetry) keep everything sane.
 
 ---
 
@@ -12,19 +12,19 @@ Quantum mechanics nails atoms; special relativity nails fast things. Together, t
 - **Particle creation/annihilation.** A high-energy photon turns into $e^{+}e^{-}$; an excited atom emits a photon. Fixed-$N$ Hilbert spaces cannot even describe these channels  
 - **Locality and causality.** Measurements at spacelike separation should not influence each other. Enforcing this with only wavefunctions of a fixed number of particles gets messy fast
 
-QFT resolves these by promoting **fields** to operators. States live in a **Fock space** where particle number can fluctuate, and microcausality is built into field commutators.
+QFT resolves these by promoting fields to operators. States live in a Fock space where particle number can fluctuate, and microcausality is built into field commutators.
 
 ---
 
 ### 8.1.2 Fields as “infinitely many oscillators”
 
-Take any free classical field, Fourier expand it into modes labeled by momentum $\mathbf k$. Each mode is a harmonic oscillator. Quantization then is copy–paste from Chapter 7, but for every $\mathbf k$. That is the whole vibe: **quantize all the normal modes**.
+Take any free classical field, Fourier expand it into modes labeled by momentum $\boldsymbol k$. Each mode is a harmonic oscillator. Quantization then is copy–paste from Chapter 7, but for every $\boldsymbol k$. That is the whole vibe: quantize all the normal modes.
 
 ---
 
 ### 8.1.3 Classical warm-up: the Klein–Gordon field
 
-For a real scalar field $\phi(x)$ with $x=(ct,\mathbf x)$, the Lorentz-invariant action is
+For a real scalar field $\phi(x)$ with $x=(ct,\boldsymbol x)$, the Lorentz-invariant action is
 
 $$
 S[\phi] = \int d^{4}x\;\mathcal L,\qquad
@@ -49,18 +49,18 @@ $$
 \pi(x) \equiv \frac{\partial \mathcal L}{\partial(\partial_{0}\phi)} = \partial_{0}\phi
 $$
 
-to operators with **equal-time** commutation relations
+to operators with equal-time commutation relations
 
 $$
-[\hat\phi(t,\mathbf x),\hat\phi(t,\mathbf y)] = 0
-$$
-
-$$
-[\hat\pi(t,\mathbf x),\hat\pi(t,\mathbf y)] = 0
+[\hat\phi(t,\boldsymbol x),\hat\phi(t,\boldsymbol y)] = 0
 $$
 
 $$
-[\hat\phi(t,\mathbf x),\hat\pi(t,\mathbf y)] = i\hbar\,\delta^{(3)}(\mathbf x-\mathbf y)
+[\hat\pi(t,\boldsymbol x),\hat\pi(t,\boldsymbol y)] = 0
+$$
+
+$$
+[\hat\phi(t,\boldsymbol x),\hat\pi(t,\boldsymbol y)] = i\hbar\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
 $$
 
 This is the field-theory clone of $[x,p]=i\hbar$.
@@ -72,21 +72,21 @@ This is the field-theory clone of $[x,p]=i\hbar$.
 Impose a large box of volume $V$ (later $V\to\infty$) and expand
 
 $$
-\hat\phi(x) = \frac{1}{\sqrt{V}}\sum_{\mathbf k} \frac{1}{\sqrt{2\omega_{\mathbf k}}}\left(\hat a_{\mathbf k}\,e^{-i\omega_{\mathbf k} t + i\mathbf k\cdot\mathbf x} + \hat a_{\mathbf k}^{\dagger}\,e^{i\omega_{\mathbf k} t - i\mathbf k\cdot\mathbf x}\right)
+\hat\phi(x) = \frac{1}{\sqrt{V}}\sum_{\boldsymbol k} \frac{1}{\sqrt{2\omega_{\boldsymbol k}}}\left(\hat a_{\boldsymbol k}\,e^{-i\omega_{\boldsymbol k} t + i\boldsymbol k\cdot\boldsymbol x} + \hat a_{\boldsymbol k}^{\dagger}\,e^{i\omega_{\boldsymbol k} t - i\boldsymbol k\cdot\boldsymbol x}\right)
 $$
 
 with
 
 $$
-\omega_{\mathbf k} = \sqrt{c^{2}\mathbf k^{2} + \frac{m^{2}c^{4}}{\hbar^{2}}}
+\omega_{\boldsymbol k} = \sqrt{c^{2}\boldsymbol k^{2} + \frac{m^{2}c^{4}}{\hbar^{2}}}
 $$
 
 Choose the normalization so that
 
 $$
-[\hat a_{\mathbf k},\hat a_{\mathbf k'}^{\dagger}] = \delta_{\mathbf k\mathbf k'},\qquad
-[\hat a_{\mathbf k},\hat a_{\mathbf k'}] = 0,\qquad
-[\hat a_{\mathbf k}^{\dagger},\hat a_{\mathbf k'}^{\dagger}] = 0
+[\hat a_{\boldsymbol k},\hat a_{\boldsymbol k'}^{\dagger}] = \delta_{\boldsymbol k\boldsymbol k'},\qquad
+[\hat a_{\boldsymbol k},\hat a_{\boldsymbol k'}] = 0,\qquad
+[\hat a_{\boldsymbol k}^{\dagger},\hat a_{\boldsymbol k'}^{\dagger}] = 0
 $$
 
 Exactly the oscillator algebra from §7.3, now for every momentum.
@@ -95,16 +95,16 @@ Exactly the oscillator algebra from §7.3, now for every momentum.
 
 ### 8.1.6 Fock space and particles
 
-Define the vacuum by $\hat a_{\mathbf k}\ket{0}=0$. **One-particle** states are
+Define the vacuum by $\hat a_{\boldsymbol k}\ket{0}=0$. **One-particle** states are
 
 $$
-\ket{\mathbf k} \equiv \hat a_{\mathbf k}^{\dagger}\ket{0}
+\ket{\boldsymbol k} \equiv \hat a_{\boldsymbol k}^{\dagger}\ket{0}
 $$
 
-and multi-particle states follow by applying more creation operators. The **number operator** for mode $\mathbf k$ is $\hat N_{\mathbf k}=\hat a_{\mathbf k}^{\dagger}\hat a_{\mathbf k}$. The Hamiltonian of the free field is
+and multi-particle states follow by applying more creation operators. The number operator for mode $\boldsymbol k$ is $\hat N_{\boldsymbol k}=\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}$. The Hamiltonian of the free field is
 
 $$
-\hat H = \sum_{\mathbf k}\hbar\omega_{\mathbf k}\left(\hat a_{\mathbf k}^{\dagger}\hat a_{\mathbf k} + \frac{1}{2}\right)
+\hat H = \sum_{\boldsymbol k}\hbar\omega_{\boldsymbol k}\left(\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k} + \frac{1}{2}\right)
 $$
 
 The $\tfrac12$ term stacks up over all modes: vacuum energy. We will normally **normal order** to drop it in non-gravitational problems.
@@ -116,16 +116,16 @@ The $\tfrac12$ term stacks up over all modes: vacuum energy. We will normally **
 Define normal ordering $:\cdots:$ by placing all $\hat a^{\dagger}$ to the left of all $\hat a$. Then
 
 $$
-:\hat a_{\mathbf k}^{\dagger}\hat a_{\mathbf k}: = \hat a_{\mathbf k}^{\dagger}\hat a_{\mathbf k}
+:\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}: = \hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}
 $$
 
 and
 
 $$
-:\hat H: = \sum_{\mathbf k}\hbar\omega_{\mathbf k}\,\hat a_{\mathbf k}^{\dagger}\hat a_{\mathbf k}
+:\hat H: = \sum_{\boldsymbol k}\hbar\omega_{\boldsymbol k}\,\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}
 $$
 
-This sets the vacuum energy to zero **by convention**. In curved spacetime or gravity you must confront the absolute value; in flat-space particle physics we care about **differences**, so normal ordering is fine.
+This sets the vacuum energy to zero by convention. In curved spacetime or gravity you must confront the absolute value; in flat-space particle physics we care about **differences**, so normal ordering is fine.
 
 ---
 
@@ -143,7 +143,7 @@ i.e., fields commute at spacelike separation. For the free KG field, the commuta
 
 ### 8.1.9 Green’s functions and propagators
 
-Correlation functions encode everything. The **time-ordered two-point function** (Feynman propagator) is
+Correlation functions encode everything. The time-ordered two-point function (Feynman propagator) is
 
 $$
 i\Delta_{F}(x-y) \equiv \langle 0|\,T\{\hat\phi(x)\hat\phi(y)\}\,|0\rangle
@@ -187,10 +187,10 @@ If $\phi$ is complex with a global $U(1)$ symmetry $\phi\to e^{i\alpha}\phi$, yo
 
 ### 8.1.11 Bosons, fermions, and the spin–statistics rule
 
-Empirically and theoretically: integer-spin fields quantize with **commutators** (bosons), half-integer-spin fields with **anticommutators** (fermions). For a spinor $\psi$, equal-time brackets are
+Empirically and theoretically: integer-spin fields quantize with commutators (bosons), half-integer-spin fields with anticommutators (fermions). For a spinor $\psi$, equal-time brackets are
 
 $$
-\{\hat\psi_{\alpha}(t,\mathbf x),\hat\psi_{\beta}^{\dagger}(t,\mathbf y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\mathbf x-\mathbf y)
+\{\hat\psi_{\alpha}(t,\boldsymbol x),\hat\psi_{\beta}^{\dagger}(t,\boldsymbol y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
 $$
 
 This choice is not optional decoration—**spin–statistics** plus locality and positivity force it.
@@ -212,7 +212,7 @@ or couple fields, e.g., Yukawa $\bar\psi\psi\phi$ or gauge couplings via covaria
 ### 8.1.13 Worked mini-examples
 
 **(a) One-particle normalization.**  
-Show $\langle \mathbf k'|\mathbf k\rangle = \delta_{\mathbf k'\mathbf k}$ using the $[\hat a,\hat a^{\dagger}]$ algebra.
+Show $\langle \boldsymbol k'|\boldsymbol k\rangle = \delta_{\boldsymbol k'\boldsymbol k}$ using the $[\hat a,\hat a^{\dagger}]$ algebra.
 
 **(b) Vacuum two-point function.**  
 Insert the mode expansion into $\langle 0|T\{\hat\phi(x)\hat\phi(y)\}|0\rangle$ to derive $\Delta_{F}(x-y)$ and its momentum-space form.
@@ -221,7 +221,7 @@ Insert the mode expansion into $\langle 0|T\{\hat\phi(x)\hat\phi(y)\}|0\rangle$ 
 Compute $[\hat\phi(x),\hat\phi(y)]$ for the free field; show it vanishes when $(x-y)^{2}<0$ by contour integration.
 
 **(d) Energy of a one-quantum state.**  
-Act with $\hat H$ on $\ket{\mathbf k}$ and confirm $E=\hbar\omega_{\mathbf k}$.
+Act with $\hat H$ on $\ket{\boldsymbol k}$ and confirm $E=\hbar\omega_{\boldsymbol k}$.
 
 ---
 
@@ -247,7 +247,7 @@ To describe electrons (and every spin-$\tfrac12$ particle) in a way that respect
 
 ### 8.2.1 Motivation in one page
 
-Klein–Gordon waves handle relativity but describe spin-0 and permit negative densities. We want a **first-order** equation in time with a positive-definite probability density, consistent with $E^{2}=\mathbf p^{2}+m^{2}$. Dirac’s idea: linearize the relativistic dispersion with matrices obeying a new algebra.
+Klein–Gordon waves handle relativity but describe spin-0 and permit negative densities. We want a first-order equation in time with a positive-definite probability density, consistent with $E^{2}=\boldsymbol p^{2}+m^{2}$. Dirac’s idea: linearize the relativistic dispersion with matrices obeying a new algebra.
 
 ---
 
@@ -309,10 +309,10 @@ $j^{0}=\psi^{\dagger}\psi$ is positive-definite for solutions, delivering a prop
 Seek plane waves $\psi=u_{s}(p)\,e^{-ip\cdot x}$ and $\psi=v_{s}(p)\,e^{+ip\cdot x}$ with on-shell $p^{2}=m^{2}$. They satisfy
 
 $$
-(\slashed{p} - m)\,u_{s}(p) = 0,\qquad (\slashed{p} + m)\,v_{s}(p) = 0
+(/\!\!p - m)\,u_{s}(p) = 0,\qquad (/\!\!p + m)\,v_{s}(p) = 0
 $$
 
-where $\slashed{p}\equiv \gamma^{\mu}p_{\mu}$ and $s$ labels spin. Normalizations convenient for QFT:
+where $/\!\!p\equiv \gamma^{\mu}p_{\mu}$ and $s$ labels spin. Normalizations convenient for QFT:
 
 $$
 \bar u_{s}(p)\,u_{s'}(p)=2m\,\delta_{ss'},\qquad \bar v_{s}(p)\,v_{s'}(p)=-2m\,\delta_{ss'}
@@ -321,11 +321,11 @@ $$
 Spin sums (completeness):
 
 $$
-\sum_{s} u_{s}(p)\,\bar u_{s}(p) = \slashed{p} + m
+\sum_{s} u_{s}(p)\,\bar u_{s}(p) = /\!\!p + m
 $$
 
 $$
-\sum_{s} v_{s}(p)\,\bar v_{s}(p) = \slashed{p} - m
+\sum_{s} v_{s}(p)\,\bar v_{s}(p) = /\!\!p - m
 $$
 
 These identities are the workhorses behind cross sections and propagators.
