@@ -17,12 +17,10 @@ export function generateStaticParams() {
   return getAllChapters().map((c) => ({ slug: c.slug }));
 }
 
-// be chill about the param typing to satisfy Next’s generic PageProps
 export function generateMetadata({ params }: any): Metadata {
   const c = getChapter(params.slug);
   return {
-    title: `${c.title} — Quantum Gravity Notes`,
-    description: c.description,
+    title: `${c.title} — Open Physics Notes`,
   };
 }
 
@@ -35,7 +33,6 @@ export default function ChapterPage({ params }: any) {
       <h1 className="flex items-center gap-3">
         <span>{chapter.title}</span>
       </h1>
-      {chapter.description && <p className="lead">{chapter.description}</p>}
       <MDXRemote
         source={chapter.content}
         options={{

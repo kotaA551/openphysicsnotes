@@ -22,7 +22,6 @@ export function generateMetadata({ params }: any): Metadata {
   const c = getCuriosity(params.slug);
   return {
     title: `${c.title} — Open Physics Notes`,
-    description: c.summary,
   };
 }
 
@@ -30,23 +29,17 @@ const components = { Callout } as const;
 
 export default function CuriosityPage({ params }: any) {
   const curiosity = getCuriosity(params.slug);
-
   return (
     <article className="prose prose-zinc max-w-none">
       <h1 className="flex items-center gap-3">
         <span>{curiosity.title}</span>
       </h1>
-      {curiosity.summary && <p className="lead">{curiosity.summary}</p>}
       <MDXRemote
         source={curiosity.content}
         options={{
           mdxOptions: {
             remarkPlugins: [remarkGfm, remarkMath],
-            rehypePlugins: [
-              rehypeKatex,
-              rehypeSlug,
-              [rehypeAutolinkHeadings, { behavior: 'wrap' }],
-            ],
+            rehypePlugins: [rehypeKatex, rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], ],
             format: 'mdx',
           },
         }}
