@@ -36,7 +36,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           <Link
             href="/"
             aria-label="Go to home"
-            className="text-lg font-bold hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded px-1"
+            className="flex items-center gap-2 hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded px-1"
           >
             <Image
               src="/opn-logo-mark-512.png"
@@ -47,6 +47,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             />
             <span className="text-lg font-bold">Open Physics Notes</span>
           </Link>
+
         </div>
       </header>
 
