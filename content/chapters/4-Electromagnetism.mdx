@@ -78,13 +78,13 @@ where $I_1$ and $I_2$ are the currents. This result is so fundamental that the S
 More generally, Ampère formulated his law: the circulation of the magnetic field $\mathbf B$ around a closed loop equals the current enclosed:
 
 $$
-\oint \mathbf B \cdot d\mathbf l = \mu_0 I_{\text{enc}}.
+\oint \boldsymbol B \cdot d\boldsymbol l = \mu_0 I_{\text{enc}}.
 $$
 
 This **Ampère’s law** is one of Maxwell’s four great equations (with later correction for displacement current). In modern vector calculus:
 
 $$
-\nabla \times \mathbf B = \mu_0 \mathbf J.
+\nabla \times \boldsymbol B = \mu_0 \boldsymbol J.
 $$
 
 ---
@@ -94,7 +94,7 @@ $$
 Simultaneously, Jean-Baptiste Biot and Félix Savart investigated the magnetic field produced by currents. They established the **Biot–Savart law**, describing the field at point $\mathbf r$ due to a current element $I d\mathbf l$:
 
 $$
-d\mathbf B = \frac{\mu_0}{4\pi} \frac{I\, d\mathbf l \times \hat{\mathbf r}}{r^2}.
+d\boldsymbol B = \frac{\mu_0}{4\pi} \frac{I\, d\boldsymbol l \times \hat{\boldsymbol r}}{r^2}.
 $$
 
 Integrating along the wire gives the full magnetic field. The Biot–Savart law is analogous to Coulomb’s law for electricity but with the crucial cross product reflecting magnetism’s inherently rotational nature.
@@ -161,7 +161,7 @@ $$
 where $\mathcal{E}$ is the induced emf and $\Phi_B$ is the magnetic flux through a circuit:
 
 $$
-\Phi_B = \int \mathbf B \cdot d\mathbf A.
+\Phi_B = \int \boldsymbol B \cdot d\boldsymbol A.
 $$
 
 The minus sign encodes **Lenz’s law**: the induced current opposes the change in flux, reflecting energy conservation.
@@ -169,7 +169,7 @@ The minus sign encodes **Lenz’s law**: the induced current opposes the change 
 In full vector calculus form (later by Maxwell):
 
 $$
-\nabla \times \mathbf E = -\frac{\partial \mathbf B}{\partial t}.
+\nabla \times \boldsymbol E = -\frac{\partial \boldsymbol B}{\partial t}.
 $$
 
 This is Faraday’s law, one of the four Maxwell equations.
@@ -244,43 +244,43 @@ Maxwell was also a philosopher of science. He insisted that equations alone were
 Maxwell consolidated the experimental laws of Coulomb, Ampère, Faraday, and Gauss into four differential equations:
 
 1. **Gauss’s law (electric field).**<br />
-   $\displaystyle \nabla \cdot \mathbf{E} = \frac{\rho}{\varepsilon_0}$<br />
+   $\displaystyle \nabla \cdot \boldsymbol{E} = \frac{\rho}{\varepsilon_0}$<br />
    Electric charges $\rho$ are sources of electric field.
 
 2. **Gauss’s law (magnetism).**<br />
-   $\displaystyle \nabla \cdot \mathbf{B} = 0$<br />
+   $\displaystyle \nabla \cdot \boldsymbol{B} = 0$<br />
    No magnetic monopoles exist; field lines are closed loops.
 
 3. **Faraday’s law of induction.**<br />
-   $\displaystyle \nabla \times \mathbf{E} = -\,\frac{\partial \mathbf{B}}{\partial t}$<br />
+   $\displaystyle \nabla \times \boldsymbol{E} = -\,\frac{\partial \boldsymbol{B}}{\partial t}$<br />
    Time-varying magnetic fields induce electric fields.
 
 4. **Ampère–Maxwell law.**<br />
-   $\displaystyle \nabla \times \mathbf{B} = \mu_0 \mathbf{J} + \mu_0 \varepsilon_0 \,\frac{\partial \mathbf{E}}{\partial t}$<br />
+   $\displaystyle \nabla \times \boldsymbol{B} = \mu_0 \boldsymbol{J} + \mu_0 \varepsilon_0 \,\frac{\partial \boldsymbol{E}}{\partial t}$<br />
    Currents and changing electric fields generate magnetic fields.
 
-The crucial addition is the **displacement current term** ($\mu_0 \varepsilon_0 \partial \mathbf E/\partial t$), invented by Maxwell to preserve charge conservation. Without it, Ampère’s law fails in cases like charging a capacitor. With it, the equations gain consistency and symmetry.
+The crucial addition is the **displacement current term** ($\mu_0 \varepsilon_0 \partial \boldsymbol E/\partial t$), invented by Maxwell to preserve charge conservation. Without it, Ampère’s law fails in cases like charging a capacitor. With it, the equations gain consistency and symmetry.
 
 ---
 
 ### 4.4.3 The Wave Equation and the Nature of Light
 
-Combine Faraday’s and Ampère–Maxwell’s laws in free space ($\rho=0$, $\mathbf J=0$). Taking the curl of Faraday’s law:
+Combine Faraday’s and Ampère–Maxwell’s laws in free space ($\rho=0$, $\boldsymbol J=0$). Taking the curl of Faraday’s law:
 
 $$
-\nabla \times (\nabla \times \mathbf E) = - \frac{\partial}{\partial t}(\nabla \times \mathbf B).
+\nabla \times (\nabla \times \boldsymbol E) = - \frac{\partial}{\partial t}(\nabla \times \boldsymbol B).
 $$
 
 Substitute Ampère–Maxwell:
 
 $$
-\nabla \times (\nabla \times \mathbf E) = - \mu_0 \varepsilon_0 \frac{\partial^2 \mathbf E}{\partial t^2}.
+\nabla \times (\nabla \times \boldsymbol E) = - \mu_0 \varepsilon_0 \frac{\partial^2 \boldsymbolf E}{\partial t^2}.
 $$
 
-Using vector identity $\nabla \times (\nabla \times \mathbf E) = \nabla(\nabla \cdot \mathbf E) - \nabla^2 \mathbf E$ and Gauss’s law ($\nabla \cdot \mathbf E = 0$ in free space):
+Using vector identity $\nabla \times (\nabla \times \boldsymbol E) = \nabla(\nabla \cdot \boldsymbol E) - \nabla^2 \boldsymbol E$ and Gauss’s law ($\nabla \cdot \boldsymbol E = 0$ in free space):
 
 $$
-\nabla^2 \mathbf E = \mu_0 \varepsilon_0 \frac{\partial^2 \mathbf E}{\partial t^2}.
+\nabla^2 \mathbf E = \mu_0 \varepsilon_0 \frac{\partial^2 \boldsymbol E}{\partial t^2}.
 $$
 
 This is a **wave equation** with wave speed
@@ -304,7 +304,7 @@ $$
 and the **Poynting vector**
 
 $$
-\mathbf S = \frac{1}{\mu_0} \mathbf E \times \mathbf B
+\boldsymbol S = \frac{1}{\mu_0} \boldsymbol E \times \boldsymbol B
 $$
 
 represents the energy flux of the electromagnetic field. Light, therefore, is not only vibration but energy in transit. Later, radiation pressure and momentum exchange would be confirmed experimentally.
@@ -313,7 +313,7 @@ represents the energy flux of the electromagnetic field. Light, therefore, is no
 
 ### 4.4.5 Symmetry and Unification
 
-Maxwell’s equations are symmetric in $\mathbf E$ and $\mathbf B$, coupled through time variation. They embody local conservation laws: charge, energy, momentum. They abolished the need for “action at a distance.” Forces arise from local fields, not instantaneous influences.
+Maxwell’s equations are symmetric in $\boldsymbol E$ and $\boldsymbol B$, coupled through time variation. They embody local conservation laws: charge, energy, momentum. They abolished the need for “action at a distance.” Forces arise from local fields, not instantaneous influences.
 
 This symmetry inspired later generalizations. In relativity, Maxwell’s equations acquire elegant tensor form:
 
@@ -359,16 +359,16 @@ When Maxwell predicted that light is an electromagnetic wave, the claim was brea
 
 Long before Maxwell, light was known to behave as a wave. **Thomas Young’s double-slit experiment** (1801) showed interference patterns; **Augustin Fresnel** explained diffraction and polarization. But Maxwell explained *what kind* of wave: not vibrations of ether, but oscillations of electric and magnetic fields.
 
-Electromagnetic waves are **transverse**: the electric field $\mathbf E$ and magnetic field $\mathbf B$ are perpendicular to each other and to the direction of propagation $\mathbf k$. In free space:
+Electromagnetic waves are **transverse**: the electric field $\boldsymbol E$ and magnetic field $\boldsymbol B$ are perpendicular to each other and to the direction of propagation $\mathbf k$. In free space:
 
 $$
-\mathbf E \perp \mathbf B, \qquad \mathbf E \times \mathbf B \parallel \mathbf k.
+\boldsymbol E \perp \boldsymbol B, \qquad \boldsymbol E \times \boldsymbol B \parallel \boldsymbol k.
 $$
 
 The wave carries energy flux given by the **Poynting vector**:
 
 $$
-\mathbf S = \frac{1}{\mu_0}\mathbf E \times \mathbf B.
+\boldsymbolf S = \frac{1}{\mu_0}\boldsymbol E \times \boldsymbol B.
 $$
 
 Thus light is not just illumination but the flow of electromagnetic energy.
