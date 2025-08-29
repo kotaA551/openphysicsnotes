@@ -10,9 +10,9 @@ export default function Page() {
         no additional cost to you. Recommendations are based on editorial
         judgment and relevance to the chapter topic.
       </p>
-      <p>
+      {/* <p>
         As an Amazon Associate, we earn from qualifying purchases.
-      </p>
+      </p> */}
     </article>
   );
 }

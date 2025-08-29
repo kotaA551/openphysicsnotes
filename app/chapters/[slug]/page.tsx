@@ -6,13 +6,14 @@ import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import Callout from '@/components/Callout';
+import RelatedBooks from '@/components/RelatedBooks';
+import AffiliateNote from '@/components/AffiliateNote';
 import type { Metadata } from 'next';
 
 export const dynamicParams = false;
 export const dynamic = 'force-static';
 export const runtime = 'nodejs';
 
-// return a plain array (no async keyword needed)
 export function generateStaticParams() {
   return getAllChapters().map((c) => ({ slug: c.slug }));
 }
@@ -24,7 +25,7 @@ export function generateMetadata({ params }: any): Metadata {
   };
 }
 
-const components = { Callout } as const;
+const components = { Callout, RelatedBooks, AffiliateNote } as const;
 
 export default function ChapterPage({ params }: any) {
   const chapter = getChapter(params.slug);

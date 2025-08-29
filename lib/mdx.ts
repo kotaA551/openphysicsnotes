@@ -1,7 +1,7 @@
 // /lib/mdx.ts
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
+import matter from "gray-matter";;
 
 /** ---------- Types ---------- */
 export type Chapter = {

@@ -9,10 +9,6 @@ export default function Page() {
         undergraduate through frontier topics in physics. The goal is clarity,
         rigor, and accessibility.
       </p>
-      <h2>Maintainer</h2>
-      <p>
-        Maintained by <strong>kota</strong>. For inquiries, see the Contact page.
-      </p>
       <h2>Editorial Policy</h2>
       <p>
         Equations are typeset with LaTeX/KaTeX. References are added where
