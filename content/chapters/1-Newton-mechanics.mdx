@@ -42,7 +42,7 @@ Galileo Galilei shattered Aristotelian orthodoxy with experiments:
    If no force acted, its velocity remained constant.  
 
    $$
-   \frac{d \boldsymbol v }{dt} = 0 \quad \text{if } \mathbf F  = 0
+   \frac{d \boldsymbol v }{dt} = 0 \quad \text{if } \boldsymbol F  = 0
    $$  
 
    This was the embryo of Newton’s First Law.  
@@ -105,13 +105,13 @@ Newton’s **First Law of Motion** deepened Galileo’s idea of inertia:
 If no net force acts on a body:
 
 $$
-\frac{d \mathbf v }{dt} = 0 \quad \Rightarrow \quad \mathbf v  = \text{constant}
+\frac{d \boldsymbol v }{dt} = 0 \quad \Rightarrow \quad \boldsymbol v  = \text{constant}
 $$
 
 Equivalently, in terms of position:
 
 $$
-\mathbf r(t)  = \mathbf r_{0}  + \mathbf v_{0} t 
+\boldsymbol r(t)  = \boldsymbol r_{0}  + \boldsymbol v_{0} t 
 $$
 
 Thus, an inertial frame is defined as one in which Newton’s laws hold and objects maintain their velocity in the absence of forces.  
@@ -143,7 +143,7 @@ Newton’s **Second Law** provides the causal link:
 Mathematically:
 
 $$
-\mathbf F = m \mathbf a = m \frac{d^2 \mathbf r}{dt^2}
+\boldsymbol F = m \boldsymbol a = m \frac{d^2 \boldsymbol r}{dt^2}
 $$
 
 This single relation makes the universe calculable.
@@ -151,17 +151,17 @@ This single relation makes the universe calculable.
 ---
 
 ### Proof from the Lagrangian
-Take the Lagrangian $L = T - V = \tfrac{1}{2} m \dot{\vec r}^2 - V(\vec r)$.  
+Take the Lagrangian $L = T - V = \tfrac{1}{2} m \dot{\boldsymbol r}^2 - V(\boldsymbol r)$.  
 Euler–Lagrange equation:
 
 $$
-\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\mathbf r}}\right) - \frac{\partial L}{\partial \mathbf r} = 0
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\boldsymbol r}}\right) - \frac{\partial L}{\partial \boldsymbol r} = 0
 $$
 
 gives  
 
 $$
-m \ddot{\mathbf r} + \nabla V = 0 \quad \Rightarrow \quad m \ddot{\mathbf r} = \mathbf F
+m \ddot{\boldsymbol r} + \nabla V = 0 \quad \Rightarrow \quad m \ddot{\boldsymbol r} = \boldsymbol F
 $$
 
 Thus, Newton’s $F = ma$ emerges naturally from variational principles.
@@ -172,13 +172,13 @@ Thus, Newton’s $F = ma$ emerges naturally from variational principles.
 If $L$ has no explicit time dependence, then:
 
 $$
-E = \dot{\mathbf r} \cdot \frac{\partial L}{\partial \dot{\mathbf r}} - L
+E = \dot{\boldsymbol r} \cdot \frac{\partial L}{\partial \dot{\boldsymbol r}} - L
 $$
 
 is conserved. For a particle:
 
 $$
-E = \tfrac{1}{2} m v^2 + V(\mathbf r) = \text{constant}
+E = \tfrac{1}{2} m v^2 + V(\boldsymbol r) = \text{constant}
 $$
 
 Thus **time symmetry = energy conservation**.
@@ -224,7 +224,7 @@ Newton’s **Third Law** introduces mutuality:
 Mathematically:
 
 $$
-\mathbf F_{12} = - \mathbf F_{21}
+\boldsymbol F_{12} = - \boldsymbol F_{21}
 $$
 
 ---
@@ -233,31 +233,31 @@ $$
 For a two-particle system:
 
 $$
-m_1 \ddot{\mathbf r}_1 = \mathbf F_{12}, \quad m_2 \ddot{\mathbf r}_2 = \mathbf F_{21}
+m_1 \ddot{\boldsymbol r}_1 = \boldsymbol F_{12}, \quad m_2 \ddot{\boldsymbol r}_2 = \boldsymbol F_{21}
 $$
 
 Adding:
 
 $$
-m_1 \ddot{\mathbf r}_1 + m_2 \ddot{\vec r}_2 = \mathbf F_{12} + \mathbf F_{21} = 0
+m_1 \ddot{\boldsymbol r}_1 + m_2 \ddot{\boldsymbol r}_2 = \boldsymbol F_{12} + \boldsymbol F_{21} = 0
 $$
 
 So:
 
 $$
-\frac{d}{dt}(m_1 \dot{\mathbf r}_1 + m_2 \dot{\mathbf r}_2) = 0
+\frac{d}{dt}(m_1 \dot{\boldsymbol r}_1 + m_2 \dot{\boldsymbol r}_2) = 0
 $$
 
-Thus **total momentum $\vec P$ is conserved**.  
+Thus **total momentum $\boldsymbol P$ is conserved**.  
 This is the mathematical heart of collisions and recoil.
 
 ---
 
 ### Space-Translation Symmetry → Momentum Conservation
-If the Lagrangian is invariant under $\mathbf r \to \mathbf r + \epsilon$, then:
+If the Lagrangian is invariant under $\mathbf r \to \boldsymbol r + \epsilon$, then:
 
 $$
-\mathbf P = \frac{\partial L}{\partial \dot{\mathbf r}} = m \mathbf v
+\boldsymbol P = \frac{\partial L}{\partial \dot{\boldsymbol r}} = m \boldsymbol v
 $$
 
 is conserved.  
@@ -342,7 +342,7 @@ This matches the observed centripetal acceleration of the Moon. Newton saw the c
 Newton proposed:
 
 $$
-\mathbf F = - \frac{G m_1 m_2}{r^2} \hat r
+\boldsymbol F = - \frac{G m_1 m_2}{r^2} \hat r
 $$
 
 Every mass attracts every other. This is a central force, always directed along the line joining the bodies.
@@ -378,19 +378,19 @@ Gravity is only $0.0003\%$ weaker — imperceptible.
 For central forces:
 
 $$
-\mathbf L = \mathbf r \times m \mathbf v
+\boldsymbol L = \boldsymbol r \times m \boldsymbol v
 $$
 
 Torque:
 
 $$
-\frac{d\mathbf L}{dt} = \mathbf r \times \mathbf F
+\frac{d\boldsymbol L}{dt} = \boldsymbol r \times \boldsymbol F
 $$
 
-But if $\mathbf F \parallel \mathbf r$, then $\mathbf r \times \mathbf F = 0$, so:
+But if $\boldsymbol F \parallel \boldsymbol r$, then $\boldsymbol r \times \boldsymbol F = 0$, so:
 
 $$
-\frac{d\mathbf L}{dt} = 0 \quad \Rightarrow \quad \mathbf L = \text{const.}
+\frac{d\boldsymbol L}{dt} = 0 \quad \Rightarrow \quad \boldsymbol L = \text{const.}
 $$
 
 Thus **rotation symmetry → angular momentum conservation**.
@@ -601,11 +601,11 @@ Newton’s laws hold in inertial frames. But on Earth, which rotates, we must ad
 In a rotating frame with angular velocity $\vec \Omega$:  
 
 $$
-\mathbf a' = \mathbf a - 2 \mathbf \Omega \times \mathbf v' - \mathbf \Omega \times (\mathbf \Omega \times \mathbf r)
+\boldsymbol a' = \boldsymbol a - 2 \boldsymbol \Omega \times \boldsymbol v' - \boldsymbol \Omega \times (\boldsymbol \Omega \times \boldsymbol r)
 $$  
 
-- $-2 \mathbf \Omega \times \mathbf v'$ = Coriolis force  
-- $-\mathbf \Omega \times (\mathbf \Omega \times \mathbf r)$ = Centrifugal force  
+- $-2 \boldsymbol \Omega \times \boldsymbol v'$ = Coriolis force  
+- $-\boldsymbol \Omega \times (\boldsymbol \Omega \times \boldsymbol r)$ = Centrifugal force  
 
 ---
 
@@ -686,10 +686,10 @@ Despite relativity and quantum physics, Newton is still taught first — because
 
 ### Recap of Symmetries and Conservation
 - **Space translation invariance → momentum conservation**  
-  $$\mathbf P = \sum m_i \mathbf v_i = \text{const.}$$  
+  $$\boldsymbol P = \sum m_i \boldsymbol v_i = \text{const.}$$  
 
 - **Rotation invariance → angular momentum conservation**  
-  $$\mathbf L = \mathbf r \times m \mathbf v = \text{const.}$$  
+  $$\boldsymbol L = \boldsymbol r \times m \boldsymbol v = \text{const.}$$  
 
 - **Time translation invariance → energy conservation**  
   $$E = T + V = \text{const.}$$  
