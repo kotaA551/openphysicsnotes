@@ -8,10 +8,10 @@ Statistical physics is the art of predicting **macroscopic** laws from **microsc
 
 ### 9.1.1 Microstates, macrostates, and phase space
 
-A **microstate** is a complete specification of the system’s degrees of freedom. For $N$ classical point particles, it is a point in $6N$-dimensional **phase space** with coordinates
+A **microstate** is a complete specification of the system’s degrees of freedom. For $N$ classical point particles, it is a point in $6N$-dimensional phase space with coordinates
 
 $$
-\Gamma \equiv (\mathbf r_{1},\dots,\mathbf r_{N};\mathbf p_{1},\dots,\mathbf p_{N})
+\Gamma \equiv (\boldsymbol r_{1},\dots,\boldsymbol r_{N};\boldsymbol p_{1},\dots,\boldsymbol p_{N})
 $$
 
 A **macrostate** is defined by a few bulk variables, e.g., $(E,V,N)$ for an isolated gas. Many microstates map to the same macrostate. Counting how many leads to entropy.
@@ -544,7 +544,7 @@ The classical ideal gas is the training montage of statistical physics: you lear
 
 ### 9.3.1 Canonical counting recap and the ideal-gas Z
 
-For $N$ indistinguishable point particles of mass $m$ in volume $V$ with Hamiltonian $H=\sum_{i=1}^{N}\mathbf p_{i}^{2}/2m$, the canonical partition function factorizes:
+For $N$ indistinguishable point particles of mass $m$ in volume $V$ with Hamiltonian $H=\sum_{i=1}^{N}\boldsymbol p_{i}^{2}/2m$, the canonical partition function factorizes:
 
 $$
 Z(\beta,V,N) = \frac{1}{N!}\left[\frac{V}{\lambda_{T}^{3}}\right]^{N}
@@ -639,10 +639,10 @@ $$
 Combine with $U=\tfrac{3}{2}Nk_{B}T$ to get $pV=Nk_{B}T$. More generally, for pairwise interactions $u(r)$ the **virial theorem** yields
 
 $$
-pV = Nk_{B}T + \frac{1}{3}\left\langle \sum_{i<j} \mathbf r_{ij}\cdot \mathbf F_{ij} \right\rangle
+pV = Nk_{B}T + \frac{1}{3}\left\langle \sum_{i<j} \boldsymbol r_{ij}\cdot \boldsymbol F_{ij} \right\rangle
 $$
 
-The ideal gas has $\mathbf F_{ij}=0$, so the second term vanishes.
+The ideal gas has $\boldsymbol F_{ij}=0$, so the second term vanishes.
 
 ---
 
@@ -825,25 +825,25 @@ Positivity of variances $\Rightarrow$ **stability**: $C_{V}\ge 0$, $\kappa_{T}\g
 
 ### 9.4.4 Correlations, structure factor, and the compressibility sum rule
 
-Define the microscopic density $\hat n(\mathbf r)=\sum_{i}\delta(\mathbf r-\mathbf r_{i})$, the pair correlation $g(\mathbf r)$, and the **static structure factor**
+Define the microscopic density $\hat n(\boldsymbol r)=\sum_{i}\delta(\boldsymbol r-\boldsymbol r_{i})$, the pair correlation $g(\boldsymbol r)$, and the **static structure factor**
 
 $$
-S(\mathbf k) \equiv \frac{1}{N}\left\langle \delta \hat n_{\mathbf k}\,\delta \hat n_{-\mathbf k}\right\rangle,\qquad \delta \hat n_{\mathbf k} \equiv \int d^{3}r\, e^{-i\mathbf k\cdot \mathbf r}\,[\hat n(\mathbf r)-n]
+S(\boldsymbol k) \equiv \frac{1}{N}\left\langle \delta \hat n_{\boldsymbol k}\,\delta \hat n_{-\boldsymbol k}\right\rangle,\qquad \delta \hat n_{\boldsymbol k} \equiv \int d^{3}r\, e^{-i\mathbf k\cdot \mathbf r}\,[\hat n(\mathbf r)-n]
 $$
 
 In a uniform fluid,
 
 $$
-S(\mathbf k) = 1 + n \int d^{3}r\, e^{-i\mathbf k\cdot \mathbf r}\,[g(\mathbf r)-1]
+S(\boldsymbol k) = 1 + n \int d^{3}r\, e^{-i\boldsymbol k\cdot \boldsymbol r}\,[g(\boldsymbol r)-1]
 $$
 
-Taking $\mathbf k\to 0$ connects **microscopic correlations** to **macroscopic response**:
+Taking $\boldsymbol k\to 0$ connects **microscopic correlations** to **macroscopic response**:
 
 $$
 S(0) = n\,k_{B}T\,\kappa_{T}
 $$
 
-This is the **compressibility sum rule**. Near a critical point, $\kappa_{T}\to \infty$ and $S(0)$ spikes—aka **critical opalescence**.
+This is the **compressibility sum rule**. Near a critical point, $\kappa_{T}\to \infty$ and $S(0)$ spikes—aka critical opalescence.
 
 ---
 
@@ -870,16 +870,16 @@ where $I(a)\ge 0$ is the **rate function** (Legendre transform of the cumulant g
 Let $\phi$ be an order parameter (e.g., magnetization density). Define the connected correlator
 
 $$
-G(\mathbf r) \equiv \langle \phi(\mathbf r)\phi(\mathbf 0)\rangle_{c}
+G(\boldsymbol r) \equiv \langle \phi(\boldsymbol r)\phi(\boldsymbol 0)\rangle_{c}
 $$
 
 Away from criticality,
 
 $$
-G(\mathbf r) \sim \frac{e^{-r/\xi}}{r^{d-2+\eta}}
+G(\boldsymbol r) \sim \frac{e^{-r/\xi}}{r^{d-2+\eta}}
 $$
 
-with finite correlation length $\xi$. The static susceptibility $\chi \equiv \int d^{d}r\, G(\mathbf r)$ scales as
+with finite correlation length $\xi$. The static susceptibility $\chi \equiv \int d^{d}r\, G(\boldsymbol r)$ scales as
 
 $$
 \chi \sim \xi^{2-\eta}
@@ -926,7 +926,7 @@ $$
 
 ### 9.4.9 Example: ideal gas density fluctuations and S(0)
 
-In a classical ideal gas, particles are uncorrelated: $g(\mathbf r)=1$. Then $S(\mathbf k)=1$ for all $\mathbf k$ and
+In a classical ideal gas, particles are uncorrelated: $g(\boldsymbol r)=1$. Then $S(\boldsymbol k)=1$ for all $\boldsymbol k$ and
 
 $$
 S(0) = 1 = n\,k_{B}T\,\kappa_{T}
@@ -951,7 +951,7 @@ so $\kappa_{T}=1/(n k_{B}T)$, the ideal-gas result. Number variance in a subvolu
 From $\Delta=\int dV\,e^{-\beta pV}Z$, show $\langle(\Delta V)^{2}\rangle = k_{B}T\,V\,\kappa_{T}$ and verify it for an ideal gas.
 
 **(b) Compressibility sum rule**  
-Starting with $S(\mathbf k)=1+n\int d^{3}r\,e^{-i\mathbf k\cdot\mathbf r}[g(r)-1]$, take $\mathbf k\to 0$ and use thermodynamics to derive $S(0)=n k_{B}T\kappa_{T}$.
+Starting with $S(\boldsymbol k)=1+n\int d^{3}r\,e^{-i\boldsymbol k\cdot\boldsymbol r}[g(r)-1]$, take $\boldsymbol k\to 0$ and use thermodynamics to derive $S(0)=n k_{B}T\kappa_{T}$.
 
 **(c) Energy large deviations**  
 From $Z=\int dE\,e^{S(E)/k_{B}-\beta E}$, do the quadratic expansion and read off $\langle(\Delta E)^{2}\rangle$; identify when the Gaussian approximation fails.
@@ -1003,7 +1003,7 @@ The minus in the denominator gives **Bose–Einstein** bunching, the plus gives 
 
 ### 9.5.2 Density of states in 3D and continuum replacement
 
-For spin degeneracy $g$ and nonrelativistic dispersion $\epsilon=\mathbf p^{2}/2m$ in volume $V$,
+For spin degeneracy $g$ and nonrelativistic dispersion $\epsilon=\boldsymbol p^{2}/2m$ in volume $V$,
 
 $$
 g(\epsilon)\,d\epsilon = g\,\frac{V}{4\pi^{2}}\left(\frac{2m}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}\,d\epsilon
@@ -1130,7 +1130,7 @@ Show that taking $z\ll 1$ in $N = gV\lambda_{T}^{-3} g_{3/2}(z)$ and $p = g k_{B
 
 **(b) 3D density of states**
 
-Derive $g(\epsilon)$ by counting momentum states in a box and using $\epsilon=\mathbf p^{2}/2m$.
+Derive $g(\epsilon)$ by counting momentum states in a box and using $\epsilon=\boldsymbol p^{2}/2m$.
 
 **(c) Fermi energy numerics**
 
@@ -1674,7 +1674,7 @@ $$
 with $r_{0}\propto t$. In the **Gaussian** regime ($u$ small, $t>0$), the two-point correlator in Fourier space has Ornstein–Zernike form
 
 $$
-S(\mathbf k) \equiv \langle|\phi_{\mathbf k}|^{2}\rangle \propto \frac{1}{r_{0} + c k^{2}}
+S(\boldsymbol k) \equiv \langle|\phi_{\boldsymbol k}|^{2}\rangle \propto \frac{1}{r_{0} + c k^{2}}
 $$
 
 Define the **correlation length**
@@ -2097,7 +2097,7 @@ $$
 \mathcal F[\phi] = \int d^{d}x\left[\frac{1}{2}(\nabla\phi)^{2} + \frac{r}{2}\phi^{2} + \frac{u}{4!}\phi^{4} - h\,\phi\right]
 $$
 
-Coarse-grain by integrating out modes in a momentum shell $\Lambda/b < |\mathbf k| < \Lambda$, then rescale $\mathbf x\to \mathbf x/b$ and $\phi\to b^{(d-2+\eta)/2}\phi$. Couplings flow with “RG time” $\ell\equiv \ln b$:
+Coarse-grain by integrating out modes in a momentum shell $\Lambda/b < |\boldsymbol k| < \Lambda$, then rescale $\boldsymbol x\to \boldsymbol x/b$ and $\phi\to b^{(d-2+\eta)/2}\phi$. Couplings flow with “RG time” $\ell\equiv \ln b$:
 
 $$
 \frac{dr}{d\ell} = 2 r - c_{1} u + \cdots,\qquad
@@ -2326,10 +2326,10 @@ Interpretation: the same modes that dissipate energy when driven also fluctuate 
 
 Transport coefficients are **time integrals of current autocorrelations**.
 
-- **Self-diffusion** in $d$ dimensions with velocity $\mathbf v$:
+- **Self-diffusion** in $d$ dimensions with velocity $\boldsymbol v$:
 
 $$
-D = \frac{1}{d}\int_{0}^{\infty} dt\;\langle \mathbf v(t)\cdot \mathbf v(0)\rangle
+D = \frac{1}{d}\int_{0}^{\infty} dt\;\langle \boldsymbolf v(t)\cdot \boldsymbol v(0)\rangle
 $$
 
 - **Electrical conductivity** for total current $J_{x}$ in volume $V$:
@@ -2344,10 +2344,10 @@ $$
 \eta = \frac{\beta}{V}\int_{0}^{\infty} dt\;\langle \sigma_{xy}(t)\,\sigma_{xy}(0)\rangle
 $$
 
-- **Thermal conductivity** with heat current $\mathbf J_{Q}$:
+- **Thermal conductivity** with heat current $\boldsymbol J_{Q}$:
 
 $$
-\kappa = \frac{\beta^{2}}{V}\int_{0}^{\infty} dt\;\langle \mathbf J_{Q}(t)\cdot \mathbf J_{Q}(0)\rangle
+\kappa = \frac{\beta^{2}}{V}\int_{0}^{\infty} dt\;\langle \boldsymbol J_{Q}(t)\cdot \boldsymbol J_{Q}(0)\rangle
 $$
 
 All are equilibrium averages with the **unperturbed** dynamics.
@@ -2456,44 +2456,44 @@ For thermoelectric transport with electric and heat currents, write the $2\times
 
 ## 9.12 Kinetic Theory & the Boltzmann Equation
 
-Stat mech taught us **what** equilibrium looks like. Kinetic theory explains **how** systems move toward it, and what happens while they’re not there. The star is the **Boltzmann equation**, a mesoscopic evolution law for the one-particle distribution $f(\mathbf r,\mathbf v,t)$. From it, we’ll derive transport coefficients, connect to hydrodynamics, and see where and why the theory breaks.
+Stat mech taught us what equilibrium looks like. Kinetic theory explains how systems move toward it, and what happens while they’re not there. The star is the **Boltzmann equation**, a mesoscopic evolution law for the one-particle distribution $f(\boldsymbol r,\boldsymbol v,t)$. From it, we’ll derive transport coefficients, connect to hydrodynamics, and see where and why the theory breaks.
 
 ---
 
 ### 9.12.1 From micro to meso: the distribution function
 
-Define $f(\mathbf r,\mathbf v,t)$ so that $f\,d^{3}r\,d^{3}v$ is the **expected number** of particles in the phase-space cell. Normalize to $N=\int d^{3}r\,d^{3}v\,f$. Conserved densities are moments of $f$:
+Define $f(\boldsymbol r,\boldsymbol v,t)$ so that $f\,d^{3}r\,d^{3}v$ is the **expected number** of particles in the phase-space cell. Normalize to $N=\int d^{3}r\,d^{3}v\,f$. Conserved densities are moments of $f$:
 
 $$
-n(\mathbf r,t) = \int d^{3}v\, f,\quad
-\mathbf u(\mathbf r,t) = \frac{1}{n}\int d^{3}v\, \mathbf v\, f,\quad
-\varepsilon(\mathbf r,t) = \int d^{3}v\, \tfrac{1}{2} m v^{2}\, f
+n(\boldsymbol r,t) = \int d^{3}v\, f,\quad
+\boldsymbol u(\boldsymbol r,t) = \frac{1}{n}\int d^{3}v\, \boldsymbol v\, f,\quad
+\varepsilon(\boldsymbol r,t) = \int d^{3}v\, \tfrac{1}{2} m v^{2}\, f
 $$
 
-Pressure tensor and heat flux are higher moments of the **peculiar velocity** $\mathbf c\equiv\mathbf v-\mathbf u$.
+Pressure tensor and heat flux are higher moments of the peculiar velocity $\boldsymbol c\equiv\boldsymbol v-\boldsymbol u$.
 
 ---
 
 ### 9.12.2 The Boltzmann equation and molecular chaos
 
-In external force $\mathbf F$,
+In external force $\boldsymbol F$,
 
 $$
-\frac{\partial f}{\partial t} + \mathbf v\cdot\nabla_{\mathbf r} f + \frac{\mathbf F}{m}\cdot\nabla_{\mathbf v} f = C[f]
+\frac{\partial f}{\partial t} + \boldsymbol v\cdot\nabla_{\boldsymbol r} f + \frac{\boldsymbol F}{m}\cdot\nabla_{\boldsymbol v} f = C[f]
 $$
 
 The collision integral $C[f]$ encodes binary collisions. For short-range interactions and **molecular chaos** (Stosszahlansatz: pre-collision velocities uncorrelated),
 
 $$
-C[f](\mathbf r,\mathbf v) = \int d^{3}v_{2}\int d\Omega\; g\,\sigma(g,\Omega)\,\big[f'f_{2}' - f f_{2}\big]
+C[f](\boldsymbol r,\boldsymbol v) = \int d^{3}v_{2}\int d\Omega\; g\,\sigma(g,\Omega)\,\big[f'f_{2}' - f f_{2}\big]
 $$
 
-with $g=|\mathbf v-\mathbf v_{2}|$, differential cross section $\sigma$, and $f'=f(\mathbf r,\mathbf v',t)$ the post-collision values determined by energy–momentum conservation.
+with $g=|\boldsymbol v-\boldsymbol v_{2}|$, differential cross section $\sigma$, and $f'=f(\boldsymbol r,\boldsymbol v',t)$ the post-collision values determined by energy–momentum conservation.
 
-**Collision invariants.** For any $\psi(\mathbf v)$ equal to $1$, $\mathbf v$, or $v^{2}$,
+**Collision invariants.** For any $\psi(\boldsymbol v)$ equal to $1$, $\boldsymbol v$, or $v^{2}$,
 
 $$
-\int d^{3}v\; \psi(\mathbf v)\,C[f] = 0
+\int d^{3}v\; \psi(\boldsymbol v)\,C[f] = 0
 $$
 
 leading to local conservation of mass, momentum, and energy.
@@ -2505,10 +2505,10 @@ leading to local conservation of mass, momentum, and energy.
 $C[f]=0$ (for all cross sections) iff $f$ is a **local Maxwellian**,
 
 $$
-f_{\mathrm{LE}}(\mathbf r,\mathbf v,t) = n(\mathbf r,t) \left(\frac{m}{2\pi k_{B} T(\mathbf r,t)}\right)^{3/2} \exp\!\left[-\frac{m|\mathbf v-\mathbf u(\mathbf r,t)|^{2}}{2k_{B}T(\mathbf r,t)}\right]
+f_{\mathrm{LE}}(\boldsymbol r,\boldsymbol v,t) = n(\boldsymbol r,t) \left(\frac{m}{2\pi k_{B} T(\boldsymbol r,t)}\right)^{3/2} \exp\!\left[-\frac{m|\boldsymbol v-\boldsymbol u(\boldsymbol r,t)|^{2}}{2k_{B}T(\boldsymbol r,t)}\right]
 $$
 
-This $f_{\mathrm{LE}}$ maximizes local entropy density given $n,\mathbf u,T$ and is the fixed point of collisions.
+This $f_{\mathrm{LE}}$ maximizes local entropy density given $n,\boldsymbol u,T$ and is the fixed point of collisions.
 
 ---
 
@@ -2531,22 +2531,22 @@ Take moments of Boltzmann and use collision invariants to get the **Euler** (ide
 - **Continuity**
 
 $$
-\partial_{t}\rho + \nabla\cdot(\rho\,\mathbf u) = 0
+\partial_{t}\rho + \nabla\cdot(\rho\,\boldsymbol u) = 0
 $$
 
 - **Momentum**
 
 $$
-\partial_{t}(\rho \mathbf u) + \nabla\cdot(\rho \mathbf u\mathbf u + p\,\mathbb I + \boldsymbol{\Pi}) = n\mathbf F
+\partial_{t}(\rho \boldsymbol u) + \nabla\cdot(\rho \boldsymbol u\boldsymbol u + p\,\mathbb I + \boldsymbol{\Pi}) = n\boldsymbol F
 $$
 
 - **Energy**
 
 $$
-\partial_{t}\varepsilon + \nabla\cdot\big[(\varepsilon+p)\mathbf u + \boldsymbol{\Pi}\cdot\mathbf u + \mathbf q\big] = n\mathbf F\cdot\mathbf u
+\partial_{t}\varepsilon + \nabla\cdot\big[(\varepsilon+p)\boldsymbol u + \boldsymbol{\Pi}\cdot\boldsymbol u + \boldsymbol q\big] = n\boldsymbol F\cdot\boldsymbol u
 $$
 
-$\boldsymbol{\Pi}$ is the viscous stress, $\mathbf q$ the heat flux. To **close** these, expand around $f_{\mathrm{LE}}$.
+$\boldsymbol{\Pi}$ is the viscous stress, $\boldsymbol q$ the heat flux. To **close** these, expand around $f_{\mathrm{LE}}$.
 
 ---
 
@@ -2555,11 +2555,11 @@ $\boldsymbol{\Pi}$ is the viscous stress, $\mathbf q$ the heat flux. To **close*
 Assume weak gradients (small Knudsen number $K\!n\equiv \ell/L$) and write $f=f_{\mathrm{LE}} + f^{(1)} + \cdots$ where $f^{(1)}$ is linear in gradients. Solving Boltzmann at first order gives **Newtonian viscosity** and **Fourier heat law**:
 
 $$
-\boldsymbol{\Pi} = -\eta\left[\nabla\mathbf u + (\nabla\mathbf u)^{T} - \tfrac{2}{3}(\nabla\cdot\mathbf u)\mathbb I\right] - \zeta\,(\nabla\cdot\mathbf u)\,\mathbb I
+\boldsymbol{\Pi} = -\eta\left[\nabla\boldsymbol u + (\nabla\boldsymbol u)^{T} - \tfrac{2}{3}(\nabla\cdot\boldsymbol u)\mathbb I\right] - \zeta\,(\nabla\cdot\boldsymbol u)\,\mathbb I
 $$
 
 $$
-\mathbf q = -\kappa\,\nabla T
+\boldsymbol q = -\kappa\,\nabla T
 $$
 
 For hard spheres (mass $m$, diameter $d$) at number density $n$ and temperature $T$,
@@ -2609,10 +2609,10 @@ upper sign for bosons, lower for fermions. This is the **Uehling–Uhlenbeck** m
 
 ### 9.12.10 Boltzmann transport in solids (electrons and phonons)
 
-In crystals, $f(\mathbf k,\mathbf r,t)$ evolves in **$\mathbf k$-space** with band velocity $\mathbf v_{\mathbf k}=\nabla_{\mathbf k}\epsilon_{\mathbf k}/\hbar$ and forces from electric fields and Berry curvature (advanced topic). With a relaxation time $\tau(\mathbf k)$,
+In crystals, $f(\boldsymbol k,\boldsymbol r,t)$ evolves in **$\boldsymbol k$-space** with band velocity $\boldsymbol v_{\boldsymbol k}=\nabla_{\boldsymbol k}\epsilon_{\boldsymbol k}/\hbar$ and forces from electric fields and Berry curvature (advanced topic). With a relaxation time $\tau(\boldsymbol k)$,
 
 $$
-\sigma_{xx} = e^{2}\!\int\!\frac{d^{3}k}{(2\pi)^{3}}\; \tau(\mathbf k)\, v_{x}^{2}\, \left(-\frac{\partial f_{0}}{\partial \epsilon}\right)
+\sigma_{xx} = e^{2}\!\int\!\frac{d^{3}k}{(2\pi)^{3}}\; \tau(\boldsymbol k)\, v_{x}^{2}\, \left(-\frac{\partial f_{0}}{\partial \epsilon}\right)
 $$
 
 reproduces **Drude** in free-electron bands, while phonon Boltzmann explains lattice thermal conductivity via three-phonon scattering and boundary limits.
@@ -2656,7 +2656,7 @@ Derive detailed balance with Pauli blocking for a two-state fermion collision an
 
 ### 9.12.14 Minimal problem kit
 
-- Starting from the Boltzmann equation, derive the continuity, momentum, and energy equations and identify $\boldsymbol{\Pi}$ and $\mathbf q$  
+- Starting from the Boltzmann equation, derive the continuity, momentum, and energy equations and identify $\boldsymbol{\Pi}$ and $\boldsymbol q$  
 - Carry out the first Sonine-polynomial step for hard spheres to compute $\eta$ to leading order and compare to the heuristic $\tfrac{1}{3} n m \bar v \ell$  
 - Implement BGK and show $\eta=p\tau$; fit $\tau$ to a measured viscosity to predict thermal conductivity and Prandtl number  
 - For a dilute electron gas with elastic impurity scattering, compute $\sigma$ in the relaxation-time approximation and discuss the Matthiessen rule qualitatively  
