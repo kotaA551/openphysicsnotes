@@ -3,6 +3,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; 
 import { usePathname } from 'next/navigation';
 import { chapters } from '@/lib/chapters';
 import { curiosities } from '@/lib/curiosities';
@@ -37,7 +38,14 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             aria-label="Go to home"
             className="text-lg font-bold hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded px-1"
           >
-            Open Physics Notes
+            <Image
+              src="/opn-logo-mark-512.png"
+              alt="Open Physics Notes logo"
+              width={28}
+              height={28}
+              className="rounded"
+            />
+            <span className="text-lg font-bold">Open Physics Notes</span>
           </Link>
         </div>
       </header>
