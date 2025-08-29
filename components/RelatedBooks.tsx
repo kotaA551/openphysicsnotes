@@ -1,17 +1,30 @@
-type Book = { title: string; author?: string; href: string; note?: string };
+type BookItem = {
+  title: string;
+  author?: string;
+  note?: string;
+  href: string;
+  image?: string;
+};
 
-export default function RelatedBooks({ items }: { items: Book[] }) {
+export default function RelatedBooks({ items }: { items: BookItem[] }) {
   return (
-    <section className="mt-10">
-      <h2 className="text-lg font-semibold">Further Reading</h2>
-      <ul className="mt-3 grid gap-3">
-        {items.map((b) => (
-          <li key={b.href} className="border rounded-lg p-4 hover:bg-black/[0.02]">
-            <a className="font-medium underline" href={b.href} target="_blank" rel="noopener noreferrer">
-              {b.title}
+    <section className="mt-8">
+      <h2 className="text-lg font-bold mb-4">Further Reading</h2>
+      <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+        {items.map((book, i) => (
+          <li key={i} className="border rounded p-3 hover:shadow">
+            <a href={book.href} target="_blank" rel="noopener noreferrer" className="block">
+              {book.image && (
+                <img
+                  src={book.image}
+                  alt={book.title}
+                  className="mb-2 w-full h-auto object-contain"
+                />
+              )}
+              <p className="font-semibold">{book.title}</p>
+              {book.author && <p className="text-sm text-gray-600">{book.author}</p>}
+              {book.note && <p className="text-xs text-gray-500">{book.note}</p>}
             </a>
-            {b.author && <span className="block text-sm text-black/70">{b.author}</span>}
-            {b.note && <p className="mt-1 text-sm text-black/80">{b.note}</p>}
           </li>
         ))}
       </ul>
