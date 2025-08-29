@@ -10,7 +10,7 @@ export default function RelatedBooks({ items }: { items: BookItem[] }) {
   return (
     <section className="mt-8">
       <h2 className="text-lg mb-4">Further Reading</h2>
-      <ul className="flex flex-column flex-wrap gap-6">
+      <ul className="flex flex-col flex-wrap gap-6">
         {items.map((book, i) => (
           <li key={i}>
             <a href={book.href} target="_blank" rel="noopener noreferrer" className="block">
