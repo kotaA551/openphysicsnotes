@@ -21,9 +21,15 @@ export default function RelatedBooks({ items }: { items: BookItem[] }) {
                   className="mb-2 w-full h-auto object-contain"
                 />
               )}
-              <p className="font-semibold hover:opacity-80">{book.title}</p>
-              {book.author && <p className="text-sm text-gray-600">{book.author}</p>}
-              {book.note && <p className="text-xs text-gray-500">{book.note}</p>}
+              <div className="flex flex-row items-center gap-2">
+                <p className="font-semibold hover:opacity-80">{book.title}</p>
+                {book.author && (
+                  <p className="text-sm text-gray-600">{book.author}</p>
+                )}
+                {book.note && (
+                  <p className="text-xs text-gray-500">{book.note}</p>
+                )}
+              </div>
             </a>
           </li>
         ))}
