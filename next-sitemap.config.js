@@ -1,5 +1,5 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://openphysicsnotes.com',
+  siteUrl: 'https://www.openphysicsnotes.com',
   generateRobotsTxt: true,
 }
