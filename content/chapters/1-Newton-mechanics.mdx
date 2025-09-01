@@ -153,9 +153,6 @@ $$
 
 This single relation makes the universe calculable.
 
----
-
-
 ### Proof from the Lagrangian
 Take the Lagrangian $L = T - V = \tfrac{1}{2} m \dot{\boldsymbol r}^2 - V(\boldsymbol r)$. 
 
@@ -238,6 +235,152 @@ time-translation symmetry corresponds to conservation of energy.
 
 
 
+
+### Example Problem 4.1 – Block on an Inclined Plane
+**Problem**: A block of mass $m$ slides down a frictionless incline at angle $\theta$. Find its acceleration $a$.  
+
+  ![Block on an Inclined Plane Problem](/images/block-on-an-inclined-plane-problem.svg)
+
+**Solution**:  
+Force along incline: $F = mg \sin\theta$  
+Newton’s Second Law: $F = ma$  
+So $a = g \sin\theta$.  
+
+  ![Block on an Inclined Plane Solution](/images/block-on-an-inclined-plane-solution.svg)
+
+If $\theta = 30^\circ$, $a = 4.9 \,\text{m/s}^2$.  
+
+---
+
+### Example Problem 4.2 – Simple Pendulum (small angle)
+
+  ![Simple Pendulum](/images/simple-pendulum.svg)
+
+We consider a simple pendulum consisting of a point mass $m$ attached to a rigid, massless rod (or string) of length $\ell$. The pivot is frictionless, and the angle from the vertical is denoted by $\theta(t)$.
+
+The bob moves on a circular arc of radius $\ell$. Its tangential acceleration is
+
+$$
+a_{\text{tan}} = \ell \ddot{\theta},
+$$
+
+and its radial (centripetal) acceleration is
+
+$$
+a_{\text{rad}} = \ell \dot{\theta}^{2}.
+$$
+
+Two forces act on the bob:
+
+- The **tension** $T$ along the rod.
+- The **gravitational force** $mg$ vertically downward.
+
+The tangential component of gravity is
+
+$$
+F_{\text{tan}} = -mg \sin\theta,
+$$
+
+where the minus sign indicates that gravity restores the pendulum toward $\theta=0$.
+
+Applying Newton’s second law in the tangential direction,
+
+$$
+m a_{\text{tan}} = \sum F_{\text{tan}},
+$$
+
+we find
+
+$$
+m(\ell \ddot{\theta}) = -mg \sin\theta.
+$$
+
+Simplifying,
+
+$$
+\ddot{\theta} + \frac{g}{\ell} \sin\theta = 0.
+$$
+
+This is the **exact nonlinear equation of motion** of a simple pendulum.
+
+For small angular displacements $|\theta|\ll 1$ (in radians), we can use
+
+$$
+\sin\theta \approx \theta.
+$$
+
+The equation then becomes
+
+$$
+\boxed{ \ddot{\theta} + \frac{g}{\ell}\,\theta = 0 }.
+$$
+
+This is the familiar **simple harmonic oscillator equation**, with angular frequency
+
+$$
+\omega_0 = \sqrt{\tfrac{g}{\ell}}, \quad
+T = \frac{2\pi}{\omega_0} = 2\pi\sqrt{\tfrac{\ell}{g}}.
+$$
+
+- **Torque Method:**  
+  About the pivot, the torque due to gravity is
+
+  $$
+  \tau = -mg\ell \sin\theta,
+  $$
+
+  and with moment of inertia $I=m\ell^2$,  
+
+  $$
+  I\ddot{\theta} = \tau \quad\Rightarrow\quad \ddot{\theta} + \frac{g}{\ell}\sin\theta=0.
+  $$
+
+- **Lagrangian Method:**  
+
+  $$
+  T = \tfrac{1}{2}m\ell^2\dot{\theta}^2, 
+  \quad V = mg\ell(1-\cos\theta),
+  $$
+
+  $$
+  L = T - V.
+  $$
+
+  Applying the Euler–Lagrange equation yields the same result.
+
+Since
+
+$$
+\sin\theta = \theta - \tfrac{\theta^3}{6} + \cdots,
+$$
+
+the relative error is $\sim \theta^2/6$:
+
+- At $\theta = 10^\circ \approx 0.17$ rad → error $\approx 0.5\%$.
+- At $\theta = 20^\circ \approx 0.35$ rad → error $\approx 2\%$.
+
+Thus, the small-angle equation is accurate for modest oscillations.
+
+
+Equation of motion:  
+
+$$
+\ddot{\theta} + \frac{g}{l}\theta = 0
+$$
+
+Solution:  
+
+$$
+\theta(t) = \theta_0 \cos\!\left(\sqrt{\tfrac{g}{l}}\,t\right)
+$$  
+
+Period:  
+
+$$
+T = 2\pi \sqrt{\tfrac{l}{g}}
+$$  
+
+---
 
 
 
