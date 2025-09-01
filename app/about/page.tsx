@@ -7,12 +7,8 @@ export default function Page() {
       <p>
         Open Physics Notes is an open, free set of lecture-style notes covering
         undergraduate through frontier topics in physics. The goal is clarity,
-        rigor, and accessibility.
-      </p>
-      <h2>Editorial Policy</h2>
-      <p>
-        Equations are typeset with LaTeX/KaTeX. References are added where
-        appropriate. Corrections and suggestions are welcome.
+        rigor, and accessibility.<br></br>
+        All content on this site is free to use.
       </p>
     </article>
   );

@@ -24,12 +24,6 @@ export default function Page() {
         If analytics is enabled, page views and aggregated usage metrics may be
         processed to improve content quality.
       </p>
-
-      <h2>Contact</h2>
-      <p>
-        For privacy questions or data requests, contact
-        {" "}<a className="underline" href="mailto:hello@openphysicsnotes.com">hello@openphysicsnotes.com</a>.
-      </p>
     </article>
   );
 }

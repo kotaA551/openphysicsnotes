@@ -7,8 +7,7 @@ export default function Page() {
       <p>
         Some pages contain affiliate links to books and resources. If you click
         an affiliate link and make a purchase, we may receive a commission at
-        no additional cost to you. Recommendations are based on editorial
-        judgment and relevance to the chapter topic.
+        no additional cost to you.
       </p>
       {/* <p>
         As an Amazon Associate, we earn from qualifying purchases.
