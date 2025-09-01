@@ -455,7 +455,7 @@ $$
 L(\boldsymbol r+\boldsymbol\epsilon,\dot{\boldsymbol r},t)=L(\boldsymbol r,\dot{\boldsymbol r},t).
 $$
 
-### 1) Infinitesimal variation of the Lagrangian
+#### 1 Infinitesimal variation of the Lagrangian
 For the infinitesimal translation $\delta\boldsymbol r=\boldsymbol\epsilon$ and $\delta\dot{\boldsymbol r}=0$,
 
 $$
@@ -471,7 +471,7 @@ $$
 \boxed{\ \frac{\partial L}{\partial \boldsymbol r}= \boldsymbol 0\ } \tag{A}
 $$
 
-### 2) Euler–Lagrange ⇒ conserved vector
+#### 2) Euler–Lagrange ⇒ conserved vector
 The Euler–Lagrange (EL) equation is
 
 $$
@@ -492,7 +492,7 @@ $$
 \boldsymbol p \;\equiv\; \frac{\partial L}{\partial \dot{\boldsymbol r}}
 $$
 
-is the **canonical momentum**. Therefore $\boldsymbol p$ is conserved whenever $L$ is invariant under $\boldsymbol r\!\to\!\boldsymbol r+\boldsymbol\epsilon$.
+is the canonical momentum. Therefore $\boldsymbol p$ is conserved whenever $L$ is invariant under $\boldsymbol r\!\to\!\boldsymbol r+\boldsymbol\epsilon$.
 
 With the standard kinetic term $T=\tfrac12 m\dot{\boldsymbol r}^{\,2}$,
 
@@ -502,8 +502,8 @@ $$
 
 so the (mechanical) momentum $m\boldsymbol v$ is conserved.
 
-### 3) Noether’s-theorem view (same result)
-On-shell (EL satisfied), the variation of $L$ under **any** $\delta\boldsymbol r$ can be written as a total time derivative:
+#### 3 Noether’s-theorem view (same result)
+On-shell (EL satisfied), the variation of $L$ under any $\delta\boldsymbol r$ can be written as a total time derivative:
 
 $$
 \delta L
@@ -522,7 +522,7 @@ $$
 
 Thus the conserved Noether charge for translations is $\boldsymbol p$ itself.
 
-### 4) What does “translation invariant” imply for $V(\boldsymbol r)$?
+#### 4 What does “translation invariant” imply for $V(\boldsymbol r)$?
 - **Single particle in external potential.**  
   If $V$ depends on absolute position ($V(\boldsymbol r)$), translations generally change $V$; invariance then forces $\nabla V=\boldsymbol 0$ (i.e., $V=\text{const}$). This is the **free particle**, yielding conservation of $m\boldsymbol v$.
 - **Many particles with internal forces.**  
@@ -563,8 +563,89 @@ v_2' = \frac{(m_2 - m_1)v_2 + 2 m_1 v_1}{m_1 + m_2}
 $$
 
 
+### Example Problem 5.2 – The Rocket Equation (Tsiolkovsky)
 
-### Example Problem 5.2 – Rocket Propulsion
+Consider a rocket of instantaneous mass $M(t)$ moving with velocity $v(t)$ in free space (no external forces).  
+During a small interval $dt$, the rocket expels mass $|dM|$ backward with exhaust velocity $u$ relative to the rocket.
+
+#### 1 Momentum Conservation
+The change in momentum of the rocket is
+
+$$
+dP_{\text{rocket}} = M\,dv.
+$$
+
+The expelled fuel has velocity $(v - u)$ in the inertial frame, so its momentum is
+
+$$
+dP_{\text{exhaust}} = (dM)(v - u).
+$$
+
+Here $dM<0$ because the rocket loses mass.  
+Conservation of total momentum gives
+
+$$
+M\,dv + (dM)(v - u) = v\,dM,
+$$
+
+which simplifies to
+
+$$
+M\,dv = -u\,dM.
+$$
+
+#### 2 Differential Form
+Dividing by $dt$,
+
+$$
+M \frac{dv}{dt} = -u \frac{dM}{dt}.
+$$
+
+#### 3 Integration
+Rewriting,
+
+$$
+dv = -u \frac{dM}{M}.
+$$
+
+Integrating from $(M_0,v_0)$ to $(M,v)$,
+
+$$
+\int_{v_0}^{v} dv' = -u \int_{M_0}^{M} \frac{dM'}{M'},
+$$
+
+which yields
+
+$$
+v - v_0 = u \ln\!\left(\frac{M_0}{M}\right).
+$$
+
+Thus the general rocket equation is
+
+$$
+\boxed{\,v(t) = v_0 + u \ln\!\left(\tfrac{M_0}{M(t)}\right)\,}.
+$$
+
+#### 4 Notes on Interpretation
+- The simplified form
+
+  $$
+  v = u \ln\!\left(\tfrac{M_0}{M}\right)
+  $$
+
+  assumes $v_0=0$ (rocket starts at rest).
+- $u$ is the **exhaust velocity relative to the rocket**. Some texts define $u$ with a minus sign (backward direction), which can flip signs in the formula.
+- This derivation assumes no external forces (no gravity, no drag). Including them modifies the equation significantly.
+
+#### 5 Physical Meaning
+The equation shows that rocket velocity grows **logarithmically** with the ratio of initial to final mass:
+
+$$
+\frac{M_0}{M} = \text{“mass ratio”}.
+$$
+
+A higher exhaust velocity $u$ or larger mass ratio leads to greater final speed.
+
 The rocket equation comes from momentum conservation.  
 For rocket mass $M$ expelling exhaust mass $dm$ at velocity $u$:  
 
@@ -581,6 +662,7 @@ $$
 This is the **Tsiolkovsky rocket equation**.  
 
 ---
+
 ## 6. Why These Laws Still Matter
 
 Newton’s three laws form the foundation of every mechanics course, every engineering calculation, every orbit planned by space agencies.  
