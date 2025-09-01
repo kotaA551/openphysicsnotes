@@ -34,6 +34,15 @@ Galileo Galilei shattered Aristotelian orthodoxy with experiments:
    > **Exercise 1.1**: Drop a hammer and a feather in a vacuum. Which hits first?  
    > **Answer**: They land simultaneously, as acceleration $g$ is independent of mass.  
 
+   <div style={{ textAlign: "center" }}>
+    <img 
+      src="/images/hammer-and-feather-hit-ground.png" 
+      alt="Hammer and Feather falling in vacuum" 
+      width="400"
+    />
+  </div>
+
+
 2. **Law of Inertia (proto-form)**  
    Galileo noted that a ball rolling on a frictionless plane would not stop by itself.  
    If no force acted, its velocity remained constant.  
@@ -51,7 +60,7 @@ Galileo Galilei shattered Aristotelian orthodoxy with experiments:
 
 ### Kepler and the Celestial Puzzle
 
-Johannes Kepler (1571–1630) provided another piece. Using Tycho Brahe’s data, he extracted three laws of planetary motion:  
+Johannes Kepler (1571–1630) provided another piece. Using Tycho Brahe (1546-1601) ’s data, he extracted three laws of planetary motion:  
 
 1. Planets move in ellipses with the Sun at one focus.  
 2. They sweep out equal areas in equal times.  
@@ -63,7 +72,7 @@ But Kepler had no *cause*. Why ellipses? Why $T^2 \propto a^3$? He described the
 
 ### Descartes and the Mechanical Dream
 
-René Descartes (1596–1650) imagined a clockwork universe filled with vortices of subtle matter pushing the planets along. It was poetic but untestable. Still, the dream of **mechanization of the cosmos** lingered.  
+René Descartes (1596–1650) imagined a clockwork universe filled with vortices of subtle matter pushing the planets along. It was poetic but untestable. Still, the dream of mechanization of the cosmos lingered.  
 
 ---
 
@@ -81,7 +90,7 @@ Into this gap, in 1642, the year Galileo died, Isaac Newton was born.
 
 ## 2. The Genesis of Laws
 
-Newton did not invent physics, but he *wove it into a system*. He absorbed Galileo’s inertia, Kepler’s harmonies, and Descartes’ mechanics. In 1687, he published *Philosophiæ Naturalis Principia Mathematica* — the **Principia**.  
+Newton did not invent physics, but he wove it into a system. He absorbed Galileo’s inertia, Kepler’s harmonies, and Descartes’ mechanics. In 1687, he published *Philosophiæ Naturalis Principia Mathematica* — the *Principia*.  
 
 Here, three Laws of Motion and the Law of Universal Gravitation were laid out.  
 
@@ -93,7 +102,7 @@ We stand today on that unification.
 
 ## 3. The First Law – Inertia and Isolation
 
-Newton’s **First Law of Motion** deepened Galileo’s idea of inertia:
+Newton’s First Law of Motion deepened Galileo’s idea of inertia:
 
 > “Every body perseveres in its state of rest, or of uniform motion in a straight line, unless it is compelled to change that state by forces impressed upon it.”
 
@@ -119,7 +128,7 @@ Consider a ball rolling down one slope, across a flat surface, and up another sl
 - With reduced friction, it rises higher.  
 - In the limit of zero friction, it would rise to the same height — or if perfectly flat, continue forever.  
 
-This experiment demonstrates that uniform motion needs **no continuous cause**.
+This experiment demonstrates that uniform motion needs no continuous cause.
 
 ---
 
@@ -133,7 +142,7 @@ If $v_0 = 5 \,\text{m/s}$, after $t=10\,\text{s}$ it has traveled $50 \,\text{m}
 
 ## 4. The Second Law – Force and Genius
 
-Newton’s **Second Law** provides the causal link:
+Newton’s Second Law provides the causal link:
 
 > “The change of motion is proportional to the motive force impressed; and is made in the direction of the straight line in which that force is impressed.”
 
@@ -148,7 +157,10 @@ This single relation makes the universe calculable.
 ---
 
 ### Proof from the Lagrangian
-Take the Lagrangian $L = T - V = \tfrac{1}{2} m \dot{\boldsymbol r}^2 - V(\boldsymbol r)$.  
+Take the Lagrangian $L = T - V = \tfrac{1}{2} m \dot{\boldsymbol r}^2 - V(\boldsymbol r)$. 
+
+The Lagrangian is defined as the difference between the kinetic energy $T$ and the potential energy $V$.
+
 Euler–Lagrange equation:
 
 $$
@@ -166,13 +178,15 @@ Thus, Newton’s $F = ma$ emerges naturally from variational principles.
 ---
 
 ### Time-Translation Symmetry → Energy Conservation
-If $L$ has no explicit time dependence, then:
+If $L$ has no explicit time dependence, then Energy $E$ is:
 
 $$
 E = \dot{\boldsymbol r} \cdot \frac{\partial L}{\partial \dot{\boldsymbol r}} - L
 $$
 
-is conserved. For a particle:
+is conserved.
+
+For a particle:
 
 $$
 E = \tfrac{1}{2} m v^2 + V(\boldsymbol r) = \text{constant}
@@ -180,10 +194,59 @@ $$
 
 Thus **time symmetry = energy conservation**.
 
+## Proof
+
+From the definition,
+
+$$
+E = \dot{q}_i \frac{\partial L}{\partial \dot{q}_i} - L,
+$$
+
+its time derivative is
+
+$$
+\frac{dE}{dt} = \ddot{q}_i \frac{\partial L}{\partial \dot{q}_i}
++ \dot{q}_i \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)
+- \frac{dL}{dt}.
+$$
+
+Using the Euler–Lagrange equation
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) 
+= \frac{\partial L}{\partial q_i},
+$$
+
+we obtain
+
+$$
+\frac{dE}{dt} = -\frac{\partial L}{\partial t}.
+$$
+
+Therefore, if $L$ has no explicit time dependence,
+
+$$
+\frac{\partial L}{\partial t} = 0 \quad \Rightarrow \quad \frac{dE}{dt} = 0,
+$$
+
+so $E$ is conserved.
+
+This is a direct example of **Noether’s theorem**:  
+time-translation symmetry corresponds to conservation of energy.
+
+
 ---
 
 ### Example Problem 4.1 – Block on an Inclined Plane
 **Problem**: A block of mass $m$ slides down a frictionless incline at angle $\theta$. Find its acceleration.  
+
+   <div style={{ textAlign: "center" }}>
+    <img 
+      src="images\block-on-an-inclined-plane-problem.svg" 
+      alt="Block on an Inclined Plane Problem" 
+      width="400"
+    />
+  </div>
 
 **Solution**:  
 Force along incline: $F = mg \sin\theta$  
