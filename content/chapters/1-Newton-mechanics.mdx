@@ -156,6 +156,85 @@ This single relation makes the universe calculable.
 ---
 
 
+### Proof from the Lagrangian
+Take the Lagrangian $L = T - V = \tfrac{1}{2} m \dot{\boldsymbol r}^2 - V(\boldsymbol r)$. 
+
+The Lagrangian is defined as the difference between the kinetic energy $T$ and the potential energy $V$.
+
+Euler–Lagrange equation:
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\boldsymbol r}}\right) - \frac{\partial L}{\partial \boldsymbol r} = 0
+$$
+
+gives  
+
+$$
+m \ddot{\boldsymbol r} + \nabla V = 0 \quad \Rightarrow \quad m \ddot{\boldsymbol r} = \boldsymbol F
+$$
+
+Thus, Newton’s $F = ma$ emerges naturally from variational principles.
+
+---
+
+### Time-Translation Symmetry → Energy Conservation
+If $L$ has no explicit time dependence, then Energy $E$ is:
+
+$$
+E = \dot{\boldsymbol r} \cdot \frac{\partial L}{\partial \dot{\boldsymbol r}} - L
+$$
+
+is conserved.
+
+For a particle:
+
+$$
+E = \tfrac{1}{2} m v^2 + V(\boldsymbol r) = \text{constant}
+$$
+
+Thus **time symmetry = energy conservation**.
+
+## Proof
+
+From the definition,
+
+$$
+E = \dot{q}_i \frac{\partial L}{\partial \dot{q}_i} - L,
+$$
+
+its time derivative is
+
+$$
+\frac{dE}{dt} = \ddot{q}_i \frac{\partial L}{\partial \dot{q}_i}
++ \dot{q}_i \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)
+- \frac{dL}{dt}.
+$$
+
+Using the Euler–Lagrange equation
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) 
+= \frac{\partial L}{\partial q_i},
+$$
+
+we obtain
+
+$$
+\frac{dE}{dt} = -\frac{\partial L}{\partial t}.
+$$
+
+Therefore, if $L$ has no explicit time dependence,
+
+$$
+\frac{\partial L}{\partial t} = 0 \quad \Rightarrow \quad \frac{dE}{dt} = 0,
+$$
+
+so $E$ is conserved.
+
+This is a direct example of **Noether’s theorem**:  
+time-translation symmetry corresponds to conservation of energy.
+
+---
 
 
 
