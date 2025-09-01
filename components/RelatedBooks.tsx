@@ -21,7 +21,7 @@ export default function RelatedBooks({ items }: { items: BookItem[] }) {
                   className="mb-2 w-full h-auto object-contain"
                 />
               )}
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-2">
               <p className="font-semibold hover:opacity-80">{book.title}</p>
               {book.author && (
                 <p className="text-sm">{book.author}</p>
