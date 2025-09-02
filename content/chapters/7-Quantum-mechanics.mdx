@@ -172,6 +172,122 @@ $$
 
 so total probability is conserved. In 3D, replace derivatives by gradients and divergences.
 
+#### Continuity Equation from Schrödinger (1D)
+
+We assume a **real** potential $V(x,t)$ (no gain/loss). Define
+
+$$
+\rho(x,t)=|\psi(x,t)|^{2}=\psi^{\ast}(x,t)\,\psi(x,t),\qquad
+j(x,t)=\frac{\hbar}{2mi}\Big[\psi^{\ast}\partial_x\psi-(\partial_x\psi^{\ast})\psi\Big].
+$$
+
+The time-dependent Schrödinger equation and its complex conjugate are
+
+$$
+i\hbar\,\partial_t\psi
+=-\frac{\hbar^{2}}{2m}\,\partial_x^{2}\psi+V\psi,
+\qquad
+-\,i\hbar\,\partial_t\psi^{\ast}
+=-\frac{\hbar^{2}}{2m}\,\partial_x^{2}\psi^{\ast}+V\psi^{\ast}.
+$$
+
+---
+
+## Step 1: Differentiate $\rho$ in time
+
+$$
+\partial_t\rho=\partial_t(\psi^{\ast}\psi)
+=(\partial_t\psi^{\ast})\psi+\psi^{\ast}(\partial_t\psi).
+$$
+
+Use the equations to substitute $\partial_t\psi$ and $\partial_t\psi^{\ast}$:
+
+$$
+\partial_t\psi=\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi+V\psi\right),
+\qquad
+\partial_t\psi^{\ast}=-\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi^{\ast}+V\psi^{\ast}\right).
+$$
+
+Therefore
+
+$$
+\begin{aligned}
+\partial_t\rho
+&=\left[-\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi^{\ast}+V\psi^{\ast}\right)\right]\psi
++\psi^{\ast}\left[\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi+V\psi\right)\right] \\
+&=\frac{1}{i\hbar}\left[
+-\frac{\hbar^{2}}{2m}\big(\psi^{\ast}\partial_x^{2}\psi-\psi\,\partial_x^{2}\psi^{\ast}\big)
++\cancel{V\psi^{\ast}\psi}-\cancel{V\psi^{\ast}\psi}
+\right].
+\end{aligned}
+$$
+
+Since the potential cancels,
+
+$$
+\partial_t\rho
+=-\,\frac{\hbar}{2mi}\Big(\psi^{\ast}\partial_x^{2}\psi-\psi\,\partial_x^{2}\psi^{\ast}\Big).
+$$
+
+---
+
+## Step 2: Rewrite as divergence form
+
+Using product rule identities:
+
+$$
+\partial_x\big(\psi^{\ast}\partial_x\psi\big)
+=(\partial_x\psi^{\ast})(\partial_x\psi)+\psi^{\ast}\partial_x^{2}\psi,
+$$
+
+$$
+\partial_x\big(\psi\,\partial_x\psi^{\ast}\big)
+=(\partial_x\psi)(\partial_x\psi^{\ast})+\psi\,\partial_x^{2}\psi^{\ast}.
+$$
+
+Subtracting gives
+
+$$
+\partial_x\big(\psi^{\ast}\partial_x\psi-\psi\,\partial_x\psi^{\ast}\big)
+=\psi^{\ast}\partial_x^{2}\psi-\psi\,\partial_x^{2}\psi^{\ast}.
+$$
+
+Thus
+
+$$
+\partial_t\rho
+=-\,\frac{\hbar}{2mi}\,\partial_x\!\left(\psi^{\ast}\partial_x\psi-\psi\,\partial_x\psi^{\ast}\right)
+=-\,\partial_x\!\left[\frac{\hbar}{2mi}\Big(\psi^{\ast}\partial_x\psi-(\partial_x\psi^{\ast})\psi\Big)\right].
+$$
+
+Recognizing the bracket as $j(x,t)$:
+
+$$
+\boxed{\;\partial_t\rho+\partial_x j=0\;}
+$$
+
+This is the **continuity equation** ensuring probability conservation.
+
+---
+
+## Remarks
+
+- With boundary condition $j\to 0$ at $\pm\infty$:
+
+$$
+\frac{d}{dt}\int_{-\infty}^{\infty}\rho(x,t)\,dx=0,
+$$
+
+so the total probability remains 1.
+
+- In $d$-dimensions:
+
+$$
+\mathbf j(\mathbf r,t)=\frac{\hbar}{2mi}\big(\psi^{\ast}\nabla\psi-(\nabla\psi^{\ast})\psi\big),\qquad
+\partial_t\rho+\nabla\!\cdot\mathbf j=0.
+$$
+
+- If $V$ is complex (absorbing or amplifying medium), the continuity equation gains a source/sink term.
 
 
 ---
