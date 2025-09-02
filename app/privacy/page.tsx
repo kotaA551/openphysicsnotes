@@ -8,9 +8,8 @@ export default function Page() {
 
       <h2>Overview</h2>
       <p>
-        We collect minimal data necessary for basic site analytics and
-        affiliate attribution. Personal data is not sold or shared with third
-        parties except as required to operate analytics and affiliate programs.
+        We collect minimal data necessary for basic site analytics.
+        Personal data is not sold or shared with third parties except as required to operate analytics and affiliate programs.
       </p>
 
       <h2>Cookies</h2>
