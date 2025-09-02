@@ -172,7 +172,9 @@ $$
 
 so total probability is conserved. In 3D, replace derivatives by gradients and divergences.
 
-#### Continuity Equation from Schrödinger (1D)
+---
+
+## Proof
 
 We assume a **real** potential $V(x,t)$ (no gain/loss). Define
 
@@ -190,8 +192,6 @@ i\hbar\,\partial_t\psi
 -\,i\hbar\,\partial_t\psi^{\ast}
 =-\frac{\hbar^{2}}{2m}\,\partial_x^{2}\psi^{\ast}+V\psi^{\ast}.
 $$
-
----
 
 ## Step 1: Differentiate $\rho$ in time
 
@@ -228,8 +228,6 @@ $$
 \partial_t\rho
 =-\,\frac{\hbar}{2mi}\Big(\psi^{\ast}\partial_x^{2}\psi-\psi\,\partial_x^{2}\psi^{\ast}\Big).
 $$
-
----
 
 ## Step 2: Rewrite as divergence form
 
@@ -268,8 +266,6 @@ $$
 
 This is the **continuity equation** ensuring probability conservation.
 
----
-
 ## Remarks
 
 - With boundary condition $j\to 0$ at $\pm\infty$:
@@ -283,8 +279,8 @@ so the total probability remains 1.
 - In $d$-dimensions:
 
 $$
-\mathbf j(\mathbf r,t)=\frac{\hbar}{2mi}\big(\psi^{\ast}\nabla\psi-(\nabla\psi^{\ast})\psi\big),\qquad
-\partial_t\rho+\nabla\!\cdot\mathbf j=0.
+\mathbf j(\boldsymbol r,t)=\frac{\hbar}{2mi}\big(\psi^{\ast}\nabla\psi-(\nabla\psi^{\ast})\psi\big),\qquad
+\partial_t\rho+\nabla\!\cdot\boldsymbol j=0.
 $$
 
 - If $V$ is complex (absorbing or amplifying medium), the continuity equation gains a source/sink term.
@@ -544,6 +540,204 @@ R=\frac{j_{\text{re}}}{j_{\text{in}}},\qquad T=\frac{j_{\text{tr}}}{j_{\text{in}
 $$
 
 For real $V$, $R+T=1$ follows from the continuity equation.
+
+### Detailed Explanation
+
+**Setup** (incoming + reflected on the left, transmitted on the right):
+
+For $x \to -\infty$:
+$$
+\psi_L(x) = A_{\text{in}} e^{ikx} + A_{\text{re}} e^{-ikx},
+\qquad k = \frac{\sqrt{2m(E - V_L)}}{\hbar}
+$$
+
+For $x \to +\infty$:
+$$
+\psi_R(x) = A_{\text{tr}} e^{ik'x},
+\qquad k' = \frac{\sqrt{2m(E - V_R)}}{\hbar}
+$$
+
+Here $V_L, V_R$ are constants, with $E > \max\{V_L, V_R\}$.
+
+## 1) Continuity equation and probability flux
+
+The time-dependent Schrödinger equation is
+$$
+i\hbar \frac{\partial \psi}{\partial t}
+= -\frac{\hbar^2}{2m}\frac{\partial^2 \psi}{\partial x^2} + V(x)\psi.
+$$
+
+Its complex conjugate is
+$$
+-\,i\hbar \frac{\partial \psi^\ast}{\partial t}
+= -\frac{\hbar^2}{2m}\frac{\partial^2 \psi^\ast}{\partial x^2} + V(x)\psi^\ast.
+$$
+
+Multiplying the first by $\psi^\ast$ and the second by $\psi$, then subtracting, gives
+$$
+i\hbar \Bigl(\psi^\ast \frac{\partial \psi}{\partial t} + \psi \frac{\partial \psi^\ast}{\partial t}\Bigr)
+= -\frac{\hbar^2}{2m}\Bigl[\psi^\ast \frac{\partial^2 \psi}{\partial x^2}
+- \psi \frac{\partial^2 \psi^\ast}{\partial x^2}\Bigr]
++ \cancel{(V - V)|\psi|^2}.
+$$
+
+The left-hand side becomes
+$$
+i\hbar \frac{\partial}{\partial t}|\psi|^2,
+$$
+
+and the right-hand side can be written as a total derivative:
+$$
+-\frac{\hbar^2}{2m}\frac{\partial}{\partial x}
+\Bigl[\psi^\ast \frac{\partial \psi}{\partial x}
+- \Bigl(\frac{\partial \psi^\ast}{\partial x}\Bigr)\psi\Bigr].
+$$
+
+Thus, for real $V(x)$,
+$$
+\frac{\partial}{\partial t}|\psi|^2 + \frac{\partial}{\partial x}\,j(x,t) = 0,
+$$
+
+with the probability flux
+$$
+j(x,t) = \frac{\hbar}{2mi}\Bigl[\psi^\ast \frac{\partial \psi}{\partial x}
+- \Bigl(\frac{\partial \psi^\ast}{\partial x}\Bigr)\psi\Bigr].
+$$
+
+For a stationary state $\psi(x,t) = \psi(x)e^{-iEt/\hbar}$,  
+$\partial_t |\psi|^2 = 0$, so
+$$
+\frac{d}{dx}j(x) = 0 \quad \Rightarrow \quad j(x) = \text{constant}.
+$$
+
+## 2) Flux on the left side
+
+On the left,
+$$
+\psi_L(x) = A_{\text{in}} e^{ikx} + A_{\text{re}} e^{-ikx}.
+$$
+
+Derivative and conjugate:
+$$
+\frac{d\psi_L}{dx} = ikA_{\text{in}} e^{ikx} - ikA_{\text{re}} e^{-ikx},
+\qquad
+\psi_L^\ast = A_{\text{in}}^\ast e^{-ikx} + A_{\text{re}}^\ast e^{ikx}.
+$$
+
+Compute
+$$
+\psi_L^\ast \frac{d\psi_L}{dx}
+= (A_{\text{in}}^\ast e^{-ikx} + A_{\text{re}}^\ast e^{ikx})
+(ikA_{\text{in}} e^{ikx} - ikA_{\text{re}} e^{-ikx}).
+$$
+
+Expansion gives
+$$
+= ik|A_{\text{in}}|^2 - ik|A_{\text{re}}|^2
++ ik\bigl(-A_{\text{in}}^\ast A_{\text{re}} e^{-2ikx}
++ A_{\text{re}}^\ast A_{\text{in}} e^{2ikx}\bigr).
+$$
+
+Similarly,
+$$
+\Bigl(\frac{d\psi_L^\ast}{dx}\Bigr)\psi_L
+= (-ikA_{\text{in}}^\ast e^{-ikx} + ikA_{\text{re}}^\ast e^{ikx})
+(A_{\text{in}} e^{ikx} + A_{\text{re}} e^{-ikx}),
+$$
+
+which expands to
+$$
+= -ik|A_{\text{in}}|^2 + ik|A_{\text{re}}|^2
++ ik\bigl(-A_{\text{in}}^\ast A_{\text{re}} e^{-2ikx}
++ A_{\text{re}}^\ast A_{\text{in}} e^{2ikx}\bigr).
+$$
+
+Subtracting cancels the interference terms:
+$$
+\psi_L^\ast \frac{d\psi_L}{dx}
+- \Bigl(\frac{d\psi_L^\ast}{dx}\Bigr)\psi_L
+= 2ik\bigl(|A_{\text{in}}|^2 - |A_{\text{re}}|^2\bigr).
+$$
+
+Therefore
+$$
+j_L = \frac{\hbar}{2mi}\cdot 2ik\bigl(|A_{\text{in}}|^2 - |A_{\text{re}}|^2\bigr)
+= \frac{\hbar k}{m}\bigl(|A_{\text{in}}|^2 - |A_{\text{re}}|^2\bigr).
+$$
+
+Defining
+$$
+j_{\text{in}} = \frac{\hbar k}{m}|A_{\text{in}}|^2, \qquad
+j_{\text{re}} = \frac{\hbar k}{m}|A_{\text{re}}|^2,
+$$
+
+we find
+$$
+j_L = j_{\text{in}} - j_{\text{re}}.
+$$
+
+## 3) Flux on the right side
+
+On the right,
+$$
+\psi_R(x) = A_{\text{tr}} e^{ik'x}.
+$$
+
+Derivative and conjugate:
+$$
+\frac{d\psi_R}{dx} = ik'A_{\text{tr}} e^{ik'x},
+\qquad
+\psi_R^\ast = A_{\text{tr}}^\ast e^{-ik'x}.
+$$
+
+Thus,
+$$
+\psi_R^\ast \frac{d\psi_R}{dx}
+- \Bigl(\frac{d\psi_R^\ast}{dx}\Bigr)\psi_R
+= 2ik'|A_{\text{tr}}|^2.
+$$
+
+Hence
+$$
+j_R = \frac{\hbar}{2mi}\cdot 2ik'|A_{\text{tr}}|^2
+= \frac{\hbar k'}{m}|A_{\text{tr}}|^2
+\equiv j_{\text{tr}}.
+$$
+
+## 4) Conservation of flux $\Rightarrow R+T=1$
+
+Stationarity and real $V(x)$ imply $j(x)$ is constant:
+$$
+j_L = j_R.
+$$
+
+Therefore,
+$$
+j_{\text{in}} - j_{\text{re}} = j_{\text{tr}}
+\quad \Rightarrow \quad
+j_{\text{in}} = j_{\text{re}} + j_{\text{tr}}.
+$$
+
+Define reflection and transmission:
+$$
+R = \frac{j_{\text{re}}}{j_{\text{in}}}, \qquad
+T = \frac{j_{\text{tr}}}{j_{\text{in}}}.
+$$
+
+Finally,
+$$
+1 = \frac{j_{\text{re}}}{j_{\text{in}}} + \frac{j_{\text{tr}}}{j_{\text{in}}}
+\quad \Rightarrow \quad
+\boxed{R + T = 1}.
+$$
+
+**Remark:**  
+If $V(x)$ is complex (absorptive), the continuity equation gains a source term
+$$
+\frac{\partial j}{\partial x}
+= \frac{2}{\hbar}\,\operatorname{Im}V(x)\,|\psi(x)|^2,
+$$
+so in general $R+T<1$.
 
 ---
 
