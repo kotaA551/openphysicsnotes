@@ -5,47 +5,14 @@ export const dynamic = 'force-static';
 export const runtime = 'nodejs';
 
 export default function HomePage() {
-  const chapters = getAllChapters();
-
-  const imagePaths = [
-    '/images/Isaac-Neweton.png',
-    '/images/James-Clerk-Maxwell.png',
-    '/images/Albert-Einstein.png',
-    '/images/Paul-Dirac.png',
-  ];
 
   return (
     <main className="prose prose-zinc max-w-none">
       <h1>Open Physics Notes</h1>
       
-      {/* Image grid */}
-      <div
-        className="
-          not-prose
-          grid gap-3
-          grid-cols-2
-          sm:grid-cols-3
-          lg:grid-cols-4
-          2xl:grid-cols-6
-          my-6
-        "
-        aria-label="image table"
-      >
-        {imagePaths.map((src, i) => (
-          <figure
-            key={i}
-            className="aspect-square overflow-hidden rounded-xl shadow-sm border border-zinc-200"
-          >
-            <img
-              src={src}
-              alt={`gallery item ${i + 1}`}
-              className="h-full w-full object-cover transition-transform duration-200 hover:scale-[1.03]"
-              loading="lazy"
-              decoding="async"
-            />
-          </figure>
-        ))}
-      </div>
+      <figure>
+        <img src="/images/eyecatch.png" alt="Collage of famous physicists" />
+      </figure>
 
       <p>
         Physics is the human attempt to listen to the quiet symphony of the cosmos. It is the discipline that asks not merely "what" happens, but "why", and "how", and "under what universal law". To study physics is to trace the logic of the universe, written not in ink or myth, but in mathematics — precise, abstract, and deeply profound.<br/><br/>

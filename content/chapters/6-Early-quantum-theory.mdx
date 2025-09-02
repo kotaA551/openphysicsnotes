@@ -97,8 +97,6 @@ We will live mostly in **1900–1925**: the **old quantum theory** (Planck → E
 
 ---
 
-**In summary:** Around 1900, exquisitely careful experiments found phenomena that classical physics, however beloved, could not parse: blackbody spectra, photoelectric thresholds, stable atoms with sharp spectral lines. Planck quantized energy exchange, Einstein quantized light, Rutherford found the nucleus, Bohr quantized orbits, and de Broglie quantized **us** (matter has wavelength). The rest of this chapter turns those punchlines into derivations and data, building the case that discreteness is not a bug—it is the operating system.
-
 ## 6.2 Blackbody Radiation and Planck’s Hypothesis
 
 Blackbody radiation is where classical physics face-planted and quantum theory quietly spawned. A **blackbody** is an ideal cavity with a tiny hole: light that enters bounces around and is essentially absorbed; light that leaves carries the equilibrium spectrum of the cavity walls. The mission in the 1890s was to predict the energy density of this radiation as a function of frequency $\nu$ and temperature $T$ and to explain why the measured curve rises, peaks, and then crashes instead of diverging. Spoiler: classical equipartition said “infinite UV energy,” nature said “lol, no,” and Max Planck invented quanta to get the curve right.
@@ -226,6 +224,8 @@ $$
 which is Wien’s law with $A=8\pi h/c^{3}$ and $B=h/k_B$
 
 So Planck’s formula gracefully bridges the two regimes that classical and empirical laws captured separately.
+
+  ![blackbody radiation](/images/blackbody-radiation.png)
 
 ---
 
@@ -376,8 +376,6 @@ Changing variables $x=h\nu/(k_B T)$ yields $n(T)\propto T^{3}$ with a proportion
 
 ---
 
-**In summary:** Counting modes is classical; assigning energy per mode must be quantum. Planck’s hypothesis—energy chunks of size $h\nu$—kills the UV divergence, unifies the low- and high-frequency limits, and hardwires $h$ into nature. From here, Einstein will push the logic onto light itself (photoelectric effect), and Bohr will deploy $h$ inside the atom. The era of “continuous everything” is over; the grid has pixels.
-
 ## 6.3 Photoelectric Effect and Einstein’s Light Quanta
 
 Shine light on a clean metal and electrons pop out. Classical waves could explain “more light → more energy,” but experiments in the early 1900s said “frequency first, intensity second.” That plot twist pushed Einstein to a bold take: light energy arrives in discrete packets of size $h\nu$. The photoelectric effect is where photons stop being poetry and start being accounting.
@@ -389,9 +387,9 @@ Shine light on a clean metal and electrons pop out. Classical waves could explai
 Laboratories found a crisp set of facts:
 
 - There exists a **threshold frequency** $\nu_0$ below which no electrons are emitted, however intense the light  
-- Above threshold, the **maximum kinetic energy** of emitted electrons depends **linearly on frequency**, not intensity  
+- Above threshold, the **maximum kinetic energy** of emitted electrons depends linearly on frequency, not intensity  
 - The **emission is prompt** on the scale of the light cycle; no measurable delay even at low intensities  
-- The **photoelectric current** (number of electrons per second) scales with light **intensity** for fixed frequency, up to a saturation set by the apparatus
+- The **photoelectric current** (number of electrons per second) scales with light intensity for fixed frequency, up to a saturation set by the apparatus
 
 These rules are weird in a pure wave picture where energy is spread out over the wavefront and can accumulate continuously.
 
@@ -399,7 +397,7 @@ These rules are weird in a pure wave picture where energy is spread out over the
 
 ### 6.3.2 Einstein’s one-liner
 
-Einstein’s 1905 hypothesis: light of frequency $\nu$ behaves as a stream of quanta (photons), each carrying energy $h\nu$. An electron in the solid that absorbs **one** photon spends part of that energy to escape the material—this is the **work function** $W$—and keeps the rest as kinetic energy. Thus
+Einstein’s 1905 hypothesis: light of frequency $\nu$ behaves as a stream of quanta (photons), each carrying energy $h\nu$. An electron in the solid that absorbs one photon spends part of that energy to escape the material—this is the **work function** $W$—and keeps the rest as kinetic energy. Thus
 
 $$
 K_{\max} = h\nu - W
@@ -411,7 +409,7 @@ $$
 \nu_0 = \frac{W}{h}
 $$
 
-Intensity controls how many photons arrive per second, hence how many electrons can be emitted per second, but **not** the maximum energy of each electron. Frequency sets the budget per electron.
+Intensity controls how many photons arrive per second, hence how many electrons can be emitted per second, but not the maximum energy of each electron. Frequency sets the budget per electron.
 
 ---
 
@@ -429,13 +427,13 @@ $$
 e\,V_s = h\nu - W
 $$
 
-So a graph of $V_s$ versus $\nu$ has **slope** $h/e$ and **intercept** $-W/e$. That is how early experiments extracted Planck’s constant and the work function directly from electron kinetics.
+So a graph of $V_s$ versus $\nu$ has slope $h/e$ and intercept $-W/e$. That is how early experiments extracted Planck’s constant and the work function directly from electron kinetics.
 
 ---
 
 ### 6.3.4 Why the classical wave picture face-plants
 
-A classical wave deposits energy continuously at a rate proportional to intensity. If that were the whole story, then at **low** intensities electrons should need a long time to accumulate enough energy to escape (a measurable delay), and for sufficiently intense **low-frequency** light the effect should happen anyway—no threshold. Neither occurs. The data scream “energy arrives in lumps,” with each electron grabbing at most one lump.
+A classical wave deposits energy continuously at a rate proportional to intensity. If that were the whole story, then at low intensities electrons should need a long time to accumulate enough energy to escape (a measurable delay), and for sufficiently intense **low-frequency** light the effect should happen anyway—no threshold. Neither occurs. The data scream “energy arrives in lumps,” with each electron grabbing at most one lump.
 
 ---
 
@@ -447,7 +445,7 @@ Robert Millikan spent a decade trying to break Einstein’s interpretation by do
 
 ### 6.3.6 From intensity to flux: how many electrons?
 
-Hold $\nu$ fixed above threshold. Doubling **intensity** doubles the **photon flux** at the surface. If the surface is clean and space-charge effects are controlled, the **saturation current** $I_{\text{sat}}$ scales linearly with intensity because each absorbed photon can liberate at most one electron. The fraction that actually escape is the **quantum efficiency** $\eta$; thus
+Hold $\nu$ fixed above threshold. Doubling intensity doubles the photon flux at the surface. If the surface is clean and space-charge effects are controlled, the saturation current $I_{\text{sat}}$ scales linearly with intensity because each absorbed photon can liberate at most one electron. The fraction that actually escape is the quantum efficiency $\eta$; thus
 
 $$
 I_{\text{sat}} \approx \eta\,\frac{P}{h\nu}\,e
@@ -459,7 +457,7 @@ where $P$ is the optical power absorbed on the active area. Real values of $\eta
 
 ### 6.3.7 Energy distribution and the role of the solid
 
-$K_{\max}$ is the upper edge. The **distribution** of kinetic energies depends on the band structure and scattering within the solid. In simple metals one can sketch an “initial state” between the Fermi level and a few $k_B T$ below it; an electron that absorbs a photon emerges with energy roughly $h\nu - W$ minus any losses to inelastic scattering on the way out. That is why measured spectra are broad, not delta functions, even though the top edge follows $h\nu - W$ cleanly.
+$K_{\max}$ is the upper edge. The distribution of kinetic energies depends on the band structure and scattering within the solid. In simple metals one can sketch an “initial state” between the Fermi level and a few $k_B T$ below it; an electron that absorbs a photon emerges with energy roughly $h\nu - W$ minus any losses to inelastic scattering on the way out. That is why measured spectra are broad, not delta functions, even though the top edge follows $h\nu - W$ cleanly.
 
 ---
 
@@ -479,16 +477,16 @@ The work function $W$ is a surface property: it depends on the material, crystal
 
 1) Illuminate a freshly prepared metal surface with monochromatic light at several frequencies  
 2) For each $\nu$, sweep the collector voltage negative until the photocurrent drops to zero to find $V_s$  
-3) Plot $eV_s$ versus $\nu$; fit a line to extract **slope** $h$ and **intercept** $-W$  
+3) Plot $eV_s$ versus $\nu$; fit a line to extract slope $h$ and intercept $-W$  
 4) Independently, measure saturation current versus intensity at fixed $\nu$ to confirm linear scaling of electron count with photon flux
 
-The two experiments probe different pieces of Einstein’s model: the **energy per photon** and the **counting** of photons.
+The two experiments probe different pieces of Einstein’s model: the **energy per photon** and the counting of photons.
 
 ---
 
 ### 6.3.11 What about intensity at fixed frequency?
 
-At fixed $\nu>\nu_0$, increasing intensity raises the **number** of emitted electrons (current) but leaves the **maximum energy** unchanged because $h\nu$ is unchanged. Conversely, at fixed intensity, increasing frequency raises $K_{\max}$ linearly. On the $V_s$–$\nu$ plot, intensity just changes how quickly you reach saturation, not the slope or intercept.
+At fixed $\nu>\nu_0$, increasing intensity raises the number of emitted electrons (current) but leaves the **maximum energy** unchanged because $h\nu$ is unchanged. Conversely, at fixed intensity, increasing frequency raises $K_{\max}$ linearly. On the $V_s$–$\nu$ plot, intensity just changes how quickly you reach saturation, not the slope or intercept.
 
 ---
 
@@ -544,8 +542,6 @@ It is common to quote $\lambda_0$ for a photocathode because engineers think in 
 Quantum takes the wheel precisely where classical physics insists on the wrong dependencies.
 
 ---
-
-**In summary:** The photoelectric effect is a tight transaction ledger: each emitted electron settles the bill $h\nu=W+K$. The slope–intercept plot of $eV_s$ versus $\nu$ measures $h$ and $W$ with brutal clarity. Intensity counts photons; frequency sets their budget. This is the experiment that made “photon” more than a metaphor and locked $h$ into the hardware of light–matter interaction.
 
 ## 6.4 Atomic Spectra and Bohr’s Model
 
@@ -814,8 +810,6 @@ Bohr’s radii $r_n$ correspond to maxima in the radial probability density of t
 
 ---
 
-**In summary:** Bohr’s model is a beautifully wrong theory: wrong in mechanism, right in spectrum. Quantized angular momentum and photon energy differences generate exact hydrogen lines, hint at matter waves, and put $a_0$ and $R_\infty$ on the constants menu. Its cracks—fine structure, Zeeman, helium—are invitations to a fuller story, which arrives when waves and matrices take over in the next chapter.
-
 ## 6.5 Rutherford Scattering and the Nuclear Atom
 
 Sometimes one experiment deletes an entire worldview. The Geiger–Marsden gold-foil experiment did exactly that. They fired **alpha particles** (helium nuclei) at an ultra-thin gold foil and counted scintillations on a screen. Most alphas zipped through with tiny deflections, but a surprising few bounced at **large angles**, even backward. If positive charge were smeared throughout the atom (Thomson’s “plum pudding”), big-angle kicks would be essentially impossible. The data demanded a concentrated, tiny, positively charged **nucleus**.
@@ -997,6 +991,8 @@ $$
 
 and the observed large-angle events made the nuclear atom unavoidable. Once you accept a compact nucleus, Bohr’s quantized orbits and discrete spectra stop being magic tricks and start being architecture.
 
+---
+
 ## 6.6 Matter Waves: de Broglie to Davisson–Germer
 
 If light can act like particles, maybe particles can act like waves. That was Louis de Broglie’s audacious 1923–24 symmetry flex. He guessed that every material particle with momentum $p$ carries a wavelength $\lambda=h/p$. Wild? Sure. But the prediction stuck landing after a few years: electrons diffracted from crystals exactly like X-rays, with the measured angles matching $\lambda=h/p$. Matter waves were not a metaphor; they were lab reality.
@@ -1017,7 +1013,7 @@ $$
 E = \hbar \omega,\qquad p = \hbar k
 $$
 
-The two equalities say: if something carries energy–momentum $(E,\boldsymbol p)$, there is a wave with angular frequency $\omega$ and wavevector $\boldsymbolf k$ marching in step.
+The two equalities say: if something carries energy–momentum $(E,\boldsymbol p)$, there is a wave with angular frequency $\omega$ and wavevector $\boldsymbol k$ marching in step.
 
 ---
 
@@ -1144,7 +1140,7 @@ $$
 i\hbar\,\frac{\partial \psi}{\partial t} = -\,\frac{\hbar^{2}}{2m}\,\nabla^{2}\psi + V\psi
 $$
 
-the time-dependent **Schrödinger equation**. In other words, de Broglie’s $E(\boldsymbolf p)$ is the dispersion law that Schrödinger’s PDE realizes in real space.
+the time-dependent **Schrödinger equation**. In other words, de Broglie’s $E(\boldsymbol p)$ is the dispersion law that Schrödinger’s PDE realizes in real space.
 
 A complementary viewpoint uses Hamilton–Jacobi theory: write $\psi \sim \exp(i S/\hbar)$; then $\nabla S$ behaves like momentum. Quantum mechanics is classical mechanics plus **phase** and **interference**.
 
@@ -1223,8 +1219,6 @@ Real experiments include geometry factors (incidence vs detection), but the scal
 - Build a Gaussian wave packet $\psi(x,0)$, evolve it with the free Schrödinger kernel, and extract the time dependence of the rms width
 
 ---
-
-**In summary:** de Broglie’s $\lambda=h/p$ turns out to be the Rosetta stone: it explains Bohr’s quantization as standing waves, predicts diffraction from crystals, and leads straight to Schrödinger’s equation via the dispersion relation. Phase zips superluminally, group speed tracks the particle, and interference is no longer just for light. Matter waves are how the micro-world writes its receipts.
 
 ## 6.7 Old Quantum Theory: Hits and Misses
 
@@ -1424,6 +1418,8 @@ Take a classical circular orbit and expand its dipole moment into Fourier modes 
 ---
 
 **In summary:** Old quantum theory was a brilliant stopgap. It guessed the right invariants to quantize, respected a correspondence to classical physics, and even anticipated stimulated emission. But without wavefunctions, operators, and spin, it could not compute intensities, multi-electron spectra, or magnetic fine print. The successes became the scaffolding for Heisenberg’s matrices and Schrödinger’s waves; the failures marked the exact spots where the full theory had to grow
+
+---
 
 ## 6.8 Spin, Stern–Gerlach, and Exclusion
 
@@ -1635,6 +1631,8 @@ Electron degeneracy pressure $P\sim \frac{\hbar^2}{m_e} n_e^{5/3}$ balances grav
 ---
 
 **In summary:** Spin is not a tiny orbit; it is an intrinsic two-level degree of freedom with algebra, matrices, and a magnetic moment. Stern–Gerlach revealed its discreteness, Zeeman patterns and fine structure confirmed its coupling to fields and orbital motion, and Pauli’s exclusion principle turned spin into architecture—filling shells, setting chemistry, and propping up stars. Add in Fermi–Dirac statistics and $g\approx 2$, and you have the modern, compact story behind a century of “anomalies” that were really just spin waiting to be named
+
+---
 
 ## 6.9 From Old Quantum to Wave/Matrix Mechanics
 
