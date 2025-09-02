@@ -9,11 +9,11 @@ type BookItem = {
 export default function RelatedBooks({ items }: { items: BookItem[] }) {
   return (
     <section className="mt-8">
-      <h2 className="text-lg mb-4">Further Reading</h2>
-      <ul className="flex flex-col flex-wrap gap-6">
+      <h2 className="text-lg mb-2">Further Reading</h2>
+      <ul className="flex flex-col flex-wrap gap-4">
         {items.map((book, i) => (
           <li key={i}>
-            <a href={book.href} target="_blank" rel="noopener noreferrer" className="block no-underline">
+            <a href={book.href} target="_blank" rel="noopener noreferrer" className="block">
               {book.image && (
                 <img
                   src={book.image}
@@ -21,13 +21,13 @@ export default function RelatedBooks({ items }: { items: BookItem[] }) {
                   className="mb-2 w-full h-auto object-contain"
                 />
               )}
-            <div className="flex flex-col sm:flex-row items-center gap-2">
+            <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
               <p className="font-semibold hover:opacity-80">{book.title}</p>
               {book.author && (
                 <p className="text-sm">{book.author}</p>
               )}
               {book.note && (
-                <p className="text-md">{book.note}</p>
+                <p className="font-bold text-gray-600 text-md no-underline">{book.note}</p>
               )}
             </div>
             </a>
