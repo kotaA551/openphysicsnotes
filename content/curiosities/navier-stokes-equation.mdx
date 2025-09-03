@@ -1,4 +1,3 @@
-
 ## 1. Why this matters (Millennium Problem)
 Fluids are everywhere—stars, oceans, air, plasmas.  
 Yet the **3D incompressible Navier–Stokes** equations still lack a proof of **global smooth existence & uniqueness** for smooth data (Clay Millennium Problem).  
@@ -8,22 +7,22 @@ Understanding regularity also underpins **turbulence**, arguably the last great 
 
 ## 2. Continuum Fields and Conservation Laws
 
-Let $\rho(\mathbf x,t)$ be mass density, $\mathbf v(\mathbf x,t)$ velocity, $p(\mathbf x,t)$ pressure, and $\boldsymbol{\sigma}$ the Cauchy stress. Body force per mass $\mathbf f$ (e.g. gravity).
+Let $\rho(\boldsymbol x,t)$ be mass density, $\boldsymbol v(\boldsymbol x,t)$ velocity, $p(\boldsymbol x,t)$ pressure, and $\boldsymbol{\sigma}$ the Cauchy stress. Body force per mass $\boldsymbol f$ (e.g. gravity).
 
 ### 2.1 Mass conservation
 $$
-\partial_t \rho + \nabla\!\cdot(\rho \mathbf v) = 0.
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
 $$
 
 ### 2.2 Momentum conservation (Cauchy)
 $$
-\rho\left(\partial_t \mathbf v + (\mathbf v\!\cdot\!\nabla)\mathbf v\right)
-= \nabla\!\cdot \boldsymbol{\sigma} + \rho \mathbf f .
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
 $$
 
 Decompose stress into isotropic pressure and deviatoric part:
 $$
-\boldsymbol{\sigma} = -p\,\mathbf I + \boldsymbol{\tau}.
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
 $$
 
 ---
@@ -32,16 +31,16 @@ $$
 
 For an isotropic Newtonian fluid,
 $$
-\boldsymbol{\tau} = 2\mu\,\mathbf S + \lambda\,(\nabla\!\cdot\!\mathbf v)\,\mathbf I,
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
 \qquad
-\mathbf S \equiv \frac12\left(\nabla \mathbf v + \nabla \mathbf v^{\!\top}\right),
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
 $$
 with dynamic viscosity $\mu$, bulk viscosity $\lambda$.
 
 Plugging into momentum balance gives the **compressible Navier–Stokes**:
 $$
-\rho\left(\partial_t \mathbf v + \mathbf v\!\cdot\!\nabla \mathbf v\right)
-= -\nabla p + \mu \nabla^2 \mathbf v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\mathbf v) + \rho \mathbf f .
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
 $$
 
 Define kinematic viscosity $\nu \equiv \mu/\rho$ when $\rho$ is constant.
@@ -52,65 +51,65 @@ Define kinematic viscosity $\nu \equiv \mu/\rho$ when $\rho$ is constant.
 
 For constant density $\rho=\rho_0$ and
 $$
-\nabla\!\cdot\!\mathbf v = 0,
+\nabla\!\cdot\!\boldsymbol v = 0,
 $$
 we obtain
 $$
-\partial_t \mathbf v + (\mathbf v\!\cdot\!\nabla)\mathbf v
-= -\frac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \mathbf v + \mathbf f,
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
 \qquad
-\nabla\!\cdot\!\mathbf v = 0.
+\nabla\!\cdot\!\boldsymbol v = 0.
 $$
 
 Taking divergence of the momentum equation yields a **pressure Poisson equation** (with suitable BCs):
 $$
-\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\mathbf v\!\cdot\!\nabla)\mathbf v\big] + \rho_0\,\nabla\!\cdot\!\mathbf f .
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
 $$
 
 ---
 
 ## 5. Vorticity and Helicity
 
-Define vorticity $\boldsymbol{\omega} \equiv \nabla \times \mathbf v$.  
-For incompressible flow ($\nabla\!\cdot\!\mathbf v=0$):
+Define vorticity $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.  
+For incompressible flow ($\nabla\!\cdot\!\boldsymbol v=0$):
 $$
 \partial_t \boldsymbol{\omega}
-= \nabla\times(\mathbf v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
-+ \nabla \times \mathbf f .
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
 $$
 In components:
 $$
 \partial_t \omega_i + v_j\partial_j \omega_i
-= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\mathbf f)_i .
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
 $$
 The term $\omega_j \partial_j v_i$ is **vortex stretching** (3D only).  
-Helicity $H\equiv\int \mathbf v\!\cdot\!\boldsymbol{\omega}\,dV$ diagnoses topology of vortex lines.
+Helicity $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ diagnoses topology of vortex lines.
 
 ---
 
 ## 6. Energy Balance (Incompressible)
 
-Multiply momentum by $\mathbf v$ and integrate over a domain $\Omega$ with no-slip at $\partial\Omega$:
+Multiply momentum by $\boldsymbol v$ and integrate over a domain $\Omega$ with no-slip at $\partial\Omega$:
 $$
-\frac12 \frac{d}{dt}\int_\Omega |\mathbf v|^2\,dV
-+ \nu \int_\Omega |\nabla \mathbf v|^2\,dV
-= \int_\Omega \mathbf f\!\cdot\!\mathbf v\,dV .
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
 $$
 
-For $\mathbf f=\mathbf 0$, kinetic energy decays monotonically; viscosity dissipates as $\nu\|\nabla \mathbf v\|_2^2$.
+For $\boldsymbol f=\boldsymbol 0$, kinetic energy decays monotonically; viscosity dissipates as $\nu\|\nabla \boldsymbol v\|_2^2$.
 
 ---
 
 ## 7. Non-dimensionalization and Control Parameters
 
 Choose characteristic scales $L$ (length), $U$ (speed), define
-$\mathbf x'=\mathbf x/L$, $t' = tU/L$, $\mathbf v'=\mathbf v/U$, $p'=p/(\rho U^2)$.
+$\boldsymbol x'=\boldsymbol x/L$, $t' = tU/L$, $\boldsymbol v'=\boldsymbol v/U$, $p'=p/(\rho U^2)$.
 
 The incompressible equations become
 $$
-\partial_{t'} \mathbf v' + (\mathbf v'\!\cdot\!\nabla')\mathbf v'
-= -\nabla' p' + \frac{1}{\mathrm{Re}}\nabla'^2 \mathbf v' + \mathbf f',
-\quad \nabla'\!\cdot\!\mathbf v' = 0,
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
 $$
 with the **Reynolds number**
 $$
@@ -126,10 +125,10 @@ Other dimensionless groups (as needed):
 
 ## 8. Compressible Navier–Stokes–Fourier (Sketch)
 
-Include internal energy $e$ or temperature $T$, with Fourier heat flux $\mathbf q=-\kappa \nabla T$:
+Include internal energy $e$ or temperature $T$, with Fourier heat flux $\boldsymbol q=-\kappa \nabla T$:
 $$
-\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\mathbf v)
-= -p\,\nabla\!\cdot\!\mathbf v + \boldsymbol{\tau}:\nabla \mathbf v - \nabla\!\cdot\!\mathbf q .
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
 $$
 Equation of state (e.g., ideal gas) closes the system: $p=(\gamma-1)\rho e$.
 
@@ -146,7 +145,7 @@ For 3D incompressible NS with $L^2$ data, **global-in-time weak solutions** exis
 $$
 \int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
 $$
-- **Prodi–Serrin** conditions: if $\mathbf v \in L^p(0,T;L^q)$ with
+- **Prodi–Serrin** conditions: if $\boldsymbol v \in L^p(0,T;L^q)$ with
 $$
 \frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
 $$
@@ -183,8 +182,8 @@ DNS cost scales steeply (grid points $\sim \mathrm{Re}^{9/4}$ for 3D), motivatin
 
 ## 11. Boundary Conditions & Geometry
 
-- **No-slip wall:** $\mathbf v|_{\partial\Omega}=\mathbf 0$  
-- **Free-slip:** $\mathbf n\!\cdot\!\mathbf v=0$, $\mathbf n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\mathbf t=0$  
+- **No-slip wall:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
+- **Free-slip:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
 - **Periodic box (torus)** for theory/DNS  
 - **Inflow/Outflow** with appropriate stress/pressure specs
 
@@ -194,7 +193,7 @@ Choice affects well-posedness, energy budget, and numerical stability.
 
 ## 12. Numerics (one-page field guide)
 
-- **Projection methods:** advance $\mathbf v^\ast$, solve Poisson for $p$, project to $\nabla\!\cdot\!\mathbf v^{n+1}=0$.  
+- **Projection methods:** advance $\boldsymbol v^\ast$, solve Poisson for $p$, project to $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.  
 - **Energy-stable schemes:** skew-symmetric convective form preserves discrete energy.  
 - **CFL constraint:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
 - **Divergence-free bases:** spectral/finite-element methods with inf–sup stable pairs.
