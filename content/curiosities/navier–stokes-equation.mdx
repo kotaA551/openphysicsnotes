@@ -1,0 +1,220 @@
+
+## 1. Why this matters (Millennium Problem)
+Fluids are everywhere—stars, oceans, air, plasmas.  
+Yet the **3D incompressible Navier–Stokes** equations still lack a proof of **global smooth existence & uniqueness** for smooth data (Clay Millennium Problem).  
+Understanding regularity also underpins **turbulence**, arguably the last great classical physics problem.
+
+---
+
+## 2. Continuum Fields and Conservation Laws
+
+Let $\rho(\mathbf x,t)$ be mass density, $\mathbf v(\mathbf x,t)$ velocity, $p(\mathbf x,t)$ pressure, and $\boldsymbol{\sigma}$ the Cauchy stress. Body force per mass $\mathbf f$ (e.g. gravity).
+
+### 2.1 Mass conservation
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \mathbf v) = 0.
+$$
+
+### 2.2 Momentum conservation (Cauchy)
+$$
+\rho\left(\partial_t \mathbf v + (\mathbf v\!\cdot\!\nabla)\mathbf v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \mathbf f .
+$$
+
+Decompose stress into isotropic pressure and deviatoric part:
+$$
+\boldsymbol{\sigma} = -p\,\mathbf I + \boldsymbol{\tau}.
+$$
+
+---
+
+## 3. Constitutive Law (Newtonian Fluid)
+
+For an isotropic Newtonian fluid,
+$$
+\boldsymbol{\tau} = 2\mu\,\mathbf S + \lambda\,(\nabla\!\cdot\!\mathbf v)\,\mathbf I,
+\qquad
+\mathbf S \equiv \frac12\left(\nabla \mathbf v + \nabla \mathbf v^{\!\top}\right),
+$$
+with dynamic viscosity $\mu$, bulk viscosity $\lambda$.
+
+Plugging into momentum balance gives the **compressible Navier–Stokes**:
+$$
+\rho\left(\partial_t \mathbf v + \mathbf v\!\cdot\!\nabla \mathbf v\right)
+= -\nabla p + \mu \nabla^2 \mathbf v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\mathbf v) + \rho \mathbf f .
+$$
+
+Define kinematic viscosity $\nu \equiv \mu/\rho$ when $\rho$ is constant.
+
+---
+
+## 4. Incompressible Form
+
+For constant density $\rho=\rho_0$ and
+$$
+\nabla\!\cdot\!\mathbf v = 0,
+$$
+we obtain
+$$
+\partial_t \mathbf v + (\mathbf v\!\cdot\!\nabla)\mathbf v
+= -\frac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \mathbf v + \mathbf f,
+\qquad
+\nabla\!\cdot\!\mathbf v = 0.
+$$
+
+Taking divergence of the momentum equation yields a **pressure Poisson equation** (with suitable BCs):
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\mathbf v\!\cdot\!\nabla)\mathbf v\big] + \rho_0\,\nabla\!\cdot\!\mathbf f .
+$$
+
+---
+
+## 5. Vorticity and Helicity
+
+Define vorticity $\boldsymbol{\omega} \equiv \nabla \times \mathbf v$.  
+For incompressible flow ($\nabla\!\cdot\!\mathbf v=0$):
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\mathbf v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \mathbf f .
+$$
+In components:
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\mathbf f)_i .
+$$
+The term $\omega_j \partial_j v_i$ is **vortex stretching** (3D only).  
+Helicity $H\equiv\int \mathbf v\!\cdot\!\boldsymbol{\omega}\,dV$ diagnoses topology of vortex lines.
+
+---
+
+## 6. Energy Balance (Incompressible)
+
+Multiply momentum by $\mathbf v$ and integrate over a domain $\Omega$ with no-slip at $\partial\Omega$:
+$$
+\frac12 \frac{d}{dt}\int_\Omega |\mathbf v|^2\,dV
++ \nu \int_\Omega |\nabla \mathbf v|^2\,dV
+= \int_\Omega \mathbf f\!\cdot\!\mathbf v\,dV .
+$$
+
+For $\mathbf f=\mathbf 0$, kinetic energy decays monotonically; viscosity dissipates as $\nu\|\nabla \mathbf v\|_2^2$.
+
+---
+
+## 7. Non-dimensionalization and Control Parameters
+
+Choose characteristic scales $L$ (length), $U$ (speed), define
+$\mathbf x'=\mathbf x/L$, $t' = tU/L$, $\mathbf v'=\mathbf v/U$, $p'=p/(\rho U^2)$.
+
+The incompressible equations become
+$$
+\partial_{t'} \mathbf v' + (\mathbf v'\!\cdot\!\nabla')\mathbf v'
+= -\nabla' p' + \frac{1}{\mathrm{Re}}\nabla'^2 \mathbf v' + \mathbf f',
+\quad \nabla'\!\cdot\!\mathbf v' = 0,
+$$
+with the **Reynolds number**
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+Other dimensionless groups (as needed):
+- **Mach** $\mathrm{Ma}=U/c_s$ (compressibility),
+- **Froude** $\mathrm{Fr}=U/\sqrt{gL}$ (gravity),
+- **Prandtl** $\mathrm{Pr}=\nu/\kappa$ (momentum vs thermal diffusion).
+
+---
+
+## 8. Compressible Navier–Stokes–Fourier (Sketch)
+
+Include internal energy $e$ or temperature $T$, with Fourier heat flux $\mathbf q=-\kappa \nabla T$:
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\mathbf v)
+= -p\,\nabla\!\cdot\!\mathbf v + \boldsymbol{\tau}:\nabla \mathbf v - \nabla\!\cdot\!\mathbf q .
+$$
+Equation of state (e.g., ideal gas) closes the system: $p=(\gamma-1)\rho e$.
+
+---
+
+## 9. Mathematical Theory (Existence/Uniqueness)
+
+### 9.1 Weak solutions (Leray–Hopf)
+For 3D incompressible NS with $L^2$ data, **global-in-time weak solutions** exist that satisfy the **energy inequality**.  
+**Uniqueness** of such weak solutions is open.
+
+### 9.2 Regularity criteria (3D)
+- **Beale–Kato–Majda**: blow-up at $T$ implies
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+- **Prodi–Serrin** conditions: if $\mathbf v \in L^p(0,T;L^q)$ with
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+then the solution is smooth on $(0,T]$.
+- **Caffarelli–Kohn–Nirenberg**: suitable weak solutions have a singular set in spacetime of parabolic Hausdorff dimension $\le 1$ (partial regularity).
+
+### 9.3 Global regularity in 2D
+For smooth data, **global existence and uniqueness** hold in 2D.  
+Enstrophy $\int |\boldsymbol{\omega}|^2 dV$ remains bounded; no vortex stretching.
+
+### 9.4 Compressible flows
+Global **finite-energy weak solutions** exist (for $\gamma$-law gases under conditions), but regularity/uniqueness are largely open.
+
+> **Millennium Problem:** Prove or give a counterexample that in 3D, smooth, divergence-free initial data yield a **unique smooth global solution** (or exhibit finite-time singularity).
+
+---
+
+## 10. Turbulence and Spectra
+
+In high-$\mathrm{Re}$ homogeneous, isotropic turbulence (K41), the inertial-range energy spectrum
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+with mean dissipation rate $\varepsilon$ and Kolmogorov constant $C_K\!\sim\! \mathcal O(1)$.
+
+**Kolmogorov microscale:**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+DNS cost scales steeply (grid points $\sim \mathrm{Re}^{9/4}$ for 3D), motivating **LES** and **RANS** closures; the **closure problem** (modeling subgrid stresses) remains central.
+
+---
+
+## 11. Boundary Conditions & Geometry
+
+- **No-slip wall:** $\mathbf v|_{\partial\Omega}=\mathbf 0$  
+- **Free-slip:** $\mathbf n\!\cdot\!\mathbf v=0$, $\mathbf n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\mathbf t=0$  
+- **Periodic box (torus)** for theory/DNS  
+- **Inflow/Outflow** with appropriate stress/pressure specs
+
+Choice affects well-posedness, energy budget, and numerical stability.
+
+---
+
+## 12. Numerics (one-page field guide)
+
+- **Projection methods:** advance $\mathbf v^\ast$, solve Poisson for $p$, project to $\nabla\!\cdot\!\mathbf v^{n+1}=0$.  
+- **Energy-stable schemes:** skew-symmetric convective form preserves discrete energy.  
+- **CFL constraint:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
+- **Divergence-free bases:** spectral/finite-element methods with inf–sup stable pairs.
+
+---
+
+## 13. Connections and Extensions
+
+- **Euler limit:** $\nu\to 0$ → incompressible Euler; possible finite-time singularities are a parallel grand challenge.  
+- **Relativistic hydrodynamics:** naive Navier–Stokes is acausal; **Israel–Stewart** (second-order) fixes causality.  
+- **Quantum fluids:** superfluid N-S analogues with two-fluid models and quantized vortices.
+
+---
+
+## 14. Status
+
+- 2D: theory is mature; global smoothness known.  
+- 3D: **existence of global smooth solutions** or **finite-time blow-up** is **open**.  
+- Turbulence phenomenology (K41) is broadly successful but **intermittency** and closures remain active research.  
+
+**TL;DR:** We can simulate and measure astonishingly well, but the **deep math**—regularity and turbulence—still hides the final boss.
+
+---

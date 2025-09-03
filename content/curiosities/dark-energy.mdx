@@ -1,0 +1,170 @@
+
+## 1. Phenomenon: The Accelerating Universe
+
+Observations of Type Ia supernovae (SNe Ia) show that the cosmic expansion is **accelerating**.  
+In a homogeneous and isotropic FLRW spacetime,
+
+$$
+ds^2 = -dt^2 + a^2(t)\left[\frac{dr^2}{1 - k r^2} + r^2 d\Omega^2\right],
+$$
+
+the dynamics obey the Friedmann equations:
+
+$$
+H^2 \equiv \left(\frac{\dot a}{a}\right)^2
+= \frac{8\pi G}{3}\,\rho - \frac{k}{a^2} + \frac{\Lambda}{3},
+$$
+
+$$
+\frac{\ddot a}{a} = -\frac{4\pi G}{3}\,(\rho + 3p) + \frac{\Lambda}{3}.
+$$
+
+Acceleration $\ddot a>0$ requires $\rho + 3p < \Lambda/(4\pi G)$ or, for a fluid with $p = w\rho$, an **effective** $w < -1/3$.
+
+---
+
+## 2. Equation of State and Parameterizations
+
+Define the **dark-energy** equation-of-state (EOS) parameter:
+
+$$
+w \equiv \frac{p_{\rm DE}}{\rho_{\rm DE}}.
+$$
+
+- **Cosmological constant**: $w=-1$, $\rho_\Lambda = \text{const}$.
+- **Quintessence** (canonical scalar $\phi$): $w \in (-1,1)$ and can vary with time.
+- **Phantom**: $w<-1$ (violates NEC).
+- **K-essence / Horndeski / beyond-Horndeski**: generalized kinetic terms / modified gravity sectors.
+
+A common phenomenological fit is **CPL**:
+
+$$
+w(a) = w_0 + w_a (1-a) \quad \Longleftrightarrow \quad
+w(z) = w_0 + \frac{w_a z}{1+z}.
+$$
+
+Then the DE density evolves as
+
+$$
+\rho_{\rm DE}(z) = \rho_{\rm DE,0}
+\,(1+z)^{3(1+w_0+w_a)}\,\exp\!\left[-\frac{3w_a z}{1+z}\right].
+$$
+
+---
+
+## 3. Background Observables
+
+### 3.1 Hubble Expansion
+For a flat universe ($k=0$) with matter, radiation, and DE,
+
+$$
+\frac{H^2(z)}{H_0^2}
+= \Omega_{r0}(1+z)^4 + \Omega_{m0}(1+z)^3
++ \Omega_{\rm DE,0}\, \frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}} .
+$$
+
+### 3.2 Distances (SNe Ia, BAO, CMB)
+The comoving distance:
+
+$$
+\chi(z) = \int_0^z \frac{dz'}{H(z')}.
+$$
+
+Luminosity distance and distance modulus:
+
+$$
+d_L(z) = (1+z)\,\chi(z), \qquad
+\mu(z) = 5\log_{10}\!\left(\frac{d_L(z)}{10\,{\rm pc}}\right).
+$$
+
+BAO provide a standard ruler (sound horizon $r_d$) via angles and redshifts; a common isotropic proxy:
+
+$$
+D_V(z) \equiv \left[ (1+z)^2 D_A^2(z)\,\frac{cz}{H(z)} \right]^{1/3},
+$$
+
+with $D_A(z)=\chi(z)/(1+z)$.
+
+CMB primarily constrains the distance to last scattering and early-time physics, helping to **break degeneracies** in late-time parameters.
+
+---
+
+## 4. Growth of Structure
+
+In (sub-horizon, linear) Newtonian gauge and GR, matter perturbations $\delta \equiv \delta\rho_m/\rho_m$ follow
+
+$$
+\ddot\delta + 2H\dot\delta - 4\pi G \rho_m \delta = 0.
+$$
+
+Define the **growth rate** $f \equiv d\ln D/d\ln a$ where $\delta \propto D(a)$.  
+A useful fit in GR+$\Lambda$CDM is $f \simeq \Omega_m(a)^\gamma$ with $\gamma \approx 0.55$.  
+Redshift-space distortions measure $f\sigma_8(z)$, testing the consistency of **expansion** vs **growth** (and modified gravity).
+
+Modified gravity often appears as scale-/time-dependent effective couplings:
+
+$$
+k^2\Psi = -4\pi G_{\rm eff}(k,a)\,a^2 \rho_m \Delta, 
+\qquad \eta \equiv \frac{\Phi}{\Psi} \neq 1,
+$$
+
+where $\Phi,\Psi$ are Bardeen potentials. Deviations from $G_{\rm eff}=G$ or $\eta=1$ signal physics beyond GR/$\Lambda$.
+
+---
+
+## 5. Microscopic Models (Sketch)
+
+### 5.1 Cosmological Constant $\Lambda$
+Vacuum energy with $w=-1$.  
+The **old CC problem**: naive QFT estimates overshoot the observed value by $\sim 10^{60-120}$.
+
+### 5.2 Quintessence
+Canonical scalar with Lagrangian
+$$
+\mathcal{L} = -\frac12 (\partial \phi)^2 - V(\phi), \quad
+\rho_\phi = \frac12 \dot\phi^2 + V, \quad
+p_\phi = \frac12 \dot\phi^2 - V,
+$$
+so
+$$
+w_\phi = \frac{\frac12 \dot\phi^2 - V}{\frac12 \dot\phi^2 + V}.
+$$
+Tracker / thawing potentials (e.g., $V \propto \phi^{-\alpha}$, $V \propto e^{-\lambda \phi/M_{\rm Pl}}$) can ease coincidence.
+
+### 5.3 Modified Gravity (MG)
+E.g., $f(R)$ gravity with action $S = \int d^4x \sqrt{-g}\, \frac{M_{\rm Pl}^2}{2} f(R) + \dots$  
+Equivalent to a scalar-tensor theory (extra scalar d.o.f.); **screening mechanisms** (chameleon, Vainshtein) recover GR locally.  
+Horndeski / DHOST give the most general second-order scalar-tensor actions; GW170817 constraints enforce $c_T \simeq c$ today, pruning parameter space.
+
+---
+
+## 6. Tensions and Consistency Checks
+
+- **Hubble tension**: early-time (CMB) inference of $H_0$ vs late-time (distance ladder) measurements disagree.  
+  DE dynamics or early dark energy are among proposed explanations, but a coherent fit with **all** data is nontrivial.
+
+- **$S_8$ tension**: weak-lensing–inferred $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3}$ sometimes sits lower than $\Lambda$CDM+CMB best-fits; could hint at modified growth or systematics.
+
+A robust program is to test **background** (distances) and **perturbations** (growth, lensing) **jointly**.
+
+---
+
+## 7. Inference Pipeline (Practical Notes)
+
+Given a parameter vector $\theta = \{\Omega_{m0}, \Omega_{b0}, H_0, w_0, w_a, \sigma_8, n_s, \dots\}$:
+
+1. Compute $H(z|\theta)$ and distances $\{\chi, D_A, d_L\}$.  
+2. Integrate linear growth $D(a|\theta)$ or use $f \simeq \Omega_m^\gamma$.  
+3. Build likelihoods for SNe Ia (distance moduli), BAO ($D_A$, $H$, $D_V$), CMB (distance to last scattering + priors), RSD ($f\sigma_8$), WL ($S_8$).  
+4. Sample posteriors; test **internal consistency** (e.g., growth vs expansion).
+
+---
+
+## 8. Status
+
+Data so far are largely consistent with **$\Lambda$CDM ($w=-1$)**, but mild deviations remain allowed, and a few **tensions** persist.  
+Next-gen surveys (Euclid, Rubin/LSST, Roman, CMB-S4, DESI) will tighten $w_0, w_a$ and stress-test GR via growth and lensing.
+
+**Key question:** Is cosmic acceleration a **new energy component** or a sign that **gravity itself changes** on large scales?
+
+---

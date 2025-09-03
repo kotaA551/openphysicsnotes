@@ -1,118 +1,170 @@
 
 ## 1. From Points to Strings
 
-In the Standard Model, particles are treated as **point-like** objects.  
-But attempts to merge **quantum mechanics** and **general relativity** run into infinities.  
+In the Standard Model, particles are idealized as **points**.  
+But attempts to quantize gravity in this framework run into **non-renormalizable divergences**.  
 
-**String theory** proposes that the fundamental entities are **one-dimensional strings** instead of points.  
+**String theory** replaces points with **one-dimensional strings**.  
+Their vibrations correspond to different particle species.  
 
-- Worldline of a particle → **worldsheet** of a string  
-- Interactions are described as **splitting and joining of strings**  
+- Particle → worldline  
+- String → worldsheet  
 
 ---
 
-## 2. Classical Action: Polyakov Formulation
+## 2. Classical Dynamics of Strings
 
-The motion of a string can be described by the **Polyakov action**:
+### Nambu–Goto Action
+The simplest description is the area of the worldsheet:
 
 $$
-S = -\frac{T}{2} \int d^2\sigma \, \sqrt{-h} \, h^{ab} \, 
-\partial_a X^\mu \, \partial_b X_\mu
+S_{\text{NG}} = -T \int d^2\sigma \, 
+\sqrt{-\det \left( \partial_a X^\mu \partial_b X_\mu \right)} ,
 $$
 
-- $X^\mu(\sigma^a)$: embedding coordinates of the string ($\mu = 0,\dots,D-1$)  
+where $T = 1/(2\pi \alpha')$ is the string tension.
+
+### Polyakov Action
+Equivalent but more convenient:
+
+$$
+S_{\text{P}} = -\frac{T}{2} \int d^2\sigma \, \sqrt{-h}\,
+h^{ab} \partial_a X^\mu \partial_b X_\mu .
+$$
+
+- $X^\mu(\sigma^a)$: embedding of the string in $D$-dimensional spacetime  
 - $h_{ab}$: worldsheet metric  
-- $T$: string tension, usually $T = 1/(2\pi \alpha')$  
 
-This action is invariant under **2D conformal symmetry**.  
-Quantization imposes the requirement that the spacetime dimension be  
-
-- $D=26$ for the **bosonic string**  
-- $D=10$ for the **superstring**  
+This action enjoys **diffeomorphism** and **Weyl invariance**, making it a **2D conformal field theory** (CFT).
 
 ---
 
-## 3. Quantization and Spectrum
+## 3. Quantization and Mode Expansion
 
-Quantization of string vibrations gives rise to particle spectra.  
+Choose **conformal gauge** $h_{ab} = \eta_{ab}$.  
+Equations of motion reduce to the **2D wave equation**:
 
-### Mode expansion (open string):
+$$
+\left( \partial_\tau^2 - \partial_\sigma^2 \right) X^\mu(\tau,\sigma) = 0.
+$$
+
+### Mode Expansion (closed string):
 $$
 X^\mu(\tau,\sigma) = x^\mu + 2\alpha' p^\mu \tau 
-+ i\sqrt{2\alpha'} \sum_{n\neq 0} \frac{1}{n} \alpha_n^\mu e^{-in\tau}\cos(n\sigma)
++ i\sqrt{\frac{\alpha'}{2}} 
+\sum_{n\neq 0} \left(
+\frac{\alpha_n^\mu}{n} e^{-in(\tau-\sigma)} 
++ \frac{\tilde{\alpha}_n^\mu}{n} e^{-in(\tau+\sigma)}
+\right).
 $$
 
-- $\alpha_n^\mu$: oscillation modes  
-- $x^\mu, p^\mu$: center-of-mass position and momentum  
+### Virasoro Constraints
+From worldsheet diffeomorphism invariance:
 
-### Mass spectrum:
 $$
-M^2 = \frac{1}{\alpha'}\left(N - a\right)
+T_{ab} = 0 
+\quad \Rightarrow \quad 
+L_n = 0, \;\; \tilde{L}_n = 0 \quad (n \geq 0).
 $$
 
-where $N$ is the oscillator number operator, and $a$ is the normal ordering constant.  
-
-- **Open strings**: include gauge bosons (photon-like states)  
-- **Closed strings**: necessarily contain a **massless spin-2 particle = graviton**  
-
-Thus, string theory **automatically includes quantum gravity**.  
+- $L_n, \tilde{L}_n$: Virasoro generators  
+- Ensure physical states are consistent with conformal invariance  
 
 ---
 
-## 4. Superstrings and Dualities
+## 4. Mass Spectrum
 
-The bosonic string suffers from instabilities (tachyons).  
-Introducing **supersymmetry** leads to **superstring theory**.  
+The string Hamiltonian yields:
 
-There are 5 consistent superstring theories:
+$$
+M^2 = \frac{4}{\alpha'} \left( N + \tilde{N} - 2a \right),
+$$
 
-1. Type I  
-2. Type IIA  
-3. Type IIB  
-4. Heterotic $SO(32)$  
-5. Heterotic $E_8 \times E_8$  
+- $N, \tilde{N}$: oscillator numbers  
+- $a$: normal ordering constant  
 
-In the 1990s, **M-theory** was proposed:  
-all five are just different limits of a single **11-dimensional theory**.  
+### Special states:
+- **Closed strings**: contain a universal **massless spin-2 graviton**  
+- **Open strings**: yield **gauge bosons**  
+- Higher excitations: infinite Regge tower $M^2 \sim n/\alpha'$  
 
-Dualities:
-
-- **T-duality**: relates compactification radii $R \leftrightarrow \alpha'/R$  
-- **S-duality**: relates strong coupling ↔ weak coupling  
+Thus, quantum gravity and gauge interactions appear **naturally**.
 
 ---
 
-## 5. AdS/CFT Correspondence
+## 5. The Five Superstring Theories
 
-Maldacena (1997) proposed the **AdS/CFT duality**:
+The bosonic string (26D) suffers from tachyons.  
+Introducing **worldsheet supersymmetry** reduces the critical dimension to $D=10$ and removes tachyons (after GSO projection).  
+This yields **five consistent superstring theories**:
 
-$$
-Z_{\text{string}}[\phi \to \phi_0] \;=\; Z_{\text{CFT}}[\phi_0]
-$$
+### (1) Type I
+- Open + closed unoriented strings  
+- Gauge group: $SO(32)$  
+- Supersymmetry: $N=1$ in 10D  
 
-- String theory on **AdS space** $\leftrightarrow$ Conformal Field Theory (CFT) on the boundary  
-- Gauge/gravity duality: spacetime geometry emerges from quantum field theory data  
+### (2) Type IIA
+- Closed oriented strings  
+- Left- and right-moving fermions of **opposite chirality**  
+- Massless sector: graviton, dilaton, antisymmetric $B_{\mu\nu}$, plus $p$-form RR fields (even rank)  
 
-Applications:  
-- Black hole entropy  
-- Thermalization in QFT  
-- Quantum information and spacetime geometry  
+### (3) Type IIB
+- Closed oriented strings  
+- Left- and right-moving fermions of **same chirality**  
+- Massless sector: graviton, dilaton, $B_{\mu\nu}$, RR fields (odd rank)  
+- **Self-dual 5-form field strength**  
+
+### (4) Heterotic $SO(32)$
+- Left-movers: bosonic string in 26D, compactified to 10D  
+- Right-movers: superstring in 10D  
+- Gauge group: $SO(32)$  
+
+### (5) Heterotic $E_8 \times E_8$
+- Same construction as above, but gauge group $E_8 \times E_8$  
+- Basis of many string-inspired GUT models  
 
 ---
 
-## 6. Challenges and Open Questions
+## 6. M-Theory and Dualities
 
-- **Landscape problem**: $\sim 10^{500}$ possible vacua  
-- **Experimental evidence**: none so far; string scale $\sim 10^{19}$ GeV  
-- **Nature of spacetime**: at the deepest level, string theory questions "what is spacetime?"  
+The five superstring theories are connected by **dualities**:
+
+- **T-duality**: compact radius $R \leftrightarrow \alpha'/R$  
+- **S-duality**: weak coupling $\leftrightarrow$ strong coupling  
+
+In the 1990s, it was realized they are just limits of a single **11D theory**: **M-theory**.  
+At low energy, M-theory reduces to **11D supergravity**.
+
+---
+
+## 7. AdS/CFT Correspondence
+
+Maldacena’s 1997 conjecture:
+
+$$
+Z_{\text{string}}[\phi \to \phi_0] \;=\; Z_{\text{CFT}}[\phi_0],
+$$
+
+relating string theory on AdS$_{d+1}$ spacetime to a $d$-dimensional CFT.  
+
+- Example: Type IIB on AdS$_5 \times S^5$ ↔ $\mathcal{N}=4$ SYM in 4D  
+- Provides a nonperturbative definition of string theory in AdS space  
+
+---
+
+## 8. Challenges and Open Questions
+
+- **Landscape problem**: $10^{500}$ possible vacua  
+- **Lack of direct experimental evidence** (Planck scale $\sim 10^{19}$ GeV)  
+- **Nature of spacetime**: is spacetime emergent from quantum entanglement?  
 
 ---
 
 ## Status
 
-String theory has generated deep mathematical insights (algebraic geometry, topology, number theory, quantum information).  
+String theory is a mathematically rich framework, deeply linked with geometry, topology, and quantum information.  
 
-Yet as a **physical theory**, it remains incomplete.  
-The biggest open problem: **how to test quantum gravity** in nature.  
+But as a **testable theory of nature**, it remains incomplete.  
+The central open question: **how can quantum gravity be observed?**  
 
 ---
