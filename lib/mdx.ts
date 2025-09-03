@@ -9,7 +9,7 @@ export type Chapter = {
   title: string;
   description?: string;
   content: string;
-  order?: number; // optional frontmatter sort key
+  order?: number;
 };
 
 export type Curiosity = {
@@ -17,7 +17,7 @@ export type Curiosity = {
   title: string;
   summary?: string;
   content: string;
-  order?: number; // optional frontmatter sort key
+  order?: number;
 };
 
 /** ---------- Paths ---------- */
