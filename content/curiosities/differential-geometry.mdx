@@ -412,6 +412,92 @@ $$
 
 describe the geometry of black holes. These are not objects in space—they are regions of curved spacetime itself.  
 
+### Schwarzschild Solution
+
+In the context of Einstein’s general relativity, the simplest black hole spacetime is obtained by solving the vacuum Einstein equations under spherical symmetry. This leads to the **Schwarzschild metric**, which describes the gravitational field outside a static, spherically symmetric mass.
+
+---
+
+#### Derivation from Einstein’s equations
+
+We begin with Einstein’s field equations in vacuum:
+
+$$
+R_{\mu\nu} - \tfrac{1}{2}R\,g_{\mu\nu} = 0 \;\;\;\;\Rightarrow\;\;\; R_{\mu\nu} = 0.
+$$
+
+---
+
+#### 1. Symmetry assumptions
+
+We impose **static, spherical symmetry**, giving the line element
+
+$$
+ds^{2} = -e^{2\phi(r)} dt^{2} + e^{2\lambda(r)} dr^{2}
++ r^{2}\,(d\theta^{2} + \sin^{2}\theta\,d\varphi^{2}),
+$$
+
+with $\phi(r)$ and $\lambda(r)$ functions to determine.
+
+---
+
+#### 2. Einstein equations
+
+The independent equations from $R_{\mu\nu}=0$ are:
+
+- From $R_{tt}=0$:
+$$
+\phi'(r) + \lambda'(r) = 0.
+$$
+
+- From $R_{rr}=0$:
+$$
+\frac{d}{dr}\!\Bigl(r\,(1-e^{-2\lambda(r)})\Bigr) = 0.
+$$
+
+---
+
+#### 3. Solving
+
+The second equation integrates to
+
+$$
+e^{-2\lambda(r)} = 1 - \frac{C}{r}.
+$$
+
+Then the first gives
+
+$$
+\phi(r) = -\lambda(r) + \text{const}.
+$$
+
+Rescaling $t$ absorbs the constant, yielding
+
+$$
+e^{2\phi(r)} = 1 - \frac{C}{r}.
+$$
+
+---
+
+#### 4. Fixing the constant
+
+In the Newtonian limit, $g_{tt} \approx -(1 + 2\Phi)$ with $\Phi = -GM/r$.  
+Thus $C = 2GM$.
+
+---
+
+#### 5. Final Schwarzschild metric
+
+$$
+ds^{2} = -\left(1 - \frac{2GM}{r}\right)dt^{2}
++ \left(1 - \frac{2GM}{r}\right)^{-1}dr^{2}
++ r^{2}(d\theta^{2} + \sin^{2}\theta\,d\varphi^{2}).
+$$
+
+This is the **Schwarzschild metric**, the prototype black hole solution of general relativity.
+
+---
+
 ### Cosmology  
 The Friedmann–Lemaître–Robertson–Walker (FLRW) metric,
 
