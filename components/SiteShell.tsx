@@ -26,7 +26,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             aria-controls="mobile-sidebar"
             aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="md:hidden inline-flex flex-col justify-center gap-1.5 p-2"
+            className="lg:hidden inline-flex flex-col justify-center gap-1.5 p-2"
           >
             <span className="block h-0.5 w-6 bg-gray-800"></span>
             <span className="block h-0.5 w-6 bg-gray-800"></span>
@@ -124,7 +124,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
 
 
       {/* Mobile Drawer + Overlay */}
-      <div className={`fixed inset-0 z-50 lg:hidden ${open ? '' : 'pointer-events-none'}`}>
+      <div className={`fixed inset-0 z-50 xl:hidden ${open ? '' : 'pointer-events-none'}`}>
         {/* Overlay */}
         <div
           className={`absolute inset-0 bg-black/40 transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}
