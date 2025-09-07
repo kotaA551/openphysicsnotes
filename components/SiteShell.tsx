@@ -54,7 +54,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
       {/* Body */}
       <div className="flex-1 w-full flex">
         {/* Sidebar (desktop) */}
-        <aside className="hidden md:block w-[20%] border-r border-black/20">
+        <aside className="hidden lg:block w-[20%] border-r border-black/20">
           <div className="sticky top-12 h-[calc(100dvh-3rem)] overflow-y-auto py-4 px-4">
             {/* Chapters */}
             <h2 className="font-semibold mb-3">Chapters</h2>
@@ -106,7 +106,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         </aside>
 
         {/* Main */}
-        <main className="w-full md:w-[80%] p-4 md:p-6 lg:p-8">
+        <main className="w-full lg:w-[80%] p-4 md:p-6 lg:p-8">
           {children}
         </main>
       </div>
@@ -124,7 +124,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
 
 
       {/* Mobile Drawer + Overlay */}
-      <div className={`fixed inset-0 z-50 md:hidden ${open ? '' : 'pointer-events-none'}`}>
+      <div className={`fixed inset-0 z-50 lg:hidden ${open ? '' : 'pointer-events-none'}`}>
         {/* Overlay */}
         <div
           className={`absolute inset-0 bg-black/40 transition-opacity ${open ? 'opacity-100' : 'opacity-0'}`}
