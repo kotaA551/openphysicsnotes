@@ -44,7 +44,7 @@ export default function HomePage() {
               <li key={c.slug}>
                 <Link
                   href={`/chapters/${c.slug}`}
-                  className="text-blue-600 hover:underline"
+                  className="hover:underline"
                 >
                   {c.title}
                 </Link>
@@ -61,7 +61,7 @@ export default function HomePage() {
               <li key={item.slug}>
                 <Link
                   href={`/curiosities/${item.slug}`}
-                  className="text-blue-600 hover:underline"
+                  className="hover:underline"
                 >
                   {item.title}
                 </Link>
