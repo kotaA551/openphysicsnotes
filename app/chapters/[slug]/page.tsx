@@ -9,6 +9,9 @@ import Callout from '@/components/Callout';
 import RelatedBooks from '@/components/RelatedBooks';
 import AffiliateNote from '@/components/AffiliateNote';
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { chapters } from '@/lib/chapters';
+import { curiosities } from '@/lib/curiosities';
 
 export const dynamicParams = false;
 export const dynamic = 'force-static';
@@ -45,6 +48,41 @@ export default function ChapterPage({ params }: any) {
         }}
         components={components}
       />
+      <section className="mt-10 flex flex-col lg:flex-row lg:justify-between gap-10">
+        {/* Chapters */}
+        <div className="lg:w-1/2">
+          <h2 className="font-semibold text-xl mb-3">Chapters</h2>
+          <ul className="space-y-2">
+            {chapters.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  href={`/chapters/${c.slug}`}
+                  className="hover:underline"
+                >
+                  {c.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Curiosities */}
+        <div className="lg:w-1/2">
+          <h2 className="font-semibold text-xl mb-3">Curiosities</h2>
+          <ul className="space-y-2">
+            {curiosities.map((item) => (
+              <li key={item.slug}>
+                <Link
+                  href={`/curiosities/${item.slug}`}
+                  className="hover:underline"
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </article>
   );
 }
