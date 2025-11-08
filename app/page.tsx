@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllChapters } from '@/lib/mdx';
+import { chapters } from '@/lib/chapters';
 
 export const dynamic = 'force-static';
 export const runtime = 'nodejs';
@@ -33,6 +33,19 @@ export default function HomePage() {
         To believe that understanding is a form of awe.<br></br>
         And to join the most ambitious dialogue humanity has ever begun.<br></br>
       </p>
+
+      <section>
+        <h2>Chapters</h2>
+        <ul>
+          {chapters.map((c) => (
+            <li key={c.slug}>
+              <Link href={`/chapters/${c.slug}`}>
+                {c.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
     </main>
   );
