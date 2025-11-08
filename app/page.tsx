@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { chapters } from '@/lib/chapters';
+import { curiosities } from '@/lib/curiosities';
 
 export const dynamic = 'force-static';
 export const runtime = 'nodejs';
@@ -34,17 +35,40 @@ export default function HomePage() {
         And to join the most ambitious dialogue humanity has ever begun.<br></br>
       </p>
 
-      <section>
-        <h2>Chapters</h2>
-        <ul>
-          {chapters.map((c) => (
-            <li key={c.slug}>
-              <Link href={`/chapters/${c.slug}`}>
-                {c.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <section className="mt-10 flex flex-col lg:flex-row lg:justify-between gap-10">
+        {/* Chapters */}
+        <div className="lg:w-1/2">
+          <h2 className="font-semibold text-xl mb-3">Chapters</h2>
+          <ul className="space-y-2">
+            {chapters.map((c) => (
+              <li key={c.slug}>
+                <Link
+                  href={`/chapters/${c.slug}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {c.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Curiosities */}
+        <div className="lg:w-1/2">
+          <h2 className="font-semibold text-xl mb-3">Curiosities</h2>
+          <ul className="space-y-2">
+            {curiosities.map((item) => (
+              <li key={item.slug}>
+                <Link
+                  href={`/curiosities/${item.slug}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
     </main>
