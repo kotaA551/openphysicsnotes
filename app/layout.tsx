@@ -5,6 +5,7 @@ import SiteShell from '@/components/SiteShell';
 import 'katex/dist/katex.min.css';
 import Script from 'next/script';
 import Analytics from '@/components/Analytics';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'OpenPhysicsNotes',
@@ -33,10 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
               strategy="afterInteractive"
             />
-            <Script
-              id="ga4-init"
-              strategy="afterInteractive"
-            >{`
+            <Script id="ga4-init" strategy="afterInteractive">{`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
@@ -44,12 +42,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 page_path: window.location.pathname,
               });
             `}</Script>
+
+            {/* Suspense で CSR bailout を明示 */}
+            <Suspense fallback={null}>
+              <Analytics />
+            </Suspense>
           </>
         )}
 
         <SiteShell>{children}</SiteShell>
-
-        {gaId && <Analytics />}
       </body>
     </html>
   );
