@@ -1,5 +1,7 @@
 // app/layout.tsx
-import './globals.css';
+import '@/app/globals.css';
+import type { Locale } from '@/lib/i18n';
+import { siteUrl } from '@/lib/seo';
 import type { Metadata } from 'next';
 import SiteShell from '@/components/SiteShell';
 import 'katex/dist/katex.min.css';
@@ -8,8 +10,9 @@ import Analytics from '@/components/Analytics';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-  title: 'OpenPhysicsNotes',
-  description: 'Open physics notes',
+  metadataBase: new URL(siteUrl),
+  title: { default: 'Open Physics Notes', template: '%s | Open Physics Notes' },
+  description: 'Free physics notes, from classical mechanics to quantum theory.',
   icons: {
     icon: [
       { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
@@ -21,11 +24,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootDocument({ children, locale }: { children: React.ReactNode; locale: Locale }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
         {/* Google Analytics (GA4) */}
         {gaId && (
@@ -55,3 +58,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+

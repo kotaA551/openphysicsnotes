@@ -6,10 +6,10 @@ type BookItem = {
   image?: string;
 };
 
-export default function RelatedBooks({ items }: { items: BookItem[] }) {
+export default function RelatedBooks({ items, heading = "Further Reading" }: { items: BookItem[]; heading?: string }) {
   return (
     <section className="mt-8">
-      <h2 className="text-lg mb-2">Further Reading</h2>
+      <h2 className="text-lg mb-2">{heading}</h2>
       <ul className="flex flex-col flex-wrap gap-4">
         {items.map((book, i) => (
           <li key={i}>
@@ -37,3 +37,4 @@ export default function RelatedBooks({ items }: { items: BookItem[] }) {
     </section>
   );
 }
+
