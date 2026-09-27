@@ -21,6 +21,6 @@ Language preferences are local to the browser. Same as device follows the browse
 ## Current coverage
 
 - Shared UI, homepage, About, Privacy, and all 19 topic titles: all 9 languages.
-- Full article translation: Japanese / curiosities / dark-matter.
+- Full article translations: Japanese / curiosities / dark-matter; Japanese / chapters / 8-Quantum-field-theory (all sections, including 8.2A–8.2C).
 - Remaining articles: original English, with translations to be added gradually.
 - Text embedded inside existing raster images still belongs to the original image; supply localized image assets and update the translated MDX when needed.

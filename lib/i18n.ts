@@ -45,3 +45,15 @@ ja: ['ニュートン力学','振動と波','熱力学','電磁気学','相対�
 ko: ['뉴턴 역학','진동과 파동','열역학','전자기학','상대성 이론','초기 양자 이론','양자역학','양자장론','통계물리학','응집물질물리학','우주론과 천체물리학','물리학의 최전선','끈 이론','고리 양자 중력','블랙홀 정보 역설','암흑 물질','암흑 에너지','나비에–스토크스 방정식','미분기하학'],
 };
 export function topicTitle(locale: Locale, kind: 'chapters' | 'curiosities', index: number) { return titles[locale][index + (kind === 'curiosities' ? 12 : 0)]; }
+
+export const sidebarLabels: Record<Locale, { collapse: string; expand: string }> = {
+  en: { collapse: 'Collapse sidebar', expand: 'Expand sidebar' },
+  fr: { collapse: 'Réduire la barre latérale', expand: 'Développer la barre latérale' },
+  de: { collapse: 'Seitenleiste einklappen', expand: 'Seitenleiste ausklappen' },
+  it: { collapse: 'Comprimi la barra laterale', expand: 'Espandi la barra laterale' },
+  es: { collapse: 'Contraer la barra lateral', expand: 'Expandir la barra lateral' },
+  'zh-CN': { collapse: '收起侧边栏', expand: '展开侧边栏' },
+  'zh-TW': { collapse: '收合側邊欄', expand: '展開側邊欄' },
+  ja: { collapse: 'サイドバーを閉じる', expand: 'サイドバーを開く' },
+  ko: { collapse: '사이드바 접기', expand: '사이드바 펼치기' },
+};

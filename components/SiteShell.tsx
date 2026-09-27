@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { chapters } from '@/lib/chapters';
 import { curiosities } from '@/lib/curiosities';
-import { deviceLocale, isLocale, languageNames, localePath, locales, messages, pathLocale, stripLocale, topicTitle } from '@/lib/i18n';
+import { sidebarLabels, deviceLocale, isLocale, languageNames, localePath, locales, messages, pathLocale, stripLocale, topicTitle } from '@/lib/i18n';
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -13,6 +13,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const locale = pathLocale(pathname);
   const t = messages(locale);
   const [preference, setPreference] = useState('device');
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const dialog = useRef<HTMLDialogElement>(null);
   const languageMenu = useRef<HTMLDetailsElement>(null);
   const languageButton = useRef<HTMLElement>(null);
@@ -35,8 +36,8 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
     document.addEventListener('pointerdown', dismiss);
     return () => document.removeEventListener('pointerdown', dismiss);
   }, []);
-  const navigation = () => <>{(['chapters', 'curiosities'] as const).map(kind => <section className="nav-section" key={kind}>
-    <h2>{t[kind]}</h2><nav aria-label={t[kind]}>{(kind === 'chapters' ? chapters : curiosities).map((item, index) => {
+  const navigation = (desktop = false) => <>{(['chapters', 'curiosities'] as const).map(kind => <section className="nav-section" key={kind}>
+    <h2 hidden={desktop && kind === 'chapters'}>{t[kind]}</h2><nav aria-label={t[kind]}>{(kind === 'chapters' ? chapters : curiosities).map((item, index) => {
       const href = localePath(locale, `/${kind}/${item.slug}`);
       return <Link key={item.slug} href={href} aria-current={pathname === href ? 'page' : undefined} onClick={() => dialog.current?.close()}><span className="nav-number">{String(index + 1).padStart(2, '0')}</span><span>{topicTitle(locale, kind, index)}</span></Link>;
     })}</nav></section>)}</>;
@@ -58,7 +59,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         <div className="language-options"><p>{t.language}</p>{[{code: 'device', label: 'Same as device'}, ...locales.map(code => ({code, label: languageNames[code]}))].map(option => <button key={option.code} lang={option.code === 'device' ? 'en' : option.code} type="button" aria-pressed={preference === option.code} onClick={() => choose(option.code)}><span>{option.label}</span><span aria-hidden="true">{preference === option.code ? '✓' : ''}</span></button>)}</div>
       </details>
     </header>
-    <div className="site-body"><aside className="desktop-sidebar">{navigation()}</aside><main id="main-content" tabIndex={-1} className="main-content">{children}</main></div>
+    <div className="site-body"><aside className={`desktop-sidebar ${sidebarOpen ? '' : 'is-collapsed'}`}><div className="sidebar-heading"><h2 hidden={!sidebarOpen}>{t.chapters}</h2><button type="button" className="sidebar-toggle" aria-expanded={sidebarOpen} aria-controls="desktop-navigation" aria-label={sidebarOpen ? sidebarLabels[locale].collapse : sidebarLabels[locale].expand} title={sidebarOpen ? sidebarLabels[locale].collapse : sidebarLabels[locale].expand} onClick={() => setSidebarOpen(value => !value)}><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" className={sidebarOpen ? '' : 'points-right'}><path d="M19 12H5m6-6-6 6 6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg></button></div><div id="desktop-navigation" hidden={!sidebarOpen}>{navigation(true)}</div></aside><main id="main-content" tabIndex={-1} className="main-content">{children}</main></div>
     <footer className="site-footer"><span translate="no">Open Physics Notes</span><nav aria-label={t.menu}><Link href={localePath(locale, '/about')}>{t.about}</Link><Link href={localePath(locale, '/privacy')}>{t.privacy}</Link></nav></footer>
     <dialog id="mobile-navigation" ref={dialog} className="mobile-drawer" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }} onClose={() => { document.body.style.overflow = ''; }} onToggle={event => { document.body.style.overflow = (event.currentTarget as HTMLDialogElement).open ? 'hidden' : ''; }}>
       <div className="drawer-heading"><span>{t.menu}</span><button className="icon-button" onClick={() => dialog.current?.close()} aria-label={t.close}>×</button></div>{navigation()}

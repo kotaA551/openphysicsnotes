@@ -13,3 +13,14 @@
 @media(max-width:1023px){.desktop-sidebar{display:none}.mobile-toggle{display:inline-flex}.site-header{padding:0 20px;height:64px}.main-content{padding:40px 28px 60px}.hero{padding-top:10px}}
 @media(max-width:600px){.site-header{padding:0 12px;gap:8px}.brand{font-size:16px;gap:7px}.brand img{width:24px;height:24px}.icon-button{width:40px;height:40px}.main-content{padding:32px 20px 50px}.hero h1{font-size:39px}.hero .intro{font-size:21px}.topic-grid{grid-template-columns:1fr;gap:38px}.site-footer{padding:24px 20px;flex-direction:column}.prose{font-size:15px}.hero{padding-bottom:34px;margin-bottom:32px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+/* Desktop sidebar: an open chapter list or a compact, reachable toggle rail. */
+.desktop-sidebar { transition: flex-basis 180ms ease, padding 180ms ease; }
+.sidebar-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: -8px 0 12px; padding-left: 12px; }
+.sidebar-heading h2 { margin: 0; color: var(--muted); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.sidebar-toggle { display: inline-flex; flex: 0 0 36px; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); color: var(--muted); transition: color 160ms ease, background 160ms ease, border-color 160ms ease; }
+.sidebar-toggle:hover { color: var(--accent); background: var(--wash); border-color: #b9d1c8; }
+.sidebar-toggle svg { transition: transform 180ms ease; }
+.sidebar-toggle .points-right { transform: rotate(180deg); }
+.desktop-sidebar.is-collapsed { flex-basis: 64px; padding-inline: 14px; overflow: visible; }
+.desktop-sidebar.is-collapsed .sidebar-heading { padding: 0; justify-content: center; }
