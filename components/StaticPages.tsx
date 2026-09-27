@@ -3,7 +3,7 @@ import TopicIndex from './TopicIndex';
 import { localePath, messages, type Locale } from '@/lib/i18n';
 export function HomeContent({ locale }: { locale: Locale }) {
  const t = messages(locale);
- return <><section className="hero"><p className="eyebrow">{t.eyebrow}</p><h1 translate="no">Open Physics Notes</h1><p className="intro">{t.intro}</p><p className="description">{t.description}</p><Link className="primary-link" href={localePath(locale, '/chapters/1-Newton-mechanics')}>{t.start}<span aria-hidden="true">→</span></Link></section><TopicIndex locale={locale}/></>;
+ return <><section className="hero"><p className="eyebrow">{t.eyebrow}</p><h1 translate="no">Open Physics Notes</h1><p className="intro">{t.intro}</p><p className="description">{t.description}</p></section><TopicIndex locale={locale}/></>;
 }
 export function AboutContent({ locale }: { locale: Locale }) {
  const t = messages(locale);
