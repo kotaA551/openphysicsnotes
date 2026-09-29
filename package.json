@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^24.3.0",
@@ -23,13 +24,21 @@
     "rehype-katex": "^7.0.1",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "remark-mdx": "3.1.0",
+    "remark-parse": "11.0.0",
+    "remark-rehype": "11.1.2",
+    "unified": "11.0.5"
   },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "predev": "node scripts/discussion-manifest.mjs",
+    "prebuild": "node scripts/discussion-manifest.mjs",
+    "test:discussions": "node --test tests/discussions/*.test.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "engines": {
     "node": ">=18.18.0"

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import TopicIndex from './TopicIndex';
+import { discussionMessages } from '@/lib/discussions/messages';
 import { localePath, messages, type Locale } from '@/lib/i18n';
 export function HomeContent({ locale }: { locale: Locale }) {
  const t = messages(locale);
@@ -11,5 +12,5 @@ export function AboutContent({ locale }: { locale: Locale }) {
 }
 export function PrivacyContent({ locale }: { locale: Locale }) {
  const t = messages(locale);
- return <article className="prose document-page"><p className="eyebrow" translate="no">Open Physics Notes</p><h1>{t.privacy}</h1><p>{t.updated}: <time dateTime="2026-09-27">2026-09-27</time></p><h2>{t.overview}</h2><p>{t.overviewText}</p><h2>{t.cookies}</h2><p>{t.cookiesText}</p><h2>{t.analytics}</h2><p>{t.analyticsText}</p></article>;
+ return <article className="prose document-page"><p className="eyebrow" translate="no">Open Physics Notes</p><h1>{t.privacy}</h1><p>{t.updated}: <time dateTime="2026-09-29">2026-09-29</time></p><h2>{t.overview}</h2><p>{t.overviewText}</p><h2>{t.cookies}</h2><p>{t.cookiesText}</p><h2>{t.analytics}</h2><p>{t.analyticsText}</p><h2>{discussionMessages(locale).title}</h2><p>{discussionMessages(locale).privacyText}</p></article>;
 }

@@ -22,5 +22,10 @@ Language preferences are local to the browser. Same as device follows the browse
 
 - Shared UI, homepage, About, Privacy, and all 19 topic titles: all 9 languages.
 - Full article translations: Japanese / curiosities / dark-matter; Japanese / chapters / 8-Quantum-field-theory (all sections, including 8.2A–8.2C).
+- Full article translation: Simplified Chinese / chapters / 1-Newton-mechanics (all 20 sections and epilogue; source calculation discrepancies are noted in the translation).
+- Full article translation: Simplified Chinese / chapters / 2-Oscillations-and-waves (all 12 sections and closing remarks).
+- Full article translations: Simplified Chinese / chapters / 3-Thermodynamics (all 9 sections), 4-Electromagnetism (all 9 sections), and 5-Relativity (all 8 sections; the pion-production threshold discrepancy is noted). Inline math delimiters are normalized for rendering without changing the formulas.
+- Full article translations: Simplified Chinese / chapters / 6-Early-quantum-theory (all 9 sections), 7-Quantum-mechanics (all 6 numbered sections), and 8-Quantum-field-theory (all 10 sections and supplements 8.2A–8.2C). Equations and image paths are preserved; inline math delimiters are normalized for rendering. Translator notes clarify source discrepancies in the Gaussian uncertainty discussion, infinite-well position spread, and axial-vector time reversal.
+- Full article translation: Japanese / curiosities / differential-geometry (all 7 parts, including the Schwarzschild derivation; all 98 math expressions and 62 headings preserved). Unsourced historical quotations are presented as anecdotes rather than verified direct quotations.
 - Remaining articles: original English, with translations to be added gradually.
 - Text embedded inside existing raster images still belongs to the original image; supply localized image assets and update the translated MDX when needed.
