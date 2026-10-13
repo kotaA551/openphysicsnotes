@@ -1,0 +1,195 @@
+---
+description: "Energía oscura: presión, derivaciones, ejemplos, distancias y crecimiento de estructuras, con resultados DESI y DES comprobados hasta octubre de 2026."
+---
+
+**Convenciones:** Usamos $c=1$ para la gravedad y la densidad de energía $\rho$; la sección 3 recupera $c$ en las distancias. Fijamos $a_0=1$, de modo que $1+z=1/a$. Los puntos indican derivadas respecto al tiempo cósmico. Los ejemplos de distancias suponen espacio plano. Energía oscura designa la componente que explica la aceleración tardía en relatividad general (RG), sin identificar una partícula descubierta.
+
+## 1. El fenómeno: un universo en expansión acelerada
+
+¿Por qué sorprendió la aceleración? La materia ordinaria atrae y debería frenar una expansión ya iniciada. Tras estandarizarlas, los equipos encontraron supernovas Ia lejanas más débiles y, por tanto, más distantes que lo previsto por modelos de referencia desacelerados. El [análisis de 1998](https://arxiv.org/abs/astro-ph/9805201) y el [independiente de 1999](https://arxiv.org/abs/astro-ph/9812133) dedujeron la aceleración de la relación distancia–desplazamiento al rojo. No observaron una galaxia ganar velocidad en tiempo real. Hay que comprobar polvo, evolución de fuentes y selección; el acuerdo de distintas sondas refuerza la interpretación.
+
+El factor de escala $a(t)$ describe distancias entre observadores libres que siguen el flujo cósmico medio. Homogeneidad e isotropía dan la métrica FLRW, con curvatura espacial $k$. Introducir un tensor energía-momento de fluido perfecto en las ecuaciones de Einstein produce las dos ecuaciones de Friedmann. Aquí $\rho,p$ excluyen la constante cosmológica escrita por separado:
+
+$$
+\begin{gathered}
+ds^2=-dt^2+a^2(t)\left[\frac{dr^2}{1-kr^2}+r^2d\Omega^2\right],\qquad H=\frac{\dot a}{a}.
+\\
+H^2=\frac{8\pi G}{3}\rho-\frac{k}{a^2}+\frac{\Lambda}{3},\qquad
+\frac{\ddot a}{a}=-\frac{4\pi G}{3}(\rho+3p)+\frac{\Lambda}{3}.
+\end{gathered}
+$$
+
+En RG la presión gravita: la aceleración depende de $\rho+3p$, no solo de la densidad. Una densidad positiva con presión suficientemente negativa acelera sin masa negativa. También se puede absorber $\Lambda$ en un fluido con $\rho_\Lambda=\Lambda/(8\pi G)$ y $p_\Lambda=-\rho_\Lambda$, eliminando los términos explícitos de $\Lambda$: nunca contar ambos. Con densidad total positiva, se necesita $w_{\rm total}=p_{\rm total}/\rho_{\rm total}<-1/3$. Una componente pequeña con $w<-1/3$ no basta si domina la materia.
+
+El parámetro de desaceleración $q$ cuantifica esta distinción. Las fracciones $\Omega_i$ se refieren a $3H^2/(8\pi G)$ en la misma época, tratando la energía oscura como fluido. Acelerar significa $q<0$, pero no necesariamente que $H$ aumente: las distancias pueden crecer cada vez más deprisa mientras su tasa **fraccionaria** disminuye.
+
+$$
+q\equiv-\frac{\ddot a}{aH^2}=\frac12\Omega_m+\Omega_r+\frac12(1+3w)\Omega_{\rm DE},\qquad
+\dot H=\frac{\ddot a}{a}-H^2.
+$$
+
+**Ejemplo:** Tomemos un modelo plano de materia y $\Lambda$ con $\Omega_{m0}=0.30$, $\Omega_{\Lambda0}=0.70$ y radiación despreciable, solo para ilustrar. Hoy $q_0=0.30/2-0.70=-0.55$. Como $\rho_m\propto a^{-3}$, la aceleración comienza cuando $\rho_m=2\rho_\Lambda$: $a_{\rm acc}=(0.30/1.40)^{1/3}\simeq0.598$, o $z_{\rm acc}\simeq0.67$. Las densidades se igualan después, en $a\simeq0.754$. Dominio de energía oscura e inicio de aceleración son umbrales distintos.
+
+![El parámetro de desaceleración cruza cero antes de que se igualen las densidades de materia y vacío.](/images/diagrams/dark-energy-deep-acceleration.svg)
+
+**La aceleración tiene su propio umbral.** En el modelo plano ilustrativo $(\Omega_{m0},\Omega_{\Lambda0})=(0.30,0.70)$, $q(a)$ cruza cero en $a\simeq0.598$ (guía continua); las densidades se igualan en $a\simeq0.754$ (discontinua). La curva es un cálculo del modelo, no un ajuste a observaciones.
+
+## 2. Ecuación de estado y parametrizaciones
+
+Definimos $w=p_{\rm DE}/\rho_{\rm DE}$. Para una componente homogénea sin intercambio de energía con otras especies, la conservación local de energía-momento da la continuidad. Dividir por $H\rho$ y usar $d\ln a=Hdt$ permite integrar:
+
+$$
+\begin{gathered}
+\dot\rho_{\rm DE}+3H(\rho_{\rm DE}+p_{\rm DE})=0,\qquad
+\frac{d\ln\rho_{\rm DE}}{d\ln a}=-3(1+w).
+\\
+\rho_{\rm DE}(a)=\rho_{\rm DE,0}\exp\!\left[-3\int_1^a(1+w(a'))\,d\ln a'\right].
+\end{gathered}
+$$
+
+Para $w$ constante, $\rho\propto a^{-3(1+w)}$. La materia, $w\simeq0$, se diluye con el volumen; la radiación, $w=1/3$, pierde también energía por desplazamiento al rojo. Una constante cosmológica tiene $w=-1$ y densidad constante. Lo mismo se deduce de $d(\rho V)=-p\,dV$ para un volumen comóvil $V\propto a^3$. La presión negativa permite que su energía crezca con el volumen sin violar la conservación local. Un espacio-tiempo en expansión no tiene por qué poseer la energía total globalmente conservada de uno estático.
+
+La forma Chevallier–Polarski–Linder (CPL) resume una posible evolución mediante el valor actual $w_0$ y el coeficiente $w_a$. Sustituirla en la integral da la densidad siguiente; el factor exponencial es esencial. Véanse los artículos originales de [Chevallier–Polarski](https://arxiv.org/abs/gr-qc/0009008) y [Linder](https://arxiv.org/abs/astro-ph/0208512).
+
+$$
+\begin{gathered}
+w(a)=w_0+w_a(1-a)=w_0+\frac{w_a z}{1+z},
+\\
+\frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}}=(1+z)^{3(1+w_0+w_a)}
+\exp\!\left[-\frac{3w_a z}{1+z}\right].
+\end{gathered}
+$$
+
+CPL es una familia de ajustes, no una teoría microscópica. $(-1,0)$ corresponde a $\Lambda$. Permite cruzar $w=-1$, algo imposible para un único escalar canónico mínimamente acoplado de energía positiva. Un fluido perfecto de densidad positiva con $w<-1$ tiene $\rho+p<0$ y viola la condición de energía nula; un ajuste efectivo no implica necesariamente un campo fantasma fundamental. Si $w_a\ne0$, CPL diverge cuando $a\to\infty$, por lo que extrapolarlo al futuro remoto no está justificado.
+
+## 3. Observables del fondo cosmológico
+
+Los telescopios miden flujos, ángulos, espectros y correlaciones. Un modelo los convierte en distancias y tasas de expansión; ningún instrumento lee directamente la densidad de energía oscura. Cada sonda aporta una parte diferente de la conversión.
+
+### 3.1 Expansión de Hubble
+
+Definimos $\Omega_{i0}=\rho_{i0}/\rho_{c0}$, con $\rho_{c0}=3H_0^2/(8\pi G)$. En un universo plano las fracciones suman uno. Materia, radiación y energía oscura conservadas por separado dan:
+
+$$
+\frac{H^2(z)}{H_0^2}=\Omega_{r0}(1+z)^4+\Omega_{m0}(1+z)^3+
+\Omega_{\rm DE,0}\frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}}.
+$$
+
+En $z=1$, el ejemplo da $H/H_0=\sqrt{0.30\times8+0.70}\simeq1.761$. Cambiar $w=-1$ por $w=-0.8$ constante, manteniendo las fracciones actuales y $H_0$, convierte el término oscuro en $0.70\times2^{0.6}$ y da $H/H_0\simeq1.860$. Su densidad cambia aproximadamente un 52%, pero la expansión total solo un 5.7%. La materia atenúa el efecto y las distancias integradas lo suavizan más: medir evolución es difícil.
+
+### 3.2 Distancias (SNe Ia, BAO, CMB)
+
+Para un rayo radial, $ds^2=0$ relaciona distancia e integral de $1/H$. En espacio plano, distancia comóvil $\chi$, distancia de luminosidad $d_L$ y distancia de diámetro angular $D_A$ obedecen a las relaciones siguientes. La curvatura sustituye $\chi$ por una distancia transversal dependiente de la geometría en las dos últimas. La dualidad habitual supone además geodésicas nulas para los fotones y conservación de su número.
+
+$$
+\begin{gathered}
+\chi(z)=c\int_0^z\frac{dz'}{H(z')},\qquad
+d_L=(1+z)\chi,\qquad D_A=\frac{\chi}{1+z},
+\\
+\mu=5\log_{10}\!\left(\frac{d_L}{10\,{\rm pc}}\right),\qquad
+D_V=\left[(1+z)^2D_A^2\frac{cz}{H(z)}\right]^{1/3}.
+\end{gathered}
+$$
+
+Una luminosidad calibrada $L$ y un flujo $F$ cumplen $F=L/(4\pi d_L^2)$. Las SNe Ia son candelas **estandarizables**, no idénticas: hay correcciones de curva de luz, color y galaxia anfitriona. El módulo $\mu$ expresa la distancia logarítmicamente. Sin calibración absoluta, una muestra mide principalmente distancias relativas: luminosidad absoluta y $H_0$ son degenerados. Un desplazamiento de 0.10 magnitudes cambia la distancia en $10^{0.10/5}-1\simeq4.7\%$, mostrando la importancia de calibrar.
+
+Las oscilaciones acústicas bariónicas (BAO) utilizan una separación estadísticamente preferida, impresa por ondas sonoras del plasma temprano. El horizonte sonoro comóvil $r_d$ se evalúa en la época de arrastre bariónico. Transversalmente se restringe $D_M/r_d$; radialmente $D_H/r_d$, con $D_H=c/H$. Para pequeñas separaciones:
+
+$$
+\theta_{\rm BAO}\simeq\frac{r_d}{D_M(z)},\qquad
+\Delta z_{\rm BAO}\simeq\frac{H(z)r_d}{c},\qquad D_M=(1+z)D_A.
+$$
+
+![Dos direcciones BAO perpendiculares relacionan ángulos e intervalos de desplazamiento al rojo con distancia y expansión.](/images/diagrams/dark-energy-deep-bao.svg)
+
+**Una regla estadística, dos direcciones.** La separación transversal naranja relaciona $r_d$ con $\theta$ y $D_M$; la radial azul relaciona $r_d$ con $\Delta z$ y $H$. Geometría esquemática y regla comóvil.
+
+$D_V$ resume un análisis BAO isotrópico; los anisotrópicos conservan ambas direcciones. BAO es una característica de correlación, no barras rígidas entre galaxias. El fondo cósmico de microondas (CMB) restringe densidades iniciales y escalas acústicas y ayuda a calibrar $r_d$. La inferencia tardía sigue dependiendo de la física temprana: cambiar la expansión inicial puede alterar la regla. El [análisis de parámetros de Planck](https://arxiv.org/abs/1807.06209) ilustra estas inferencias condicionales.
+
+## 4. Crecimiento de estructuras
+
+La expansión es solo la mitad de la prueba. Las sobredensidades $\delta=\delta\rho_m/\rho_m$ crecen por atracción. Para perturbaciones lineales de materia sin presión, en escalas subhorizonte, en RG con energía oscura suave y radiación despreciable, continuidad, Euler y Poisson dan:
+
+$$
+\ddot\delta+2H\dot\delta-4\pi G\rho_m\delta=0,\qquad
+f\equiv\frac{d\ln D}{d\ln a}.
+$$
+
+$\delta\propto D(a)$ describe el modo creciente. $2H\dot\delta$ amortigua el crecimiento y el término de densidad lo impulsa. En una era plana de solo materia, $D\propto a$; la energía oscura suave frena el crecimiento respecto a $a$. $f\simeq\Omega_m(a)^{0.55}$ es útil cerca de $\Lambda$CDM, no universal. Las distorsiones en espacio de desplazamientos al rojo restringen, por ejemplo, $f\sigma_8$. $\sigma_8$ es el contraste lineal cuadrático medio en esferas de radio $8h^{-1}$ Mpc, con $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$.
+
+Los movimientos galácticos responden al potencial newtoniano $\Psi$, mientras las lentes sondan $\Phi+\Psi$. Con la convención de Fourier $\nabla^2\to-k^2$, suelen parametrizarse desviaciones de una referencia como:
+
+$$
+k^2\Psi=-4\pi G_{\rm eff}(k,a)a^2\rho_m\Delta,\qquad
+\eta=\frac{\Phi}{\Psi}.
+$$
+
+$\Delta$ es la perturbación comóvil de densidad de materia; aquí $k$ es número de onda, no curvatura. En RG con tensión anisotrópica despreciable, $G_{\rm eff}=G$ y $\eta=1$. Neutrinos u otras componentes imperfectas también pueden separar los potenciales en RG. Antes de atribuir una discrepancia a gravedad modificada hay que comprobar física de la materia, sesgo galáctico y errores sistemáticos.
+
+## 5. Panorama de los modelos microscópicos
+
+Un ajuste de $w$ en el fondo no identifica unívocamente un campo o una teoría gravitatoria. Modelos con el mismo $H(z)$ pueden diferir en perturbaciones, estabilidad y comportamiento gravitatorio local.
+
+### 5.1 Constante cosmológica $\Lambda$
+
+Un vacío invariante de Lorentz tiene un tensor energía-momento proporcional a la métrica. Su presión es negativa aunque la densidad de energía pueda ser positiva:
+
+$$
+T^{(\Lambda)}_{\mu\nu}=-\rho_\Lambda g_{\mu\nu},\qquad
+p_\Lambda=-\rho_\Lambda,\qquad \rho_\Lambda=\frac{\Lambda}{8\pi G}.
+$$
+
+El problema de la constante cosmológica es explicar la pequeñez de la contribución **total renormalizada** del vacío, incluido el término constante gravitatorio y las correcciones cuánticas. Una estimación con corte no es una predicción medida: su discrepancia depende de escala y regularización. Introducir un $\Lambda$ libre ajusta el valor sin explicar su estabilidad ante grandes correcciones. El problema persiste aunque se confirme $w=-1$; véase la [discusión teórica de Peebles y Ratra](https://arxiv.org/abs/astro-ph/0207347).
+
+La coincidencia es otra cuestión: ¿por qué observamos una época con densidades de materia y vacío comparables si su razón varía como $a^3$? Motiva propuestas dinámicas, pero no las demuestra.
+
+### 5.2 Quintaesencia
+
+La quintaesencia introduce un campo escalar canónico mínimamente acoplado. Para un campo homogéneo con signatura $(-,+,+,+)$, energía cinética $K$ y potencial $V$ dan:
+
+$$
+\begin{gathered}
+\mathcal L=-\frac12g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi-V(\phi),
+\\
+K=\frac12\dot\phi^2,\qquad \rho_\phi=K+V,\qquad p_\phi=K-V,\qquad
+w_\phi=\frac{K-V}{K+V}.
+\end{gathered}
+$$
+
+Variar la acción produce la ecuación del campo; donde $\dot\phi\ne0$ también se deduce de la continuidad con $\rho_\phi,p_\phi$. El término $3H\dot\phi$ actúa como fricción cosmológica.
+
+$$
+\ddot\phi+3H\dot\phi+V_{,\phi}=0,\qquad
+\rho_\phi+3p_\phi=4K-2V.
+$$
+
+Si el campo domina, acelerar requiere $K<V/2$. Con $K\ll V$ imita una constante cosmológica; con $V=0$ tiene $w=1$: un escalar no acelera automáticamente. Para $K,V\ge0$ y densidad positiva, $-1\le w\le1$. Potenciales de potencia inversa o exponenciales admiten soluciones de seguimiento para ciertos parámetros, reduciendo sensibilidad a condiciones iniciales sin eliminar todo ajuste fino. Potencial, acoplamientos y estabilidad siguen siendo hipótesis físicas, no consecuencias de un ajuste CPL.
+
+### 5.3 Gravedad modificada
+
+La gravedad modificada altera la relación materia-curvatura. Las teorías métricas $f(R)$ generalmente introducen un grado escalar adicional. El apantallamiento camaleón puede suprimir sus efectos locales; el de Vainshtein aparece en otras teorías con interacciones derivativas. Ninguno es universal. Horndeski y las teorías escalar-tensor degeneradas de orden superior organizan más posibilidades. [GW170817 y su contraparte gamma](https://arxiv.org/abs/1710.05834) restringen fuertemente la diferencia entre velocidades de gravedad y luz en el régimen observado, excluyendo muchas interacciones bajo sus supuestos, pero no toda gravedad modificada.
+
+## 6. Tensiones y pruebas de consistencia
+
+La tensión de Hubble compara inferencias tempranas de $H_0$ dependientes del modelo con la escalera local de distancias. El [análisis de Planck](https://arxiv.org/abs/1807.06209) ejemplifica las primeras, no una medida local directa. Cambiar la energía oscura tardía no soluciona automáticamente el problema: debe encajar también con BAO y supernovas. La energía oscura temprana afecta otra época; no es otro nombre de la componente aceleradora actual.
+
+$S_8=\sigma_8\sqrt{\Omega_m/0.3}$ resume una degeneración de las lentes, no toda la información del estudio. Las diferencias con el CMB dependen de datos, modelado no lineal, retroalimentación bariónica, calibración de desplazamientos al rojo y alineamientos intrínsecos. Conviene comparar verosimilitudes completas y parámetros auxiliares compartidos, sin contar cada tensión como evidencia independiente de nueva física.
+
+## 7. Procedimiento de inferencia
+
+1. Especificar modelo y distribuciones previas: curvatura, masas de neutrinos, física temprana y posible agrupación de energía oscura; $w_0,w_a$ no son una teoría completa.
+2. Calcular coherentemente $H$, distancias, escalas acústicas y perturbaciones. La precisión requiere un solucionador de Boltzmann, no solo un índice de crecimiento o información CMB comprimida.
+3. Predecir estadísticas medidas con selección, calibración y parámetros auxiliares. Conservar covarianzas entre datos solapados: multiplicar verosimilitudes correlacionadas como independientes duplica información.
+4. Muestrear la posterior y comprobar calidad del ajuste, dependencia de las previas y estabilidad al retirar cada sonda. Más parámetros pueden mejorar el ajuste sin demostrar nueva física.
+
+## 8. Estado de la investigación
+
+**Evidencia comprobada hasta el 13 de octubre de 2026.** El [artículo DESI DR2 BAO de 2025](https://arxiv.org/abs/2503.14738) describe bien las BAO solas mediante $\Lambda$CDM plano. En CPL, BAO+CMB prefieren evolución a $3.1\sigma$; añadir distintas muestras de supernovas da $2.8$–$4.2\sigma$. Son comparaciones concretas con $(w_0,w_a)=(-1,0)$, no detección directa de un escalar.
+
+El [análisis DES de múltiples sondas de 2026](https://arxiv.org/abs/2605.27221) combina geometría y crecimiento: desviación CPL de $2.2\sigma$ con DES, $2.3\sigma$ al añadir DESI DR2 BAO y $3.0\sigma$ con información primaria del CMB. Estas combinaciones se solapan con otros análisis; sus significancias no se multiplican como confirmaciones independientes.
+
+El [análisis DESI de la forma completa de correlaciones Lyα de julio de 2026, revisado en agosto](https://arxiv.org/abs/2607.27410), incorpora una medida geométrica Alcock–Paczyński a desplazamiento al rojo efectivo $z=2.33$. El nuevo anclaje se acerca a $\Lambda$CDM. El artículo informa preferencia CPL de $2.7\sigma$ con DESI+CMB y $3.2\sigma$ al incluir su muestra de supernovas. La evidencia evoluciona con la información utilizada.
+
+Un número de desviaciones estándar depende de modelo, verosimilitud y errores sistemáticos: no es la probabilidad de que la energía oscura evolucione. Queda comprobar si calibraciones y crecimiento independientes conservan el patrón, qué teoría estable lo produce y si sobrevive una explicación más sencilla. Los indicios merecen investigación; el origen microscópico de la aceleración sigue abierto.
+
+**Errores frecuentes:** Energía oscura no es materia oscura agrupada en halos. Presión negativa no significa densidad negativa ni un viento desde un centro cósmico. Átomos, sistemas solares y galaxias ligados no siguen simplemente el factor de escala. Ni la aceleración actual ni un ajuste CPL a desplazamiento finito determina el destino último del universo: vacío constante, potencial variable e inestabilidad futura tienen extrapolaciones diferentes.

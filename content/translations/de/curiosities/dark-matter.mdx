@@ -1,122 +1,131 @@
 ---
-description: "Beobachtungsbelege für dunkle Materie, kosmologische Dichten, WIMPs und Axionen sowie direkte, indirekte und beschleunigerbasierte Nachweisverfahren."
+description: "Wie Rotation, Gravitationslinsen und das frühe Universum dunkle Materie erschließen: Rechnungen, Teilchenmodelle, Nachweisgrenzen und offene Fragen."
 ---
 
 ## 1. Beobachtungsbelege
 
-Dunkle Materie wurde erstmals 1933 von Fritz Zwicky aus der Dynamik von Galaxienhaufen erschlossen und später durch zahlreiche Beobachtungen gestützt:
+Dunkle Materie bezeichnet eine vorgeschlagene gravitierende Komponente, die nicht genug Licht aussendet oder absorbiert, um ihre erschlossene Masse zu erklären. Die Motivation ist quantitativ: Bewegungen, Gravitationslinsen und kosmische Strukturen erfordern mehr Gravitation, als Sterne, Gas und andere gewöhnliche Materie liefern. Diese unterschiedlichen Messungen werden mit dynamischen und gravitativen Modellen gedeutet. Sie identifizieren noch kein neues Teilchen im Labor.
 
-![Eine im Außenbereich flache Rotationskurve wird mit dem keplerschen Abfall außerhalb einer zentral konzentrierten Massenverteilung verglichen. Die Kurven sind schematisch und keine Beobachtungsdaten.](/images/diagrams/rotation-curve.svg)
-
-- **Rotationskurven von Galaxien**: Sterne umlaufen das Zentrum zu schnell, als dass sichtbare Materie allein dies erklären könnte.
-- **Gravitationslinsen**: Die aus der Lichtablenkung erschlossene Masse übersteigt die leuchtende Materie.
-- **Kosmische Mikrowellenhintergrundstrahlung (CMB)**: Die von Planck gemessenen Anisotropien ergeben $\Omega_{\text{DM}} \approx 0.26$.
-- **Großräumige Struktur**: Die Entstehung von Galaxien und Galaxienhaufen erfordert unsichtbare Masse.
+„Dunkel“ bedeutet weder schwarz noch Antimaterie oder dunkle Energie. Auch gewöhnliches kaltes Gas kann schwer sichtbar sein. Nichtbaryonische dunkle Materie nachzuweisen verlangt daher mehr als ein lichtschwaches Objekt zu finden. Eine tragfähige Erklärung muss mehrere unabhängige Beobachtungen mit vereinbaren Parametern beschreiben.
 
 ### Rotationskurven
-Für einen Stern im Abstand $r$ beträgt die Umlaufgeschwindigkeit:
+
+Dopplerverschiebungen in Spektren liefern die Geschwindigkeiten von Sternen und Gas entlang der Sichtlinie. Nach Korrektur der Galaxienneigung lässt sich eine Rotationskurve bestimmen. Für eine Kreisbahn in einer annähernd kugelsymmetrischen newtonschen Massenverteilung liefert die Gravitation die Zentripetalbeschleunigung:
 
 $$
-v(r) = \sqrt{\frac{G M(r)}{r}}.
+\frac{v_c^2}{r}=\frac{GM(<r)}{r^2},\qquad M(<r)=\frac{rv_c^2}{G}.
 $$
 
-Beobachtet wird $v(r) \approx \text{const}$ für große $r$.  
-Aus der sichtbaren Materie erwartet man $v(r) \sim 1/\sqrt{r}$.  
-⇒ Ein **dunkler Halo** ist erforderlich.
+$M(<r)$ umfasst **jede** Masse innerhalb von $r$, nicht nur Sterne. Außerhalb einer kompakten Massenverteilung nähert sich diese Masse einer Konstante; dann gilt $v_c\propto r^{-1/2}$. Eine annähernd konstante Geschwindigkeit bedeutet dagegen $M(<r)\propto r$. Die Ableitung der eingeschlossenen Kugelmasse ergibt
 
----
+$$
+\rho(r)=\frac{1}{4\pi r^2}\frac{dM}{dr}\simeq\frac{v_c^2}{4\pi G r^2}.
+$$
+
+Das ist eine lokale Schlussfolgerung für den beobachteten flachen Bereich, kein bis ins Unendliche gültiges Haloprofil: Ein unbegrenztes $r^{-2}$-Profil hätte unendliche Masse. Reale Galaxien enthalten abgeflachte Scheiben, deren Gravitation mit der Scheibengeometrie berechnet werden muss. Stellare Masse-Leuchtkraft-Verhältnisse, Gas, Entfernung, Neigung und nichtkreisförmige Bewegungen gehören zu einer sorgfältigen Anpassung. Die [SPARC-Datenveröffentlichung](https://arxiv.org/abs/1606.09251) zeigt die Verbindung von Photometrie und Gasrotation zu Massenmodellen.
+
+**Rechenbeispiel.** Für eine idealisierte kugelförmige Galaxie mit $v_c=200\,\mathrm{km\,s^{-1}}$ bei $r=20\,\mathrm{kpc}$ setzen wir $G=4.30\times10^{-6}\,\mathrm{kpc}\,(\mathrm{km\,s^{-1}})^2M_\odot^{-1}$ ein. Es folgt $M(<r)\simeq1.86\times10^{11}M_\odot$. Beträgt die unabhängig geschätzte baryonische Masse innerhalb dieses Radius $6\times10^{10}M_\odot$, benötigt das Modell etwa $1.26\times10^{11}M_\odot$ zusätzliche Masse. Diese Zahlen erläutern das Verfahren; sie sind keine Anpassung an eine bestimmte Galaxie.
+
+![Zwei normierte Diagramme vergleichen konstante äußere Umlaufgeschwindigkeit und zunehmende eingeschlossene Masse mit fallender Geschwindigkeit und konstanter Masse.](/images/diagrams/dark-matter-deep-rotation.svg)
+
+*Abbildung 1. Jenseits eines Referenzradius gelten für die durchgezogenen blauen Kurven $v/v_0=1$ und $M/M_0=r/r_0$, für die gestrichelten orangefarbenen Kurven $v/v_0=(r/r_0)^{-1/2}$ und $M/M_0=1$. Der Zusammenhang zwischen den Feldern setzt Kugelsymmetrie voraus. Die Kurven sind schematisch, keine Messdaten.*
+
+**Galaxienhaufen und Linsen.** Zufällige Galaxiengeschwindigkeiten in einem relaxierten Haufen liefern eine weitere dynamische Massenschätzung. Die Virialrelation $2K+U\simeq0$ führt zur Skalierung $M\sim R\sigma_v^2/G$, mit geometrieabhängigem Vorfaktor. Ein verschmelzender Haufen kann außerhalb des Gleichgewichts sein; dann darf diese Schätzung nicht unkritisch angewendet werden. Gravitationslinsen nutzen stattdessen Verzerrungen von Hintergrundbildern. In der Schwachfeld- und Dünnlinsennäherung der allgemeinen Relativitätstheorie lenkt eine kugelsymmetrische Linse Licht um
+
+$$
+\alpha(b)=\frac{4G M_{\mathrm{2D}}(<b)}{c^2b}.
+$$
+
+ab. $b$ ist der Stoßparameter und $M_{\mathrm{2D}}$ die in einen Zylinder projizierte Masse, nicht die dreidimensionale Masse der Rotationsformel. Die Linse muss weder leuchten noch im dynamischen Gleichgewicht sein. Die Analyse benötigt aber ein Gravitationsmodell, eine Geometrie und die Entfernungen der Quellen.
+
+Der Bullet Cluster liefert ein Trennungsexperiment: Kollidierendes heißes Gas, das den größten Teil seiner beobachteten baryonischen Masse enthält, wird gebremst, während die Galaxien weitgehend aneinander vorbeiziehen. Die rekonstruierten Linsenmassenmaxima liegen näher bei den Galaxien als beim Gas. Das stützt eine zusätzliche, relativ kollisionsarme Massenkomponente. Es identifiziert weder WIMPs noch beweist es exakt verschwindende Selbstwechselwirkung oder widerlegt jede denkbare Gravitationstheorie. Siehe die [ursprüngliche Linsenanalyse](https://arxiv.org/abs/astro-ph/0608407).
+
+![Zwei schematische Zustände einer Haufenkollision zeigen, wie Gas sich von den Galaxien und den Linsenmassenkonturen trennt.](/images/diagrams/dark-matter-deep-merger.svg)
+
+*Abbildung 2. Links überlagern sich vor dem Durchgang orangefarbenes Gas, schwarze Galaxienpunkte und blaue Massenkonturen. Rechts bleibt das Gas näher am Zentrum, während Galaxien und Konturen auseinanderziehen. Pfeile zeigen die Bewegung. Das Schema ist keine Rekonstruktion des Bullet Clusters; die Konturgröße stellt keine gemessene Masse dar.*
 
 ## 2. Kosmologische Parameter
 
-Aus Anpassungen des $\Lambda$CDM-Modells an Planck-Daten:
+Der Dichteparameter lautet $\Omega_i=\rho_i/\rho_{\mathrm{crit}}$, mit $\rho_{\mathrm{crit}}=3H_0^2/(8\pi G)$. Er vergleicht die heutige mittlere Dichte mit einer durch die Expansionsrate bestimmten Referenzdichte. In $\Omega_i h^2$ ist $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$ dimensionslos und nicht die Planck-Konstante.
 
-![Strahlung und nichtrelativistische Materie verdünnen sich bei der Expansion des Universums; die Energiedichte einer kosmologischen Konstante bleibt dagegen konstant. Beide Achsen sind logarithmisch.](/images/diagrams/cosmic-density.svg)
+Für das räumlich flache $\Lambda$CDM-Modell mit sechs Parametern liefert [Plancks abschließende Parameteranalyse](https://arxiv.org/abs/1807.06209) $\Omega_c h^2=0.120\pm0.001$, $\Omega_b h^2=0.0224\pm0.0001$ und $h\simeq0.674$; die genannten Unsicherheiten sind 68-%-Intervalle. Damit sind $\Omega_c\simeq0.264$, $\Omega_b\simeq0.049$ und $\Omega_c/\Omega_b\simeq5.36$. Etwa 84 % der zusammengefassten Dichte aus kalter dunkler Materie und Baryonen entfallen auf kalte dunkle Materie. Diese Anteile werden modellabhängig erschlossen, nicht durch Zählen sichtbarer Objekte; der kleine Neutrinobeitrag wird getrennt behandelt.
 
-- Insgesamt: $\Omega_{\text{tot}} \simeq 1.0$ (flaches Universum)
-- Dunkle Energie: $\Omega_\Lambda \simeq 0.69$
-- Dunkle Materie: $\Omega_{\text{DM}} \simeq 0.26$
-- Baryonen: $\Omega_b \simeq 0.05$
+Warum kann der kosmische Mikrowellenhintergrund beide Komponenten unterscheiden? Vor der Rekombination bildeten Photonen und Baryonen ein gekoppeltes Fluid. Druck widerstand der gravitativen Verdichtung und erzeugte akustische Schwingungen. Baryonen erhöhen dessen Trägheit; kollisionsarme dunkle Materie liefert Gravitationspotentiale, ohne den Photonendruck zu teilen. Ihre Häufigkeiten beeinflussen die Spitzenhöhen und die Potentialentwicklung unterschiedlich. Die Anpassung der Temperatur-, Polarisations- und Linsenspektren bestimmt deshalb mehr als eine einzige Gesamtmasse.
 
-Damit **überwiegt dunkle Materie gegenüber baryonischer Materie** etwa im Verhältnis 5:1.
-
----
+**Gedankenexperiment.** Ersetzen wir die erschlossene dunkle Materie durch zusätzliche Baryonen bei gleichbleibender Gesamtmateriedichte. Nicht nur die Gravitation zählt: Das akustische Fluid wird stärker beladen und die primordialen Kernreaktionen erfahren eine andere Baryonendichte. Die Beobachtungen bleiben daher im Allgemeinen nicht dieselben. Nach der Rekombination fallen Baryonen in vorhandene Potentialmulden; zu schnell frei strömende Teilchen würden kleine Strukturkeime verwischen. „Kalt“ bedeutet eine geringe ursprüngliche Geschwindigkeitsdispersion auf relevanten Strukturskalen, keine gemessene Labortemperatur. Galaxien und Linsen prüfen das spätere Wachstum, mit Unsicherheiten durch Rückkopplung und die Beziehung zwischen Licht und Masse. [Cooke, Pettini & Steidel (2018)](https://arxiv.org/abs/1710.11129).
 
 ## 3. Teilchenkandidaten
 
+Die Belege schränken Häufigkeit, Verklumpung und Wechselwirkungen ein. Mikroskopisch bleiben viele Möglichkeiten: eine oder mehrere Teilchensorten, ein kohärentes Feld oder bestimmte kompakte Objekte. Ein Kandidat muss lange genug überleben, in passender Menge entstehen und kosmologische sowie experimentelle Grenzen erfüllen.
+
 ### (a) WIMPs (schwach wechselwirkende massive Teilchen)
-- Massenbereich: $10 \,\text{GeV} \lesssim m \lesssim 10 \,\text{TeV}$
-- Die Reliktdichte wird durch thermisches Ausfrieren festgelegt:
+
+Ein thermisches Relikt tauschte zunächst effizient Teilchen mit dem heißen Plasma aus. Als die Temperatur unter seine Massenskala fiel, sank die Gleichgewichtsdichte. Schließlich überholte die Expansion die Annihilation und ein Rest blieb erhalten. Für eine einfache Teilchensorte, die ihr eigenes Antiteilchen ist, mit Anzahldichte $n$ gilt
 
 $$
-\Omega_{\text{DM}} h^2 \approx \frac{3 \times 10^{-27} \,\text{cm}^3/\text{s}}{\langle \sigma v \rangle}.
+\dot n+3Hn=-\langle\sigma v\rangle(n^2-n_{\mathrm{eq}}^2).
 $$
 
-Das „WIMP-Wunder“: Wirkungsquerschnitte auf der elektroschwachen Skala ergeben auf natürliche Weise die beobachtete Dichte.
+$3Hn$ beschreibt die Verdünnung. Rechts steht der Nettoverlust durch Annihilation, einschließlich des Umkehrprozesses über $n_{\mathrm{eq}}$. Ausfrieren geschieht ungefähr bei $n\langle\sigma v\rangle\sim H$, nicht durch einen plötzlichen Stopp aller Wechselwirkungen. Bei Strahlungsdominanz, erhaltener Entropie und überwiegend geschwindigkeitsunabhängiger Annihilation gilt als Näherung
+
+$$
+\Omega_\chi h^2\sim0.12\frac{2.2\times10^{-26}\,\mathrm{cm^3\,s^{-1}}}{\langle\sigma v\rangle}.
+$$
+
+Effizientere Annihilation hinterlässt weniger Teilchen. Der Vorfaktor hängt von Masse und thermischer Vorgeschichte ab; Resonanzen, Koannihilation und Geschwindigkeitsabhängigkeit verlangen eine vollständigere Rechnung. Die [Berechnung der Relikthäufigkeit](https://arxiv.org/abs/1204.3622) quantifiziert das. Das „WIMP-Wunder“ ist eine Motivation, keine Garantie für die schwache Wechselwirkung oder eine bestimmte Masse im GeV–TeV-Bereich.
 
 ### (b) Axionen
-- Sie entstehen aus der Peccei–Quinn-Lösung des starken CP-Problems.
-- Sehr leicht ($\mu\text{eV}$–$\text{meV}$), jedoch nichtthermisch erzeugt.
-- Kopplung an Photonen:
+
+Der [Peccei–Quinn-Mechanismus](https://doi.org/10.1103/PhysRevLett.38.1440) erklärt die geringe CP-Verletzung der starken Wechselwirkung. Sein Axionfeld kann außerdem kosmische Energie speichern. Ein anfangs vom Potentialminimum ausgelenktes Feld beginnt zu schwingen, sobald sich die Expansion genügend verlangsamt. In einem annähernd quadratischen Potential verhält sich die gemittelte Schwingungsenergie wie drucklose Materie. Sehr kleine Masse und kaltes Verhalten sind also vereinbar: Erzeugung und Impuls zählen ebenfalls.
+
+Eine mögliche Wechselwirkung lautet bis auf eine Vorzeichenkonvention
 
 $$
-\mathcal{L}_{a\gamma\gamma} = g_{a\gamma\gamma} a \, \mathbf{E}\cdot \mathbf{B}.
+\mathcal L_{a\gamma\gamma}=g_{a\gamma\gamma}a\,\mathbf E\cdot\mathbf B.
 $$
+
+In einem statischen Magnetfeld kann ein Axion in ein Photon umgewandelt werden. Ein Resonanzhohlraum untersucht ein schmales Frequenzband mit $h_{\mathrm P}\nu\simeq m_ac^2$; $h_{\mathrm P}$ ist die Planck-Konstante. Eine Ruheenergie von $4\,\mu\mathrm{eV}$ entspricht etwa $0.97\,\mathrm{GHz}$. Das [ADMX-Experiment](https://arxiv.org/abs/1804.05750) veranschaulicht das Verfahren. Aus dunkler Materie allein folgt kein universelles Axionmassenintervall; allgemeine axionartige Teilchen lösen nicht zwangsläufig das starke CP-Problem.
 
 ### (c) Sterile Neutrinos
-- Rechtshändige Neutrinos mit Massen im keV-Bereich.
-- Kandidaten für warme dunkle Materie.
+
+Diese hypothetischen neutralen Fermionen besitzen keine gewöhnliche schwache Wechselwirkung, können aber durch Mischung mit aktiven Neutrinos verbunden sein. Eine Masse im keV-Bereich kann bei geeigneter Erzeugung warme dunkle Materie ergeben. Die Impulsverteilung bestimmt die Unterdrückung kleiner Strukturen; die Masse allein reicht nicht. Die Mischung ermöglicht auch radiativen Zerfall und damit Röntgentests. Der [ursprüngliche Erzeugungsvorschlag](https://arxiv.org/abs/hep-ph/9303287) ist ein Modell, kein Nachweis einer sterilen Teilchensorte.
 
 ### (d) Weitere Vorschläge
-- Selbstwechselwirkende dunkle Materie, dunkle Sektoren, primordiale schwarze Löcher.
 
----
+Selbstwechselwirkende dunkle Materie tauscht innerhalb ihrer Komponente Impuls aus. Das kann Halozentren verändern, während die Kopplung an gewöhnliche Materie schwach bleibt. Der [ursprüngliche Vorschlag](https://arxiv.org/abs/astro-ph/9909386) motiviert den Vergleich von Zwerggalaxien und Haufenkollisionen. Geschwindigkeitsabhängige Wechselwirkungen können beide unterschiedlich beeinflussen. Ultraleichte Felder bringen Welleneffekte; primordiale schwarze Löcher wären kompakte gravitative Objekte statt neuer Elementarteilchen. Jede Variante braucht eine festgelegte Häufigkeit und Massenverteilung. Grenzen in einem Bereich schließen nicht jede Variante aus und bestätigen keinen anderen Kandidaten.
 
 ## 4. Nachweisstrategien
 
-1. **Direkter Nachweis**  
-   - Suche nach Kernrückstößen durch Streuung dunkler Materie.
-   - Experimente: XENONnT, LUX-ZEPLIN (LZ), PandaX.
-   - Signalrate:
+Der **direkte Nachweis** sucht Energieüberträge auf Kerne oder Elektronen. Für ein Target aus einem Isotop lautet das Rückstoßspektrum pro Detektormasse schematisch
 
-   $$
-   R \propto \frac{\rho_{\chi}}{m_\chi} \langle \sigma_{\chi N} v \rangle.
-   $$
+$$
+\frac{dR}{dE_R}=\frac{\rho_\chi}{m_\chi m_N}\int_{v\geq v_{\min}}d^3v\,f(\mathbf v)\,v\,\frac{d\sigma_{\chi N}}{dE_R}.
+$$
 
-2. **Indirekter Nachweis**  
-   - Suche nach Annihilations- oder Zerfallsprodukten: $\gamma$, $e^\pm$, $\nu$.
-   - Beobachtungsziele: das galaktische Zentrum und sphäroidale Zwerggalaxien.
+$\rho_\chi/m_\chi$ ist die lokale Anzahldichte, $f$ die normierte Geschwindigkeitsverteilung im Detektorsystem, $m_N$ die Kernmasse und $E_R$ die Rückstoßenergie. Effizienzen, Schwellen und Untergründe müssen einbezogen werden. Für elastische Streuung ist $E_R^{\max}=2\mu_{\chi N}^2v^2/m_N$, mit $\mu_{\chi N}=m_\chi m_N/(m_\chi+m_N)$ und $c=1$. Leichte Teilchen übertragen schweren Kernen wenig Energie; deshalb sind niedrige Schwellen und elektronenempfindliche Targets wichtig.
 
-3. **Suche an Teilchenbeschleunigern**  
-   - Signaturen fehlenden Transversalimpulses ($E_T^{\text{miss}}$).
-   - Typisch: ein einzelner Jet + $E_T^{\text{miss}}$ am LHC.
+Eine Ausschlusskurve besagt, dass bestimmte Massen und Kopplungen unter den getroffenen Annahmen zu viele Ereignisse vorhersagen. Sie widerlegt nicht jede dunkle Materie. Als historisches Zahlenbeispiel schloss die [LZ-Analyse von 4,2 Tonnenjahren](https://arxiv.org/abs/2410.17036) spinunabhängige WIMP-Nukleon-Wirkungsquerschnitte oberhalb von $2.2\times10^{-48}\,\mathrm{cm^2}$ bei $40\,\mathrm{GeV}/c^2$ mit 90 % Konfidenz in ihrem Modell aus. Dieser Streuquerschnitt ist nicht die Annihilationsgröße $\langle\sigma v\rangle$ der Ausfriergleichung.
 
----
+Der **indirekte Nachweis** sucht Photonen, Neutrinos oder geladene Teilchen aus Annihilation oder Zerfall. Die Annihilationsintensität skaliert mit dem Sichtlinienintegral von $\rho_\chi^2$, die Zerfallsintensität mit dem von $\rho_\chi$. Dichteprofile und gewöhnliche astrophysikalische Quellen sind entscheidend. Die [Fermi-LAT-Analyse von Zwerggalaxien](https://arxiv.org/abs/1503.02641) zeigt, wie ein fehlender Nachweis bestimmte Endzustände einschränkt.
+
+**Beschleuniger** prüfen unsichtbare Erzeugung durch fehlenden Transversalimpuls, der sichtbare Teilchen ausbalanciert. Neutrinos und Detektoreffekte liefern ähnliche Signaturen. Selbst ein neues unsichtbares Teilchen müsste noch passende kosmologische Lebensdauer und Häufigkeit besitzen. Axionresonatoren, Kernrückstöße und Beschleunigerereignisse untersuchen verschiedene Kopplungen; übereinstimmende Hinweise wären besonders aussagekräftig. [ATLAS (2021)](https://arxiv.org/abs/2102.10874).
 
 ## 5. Alternativen zu dunkler Materie
 
-Einige Ansätze schlagen Änderungen der Gravitation vor:
+MOND fragt, ob sich die Beziehung zwischen Gravitation und Baryonen bei kleinen Beschleunigungen ändert. In einer einfachen kugelsymmetrischen Form gilt
 
-- **MOND (modifizierte Newtonsche Dynamik)**:
 $$
-\mu\!\left(\frac{a}{a_0}\right) a = \frac{GM}{r^2},
+\mu(a/a_0)a=\frac{GM_b}{r^2},\qquad \mu(x)\to x\quad(x\ll1).
 $$
-mit $a_0 \sim 10^{-10}\,\text{m/s}^2$.
 
-- **TeVeS**, **f(R)-Gravitation** usw.  
+In diesem Grenzfall folgt mit $a=v_c^2/r$ die Beziehung $v_c^4=GM_ba_0$. Eine charakteristische Beschleunigung nahe $10^{-10}\,\mathrm{m\,s^{-2}}$ verbindet somit die asymptotische Geschwindigkeit mit der baryonischen Masse. Die beobachtete enge Beziehung zwischen baryonischer und dynamischer Beschleunigung müssen sowohl modifizierte Gravitation als auch Galaxienentstehungsmodelle mit dunkler Materie erklären; siehe die [ursprüngliche Untersuchung](https://arxiv.org/abs/1609.05917).
 
-Diese Ansätze haben jedoch Schwierigkeiten, **CMB, großräumige Struktur und Gravitationslinsen** gleichzeitig zu erklären.  
-⇒ Dunkle Materie bleibt das vorherrschende Paradigma.
-
----
+Diese nichtrelativistische Formel allein bestimmt weder Linsenwirkung noch das frühe Universum. Eine konkurrierende Theorie braucht eine relativistische Vervollständigung und gemeinsame Tests mit Haufen, Mikrowellenhintergrund und Strukturwachstum. Umgekehrt erklärt eine erfolgreiche großräumige Anpassung mit dunkler Materie nicht automatisch jede galaktische Korrelation. Verglichen werden müssen vollständige Modelle samt Unsicherheiten, nicht nur eine besonders gut angepasste Rotationskurve.
 
 ## 6. Stand der Forschung
 
-Für dunkle Materie gibt es überwältigende Belege; ihre **Identität als Teilchen bleibt jedoch unbekannt**.  
+**Geprüft am 13. Oktober 2026.** Im üblichen Gravitationsrahmen gibt es starke Belege für zusätzliche verklumpende Masse; ihre mikroskopische Identität ist nicht festgestellt. Alle experimentellen Analysen schlicht als Nullresultate zu bezeichnen wäre inzwischen unzutreffend. Der [LZ-Preprint vom September 2026](https://arxiv.org/abs/2609.02823) berichtet einen Kernrückstoßkandidaten bei ungefähr 248 keV in einem erweiterten Energiefenster. Nach Berücksichtigung des Effekts multipler Tests beträgt die globale Spannung zum reinen Untergrundmodell $2.6\sigma$, die maximale lokale Signifikanz $3.4\sigma$. Das ist ein interessanter Überschuss, keine Entdeckung und keine Wahrscheinlichkeit für die Existenz dunkler Materie. Weitere Daten, Untergrundprüfung und unabhängige Konsistenz sind nötig.
 
-- WIMPs: bisher kein Nachweis.  
-- Axionen: laufende Suche (ADMX, MADMAX).  
-- Neue Beobachtungsmöglichkeiten: CTA (Gammastrahlung), JWST (Struktur) sowie direkte Nachweisexperimente, die sich dem Neutrinountergrund annähern.
+Neutrinostreuung ist bereits relevant: Die [LZ-Niederenergieanalyse](https://arxiv.org/abs/2512.08065) untersucht solare Neutrinorückstöße neben leichter dunkler Materie. Der „Neutrinountergrund“ als Empfindlichkeitsgrenze bezeichnet schlechtere Unterscheidbarkeit und langsameren Sensitivitätsgewinn bestimmter Suchen, keine absolute Wand. Spektren, Zeitverläufe, verschiedene Targets und Richtungsinformationen können je nach Signalmodell helfen. [O’Hare (2021)](https://arxiv.org/abs/2109.03116).
 
-**Das Rätsel der dunklen Materie zählt zu den drängendsten offenen Fragen der modernen Physik.**
-
----
+Offen sind die Zahl der Komponenten, ihre Erzeugung, Selbstwechselwirkungen und der Anteil von Gasdynamik und stellarer Rückkopplung an scheinbaren Problemen auf kleinen Skalen. Hilfreich ist die Trennung von **Beobachtung** (Spektrum, Geschwindigkeit, Bildverzerrung), **Schlussfolgerung** (Masse in einem Modell) und **Hypothese** (Teilchen oder Feld). Dunkle Materie ist mehr als ein Name für Unwissenheit; eine präzise kosmologische Häufigkeit ist dennoch keine Teilchenentdeckung.

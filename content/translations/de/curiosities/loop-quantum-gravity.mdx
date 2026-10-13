@@ -1,143 +1,183 @@
 ---
-description: "Schleifenquantengravitation: Ashtekar-Variablen, Zwangsbedingungen, Holonomien, Spinnetzwerke und Quantenkosmologie samt offenen Fragen zum klassischen Grenzfall."
+description: "Schleifenquantengravitation verständlich erklärt: Variablen, Zwangsbedingungen, Flächenspektrum, Spinfoams und ein kosmologischer Rückprall mit klaren Modellgrenzen."
 ---
 
 ## 1. Motivation
 
-Die allgemeine Relativitätstheorie (ART) beschreibt die Raumzeit als glatte Geometrie, die den Einstein-Gleichungen gehorcht:
+In der allgemeinen Relativitätstheorie (ART) ist die Geometrie dynamisch: Materie und Geometrie beeinflussen einander. Mit $c=1$ und hier ohne kosmologische Konstante gilt
 
 $$
-G_{\mu\nu} = 8\pi G \, T_{\mu\nu}.
+G_{\mu\nu}=8\pi G T_{\mu\nu}.
 $$
 
-Die Quantenmechanik verlangt, dass alle dynamischen Felder quantisiert werden.  
-Wie lässt sich die **Raumzeit selbst** quantisieren, ohne Strings oder zusätzliche Dimensionen einzuführen?  
+Die Quantentheorie beschreibt Materie erfolgreich. Ein Quantenfeld auf einer vorgegebenen gekrümmten Raumzeit quantisiert jedoch noch nicht die Raumzeit selbst. Nahe einer klassischen Singularität könnte die Beschreibung durch einen glatten klassischen Hintergrund versagen. Dies motiviert Quantengravitation, beweist aber weder die Richtigkeit einer bestimmten Quantisierung noch, dass jedes klassische Feld auf genau eine Weise quantisiert werden muss.
 
-Die **Schleifenquantengravitation (LQG)** versucht genau dies:  
-eine **hintergrundunabhängige, nichtperturbative Quantisierung der ART**.
+Die **Schleifenquantengravitation (LQG)** untersucht, ob die ART ohne vorher festgelegte Hintergrundmetrik und ohne Entwicklung um diese Metrik quantisiert werden kann. „Nichtperturbativ“ bedeutet, nicht mit kleinen Gravitationsstörungen einer gewählten Geometrie zu beginnen. „Hintergrundunabhängig“ bedeutet, dass Längen und Flächen durch dynamische Variablen bestimmt werden. Eine differenzierbare Mannigfaltigkeit und weitere mathematische Entscheidungen bleiben erforderlich. Siehe die [Grundlagendarstellung von Ashtekar und Lewandowski](https://arxiv.org/abs/gr-qc/0404018).
 
----
+Die charakteristische Skala ist $\ell_P=\sqrt{\hbar G/c^3}$, etwa $1.6\times10^{-35}\,\mathrm{m}$. Diese Dimensionskombination zeigt an, wo Quanten- und Gravitationseffekte gemeinsam wichtig werden könnten. Sie beweist **für sich genommen** weder ein regelmäßiges Raumgitter noch eine kleinste mögliche Entfernung. Konkretere Aussagen benötigen Zustandsraum, geometrische Operatoren und konsistente Dynamik.
 
 ## 2. Kanonische Quantisierung der ART
 
-Ausgangspunkt ist die Hamiltonsche Formulierung der ART.  
-Mithilfe der ADM-Zerlegung erhält man die räumliche Dreiermetrik $q_{ab}$ und ihren konjugierten Impuls $\pi^{ab}$.  
-Diese Variablen sind jedoch unhandlich.  
+Der kanonische Zugang beschreibt Daten auf einem räumlichen Schnitt $\Sigma$ und fragt, welche Daten dieselbe Raumzeit darstellen. In der ADM-Formulierung sind die Variablen die räumliche Metrik $q_{ab}$ und ihr konjugierter Impuls $\pi^{ab}$. Die Blätterung organisiert die Rechnung und führt keine physikalisch bevorzugte Uhr ein.
 
 ### Ashtekar-Variablen
 
-Man führt neue kanonische Variablen ein:
-
-- Zusammenhang: $A^i_a$ (ein $SU(2)$-Eichfeld)  
-- Konjugiertes elektrisches Feld: $E^a_i$ (mit den Triaden verknüpft)  
-
-mit den Poisson-Klammern:
+Wir verwenden die reellen **Ashtekar–Barbero-Variablen** der lorentzschen ART in der Zeiteichung, mit nichtentarteten Triaden und reellem $\gamma>0$. Die ursprüngliche selbstduale Ashtekar-Verbindung ist komplex; die Formulierungen sind verwandt, aber die Variablen nicht identisch. [Barberos reelle Formulierung](https://arxiv.org/abs/gr-qc/9410013) und die [Holst-Wirkung](https://arxiv.org/abs/gr-qc/9511026) erläutern diesen kanonischen Wechsel.
 
 $$
-\{ A^i_a(x), E^b_j(y) \} = 8\pi G \, \gamma \, \delta^b_a \, \delta^i_j \, \delta^{(3)}(x,y).
+A_a^i=\Gamma_a^i(E)+\gamma K_a^i,
+\qquad E_i^a=\sqrt{q}\,e_i^a,
+\qquad E_i^aE_i^b=q\,q^{ab}.
 $$
 
-Dabei ist $\gamma$ der **Barbero–Immirzi-Parameter**.
+Dabei ist $q=\det(q_{ab})$, $e_i^a$ die inverse Triade, $\Gamma_a^i$ die kompatible Spinverbindung und $K_a^i$ die äußere Krümmung in Triadenvariablen: Sie beschreibt die Einbettung des Schnitts in die Raumzeit. $a,b$ sind räumliche Indizes, $i$ bezeichnet ein internes orthonormales Bezugssystem. $E$ trägt die räumliche Geometrie, während $A$ innere Verbindung und äußere Krümmung kombiniert. „Elektrisches Feld“ für $E$ ist eine Analogie zur Eichtheorie, kein elektromagnetisches Feld.
 
----
+Mit $\kappa=8\pi G$ und $c=1$ gilt
+
+$$
+\{A_a^i(x),E_j^b(y)\}=\kappa\gamma\,\delta_a^b\delta_j^i\delta^{(3)}(x,y).
+$$
+
+Der dimensionslose **Barbero–Immirzi-Parameter** $\gamma$ kennzeichnet diese kanonische Wahl. Die klassischen Vakuumgleichungen legen ihn nicht fest. Weil er in geometrischen Spektren auftritt, sind seine Quantenbedeutung und physikalische Bestimmung wichtig. Ein Beispielwert ist keine gemessene Naturkonstante.
 
 ## 3. Zwangsbedingungen
 
-In kanonischer Form wird die Dynamik der ART durch Zwangsbedingungen beschrieben:
+Die Variablen enthalten redundante Beschreibungen. Im Vakuum, ohne kosmologische Konstante und unter Unterdrückung eines von null verschiedenen Gesamtfaktors in $\mathcal H$ lautet eine Darstellung
 
-1. **Gauß-Zwangsbedingung** (interne $SU(2)$-Eichinvarianz):
 $$
-\mathcal{G}_i = D_a E^a_i \approx 0.
-$$
-
-2. **Diffeomorphismus-Zwangsbedingung** (räumliche Invarianz):
-$$
-\mathcal{V}_a = E^b_i F^i_{ab} \approx 0.
+\mathcal G_i=D_aE_i^a\approx0,
+\qquad \mathcal V_a=E_i^bF^i_{ab}\approx0,
 $$
 
-3. **Hamiltonsche Zwangsbedingung** (Zeitentwicklung):
 $$
-\mathcal{H} = \frac{E^a_i E^b_j}{\sqrt{\det E}} 
-\left( \epsilon^{ij}{}_{k} F^k_{ab} - 2(1+\gamma^2) K^i_{[a}K^j_{b]} \right) \approx 0.
+\mathcal H=\frac{E_i^aE_j^b}{\sqrt{|\det E|}}
+\left(\epsilon^{ij}{}_{k}F^k_{ab}
+-2(1+\gamma^2)K^i_{[a}K^j_{b]}\right)\approx0.
 $$
 
-Physikalische Zustände müssen alle drei Zwangsbedingungen erfüllen.
+$F$ ist die Krümmung von $A$, $D$ die zugehörige kovariante Ableitung. $\approx0$ bedeutet Gleichheit auf der Zwangsfläche und keinen kleinen Fehler. Die Gauß-Bedingung beseitigt beliebige Drehungen des internen Bezugssystems. Die Vektorbedingung erzeugt räumliche Koordinatenänderungen **bis auf eine Gauß-Transformation**; ein reiner Diffeomorphismengenerator enthält einen entsprechenden Gauß-Term. Die Hamiltonsche Bedingung setzt Änderungen der Blätterung um, keine gewöhnliche Entwicklung gegenüber einer universellen äußeren Zeit.
 
----
+Die Freiheitsgradzählung hilft: $A$ und $E$ liefern pro Punkt 18 Phasenraumkomponenten. Sieben unabhängige erstklassige Zwangsbedingungen entfernen 14 Komponenten. Vier bleiben, also zwei Konfigurationsfreiheitsgrade: die lokalen Gravitationspolarisationen. Das ist die reguläre klassische Vakuumzählung; Ränder und singuläre Sektoren verlangen eine gesonderte Behandlung.
+
+Die Quantisierung konstruiert zuerst die **Kinematik**, danach Zwangsbedingungen und physikalisches Skalarprodukt. Ein Spinnetzwerk ist daher nicht automatisch eine physikalische Lösung. Eine relationale Observable könnte die Fläche einer durch Materie definierten Oberfläche sein, wenn eine skalare Uhr einen bestimmten Wert hat. Solche Größen zu definieren und die klassische Zwangsalgebra ohne Anomalie wiederzugewinnen, gehört zu den zentralen dynamischen Aufgaben. [Thiemanns Konstruktion](https://arxiv.org/abs/gr-qc/9606089) ist ein konkreter Vorschlag, keine eindeutig abgeschlossene phänomenologische Theorie.
 
 ## 4. Holonomien und Flüsse
 
-Statt $A^i_a$ unmittelbar zu quantisieren, verwendet die LQG:
+Die Grundvariablen werden entlang von Kurven und über Flächen integriert:
 
-- **Holonomien**: Paralleltransporte des Zusammenhangs $A^i_a$ entlang einer Kurve $\ell$:
 $$
-h_\ell[A] = \mathcal{P}\exp\!\left(\int_\ell A\right).
+h_\ell[A]=\mathcal P\exp\!\left(\int_\ell A_a^i\tau_i\,dx^a\right),
+\qquad E(S,f)=\int_S f^i E_i^a\,dS_a.
 $$
 
-- **Flüsse**: über Flächen integrierte Größen aus $E^a_i$.  
+$\tau_i$ sind Generatoren von $\mathfrak{su}(2)$, $f^i$ ein Testfeld; $\mathcal P$ ordnet nichtkommutierende Matrizen entlang des Weges. Die Holonomie vergleicht interne Bezugssysteme durch Paralleltransport. Sie ist ein $SU(2)$-Element, keine Länge. Der Fluss misst gerichtete Triadeninformation durch eine Oberfläche. Das Vorzeichen im Exponenten hängt von der Verbindungskonvention ab.
 
-Dies führt zu einer **Holonomie-Fluss-Algebra**, die sich gut für eine hintergrundunabhängige Quantisierung eignet.
+Als Gedankenexperiment transportieren wir ein Bezugssystem um eine kleine geschlossene Schleife. In glatter klassischer Geometrie enthält die führende Abweichung der Holonomie von der Identität die Krümmung durch die Schleife. LQG nimmt endliche Transporte als Grundvariablen, ohne einen punktweise definierten Operator $A(x)$ vorauszusetzen. Auf Funktionen der Holonomien wirken Holonomien durch Multiplikation und Flüsse durch Ableitungen. Ihre Algebra hängt von den Schnittpunkten zwischen Wegen und Flächen ab.
 
----
+Der [Eindeutigkeitssatz zur Holonomie-Fluss-Algebra](https://arxiv.org/abs/gr-qc/0504147) zeichnet unter bestimmten algebraischen, Kovarianz- und Zyklizitätsannahmen eine Darstellung aus. Er beweist weder, dass jede Quantengravitation LQG sein muss, noch wählt er den Hamiltonoperator aus.
 
 ## 5. Spinnetzwerke
 
-Der kinematische Hilbertraum der LQG wird von **Spinnetzwerkzuständen** aufgespannt:
+Ein eichinvariantes **Spinnetzwerk** besteht aus einem Graphen, Spins $j=0,\tfrac12,1,\ldots$ an seinen Kanten und invarianten Tensoren, den **Intertwinern**, an den Knoten. Die Spins bezeichnen $SU(2)$-Darstellungen, keine rotierenden Kügelchen. Ein Intertwiner verbindet die anliegenden Darstellungen zu einem invarianten Objekt und erfüllt damit die Gauß-Bedingung. Graphen beschreiben Beziehungen der Quantengeometrie; sie müssen kein regelmäßiges physikalisches Gitter bilden.
 
-![Die Kanten eines Spinnetzwerks sind mit Darstellungen beschriftet, die Knoten mit verflechtenden Abbildungen. Kanten, die eine Fläche durchstoßen, tragen zu deren Flächeneigenwert bei.](/images/diagrams/spin-network.svg)
+Für eine Fläche, die Kanten transversal und außerhalb der Knoten schneidet, hat der Standard-Flächenoperator die Eigenwerte
 
-- Graphen mit Kanten, die durch $SU(2)$-Darstellungen (Spins $j$) gekennzeichnet sind  
-- Knoten, die mit Verflechtungsoperatoren (Intertwinern) beschriftet sind  
-
-Eine geeignete Spinnetzwerkbasis diagonalisiert die **Fläche**. Für das **Volumen** müssen im Allgemeinen endliche Matrizen in den Intertwiner-Räumen der Knoten diagonalisiert werden. Die Operatoren haben schematisch die Form:
-
-- **Flächenoperator**:
 $$
-\hat{A}(S) = 8\pi \gamma \ell_P^2 \sum_{p\in S\cap \Gamma} \sqrt{j_p(j_p+1)}.
+A(S)=8\pi\gamma\ell_P^2\sum_{p\in S\cap\Gamma}\sqrt{j_p(j_p+1)}.
 $$
 
-- **Volumenoperator**:
+Am Durchstoßpunkt wirkt ein Fluss ähnlich einem Drehimpulsgenerator. Der quadratische $SU(2)$-Casimir hat den Eigenwert $j(j+1)$; die Betragsbildung erklärt $\sqrt{j(j+1)}$. Die [Konstruktion des Flächenoperators](https://arxiv.org/abs/gr-qc/9602046) zeigt Diskretheit auf dem kinematischen Hilbertraum. Flächen durch Knoten benötigen einen allgemeineren Ausdruck. Wie [Dittrich und Thiemann erläutern](https://arxiv.org/abs/0708.1721), bestimmt ein kinematisches Spektrum nicht automatisch das Spektrum jeder vollständig relationalen physikalischen Observable.
+
+### Eine Flächenmessung durchgerechnet
+
+Ein Flächenstück ohne Knoten werde einmal von $j=\tfrac12$ und einmal von $j=1$ durchstoßen. Dann gilt
+
 $$
-\hat{V}(R) = \sum_{v\in R\cap \Gamma} \sqrt{|\hat{q}_v|}.
+\frac{A}{8\pi\gamma\ell_P^2}
+=\sqrt{\tfrac12(\tfrac12+1)}+\sqrt{1(1+1)}
+=\frac{\sqrt3}{2}+\sqrt2\approx2.280.
 $$
 
-Ergebnis: **Flächen und Volumina haben diskrete Spektren**, mit charakteristischen Skalen $\sim \ell_P^2$ beziehungsweise $\sim \ell_P^3$.
+Ein einzelner Spin $j=\tfrac12$ trägt $4\pi\sqrt3\,\gamma\ell_P^2$ bei. Zwei solche Durchstoßpunkte ergeben $8\pi\sqrt3\,\gamma\ell_P^2$, ein einzelner Spin $j=1$ dagegen $8\pi\sqrt2\,\gamma\ell_P^2$. Gleiche Summen der Spinlabels liefern also nicht unbedingt gleiche Flächen. Dies sind lokale Beiträge in einem zulässigen Netzwerk; der übrige Graph muss seine Intertwiner-Bedingungen erfüllen. Die Rechnung beschreibt mögliche Ergebnisse innerhalb der Quantisierung, keine beobachtete Körnung des Raums.
 
----
+![Zwei Kanten mit verschiedenen Spins durchstoßen eine Fläche; ihre Flächenbeiträge addieren sich als Wurzeln der SU(2)-Casimir-Eigenwerte.](/images/diagrams/lqg-deep-area.svg)
+
+*Das schattierte Flächenstück hat zwei transversale Durchstoßpunkte. Die Geometrie ist schematisch; die Formel bestimmt den Flächeneigenwert, nicht der gezeichnete Abstand.*
+
+Das Volumen ist anspruchsvoller:
+
+$$
+\hat V(R)=\sum_{v\in R\cap\Gamma}\sqrt{|\hat q_v|}.
+$$
+
+$\hat q_v$ enthält Dreifachprodukte von Flussgeneratoren, Orientierungsfaktoren und dimensionierte Konstanten. Es wirkt im Allgemeinen als Matrix im Intertwiner-Raum eines Knotens. Feste Kantenspins legen daher das Volumen nicht unbedingt fest; eine passende Intertwiner-Basis wird zusätzlich benötigt. Die [Konstruktion der Volumenoperatoren](https://arxiv.org/abs/gr-qc/9711031) erklärt diesen Unterschied. Diskrete geometrische Spektren bedeuten weder gleich große Würfel noch eine automatisch diskrete äußere Zeit.
+
+### Von Spinnetzwerken zu Spinfoams
+
+Ein Spinnetzwerk beschreibt Randgeometrie. Ein **Spinfoam** ist ein beschrifteter zweidimensionaler Komplex, der Amplituden zwischen solchen Rändern zuordnet: Graphkanten überstreichen Flächen, Graphknoten zeichnen Kanten des Komplexes. Es handelt sich um Geschichten in einer Summe über Quantengeometrien, nicht um Knotenbewegungen durch einen bereits vorhandenen Raum.
+
+Auf einem gewählten Komplex $\mathcal C$ schreibt man schematisch
+
+$$
+Z_{\mathcal C}=\sum_{\{j_f,i_e\}}\prod_f A_f\prod_e A_e\prod_v A_v.
+$$
+
+Die Labels werden summiert; Flächen-, Kanten- und Knotenamplituden enthalten die Modelldynamik. Randdaten und Normierung sind hier unterdrückt. Die [EPRL-Konstruktion](https://arxiv.org/abs/0711.0146) verbindet einen vierdimensionalen Spinfoam-Knoten durch Einfachheitsbedingungen mit LQG-Randzuständen. Die Festlegung eines endlichen Komplexes begründet noch keine vollständige Kontinuumstheorie.
+
+Für geeignete nichtentartete geometrische Randdaten enthält die Großspin-Asymptotik einer euklidischen EPRL-Vier-Simplex-Amplitude die Regge-Wirkung, eine diskretisierte Gravitationswirkung. Dieses [semiklassische Konsistenzergebnis](https://arxiv.org/abs/0902.1170) ist wertvoll. Es beweist nicht, dass jede Amplitude, jeder Verfeinerungsgrenzfall oder jede langreichweitige Korrelationsfunktion die ART reproduziert.
 
 ## 6. Schleifenquantenkosmologie (LQC)
 
-Wendet man Ideen der LQG auf homogene kosmologische Modelle an, erhält man:
+Die **LQC** überträgt Ideen der Schleifenquantisierung auf symmetriereduzierte kosmologische Systeme. Homogenität vor der Quantisierung beseitigt unendlich viele inhomogene Moden. Ein Satz im reduzierten System ist deshalb nicht automatisch ein Satz in der vollständigen LQG.
 
-![Eine schematische effektive Lösung der homogenen Schleifenquantenkosmologie kontrahiert bis zu einem positiven minimalen Skalenfaktor und expandiert danach wieder. Sie zeigt eine Modellvorhersage und keine Beobachtung.](/images/diagrams/quantum-bounce.svg)
+Wir betrachten das räumlich flache, homogene, isotrope Standardmodell mit masselosem Skalarfeld und scharf konzentrierten semiklassischen Zuständen in der verbesserten Dynamik. Seine effektiven Gleichungen enthalten
 
-- Die Urknallsingularität wird durch einen **Quantenrückprall** ersetzt.  
-- Modifizierte Friedmann-Gleichung:
 $$
-H^2 = \frac{8\pi G}{3}\rho \left(1 - \frac{\rho}{\rho_c}\right),
+H^2=\frac{8\pi G}{3}\rho\left(1-\frac{\rho}{\rho_c}\right),
+\qquad \dot\rho=-3H(\rho+P),
 $$
-wobei $\rho_c \sim \rho_{\text{Planck}}$ gilt.  
 
-Bei $\rho = \rho_c$ geht in der Rückpralllösung die Kontraktion in Expansion über; eine Singularität wird vermieden.
+Dabei ist $H=\dot a/a$, $P$ der Druck und $\rho_c$ eine modellabhängige kritische Dichte von Planck-Größenordnung. Bei kleinen Dichten folgt die gewöhnliche flache Friedmann-Gleichung; die negative quadratische Korrektur ergibt $H=0$ bei $\rho_c$. Die [Analyse der verbesserten Dynamik](https://arxiv.org/abs/gr-qc/0607039) nennt die Voraussetzungen und untersucht den Rückprall analytisch und numerisch.
 
----
+### Herleitung des Rückpralls im effektiven Modell
+
+Differenzieren und Energieerhaltung liefern zunächst für $H\ne0$ und anschließend durch stetige Fortsetzung
+
+$$
+\dot H=-4\pi G(\rho+P)\left(1-2\frac{\rho}{\rho_c}\right).
+$$
+
+Bei $\rho=\rho_c$ gilt für Materie mit $\rho+P>0$ also $\dot H>0$: Kontraktion kann in Expansion übergehen. $H=0$ allein würde keinen Rückprall beweisen. Für das masselose Skalarfeld gilt $P=\rho$ und $\rho\propto a^{-6}$. Legt man den Rückprall auf $t=0$, erhält man die exakte Lösung dieser effektiven Gleichungen
+
+$$
+a(t)=a_B\left(1+\frac{t^2}{t_B^2}\right)^{1/6},
+\qquad \rho(t)=\frac{\rho_c}{1+t^2/t_B^2},
+\qquad t_B^{-2}=24\pi G\rho_c.
+$$
+
+Einsetzen ergibt $H=t/[3(t_B^2+t^2)]$ und bestätigt beide Gleichungen. Bei $t=\pm t_B$ sind $\rho=\rho_c/2$ und $a=2^{1/6}a_B$. Der Zahlenwert von $a_B$ hängt von der Normierung räumlicher Koordinaten ab. Physikalisch entscheidend sind die endliche Dichte und der Wechsel von Kontraktion zu Expansion.
+
+![Der dimensionslose effektive Skalenfaktor erreicht beim Rückprall sein Minimum, die Dichte ihr Maximum; beide Kurven sind um die Zeit null symmetrisch.](/images/diagrams/lqg-deep-bounce.svg)
+
+*Waagerechte Achse: $t/t_B$. Obere Kurve: $a/a_B$; untere Kurve: $\rho/\rho_c$. Dargestellt ist die effektive Lösung für ein masseloses Skalarfeld, keine Messung und keine universelle Vorhersage für alle Kosmologien.*
+
+Exakt lösbare LQC erlaubt stärkere Aussagen über Klassen von Quantenzuständen als diese effektive Rechnung allein; siehe [Ashtekar, Corichi und Singh](https://arxiv.org/abs/0710.3565). Übertragungen auf Anisotropien, Störungen, andere Materie oder Quantisierungen und die vollständige Theorie benötigen zusätzliche Argumente. Ein Modellrückprall klärt nicht, was dem beobachteten heißen frühen Universum vorausging.
 
 ## 7. Herausforderungen und offene Fragen
 
-- Die **Hamiltonsche Zwangsbedingung** in der vollständigen LQG zu lösen, bleibt schwierig.  
-- Der **semiklassische Grenzfall**, der auf großen Skalen die glatte ART zurückliefert, muss noch vollständig nachgewiesen werden.  
-- Der Bezug zu **experimentellen Tests** (kosmische Mikrowellenhintergrundstrahlung, Gravitationswellen) ist weiterhin indirekt.  
+- **Dynamik und Zwangsbedingungen:** Hamiltonoperator, Regularisierungsentscheidungen, physikalische Zustände und Skalarprodukt kontrollieren und dabei die erforderlichen Eichsymmetrien erhalten.
+- **Kontinuum und semiklassischer Grenzfall:** Aus vielen Anregungen glatte Geometrie und niederenergetische ART mit Materie herleiten. Große Spins auf einem festen Graphen und Verfeinerung durch zusätzliche Graphelemente sind verschiedene Grenzfälle und müssen konsistent behandelt werden.
+- **Immirzi-Parameter:** Bestimmen, welche $\gamma$-Abhängigkeit in physikalischen Vorhersagen bestehen bleibt. Eine Anpassung an die Schwarze-Loch-Entropie unter bestimmten Zählannahmen ist keine unabhängige Labormessung.
+- **Beobachtung:** Eine Struktur im Mikrowellenhintergrund oder eine Veränderung von Gravitationswellen benötigt ein konkretes effektives Modell, einen Anfangszustand und eine Störungsbehandlung. Robustheit und Unterscheidbarkeit von gewöhnlicher Astrophysik oder anderen Frühuniversumsmodellen müssen vor einem LQG-Test belegt werden.
 
----
+Ein Beispiel laufender Arbeit ist die [Septemberfassung 2026 von Assanioussi und Livine](https://arxiv.org/abs/2601.21644v2): Kleine „Candy“-Graphen dienen als Bausteine für klassische Hamiltonsche Dynamik; das detaillierte Quantenregime bleibt ausdrücklich späteren Arbeiten vorbehalten. Das ist Fortschritt an einem kontrollierten Teilsystem, keine abgeschlossene Quantendynamik und kein empirischer Nachweis.
+
+### Häufige Missverständnisse
+
+**„Die Schleifen sind Strings.“** Holonomien sind Paralleltransportvariablen, Netzwerklabels beschreiben Geometrie statt propagierender Strings. **„Hintergrundunabhängigkeit beseitigt alle Annahmen.“** Topologie, Variablen, Quantisierung und Ränder bleiben wichtig. **„Diskrete Fläche beweist einen Pixelbildschirm als Raum.“** Das Spektrum gehört zu einem Operator; Zustände können Überlagerungen sein, ohne bevorzugtes regelmäßiges Gitter. **„Der Rückprall beweist ein vorheriges Universum.“** Er ist ein bedingtes Modellergebnis; die Rechnung liefert keine entsprechende Beobachtung.
 
 ## Stand der Forschung
 
-Die LQG bietet einen mathematisch präzisen Rahmen, in dem die **Geometrie der Raumzeit quantisiert** wird.  
-Sie ergänzt die Stringtheorie:  
+Forschungsstand geprüft bis **13. Oktober 2026**. LQG besitzt präzise kinematische Konstruktionen und umfangreiche Arbeiten zu Dynamik und reduzierten Modellen. Die verlinkten Arbeiten liefern mathematische Ergebnisse und Modellvorhersagen, aber keine experimentelle Bestätigung dieser Quantenstruktur unserer Raumzeit. Ein kontrollierter Weg von vollständiger Dynamik zu unterscheidbaren gemessenen Vorhersagen bleibt Forschungsziel.
 
-- Stringtheorie: Vereinigung der Wechselwirkungen als Ausgangspunkt, hintergrundabhängig  
-- LQG: Quantenraumzeit als Ausgangspunkt, hintergrundunabhängig  
-
-Beide streben nach einer **Quantengravitation**, gehen dabei aber aus entgegengesetzten Richtungen vor.
-
----
+LQG betont die Quantisierung der Gravitationsgeometrie ohne feste Hintergrundmetrik. Die Stringtheorie beginnt mit anderen Freiheitsgraden und besitzt ebenfalls nichtperturbative Formulierungen; sie stets als hintergrundabhängig zu bezeichnen, vereinfacht den Vergleich unzulässig. Maßstäbe sind Annahmen, innere Konsistenz, Wiedergewinnung bekannter Physik und beobachtbare Folgen.

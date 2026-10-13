@@ -1,0 +1,202 @@
+---
+description: "Pourquoi les cordes peuvent contenir la gravité : feuilles d’univers, contraintes quantiques, dimensions compactes, dualités et holographie, avec exemples et limites."
+---
+
+## 1. Des points aux cordes
+
+La relativité générale décrit la gravité par une métrique dynamique de l’espace-temps ; la théorie quantique des champs décrit des champs fluctuants et leurs particules. Quantifier de petites fluctuations de la métrique fonctionne comme **théorie effective à basse énergie**, mais les ordres perturbatifs supérieurs nécessitent toujours plus de contre-termes à dérivées supérieures. La non-renormalisabilité n’invalide pas toutes les prédictions à basse énergie : elle limite l’extrapolation vers des distances arbitrairement courtes. La théorie des cordes recherche une description microscopique plus complète.
+
+Son objet perturbatif élémentaire est une **corde** à une dimension dont l’histoire balaie une **feuille d’univers** à deux dimensions. Une particule ponctuelle trace une ligne d’univers. Différentes excitations quantiques ont des masses et spins différents ; un spectre approprié de cordes fermées contient un état sans masse de spin 2 avec des interactions gravitationnelles. C’est une motivation, pas une preuve que la nature réalise cette théorie.
+
+![Une particule trace une ligne d’univers ; une corde balaie une feuille repérée par sigma et tau.](/images/diagrams/worldsheet.svg)
+
+*La feuille représente l’histoire de la corde, pas deux dimensions supplémentaires de l’espace-temps.*
+
+On utilise $\hbar=c=1$, la longueur de corde $\ell_s=\sqrt{\alpha'}$ et la tension $T=1/(2\pi\alpha')$. La tension est une énergie par longueur ; $\alpha'$ a donc la dimension d’une longueur au carré. Le couplage sans dimension $g_s$ contrôle séparation, jonction et développement en topologies de la feuille, et ne désigne pas la tension. Une corde fondamentale n’est pas un fil élastique composé d’atomes. Les cours de Tong exposent ces bases. [1](https://davidtong.org/teaching/string-theory/)
+
+## 2. Dynamique classique des cordes
+
+### Action de Nambu–Goto
+
+Dans un espace-temps plat de signature $(-,+,\ldots,+)$, $X^\mu(\tau,\sigma)$ précise la position. La métrique induite $\gamma_{ab}$ mesure les distances sur la feuille :
+
+$$
+\gamma_{ab}=\partial_aX^\mu\partial_bX^\nu\eta_{\mu\nu},\qquad
+S_{\mathrm{NG}}=-T\int d^2\sigma\sqrt{-\det\gamma_{ab}}.
+$$
+
+Le déterminant transforme une petite région de coordonnées en aire physique ; le signe correspond à une surface de genre temps. L’action stationnaire donne un analogue relativiste d’une surface minimale, sans minimiser la longueur spatiale instantanée de la corde.
+
+### Action de Polyakov
+
+Une métrique auxiliaire $h_{ab}$ rend l’action quadratique dans les dérivées. Sa variation donne la contrainte sur le tenseur énergie-impulsion de la feuille :
+
+$$
+S_{\mathrm P}=-\frac T2\int d^2\sigma\sqrt{-h}\,h^{ab}\partial_aX^\mu\partial_bX_\mu,
+\qquad T_{ab}=\gamma_{ab}-\frac12h_{ab}h^{cd}\gamma_{cd}=0.
+$$
+
+Pour une surface non dégénérée, $h_{ab}$ devient proportionnelle à $\gamma_{ab}$ ; la substitution restitue Nambu–Goto. Le facteur reste libre : sous la transformation locale de Weyl $h_{ab}\mapsto e^{2\omega}h_{ab}$, l’élément d’aire et la métrique inverse se compensent en deux dimensions. Reparamétrisations et symétrie de Weyl éliminent des descriptions redondantes. Cette équivalence est classique ; mesure quantique et anomalies demandent un traitement supplémentaire. [2](https://davidtong.org/pdfs/teaching/string-theory/string1.pdf)
+
+## 3. Quantification et développement en modes
+
+On choisit localement la jauge conforme $h_{ab}=\eta_{ab}$ en conservant les contraintes. Dans un espace-temps cible plat,
+
+$$
+(\partial_\tau^2-\partial_\sigma^2)X^\mu=0.
+$$
+
+C’est une équation d’onde sur la feuille, pas l’affirmation que l’espace-temps est bidimensionnel. Les modules globaux de la feuille restent à traiter séparément.
+
+![Deux profils périodiques illustrent des excitations oscillatoires différentes d’une corde fermée.](/images/diagrams/string-modes.svg)
+
+*Profils schématiques de modes, pas photographies d’une corde quantique.*
+
+### Développement en modes (corde fermée)
+
+Pour une coordonnée non compacte, prenons $0\leq\sigma<2\pi$ avec des conditions périodiques :
+
+$$
+X^\mu=x^\mu+\alpha'p^\mu\tau
++i\sqrt{\frac{\alpha'}2}\sum_{n\ne0}\frac1n
+\left(\alpha_n^\mu e^{-in(\tau-\sigma)}+
+\tilde\alpha_n^\mu e^{-in(\tau+\sigma)}\right).
+$$
+
+Les premiers termes décrivent le centre de masse ; les deux familles d’oscillateurs se propagent en sens opposés. La périodicité impose $n$ entier. Une convention de période $\pi$ déplace des facteurs deux entre mode zéro et exponentielles sans changer la physique. Les coordonnées compactes admettent aussi des enroulements.
+
+### Contraintes de Virasoro
+
+Les composantes de Fourier de $T_{ab}=0$ vérifient classiquement $L_n=\tilde L_n=0$. L’algèbre quantique acquiert un terme central. Dans la quantification covariante bosonique, les états physiques satisfont
+
+$$
+L_n|\psi\rangle=0\quad(n>0),\qquad (L_0-a)|\psi\rangle=0.
+$$
+
+ainsi que les conditions correspondantes du secteur avec tilde. On ne peut annuler tous les générateurs quantiques comme opérateurs. Les anomalies conformes de la matière et des fantômes de fixation de jauge doivent se compenser : $D-26=0$ pour la corde bosonique plate, $D=10$ pour la supercorde critique habituelle. Les fonds courbes doivent également annuler les fonctions bêta de la feuille. La symétrie classique de Weyl ne suffit donc pas à établir une théorie conforme quantique cohérente. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf) [4](https://davidtong.org/pdfs/teaching/string-theory/string5.pdf)
+
+## 4. Spectre de masse
+
+Pour une corde bosonique fermée non compactifiée, les deux conditions de mode zéro donnent
+
+$$
+L_0=\frac{\alpha'p^2}{4}+N,\quad
+\tilde L_0=\frac{\alpha'p^2}{4}+\tilde N,\quad p^2=-M^2,
+$$
+
+$$
+N=\tilde N,\qquad M^2=\frac2{\alpha'}(N+\tilde N-2a),\qquad a=1.
+$$
+
+$N$ mesure l’énergie d’excitation : le mode $n$ est pondéré par $n$, et ne compte pas simplement les cordes. Pour $(N,\tilde N)=(0,0)$, $M^2=-4/\alpha'$ signale l’instabilité de ce vide bosonique ; un tachyon n’est pas un messager supraluminique utilisable. Le niveau $(1,1)$ est sans masse, et $(2,2)$ donne $M=2/\ell_s$. Ce modèle illustratif ne prédit pas la masse de l’électron ou du proton. Les secteurs de supercordes ont d’autres constantes d’ordonnancement et projections. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf)
+
+### États particuliers
+
+Au niveau $(1,1)$, les deux indices de polarisation transverse se décomposent en tenseur symétrique sans trace (graviton), tenseur antisymétrique (champ $B$) et scalaire (dilaton). Les cordes ouvertes peuvent fournir des bosons vectoriels sans masse. Des bosons de jauge apparaissent aussi dans les cordes hétérotiques fermées : les cordes ouvertes ne sont pas l’unique origine des interactions de jauge.
+
+La gravité ne se résume pas à une étiquette de spin. Au premier ordre en $\alpha'$, pour un dilaton constant et un champ $B$ nul, la cohérence quantique de la feuille impose
+
+$$
+\beta^G_{\mu\nu}=\alpha'R_{\mu\nu}+O(\alpha'^2)=0.
+$$
+
+Le terme dominant est l’équation d’Einstein dans le vide $R_{\mu\nu}=0$. Les corrections de courbure deviennent importantes quand son rayon approche $\ell_s$ ; d’autres champs ajoutent des termes. C’est une relation contrôlée à basse énergie, pas la preuve que toutes les singularités sont résolues. [5](https://davidtong.org/pdfs/teaching/string-theory/string7.pdf)
+
+## 5. Les cinq théories des supercordes
+
+Les cinq théories usuelles classifient les **théories perturbatives supersymétriques de cordes à dix dimensions**, pas tous les fonds possibles. Fermions sur la feuille et projections cohérentes donnent des spectres supersymétriques sans tachyons ; ajouter des fermions ne suffit pas. La supersymétrie est ici une propriété de la construction, pas une symétrie observée de la nature.
+
+### (1) Type I
+
+Cordes ouvertes et fermées non orientées, avec 16 supercharges d’espace-temps. L’annulation des anomalies sélectionne l’algèbre de jauge conventionnellement appelée $SO(32)$. Le secteur ouvert contient les degrés de liberté de jauge, le fermé contient la gravité.
+
+### (2) Type IIA
+
+Cordes fermées orientées, avec 32 supercharges de chiralités opposées dans l’espace-temps. La description sans masse habituelle contient métrique, dilaton, champ $B$ et potentiels de Ramond–Ramond $C_1,C_3$, dont les intensités de champ sont de degré pair.
+
+### (3) Type IIB
+
+Cordes fermées orientées, avec 32 supercharges de même chiralité. Les potentiels de Ramond–Ramond $C_0,C_2,C_4$ ont des intensités de champ de degré impair ; la cinq-forme est autoduale. Le degré du potentiel diffère de celui de son intensité de champ.
+
+### (4) Hétérotique $SO(32)$
+
+Un secteur bosonique gauche et un secteur supersymétrique droit partagent dix coordonnées d’espace-temps cible. La charge centrale gauche supplémentaire vient de degrés de liberté internes, pas de seize dimensions spatiales macroscopiques de plus. Le nom usuel $SO(32)$ correspond plus précisément à la forme globale $\mathrm{Spin}(32)/\mathbb Z_2$.
+
+### (5) Hétérotique $E_8 \times E_8$
+
+L’autre réseau de jauge cohérent donne $E_8\times E_8$, également avec 16 supercharges. La compactification peut produire des théories de jauge chirales, mais ce nom ne détermine pas uniquement les particules et couplages observés. Il existe aussi des objets étendus au-delà des cordes perturbatives : les D-branes sont dynamiques, peuvent porter les extrémités de cordes ouvertes et portent une charge de Ramond–Ramond en type II. [6](https://arxiv.org/abs/hep-th/9503124) [13](https://arxiv.org/abs/hep-th/9510017)
+
+## 6. Théorie M et dualités
+
+Une **dualité** identifie des observables dans des descriptions différentes, rendant souvent calculable un problème difficile. La dualité T échange impulsion compacte et enroulement ; la dualité S relie certains régimes de couplage faible et fort. Tous les modèles n’ont pas la simple symétrie $g_s\mapsto1/g_s$.
+
+Le type IIA fortement couplé admet une interprétation à onze dimensions avec $R_{11}=g_s\ell_s$. Le cercle grandit avec le couplage ; la supergravité à onze dimensions décrit la limite de basse énergie. Ces relations motivent la **théorie M**, sans fournir une formulation universelle sur des fonds arbitraires ni une découverte expérimentale de la onzième dimension. [6](https://arxiv.org/abs/hep-th/9503124)
+
+### Compactification : un cercle calculable
+
+Identifions $Y\sim Y+2\pi R$. Une fonction d’onde univoque exige $e^{ip(Y+2\pi R)}=e^{ipY}$, donc $p=n/R$ avec $n$ entier. Une corde fermée peut aussi faire $w$ tours. Tension fois longueur donne l’énergie d’enroulement $T(2\pi R|w|)=|w|R/\alpha'$.
+
+$$
+p_L=\frac nR+\frac{wR}{\alpha'},\qquad p_R=\frac nR-\frac{wR}{\alpha'},
+$$
+
+$$
+M^2=\left(\frac nR\right)^2+\left(\frac{wR}{\alpha'}\right)^2
++\frac2{\alpha'}(N+\tilde N-2),\qquad N-\tilde N-nw=0.
+$$
+
+$$
+M^2=p_R^2+\frac4{\alpha'}(N-1)=p_L^2+\frac4{\alpha'}(\tilde N-1).
+$$
+
+Ici $Y(\sigma+2\pi)=Y(\sigma)+2\pi wR$ ; $N$ compte les excitations $\alpha_n$ précédentes, et $\tilde N$ les $\tilde\alpha_n$. La dernière égalité fixe le signe de l’accord des niveaux. Les échanges $R\leftrightarrow\alpha'/R$ et $n\leftrightarrow w$ préservent le spectre. À $R=2\ell_s$, la contribution d’impulsion unité vaut $1/(2\ell_s)$, celle d’un enroulement $2/\ell_s$ ; au rayon dual $\ell_s/2$, elles s’inversent. Ce sont des contributions à la formule, pas nécessairement la masse totale d’un état. [7](https://davidtong.org/pdfs/teaching/string-theory/string8.pdf)
+
+![Un grand cercle et son petit cercle dual échangent les contributions d’impulsion et d’enroulement au spectre de masse.](/images/diagrams/string-deep-duality.svg)
+
+*Bleu : impulsion $1/R$. Orange : enroulement $R/\alpha'$. Un schéma de calcul, pas une observation de dimensions supplémentaires.*
+
+Dans les modèles à quatre dimensions, six dimensions spatiales compactes possèdent géométrie, flux et parfois branes. Leurs tailles et formes deviennent des champs scalaires appelés **modules**. Leur stabilisation compte : des variations libres pourraient changer les couplages ou transmettre des forces à longue portée non observées. « Trop petit pour être visible » n’est pas un modèle complet.
+
+## 7. Correspondance AdS/CFT
+
+L’exemple de Maldacena le plus étudié relie les cordes IIB sur $\mathrm{AdS}_5\times S^5$ à la théorie de super-Yang–Mills $\mathcal N=4$ à quatre dimensions. AdS a une constante cosmologique négative. La théorie du bord ne possède pas de gravité dynamique, mais est proposée comme codage du volume gravitationnel. [8](https://arxiv.org/abs/hep-th/9711200)
+
+$$
+Z_{\mathrm{string}}[\phi|_{\partial}=\phi_0]
+=\left\langle\exp\left(\int d^dx\,\phi_0\mathcal O\right)\right\rangle_{\mathrm{CFT}}.
+$$
+
+La valeur au bord $\phi_0$ est une source pour l’opérateur $\mathcal O$ ; ses dérivées engendrent des fonctions de corrélation. Selon la correspondance, la théorie du bord définit non perturbativement ce volume particulier. Ce n’est pas une preuve générale de toutes les dualités holographiques proposées. [9](https://arxiv.org/abs/hep-th/9802150)
+
+### Quand la géométrie devient une approximation utile
+
+$N_c$ désigne le nombre de couleurs de la théorie de jauge $SU(N_c)$ et $L$ le rayon AdS. Dans une normalisation courante,
+
+$$
+\lambda=g_{\mathrm{YM}}^2N_c,\qquad
+\frac{L^4}{\alpha'^2}=\lambda,\qquad g_s=\frac{\lambda}{4\pi N_c}.
+$$
+
+Un grand couplage de 't Hooft $\lambda$ réduit les corrections de longueur de corde ; un $N_c$ suffisamment grand à $\lambda$ fixé réduit les boucles de cordes. La supergravité classique nécessite les deux. Une théorie de jauge fortement couplée peut donc correspondre à une gravité faiblement courbée ; un faible couplage de jauge ne donne généralement pas cette même géométrie simple.
+
+![Un anneau de bord et un disque intérieur illustrent les sources ; deux inégalités contrôlent séparément l’approximation gravitationnelle.](/images/diagrams/string-deep-holography.svg)
+
+*Le disque est une coupe spatiale schématique. Source au bord et champ intérieur décrivent des observables correspondantes. $\lambda\gg1$ et $g_s\ll1$ contrôlent des corrections distinctes, sans constituer des preuves expérimentales.*
+
+## 8. Difficultés et questions ouvertes
+
+Trois questions sont distinctes : une construction est-elle cohérente ? Une dualité relie-t-elle deux constructions ? L’une décrit-elle notre univers ? Réussir les deux premières ne tranche pas la troisième. Notre cosmologie n’est pas le vide AdS exact ci-dessus, et cette théorie de jauge n’est pas le Modèle standard.
+
+Le **paysage** regroupe de nombreux candidats de compactifications et de vides. Des chiffres comme $10^{500}$ sont des estimations dépendantes du modèle, pas un décompte établi de tous les univers physiques. Compter les choix de flux ne règle ni stabilité, ni sélection cosmologique, ni probabilités. Denef et Douglas explicitent un problème de comptage précis et ses hypothèses. [10](https://arxiv.org/abs/hep-th/0404116)
+
+### Ce que montrent les indices, et leurs limites
+
+Strominger et Vafa ont compté des états protégés d’une classe particulière de trous noirs extrémaux supersymétriques à cinq dimensions, reproduisant l’entropie dominante de Bekenstein–Hawking. Cela relie états quantiques et aire de l’horizon, sans compter directement les états d’un trou noir astrophysique observé ni expliquer intégralement l’évaporation générique. [11](https://arxiv.org/abs/hep-th/9601029)
+
+Dans un travail publié en 2026, Cheung et ses collaborateurs dérivent des amplitudes précises de diffusion de cordes sous des hypothèses incluant dynamique au niveau des arbres, comportement ultrasouple à haute énergie et zéros minimaux des résidus. Ce résultat porte sur cette classe d’amplitudes ; il ne dérive pas notre univers sans hypothèses et n’est pas une confirmation expérimentale. [12](https://arxiv.org/abs/2508.09246)
+
+Les tests nécessitent des modèles définis : particules supplémentaires, échelles compactes, cordes cosmiques et signatures cosmologiques demandent d’autres choix. Les défauts macroscopiques appelés cordes cosmiques ne sont pas automatiquement des cordes fondamentales. Détecter supersymétrie ou dimensions supplémentaires ne sélectionnerait pas uniquement ce cadre ; exclure une plage accessible de paramètres n’exclut pas toutes les compactifications. L’échelle des cordes n’est pas universellement fixée à celle de Planck en quatre dimensions.
+
+## État de la recherche
+
+Vérifié jusqu’au **13 octobre 2026** : la théorie des cordes reste candidate pour la gravité quantique, avec des calculs puissants et des indices de dualité, mais sans confirmation expérimentale directe établie de cordes fondamentales dans la nature. Les résultats mathématiques doivent être lus avec leurs hypothèses ; les affirmations cosmologiques, jugées par leurs prédictions observables. Relier un vide contrôlé et une histoire cosmologique à une physique distinctive et testable reste la tâche ouverte.

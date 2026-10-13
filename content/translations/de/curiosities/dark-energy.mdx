@@ -1,179 +1,195 @@
 ---
-description: "Beschleunigte Expansion, Zustandsgleichung dunkler Energie, Entfernungen und Strukturwachstum: Modelle, kosmologische Spannungen und praktische Parameterschätzung."
+description: "Dunkle Energie erklärt: negativer Druck, Herleitungen, Rechenbeispiele, Entfernungen und Strukturwachstum sowie DESI- und DES-Befunde bis Oktober 2026."
 ---
 
-**Einheiten und Geometrie:** Die Hintergrund- und Feldgleichungen verwenden $c=1$. Abschnitt 3 schreibt $c$ in den Entfernungsformeln explizit aus und setzt für $d_L=(1+z)\chi$ und $D_A=\chi/(1+z)$ räumliche Flachheit voraus.
+**Konventionen:** Für Gravitation und Energiedichte $\rho$ gilt $c=1$; Abschnitt 3 setzt $c$ in die Entfernungen ein. Wir wählen $a_0=1$, also $1+z=1/a$. Punkte bezeichnen Ableitungen nach der kosmischen Zeit. Die Entfernungsbeispiele setzen räumliche Flachheit voraus. Dunkle Energie bezeichnet die Komponente, die in der allgemeinen Relativitätstheorie (ART) die späte Beschleunigung erklärt; der Name identifiziert kein entdecktes Teilchen.
 
 ## 1. Das Phänomen: die beschleunigte Expansion des Universums
 
-Beobachtungen von Supernovae des Typs Ia (SNe Ia) zeigen, dass sich die kosmische Expansion **beschleunigt**.  
-In einer homogenen und isotropen FLRW-Raumzeit
+Warum überraschte die Beschleunigung? Gewöhnliche Materie zieht an und sollte eine bereits vorhandene Expansion bremsen. Die Supernovateams fanden ferne Supernovae vom Typ Ia nach der Standardisierung lichtschwächer und damit weiter entfernt als in verzögert expandierenden Vergleichsmodellen. Die [Analyse von 1998](https://arxiv.org/abs/astro-ph/9805201) und die [unabhängige Analyse von 1999](https://arxiv.org/abs/astro-ph/9812133) erschlossen die Beschleunigung aus der Entfernung-Rotverschiebungs-Beziehung. Sie beobachteten nicht in Echtzeit, wie eine einzelne Galaxie schneller wurde. Staub, Quellenentwicklung und Auswahl müssen geprüft werden; die Übereinstimmung verschiedener kosmologischer Verfahren stärkt die Deutung.
+
+Der Skalenfaktor $a(t)$ beschreibt Abstände frei beweglicher Beobachter im mittleren kosmischen Fluss. Homogenität und Isotropie ergeben die FLRW-Metrik; $k$ beschreibt die räumliche Krümmung. Ein idealer Flüssigkeits-Energie-Impuls-Tensor in Einsteins Gleichungen liefert die beiden Friedmann-Gleichungen. Hier enthalten $\rho,p$ die gesondert geschriebene kosmologische Konstante nicht:
 
 $$
-ds^2 = -dt^2 + a^2(t)\left[\frac{dr^2}{1 - k r^2} + r^2 d\Omega^2\right],
+\begin{gathered}
+ds^2=-dt^2+a^2(t)\left[\frac{dr^2}{1-kr^2}+r^2d\Omega^2\right],\qquad H=\frac{\dot a}{a}.
+\\
+H^2=\frac{8\pi G}{3}\rho-\frac{k}{a^2}+\frac{\Lambda}{3},\qquad
+\frac{\ddot a}{a}=-\frac{4\pi G}{3}(\rho+3p)+\frac{\Lambda}{3}.
+\end{gathered}
 $$
 
-![Eine schematische exponentielle Expansionskurve ist nach oben gekrümmt, während das Potenzgesetz eines materiedominierten Universums nach unten gekrümmt ist. Normierungen und Zeitursprünge sind für den visuellen Vergleich gewählt.](/images/diagrams/expansion.svg)
+Druck wirkt in der ART gravitativ: In der Beschleunigungsgleichung steht $\rho+3p$, nicht nur die Dichte. Positive Energiedichte mit hinreichend negativem Druck kann deshalb beschleunigen, ohne negative Masse zu sein. Man kann $\Lambda$ auch als Flüssigkeit mit $\rho_\Lambda=\Lambda/(8\pi G)$ und $p_\Lambda=-\rho_\Lambda$ behandeln; dann entfallen die expliziten $\Lambda$-Terme. Beides zugleich wäre eine Doppelzählung. Bei positiver Gesamtdichte verlangt Beschleunigung $w_{\rm total}=p_{\rm total}/\rho_{\rm total}<-1/3$. Eine kleine Komponente mit $w<-1/3$ reicht bei dominierender Materie nicht aus.
 
-gehorcht die Dynamik den Friedmann-Gleichungen:
-
-$$
-H^2 \equiv \left(\frac{\dot a}{a}\right)^2
-= \frac{8\pi G}{3}\,\rho - \frac{k}{a^2} + \frac{\Lambda}{3},
-$$
+Der Verzögerungsparameter $q$ quantifiziert diese Unterscheidung. Die Dichteanteile $\Omega_i$ beziehen sich jeweils auf $3H^2/(8\pi G)$ zur selben Epoche; dunkle Energie wird hier als Flüssigkeit behandelt. Beschleunigung bedeutet $q<0$, aber nicht zwingend ein wachsendes $H$. Abstände können immer schneller wachsen, während ihre **relative** Wachstumsrate sinkt.
 
 $$
-\frac{\ddot a}{a} = -\frac{4\pi G}{3}\,(\rho + 3p) + \frac{\Lambda}{3}.
+q\equiv-\frac{\ddot a}{aH^2}=\frac12\Omega_m+\Omega_r+\frac12(1+3w)\Omega_{\rm DE},\qquad
+\dot H=\frac{\ddot a}{a}-H^2.
 $$
 
-Beschleunigung, $\ddot a>0$, erfordert $\rho + 3p < \Lambda/(4\pi G)$ oder für ein Fluid mit $p = w\rho$ einen **effektiven** Wert $w < -1/3$.
+**Rechenbeispiel:** Ein flaches Materie-$\Lambda$-Modell mit $\Omega_{m0}=0.30$, $\Omega_{\Lambda0}=0.70$ und vernachlässigbarer Strahlung dient nur der Illustration. Heute ist $q_0=0.30/2-0.70=-0.55$. Wegen $\rho_m\propto a^{-3}$ beginnt die Beschleunigung bei $\rho_m=2\rho_\Lambda$: $a_{\rm acc}=(0.30/1.40)^{1/3}\simeq0.598$, entsprechend $z_{\rm acc}\simeq0.67$. Gleiche Materie- und Vakuumdichten treten erst bei $a\simeq0.754$ auf. Dichtedominanz und Beschleunigungsbeginn sind also unterschiedliche Schwellen.
 
----
+![Der Verzögerungsparameter erreicht null, bevor Materie- und Vakuumdichten gleich werden.](/images/diagrams/dark-energy-deep-acceleration.svg)
+
+**Beschleunigung hat eine eigene Schwelle.** Im illustrativen flachen Modell $(\Omega_{m0},\Omega_{\Lambda0})=(0.30,0.70)$ erreicht $q(a)$ bei $a\simeq0.598$ null (durchgezogene Hilfslinie); Dichtegleichheit folgt bei $a\simeq0.754$ (gestrichelt). Die Kurve ist eine Modellrechnung, kein Datenfit.
 
 ## 2. Zustandsgleichung und Parametrisierungen
 
-Wir definieren den Zustandsgleichungsparameter der **dunklen Energie**:
+Wir definieren $w=p_{\rm DE}/\rho_{\rm DE}$. Für eine homogene Komponente ohne Energieaustausch mit anderen Spezies liefert die lokale Energie-Impuls-Erhaltung die Kontinuitätsgleichung. Division durch $H\rho$ und $d\ln a=Hdt$ führen zur integrierbaren Form:
 
 $$
-w \equiv \frac{p_{\rm DE}}{\rho_{\rm DE}}.
+\begin{gathered}
+\dot\rho_{\rm DE}+3H(\rho_{\rm DE}+p_{\rm DE})=0,\qquad
+\frac{d\ln\rho_{\rm DE}}{d\ln a}=-3(1+w).
+\\
+\rho_{\rm DE}(a)=\rho_{\rm DE,0}\exp\!\left[-3\int_1^a(1+w(a'))\,d\ln a'\right].
+\end{gathered}
 $$
 
-![Strahlung und nichtrelativistische Materie verdünnen sich bei der Expansion des Universums; die Energiedichte einer kosmologischen Konstante bleibt konstant. Beide Achsen sind logarithmisch.](/images/diagrams/cosmic-density.svg)
+Für konstantes $w$ folgt $\rho\propto a^{-3(1+w)}$. Materie mit $w\simeq0$ verdünnt sich mit dem Volumen; Strahlung mit $w=1/3$ verliert zusätzlich Energie durch Rotverschiebung. Bei $w=-1$ bleibt die Dichte konstant. Dasselbe folgt aus $d(\rho V)=-p\,dV$ für ein mitbewegtes Volumen $V\propto a^3$. Negativer Druck erlaubt wachsende Energie bei wachsendem Volumen. Das verletzt die lokale Erhaltung nicht: Eine allgemein expandierende Raumzeit besitzt nicht notwendigerweise die global erhaltene Gesamtenergie einer statischen Raumzeit.
 
-- **Kosmologische Konstante**: $w=-1$, $\rho_\Lambda = \text{const}$.
-- **Quintessenz** (kanonisches Skalarfeld $\phi$ mit nichtnegativem Potenzial und positiver Energiedichte): $w \in [-1,1]$, wobei sich der Wert mit der Zeit ändern kann.
-- **Phantomenergie**: $w<-1$ (verletzt die Nullenergiebedingung, NEC).
-- **K-Essenz / Horndeski / Beyond-Horndeski**: verallgemeinerte kinetische Terme beziehungsweise modifizierte Gravitationssektoren.
-
-Eine gebräuchliche phänomenologische Parametrisierung ist **CPL**:
+Die Chevallier–Polarski–Linder-Form (CPL) beschreibt mögliche Zeitabhängigkeit durch den heutigen Wert $w_0$ und den Änderungsparameter $w_a$. Einsetzen in das Integral liefert die folgende Dichte; der Exponentialfaktor darf nicht fehlen. Siehe die Originalarbeiten von [Chevallier–Polarski](https://arxiv.org/abs/gr-qc/0009008) und [Linder](https://arxiv.org/abs/astro-ph/0208512).
 
 $$
-w(a) = w_0 + w_a (1-a) \quad \Longleftrightarrow \quad
-w(z) = w_0 + \frac{w_a z}{1+z}.
+\begin{gathered}
+w(a)=w_0+w_a(1-a)=w_0+\frac{w_a z}{1+z},
+\\
+\frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}}=(1+z)^{3(1+w_0+w_a)}
+\exp\!\left[-\frac{3w_a z}{1+z}\right].
+\end{gathered}
 $$
 
-Dann entwickelt sich die Dichte der dunklen Energie gemäß
-
-$$
-\rho_{\rm DE}(z) = \rho_{\rm DE,0}
-\,(1+z)^{3(1+w_0+w_a)}\,\exp\!\left[-\frac{3w_a z}{1+z}\right].
-$$
-
----
+CPL ist eine Anpassungsfamilie, keine mikroskopische Theorie. $(-1,0)$ entspricht $\Lambda$. Die Form kann $w=-1$ kreuzen, was ein einzelnes minimal gekoppeltes kanonisches Skalarfeld positiver Energie nicht kann. Bei $w<-1$ verletzt eine ideale Flüssigkeit positiver Dichte mit $\rho+p<0$ die Nullenergiebedingung; eine effektive Anpassung bedeutet aber nicht zwangsläufig ein fundamentales Geistfeld. Für $w_a\ne0$ divergiert CPL bei $a\to\infty$ und rechtfertigt keine Vorhersage der fernen Zukunft.
 
 ## 3. Beobachtungsgrößen des kosmologischen Hintergrunds
 
+Teleskope messen Flüsse, Winkel, Spektren und Korrelationen. Ein Modell übersetzt sie in Entfernungen und Expansionsraten; kein Instrument liest die Dichte dunkler Energie direkt ab. Jedes Verfahren liefert einen anderen Teil dieser Übersetzung.
+
 ### 3.1 Hubble-Expansion
-Für ein flaches Universum ($k=0$) mit Materie, Strahlung und dunkler Energie gilt
+
+Mit $\rho_{c0}=3H_0^2/(8\pi G)$ definieren wir $\Omega_{i0}=\rho_{i0}/\rho_{c0}$. Bei räumlicher Flachheit ist ihre Summe eins. Separat erhaltene Materie, Strahlung und dunkle Energie ergeben:
 
 $$
-\frac{H^2(z)}{H_0^2}
-= \Omega_{r0}(1+z)^4 + \Omega_{m0}(1+z)^3
-+ \Omega_{\rm DE,0}\, \frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}} .
+\frac{H^2(z)}{H_0^2}=\Omega_{r0}(1+z)^4+\Omega_{m0}(1+z)^3+
+\Omega_{\rm DE,0}\frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}}.
 $$
+
+Bei $z=1$ liefert das Beispiel $H/H_0=\sqrt{0.30\times8+0.70}\simeq1.761$. Ersetzt man $w=-1$ durch konstantes $w=-0.8$ bei gleichen heutigen Anteilen und gleichem $H_0$, wird der Beitrag dunkler Energie $0.70\times2^{0.6}$ und $H/H_0\simeq1.860$. Ihre Dichte ändert sich dort um rund 52%, die gesamte Expansionsrate aber nur um 5.7%. Materie schwächt den Effekt ab, und integrierte Entfernungen glätten ihn zusätzlich. Zeitabhängigkeit ist daher schwer zu messen.
 
 ### 3.2 Entfernungen (SNe Ia, BAO, CMB)
-Die mitbewegte Entfernung lautet:
+
+Für einen radialen Lichtstrahl verbindet $ds^2=0$ die Entfernung mit dem Integral über $1/H$. Im flachen Raum hängen die mitbewegte Entfernung $\chi$, die Leuchtkraftentfernung $d_L$ und die Winkeldurchmesserentfernung $D_A$ wie folgt zusammen. Bei Krümmung ersetzt eine krümmungsabhängige transversale Entfernung $\chi$ in den letzten beiden Beziehungen. Die übliche Entfernungsdualität setzt außerdem Nullgeodäten für Photonen und Erhaltung ihrer Anzahl voraus.
 
 $$
-\chi(z) = c\int_0^z \frac{dz'}{H(z')}.
+\begin{gathered}
+\chi(z)=c\int_0^z\frac{dz'}{H(z')},\qquad
+d_L=(1+z)\chi,\qquad D_A=\frac{\chi}{1+z},
+\\
+\mu=5\log_{10}\!\left(\frac{d_L}{10\,{\rm pc}}\right),\qquad
+D_V=\left[(1+z)^2D_A^2\frac{cz}{H(z)}\right]^{1/3}.
+\end{gathered}
 $$
 
-Leuchtkraftentfernung und Entfernungsmodul:
+Kalibrierte Leuchtkraft $L$ und Fluss $F$ erfüllen $F=L/(4\pi d_L^2)$. SNe Ia sind **standardisierbare**, nicht identische Kerzen: Lichtkurvenform, Farbe und Wirtsgalaxie erfordern Korrekturen. Der Modul $\mu$ drückt die Entfernung logarithmisch aus. Ohne absolute Kalibrierung liefert eine Supernovastichprobe vorwiegend relative Entfernungen; absolute Leuchtkraft und $H_0$ sind entartet. Eine Verschiebung von 0.10 Magnituden verändert die Entfernung um $10^{0.10/5}-1\simeq4.7\%$: Kalibrierung zählt.
+
+Baryonische akustische Oszillationen (BAO) nutzen einen statistisch bevorzugten Abstand, den Schallwellen im frühen Plasma hinterließen. Der mitbewegte Schallhorizont $r_d$ wird zur Epoche des baryonischen Strahlungswiderstands bestimmt. Quer zur Sichtlinie messen BAO $D_M/r_d$, längs davon $D_H/r_d$ mit $D_H=c/H$. Für kleine Trennungen gilt schematisch:
 
 $$
-d_L(z) = (1+z)\,\chi(z), \qquad
-\mu(z) = 5\log_{10}\!\left(\frac{d_L(z)}{10\,{\rm pc}}\right).
+\theta_{\rm BAO}\simeq\frac{r_d}{D_M(z)},\qquad
+\Delta z_{\rm BAO}\simeq\frac{H(z)r_d}{c},\qquad D_M=(1+z)D_A.
 $$
 
-BAO liefern über Winkel und Rotverschiebungen einen Standardmaßstab, den Schallhorizont $r_d$. Eine häufig verwendete isotrope Ersatzgröße ist:
+![Zwei senkrechte BAO-Richtungen verbinden Winkel und Rotverschiebungsintervalle mit Entfernung und Expansion.](/images/diagrams/dark-energy-deep-bao.svg)
 
-$$
-D_V(z) \equiv \left[ (1+z)^2 D_A^2(z)\,\frac{cz}{H(z)} \right]^{1/3},
-$$
+**Ein statistischer Maßstab, zwei Richtungen.** Der orange Querabstand verbindet $r_d$ mit $\theta$ und $D_M$; der blaue Längsabstand verbindet $r_d$ mit $\Delta z$ und $H$. Die Geometrie ist schematisch, der Maßstab mitbewegt.
 
-mit $D_A(z)=\chi(z)/(1+z)$.
-
-Die CMB schränkt vor allem die Entfernung zur letzten Streuung und die Physik des frühen Universums ein. Sie hilft dadurch, **Entartungen aufzulösen**, bei denen verschiedene späte Parameter ähnliche Beobachtungen ergeben.
-
----
+$D_V$ fasst eine isotrope BAO-Auswertung zusammen; anisotrope Analysen behalten radiale und transversale Information. BAO sind ein Korrelationsmerkmal, keine starren Stäbe zwischen einzelnen Galaxien. Die kosmische Mikrowellenhintergrundstrahlung (CMB) beschränkt frühe Dichten und akustische Skalen und kalibriert $r_d$. Späte Parameter folgen weiterhin nur unter Annahmen über die frühe Physik: Andere frühe Expansion kann den Maßstab ändern. Die [Planck-Parameteranalyse](https://arxiv.org/abs/1807.06209) zeigt solche bedingten Schlussfolgerungen.
 
 ## 4. Wachstum kosmischer Strukturen
 
-In der Newtonschen Eichung folgen Materiestörungen $\delta \equiv \delta\rho_m/\rho_m$ in der ART auf Skalen innerhalb des Horizonts und im linearen Bereich der Gleichung
+Expansion ist nur die Hälfte des Tests. Materieüberdichten $\delta=\delta\rho_m/\rho_m$ wachsen durch Anziehung. Für lineare, unterhalb des Horizonts liegende Störungen druckloser Materie in der ART, bei glatter dunkler Energie und vernachlässigbarer Strahlung, ergeben Kontinuitäts-, Euler- und Poisson-Gleichung:
 
 $$
-\ddot\delta + 2H\dot\delta - 4\pi G \rho_m \delta = 0.
+\ddot\delta+2H\dot\delta-4\pi G\rho_m\delta=0,\qquad
+f\equiv\frac{d\ln D}{d\ln a}.
 $$
 
-Wir definieren die **Wachstumsrate** $f \equiv d\ln D/d\ln a$, wobei $\delta \propto D(a)$ gilt.  
-Eine nützliche Näherung in ART+$\Lambda$CDM ist $f \simeq \Omega_m(a)^\gamma$ mit $\gamma \approx 0.55$.  
-Verzerrungen im Rotverschiebungsraum messen $f\sigma_8(z)$. Damit lässt sich die Übereinstimmung von **Expansion** und **Strukturwachstum** überprüfen und modifizierte Gravitation testen.
+$\delta\propto D(a)$ beschreibt die wachsende Lösung. $2H\dot\delta$ dämpft das Wachstum, der Dichteterm treibt es an. In einer flachen reinen Materieära gilt $D\propto a$; glatte dunkle Energie verlangsamt es relativ zu $a$. $f\simeq\Omega_m(a)^{0.55}$ ist eine Näherung nahe $\Lambda$CDM, keine allgemeine Identität. Rotverschiebungsraum-Verzerrungen beschränken etwa $f\sigma_8$. $\sigma_8$ ist die quadratische mittlere lineare Dichtefluktuation in Kugeln mit Radius $8h^{-1}$ Mpc, wobei $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$.
 
-Modifizierte Gravitation zeigt sich häufig in skalen- oder zeitabhängigen effektiven Kopplungen:
+Galaxienbewegungen reagieren auf das Newtonsche Potential $\Psi$, während Linseneffekte $\Phi+\Psi$ prüfen. Mit der Fourierkonvention $\nabla^2\to-k^2$ parametrisiert man Abweichungen von einem Referenzmodell oft durch:
 
 $$
-k^2\Psi = -4\pi G_{\rm eff}(k,a)\,a^2 \rho_m \Delta, 
-\qquad \eta \equiv \frac{\Phi}{\Psi} \neq 1,
+k^2\Psi=-4\pi G_{\rm eff}(k,a)a^2\rho_m\Delta,\qquad
+\eta=\frac{\Phi}{\Psi}.
 $$
 
-Dabei sind $\Phi,\Psi$ die Bardeen-Potentiale. Abweichungen von $G_{\rm eff}=G$ oder $\eta=1$ weisen auf Physik jenseits von ART/$\Lambda$ hin.
-
----
+$\Delta$ ist die mitbewegte Materiedichtestörung; $k$ bezeichnet hier die Wellenzahl, nicht die Hintergrundkrümmung. In der ART ohne nennenswerte anisotrope Spannungen gilt $G_{\rm eff}=G$ und $\eta=1$. Neutrinospannungen oder andere nichtideale Komponenten können auch in der ART unterschiedliche Potentiale erzeugen. Vor einer Deutung als modifizierte Gravitation müssen Materiephysik, Galaxienbias und systematische Messfehler geprüft werden.
 
 ## 5. Mikroskopische Modelle im Überblick
 
+Ein Hintergrundfit für $w$ identifiziert weder ein Feld noch eine Gravitationstheorie eindeutig. Modelle mit gleichem $H(z)$ können verschiedene Störungen, Stabilitätsbedingungen und lokale Gravitationseffekte haben.
+
 ### 5.1 Kosmologische Konstante $\Lambda$
-Vakuumenergie mit $w=-1$.  
-Das **alte Problem der kosmologischen Konstante**: Naive Abschätzungen aus der Quantenfeldtheorie überschreiten den beobachteten Wert um einen Faktor von $\sim 10^{60-120}$.
+
+Ein Lorentz-invariantes Vakuum hat einen zum metrischen Tensor proportionalen Energie-Impuls-Tensor. Sein Druck ist negativ, obwohl seine Energiedichte positiv sein kann:
+
+$$
+T^{(\Lambda)}_{\mu\nu}=-\rho_\Lambda g_{\mu\nu},\qquad
+p_\Lambda=-\rho_\Lambda,\qquad \rho_\Lambda=\frac{\Lambda}{8\pi G}.
+$$
+
+Das Problem der kosmologischen Konstante ist die Kleinheit des **renormierten gesamten** Vakuumbeitrags einschließlich des gravitativen Konstantenterms und der Quantenkorrekturen. Eine Abschätzung mit Abschneideskala ist keine gemessene Vorhersage; die Abweichung hängt von Energieskala und Regularisierung ab. Ein freies $\Lambda$ passt den Wert an, erklärt aber nicht seine Stabilität gegenüber großen Korrekturen. Das Problem bleibt auch bei künftig bestätigtem $w=-1$; siehe die [theoretische Diskussion von Peebles und Ratra](https://arxiv.org/abs/astro-ph/0207347).
+
+Davon verschieden ist die Koinzidenzfrage: Warum beobachten wir eine Epoche mit ähnlichen Materie- und Vakuumdichten, obwohl ihr Verhältnis wie $a^3$ variiert? Sie motiviert dynamische Modelle, beweist sie aber nicht.
 
 ### 5.2 Quintessenz
-Ein kanonisches Skalarfeld mit der Lagrangedichte
+
+Quintessenz führt ein kanonisches, minimal gekoppeltes Skalarfeld ein. Für ein homogenes Feld bei Signatur $(-,+,+,+)$ ergeben kinetische Energie $K$ und Potential $V$:
+
 $$
-\mathcal{L} = -\frac12 (\partial \phi)^2 - V(\phi), \quad
-\rho_\phi = \frac12 \dot\phi^2 + V, \quad
-p_\phi = \frac12 \dot\phi^2 - V,
+\begin{gathered}
+\mathcal L=-\frac12g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi-V(\phi),
+\\
+K=\frac12\dot\phi^2,\qquad \rho_\phi=K+V,\qquad p_\phi=K-V,\qquad
+w_\phi=\frac{K-V}{K+V}.
+\end{gathered}
 $$
-liefert
+
+Variation der Wirkung liefert die Feldgleichung; für $\dot\phi\ne0$ folgt sie auch aus der Kontinuitätsgleichung mit $\rho_\phi,p_\phi$. Der Term $3H\dot\phi$ wirkt als kosmologische Reibung.
+
 $$
-w_\phi = \frac{\frac12 \dot\phi^2 - V}{\frac12 \dot\phi^2 + V}.
+\ddot\phi+3H\dot\phi+V_{,\phi}=0,\qquad
+\rho_\phi+3p_\phi=4K-2V.
 $$
-Tracker- oder auftauende Potentiale, etwa $V \propto \phi^{-\alpha}$ und $V \propto e^{-\lambda \phi/M_{\rm Pl}}$, können das Koinzidenzproblem abmildern.
+
+Dominiert das Feld, verlangt Beschleunigung $K<V/2$. Bei $K\ll V$ ähnelt es einer kosmologischen Konstante; bei $V=0$ gilt $w=1$, also beschleunigt ein Skalar nicht automatisch. Für $K,V\ge0$ und positive Dichte ist $-1\le w\le1$. Inverse Potenz- oder Exponentialpotentiale können für passende Parameter nachführende Lösungen besitzen, die einige Anfangsbedingungen weniger wichtig machen, aber nicht jede Feinabstimmung beseitigen. Potential, Kopplungen und Störungsstabilität bleiben physikalische Annahmen, die ein CPL-Fit nicht herleitet.
 
 ### 5.3 Modifizierte Gravitation
-Zum Beispiel $f(R)$-Gravitation mit der Wirkung $S = \int d^4x \sqrt{-g}\, \frac{M_{\rm Pl}^2}{2} f(R) + \dots$.  
-Sie ist einer Skalar-Tensor-Theorie mit einem zusätzlichen skalaren Freiheitsgrad äquivalent. **Abschirmmechanismen** wie der Chamäleon- oder der Vainshtein-Mechanismus stellen lokal die ART wieder her.  
-Horndeski-Theorien besitzen Feldgleichungen zweiter Ordnung. DHOST-Theorien erweitern sie zu entarteten Skalar-Tensor-Theorien höherer Ordnung. Die Einschränkungen aus GW170817 verlangen heute $c_T \simeq c$ und begrenzen damit den Parameterraum.
 
----
+Modifizierte Gravitation ändert die Beziehung zwischen Materie und Krümmung. Metrische $f(R)$-Theorien führen im Allgemeinen einen zusätzlichen skalaren Freiheitsgrad ein. Chamäleon-Abschirmung kann lokale Effekte unterdrücken; Vainshtein-Abschirmung tritt in anderen Theorien mit Ableitungswechselwirkungen auf. Keine gilt universell. Horndeski- und degenerierte Skalar-Tensor-Theorien höherer Ordnung strukturieren weitere Möglichkeiten. [GW170817 und sein Gammastrahlen-Gegenstück](https://arxiv.org/abs/1710.05834) beschränken im beobachteten Bereich den Unterschied zwischen Gravitations- und Lichtgeschwindigkeit stark. Unter ihren Voraussetzungen schließen sie viele Wechselwirkungen aus, aber nicht jede modifizierte Gravitation.
 
 ## 6. Spannungen und Konsistenztests
 
-- **Hubble-Spannung**: Die aus der CMB für das frühe Universum erschlossenen Werte von $H_0$ stimmen nicht mit den Messungen der kosmischen Entfernungsleiter im späten Universum überein.  
-  Dynamische oder frühe dunkle Energie gehören zu den vorgeschlagenen Erklärungen. Eine konsistente Anpassung an **alle** Daten ist jedoch schwierig.
+Die Hubble-Spannung vergleicht modellabhängige frühkosmische $H_0$-Schlüsse mit lokalen Entfernungsleitern. Die [Planck-Analyse](https://arxiv.org/abs/1807.06209) ist ein Beispiel für Erstere, keine direkte lokale Expansionsmessung. Späte dunkle Energie zu ändern löst das Problem nicht automatisch, da BAO und Supernovaentfernungen ebenfalls passen müssen. Frühe dunkle Energie betrifft eine frühere Epoche und ist kein anderer Name für die heute beschleunigende Komponente.
 
-- **$S_8$-Spannung**: Der aus schwachen Gravitationslinsen erschlossene Wert $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3}$ liegt teils unter den besten Anpassungen von $\Lambda$CDM an die CMB. Dies könnte auf verändertes Strukturwachstum oder systematische Effekte hinweisen.
-
-Ein belastbarer Ansatz prüft **Hintergrund** (Entfernungen) und **Störungen** (Wachstum, Gravitationslinsen) **gemeinsam**.
-
----
+$S_8=\sigma_8\sqrt{\Omega_m/0.3}$ beschreibt eine wichtige Entartung von Linsenmessungen, aber nicht ihren gesamten Informationsgehalt. Unterschiede gegenüber CMB-Schlüssen hängen von Datensatz, nichtlinearer Modellierung, baryonischer Rückwirkung, Rotverschiebungskalibrierung und intrinsischen Galaxienausrichtungen ab. Vergleiche vollständiger Likelihoods und gemeinsamer Störparameter sind aussagekräftiger, als jede Spannung als unabhängigen Beleg neuer Physik zu zählen.
 
 ## 7. Ablauf der Parameterschätzung: praktische Hinweise
 
-Für einen Parametervektor $\theta = \{\Omega_{m0}, \Omega_{b0}, H_0, w_0, w_a, \sigma_8, n_s, \dots\}$:
-
-1. Berechne $H(z|\theta)$ und die Entfernungen $\{\chi, D_A, d_L\}$.  
-2. Integriere das lineare Wachstum $D(a|\theta)$ oder verwende $f \simeq \Omega_m^\gamma$.  
-3. Erstelle Likelihood-Funktionen für SNe Ia (Entfernungsmodule), BAO ($D_A$, $H$, $D_V$), CMB (Entfernung zur letzten Streuung und Vorwissen), Rotverschiebungsverzerrungen ($f\sigma_8$) und schwache Gravitationslinsen ($S_8$).  
-4. Ziehe Stichproben aus den Posteriorverteilungen und prüfe die **interne Konsistenz**, etwa zwischen Wachstum und Expansion.
-
----
+1. Modell und Priorverteilungen festlegen: Krümmung, Neutrinomassen, frühe Physik und mögliche Klumpung dunkler Energie; $w_0,w_a$ allein sind keine vollständige Theorie.
+2. $H$, Entfernungen, frühe akustische Skalen und lineare Störungen konsistent berechnen. Präzisionsanalysen benötigen einen Boltzmann-Löser statt nur eines Wachstumsindex oder komprimierter CMB-Entfernungsinformation.
+3. Messstatistiken mit Auswahl, Kalibrierung und Störparametern vorhersagen. Kovarianzen überlappender Daten berücksichtigen; scheinbar unabhängige Multiplikation korrelierter Likelihoods zählt Information doppelt.
+4. Posteriorverteilungen bestimmen und Anpassungsgüte, Priorabhängigkeit sowie Stabilität beim Weglassen einzelner Verfahren testen. Zusätzliche Parameter verbessern einen Fit, ohne allein neue Physik nachzuweisen.
 
 ## 8. Stand der Forschung
 
-Die bisherigen Daten sind weitgehend mit **$\Lambda$CDM ($w=-1$)** vereinbar. Kleine Abweichungen sind jedoch noch möglich, und einige **Spannungen** bestehen fort.  
-Neue Himmelsdurchmusterungen (Euclid, Rubin/LSST, Roman, CMB-S4, DESI) werden $w_0, w_a$ enger eingrenzen und die ART anhand von Strukturwachstum und Gravitationslinsen auf die Probe stellen.
+**Befunde geprüft bis 13. Oktober 2026.** Die [DESI-DR2-BAO-Arbeit von 2025](https://arxiv.org/abs/2503.14738) beschreibt BAO allein gut durch flaches $\Lambda$CDM. In der CPL-Erweiterung bevorzugten BAO+CMB zeitabhängige dunkle Energie mit $3.1\sigma$; je nach zusätzlicher Supernovastichprobe ergaben sich $2.8$–$4.2\sigma$. Das sind bestimmte Vergleiche mit $(w_0,w_a)=(-1,0)$, keine direkte Entdeckung eines Skalarfelds.
 
-**Die Schlüsselfrage:** Ist die beschleunigte kosmische Expansion auf eine **neue Energiekomponente** zurückzuführen oder darauf, dass sich die **Gravitation selbst** auf großen Skalen verändert?
+Die [DES-Analyse mehrerer Verfahren von 2026](https://arxiv.org/abs/2605.27221) kombiniert Geometrie und Wachstum. Innerhalb von CPL ergaben sich $2.2\sigma$ Abweichung für DES allein, $2.3\sigma$ mit DESI DR2 BAO und $3.0\sigma$ mit primärer CMB-Information. Die Kombinationen überschneiden sich mit anderen Analysen; ihre Signifikanzen sind keine unabhängig multiplizierbaren Bestätigungen.
 
----
+Die [DESI-Lyα-Analyse der vollständigen Korrelationsform vom Juli 2026, im August überarbeitet](https://arxiv.org/abs/2607.27410), ergänzt eine Alcock–Paczyński-Geometriemessung bei effektiver Rotverschiebung $2.33$. Der neue Anker rückt in Richtung $\Lambda$CDM. Die Arbeit nennt $2.7\sigma$ CPL-Präferenz mit DESI+CMB und $3.2\sigma$ mit ihrem zusätzlichen Supernovadatensatz. Der Befund entwickelt sich somit mit der verwendeten Information.
+
+Eine Zahl von Standardabweichungen hängt von Modell, Likelihood und systematischer Fehlerbehandlung ab; sie ist nicht die Wahrscheinlichkeit einer zeitabhängigen dunklen Energie. Offen bleibt, ob unabhängige Kalibrierungen und Wachstumstests das Muster erhalten, welche Theorie es stabil erzeugen könnte und ob einfachere Erklärungen bestehen bleiben. Die Hinweise verdienen Untersuchung; der mikroskopische Ursprung der Beschleunigung ist ungelöst.
+
+**Häufige Missverständnisse:** Dunkle Energie ist nicht die in Halos verklumpende dunkle Materie. Negativer Druck bedeutet weder negative Energiedichte noch einen Wind aus einem kosmischen Zentrum. Gebundene Atome, Sonnensysteme und Galaxien folgen nicht einfach dem Skalenfaktor. Weder heutige Beschleunigung noch ein CPL-Fit bei endlicher Rotverschiebung bestimmt das endgültige Schicksal des Universums: Konstantes Vakuum, veränderliches Potential und künftige Instabilität erlauben unterschiedliche Fortsetzungen.

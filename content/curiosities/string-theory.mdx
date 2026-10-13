@@ -1,174 +1,202 @@
+---
+description: "Why strings can contain gravity: worldsheet dynamics, quantum constraints, compact dimensions, dualities and holography, with worked examples and limits."
+---
 
 ## 1. From Points to Strings
 
-In the Standard Model, particles are idealized as **points**.  
-But attempts to quantize gravity in this framework run into **non-renormalizable divergences**.  
+General relativity describes gravity through a dynamical spacetime metric; quantum field theory describes fluctuating fields and their particles. Quantizing small metric fluctuations works as a **low energy effective theory**, but increasingly many higher derivative counterterms are needed at higher orders. Nonrenormalizability does not invalidate every low energy prediction: it limits extrapolation to arbitrarily short distances. String theory seeks a more complete microscopic description.
 
-![A point particle traces a one dimensional worldline; a string traces a two dimensional worldsheet parametrized by sigma and tau.](/images/diagrams/worldsheet.svg)
+Its basic perturbative object is a one dimensional **string**, whose history sweeps out a two dimensional **worldsheet**. A particle sweeps out a worldline. Different quantum excitations have different masses and spins; a suitable closed string spectrum contains a massless spin 2 state with gravitational interactions. This motivates the theory but does not establish that nature has chosen it.
 
-**String theory** replaces points with **one-dimensional strings**.  
-Their vibrations correspond to different particle species.  
+![A particle traces a worldline; a string sweeps out a worldsheet with coordinates sigma and tau.](/images/diagrams/worldsheet.svg)
 
-- Particle → worldline  
-- String → worldsheet  
+*The worldsheet describes the string's history, not an extra pair of spacetime dimensions.*
 
----
+Use $\hbar=c=1$, string length $\ell_s=\sqrt{\alpha'}$ and tension $T=1/(2\pi\alpha')$. Tension is energy per length, so $\alpha'$ has dimensions of length squared. The dimensionless coupling $g_s$ controls splitting, joining and the expansion in worldsheet topology; it is not the tension. A fundamental string is not an elastic wire made of atoms. Tong's lectures develop these starting points. [1](https://davidtong.org/teaching/string-theory/)
 
 ## 2. Classical Dynamics of Strings
 
 ### Nambu–Goto Action
-The simplest description is the area of the worldsheet:
+
+In flat spacetime with signature $(-,+,\ldots,+)$, $X^\mu(\tau,\sigma)$ specifies the string's position. The induced metric $\gamma_{ab}$ measures distances on its worldsheet:
 
 $$
-S_{\text{NG}} = -T \int d^2\sigma \, 
-\sqrt{-\det \left( \partial_a X^\mu \partial_b X_\mu \right)} ,
+\gamma_{ab}=\partial_aX^\mu\partial_bX^\nu\eta_{\mu\nu},\qquad
+S_{\mathrm{NG}}=-T\int d^2\sigma\sqrt{-\det\gamma_{ab}}.
 $$
 
-where $T = 1/(2\pi \alpha')$ is the string tension.
+The determinant converts a coordinate patch into physical area; its sign reflects a timelike surface. Extremizing the action gives a relativistic version of a minimal surface. It does not minimize the string's instantaneous spatial length.
 
 ### Polyakov Action
-Equivalent but more convenient:
+
+An auxiliary metric $h_{ab}$ makes the action quadratic in derivatives. Varying this independent metric gives the worldsheet stress tensor constraint:
 
 $$
-S_{\text{P}} = -\frac{T}{2} \int d^2\sigma \, \sqrt{-h}\,
-h^{ab} \partial_a X^\mu \partial_b X_\mu .
+S_{\mathrm P}=-\frac T2\int d^2\sigma\sqrt{-h}\,h^{ab}\partial_aX^\mu\partial_bX_\mu,
+\qquad T_{ab}=\gamma_{ab}-\frac12h_{ab}h^{cd}\gamma_{cd}=0.
 $$
 
-- $X^\mu(\sigma^a)$: embedding of the string in $D$-dimensional spacetime  
-- $h_{ab}$: worldsheet metric  
-
-This action enjoys **diffeomorphism** and **Weyl invariance**, making it a **2D conformal field theory** (CFT).
-
----
+For a nondegenerate surface the constraint makes $h_{ab}$ proportional to $\gamma_{ab}$. Substitution recovers Nambu–Goto. The proportionality remains free: under the local Weyl rescaling $h_{ab}\mapsto e^{2\omega}h_{ab}$ the area element and inverse metric cancel in two dimensions. Coordinate reparametrization and Weyl symmetry remove redundant descriptions. This is a classical equivalence; the quantum measure and anomalies need additional care. [2](https://davidtong.org/pdfs/teaching/string-theory/string1.pdf)
 
 ## 3. Quantization and Mode Expansion
 
-Choose **conformal gauge** $h_{ab} = \eta_{ab}$.  
-Equations of motion reduce to the **2D wave equation**:
+Locally choose conformal gauge $h_{ab}=\eta_{ab}$ while retaining the constraints. The flat target space equations become
 
 $$
-\left( \partial_\tau^2 - \partial_\sigma^2 \right) X^\mu(\tau,\sigma) = 0.
+(\partial_\tau^2-\partial_\sigma^2)X^\mu=0.
 $$
 
-![Two schematic standing modes on a closed string illustrate periodic boundary conditions.](/images/diagrams/string-modes.svg)
+This is a wave equation on the worldsheet, not a claim that spacetime is two dimensional. Global worldsheet moduli require separate treatment.
+
+![Two periodic mode profiles illustrate different oscillator excitations of a closed string.](/images/diagrams/string-modes.svg)
+
+*These are schematic wave profiles, not photographs of a quantum string.*
 
 ### Mode Expansion (closed string):
+
+For a noncompact coordinate choose $0\leq\sigma<2\pi$ and periodic boundary conditions:
+
 $$
-X^\mu(\tau,\sigma) = x^\mu + \alpha' p^\mu \tau 
-+ i\sqrt{\frac{\alpha'}{2}} 
-\sum_{n\neq 0} \left(
-\frac{\alpha_n^\mu}{n} e^{-in(\tau-\sigma)} 
-+ \frac{\tilde{\alpha}_n^\mu}{n} e^{-in(\tau+\sigma)}
-\right).
+X^\mu=x^\mu+\alpha'p^\mu\tau
++i\sqrt{\frac{\alpha'}2}\sum_{n\ne0}\frac1n
+\left(\alpha_n^\mu e^{-in(\tau-\sigma)}+
+\tilde\alpha_n^\mu e^{-in(\tau+\sigma)}\right).
 $$
+
+The first terms describe the centre of mass; the two oscillator families travel in opposite directions. Periodicity requires integer $n$. A convention with period $\pi$ shifts factors of two between the zero mode and exponents without changing physics. Compact coordinates also admit winding.
 
 ### Virasoro Constraints
-Classically, from worldsheet diffeomorphism invariance:
+
+The Fourier components of $T_{ab}=0$ obey $L_n=\tilde L_n=0$ classically. Their quantum algebra has a central term. In covariant bosonic quantization physical states instead obey
 
 $$
-T_{ab} = 0 
-\quad \Rightarrow \quad 
-L_n = 0, \;\; \tilde{L}_n = 0 \quad (n \in \mathbb{Z}).
+L_n|\psi\rangle=0\quad(n>0),\qquad (L_0-a)|\psi\rangle=0.
 $$
 
-- $L_n, \tilde{L}_n$: Virasoro generators  
-- Ensure physical states are consistent with conformal invariance  
-
----
+with corresponding conditions for the tilde sector. One cannot set every quantum generator to zero as an operator. The matter and gauge fixing ghost contributions to the conformal anomaly must cancel: for a flat bosonic string $D-26=0$, while the standard critical superstring has $D=10$. Curved backgrounds must also have vanishing worldsheet beta functions. Classical Weyl symmetry alone does not establish a consistent quantum conformal field theory. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf) [4](https://davidtong.org/pdfs/teaching/string-theory/string5.pdf)
 
 ## 4. Mass Spectrum
 
-The string Hamiltonian, with closed-string level matching $N=\tilde N$, yields:
+For an uncompactified closed bosonic string, the two zero mode conditions give
 
 $$
-M^2 = \frac{2}{\alpha'} \left( N + \tilde{N} - 2a \right),
+L_0=\frac{\alpha'p^2}{4}+N,\quad
+\tilde L_0=\frac{\alpha'p^2}{4}+\tilde N,\quad p^2=-M^2,
 $$
 
-- $N, \tilde{N}$: oscillator numbers  
-- $a$: normal ordering constant  
+$$
+N=\tilde N,\qquad M^2=\frac2{\alpha'}(N+\tilde N-2a),\qquad a=1.
+$$
+
+$N$ is oscillator excitation energy: a mode $n$ is weighted by $n$, rather than simply counting strings. At $(N,\tilde N)=(0,0)$, $M^2=-4/\alpha'$ signals instability of this bosonic vacuum; a tachyon is not a usable faster than light messenger. The $(1,1)$ level is massless, and $(2,2)$ gives $M=2/\ell_s$. This toy calculation does not predict electron or proton masses. Superstring sectors have different intercepts and projections. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf)
 
 ### Special states:
-- **Closed strings**: contain a universal **massless spin-2 graviton**  
-- **Open strings**: yield **gauge bosons**  
-- Higher excitations: infinite Regge tower $M^2 \sim n/\alpha'$  
 
-Thus, quantum gravity and gauge interactions appear **naturally**.
+At level $(1,1)$ the two transverse polarization indices decompose into a symmetric traceless tensor (graviton), an antisymmetric tensor ($B$ field) and a scalar (dilaton). Open strings can supply massless vector bosons. Gauge bosons also arise in closed heterotic strings, so open strings are not the only route to gauge interactions.
 
----
+Gravity is more than a spin label. To leading order in $\alpha'$, with constant dilaton and vanishing $B$ field, quantum worldsheet consistency requires
+
+$$
+\beta^G_{\mu\nu}=\alpha'R_{\mu\nu}+O(\alpha'^2)=0.
+$$
+
+The leading equation is the vacuum Einstein equation $R_{\mu\nu}=0$. Higher curvature corrections become important when the curvature radius approaches $\ell_s$; extra fields add terms. This is a controlled low energy relation, not proof that all singularities are resolved. [5](https://davidtong.org/pdfs/teaching/string-theory/string7.pdf)
 
 ## 5. The Five Superstring Theories
 
-The bosonic string (26D) suffers from tachyons.  
-Introducing **worldsheet supersymmetry** reduces the critical dimension to $D=10$ and removes tachyons (after GSO projection).  
-This yields **five consistent superstring theories**:
+The familiar five classify **ten dimensional supersymmetric perturbative string theories**, not every possible string background. Worldsheet fermions together with consistent projections produce tachyon free supersymmetric spectra; adding fermions alone does not guarantee this. Supersymmetry is a property of these constructions, not an observed symmetry of nature.
 
 ### (1) Type I
-- Open + closed unoriented strings  
-- Gauge group: $SO(32)$  
-- Supersymmetry: $N=1$ in 10D  
+
+Unoriented open and closed strings with 16 spacetime supercharges. Anomaly cancellation selects the conventional $SO(32)$ gauge algebra. Gauge degrees of freedom reside in the open sector; gravity is in the closed sector.
 
 ### (2) Type IIA
-- Closed oriented strings  
-- Left- and right-moving fermions of **opposite chirality**  
-- Massless sector: graviton, dilaton, antisymmetric $B_{\mu\nu}$, plus $p$-form RR field strengths (even rank)  
+
+Oriented closed strings with 32 supercharges of opposite spacetime chirality. The usual massless description contains the metric, dilaton, $B$ field and Ramond–Ramond potentials $C_1,C_3$, whose field strengths have even degree.
 
 ### (3) Type IIB
-- Closed oriented strings  
-- Left- and right-moving fermions of **same chirality**  
-- Massless sector: graviton, dilaton, $B_{\mu\nu}$, RR field strengths (odd rank)  
-- **Self-dual 5-form field strength**  
+
+Oriented closed strings with 32 supercharges of the same chirality. Ramond–Ramond potentials $C_0,C_2,C_4$ have odd degree field strengths; the five form field strength is self dual. A potential's degree and its field strength's degree differ.
 
 ### (4) Heterotic $SO(32)$
-- Left-movers: bosonic string in 26D, compactified to 10D  
-- Right-movers: superstring in 10D  
-- Gauge group: $SO(32)$  
+
+A left moving bosonic sector and right moving supersymmetric sector share ten target spacetime coordinates. The additional left moving central charge comes from internal degrees of freedom, not sixteen extra macroscopic spatial dimensions. The conventional gauge name $SO(32)$ has the more precise global form $\mathrm{Spin}(32)/\mathbb Z_2$.
 
 ### (5) Heterotic $E_8 \times E_8$
-- Same construction as above, but gauge group $E_8 \times E_8$  
-- Basis of many string-inspired GUT models  
 
----
+The alternative consistent gauge lattice gives $E_8\times E_8$, again with 16 supercharges. Compactification can produce chiral gauge theories, but this label does not uniquely fix observed particles or couplings. The theories also contain extended objects beyond perturbative strings: D-branes are dynamical objects on which open strings can end and which carry Ramond–Ramond charge in type II theory. [6](https://arxiv.org/abs/hep-th/9503124) [13](https://arxiv.org/abs/hep-th/9510017)
 
 ## 6. M-Theory and Dualities
 
-The five superstring theories are connected by **dualities**:
+A **duality** identifies observables in different descriptions, often turning a difficult problem into a tractable one. T-duality exchanges compact momentum and winding; S-duality relates certain weak and strong coupling regimes. Not every model has the simple symmetry $g_s\mapsto1/g_s$.
 
-- **T-duality**: compact radius $R \leftrightarrow \alpha'/R$  
-- **S-duality**: weak coupling $\leftrightarrow$ strong coupling  
+Strongly coupled type IIA develops an eleven dimensional interpretation with $R_{11}=g_s\ell_s$. The circle grows with coupling; eleven dimensional supergravity is the low energy limit. Such relations motivate **M-theory**, but do not provide one universally applicable formulation on arbitrary backgrounds or an experimental discovery of an eleventh dimension. [6](https://arxiv.org/abs/hep-th/9503124)
 
-In the 1990s, it was realized they are just limits of a single **11D theory**: **M-theory**.  
-At low energy, M-theory reduces to **11D supergravity**.
+### Compactification: a circle you can calculate
 
----
+Identify $Y\sim Y+2\pi R$. A single valued wavefunction requires $e^{ip(Y+2\pi R)}=e^{ipY}$, hence $p=n/R$ with integer $n$. A closed string may wrap the circle $w$ times. Tension times length gives the winding energy $T(2\pi R|w|)=|w|R/\alpha'$.
+
+$$
+p_L=\frac nR+\frac{wR}{\alpha'},\qquad p_R=\frac nR-\frac{wR}{\alpha'},
+$$
+
+$$
+M^2=\left(\frac nR\right)^2+\left(\frac{wR}{\alpha'}\right)^2
++\frac2{\alpha'}(N+\tilde N-2),\qquad N-\tilde N-nw=0.
+$$
+
+$$
+M^2=p_R^2+\frac4{\alpha'}(N-1)=p_L^2+\frac4{\alpha'}(\tilde N-1).
+$$
+
+Here $Y(\sigma+2\pi)=Y(\sigma)+2\pi wR$, $N$ counts the earlier $\alpha_n$ oscillators and $\tilde N$ counts $\tilde\alpha_n$. The last equality fixes the level matching sign convention. Exchanging $R\leftrightarrow\alpha'/R$ and $n\leftrightarrow w$ leaves the spectrum invariant. At $R=2\ell_s$ the unit momentum contribution is $1/(2\ell_s)$, while unit winding contributes $2/\ell_s$; at the dual radius $\ell_s/2$ they interchange. These are contributions to the mass formula, not necessarily a state's total mass. [7](https://davidtong.org/pdfs/teaching/string-theory/string8.pdf)
+
+![Large and small dual circles exchange their momentum and winding contributions to the mass spectrum.](/images/diagrams/string-deep-duality.svg)
+
+*Blue: momentum contribution $1/R$. Orange: winding contribution $R/\alpha'$. The diagram illustrates a calculation, not observed extra dimensions.*
+
+In four dimensional model building, six compact spatial dimensions have geometry, fluxes and possibly branes. Their sizes and shapes become scalar fields called **moduli**. Stabilization matters: freely varying moduli could change couplings or mediate unobserved long range forces. “Too small to see” is not a complete compactification model.
 
 ## 7. AdS/CFT Correspondence
 
-Maldacena’s 1997 conjecture:
+Maldacena's best studied example relates type IIB strings on $\mathrm{AdS}_5\times S^5$ to four dimensional $\mathcal N=4$ supersymmetric Yang–Mills theory. AdS has negative cosmological constant. The boundary theory contains no dynamical gravity yet is proposed to encode the gravitational bulk. [8](https://arxiv.org/abs/hep-th/9711200)
 
 $$
-Z_{\text{string}}[\phi \to \phi_0] \;=\; Z_{\text{CFT}}[\phi_0],
+Z_{\mathrm{string}}[\phi|_{\partial}=\phi_0]
+=\left\langle\exp\left(\int d^dx\,\phi_0\mathcal O\right)\right\rangle_{\mathrm{CFT}}.
 $$
 
-relating string theory on AdS$_{d+1}$ spacetime to a $d$-dimensional CFT.  
+The boundary value $\phi_0$ sources an operator $\mathcal O$; source derivatives produce correlation functions. Under the correspondence, the boundary theory supplies a nonperturbative definition for this specified bulk setting. That is not a general proof of all proposed holographic dualities. [9](https://arxiv.org/abs/hep-th/9802150)
 
-- Example: Type IIB on AdS$_5 \times S^5$ ↔ $\mathcal{N}=4$ SYM in 4D  
-- Provides a nonperturbative definition of string theory in AdS space  
+### When geometry becomes a useful approximation
 
----
+Let $N_c$ be the number of colors in the $SU(N_c)$ gauge theory and $L$ the AdS radius. In a common normalization,
+
+$$
+\lambda=g_{\mathrm{YM}}^2N_c,\qquad
+\frac{L^4}{\alpha'^2}=\lambda,\qquad g_s=\frac{\lambda}{4\pi N_c}.
+$$
+
+Large 't Hooft coupling $\lambda$ suppresses string length corrections; sufficiently large $N_c$ at fixed $\lambda$ suppresses string loops. Classical supergravity needs both. Strongly coupled gauge physics can therefore correspond to weakly curved gravity; weak gauge coupling generally does not give the same simple geometry.
+
+![A boundary ring and a bulk disk illustrate the source dictionary; two inequalities separately control the gravity approximation.](/images/diagrams/string-deep-holography.svg)
+
+*The disk is a schematic spatial slice. A boundary source and bulk field describe matched observables. $\lambda\gg1$ and $g_s\ll1$ control different corrections; neither is experimental evidence.*
 
 ## 8. Challenges and Open Questions
 
-- **Landscape problem**: $10^{500}$ possible vacua  
-- **Lack of direct experimental evidence** (Planck scale $\sim 10^{19}$ GeV)  
-- **Nature of spacetime**: is spacetime emergent from quantum entanglement?  
+Three questions differ: Is a construction consistent? Does a duality relate two constructions? Does either describe our universe? Success on the first two does not settle the third. Our cosmology is not the exact AdS vacuum above, and that gauge theory is not the Standard Model.
 
----
+The **landscape** comprises many candidate compactifications and vacua. Numbers such as $10^{500}$ are model dependent estimates, not an established count of all physical universes. Counting flux choices does not settle stability, cosmological selection or probabilities. Denef and Douglas make a specific counting problem and its assumptions explicit. [10](https://arxiv.org/abs/hep-th/0404116)
+
+### What the evidence does and does not show
+
+Strominger and Vafa counted protected states for a special class of extremal supersymmetric five dimensional black holes, reproducing the leading Bekenstein–Hawking entropy. This connects quantum states to horizon area. It is not a direct count for an observed astrophysical black hole or a complete account of generic evaporation. [11](https://arxiv.org/abs/hep-th/9601029)
+
+Cheung and collaborators, in work published in 2026, derive specific string scattering amplitudes under assumptions including tree level dynamics, ultrasoft high energy behavior and minimal residue zeros. This is a result about that amplitude class, not an assumption free derivation of our universe or experimental confirmation. [12](https://arxiv.org/abs/2508.09246)
+
+Tests need specified models: extra particles, compactification scales, cosmic strings and cosmological signatures require further choices. Macroscopic cosmic string defects are not automatically fundamental strings. Detecting supersymmetry or an extra dimension alone would not uniquely select this framework; excluding one accessible parameter range would not exclude all compactifications. The string scale is not universally fixed to the four dimensional Planck scale.
 
 ## Status
 
-String theory is a mathematically rich framework, deeply linked with geometry, topology, and quantum information.  
-
-But as a **testable theory of nature**, it remains incomplete.  
-The central open question: **how can quantum gravity be observed?**  
-
----
+Checked through **13 October 2026**: string theory is a candidate quantum gravity framework with powerful calculations and duality evidence, but no established direct experimental confirmation that fundamental strings describe nature. Its mathematical achievements must be read with their assumptions, and its cosmological claims judged by observable predictions. The open task is to connect a controlled vacuum and cosmological history to distinctive, testable physics.

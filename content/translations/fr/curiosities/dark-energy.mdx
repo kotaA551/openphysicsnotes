@@ -1,0 +1,195 @@
+---
+description: "Comprendre l’énergie sombre : pression, équations, exemples, distances et croissance des structures, avec les résultats DESI et DES jusqu’en octobre 2026."
+---
+
+**Conventions :** Nous prenons $c=1$ pour la gravitation et la densité d’énergie $\rho$ ; la section 3 rétablit $c$ dans les distances. Avec $a_0=1$, $1+z=1/a$. Un point désigne une dérivée par rapport au temps cosmique. Les exemples de distance supposent un espace plat. L’énergie sombre désigne la composante expliquant l’accélération tardive dans la relativité générale (RG), sans identifier une particule découverte.
+
+## 1. Le phénomène : un Univers en expansion accélérée
+
+Pourquoi cette accélération était-elle surprenante ? La matière ordinaire attire et devrait freiner une expansion déjà commencée. Après standardisation, les équipes de supernovæ trouvaient les supernovæ Ia lointaines moins lumineuses en apparence, donc plus éloignées, que ne le prévoyaient des modèles de référence décélérés. Les [travaux de 1998](https://arxiv.org/abs/astro-ph/9805201) et [l’analyse indépendante de 1999](https://arxiv.org/abs/astro-ph/9812133) ont déduit l’accélération de la relation distance–décalage spectral. Ils n’ont pas vu une galaxie accélérer en temps réel. Poussière, évolution des sources et sélection exigent des contrôles ; l’accord de plusieurs sondes renforce l’interprétation.
+
+Le facteur d’échelle $a(t)$ décrit les distances entre observateurs libres suivant le mouvement cosmique moyen. Homogénéité et isotropie donnent la métrique FLRW, dont $k$ représente la courbure spatiale. Introduire un tenseur énergie-impulsion de fluide parfait dans les équations d’Einstein conduit aux deux équations de Friedmann. Ici $\rho,p$ excluent la constante cosmologique écrite séparément :
+
+$$
+\begin{gathered}
+ds^2=-dt^2+a^2(t)\left[\frac{dr^2}{1-kr^2}+r^2d\Omega^2\right],\qquad H=\frac{\dot a}{a}.
+\\
+H^2=\frac{8\pi G}{3}\rho-\frac{k}{a^2}+\frac{\Lambda}{3},\qquad
+\frac{\ddot a}{a}=-\frac{4\pi G}{3}(\rho+3p)+\frac{\Lambda}{3}.
+\end{gathered}
+$$
+
+En RG, la pression gravite : l’équation d’accélération contient $\rho+3p$. Une densité positive avec une pression assez négative peut donc accélérer l’expansion sans masse négative. On peut aussi traiter $\Lambda$ comme un fluide avec $\rho_\Lambda=\Lambda/(8\pi G)$ et $p_\Lambda=-\rho_\Lambda$, en supprimant les termes explicites en $\Lambda$. Il ne faut jamais les compter deux fois. Si la densité totale est positive, l’accélération exige $w_{\rm total}=p_{\rm total}/\rho_{\rm total}<-1/3$. Une petite composante ayant $w<-1/3$ ne suffit pas lorsque la matière domine.
+
+Le paramètre de décélération $q$ quantifie cette distinction. Les fractions $\Omega_i$ se rapportent à $3H^2/(8\pi G)$ à la même époque ; l’énergie sombre est ici un fluide. L’accélération correspond à $q<0$, mais pas nécessairement à une hausse de $H$ : des distances peuvent croître toujours plus vite tandis que leur taux de croissance **relatif** diminue.
+
+$$
+q\equiv-\frac{\ddot a}{aH^2}=\frac12\Omega_m+\Omega_r+\frac12(1+3w)\Omega_{\rm DE},\qquad
+\dot H=\frac{\ddot a}{a}-H^2.
+$$
+
+**Exemple calculé :** Prenons un modèle plat matière-$\Lambda$ avec $\Omega_{m0}=0.30$, $\Omega_{\Lambda0}=0.70$ et un rayonnement négligeable, uniquement pour illustrer. Aujourd’hui $q_0=0.30/2-0.70=-0.55$. Comme $\rho_m\propto a^{-3}$, l’accélération commence lorsque $\rho_m=2\rho_\Lambda$ : $a_{\rm acc}=(0.30/1.40)^{1/3}\simeq0.598$, soit $z_{\rm acc}\simeq0.67$. L’égalité des densités survient plus tard, vers $a\simeq0.754$. Domination de l’énergie sombre et début de l’accélération sont deux seuils différents.
+
+![Le paramètre de décélération passe par zéro avant l’égalité des densités de matière et du vide.](/images/diagrams/dark-energy-deep-acceleration.svg)
+
+**L’accélération a son propre seuil.** Dans le modèle plat illustratif $(\Omega_{m0},\Omega_{\Lambda0})=(0.30,0.70)$, $q(a)$ s’annule vers $a=0.598$ (guide continu) ; l’égalité des densités arrive vers $a=0.754$ (pointillés). La courbe est calculée dans ce modèle, sans ajustement aux observations.
+
+## 2. Équation d’état et paramétrisations
+
+Définissons $w=p_{\rm DE}/\rho_{\rm DE}$. Pour une composante homogène sans échange d’énergie avec les autres espèces, la conservation locale de l’énergie-impulsion donne l’équation de continuité. Diviser par $H\rho$ et utiliser $d\ln a=Hdt$ permet de l’intégrer :
+
+$$
+\begin{gathered}
+\dot\rho_{\rm DE}+3H(\rho_{\rm DE}+p_{\rm DE})=0,\qquad
+\frac{d\ln\rho_{\rm DE}}{d\ln a}=-3(1+w).
+\\
+\rho_{\rm DE}(a)=\rho_{\rm DE,0}\exp\!\left[-3\int_1^a(1+w(a'))\,d\ln a'\right].
+\end{gathered}
+$$
+
+Pour $w$ constant, $\rho\propto a^{-3(1+w)}$. La matière, $w\simeq0$, se dilue avec le volume ; le rayonnement, $w=1/3$, perd aussi de l’énergie par décalage spectral. Une constante cosmologique, $w=-1$, conserve sa densité. On retrouve cela avec $d(\rho V)=-p\,dV$ dans un volume comobile $V\propto a^3$. Une pression négative permet à son énergie de croître avec le volume. La conservation locale est respectée ; un espace-temps en expansion n’a pas nécessairement l’énergie totale globalement conservée d’un espace-temps statique.
+
+La forme Chevallier–Polarski–Linder (CPL) décrit une possible évolution par la valeur actuelle $w_0$ et un coefficient $w_a$. Sa substitution dans l’intégrale donne la densité ci-dessous, avec un facteur exponentiel indispensable. Voir les articles originaux de [Chevallier–Polarski](https://arxiv.org/abs/gr-qc/0009008) et [Linder](https://arxiv.org/abs/astro-ph/0208512).
+
+$$
+\begin{gathered}
+w(a)=w_0+w_a(1-a)=w_0+\frac{w_a z}{1+z},
+\\
+\frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}}=(1+z)^{3(1+w_0+w_a)}
+\exp\!\left[-\frac{3w_a z}{1+z}\right].
+\end{gathered}
+$$
+
+CPL est une famille d’ajustements, pas une théorie microscopique. $(-1,0)$ correspond à $\Lambda$. Elle peut traverser $w=-1$, contrairement à un unique champ scalaire canonique minimalement couplé d’énergie positive. Pour un fluide parfait de densité positive, $w<-1$ implique $\rho+p<0$ et viole la condition d’énergie nulle ; un ajustement effectif n’impose toutefois pas un champ fantôme fondamental. Si $w_a\ne0$, CPL diverge lorsque $a\to\infty$ : l’extrapolation au futur lointain est injustifiée.
+
+## 3. Observables du fond cosmologique
+
+Les télescopes mesurent flux, angles, spectres et corrélations. Un modèle les convertit en distances et taux d’expansion ; aucun instrument ne lit directement la densité d’énergie sombre. Chaque sonde apporte une partie différente de cette conversion.
+
+### 3.1 Expansion de Hubble
+
+On définit $\Omega_{i0}=\rho_{i0}/\rho_{c0}$ avec $\rho_{c0}=3H_0^2/(8\pi G)$. Dans un espace plat, les fractions totalisent un. Matière, rayonnement et énergie sombre conservés séparément donnent :
+
+$$
+\frac{H^2(z)}{H_0^2}=\Omega_{r0}(1+z)^4+\Omega_{m0}(1+z)^3+
+\Omega_{\rm DE,0}\frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}}.
+$$
+
+À $z=1$, l’exemple donne $H/H_0=\sqrt{0.30\times8+0.70}\simeq1.761$. Remplaçons $w=-1$ par $w=-0.8$ constant, à fractions actuelles et $H_0$ inchangés : le terme d’énergie sombre devient $0.70\times2^{0.6}$ et $H/H_0\simeq1.860$. Sa densité à cette époque varie d’environ 52%, mais le taux d’expansion total de seulement 5.7%. La matière atténue l’effet et l’intégration des distances le lisse davantage : mesurer l’évolution est difficile.
+
+### 3.2 Distances (SNe Ia, BAO, CMB)
+
+Pour un rayon lumineux radial, $ds^2=0$ relie la distance à l’intégrale de $1/H$. Dans un espace plat, distance comobile $\chi$, distance de luminosité $d_L$ et distance angulaire $D_A$ sont reliées ci-dessous. La courbure remplace $\chi$ par une distance transversale dépendant de la géométrie dans les deux dernières relations. La dualité usuelle suppose aussi que les photons suivent des géodésiques nulles et que leur nombre est conservé.
+
+$$
+\begin{gathered}
+\chi(z)=c\int_0^z\frac{dz'}{H(z')},\qquad
+d_L=(1+z)\chi,\qquad D_A=\frac{\chi}{1+z},
+\\
+\mu=5\log_{10}\!\left(\frac{d_L}{10\,{\rm pc}}\right),\qquad
+D_V=\left[(1+z)^2D_A^2\frac{cz}{H(z)}\right]^{1/3}.
+\end{gathered}
+$$
+
+Une luminosité calibrée $L$ et un flux $F$ vérifient $F=L/(4\pi d_L^2)$. Les SNe Ia sont **standardisables**, non identiques : forme de la courbe de lumière, couleur et galaxie hôte demandent des corrections. Le module $\mu$ exprime logarithmiquement la distance. Un échantillon non calibré donne surtout des distances relatives : luminosité absolue et $H_0$ sont dégénérés. Un décalage de 0.10 magnitude change la distance inférée de $10^{0.10/5}-1\simeq4.7\%$, d’où l’importance de l’étalonnage.
+
+Les oscillations acoustiques baryoniques (BAO) utilisent une séparation statistiquement privilégiée laissée par les ondes sonores du plasma primordial. L’horizon sonore comobile $r_d$ est évalué à l’époque de la traînée baryonique. Transversalement, les BAO contraignent $D_M/r_d$ ; radialement, $D_H/r_d$, où $D_H=c/H$. Pour de petites séparations :
+
+$$
+\theta_{\rm BAO}\simeq\frac{r_d}{D_M(z)},\qquad
+\Delta z_{\rm BAO}\simeq\frac{H(z)r_d}{c},\qquad D_M=(1+z)D_A.
+$$
+
+![Deux directions BAO perpendiculaires relient angles et écarts de décalage spectral à la distance et à l’expansion.](/images/diagrams/dark-energy-deep-bao.svg)
+
+**Une règle statistique, deux directions.** La séparation transversale orange relie $r_d$ à $\theta$ et $D_M$ ; la séparation radiale bleue relie $r_d$ à $\Delta z$ et $H$. Géométrie schématique et règle comobile.
+
+$D_V$ résume une analyse BAO isotrope ; une analyse anisotrope conserve les deux directions. Les BAO sont une propriété des corrélations, non des règles rigides entre galaxies. Le fond diffus cosmologique (CMB) contraint densités primitives et échelles acoustiques et aide à calibrer $r_d$. L’inférence tardive dépend toujours de la physique ancienne : modifier l’expansion précoce peut changer la règle. L’[analyse des paramètres de Planck](https://arxiv.org/abs/1807.06209) illustre ces inférences conditionnelles.
+
+## 4. Croissance des structures
+
+L’expansion n’est que la moitié du test. Les surdensités de matière $\delta=\delta\rho_m/\rho_m$ croissent aussi par attraction. Pour des perturbations linéaires de matière sans pression, sous l’horizon, en RG avec énergie sombre lisse et rayonnement négligeable, continuité, Euler et Poisson donnent :
+
+$$
+\ddot\delta+2H\dot\delta-4\pi G\rho_m\delta=0,\qquad
+f\equiv\frac{d\ln D}{d\ln a}.
+$$
+
+$\delta\propto D(a)$ représente le mode croissant. $2H\dot\delta$ amortit la croissance, tandis que le terme de densité l’entraîne. Dans une ère plate de matière seule, $D\propto a$ ; l’énergie sombre lisse ralentit la croissance par rapport à $a$. $f\simeq\Omega_m(a)^{0.55}$ est une approximation proche de $\Lambda$CDM, non universelle. Les distorsions dans l’espace des décalages spectraux contraignent notamment $f\sigma_8$. $\sigma_8$ est l’écart quadratique moyen du contraste linéaire dans des sphères de rayon $8h^{-1}$ Mpc, avec $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$.
+
+Les mouvements galactiques répondent au potentiel newtonien $\Psi$, tandis que les lentilles sondent $\Phi+\Psi$. Avec la convention de Fourier $\nabla^2\to-k^2$, les écarts à un modèle de référence s’écrivent souvent :
+
+$$
+k^2\Psi=-4\pi G_{\rm eff}(k,a)a^2\rho_m\Delta,\qquad
+\eta=\frac{\Phi}{\Psi}.
+$$
+
+$\Delta$ est la perturbation comobile de matière ; ici $k$ est le nombre d’onde, non la courbure. En RG sans contrainte anisotrope notable, $G_{\rm eff}=G$ et $\eta=1$. Les neutrinos ou d’autres composantes imparfaites peuvent aussi différencier les potentiels en RG. Avant d’invoquer une gravité modifiée, il faut vérifier physique de la matière, biais galactique et erreurs systématiques.
+
+## 5. Aperçu des modèles microscopiques
+
+Un ajustement de $w$ dans le fond n’identifie pas un champ ou une théorie gravitationnelle de façon unique. Deux modèles ayant le même $H(z)$ peuvent différer par leurs perturbations, leur stabilité et leurs effets gravitationnels locaux.
+
+### 5.1 Constante cosmologique $\Lambda$
+
+Un vide invariant de Lorentz possède un tenseur énergie-impulsion proportionnel à la métrique. Sa pression est négative même si sa densité d’énergie est positive :
+
+$$
+T^{(\Lambda)}_{\mu\nu}=-\rho_\Lambda g_{\mu\nu},\qquad
+p_\Lambda=-\rho_\Lambda,\qquad \rho_\Lambda=\frac{\Lambda}{8\pi G}.
+$$
+
+Le problème de la constante cosmologique concerne la petitesse de la contribution **totale renormalisée** du vide, comprenant le terme constant gravitationnel et les corrections quantiques. Une estimation avec coupure n’est pas une prédiction mesurée ; l’écart dépend de l’échelle et de la régularisation supposées. Un $\Lambda$ libre ajuste la valeur observée sans expliquer sa stabilité face aux corrections importantes. Ce problème subsiste même si $w=-1$ est confirmé ; voir la [discussion théorique de Peebles et Ratra](https://arxiv.org/abs/astro-ph/0207347).
+
+La coïncidence est une question distincte : pourquoi observons-nous une époque où matière et vide ont des densités comparables alors que leur rapport varie comme $a^3$ ? Elle motive des modèles dynamiques sans les démontrer.
+
+### 5.2 Quintessence
+
+La quintessence introduit un champ scalaire canonique minimalement couplé. Pour un champ homogène et la signature $(-,+,+,+)$, énergie cinétique $K$ et potentiel $V$ donnent :
+
+$$
+\begin{gathered}
+\mathcal L=-\frac12g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi-V(\phi),
+\\
+K=\frac12\dot\phi^2,\qquad \rho_\phi=K+V,\qquad p_\phi=K-V,\qquad
+w_\phi=\frac{K-V}{K+V}.
+\end{gathered}
+$$
+
+La variation de l’action fournit l’équation du champ ; pour $\dot\phi\ne0$, elle découle aussi de la continuité avec $\rho_\phi,p_\phi$. Le terme $3H\dot\phi$ agit comme un frottement cosmologique.
+
+$$
+\ddot\phi+3H\dot\phi+V_{,\phi}=0,\qquad
+\rho_\phi+3p_\phi=4K-2V.
+$$
+
+Si le champ domine, l’accélération demande $K<V/2$. Pour $K\ll V$, il imite une constante cosmologique ; pour $V=0$, $w=1$ : un scalaire n’accélère donc pas automatiquement. Avec $K,V\ge0$ et une densité positive, $-1\le w\le1$. Des potentiels en puissance inverse ou exponentiels admettent, pour certains paramètres, des solutions de suivi réduisant la sensibilité aux conditions initiales sans supprimer tout réglage. Potentiel, couplages et stabilité restent des hypothèses physiques, non des conséquences d’un ajustement CPL.
+
+### 5.3 Gravité modifiée
+
+La gravité modifiée change le lien entre matière et courbure. Les théories métriques $f(R)$ introduisent généralement un degré scalaire supplémentaire. Le mécanisme caméléon peut réduire ses effets locaux ; l’écrantage de Vainshtein apparaît dans d’autres théories à interactions dérivatives. Aucun n’est universel. Les théories de Horndeski et les théories scalaire-tenseur dégénérées d’ordre supérieur organisent d’autres possibilités. [GW170817 et sa contrepartie gamma](https://arxiv.org/abs/1710.05834) contraignent fortement la différence de vitesse entre gravité et lumière dans le régime observé, excluant de nombreuses interactions sous leurs hypothèses, mais pas toute gravité modifiée.
+
+## 6. Tensions et tests de cohérence
+
+La tension de Hubble compare l’inférence précoce de $H_0$, dépendante du modèle, à l’échelle locale des distances. L’[analyse de Planck](https://arxiv.org/abs/1807.06209) illustre la première, pas une mesure locale directe de l’expansion. Modifier l’énergie sombre tardive ne résout pas automatiquement la tension : il faut aussi satisfaire BAO et supernovæ. L’énergie sombre précoce concerne une autre époque, sans être un simple synonyme de la composante accélératrice actuelle.
+
+$S_8=\sigma_8\sqrt{\Omega_m/0.3}$ résume une dégénérescence des lentilles, non toute leur information. Les différences avec le CMB dépendent des données, de la modélisation non linéaire, de la rétroaction baryonique, de l’étalonnage des décalages et des alignements intrinsèques. Comparer les vraisemblances complètes et leurs paramètres de nuisance communs vaut mieux que compter chaque tension comme indice indépendant de nouvelle physique.
+
+## 7. Étapes de l’inférence
+
+1. Fixer modèle et a priori : courbure, masses des neutrinos, physique précoce et regroupement éventuel de l’énergie sombre ; $w_0,w_a$ ne forment pas une théorie complète.
+2. Calculer de façon cohérente $H$, distances, échelles acoustiques et perturbations linéaires. La précision nécessite un solveur de Boltzmann, pas seulement un indice de croissance ou un a priori CMB comprimé.
+3. Prédire les statistiques mesurées avec sélection, étalonnage et paramètres de nuisance. Conserver les covariances des données communes : multiplier des vraisemblances corrélées comme indépendantes double l’information.
+4. Échantillonner la distribution a posteriori ; tester qualité d’ajustement, dépendance aux a priori et stabilité en retirant chaque sonde. Ajouter des paramètres peut améliorer l’ajustement sans établir une nouvelle composante.
+
+## 8. État de la recherche
+
+**Résultats vérifiés jusqu’au 13 octobre 2026.** L’[article DESI DR2 BAO de 2025](https://arxiv.org/abs/2503.14738) décrit bien les BAO seuls avec $\Lambda$CDM plat. Dans CPL, BAO+CMB préfèrent une évolution à $3.1\sigma$ ; l’ajout de différents échantillons de supernovæ donne $2.8$–$4.2\sigma$. Ces comparaisons avec $(w_0,w_a)=(-1,0)$ ne détectent pas directement un champ scalaire.
+
+L’[analyse DES multi-sondes de 2026](https://arxiv.org/abs/2605.27221) combine géométrie et croissance : écart CPL de $2.2\sigma$ pour DES seul, $2.3\sigma$ avec DESI DR2 BAO et $3.0\sigma$ avec l’information primaire du CMB. Ces combinaisons recoupent d’autres analyses ; leurs significativités ne se multiplient pas comme confirmations indépendantes.
+
+L’[analyse DESI de la forme complète des corrélations Lyα de juillet 2026, révisée en août](https://arxiv.org/abs/2607.27410), ajoute une mesure géométrique Alcock–Paczyński au décalage vers le rouge effectif $z=2.33$. Ce nouvel ancrage se rapproche de $\Lambda$CDM. L’article trouve une préférence CPL de $2.7\sigma$ avec DESI+CMB et $3.2\sigma$ avec son échantillon supplémentaire de supernovæ. L’état des indices dépend donc de l’information intégrée.
+
+Un nombre d’écarts-types dépend du modèle, de la vraisemblance et des erreurs systématiques ; ce n’est pas la probabilité que l’énergie sombre évolue. Il faut déterminer si des étalonnages indépendants et la croissance conservent ce schéma, quelle théorie stable le produit et si une explication plus simple reste possible. Ces indices méritent étude, mais l’origine microscopique de l’accélération demeure inconnue.
+
+**Idées reçues :** L’énergie sombre n’est pas la matière sombre regroupée dans les halos. Une pression négative n’est ni une densité négative ni un vent poussant les galaxies depuis un centre. Atomes, systèmes solaires et galaxies liés ne suivent pas simplement le facteur d’échelle. Ni l’accélération actuelle ni un ajustement CPL à décalage fini ne fixe le destin ultime de l’Univers : vide constant, potentiel changeant et instabilité future conduisent à différentes extrapolations.

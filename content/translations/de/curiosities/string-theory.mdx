@@ -1,177 +1,202 @@
 ---
-description: "Von der Weltfläche zum Graviton: Stringwirkungen, Quantisierung, Superstringtheorien, Dualitäten, M-Theorie und AdS/CFT mit ihren offenen Forschungsfragen."
+description: "Warum Strings Gravitation enthalten können: Weltflächen, Quantenbedingungen, kompakte Dimensionen, Dualitäten und Holografie mit Rechenbeispielen und Grenzen."
 ---
 
 ## 1. Von Punkten zu Strings
 
-Im Standardmodell werden Teilchen als **Punkte** idealisiert.  
-Versuche, in diesem Rahmen die Gravitation zu quantisieren, stoßen jedoch auf **nichtrenormierbare Divergenzen**.  
+Die allgemeine Relativitätstheorie beschreibt Gravitation durch eine dynamische Raumzeitmetrik, die Quantenfeldtheorie durch fluktuierende Felder und ihre Teilchen. Kleine Metrikschwankungen lassen sich als **effektive Theorie bei niedrigen Energien** quantisieren. Bei höheren Störungsordnungen benötigt man jedoch immer weitere Gegenterme mit höheren Ableitungen. Nichtrenormierbarkeit macht nicht jede Niederenergievorhersage wertlos; sie begrenzt die Extrapolation auf beliebig kurze Abstände. Die Stringtheorie sucht eine vollständigere mikroskopische Beschreibung.
 
-![Ein Punktteilchen beschreibt eine eindimensionale Weltlinie; ein String beschreibt eine zweidimensionale Weltfläche mit den Parametern Sigma und Tau.](/images/diagrams/worldsheet.svg)
+Ihr grundlegendes perturbatives Objekt ist ein eindimensionaler **String**. Seine Geschichte überstreicht eine zweidimensionale **Weltfläche**, während ein Punktteilchen eine Weltlinie zeichnet. Verschiedene Quantenanregungen haben unterschiedliche Massen und Spins. Ein geeignetes Spektrum geschlossener Strings enthält einen masselosen Spin-2-Zustand mit gravitativen Wechselwirkungen. Das motiviert die Theorie, belegt aber nicht ihre Verwirklichung in der Natur.
 
-Die **Stringtheorie** ersetzt Punkte durch **eindimensionale Strings**.  
-Ihre Schwingungen entsprechen unterschiedlichen Teilchenarten.  
+![Ein Punktteilchen zeichnet eine Weltlinie; ein String überstreicht eine Weltfläche mit den Koordinaten Sigma und Tau.](/images/diagrams/worldsheet.svg)
 
-- Teilchen → Weltlinie  
-- String → Weltfläche  
+*Die Weltfläche ist die Geschichte des Strings, kein zusätzliches Paar Raumzeitdimensionen.*
 
----
+Es gelten $\hbar=c=1$, Stringlänge $\ell_s=\sqrt{\alpha'}$ und Spannung $T=1/(2\pi\alpha')$. Spannung ist Energie pro Länge; $\alpha'$ hat deshalb die Dimension Länge zum Quadrat. Die dimensionslose Kopplung $g_s$ steuert Aufspaltung, Vereinigung und die Entwicklung nach Weltflächentopologien, nicht die Spannung. Ein fundamentaler String ist auch kein elastischer Draht aus Atomen. Tongs Vorlesungen erläutern diese Grundlagen. [1](https://davidtong.org/teaching/string-theory/)
 
 ## 2. Klassische Dynamik von Strings
 
 ### Nambu–Goto-Wirkung
-Die einfachste Beschreibung beruht auf dem Flächeninhalt der Weltfläche:
+
+In flacher Raumzeit mit Signatur $(-,+,\ldots,+)$ beschreibt $X^\mu(\tau,\sigma)$ die Position. Die induzierte Metrik $\gamma_{ab}$ misst Abstände auf der Weltfläche:
 
 $$
-S_{\text{NG}} = -T \int d^2\sigma \, 
-\sqrt{-\det \left( \partial_a X^\mu \partial_b X_\mu \right)} ,
+\gamma_{ab}=\partial_aX^\mu\partial_bX^\nu\eta_{\mu\nu},\qquad
+S_{\mathrm{NG}}=-T\int d^2\sigma\sqrt{-\det\gamma_{ab}}.
 $$
 
-wobei $T = 1/(2\pi \alpha')$ die Stringspannung ist.
+Die Determinante übersetzt ein Koordinatenstück in physikalischen Flächeninhalt; das Vorzeichen kennzeichnet eine zeitartige Fläche. Die stationäre Wirkung liefert ein relativistisches Gegenstück zur Minimalfläche. Sie minimiert nicht zu jedem Zeitpunkt die räumliche Stringlänge.
 
 ### Polyakov-Wirkung
-Äquivalent, aber handlicher:
+
+Mit einer Hilfsmetrik $h_{ab}$ wird die Wirkung quadratisch in den Ableitungen. Variation dieser unabhängigen Metrik ergibt die Bedingung für den Weltflächen-Energie-Impuls-Tensor:
 
 $$
-S_{\text{P}} = -\frac{T}{2} \int d^2\sigma \, \sqrt{-h}\,
-h^{ab} \partial_a X^\mu \partial_b X_\mu .
+S_{\mathrm P}=-\frac T2\int d^2\sigma\sqrt{-h}\,h^{ab}\partial_aX^\mu\partial_bX_\mu,
+\qquad T_{ab}=\gamma_{ab}-\frac12h_{ab}h^{cd}\gamma_{cd}=0.
 $$
 
-- $X^\mu(\sigma^a)$: Einbettung des Strings in die $D$-dimensionale Raumzeit  
-- $h_{ab}$: Metrik der Weltfläche  
-
-Diese Wirkung besitzt **Diffeomorphismus- und Weyl-Invarianz** und beschreibt damit eine **zweidimensionale konforme Feldtheorie** (CFT).
-
----
+Für eine nichtentartete Fläche ist damit $h_{ab}$ proportional zu $\gamma_{ab}$; Einsetzen liefert Nambu–Goto zurück. Der Proportionalitätsfaktor bleibt frei, weil bei $h_{ab}\mapsto e^{2\omega}h_{ab}$ das Flächenelement und die inverse Metrik in zwei Dimensionen entgegengesetzt skalieren. Koordinatenwechsel und Weyl-Symmetrie entfernen redundante Beschreibungen. Diese Äquivalenz ist klassisch; Quantenmaß und Anomalien verlangen zusätzliche Sorgfalt. [2](https://davidtong.org/pdfs/teaching/string-theory/string1.pdf)
 
 ## 3. Quantisierung und Modenentwicklung
 
-Man wählt die **konforme Eichung** $h_{ab} = \eta_{ab}$.  
-Die Bewegungsgleichungen reduzieren sich auf die **zweidimensionale Wellengleichung**:
+Lokal kann man die konforme Eichung $h_{ab}=\eta_{ab}$ wählen, muss aber die Zwangsbedingungen beibehalten. In flacher Zielraumzeit folgt
 
 $$
-\left( \partial_\tau^2 - \partial_\sigma^2 \right) X^\mu(\tau,\sigma) = 0.
+(\partial_\tau^2-\partial_\sigma^2)X^\mu=0.
 $$
 
-![Zwei schematische stehende Schwingungsmoden eines geschlossenen Strings veranschaulichen periodische Randbedingungen.](/images/diagrams/string-modes.svg)
+Dies ist eine Wellengleichung auf der Weltfläche, keine Behauptung einer zweidimensionalen Raumzeit. Globale Weltflächenmoduln bleiben gesondert zu behandeln.
+
+![Zwei periodische Wellenprofile zeigen unterschiedliche Oszillatoranregungen eines geschlossenen Strings.](/images/diagrams/string-modes.svg)
+
+*Schematische Modenprofile, keine Fotografien eines Quantenstrings.*
 
 ### Modenentwicklung (geschlossener String):
+
+Für eine nichtkompakte Koordinate wählen wir $0\leq\sigma<2\pi$ und periodische Randbedingungen:
+
 $$
-X^\mu(\tau,\sigma) = x^\mu + \alpha' p^\mu \tau 
-+ i\sqrt{\frac{\alpha'}{2}} 
-\sum_{n\neq 0} \left(
-\frac{\alpha_n^\mu}{n} e^{-in(\tau-\sigma)} 
-+ \frac{\tilde{\alpha}_n^\mu}{n} e^{-in(\tau+\sigma)}
-\right).
+X^\mu=x^\mu+\alpha'p^\mu\tau
++i\sqrt{\frac{\alpha'}2}\sum_{n\ne0}\frac1n
+\left(\alpha_n^\mu e^{-in(\tau-\sigma)}+
+\tilde\alpha_n^\mu e^{-in(\tau+\sigma)}\right).
 $$
+
+Die ersten Terme beschreiben den Schwerpunkt, die beiden Oszillatorfamilien laufen in entgegengesetzte Richtungen. Periodizität verlangt ganzzahliges $n$. Bei der Konvention mit Periode $\pi$ verschieben sich Faktoren zwei zwischen Nullmode und Exponenten, ohne die Physik zu ändern. Kompakte Koordinaten erlauben zusätzlich Windungen.
 
 ### Virasoro-Zwangsbedingungen
-Klassisch folgt aus der Diffeomorphismusinvarianz der Weltfläche:
+
+Die Fourierkomponenten von $T_{ab}=0$ erfüllen klassisch $L_n=\tilde L_n=0$. Die Quantenalgebra besitzt einen zentralen Term. In der kovarianten bosonischen Quantisierung gelten für physikalische Zustände stattdessen
 
 $$
-T_{ab} = 0 
-\quad \Rightarrow \quad 
-L_n = 0, \;\; \tilde{L}_n = 0 \quad (n \in \mathbb{Z}).
+L_n|\psi\rangle=0\quad(n>0),\qquad (L_0-a)|\psi\rangle=0.
 $$
 
-- $L_n, \tilde{L}_n$: Virasoro-Generatoren  
-- Sie stellen sicher, dass physikalische Zustände mit der konformen Invarianz verträglich sind.  
-
----
+und entsprechende Bedingungen für den Tilde-Sektor. Nicht jeder Quantengenerator darf als Operator null gesetzt werden. Materie und Geister der Eichfixierung müssen ihre konformen Anomalien aufheben: beim flachen bosonischen String $D-26=0$, beim üblichen kritischen Superstring $D=10$. Gekrümmte Hintergründe benötigen außerdem verschwindende Weltflächen-Betafunktionen. Klassische Weyl-Symmetrie allein garantiert keine konsistente konforme Quantenfeldtheorie. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf) [4](https://davidtong.org/pdfs/teaching/string-theory/string5.pdf)
 
 ## 4. Massenspektrum
 
-Der Hamiltonoperator des Strings liefert mit der Niveauanpassung $N=\tilde N$ für geschlossene Strings:
+Für einen unkompaktifizierten geschlossenen bosonischen String ergeben die beiden Nullmodenbedingungen
 
 $$
-M^2 = \frac{2}{\alpha'} \left( N + \tilde{N} - 2a \right),
+L_0=\frac{\alpha'p^2}{4}+N,\quad
+\tilde L_0=\frac{\alpha'p^2}{4}+\tilde N,\quad p^2=-M^2,
 $$
 
-- $N, \tilde{N}$: Oszillatorzahlen  
-- $a$: Konstante der Normalordnung  
+$$
+N=\tilde N,\qquad M^2=\frac2{\alpha'}(N+\tilde N-2a),\qquad a=1.
+$$
+
+$N$ zählt Oszillatoranregungsenergie: Mode $n$ erhält Gewicht $n$, statt einfach die Anzahl der Strings zu zählen. Bei $(N,\tilde N)=(0,0)$ signalisiert $M^2=-4/\alpha'$ eine Instabilität dieses bosonischen Vakuums. Ein Tachyon ist kein nutzbarer überlichtschneller Bote. Das Niveau $(1,1)$ ist masselos, $(2,2)$ liefert $M=2/\ell_s$. Dieses Modellbeispiel sagt keine Elektronen- oder Protonenmassen voraus. Superstringsektoren besitzen andere Achsenabschnitte und Projektionen. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf)
 
 ### Besondere Zustände:
-- **Geschlossene Strings**: enthalten ein universelles **masseloses Graviton mit Spin 2**.  
-- **Offene Strings**: liefern **Eichbosonen**.  
-- Höhere Anregungen: ein unendlicher Regge-Turm mit $M^2 \sim n/\alpha'$.  
 
-Quantengravitation und Eichwechselwirkungen treten somit **auf natürliche Weise** auf.
+Die zwei transversalen Polarisationsindizes bei $(1,1)$ zerfallen in einen symmetrischen spurfreien Tensor (Graviton), einen antisymmetrischen Tensor ($B$-Feld) und einen Skalar (Dilaton). Offene Strings können masselose Vektorbosonen liefern. Eichbosonen entstehen aber auch in geschlossenen heterotischen Strings; offene Strings sind nicht der einzige Weg zu Eichwechselwirkungen.
 
----
+Gravitation bedeutet mehr als ein Spin-Etikett. Bei konstantem Dilaton und verschwindendem $B$-Feld verlangt die Quantenkonsistenz der Weltfläche in führender Ordnung von $\alpha'$:
+
+$$
+\beta^G_{\mu\nu}=\alpha'R_{\mu\nu}+O(\alpha'^2)=0.
+$$
+
+Die führende Gleichung ist die Vakuum-Einstein-Gleichung $R_{\mu\nu}=0$. Bei Krümmungsradien nahe $\ell_s$ werden höhere Krümmungskorrekturen wichtig; zusätzliche Felder ergänzen Terme. Dies ist eine kontrollierte Niederenergiebeziehung, kein Beweis für die Auflösung aller Singularitäten. [5](https://davidtong.org/pdfs/teaching/string-theory/string7.pdf)
 
 ## 5. Die fünf Superstringtheorien
 
-Der bosonische String in 26 Dimensionen enthält Tachyonen.  
-Die Einführung von **Supersymmetrie auf der Weltfläche** verringert die kritische Dimension auf $D=10$ und entfernt nach der GSO-Projektion die Tachyonen.  
-Daraus ergeben sich **fünf konsistente Superstringtheorien**:
+Die bekannten fünf klassifizieren **zehndimensionale supersymmetrische perturbative Stringtheorien**, nicht alle denkbaren Hintergründe. Weltflächenfermionen und konsistente Projektionen ergeben tachyonfreie supersymmetrische Spektren; Fermionen allein garantieren das nicht. Supersymmetrie ist hier eine Eigenschaft der Konstruktion, keine beobachtete Symmetrie der Natur.
 
 ### (1) Typ I
-- Offene und geschlossene unorientierte Strings  
-- Eichgruppe: $SO(32)$  
-- Supersymmetrie: $N=1$ in 10 Dimensionen  
+
+Unorientierte offene und geschlossene Strings mit 16 Raumzeit-Superladungen. Anomalieaufhebung wählt die üblicherweise $SO(32)$ genannte Eichalgebra aus. Der offene Sektor enthält Eichfreiheitsgrade, der geschlossene die Gravitation.
 
 ### (2) Typ IIA
-- Geschlossene orientierte Strings  
-- Links- und rechtslaufende Fermionen mit **entgegengesetzter Chiralität**  
-- Masseloser Sektor: Graviton, Dilaton, antisymmetrisches $B_{\mu\nu}$ sowie RR-Feldstärken als $p$-Formen geraden Ranges  
+
+Orientierte geschlossene Strings mit 32 Superladungen entgegengesetzter Raumzeit-Chiralität. Die übliche masselose Beschreibung enthält Metrik, Dilaton, $B$-Feld sowie Ramond–Ramond-Potentiale $C_1,C_3$ mit Feldstärken geraden Grades.
 
 ### (3) Typ IIB
-- Geschlossene orientierte Strings  
-- Links- und rechtslaufende Fermionen mit **gleicher Chiralität**  
-- Masseloser Sektor: Graviton, Dilaton, $B_{\mu\nu}$ und RR-Feldstärken ungeraden Ranges  
-- **Selbstduale 5-Form-Feldstärke**  
+
+Orientierte geschlossene Strings mit 32 Superladungen gleicher Chiralität. Die Ramond–Ramond-Potentiale $C_0,C_2,C_4$ besitzen Feldstärken ungeraden Grades; die Fünfform-Feldstärke ist selbstdual. Potentialgrad und Feldstärkengrad sind zu unterscheiden.
 
 ### (4) Heterotische $SO(32)$-Theorie
-- Linkslaufender Sektor: bosonischer String in 26 Dimensionen, auf 10 Dimensionen kompaktifiziert  
-- Rechtslaufender Sektor: Superstring in 10 Dimensionen  
-- Eichgruppe: $SO(32)$  
+
+Linkslaufender bosonischer und rechtslaufender supersymmetrischer Sektor teilen zehn Zielraumzeitkoordinaten. Die zusätzliche linkslaufende zentrale Ladung stammt aus inneren Freiheitsgraden, nicht aus sechzehn weiteren makroskopischen Raumdimensionen. Die konventionelle Bezeichnung $SO(32)$ hat genauer die globale Form $\mathrm{Spin}(32)/\mathbb Z_2$.
 
 ### (5) Heterotische $E_8 \times E_8$-Theorie
-- Gleiche Konstruktion wie oben, aber mit der Eichgruppe $E_8 \times E_8$  
-- Grundlage zahlreicher von der Stringtheorie inspirierter GUT-Modelle  
 
----
+Das alternative konsistente Eichgitter ergibt $E_8\times E_8$, ebenfalls mit 16 Superladungen. Kompaktifizierung kann chirale Eichtheorien erzeugen, legt aber beobachtete Teilchen und Kopplungen nicht allein durch diesen Namen fest. Hinzu kommen ausgedehnte Objekte jenseits perturbativer Strings: D-Branen sind dynamische Objekte, an denen offene Strings enden können und die in Typ II Ramond–Ramond-Ladungen tragen. [6](https://arxiv.org/abs/hep-th/9503124) [13](https://arxiv.org/abs/hep-th/9510017)
 
 ## 6. M-Theorie und Dualitäten
 
-Die fünf Superstringtheorien sind durch **Dualitäten** miteinander verbunden:
+Eine **Dualität** identifiziert Observablen verschiedener Beschreibungen und macht dadurch schwierige Probleme oft berechenbar. T-Dualität vertauscht kompakten Impuls und Windung; S-Dualität verknüpft bestimmte schwache und starke Kopplungsbereiche. Nicht jedes Modell besitzt schlicht die Symmetrie $g_s\mapsto1/g_s$.
 
-- **T-Dualität**: Kompaktifizierungsradius $R \leftrightarrow \alpha'/R$  
-- **S-Dualität**: schwache Kopplung $\leftrightarrow$ starke Kopplung  
+Stark gekoppeltes Typ IIA erhält eine elfdimensionale Interpretation mit $R_{11}=g_s\ell_s$. Der Kreis wächst mit der Kopplung; elfdimensionale Supergravitation ist der Niederenergiegrenzfall. Solche Beziehungen motivieren **M-Theorie**, liefern aber weder eine universelle Formulierung für beliebige Hintergründe noch einen experimentellen Nachweis der elften Dimension. [6](https://arxiv.org/abs/hep-th/9503124)
 
-In den 1990er-Jahren erkannte man sie als Grenzfälle einer einzigen **elfdimensionalen Theorie**, der **M-Theorie**.  
-Bei niedrigen Energien reduziert sich die M-Theorie auf **elfdimensionale Supergravitation**.
+### Kompaktifizierung: ein berechenbarer Kreis
 
----
+Identifiziere $Y\sim Y+2\pi R$. Eine eindeutige Wellenfunktion verlangt $e^{ip(Y+2\pi R)}=e^{ipY}$, also $p=n/R$ mit ganzzahligem $n$. Ein geschlossener String kann den Kreis $w$-mal umwickeln. Spannung mal Länge ergibt $T(2\pi R|w|)=|w|R/\alpha'$.
+
+$$
+p_L=\frac nR+\frac{wR}{\alpha'},\qquad p_R=\frac nR-\frac{wR}{\alpha'},
+$$
+
+$$
+M^2=\left(\frac nR\right)^2+\left(\frac{wR}{\alpha'}\right)^2
++\frac2{\alpha'}(N+\tilde N-2),\qquad N-\tilde N-nw=0.
+$$
+
+$$
+M^2=p_R^2+\frac4{\alpha'}(N-1)=p_L^2+\frac4{\alpha'}(\tilde N-1).
+$$
+
+Hier ist $Y(\sigma+2\pi)=Y(\sigma)+2\pi wR$; $N$ zählt die vorherigen $\alpha_n$-Anregungen, $\tilde N$ die $\tilde\alpha_n$-Anregungen. Die letzte Gleichheit fixiert das Vorzeichen der Niveauanpassung. Unter $R\leftrightarrow\alpha'/R$ und $n\leftrightarrow w$ bleibt das Spektrum gleich. Bei $R=2\ell_s$ beträgt der Einheitsimpulsbeitrag $1/(2\ell_s)$, der Beitrag einer Windung $2/\ell_s$; beim dualen Radius $\ell_s/2$ tauschen sie ihre Rollen. Es sind Beiträge zur Massenformel, nicht zwingend die gesamte Zustandsmasse. [7](https://davidtong.org/pdfs/teaching/string-theory/string8.pdf)
+
+![Großer Kreis und kleiner dualer Kreis tauschen Impuls- und Windungsbeiträge zum Massenspektrum.](/images/diagrams/string-deep-duality.svg)
+
+*Blau: Impulsbeitrag $1/R$. Orange: Windungsbeitrag $R/\alpha'$. Eine Rechenskizze, keine Beobachtung zusätzlicher Dimensionen.*
+
+Für vierdimensionale Modelle besitzen sechs kompakte Raumdimensionen Geometrie, Flüsse und eventuell Branen. Ihre Größen und Formen werden zu skalaren **Moduli-Feldern**. Stabilisierung ist wesentlich: freie Änderungen könnten Kopplungen verändern oder unbeobachtete weitreichende Kräfte vermitteln. „Zu klein, um sichtbar zu sein“ ist kein vollständiges Modell.
 
 ## 7. AdS/CFT-Korrespondenz
 
-Maldacenas Vermutung von 1997:
+Maldacenas am besten untersuchtes Beispiel verknüpft Typ-IIB-Strings auf $\mathrm{AdS}_5\times S^5$ mit vierdimensionaler $\mathcal N=4$-Super-Yang–Mills-Theorie. AdS besitzt eine negative kosmologische Konstante. Die Randtheorie enthält keine dynamische Gravitation, soll aber das gravitative Innere kodieren. [8](https://arxiv.org/abs/hep-th/9711200)
 
 $$
-Z_{\text{string}}[\phi \to \phi_0] \;=\; Z_{\text{CFT}}[\phi_0],
+Z_{\mathrm{string}}[\phi|_{\partial}=\phi_0]
+=\left\langle\exp\left(\int d^dx\,\phi_0\mathcal O\right)\right\rangle_{\mathrm{CFT}}.
 $$
 
-Sie verknüpft die Stringtheorie auf einer AdS$_{d+1}$-Raumzeit mit einer $d$-dimensionalen CFT.  
+Der Randwert $\phi_0$ ist eine Quelle für den Operator $\mathcal O$; Ableitungen nach der Quelle ergeben Korrelationsfunktionen. Im Rahmen der Korrespondenz liefert die Randtheorie eine nichtperturbative Definition dieses bestimmten Inneren. Das beweist nicht sämtliche vorgeschlagenen holografischen Dualitäten. [9](https://arxiv.org/abs/hep-th/9802150)
 
-- Beispiel: Typ IIB auf AdS$_5 \times S^5$ ↔ $\mathcal{N}=4$-Super-Yang–Mills-Theorie in 4 Dimensionen  
-- Sie liefert eine nichtperturbative Definition der Stringtheorie im AdS-Raum.  
+### Wann Geometrie eine nützliche Näherung wird
 
----
+$N_c$ bezeichnet die Zahl der Farben in der $SU(N_c)$-Eichtheorie, $L$ den AdS-Radius. Eine übliche Normierung lautet
+
+$$
+\lambda=g_{\mathrm{YM}}^2N_c,\qquad
+\frac{L^4}{\alpha'^2}=\lambda,\qquad g_s=\frac{\lambda}{4\pi N_c}.
+$$
+
+Große 't-Hooft-Kopplung $\lambda$ unterdrückt Stringlängenkorrekturen; ausreichend großes $N_c$ bei festem $\lambda$ unterdrückt Stringschleifen. Klassische Supergravitation benötigt beides. Stark gekoppelte Eichphysik kann daher schwach gekrümmter Gravitation entsprechen; schwache Eichkopplung liefert meist nicht dieselbe einfache Geometrie.
+
+![Randring und innere Scheibe illustrieren die Quellenzuordnung; zwei Ungleichungen kontrollieren getrennt die Gravitationsnäherung.](/images/diagrams/string-deep-holography.svg)
+
+*Schematischer räumlicher Schnitt: Randquelle und inneres Feld beschreiben zugeordnete Observablen. $\lambda\gg1$ und $g_s\ll1$ kontrollieren verschiedene Korrekturen; beides ist kein experimenteller Beleg.*
 
 ## 8. Herausforderungen und offene Fragen
 
-- **Landschaftsproblem**: $10^{500}$ mögliche Vakuumzustände  
-- **Fehlende direkte experimentelle Belege** (Planck-Skala $\sim 10^{19}$ GeV)  
-- **Natur der Raumzeit**: Entsteht die Raumzeit aus Quantenverschränkung?  
+Drei Fragen unterscheiden sich: Ist eine Konstruktion konsistent? Verknüpft eine Dualität zwei Konstruktionen? Beschreibt eine davon unser Universum? Erfolg bei den ersten beiden entscheidet die dritte nicht. Unsere Kosmologie ist nicht das obige exakte AdS-Vakuum, die Eichtheorie nicht das Standardmodell.
 
----
+Die **Landschaft** umfasst viele Kandidaten für Kompaktifizierungen und Vakua. Zahlen wie $10^{500}$ sind modellabhängige Schätzungen, keine gesicherte Gesamtzahl physikalischer Universen. Flusskonfigurationen zu zählen klärt weder Stabilität noch kosmologische Auswahl oder Wahrscheinlichkeiten. Denef und Douglas formulieren ein konkretes Zählproblem mit seinen Annahmen. [10](https://arxiv.org/abs/hep-th/0404116)
+
+### Was die Belege zeigen und was nicht
+
+Strominger und Vafa zählten geschützte Zustände einer besonderen Klasse extremaler supersymmetrischer fünfdimensionaler schwarzer Löcher und reproduzierten die führende Bekenstein–Hawking-Entropie. Dies verbindet Quantenzustände und Horizontfläche, zählt aber nicht direkt Zustände eines beobachteten astrophysikalischen schwarzen Lochs und erklärt nicht vollständig generische Verdampfung. [11](https://arxiv.org/abs/hep-th/9601029)
+
+Cheung und Kollegen leiten in einer 2026 veröffentlichten Arbeit bestimmte Stringstreuamplituden unter Annahmen wie Dynamik auf Baumgraphenniveau, ultrasoftem Hochenergieverhalten und minimalen Residuen-Nullstellen her. Das Ergebnis betrifft diese Amplitudenklasse, nicht eine voraussetzungslose Herleitung unseres Universums oder experimentelle Bestätigung. [12](https://arxiv.org/abs/2508.09246)
+
+Tests benötigen konkrete Modelle: Zusatzteilchen, Kompaktifizierungsskalen, kosmische Strings oder kosmologische Signaturen setzen weitere Entscheidungen voraus. Makroskopische kosmische Stringdefekte sind nicht automatisch fundamentale Strings. Supersymmetrie oder Zusatzdimensionen allein würden die Stringtheorie nicht eindeutig auswählen; der Ausschluss eines erreichbaren Parameterbereichs widerlegt nicht alle Kompaktifizierungen. Auch die Stringskala ist nicht universell auf die vierdimensionale Planckskala festgelegt.
 
 ## Stand der Forschung
 
-Die Stringtheorie ist ein mathematisch reichhaltiger Rahmen, eng verbunden mit Geometrie, Topologie und Quanteninformation.  
-
-Als **experimentell überprüfbare Naturtheorie** bleibt sie jedoch unvollständig.  
-Die zentrale offene Frage lautet: **Wie lässt sich Quantengravitation beobachten?**  
-
----
+Geprüft bis **13. Oktober 2026**: Die Stringtheorie ist ein Kandidat für Quantengravitation mit leistungsfähigen Rechnungen und Dualitätsevidenz, aber ohne etablierte direkte experimentelle Bestätigung fundamentaler Strings in der Natur. Mathematische Erfolge müssen mit ihren Annahmen, kosmologische Aussagen anhand beobachtbarer Vorhersagen beurteilt werden. Offen bleibt die Verbindung eines kontrollierten Vakuums und einer kosmologischen Geschichte mit charakteristischer, überprüfbarer Physik.

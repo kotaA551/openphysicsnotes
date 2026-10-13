@@ -1,125 +1,153 @@
 ---
-description: "Hawking-Strahlung, Unitarität und die Page-Kurve: das Informationsparadoxon schwarzer Löcher, vorgeschlagene Lösungen und offene mikroskopische Fragen."
+description: "Warum die Verdampfung schwarzer Löcher die Quantenmechanik herausfordert: Hawking-Temperatur, Verschränkung, eine berechnete Page-Kurve, Feuerwände, Inseln und der Unterschied zwischen Theorie und Beobachtung."
 ---
 
-**Konventionen:** Die Schwarzschild-Metrik verwendet $c=1$; die Formeln für Temperatur und Bekenstein–Hawking-Entropie enthalten die SI-Konstanten. Für die Inselformel gilt $c=k_B=1$. Die angegebene Besetzungszahl ist der bosonische thermische Faktor vor Berücksichtigung frequenzabhängiger Graukörper-Transmissionsfaktoren.
+Die Wörter eines Buchs zurückzugewinnen, das in ein schwarzes Loch fällt, wäre schwierig. Das **Informationsparadoxon** fragt genauer: Können zwei verschiedene anfängliche Quantenzustände denselben Endzustand ergeben, selbst wenn ein Beobachter alles Verbliebene vollkommen kontrollieren könnte? Gewöhnliches Verbrennen verteilt Information auf Rauch, Licht und deren Korrelationen. Eine fundamentale Auslöschung würde die Gesetze der Quantenmechanik verändern.
+
+Das Problem verbindet allgemeine Relativitätstheorie, Quantenfeldtheorie und statistische Mechanik. Ihre Kombination ist unvollständig, sobald die Geometrie selbst quantenmechanisch beschrieben werden muss. Wir unterscheiden kontrollierte Näherungen, Folgerungen unter der Annahme der Unitarität und tatsächliche Beobachtungen.
+
+**Konventionen:** SI-Konstanten stehen ausdrücklich in den Formeln; nur bei der Inselformel gilt $c=k_B=1$. $S_{\mathrm{BH}}$ ist thermodynamische Entropie, $S(R)$ dimensionslose Von-Neumann-Entropie mit natürlichen Logarithmen. Multiplikation mit $k_B$ ergibt Entropieeinheiten, Division durch $\ln2$ ergibt Bits. Betrachtet wird überwiegend ein ungeladenes, nichtrotierendes schwarzes Loch.
 
 ## 1. Klassische schwarze Löcher
 
-In der allgemeinen Relativitätstheorie ist ein schwarzes Loch ein Bereich der Raumzeit mit einem **Ereignishorizont**.  
-Die einfachste Lösung ist die Schwarzschild-Metrik:
+Ein **Ereignishorizont** begrenzt die Region, aus der kein Signal die ferne äußere Zukunft erreichen kann. Er ist keine materielle Oberfläche, sondern eine Eigenschaft der kausalen Wege in der gesamten Raumzeit. Im Vakuum außerhalb eines kugelsymmetrischen, nichtrotierenden Körpers lautet die Schwarzschild-Metrik
 
 $$
-ds^2 = -\left(1-\frac{2GM}{r}\right) dt^2 
-+ \left(1-\frac{2GM}{r}\right)^{-1} dr^2 
-+ r^2 d\Omega^2.
+ds^2=-\left(1-\frac{r_s}{r}\right)c^2dt^2+\left(1-\frac{r_s}{r}\right)^{-1}dr^2+r^2d\Omega^2,\qquad r_s=\frac{2GM}{c^2}.
 $$
 
-Klassisch kann nichts, nicht einmal Licht, entkommen, sobald es $r=2GM$ überschritten hat.  
-Die Information über die hineingefallene Materie scheint daher verloren zu sein.
+$M$ ist die Masse, $r$ der Flächenradius und $d\Omega^2=d\theta^2+\sin^2\theta\,d\phi^2$ die Metrik der Einheitskugel. Eine Kugelfläche hat die Fläche $4\pi r^2$. Die scheinbare Divergenz bei $r=r_s$ verschwindet in am Horizont regulären Koordinaten; sie ist nicht die Krümmungssingularität bei $r=0$.
 
----
+Bei einem ausreichend großen schwarzen Loch können frei fallende Beobachter den Horizont bei kleiner lokaler Krümmung passieren. Die Richtung der zukünftigen Lichtkegel verhindert die Flucht, nicht eine unendliche lokale Kraft am Horizont. Dass sich das Äußere durch Masse, Drehimpuls und Ladung beschreiben lässt, beweist nicht, dass der vollständige Quantenzustand nur diese drei Eigenschaften besitzt.
+
+**Verbergen ist noch keine Vernichtung.** Ein äußerer Beobachter hat keinen Zugang zum Inneren, ähnlich wie jemand, der nur einen Teil eines verschränkten Systems untersucht, dessen gemeinsame Korrelationen nicht kennt. Der globale Zustand kann trotzdem erhalten bleiben. Scharf wird das Problem, wenn Quantenstrahlung das Loch vollständig verschwinden lässt und kein Inneres zur Reinigung des Strahlungszustands übrig bleibt. Vollständige Verdampfung bis zur letzten Phase der Quantengravitation ist selbst eine Annahme.
 
 ## 2. Hawking-Strahlung
 
-Hawking verband 1974 die Quantenfeldtheorie mit gekrümmter Raumzeit.  
-Er fand, dass schwarze Löcher thermische Strahlung aussenden:
+In [Hawkings Rechnung von 1975](https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-43/issue-3/Particle-creation-by-black-holes/cmp/1103899181.pdf) bewegen sich Quantenfelder auf einer klassischen Kollapsgeometrie. Eine Mode mit positiver Frequenz in der fernen Vergangenheit enthält in der fernen Zukunft positive und negative Frequenzanteile. Deshalb kann das anfängliche Vakuum für spätere Beobachter auslaufende Teilchen enthalten. Für ein langsam veränderliches Schwarzschild-Loch gilt
 
 $$
-\langle N_\omega \rangle = \frac{1}{e^{\hbar \omega / k_B T_H} - 1},
+T_H=\frac{\hbar c^3}{8\pi GMk_B},\qquad \langle N_\omega\rangle=\frac{1}{e^{\hbar\omega/(k_BT_H)}-1}.
 $$
 
-![Die Hawking-Temperatur eines Schwarzschild-Lochs ist umgekehrt proportional zu seiner Masse. Größen und Temperaturen sind schematisch dargestellt.](/images/diagrams/black-hole-temperature.svg)
+$\omega$ ist die Kreisfrequenz. Die Besetzungszahl zeigt den bosonischen thermischen Faktor; für Fermionen steht ein Pluszeichen im Nenner. Die Krümmung streut auslaufende Wellen. Der tatsächliche Fluss enthält deshalb frequenz- und drehimpulsabhängige **Graukörper-Transmissionsfaktoren**. Sie verändern das Spektrum, lösen aber allein nicht die Verschränkung mit unzugänglichen Freiheitsgraden. Das Bild von Teilchen–Antiteilchen-Paaren ist eine Merkhilfe, keine Herleitung und keine eindeutige Lokalisierung der Teilchenerzeugung.
 
-mit der **Hawking-Temperatur**:
+**Zahlenbeispiel.** Für $M_\odot\simeq1.99\times10^{30}\,\mathrm{kg}$ erhält man $r_s\simeq2.95\,\mathrm{km}$ und $T_H\simeq6.2\times10^{-8}\,\mathrm K$. Zehn Sonnenmassen ergeben den zehnfachen Radius und ein Zehntel der Temperatur. Das leuchtende Gas um astrophysikalische schwarze Löcher ist also nicht deren Hawking-Strahlung. Die Rechnung ist für große, langsam veränderliche Löcher am zuverlässigsten; die Fortsetzung bis zur Planck-Masse ist keine kontrollierte Näherung.
 
-$$
-T_H = \frac{\hbar c^3}{8\pi GM k_B}.
-$$
-
-Die **Bekenstein–Hawking-Entropie** lautet:
+Die Entropie des Horizonts lautet
 
 $$
-S_{\text{BH}} = \frac{k_B c^3}{4 G \hbar} A,
+A=4\pi r_s^2,\qquad S_{\mathrm{BH}}=\frac{k_BA}{4\ell_P^2}=\frac{4\pi k_BGM^2}{\hbar c},\qquad \ell_P^2=\frac{G\hbar}{c^3}.
 $$
 
-Dabei ist $A$ die Fläche des Horizonts.
+Die von [Bekenstein (1973)](https://doi.org/10.1103/PhysRevD.7.2333) motivierte Flächenabhängigkeit unterscheidet sich von der vertrauten Volumenabhängigkeit gewöhnlicher Materie. Für eine Sonnenmasse gilt $S_{\mathrm{BH}}/k_B\simeq1.05\times10^{77}$. Dies als Logarithmus der Zahl passender Mikrozustände zu lesen, ist eine statistische Interpretation, keine bereits für jedes reale Loch ausgeführte direkte Zählung.
 
----
+Ein Konsistenztest folgt durch Ableiten von $S_{\mathrm{BH}}\propto M^2$:
+
+$$
+\frac{dS_{\mathrm{BH}}}{dM}=\frac{8\pi k_BGM}{\hbar c},\qquad T_H\,dS_{\mathrm{BH}}=c^2dM=dE.
+$$
+
+Das ist der erste Hauptsatz ohne Rotation und Ladung. Wegen $T_H\propto1/M$ erhöht ein Energieverlust die Temperatur: Das isolierte Loch besitzt negative Wärmekapazität. Das bedeutet keine negative absolute Temperatur.
 
 ## 3. Das Informationsparadoxon
 
-Wenn die Hawking-Strahlung **rein thermisch** ist, gilt:
-
-- Anfangszustand: rein (Quantenfeld + kollabierende Materie)  
-- Endzustand: thermischer Mischzustand  
-
-Dies bedeutet eine **nichtunitäre Entwicklung**:
+$R$ bezeichne die abgegebene Strahlung, $B$ das verbliebene Loch. Ist der gemeinsame Zustand rein, ergibt sich der allein für Strahlungsbeobachter zugängliche Zustand durch die **partielle Spur**:
 
 $$
-\rho_{\text{pure}} \;\;\longrightarrow\;\; \rho_{\text{thermal}}.
+\rho_R=\operatorname{Tr}_B|\Psi\rangle\langle\Psi|,\qquad S(R)=-\operatorname{Tr}(\rho_R\ln\rho_R).
 $$
 
-Die Quantenmechanik verlangt jedoch **Unitarität**.  
-Somit gilt entweder:
+Dabei wird der Zugang zu $B$ verworfen, nicht dessen physikalisches Verschwinden behauptet. Eine reine Dichtematrix besitzt nur einen Eigenwert eins und hat $S=0$; eine gemischte besitzt mehrere von null verschiedene Eigenwerte. Unitäre Entwicklung $\rho\mapsto U\rho U^\dagger$ erhält diese Eigenwerte für das vollständige geschlossene System. Ein Teilsystem kann durch Verschränkung dennoch gemischt werden.
 
-1. **Die Quantenmechanik versagt**, oder  
-2. **Die Beschreibung schwarzer Löcher durch die allgemeine Relativitätstheorie versagt**.  
+**Beispiel mit zwei Qubits.** Betrachten wir
 
-Dieser Widerspruch ist das **Informationsparadoxon schwarzer Löcher**.
+$$
+|\Psi\rangle_{RB}=\frac{|0\rangle_R|0\rangle_B+|1\rangle_R|1\rangle_B}{\sqrt2},\qquad \rho_R=\frac12\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+$$
 
----
+Die Spur über $B$ entfernt die Kreuzterme, weil $\langle0|1\rangle=0$ ist. Das Strahlungsqubit hat zwei Eigenwerte $1/2$, also $S(R)=\ln2$, während das Paar $S(RB)=0$ hat. Kein einzelnes Qubit offenbart die gemeinsamen Korrelationen. Werden später beide als Strahlung gesammelt, kann das Ganze rein sein, obwohl einzelne Messergebnisse zufällig wirken.
+
+![Die Qubits R und B bilden gemeinsam einen reinen Zustand; jedes für sich ist gemischt. Zusammen haben sie Entropie null.](/images/diagrams/bh-info-correlations.svg)
+
+*Die Verbindung zeigt eine Quantenkorrelation, kein Signal durch den Horizont. Es gilt $S(R)=S(B)=\ln2$, aber $S(RB)=0$. Beide Teile zu sammeln verändert den Zugang, nicht die globale Reinheit.*
+
+In führender semiklassischer Ordnung sind ausgehende Hawking-Moden mit inneren Partnern verschränkt. Verschwindet das Innere ohne weiteren Träger der Korrelationen, bleibt außen ein gemischter Endzustand trotz reinen Anfangszustands. Dies ist der von [Hawking (1976)](https://doi.org/10.1103/PhysRevD.14.2460) untersuchte Konflikt. Problematisch ist die Kombination vollständiger Verdampfung, gewöhnlicher lokaler Feldtheorie an einem glatten Horizont und einer naiven Zerlegung in unabhängige innere und äußere Zustände.
+
+Ein Planck-Spektrum oder thermische Einteilchenstatistik beweist nicht, dass die gesamte Vielteilchen-Dichtematrix exakt thermisch ist. Information kann in Korrelationen vieler Quanten liegen. Andererseits genügt die Behauptung kleiner Korrekturen nicht: [Mathurs Argument](https://arxiv.org/abs/0909.1038) schränkt diese Möglichkeit ein, solange seine Annahmen lokaler Paarbildung und unabhängiger Teilsysteme gelten.
 
 ## 4. Die Page-Kurve
 
-Page argumentierte 1993, dass bei unitärer Entwicklung die Verschränkungsentropie der Strahlung $S_{\text{rad}}(t)$ der **Page-Kurve** folgen muss:
+Die Schmidt-Zerlegung eines reinen zweiteiligen Zustands liefert dieselben nichtverschwindenden Eigenwerte für $\rho_R$ und $\rho_B$. Für Zustandsraumdimensionen $d_R,d_B$ gilt
 
-![Bei der unitären Verdampfung eines anfangs reinen Systems kehrt die durchgezogene Page-Kurve auf null zurück. Die gestrichelte semiklassische Strahlungsentropie steigt weiter an. Der Vergleich ist qualitativ.](/images/diagrams/page-curve.svg)
+$$
+S(R)=S(B)\leq\min(\ln d_R,\ln d_B),\qquad S(R)\approx\min\left(S_R^{\mathrm{coarse}},\frac{S_{\mathrm{BH}}}{k_B}\right).
+$$
 
-- Sie steigt zunächst an (Hawkings Ergebnis).  
-- Sie erreicht ihr Maximum zur **Page-Zeit** $t_{\text{Page}} \sim (1/2)\, t_{\text{evap}}$.  
-- Danach fällt sie auf null ab, während die Strahlung rein wird.  
+Die erste Beziehung ist eine allgemeine Schranke in endlichen Dimensionen. Die zweite ist eine Näherung für typische Zustände: $S_R^{\mathrm{coarse}}$ bezeichnet die dimensionslose Strahlungsentropie unter Vernachlässigung feiner Korrelationen. [Pages Teilsystemrechnung](https://arxiv.org/abs/gr-qc/9305007) erklärt, weshalb kleine Teile eines generischen großen reinen Zustands nahezu maximal gemischt sind. Die [Anwendung auf schwarze Löcher](https://arxiv.org/abs/hep-th/9306083) setzt unitäre Dynamik und eine effektive Zustandszählung voraus.
 
-Hawkings Rechnung sagt eine monoton steigende Entropie voraus, im Widerspruch zur Unitarität.
+Anfangs wächst der Zustandsraum der Strahlung und damit ihre Entropie. Später schrumpft die Zustandszahl des Lochs: Es kann keine beliebig große Strahlungsentropie reinigen. Die Kurve fällt und endet bei vollständiger unitärer Verdampfung eines anfangs reinen isolierten Systems bei null. **Das bedeutet nicht, dass Energie oder Temperatur der Strahlung verschwinden.** Bei einem gemischten Anfangszustand oder Verschränkung mit einer äußeren Referenz muss die Strahlung allein am Ende nicht rein sein.
 
----
+![Wachsende grobkörnige Strahlungsentropie kreuzt fallende Entropie des schwarzen Lochs. Die untere Hüllkurve veranschaulicht die Page-Kurve.](/images/diagrams/bh-info-page-balance.svg)
+
+*Waagerecht: vergangene Verdampfungszeit; senkrecht: dimensionslose Entropie. Die steigende gestrichelte Kurve ist $S_R^{\mathrm{coarse}}$, die fallende gepunktete $S_{\mathrm{BH}}/k_B$, die dicke untere Hüllkurve $S(R)$. Der Schnittpunkt bestimmt den Umschlag in dieser Näherung, keinen universellen Lebensdaueranteil.*
+
+**Ein einfaches Modell der Page-Zeit.** Für ein isoliertes Schwarzschild-Loch nehmen wir eine konstante Größe $\alpha>0$ an und ignorieren Änderungen der emittierten Teilchensorten:
+
+$$
+\frac{dM}{dt}=-\frac{\alpha}{M^2},\qquad M(t)^3=M_0^3-3\alpha t,\qquad t_{\mathrm{evap}}=\frac{M_0^3}{3\alpha}.
+$$
+
+Zusätzlich idealisieren wir $S_R^{\mathrm{coarse}}=[S_{\mathrm{BH}}(0)-S_{\mathrm{BH}}(t)]/k_B$. Die Zweige werden gleich, wenn das Loch die Hälfte seiner Anfangsentropie besitzt. Wegen der Proportionalität zu $M^2$ folgt
+
+$$
+M_{\mathrm{Page}}=\frac{M_0}{\sqrt2},\qquad \frac{t_{\mathrm{Page}}}{t_{\mathrm{evap}}}=1-2^{-3/2}\approx0.646.
+$$
+
+$0.646$ ist das Ergebnis dieser Modellannahmen, keine realistische Vorhersage. Entropieproduktion, Graukörperfaktoren, Rotation, umgebende Materie und Teilchenschwellen verändern die Bilanz. Die Hälfte der Entropie ist weder die Hälfte der Masse noch der Lebensdauer.
 
 ## 5. Vorgeschlagene Lösungen
 
+Ein Lösungsvorschlag muss nennen, welche Annahmen sich ändern und wie die endgültigen Korrelationen entstehen. Eine Entropiekurve, eine mikroskopische Zustandsbeschreibung und ein praktisch nutzbares Entschlüsselungsverfahren sind verschiedene Leistungen. Die folgenden Ansätze schließen sich nicht auf jeder Ebene gegenseitig aus.
+
 ### (a) Informationsverlust (Hawkings ursprüngliche Auffassung)
-Die Quantenmechanik wird verändert; die Entwicklung ist nicht unitär.  
-Dies stellt jedoch die Grundlage der Quantenmechanik infrage.
+
+Fundamentaler Informationsverlust würde die unitäre Entwicklung geschlossener Systeme durch allgemeinere Gesetze ersetzen. Eine noch vorhandene Umgebung auszuspuren genügt nicht: Das ist gewöhnliche Dynamik eines offenen Systems. Ein Verlustmodell muss konsistente Dynamik liefern und bei schwacher Gravitation erfolgreiche Quantenvorhersagen wiedergeben. Das Paradoxon fordert zum Prüfen von Annahmen auf, ist aber kein experimenteller Nachweis des Versagens der Quantenmechanik.
 
 ### (b) Überreste
-Schwarze Löcher hinterlassen Überreste von der Größenordnung der Planck-Masse, die Information speichern.  
-Kritik: unendlich viele Arten von Überresten wären nötig; dies führt zu thermodynamischen Problemen.
+
+Ein kleiner stabiler oder langlebiger Überrest könnte Information speichern; die Strahlung wäre dann nicht das gesamte Endsystem. Muss ein Überrest begrenzter Masse Zustände beliebig massereicher Vorgänger aufnehmen, wird seine Zahl möglicher innerer Zustände riesig. Daraus entstehen Schwierigkeiten mit Produktionsraten und Zustandszählung, untersucht von [Giddings (1993)](https://arxiv.org/abs/hep-th/9304027). Sie hängen von der Kopplung an äußere Felder ab; nicht jedes Überrestmodell ist damit pauschal widerlegt.
 
 ### (c) Information entkommt mit der Strahlung
-Quantengravitative Korrekturen ermöglichen subtile Korrelationen in der Hawking-Strahlung.  
-Dafür spricht die **AdS/CFT-Korrespondenz**, deren Unitarität auf der CFT-Seite unmittelbar erkennbar ist.
+
+In einer unitären Beschreibung bleibt Information in Korrelationen ausgesandter Quanten. [Maldacenas AdS/CFT-Vorschlag](https://arxiv.org/abs/hep-th/9711200) verbindet bestimmte Gravitationstheorien mit Anti-de-Sitter-Randbedingungen mit Quantentheorien ohne Gravitation am Rand. Unter Annahme der Dualität schränkt eine unitäre Randtheorie das Innere stark ein. Das ist ein wichtiges theoretisches Argument, keine Messung von Hawking-Strahlung und keine direkte Konstruktion für jeden Kollaps in asymptotisch flacher Raumzeit.
+
+**Das Tagebuchgedankenexperiment.** Man bewahrt frühere Strahlung auf und wirft eine kleine Quantennachricht in ein altes Loch, das Information schnell durchmischt. Im [Hayden–Preskill-Modell](https://arxiv.org/abs/0708.4025) lässt sich die Nachricht nach genügend zusätzlicher Strahlung aus den Korrelationen rekonstruieren. Vorausgesetzt sind unitäres Durchmischen und nahezu vollständige Kontrolle der Strahlung. Nur die neuesten Photonen reichen nicht; die Existenz einer Rückgewinnungsoperation garantiert keine praktische Berechenbarkeit oder Sammlung.
 
 ### (d) Feuerwände
-Am Horizont versagt die effektive Feldtheorie; hochenergetische „Feuerwände“ entstehen, die hineinfallende Beobachter zerstören.  
-Dies verletzt das Äquivalenzprinzip.
+
+Das [AMPS-Argument (2012)](https://arxiv.org/abs/1207.3123) betrifft eine späte ausgehende Mode $b$, ihren inneren Partner $a$ und frühere Strahlung $R$. Ein glatter Horizont verlangt starke Verschränkung zwischen $a$ und $b$. Nach dem Page-Umschlag erfordert die Reinigung zugleich passende Korrelationen zwischen $b$ und $R$. Als unabhängige Teilsysteme geraten sie in Konflikt mit der Monogamie der Verschränkung: $b$ kann nicht mit zwei unabhängigen Systemen zugleich maximal verschränkt sein.
+
+Eine Feuerwand ersetzt das glatte Horizontvakuum durch energiereiche Anregungen. Sie ist ein vorgeschlagener Ausweg, keine beobachtete Wand und nicht die einzig mögliche Folgerung. Andere Ansätze überdenken die Unabhängigkeit der Teilsysteme oder die Kodierung innerer Operatoren in der Strahlung.
 
 ### (e) Inseln und Quantenextremalflächen
-Neuere Fortschritte (2019–2020):  
-Mithilfe des **Replikatricks** und von Quantenextremalflächen reproduziert die **Inselformel** die Page-Kurve:
+
+Die Inselvorschrift nimmt eine innere Region $\mathcal I$ in die Berechnung der feinkörnigen Strahlungsentropie auf:
 
 $$
-S(R) = \min_{\mathcal{I}} \; \text{ext} \left\{ \frac{\text{Area}(\partial \mathcal{I})}{4G\hbar} + S_{\text{bulk}}(R \cup \mathcal{I}) \right\}.
+S(R)=\min_{\mathcal I}\operatorname*{ext}_{\partial\mathcal I}\left[\frac{\operatorname{Area}(\partial\mathcal I)}{4G\hbar}+S_{\mathrm{bulk}}(R\cup\mathcal I)\right].
 $$
 
-Dies spricht dafür, dass die Unitarität erhalten bleibt.
+Zuerst variiert man mögliche Ränder $\partial\mathcal I$, bis der Ausdruck stationär wird. Danach wählt man unter den zulässigen Extrema die kleinste verallgemeinerte Entropie, einschließlich der leeren Insel. Der Flächenterm ist der gravitative Entropieaufwand; $S_{\mathrm{bulk}}$ ist die Quantenfeldentropie auf der Vereinigung. Ultraviolette Divergenzen müssen durch konsistente Renormierung behandelt werden. Erst extremalisieren und dann minimieren heißt nicht, beliebige Regionen uneingeschränkt zu minimieren.
 
----
+In kontrollierten Verdampfungsmodellen dominiert zuerst die leere, später eine nichtleere Insel. [Penington (2019)](https://arxiv.org/abs/1905.08255) und [Almheiri und Kollegen (2019)](https://arxiv.org/abs/1905.08762) erhielten entsprechendes Page-Verhalten in holografischen Modellen. [Replik-Wurmloch-Rechnungen](https://arxiv.org/abs/1911.12333) liefern in bestimmten Modellen eine Herleitung aus dem gravitativen Pfadintegral: Zusätzliche Sattelpunkte verbinden die zur Entropieberechnung verwendeten Kopien. Das sind keine durchquerbaren Tunnel, die Nachrichten aus astrophysikalischen Löchern tragen.
+
+Die Aussage betrifft gravitative Zustandszählung und die Kodierung des Inneren. Eine Insel ist keine zusätzliche durch den Horizont ausgeworfene Materie. Eine reproduzierte Entropiekurve liefert allein weder sämtliche Amplituden des ausgesandten Zustands noch einen effizienten Decoder.
 
 ## 6. Stand der Forschung
 
-- **Heutiger Konsens**: Information geht nicht verloren.  
-- AdS/CFT und die Inselformel sprechen deutlich für **unitäre Verdampfung**.  
-- Der genaue **mikroskopische Mechanismus** in realen schwarzen Löchern, die nicht in einem AdS-Raum liegen, wird weiterhin erforscht.  
+**Belege und Geltungsbereich, geprüft am 13. Oktober 2026.** [Gravitationswellen binärer Verschmelzungen](https://arxiv.org/abs/1602.03837) und die [M87-Schattenanalyse](https://arxiv.org/abs/1906.11243) stützen das astrophysikalische Bild schwarzer Löcher in der allgemeinen Relativitätstheorie. Sie messen nicht die feinkörnige Entropie der Hawking-Strahlung. Die zitierten Originalarbeiten liefern theoretische Unterstützung für unitäre Beschreibungen in bestimmten Situationen, keinen direkten Nachweis einer astrophysikalischen Page-Kurve.
 
-Das Paradoxon bleibt ein **Fenster zur Quantengravitation**.
+Offen bleiben eine vollständige mikroskopische Beschreibung realistischer rotierender Löcher in unserem kosmologischen Umfeld, der genaue Fehlerpunkt semiklassischer Teilsystemargumente, die letzte Verdampfungsphase und die Verbindung von Entropierechnungen zu messbaren Größen. Die Herausforderung ist, erfolgreiche Niederenergiephysik zu bewahren und zugleich den vollständigen Quantenzustand zu erklären.
 
----
+Drei Unterscheidungen helfen: Unzugänglichkeit ist keine fundamentale Auslöschung; ein thermisch wirkendes Spektrum beweist keinen global gemischten Zustand; und eine Page-Kurve in einem Gravitationsmodell ist keine experimentelle Lösung sämtlicher Aspekte des Paradoxons.

@@ -1,0 +1,153 @@
+---
+description: "Por qué la evaporación de agujeros negros desafía la mecánica cuántica: temperatura de Hawking, entrelazamiento, cálculo de la curva de Page, muros de fuego, islas y diferencia entre teoría y observaciones."
+---
+
+Recuperar las palabras de un libro que cae en un agujero negro sería difícil. La **paradoja de la información** plantea una pregunta más precisa: ¿pueden dos estados cuánticos iniciales distintos convertirse en el mismo estado final, incluso para alguien capaz de controlar perfectamente todo lo que queda? Una combustión ordinaria dispersa la información en humo, luz y sus correlaciones. Un borrado fundamental cambiaría las leyes cuánticas.
+
+El problema conecta relatividad general, teoría cuántica de campos y mecánica estadística. Su combinación es incompleta cuando la propia geometría requiere una descripción cuántica. Distinguiremos aproximaciones controladas, deducciones que suponen unitariedad y observaciones reales.
+
+**Convenciones:** constantes SI explícitas, salvo en la fórmula de las islas, donde $c=k_B=1$. $S_{\mathrm{BH}}$ es entropía termodinámica; $S(R)$ es entropía de von Neumann adimensional con logaritmos naturales. Multiplicarla por $k_B$ da unidades termodinámicas; dividirla por $\ln2$ da bits. Consideramos principalmente un agujero negro sin rotación ni carga.
+
+## 1. Los agujeros negros clásicos
+
+Un **horizonte de sucesos** delimita la región desde la que ninguna señal puede alcanzar el exterior lejano en el futuro. No es una superficie material, sino una propiedad de las trayectorias causales del espacio-tiempo completo. En el vacío exterior a un cuerpo esférico no rotante, la métrica de Schwarzschild es
+
+$$
+ds^2=-\left(1-\frac{r_s}{r}\right)c^2dt^2+\left(1-\frac{r_s}{r}\right)^{-1}dr^2+r^2d\Omega^2,\qquad r_s=\frac{2GM}{c^2}.
+$$
+
+$M$ es la masa, $r$ el radio areal y $d\Omega^2=d\theta^2+\sin^2\theta\,d\phi^2$ la métrica de la esfera unidad. Una esfera de radio $r$ tiene área $4\pi r^2$. La divergencia aparente en $r=r_s$ desaparece con coordenadas regulares en el horizonte; no es la singularidad de curvatura de $r=0$.
+
+En un agujero negro suficientemente grande, un observador en caída libre puede cruzar el horizonte con curvatura local pequeña. Lo que impide salir es la dirección de los conos de luz futuros, no una fuerza local infinita. Que el exterior se estabilice en una forma descrita por masa, momento angular y carga no demuestra que el estado cuántico completo tenga solo esas tres propiedades.
+
+**Ocultar aún no es destruir.** El observador exterior no accede al interior, como quien mide solo una parte de un sistema entrelazado no conoce sus correlaciones conjuntas. El estado global puede permanecer intacto. El problema se vuelve agudo si la emisión cuántica hace desaparecer por completo el agujero negro, sin un interior restante que purifique la radiación. La evaporación completa durante la fase final de gravedad cuántica es también una hipótesis.
+
+## 2. La radiación de Hawking
+
+En el [cálculo de Hawking (1975)](https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-43/issue-3/Particle-creation-by-black-holes/cmp/1103899181.pdf), los campos cuánticos se propagan sobre una geometría clásica de colapso. Un modo de frecuencia positiva en el pasado lejano mezcla frecuencias positivas y negativas en el futuro lejano. Por tanto, el vacío inicial puede contener partículas salientes para observadores futuros. Para un agujero negro de Schwarzschild que cambia lentamente,
+
+$$
+T_H=\frac{\hbar c^3}{8\pi GMk_B},\qquad \langle N_\omega\rangle=\frac{1}{e^{\hbar\omega/(k_BT_H)}-1}.
+$$
+
+$\omega$ es la frecuencia angular. La ocupación mostrada es el factor térmico bosónico; para fermiones aparece un signo más en el denominador. La curvatura dispersa las ondas salientes, así que el flujo real también incluye **factores de transmisión de cuerpo gris**, dependientes de frecuencia y momento angular. Cambian el espectro sin resolver por sí solos el entrelazamiento con grados de libertad inaccesibles. La imagen de pares partícula–antipartícula ayuda a recordar la idea, pero no es una derivación ni una localización única de la creación.
+
+**Ejemplo numérico.** Al introducir $M_\odot\simeq1.99\times10^{30}\,\mathrm{kg}$ se obtienen $r_s\simeq2.95\,\mathrm{km}$ y $T_H\simeq6.2\times10^{-8}\,\mathrm K$. Diez masas solares dan diez veces más radio y diez veces menos temperatura. El gas luminoso alrededor de agujeros negros astrofísicos no es su radiación de Hawking. El cálculo es más fiable para agujeros grandes que cambian lentamente; extrapolar hasta la masa de Planck no es una aproximación controlada.
+
+La entropía del horizonte es
+
+$$
+A=4\pi r_s^2,\qquad S_{\mathrm{BH}}=\frac{k_BA}{4\ell_P^2}=\frac{4\pi k_BGM^2}{\hbar c},\qquad \ell_P^2=\frac{G\hbar}{c^3}.
+$$
+
+La dependencia del área, motivada por [Bekenstein (1973)](https://doi.org/10.1103/PhysRevD.7.2333), difiere de la dependencia del volumen habitual en la materia. Para una masa solar, $S_{\mathrm{BH}}/k_B\simeq1.05\times10^{77}$. Entenderla como logaritmo del número de microestados compatibles es una interpretación estadística, no un recuento directo completado para cada agujero negro real.
+
+Podemos comprobar la coherencia termodinámica derivando $S_{\mathrm{BH}}\propto M^2$:
+
+$$
+\frac{dS_{\mathrm{BH}}}{dM}=\frac{8\pi k_BGM}{\hbar c},\qquad T_H\,dS_{\mathrm{BH}}=c^2dM=dE.
+$$
+
+Es la primera ley sin rotación ni carga. Como $T_H\propto1/M$, perder energía aumenta la temperatura: el agujero aislado tiene capacidad calorífica negativa. Eso no significa temperatura absoluta negativa.
+
+## 3. La paradoja de la información
+
+Sea $R$ la radiación emitida y $B$ el agujero restante. Si el estado conjunto es puro, el estado accesible observando solo la radiación se obtiene mediante la **traza parcial**:
+
+$$
+\rho_R=\operatorname{Tr}_B|\Psi\rangle\langle\Psi|,\qquad S(R)=-\operatorname{Tr}(\rho_R\ln\rho_R).
+$$
+
+La operación descarta el acceso a $B$, no afirma que haya desaparecido físicamente. Una matriz densidad pura tiene un único autovalor uno y $S=0$; una mixta tiene varios autovalores no nulos. La evolución unitaria $\rho\mapsto U\rho U^\dagger$ conserva esos autovalores para el sistema cerrado completo. Un subsistema sí puede volverse mixto por entrelazamiento.
+
+**Cálculo con dos cúbits.** Consideremos
+
+$$
+|\Psi\rangle_{RB}=\frac{|0\rangle_R|0\rangle_B+|1\rangle_R|1\rangle_B}{\sqrt2},\qquad \rho_R=\frac12\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+$$
+
+La traza sobre $B$ elimina los términos cruzados porque $\langle0|1\rangle=0$. El cúbit de radiación tiene dos autovalores $1/2$, por lo que $S(R)=\ln2$, mientras que el par tiene $S(RB)=0$. Ningún cúbit aislado revela las correlaciones. Si al final ambos se recogen como radiación, el conjunto puede ser puro aunque las mediciones individuales parezcan aleatorias.
+
+![Los cúbits R y B tienen un estado conjunto puro, pero cada uno por separado es mixto. Al reunirlos, la entropía conjunta es cero.](/images/diagrams/bh-info-correlations.svg)
+
+*La línea representa correlación cuántica, no una señal a través del horizonte. $S(R)=S(B)=\ln2$, pero $S(RB)=0$. Recoger ambas partes cambia el acceso al estado, no su pureza global.*
+
+Al orden semiclásico dominante, los modos salientes de Hawking están entrelazados con compañeros interiores. Si el interior desaparece sin otro portador de correlaciones, el exterior final permanece mixto pese a un inicio puro. Es el conflicto analizado por [Hawking (1976)](https://doi.org/10.1103/PhysRevD.14.2460). Las hipótesis problemáticas son evaporación completa, teoría local de campos cerca de un horizonte suave y separación ingenua en estados interiores y exteriores independientes.
+
+Un espectro de Planck o estadísticas térmicas de una partícula no implican una matriz densidad exactamente térmica para todas las partículas. La información puede estar en correlaciones entre muchos cuantos. Tampoco basta decir que «pequeñas correcciones lo arreglarán»: el [argumento de Mathur](https://arxiv.org/abs/0909.1038) restringe esa posibilidad mientras valgan sus hipótesis de creación local de pares e independencia de subsistemas.
+
+## 4. La curva de Page
+
+La descomposición de Schmidt de un estado bipartito puro da los mismos autovalores no nulos para $\rho_R$ y $\rho_B$. Si los espacios de estados tienen dimensiones $d_R,d_B$,
+
+$$
+S(R)=S(B)\leq\min(\ln d_R,\ln d_B),\qquad S(R)\approx\min\left(S_R^{\mathrm{coarse}},\frac{S_{\mathrm{BH}}}{k_B}\right).
+$$
+
+La primera relación es una cota general en dimensión finita. La segunda es una aproximación para estados típicos: $S_R^{\mathrm{coarse}}$ es la entropía adimensional de radiación ignorando correlaciones detalladas. El [cálculo de subsistemas de Page](https://arxiv.org/abs/gr-qc/9305007) explica por qué una pequeña parte de un gran estado puro genérico es casi máximamente mixta. Su [aplicación a la radiación de agujeros negros](https://arxiv.org/abs/hep-th/9306083) requiere dinámica unitaria y recuento efectivo de estados.
+
+Al principio crece el espacio de estados de la radiación y aumenta su entropía. Después disminuyen los estados efectivos del agujero restante: no puede purificar una entropía de radiación arbitrariamente grande. La curva desciende y acaba en cero si un sistema aislado inicialmente puro se evapora completa y unitariamente. **No significa que se anulen la energía o la temperatura de la radiación.** Si el inicio era mixto o estaba entrelazado con una referencia externa, la radiación final por sí sola no tiene por qué ser pura.
+
+![La entropía creciente de radiación sin correlaciones cruza la entropía decreciente del agujero negro. La envolvente inferior representa la curva de Page.](/images/diagrams/bh-info-page-balance.svg)
+
+*Eje horizontal: tiempo de evaporación transcurrido; vertical: entropía adimensional. La curva ascendente a trazos es $S_R^{\mathrm{coarse}}$, la descendente a puntos es $S_{\mathrm{BH}}/k_B$ y la envolvente gruesa es $S(R)$. El cruce define el giro en esta aproximación, sin indicar una fracción universal de la vida total.*
+
+**Un modelo sencillo del tiempo de Page.** Supongamos un agujero aislado de Schwarzschild, $\alpha>0$ constante y ninguna variación de las especies emitidas:
+
+$$
+\frac{dM}{dt}=-\frac{\alpha}{M^2},\qquad M(t)^3=M_0^3-3\alpha t,\qquad t_{\mathrm{evap}}=\frac{M_0^3}{3\alpha}.
+$$
+
+Añadamos la idealización $S_R^{\mathrm{coarse}}=[S_{\mathrm{BH}}(0)-S_{\mathrm{BH}}(t)]/k_B$. Las ramas coinciden cuando la entropía del agujero es la mitad de su valor inicial. Como es proporcional a $M^2$,
+
+$$
+M_{\mathrm{Page}}=\frac{M_0}{\sqrt2},\qquad \frac{t_{\mathrm{Page}}}{t_{\mathrm{evap}}}=1-2^{-3/2}\approx0.646.
+$$
+
+$0.646$ resulta de estas hipótesis, no es una predicción realista. La producción de entropía, los factores de cuerpo gris, la rotación, la materia circundante y los umbrales de partículas cambian el balance. La mitad de la entropía no significa la mitad de la masa ni de la vida.
+
+## 5. Las soluciones propuestas
+
+Una solución debe especificar qué hipótesis cambian y cómo se explican las correlaciones finales. Obtener una curva de entropía, describir el estado microscópico y proporcionar un decodificador viable son logros diferentes. Los siguientes enfoques no son necesariamente excluyentes a todos los niveles.
+
+### (a) La pérdida de información
+
+La pérdida fundamental sustituiría la evolución unitaria de los sistemas cerrados por una ley más general. Tomar la traza sobre un entorno que sigue existiendo no basta: es evolución ordinaria de un sistema abierto. Una teoría de pérdida debe ofrecer dinámica coherente y recuperar las predicciones cuánticas verificadas cuando la gravedad es débil. La paradoja invita a revisar hipótesis; no es evidencia experimental de un fracaso de la mecánica cuántica.
+
+### (b) Los remanentes
+
+Un remanente pequeño, estable o longevo podría conservar información; la radiación no sería todo el sistema final. Si una masa limitada debe guardar estados de progenitores arbitrariamente masivos, sus estados internos posibles serían numerosísimos. Las tasas de producción y el recuento plantean dificultades, estudiadas por [Giddings (1993)](https://arxiv.org/abs/hep-th/9304027). Dependen del acoplamiento con campos externos; no es correcto afirmar que todos los modelos de remanentes estén refutados.
+
+### (c) La información sale con la radiación
+
+En una descripción unitaria, la información persiste en correlaciones entre cuantos emitidos. La [propuesta AdS/CFT de Maldacena](https://arxiv.org/abs/hep-th/9711200) conecta ciertas teorías gravitatorias con condiciones de contorno anti-de Sitter y teorías cuánticas sin gravedad en el borde. Si vale la dualidad, la unitariedad del borde restringe fuertemente la descripción gravitatoria. Es apoyo teórico importante, no una medición de radiación ni una construcción directa para toda estrella que colapse en un espacio-tiempo asintóticamente plano.
+
+**El experimento del diario.** Conservamos la radiación antigua y arrojamos un pequeño mensaje cuántico a un agujero viejo que mezcla información rápidamente. En el [modelo de Hayden–Preskill](https://arxiv.org/abs/0708.4025), suficiente radiación posterior permite recuperar el mensaje de las correlaciones. Se supone mezcla unitaria y control casi completo de la radiación. Los últimos fotones solos no revelan el diario; que exista una operación de recuperación no garantiza viabilidad computacional ni práctica.
+
+### (d) Los muros de fuego
+
+El [argumento AMPS (2012)](https://arxiv.org/abs/1207.3123) considera un modo saliente tardío $b$, su compañero interior $a$ y la radiación antigua $R$. Un horizonte suave exige fuerte entrelazamiento entre $a$ y $b$. Tras el máximo de Page, la purificación requiere además correlaciones adecuadas entre $b$ y $R$. Tratarlos como subsistemas independientes entra en conflicto con la monogamia del entrelazamiento: $b$ no puede estar máximamente entrelazado con dos sistemas independientes.
+
+El muro de fuego sustituye el vacío suave en el horizonte por excitaciones energéticas. Es una respuesta propuesta a la incompatibilidad, no un muro observado ni la única consecuencia posible. Otros enfoques revisan la independencia de subsistemas o la codificación de los operadores interiores en la radiación.
+
+### (e) Las islas y las superficies cuánticas extremales
+
+La prescripción de las islas permite que una región interior $\mathcal I$ participe en el cálculo de la entropía fina, conservando las correlaciones detalladas:
+
+$$
+S(R)=\min_{\mathcal I}\operatorname*{ext}_{\partial\mathcal I}\left[\frac{\operatorname{Area}(\partial\mathcal I)}{4G\hbar}+S_{\mathrm{bulk}}(R\cup\mathcal I)\right].
+$$
+
+Primero se varían las fronteras candidatas $\partial\mathcal I$ hasta hacer estacionaria la expresión. Después se elige la menor entropía generalizada entre los extremos permitidos, incluida la isla vacía. El área representa un coste entrópico gravitatorio y $S_{\mathrm{bulk}}$ la entropía de los campos en la unión. Las divergencias ultravioletas deben tratarse mediante renormalización coherente. Buscar extremos y luego el mínimo no equivale a minimizar libremente sobre regiones arbitrarias.
+
+En modelos controlados de evaporación, domina al principio la rama sin isla y después una con isla. [Penington (2019)](https://arxiv.org/abs/1905.08255) y [Almheiri y colaboradores (2019)](https://arxiv.org/abs/1905.08762) obtuvieron el comportamiento de Page en contextos holográficos. Los [cálculos de agujeros de gusano de réplicas](https://arxiv.org/abs/1911.12333) lo derivan con integrales de camino gravitatorias en modelos específicos: nuevos puntos de silla conectan las copias usadas para calcular la entropía. No son túneles transitables que transporten mensajes fuera de un agujero astrofísico.
+
+El resultado concierne al recuento gravitatorio de estados y a la codificación del interior. Una isla no es materia adicional expulsada a través del horizonte. Reproducir la curva de entropía no proporciona por sí solo todas las amplitudes del estado saliente ni un decodificador eficiente.
+
+## 6. Estado de la investigación
+
+**Evidencia y alcance, revisados el 13 de octubre de 2026.** Las [ondas gravitacionales de fusiones binarias](https://arxiv.org/abs/1602.03837) y el [análisis de la sombra de M87](https://arxiv.org/abs/1906.11243) respaldan la descripción astrofísica de agujeros negros en relatividad general. No miden la entropía fina de la radiación de Hawking. Los trabajos originales citados apoyan descripciones unitarias en situaciones concretas, sin informar de una detección directa de la curva de Page astrofísica.
+
+Siguen abiertos la descripción microscópica completa de agujeros rotantes realistas en nuestro contexto cosmológico, el punto exacto donde falla el razonamiento semiclásico sobre subsistemas, la etapa final de evaporación y la conexión con observables medibles. Hay que explicar el estado cuántico completo conservando los éxitos de la física de bajas energías.
+
+Tres distinciones evitan confusiones: inaccesibilidad no equivale a borrado fundamental; un espectro aparentemente térmico no demuestra un estado global mixto; una curva de Page en un modelo gravitatorio no prueba experimentalmente la solución de todos los aspectos de la paradoja.

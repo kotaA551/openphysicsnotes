@@ -1,122 +1,131 @@
 ---
-description: "Evidências da matéria escura, densidades cosmológicas, WIMPs, áxions e estratégias de detecção direta, indireta e em colisores, além de alternativas gravitacionais."
+description: "Como rotação, lentes e o universo primordial revelam a matéria escura: cálculos, modelos de partículas, limites experimentais e questões em aberto."
 ---
 
 ## 1. Evidências observacionais
 
-A matéria escura foi proposta inicialmente por Fritz Zwicky, em 1933, a partir da dinâmica de aglomerados de galáxias, e depois corroborada por muitas observações:
+Matéria escura é uma componente gravitante proposta que não emite nem absorve luz suficiente para explicar a massa inferida. A motivação é quantitativa: movimentos, lentes gravitacionais e estruturas cósmicas exigem mais gravidade do que estrelas, gás e outras formas de matéria comum fornecem. São medidas de fenômenos distintos, interpretadas por modelos dinâmicos e gravitacionais. Elas ainda não identificam uma nova partícula em laboratório.
 
-![Uma curva de rotação plana na região externa é comparada ao declínio kepleriano fora de uma distribuição de massa concentrada no centro. As curvas são esquemáticas, não dados observacionais.](/images/diagrams/rotation-curve.svg)
-
-- **Curvas de rotação de galáxias**: as estrelas orbitam rápido demais para que apenas a matéria visível explique o movimento.
-- **Lentes gravitacionais**: a massa inferida pela deflexão da luz excede a da matéria luminosa.
-- **Radiação cósmica de fundo em micro-ondas (CMB)**: as anisotropias medidas pelo Planck implicam $\Omega_{\text{DM}} \approx 0.26$.
-- **Estrutura em grande escala**: o crescimento de galáxias e aglomerados exige massa não visível.
+“Escura” não significa preta, antimatéria ou energia escura. Gás comum frio também pode ser difícil de observar. Identificar matéria escura não bariônica exige mais que encontrar um objeto pouco luminoso: a explicação precisa reproduzir várias observações independentes com parâmetros compatíveis.
 
 ### Curvas de rotação
-Para uma estrela a uma distância radial $r$, a velocidade orbital é:
+
+Deslocamentos Doppler nos espectros fornecem velocidades de estrelas e gás ao longo da linha de visada. Corrigir a inclinação da galáxia permite estimar sua curva de rotação. Para uma órbita circular numa distribuição de massa newtoniana aproximadamente esférica, a gravidade fornece a aceleração centrípeta:
 
 $$
-v(r) = \sqrt{\frac{G M(r)}{r}}.
+\frac{v_c^2}{r}=\frac{GM(<r)}{r^2},\qquad M(<r)=\frac{rv_c^2}{G}.
 $$
 
-Observação: $v(r) \approx \text{const}$ para $r$ grande.  
-Expectativa com base na matéria visível: $v(r) \sim 1/\sqrt{r}$.  
-⇒ É necessário um **halo escuro**.
+$M(<r)$ inclui **toda** a massa dentro de $r$, não só estrelas. Fora de uma distribuição compacta, essa massa se aproxima de uma constante e $v_c\propto r^{-1/2}$. Uma velocidade quase constante implica, em vez disso, $M(<r)\propto r$. Derivando a massa esférica encerrada, obtemos
 
----
+$$
+\rho(r)=\frac{1}{4\pi r^2}\frac{dM}{dr}\simeq\frac{v_c^2}{4\pi G r^2}.
+$$
+
+Essa inferência vale na região observada de curva plana, não até o infinito: um perfil $r^{-2}$ ilimitado teria massa infinita. Galáxias reais contêm discos achatados, cuja contribuição gravitacional exige a geometria de disco. Razão massa-luminosidade estelar, gás, distância, inclinação e movimentos não circulares entram num ajuste cuidadoso. O [artigo de dados SPARC](https://arxiv.org/abs/1606.09251) mostra como combinar fotometria e rotação do gás em modelos de massa.
+
+**Exemplo resolvido.** Para uma galáxia esférica idealizada com $v_c=200\,\mathrm{km\,s^{-1}}$ em $r=20\,\mathrm{kpc}$, usamos $G=4.30\times10^{-6}\,\mathrm{kpc}\,(\mathrm{km\,s^{-1}})^2M_\odot^{-1}$. Resulta $M(<r)\simeq1.86\times10^{11}M_\odot$. Se os bárions dentro desse raio somarem $6\times10^{10}M_\odot$ numa estimativa independente, o modelo exige cerca de $1.26\times10^{11}M_\odot$ adicionais. Os números ilustram o raciocínio; não são um ajuste a uma galáxia específica.
+
+![Dois gráficos normalizados comparam velocidade orbital externa constante e massa encerrada crescente com velocidade decrescente e massa constante.](/images/diagrams/dark-matter-deep-rotation.svg)
+
+*Figura 1. Além de um raio de referência, as curvas azuis contínuas seguem $v/v_0=1$ e $M/M_0=r/r_0$; as curvas laranja tracejadas seguem $v/v_0=(r/r_0)^{-1/2}$ e $M/M_0=1$. A ligação entre os painéis pressupõe simetria esférica. São curvas esquemáticas, não observações.*
+
+**Aglomerados e lentes.** Velocidades aleatórias de galáxias num aglomerado relaxado oferecem outra estimativa dinâmica. A relação do virial $2K+U\simeq0$ dá a escala $M\sim R\sigma_v^2/G$, com coeficiente dependente da geometria. Um aglomerado em fusão pode estar fora do equilíbrio; aplicar a estimativa sem verificação seria enganoso. Lentes usam as distorções de imagens ao fundo. Na aproximação de campo fraco e lente fina da relatividade geral, uma lente esférica desvia a luz por
+
+$$
+\alpha(b)=\frac{4G M_{\mathrm{2D}}(<b)}{c^2b}.
+$$
+
+$b$ é o parâmetro de impacto e $M_{\mathrm{2D}}$ é a massa projetada dentro de um cilindro, não a massa tridimensional da fórmula de rotação. A lente não precisa brilhar nem estar em equilíbrio dinâmico, mas sua análise requer um modelo gravitacional, geometria e distâncias das fontes.
+
+O Aglomerado da Bala acrescenta um experimento de separação: o gás quente, que contém a maior parte da massa bariônica observada, desacelera na colisão, enquanto as galáxias em grande parte atravessam umas às outras. Os picos de massa reconstruídos por lente ficam mais próximos das galáxias que do gás. Isso apoia uma componente adicional relativamente pouco colisional. Não identifica WIMPs, não prova autointeração exatamente nula nem resolve todas as teorias gravitacionais imagináveis. Veja a [análise original](https://arxiv.org/abs/astro-ph/0608407).
+
+![Duas etapas esquemáticas de uma colisão de aglomerados mostram o gás separado das galáxias e dos contornos de massa das lentes.](/images/diagrams/dark-matter-deep-merger.svg)
+
+*Figura 2. À esquerda, antes da passagem, gás laranja, pontos pretos de galáxias e contornos azuis de massa se sobrepõem. À direita, o gás fica mais central, enquanto galáxias e contornos se afastam. Setas indicam movimento. É um esquema conceitual, não uma reconstrução do Aglomerado da Bala; o tamanho dos contornos não representa uma massa medida.*
 
 ## 2. Parâmetros cosmológicos
 
-A partir de ajustes do modelo $\Lambda$CDM aos dados do Planck:
+O parâmetro de densidade é $\Omega_i=\rho_i/\rho_{\mathrm{crit}}$, com $\rho_{\mathrm{crit}}=3H_0^2/(8\pi G)$. Ele compara a densidade média atual com uma referência definida pela taxa de expansão. Em $\Omega_i h^2$, $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$ é adimensional, não a constante de Planck.
 
-![A radiação e a matéria não relativística se diluem com a expansão do universo, enquanto uma constante cosmológica tem densidade de energia constante. Os dois eixos são logarítmicos.](/images/diagrams/cosmic-density.svg)
+No modelo $\Lambda$CDM espacialmente plano de seis parâmetros, a [análise final do Planck](https://arxiv.org/abs/1807.06209) fornece $\Omega_c h^2=0.120\pm0.001$, $\Omega_b h^2=0.0224\pm0.0001$ e $h\simeq0.674$; os erros citados são intervalos de 68%. Portanto, $\Omega_c\simeq0.264$, $\Omega_b\simeq0.049$ e $\Omega_c/\Omega_b\simeq5.36$. Cerca de 84% da densidade combinada de matéria escura fria e bárions é matéria escura fria. São inferências baseadas em modelo, não porcentagens obtidas contando objetos; a pequena contribuição dos neutrinos é separada.
 
-- Total: $\Omega_{\text{tot}} \simeq 1.0$ (universo plano)
-- Energia escura: $\Omega_\Lambda \simeq 0.69$
-- Matéria escura: $\Omega_{\text{DM}} \simeq 0.26$
-- Bárions: $\Omega_b \simeq 0.05$
+Por que a radiação cósmica de fundo distingue as componentes? Antes da recombinação, fótons e bárions formavam um fluido acoplado. A pressão resistia à compressão gravitacional, produzindo oscilações acústicas. Os bárions aumentam a inércia desse fluido; a matéria escura pouco colisional fornece potenciais gravitacionais sem compartilhar sua pressão fotônica. As abundâncias afetam de maneiras distintas as alturas dos picos e a evolução dos potenciais. Ajustar espectros de temperatura, polarização e lentes restringe ambas as componentes, em vez de uma única massa total.
 
-Assim, a **matéria escura predomina sobre a matéria bariônica** em uma proporção de aproximadamente 5:1.
-
----
+**Experimento mental.** Substitua a matéria escura inferida por bárions extras, mantendo a densidade total. Não muda apenas a gravidade: o fluido acústico fica mais carregado e as reações nucleares primordiais encontram outra densidade bariônica. Em geral, a troca não preserva as observações. Após a recombinação, bárions caem nos poços de potencial existentes; partículas em propagação livre rápida demais apagariam sementes de pequenas estruturas. “Fria” descreve uma pequena dispersão primordial de velocidades nas escalas relevantes, não uma temperatura de laboratório. Galáxias e lentes testam o crescimento posterior, com incertezas na retroalimentação e na relação entre luminosidade e massa. [Cooke, Pettini & Steidel (2018)](https://arxiv.org/abs/1710.11129).
 
 ## 3. Partículas candidatas
 
+As evidências restringem abundância, aglomeração e interações. Restam possibilidades microscópicas diversas: uma ou várias espécies, um campo coerente ou certos objetos compactos. Um candidato precisa sobreviver tempo suficiente, surgir na quantidade correta e satisfazer limites cosmológicos e experimentais.
+
 ### (a) WIMPs (partículas massivas de interação fraca)
-- Faixa de massa: $10 \,\text{GeV} \lesssim m \lesssim 10 \,\text{TeV}$
-- A densidade relicta é determinada pelo congelamento das reações de aniquilação (freeze-out):
+
+Uma relíquia térmica trocava partículas eficientemente com o plasma quente. Quando a temperatura caiu abaixo de sua escala de massa, a densidade de equilíbrio diminuiu. A expansão acabou superando a aniquilação, deixando um remanescente. Para uma espécie simples que é sua própria antipartícula, com densidade numérica $n$,
 
 $$
-\Omega_{\text{DM}} h^2 \approx \frac{3 \times 10^{-27} \,\text{cm}^3/\text{s}}{\langle \sigma v \rangle}.
+\dot n+3Hn=-\langle\sigma v\rangle(n^2-n_{\mathrm{eq}}^2).
 $$
 
-O “milagre dos WIMPs”: seções de choque na escala eletrofraca produzem naturalmente a densidade observada.
+$3Hn$ representa a diluição; o lado direito é a perda líquida por aniquilação, incluindo a reação inversa por meio de $n_{\mathrm{eq}}$. O congelamento ocorre aproximadamente em $n\langle\sigma v\rangle\sim H$, não quando as interações param abruptamente. Com domínio da radiação, entropia conservada e aniquilação predominantemente independente da velocidade, uma escala útil é
+
+$$
+\Omega_\chi h^2\sim0.12\frac{2.2\times10^{-26}\,\mathrm{cm^3\,s^{-1}}}{\langle\sigma v\rangle}.
+$$
+
+Aniquilação mais eficiente deixa menos partículas. O coeficiente depende da massa e da história térmica; ressonâncias, coaniquilação e dependência da velocidade exigem um cálculo mais completo. O [cálculo da abundância relicta](https://arxiv.org/abs/1204.3622) quantifica essas diferenças. O “milagre dos WIMPs” é uma motivação, não uma garantia de interação fraca ou de uma massa específica na faixa GeV–TeV.
 
 ### (b) Áxions
-- Surgem da solução de Peccei–Quinn para o problema de CP forte.
-- Muito leves ($\mu\text{eV}$–$\text{meV}$), mas produzidos por mecanismos não térmicos.
-- Acoplamento a fótons:
+
+O [mecanismo de Peccei–Quinn](https://doi.org/10.1103/PhysRevLett.38.1440) trata da pequena violação de CP nas interações fortes. Seu campo de áxion também pode armazenar energia cósmica. Um campo inicialmente deslocado do mínimo do potencial começa a oscilar quando a expansão desacelera suficientemente. Num potencial aproximadamente quadrático, as oscilações se comportam, em média, como matéria sem pressão. Massa muito baixa pode coexistir com comportamento frio: produção e momento também importam.
+
+Uma interação possível, a menos de uma convenção de sinal, é
 
 $$
-\mathcal{L}_{a\gamma\gamma} = g_{a\gamma\gamma} a \, \mathbf{E}\cdot \mathbf{B}.
+\mathcal L_{a\gamma\gamma}=g_{a\gamma\gamma}a\,\mathbf E\cdot\mathbf B.
 $$
+
+Num campo magnético estático, um áxion pode se converter em fóton. Uma cavidade ressonante procura uma faixa estreita de frequência com $h_{\mathrm P}\nu\simeq m_ac^2$, sendo $h_{\mathrm P}$ a constante de Planck. Energia de repouso de $4\,\mu\mathrm{eV}$ corresponde a aproximadamente $0.97\,\mathrm{GHz}$. O [experimento ADMX](https://arxiv.org/abs/1804.05750) ilustra o método. A hipótese de matéria escura, sozinha, não fixa um intervalo universal de massa; partículas genéricas semelhantes a áxions não precisam resolver o problema de CP forte.
 
 ### (c) Neutrinos estéreis
-- Neutrinos de mão direita com massas na faixa de keV.
-- Candidatos a matéria escura morna.
+
+Esses férmions neutros hipotéticos não têm a interação fraca comum, mas podem se misturar com neutrinos ativos. Massa na escala keV pode produzir matéria escura morna em cenários adequados. A distribuição de momentos determina a supressão das pequenas estruturas; a massa sozinha é insuficiente. A mistura também permite decaimento radiativo, testável em raios X. A [proposta original de produção](https://arxiv.org/abs/hep-ph/9303287) é um modelo, não evidência de uma espécie estéril observada.
 
 ### (d) Outras propostas
-- Matéria escura com autointeração, setores escuros e buracos negros primordiais.
 
----
+Matéria escura com autointeração troca momento dentro da própria componente, podendo modificar centros de halos sem se acoplar fortemente à matéria comum. A [proposta original](https://arxiv.org/abs/astro-ph/9909386) motiva comparar galáxias anãs e colisões de aglomerados. Interações dependentes da velocidade podem afetar esses sistemas de modo diferente. Campos ultraleves introduzem efeitos ondulatórios; buracos negros primordiais seriam objetos gravitacionais compactos, não novas partículas elementares. Cada modelo precisa definir abundância e distribuição de massa. Limites numa faixa não eliminam todas as versões nem comprovam outro candidato.
 
 ## 4. Estratégias de detecção
 
-1. **Detecção direta**  
-   - Buscar recuos nucleares causados pelo espalhamento de matéria escura.
-   - Experimentos: XENONnT, LUX-ZEPLIN (LZ), PandaX.
-   - Taxa de eventos do sinal:
+A **detecção direta** procura energia transferida a núcleos ou elétrons. Para um alvo de um único isótopo, o espectro de recuos por massa do detector é esquematicamente
 
-   $$
-   R \propto \frac{\rho_{\chi}}{m_\chi} \langle \sigma_{\chi N} v \rangle.
-   $$
+$$
+\frac{dR}{dE_R}=\frac{\rho_\chi}{m_\chi m_N}\int_{v\geq v_{\min}}d^3v\,f(\mathbf v)\,v\,\frac{d\sigma_{\chi N}}{dE_R}.
+$$
 
-2. **Detecção indireta**  
-   - Procurar produtos de aniquilação ou decaimento: $\gamma$, $e^\pm$, $\nu$.
-   - Alvos: centro galáctico e galáxias anãs esferoidais.
+$\rho_\chi/m_\chi$ é a densidade numérica local, $f$ a distribuição normalizada de velocidades no referencial do detector, $m_N$ a massa do núcleo e $E_R$ a energia de recuo. Eficiências, limiares e fundos precisam ser incluídos. Para espalhamento elástico, $E_R^{\max}=2\mu_{\chi N}^2v^2/m_N$, com $\mu_{\chi N}=m_\chi m_N/(m_\chi+m_N)$ e $c=1$. Partículas leves transferem pouca energia a núcleos pesados, daí a importância de limiares baixos e alvos sensíveis a elétrons.
 
-3. **Buscas em colisores**  
-   - Assinaturas de momento transversal ausente ($E_T^{\text{miss}}$).
-   - Tipicamente: um único jato + $E_T^{\text{miss}}$ no LHC.
+Uma curva de exclusão significa que certas massas e acoplamentos preveem eventos demais sob determinadas hipóteses; não significa ausência de toda matéria escura. Como referência histórica, a [análise de 4,2 toneladas-ano do LZ](https://arxiv.org/abs/2410.17036) excluiu seções de choque WIMP–núcleon independentes do spin acima de $2.2\times10^{-48}\,\mathrm{cm^2}$ em $40\,\mathrm{GeV}/c^2$, com 90% de confiança em seu modelo. Essa seção de espalhamento não é a grandeza de aniquilação $\langle\sigma v\rangle$ da equação de congelamento.
 
----
+A **detecção indireta** busca fótons, neutrinos ou partículas carregadas de aniquilações ou decaimentos. A intensidade da aniquilação depende da integral de $\rho_\chi^2$ na linha de visada; a do decaimento, de $\rho_\chi$. Perfis de densidade e fontes astrofísicas comuns importam. A [análise de galáxias anãs do Fermi-LAT](https://arxiv.org/abs/1503.02641) mostra como uma ausência de sinal restringe estados finais específicos.
+
+**Colisores** procuram produção invisível por meio de momento transversal ausente equilibrado pelas partículas visíveis. Neutrinos e efeitos do detector também produzem essa assinatura. Mesmo uma nova partícula invisível precisaria de evidências adicionais de longevidade e abundância cosmológicas. Ressonadores de áxions, recuos nucleares e colisores sondam acoplamentos diferentes; sua concordância seria especialmente informativa. [ATLAS (2021)](https://arxiv.org/abs/2102.10874).
 
 ## 5. Alternativas à matéria escura
 
-Algumas propostas modificam a gravidade:
+MOND pergunta se a relação entre gravidade e bárions muda em baixas acelerações. Numa formulação esférica simples,
 
-- **MOND (dinâmica newtoniana modificada)**:
 $$
-\mu\!\left(\frac{a}{a_0}\right) a = \frac{GM}{r^2},
+\mu(a/a_0)a=\frac{GM_b}{r^2},\qquad \mu(x)\to x\quad(x\ll1).
 $$
-com $a_0 \sim 10^{-10}\,\text{m/s}^2$.
 
-- **TeVeS**, **gravidade f(R)** etc.  
+Nesse limite, com $a=v_c^2/r$, resulta $v_c^4=GM_ba_0$. Assim, uma aceleração característica próxima de $10^{-10}\,\mathrm{m\,s^{-2}}$ relaciona velocidade assintótica e massa bariônica. A relação observada, estreita, entre acelerações bariônica e dinâmica precisa ser explicada tanto por gravidade modificada quanto por formação de galáxias com matéria escura; veja o [estudo original](https://arxiv.org/abs/1609.05917).
 
-Mas essas propostas têm dificuldade em explicar simultaneamente a **CMB, a estrutura em grande escala e as lentes gravitacionais**.  
-⇒ A matéria escura continua sendo o paradigma dominante.
-
----
+Essa fórmula não relativística, sozinha, não determina lentes nem o universo primordial. Uma teoria concorrente precisa de uma extensão relativística e testes conjuntos com aglomerados, radiação cósmica de fundo e crescimento das estruturas. Por outro lado, um bom ajuste em grandes escalas com matéria escura não explica automaticamente cada correlação galáctica. A comparação deve considerar modelos completos e incertezas, não apenas uma curva de rotação especialmente bem ajustada.
 
 ## 6. Situação atual
 
-A matéria escura é sustentada por evidências abundantes, mas sua **identidade como partícula continua desconhecida**.  
+**Verificação: 13 de outubro de 2026.** No quadro gravitacional usual, as evidências de massa adicional que se aglomera são fortes; a identidade microscópica permanece desconhecida. Já seria incorreto resumir toda análise experimental como resultado nulo. A [pré-publicação do LZ de setembro de 2026](https://arxiv.org/abs/2609.02823) relata um candidato de recuo nuclear de aproximadamente 248 keV numa janela ampliada, com tensão global de $2.6\sigma$ em relação ao modelo só de fundo após correção por múltiplas buscas; a significância local máxima é $3.4\sigma$. É um excesso interessante, não uma descoberta nem uma probabilidade de que a matéria escura exista. São necessários mais dados, exame dos fundos e consistência independente.
 
-- WIMPs: até o momento, nenhum sinal confirmado.  
-- Áxions: buscas em andamento (ADMX, MADMAX).  
-- Novas sondas: CTA (raios gama), JWST (estrutura) e detecção direta avançando em direção à região de sensibilidade dominada pelo fundo de neutrinos.
+Espalhamento de neutrinos já importa: a [análise do LZ em baixas energias](https://arxiv.org/abs/2512.08065) estuda recuos de neutrinos solares junto às buscas de matéria escura leve. O “piso de neutrinos” representa menor discriminação e melhora mais lenta da sensibilidade em certas buscas, não uma barreira absoluta. Informações espectrais, temporais, direcionais e diferentes alvos podem ajudar, dependendo do sinal. [O’Hare (2021)](https://arxiv.org/abs/2109.03116).
 
-**O mistério da matéria escura é um dos problemas em aberto mais marcantes da física moderna.**
-
----
+As questões abertas incluem o número de componentes, sua produção, autointerações e quanto das tensões em pequenas escalas resulta da dinâmica do gás e da retroalimentação estelar. Convém distinguir **observação** (espectro, velocidade, distorção), **inferência** (massa dado um modelo) e **hipótese** (partícula ou campo). Matéria escura não é apenas um nome para ignorância; uma abundância cosmológica precisa tampouco constitui descoberta de uma partícula.

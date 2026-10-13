@@ -112,8 +112,8 @@ for (const locale of navierStokesLocales) checkNavierStokesContent(locale);
 check('complete generated page coverage', () => {
   assert.equal(reports.length, 220, 'all 30 static pages and 190 article routes must pass');
   assert.equal(new Set(reports.map(report => report.route)).size, 220, 'every route must be checked exactly once');
-  assert.equal(reports.filter(report => report.noindex).length, 90, 'only the 90 remaining fallback articles are noindex');
-  assert.equal(reports.filter(report => report.schema === 'LearningResource').length, 100, 'all 100 actual article editions expose their learning resource');
+  assert.equal(reports.filter(report => report.noindex).length, 65, 'only the 65 remaining fallback articles are noindex');
+  assert.equal(reports.filter(report => report.schema === 'LearningResource').length, 125, 'all 125 actual article editions expose their learning resource');
 });
 check('Navier–Stokes language coverage', () => {
   assert.deepEqual(locales, navierStokesLocales);
@@ -131,7 +131,7 @@ check('sitemap.xml', () => {
   sitemapCount = actual.length;
   const expected = sitemap();
   assert.equal(actual.length, expected.length);
-  assert.equal(actual.length, 130, '30 translated static pages + 100 article editions');
+  assert.equal(actual.length, 155, '30 translated static pages + 125 article editions');
   const byUrl = new Map(actual.map(item => [item.url, item]));
   assert.equal(byUrl.size, actual.length, 'no duplicate sitemap URLs');
   for (const entry of expected) {

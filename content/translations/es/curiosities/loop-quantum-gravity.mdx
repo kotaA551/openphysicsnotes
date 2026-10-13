@@ -1,0 +1,183 @@
+---
+description: "Gravedad cuántica de bucles: variables, restricciones, cálculo del área, espumas de espín y rebote cosmológico, con hipótesis y límites observacionales explícitos."
+---
+
+## 1. Motivación
+
+En relatividad general (RG), la geometría es dinámica: materia y geometría se influyen mutuamente. En unidades con $c=1$, omitiendo aquí la constante cosmológica,
+
+$$
+G_{\mu\nu}=8\pi G T_{\mu\nu}.
+$$
+
+La teoría cuántica describe bien la materia, pero estudiar un campo cuántico sobre un espacio-tiempo curvo previamente elegido no cuantiza todavía ese espacio-tiempo. Cerca de una singularidad clásica podría fallar la aproximación de una geometría suave y clásica. Esto motiva la gravedad cuántica; no demuestra que una cuantización concreta sea correcta ni constituye un teorema que exija cuantizar cada campo clásico de una única manera.
+
+La **gravedad cuántica de bucles (LQG)** pregunta si puede cuantizarse la RG sin fijar primero una métrica de fondo y desarrollar alrededor de ella. «No perturbativa» significa que la construcción no parte de pequeñas perturbaciones gravitatorias sobre una geometría elegida. «Independiente del fondo» significa que longitudes y áreas proceden de variables dinámicas, no de una métrica fija. Siguen interviniendo una variedad diferenciable y otras elecciones matemáticas. Véase la [exposición fundamental de Ashtekar y Lewandowski](https://arxiv.org/abs/gr-qc/0404018).
+
+La escala característica es $\ell_P=\sqrt{\hbar G/c^3}$, aproximadamente $1.6\times10^{-35}\,\mathrm{m}$. Esta combinación dimensional indica dónde pueden importar a la vez efectos cuánticos y gravitatorios. **Por sí sola no establece** que el espacio sea una cuadrícula regular ni que toda distancia tenga un mínimo. Las afirmaciones más concretas necesitan un espacio de estados, operadores geométricos y una dinámica consistente.
+
+## 2. Cuantización canónica de la RG
+
+El enfoque canónico describe datos en una sección espacial $\Sigma$ e identifica cuáles representan el mismo espacio-tiempo. En la formulación ADM, las variables son la métrica espacial $q_{ab}$ y su momento conjugado $\pi^{ab}$. La foliación organiza el cálculo sin introducir un reloj físico privilegiado.
+
+### Variables de Ashtekar
+
+Usamos las variables reales de **Ashtekar–Barbero** para la RG lorentziana en el gauge temporal, con tríadas no degeneradas y $\gamma>0$ real. La conexión autodual original de Ashtekar es compleja: ambas formulaciones están relacionadas, pero las variables no son idénticas. La [formulación real de Barbero](https://arxiv.org/abs/gr-qc/9410013) y la [acción de Holst](https://arxiv.org/abs/gr-qc/9511026) explican este cambio canónico.
+
+$$
+A_a^i=\Gamma_a^i(E)+\gamma K_a^i,
+\qquad E_i^a=\sqrt{q}\,e_i^a,
+\qquad E_i^aE_i^b=q\,q^{ab}.
+$$
+
+Aquí $q=\det(q_{ab})$, $e_i^a$ es la tríada inversa, $\Gamma_a^i$ su conexión de espín compatible y $K_a^i$ codifica la curvatura extrínseca: cómo se inserta la sección en el espacio-tiempo. $a,b$ son índices espaciales; $i$ identifica un marco ortonormal interno. Por tanto, $E$ contiene la geometría espacial y $A$ combina conexión intrínseca y curvatura extrínseca. Llamar a $E$ «campo eléctrico» es una analogía con las teorías gauge, no electromagnetismo.
+
+Con $\kappa=8\pi G$ y $c=1$,
+
+$$
+\{A_a^i(x),E_j^b(y)\}=\kappa\gamma\,\delta_a^b\delta_j^i\delta^{(3)}(x,y).
+$$
+
+El **parámetro de Barbero–Immirzi** $\gamma$, adimensional, caracteriza esta elección canónica. Las ecuaciones clásicas del vacío no fijan su valor. Su presencia en los espectros geométricos hace importantes su interpretación cuántica y determinación física. Un valor ilustrativo no es una constante medida.
+
+## 3. Restricciones
+
+Las variables contienen descripciones redundantes. En el vacío, con constante cosmológica nula y omitiendo en $\mathcal H$ un factor global no nulo de normalización,
+
+$$
+\mathcal G_i=D_aE_i^a\approx0,
+\qquad \mathcal V_a=E_i^bF^i_{ab}\approx0,
+$$
+
+$$
+\mathcal H=\frac{E_i^aE_j^b}{\sqrt{|\det E|}}
+\left(\epsilon^{ij}{}_{k}F^k_{ab}
+-2(1+\gamma^2)K^i_{[a}K^j_{b]}\right)\approx0.
+$$
+
+$F$ es la curvatura de $A$ y $D$ su derivada covariante. $\approx0$ significa igualdad en la superficie de restricciones, no un pequeño error. La restricción de Gauss elimina rotaciones arbitrarias del marco interno. La restricción vectorial genera cambios de coordenadas espaciales **salvo una transformación de Gauss**; el generador de difeomorfismos espaciales puros incluye el término de Gauss correspondiente. La restricción hamiltoniana implementa cambios de foliación, en lugar de una evolución ordinaria respecto a un tiempo externo universal.
+
+El recuento resulta instructivo: $A$ y $E$ proporcionan 18 componentes del espacio de fases por punto. Siete restricciones independientes de primera clase eliminan 14 componentes; quedan cuatro, o dos grados de libertad de configuración: las polarizaciones gravitatorias locales. Es el recuento clásico regular en el vacío; fronteras y sectores singulares requieren tratamiento separado.
+
+La cuantización construye primero la **cinemática** y después implementa restricciones y producto interno físico. Una red de espín no es automáticamente una solución física. Un observable relacional podría ser el área de una superficie definida por materia cuando un reloj escalar toma un valor especificado. Definir estas cantidades y recuperar sin anomalías el álgebra clásica de restricciones son tareas dinámicas centrales. La [construcción de Thiemann](https://arxiv.org/abs/gr-qc/9606089) es una propuesta concreta, no una teoría fenomenológica única y terminada.
+
+## 4. Holonomías y flujos
+
+Las variables básicas se integran a lo largo de curvas y sobre superficies:
+
+$$
+h_\ell[A]=\mathcal P\exp\!\left(\int_\ell A_a^i\tau_i\,dx^a\right),
+\qquad E(S,f)=\int_S f^i E_i^a\,dS_a.
+$$
+
+$\tau_i$ son generadores de $\mathfrak{su}(2)$, $f^i$ es un campo de prueba y $\mathcal P$ ordena matrices no conmutativas a lo largo del camino. La holonomía compara marcos internos mediante transporte paralelo: es un elemento de $SU(2)$, no una longitud. El flujo mide información orientada de la tríada a través de una superficie. El signo del exponente depende de la convención para la conexión.
+
+Imaginemos transportar un marco alrededor de un pequeño circuito cerrado. En una geometría clásica suave, la desviación dominante de la holonomía respecto a la identidad codifica la curvatura que atraviesa el circuito. La LQG emplea transportes finitos como variables fundamentales sin presuponer un operador $A(x)$ definido punto a punto. Sobre funciones de holonomías, las holonomías actúan por multiplicación y los flujos por derivación. Su álgebra depende de las intersecciones entre caminos y superficies.
+
+El [teorema de unicidad del álgebra holonomía–flujo](https://arxiv.org/abs/gr-qc/0504147) selecciona una representación bajo hipótesis específicas sobre álgebra, covariancia y estado cíclico. No demuestra que toda teoría posible de gravedad cuántica sea LQG ni elige el hamiltoniano.
+
+## 5. Redes de espín
+
+Una **red de espín** invariante gauge consiste en un grafo, espines $j=0,\tfrac12,1,\ldots$ en sus aristas y tensores invariantes, llamados **entrelazadores**, en sus vértices. Los espines etiquetan representaciones de $SU(2)$, no pequeñas bolas giratorias. Un entrelazador combina las representaciones incidentes en un objeto invariante y realiza la restricción de Gauss. Los grafos especifican relaciones de la geometría cuántica; no tienen que formar una retícula física regular.
+
+Para una superficie que cruza las aristas transversalmente y lejos de los vértices, los autovalores del operador habitual de área son
+
+$$
+A(S)=8\pi\gamma\ell_P^2\sum_{p\in S\cap\Gamma}\sqrt{j_p(j_p+1)}.
+$$
+
+El flujo en una perforación actúa como un generador de momento angular. El Casimir cuadrático de $SU(2)$ tiene autovalor $j(j+1)$; tomar su magnitud explica $\sqrt{j(j+1)}$. La [construcción del operador de área](https://arxiv.org/abs/gr-qc/9602046) establece el carácter discreto en el espacio de Hilbert cinemático. Las superficies que contienen vértices necesitan una expresión más general. Como explican [Dittrich y Thiemann](https://arxiv.org/abs/0708.1721), un espectro cinemático no determina por sí solo el de todo observable físico plenamente relacional.
+
+### Un cálculo de medida del área
+
+Una porción de superficie sin vértices está atravesada una vez por $j=\tfrac12$ y una vez por $j=1$. Entonces
+
+$$
+\frac{A}{8\pi\gamma\ell_P^2}
+=\sqrt{\tfrac12(\tfrac12+1)}+\sqrt{1(1+1)}
+=\frac{\sqrt3}{2}+\sqrt2\approx2.280.
+$$
+
+Una perforación con $j=\tfrac12$ aporta $4\pi\sqrt3\,\gamma\ell_P^2$. Dos aportan $8\pi\sqrt3\,\gamma\ell_P^2$, mientras que una con $j=1$ aporta $8\pi\sqrt2\,\gamma\ell_P^2$. Sumas iguales de etiquetas de espín no garantizan áreas iguales. Son contribuciones locales en una red admisible; el resto del grafo debe satisfacer las condiciones de entrelazamiento. El cálculo describe resultados posibles en la cuantización elegida, no un tamaño de grano espacial observado.
+
+![Dos aristas con espines diferentes atraviesan una superficie; sus contribuciones al área suman raíces de los autovalores del Casimir de SU(2).](/images/diagrams/lqg-deep-area.svg)
+
+*La porción sombreada tiene dos perforaciones transversales. La geometría es esquemática: la ecuación, no la separación dibujada, determina el autovalor del área.*
+
+El volumen es más sutil:
+
+$$
+\hat V(R)=\sum_{v\in R\cap\Gamma}\sqrt{|\hat q_v|}.
+$$
+
+$\hat q_v$ contiene productos triples de generadores de flujo, factores de orientación y constantes dimensionales. Generalmente actúa como una matriz en el espacio de entrelazadores del vértice. Fijar los espines de las aristas no fija necesariamente el volumen: también hace falta una base adecuada de entrelazadores. La [construcción de los operadores de volumen](https://arxiv.org/abs/gr-qc/9711031) explica esta diferencia. Los espectros geométricos discretos no implican cubos idénticos ni un tiempo externo automáticamente discreto.
+
+### De las redes a las espumas de espín
+
+Una red de espín describe geometría de frontera. Una **espuma de espín** es un complejo bidimensional etiquetado que asigna amplitudes entre esas fronteras: las aristas del grafo barren caras y los vértices trazan aristas del complejo. Son historias en una suma sobre geometrías cuánticas, no vértices moviéndose en un espacio preexistente.
+
+En un complejo elegido $\mathcal C$, esquemáticamente,
+
+$$
+Z_{\mathcal C}=\sum_{\{j_f,i_e\}}\prod_f A_f\prod_e A_e\prod_v A_v.
+$$
+
+Se suman las etiquetas; amplitudes de caras, aristas y vértices codifican la dinámica del modelo. Se omiten datos de frontera y normalización. La [construcción EPRL](https://arxiv.org/abs/0711.0146) relaciona un vértice de espuma de espín en cuatro dimensiones con estados de frontera de la LQG mediante restricciones de simplicidad. Especificar un complejo finito todavía no establece la teoría completa del continuo.
+
+Para datos geométricos de frontera adecuados y no degenerados, la asíntota de grandes espines de una amplitud de un 4-símplice EPRL euclídeo contiene la acción de Regge, una acción gravitatoria discretizada. Este [resultado de consistencia semiclásica](https://arxiv.org/abs/0902.1170) es valioso. No demuestra que toda amplitud, límite de refinamiento o función de correlación a larga distancia reproduzca la RG.
+
+## 6. Cosmología cuántica de bucles (LQC)
+
+La **LQC** aplica una cuantización inspirada en bucles a sistemas cosmológicos reducidos por simetría. Imponer homogeneidad antes de cuantizar descarta infinitos modos inhomogéneos. Un teorema del sistema reducido no es automáticamente un teorema de la LQG completa.
+
+Consideremos el modelo estándar espacialmente plano, homogéneo e isótropo, con un escalar sin masa y estados semiclásicos muy concentrados en la prescripción de dinámica mejorada. Sus ecuaciones efectivas incluyen
+
+$$
+H^2=\frac{8\pi G}{3}\rho\left(1-\frac{\rho}{\rho_c}\right),
+\qquad \dot\rho=-3H(\rho+P),
+$$
+
+Aquí $H=\dot a/a$, $P$ es la presión y $\rho_c$ una densidad crítica dependiente del modelo, de orden planckiano. A baja densidad se recupera la ecuación plana de Friedmann habitual; la corrección cuadrática negativa da $H=0$ en $\rho_c$. El [análisis de dinámica mejorada](https://arxiv.org/abs/gr-qc/0607039) explicita las hipótesis y estudia el rebote analítica y numéricamente.
+
+### Derivar un rebote en el modelo efectivo
+
+Derivar y usar la conservación de energía proporciona, primero para $H\ne0$ y luego por extensión continua,
+
+$$
+\dot H=-4\pi G(\rho+P)\left(1-2\frac{\rho}{\rho_c}\right).
+$$
+
+En $\rho=\rho_c$, materia con $\rho+P>0$ tiene $\dot H>0$: la contracción puede convertirse en expansión. Encontrar solamente $H=0$ no probaría un rebote. Para el escalar sin masa, $P=\rho$ y $\rho\propto a^{-6}$. Situando el rebote en $t=0$, la solución exacta de estas ecuaciones efectivas es
+
+$$
+a(t)=a_B\left(1+\frac{t^2}{t_B^2}\right)^{1/6},
+\qquad \rho(t)=\frac{\rho_c}{1+t^2/t_B^2},
+\qquad t_B^{-2}=24\pi G\rho_c.
+$$
+
+La sustitución da $H=t/[3(t_B^2+t^2)]$ y verifica ambas ecuaciones. En $t=\pm t_B$, $\rho=\rho_c/2$ y $a=2^{1/6}a_B$. El valor numérico de $a_B$ depende de la normalización de las coordenadas espaciales; los puntos físicos son la densidad finita y el cambio de contracción a expansión.
+
+![El factor de escala efectivo adimensional alcanza su mínimo en el rebote mientras la densidad alcanza su máximo; ambas curvas son simétricas respecto al instante cero.](/images/diagrams/lqg-deep-bounce.svg)
+
+*Eje horizontal: $t/t_B$. Curva superior: $a/a_B$; inferior: $\rho/\rho_c$. Es la solución efectiva del escalar sin masa, no datos observacionales ni una predicción universal para toda cosmología.*
+
+La LQC exactamente soluble permite afirmaciones más fuertes sobre clases de estados cuánticos que este cálculo efectivo aislado: véanse [Ashtekar, Corichi y Singh](https://arxiv.org/abs/0710.3565). Extender las conclusiones a anisotropías, perturbaciones, otras materias o cuantizaciones y a la teoría completa exige argumentos adicionales. Un rebote de modelo no establece qué precedió al universo temprano caliente observado.
+
+## 7. Dificultades y preguntas abiertas
+
+- **Dinámica y restricciones:** controlar el hamiltoniano cuántico, las elecciones de regularización, los estados físicos y el producto interno conservando las simetrías gauge apropiadas.
+- **Continuo y límite semiclásico:** derivar geometría suave y RG de baja energía con materia a partir de muchas excitaciones. Grandes espines en un grafo fijo y refinamiento con más elementos son límites diferentes que requieren tratamiento coherente.
+- **Parámetro de Immirzi:** determinar qué dependencia de $\gamma$ sobrevive en las predicciones físicas. Ajustar la entropía de agujeros negros bajo ciertas hipótesis de recuento no es una medida independiente de laboratorio.
+- **Observaciones:** una característica del fondo cósmico de microondas o una modificación de ondas gravitacionales requiere un modelo efectivo, estado inicial y tratamiento de perturbaciones específicos. Deben demostrarse robustez y distinción respecto a la astrofísica convencional u otros modelos tempranos antes de hablar de una prueba de LQG.
+
+Un ejemplo actual es la [revisión de septiembre de 2026 de Assanioussi y Livine](https://arxiv.org/abs/2601.21644v2): analiza la dinámica hamiltoniana clásica de pequeños grafos «candy» como elementos constitutivos y deja explícitamente el régimen cuántico detallado para trabajos posteriores. Es progreso en un subsistema controlado, no el fin de la dinámica cuántica completa ni una detección empírica.
+
+### Ideas equivocadas frecuentes
+
+**«Los bucles son cuerdas».** Las holonomías son variables de transporte paralelo; las etiquetas de red describen geometría, no cuerdas propagándose. **«La independencia del fondo elimina toda hipótesis».** Topología, variables, cuantización y fronteras siguen importando. **«Un área discreta demuestra que el espacio es una pantalla de píxeles».** El espectro pertenece a un operador; los estados pueden ser superposiciones, sin cuadrícula regular privilegiada. **«El rebote demuestra un universo anterior».** Es un resultado condicional del modelo; el cálculo no proporciona esa observación.
+
+## Estado de la investigación
+
+Investigación verificada hasta el **13 de octubre de 2026**. La LQG cuenta con construcciones cinemáticas precisas y numerosos trabajos sobre dinámica y modelos reducidos. Los artículos enlazados establecen resultados matemáticos y predicciones de modelos; ninguno confirma experimentalmente que nuestro espacio-tiempo tenga esta estructura cuántica propuesta. Una ruta controlada desde la dinámica completa hasta predicciones medidas y distinguibles sigue siendo un objetivo de investigación.
+
+La LQG destaca la cuantización de la geometría gravitatoria sin métrica de fondo fija. La teoría de cuerdas parte de otros grados de libertad y también tiene formulaciones no perturbativas; describirla como invariablemente dependiente del fondo simplifica demasiado la comparación. Cada propuesta debe evaluarse por sus hipótesis, consistencia interna, recuperación de la física conocida y consecuencias observables.

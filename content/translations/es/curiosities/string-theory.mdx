@@ -1,0 +1,202 @@
+---
+description: "Por qué las cuerdas pueden contener gravedad: hojas de universo, restricciones cuánticas, dimensiones compactas, dualidades y holografía con ejemplos y límites."
+---
+
+## 1. De puntos a cuerdas
+
+La relatividad general describe la gravedad mediante una métrica dinámica del espacio-tiempo; la teoría cuántica de campos describe campos fluctuantes y sus partículas. Cuantizar pequeñas fluctuaciones de la métrica funciona como **teoría efectiva de baja energía**, pero los órdenes superiores requieren cada vez más contratérminos con derivadas superiores. La no renormalizabilidad no invalida todas las predicciones de baja energía: limita la extrapolación a distancias arbitrariamente cortas. La teoría de cuerdas busca una descripción microscópica más completa.
+
+Su objeto perturbativo básico es una **cuerda** unidimensional cuya historia barre una **hoja de universo** bidimensional. Una partícula puntual traza una línea de universo. Distintas excitaciones cuánticas tienen diferentes masas y espines; un espectro adecuado de cuerdas cerradas incluye un estado sin masa de espín 2 con interacciones gravitatorias. Esto motiva la teoría, pero no demuestra que la naturaleza la haya elegido.
+
+![Una partícula traza una línea de universo; una cuerda barre una hoja parametrizada por sigma y tau.](/images/diagrams/worldsheet.svg)
+
+*La hoja representa la historia de la cuerda, no dos dimensiones adicionales del espacio-tiempo.*
+
+Usamos $\hbar=c=1$, longitud de cuerda $\ell_s=\sqrt{\alpha'}$ y tensión $T=1/(2\pi\alpha')$. La tensión es energía por longitud; por tanto $\alpha'$ tiene dimensión de longitud al cuadrado. El acoplamiento adimensional $g_s$ controla separación, unión y expansión en topologías de la hoja; no es la tensión. Una cuerda fundamental tampoco es un hilo elástico compuesto de átomos. Las notas de Tong desarrollan estas bases. [1](https://davidtong.org/teaching/string-theory/)
+
+## 2. Dinámica clásica de las cuerdas
+
+### Acción de Nambu–Goto
+
+En espacio-tiempo plano de signatura $(-,+,\ldots,+)$, $X^\mu(\tau,\sigma)$ indica la posición. La métrica inducida $\gamma_{ab}$ mide distancias sobre la hoja:
+
+$$
+\gamma_{ab}=\partial_aX^\mu\partial_bX^\nu\eta_{\mu\nu},\qquad
+S_{\mathrm{NG}}=-T\int d^2\sigma\sqrt{-\det\gamma_{ab}}.
+$$
+
+El determinante convierte una región de coordenadas en área física; el signo refleja una superficie de tipo tiempo. La acción estacionaria da un análogo relativista de una superficie mínima, sin minimizar la longitud espacial instantánea de la cuerda.
+
+### Acción de Polyakov
+
+Una métrica auxiliar $h_{ab}$ hace la acción cuadrática en derivadas. Variarla como campo independiente impone la restricción del tensor energía-momento de la hoja:
+
+$$
+S_{\mathrm P}=-\frac T2\int d^2\sigma\sqrt{-h}\,h^{ab}\partial_aX^\mu\partial_bX_\mu,
+\qquad T_{ab}=\gamma_{ab}-\frac12h_{ab}h^{cd}\gamma_{cd}=0.
+$$
+
+Para una superficie no degenerada, $h_{ab}$ resulta proporcional a $\gamma_{ab}$; sustituir recupera Nambu–Goto. La proporcionalidad queda libre porque en la transformación local de Weyl $h_{ab}\mapsto e^{2\omega}h_{ab}$ se compensan el elemento de área y la métrica inversa en dos dimensiones. Reparametrizaciones y simetría de Weyl eliminan descripciones redundantes. La equivalencia es clásica; medida cuántica y anomalías requieren atención adicional. [2](https://davidtong.org/pdfs/teaching/string-theory/string1.pdf)
+
+## 3. Cuantización y expansión en modos
+
+Se elige localmente el gauge conforme $h_{ab}=\eta_{ab}$, manteniendo las restricciones. En un espacio-tiempo objetivo plano se obtiene
+
+$$
+(\partial_\tau^2-\partial_\sigma^2)X^\mu=0.
+$$
+
+Es una ecuación de onda sobre la hoja, no una afirmación de que el espacio-tiempo sea bidimensional. Los módulos globales de la hoja se tratan por separado.
+
+![Dos perfiles periódicos representan diferentes excitaciones oscilatorias de una cuerda cerrada.](/images/diagrams/string-modes.svg)
+
+*Perfiles esquemáticos de modos, no fotografías de una cuerda cuántica.*
+
+### Expansión en modos (cuerda cerrada)
+
+Para una coordenada no compacta, tomemos $0\leq\sigma<2\pi$ con condiciones periódicas:
+
+$$
+X^\mu=x^\mu+\alpha'p^\mu\tau
++i\sqrt{\frac{\alpha'}2}\sum_{n\ne0}\frac1n
+\left(\alpha_n^\mu e^{-in(\tau-\sigma)}+
+\tilde\alpha_n^\mu e^{-in(\tau+\sigma)}\right).
+$$
+
+Los primeros términos describen el centro de masa; las familias de osciladores viajan en sentidos opuestos. La periodicidad exige $n$ entero. Una convención con período $\pi$ desplaza factores dos entre modo cero y exponentes sin cambiar la física. Las coordenadas compactas admiten además enrollamiento.
+
+### Restricciones de Virasoro
+
+Las componentes de Fourier de $T_{ab}=0$ cumplen clásicamente $L_n=\tilde L_n=0$. El álgebra cuántica adquiere un término central. En la cuantización covariante bosónica, los estados físicos cumplen
+
+$$
+L_n|\psi\rangle=0\quad(n>0),\qquad (L_0-a)|\psi\rangle=0.
+$$
+
+y las condiciones correspondientes del sector con tilde. No se pueden anular todos los generadores cuánticos como operadores. Las anomalías conformes de la materia y de los fantasmas de fijación de gauge deben cancelarse: $D-26=0$ para la cuerda bosónica plana, $D=10$ para la supercuerda crítica habitual. Los fondos curvos también deben anular las funciones beta de la hoja. La simetría clásica de Weyl no garantiza por sí sola una teoría cuántica conforme consistente. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf) [4](https://davidtong.org/pdfs/teaching/string-theory/string5.pdf)
+
+## 4. Espectro de masas
+
+Para una cuerda bosónica cerrada no compactificada, las condiciones de los dos modos cero dan
+
+$$
+L_0=\frac{\alpha'p^2}{4}+N,\quad
+\tilde L_0=\frac{\alpha'p^2}{4}+\tilde N,\quad p^2=-M^2,
+$$
+
+$$
+N=\tilde N,\qquad M^2=\frac2{\alpha'}(N+\tilde N-2a),\qquad a=1.
+$$
+
+$N$ mide energía de excitación: el modo $n$ lleva peso $n$, en vez de contar simplemente cuerdas. Para $(N,\tilde N)=(0,0)$, $M^2=-4/\alpha'$ señala la inestabilidad de ese vacío bosónico; un taquión no es un mensajero superlumínico utilizable. El nivel $(1,1)$ carece de masa; $(2,2)$ da $M=2/\ell_s$. Este ejemplo no predice las masas del electrón o del protón. Los sectores de supercuerdas tienen otras constantes de orden normal y proyecciones. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf)
+
+### Estados especiales
+
+En $(1,1)$ los dos índices de polarización transversal se descomponen en tensor simétrico sin traza (gravitón), tensor antisimétrico (campo $B$) y escalar (dilatón). Las cuerdas abiertas pueden aportar bosones vectoriales sin masa. Pero también aparecen bosones gauge en cuerdas heteróticas cerradas; las abiertas no son la única vía hacia esas interacciones.
+
+La gravedad es más que una etiqueta de espín. Al orden principal en $\alpha'$, con dilatón constante y campo $B$ nulo, la consistencia cuántica de la hoja exige
+
+$$
+\beta^G_{\mu\nu}=\alpha'R_{\mu\nu}+O(\alpha'^2)=0.
+$$
+
+La ecuación dominante es la ecuación de Einstein en vacío $R_{\mu\nu}=0$. Las correcciones de curvatura importan cuando su radio se aproxima a $\ell_s$; otros campos añaden términos. Es una relación controlada de baja energía, no una prueba de que se resuelvan todas las singularidades. [5](https://davidtong.org/pdfs/teaching/string-theory/string7.pdf)
+
+## 5. Las cinco teorías de supercuerdas
+
+Las cinco teorías habituales clasifican **teorías perturbativas supersimétricas de cuerdas en diez dimensiones**, no todos los fondos posibles. Fermiones en la hoja junto con proyecciones consistentes producen espectros supersimétricos sin taquiones; añadir fermiones no basta. Aquí la supersimetría es propiedad de la construcción, no una simetría observada de la naturaleza.
+
+### (1) Tipo I
+
+Cuerdas abiertas y cerradas no orientadas con 16 supercargas espacio-temporales. La cancelación de anomalías selecciona el álgebra gauge convencionalmente llamada $SO(32)$. El sector abierto lleva grados de libertad gauge; el cerrado incluye gravedad.
+
+### (2) Tipo IIA
+
+Cuerdas cerradas orientadas con 32 supercargas de quiralidades opuestas. La descripción habitual sin masa contiene métrica, dilatón, campo $B$ y potenciales de Ramond–Ramond $C_1,C_3$, cuyas intensidades de campo tienen grado par.
+
+### (3) Tipo IIB
+
+Cuerdas cerradas orientadas con 32 supercargas de la misma quiralidad. Los potenciales de Ramond–Ramond $C_0,C_2,C_4$ tienen intensidades de campo de grado impar; la cinco-forma es autodual. No hay que confundir el grado del potencial con el de su intensidad de campo.
+
+### (4) Heterótica $SO(32)$
+
+Un sector bosónico que se propaga a la izquierda y otro supersimétrico a la derecha comparten diez coordenadas objetivo. La carga central adicional izquierda procede de grados de libertad internos, no de dieciséis dimensiones espaciales macroscópicas adicionales. El nombre habitual $SO(32)$ corresponde más precisamente a la forma global $\mathrm{Spin}(32)/\mathbb Z_2$.
+
+### (5) Heterótica $E_8 \times E_8$
+
+La otra red gauge consistente da $E_8\times E_8$, también con 16 supercargas. La compactificación puede generar teorías gauge quirales, pero ese nombre no fija unívocamente partículas ni acoplamientos observados. Hay también objetos extensos más allá de cuerdas perturbativas: las D-branas son dinámicas, admiten extremos de cuerdas abiertas y llevan carga de Ramond–Ramond en tipo II. [6](https://arxiv.org/abs/hep-th/9503124) [13](https://arxiv.org/abs/hep-th/9510017)
+
+## 6. Teoría M y dualidades
+
+Una **dualidad** identifica observables de distintas descripciones, transformando a menudo un problema difícil en calculable. La dualidad T intercambia momento compacto y enrollamiento; la S relaciona ciertos regímenes de acoplamiento débil y fuerte. No todos los modelos poseen la simetría simple $g_s\mapsto1/g_s$.
+
+El tipo IIA a acoplamiento fuerte desarrolla una interpretación en once dimensiones con $R_{11}=g_s\ell_s$. El círculo crece con el acoplamiento; la supergravedad en once dimensiones describe el límite de baja energía. Estas relaciones motivan la **teoría M**, pero no proporcionan una formulación universal para fondos arbitrarios ni una detección experimental de la undécima dimensión. [6](https://arxiv.org/abs/hep-th/9503124)
+
+### Compactificación: un círculo calculable
+
+Identifiquemos $Y\sim Y+2\pi R$. La función de onda univaluada requiere $e^{ip(Y+2\pi R)}=e^{ipY}$, por lo que $p=n/R$ con $n$ entero. Una cuerda cerrada puede dar $w$ vueltas; tensión por longitud da la energía $T(2\pi R|w|)=|w|R/\alpha'$.
+
+$$
+p_L=\frac nR+\frac{wR}{\alpha'},\qquad p_R=\frac nR-\frac{wR}{\alpha'},
+$$
+
+$$
+M^2=\left(\frac nR\right)^2+\left(\frac{wR}{\alpha'}\right)^2
++\frac2{\alpha'}(N+\tilde N-2),\qquad N-\tilde N-nw=0.
+$$
+
+$$
+M^2=p_R^2+\frac4{\alpha'}(N-1)=p_L^2+\frac4{\alpha'}(\tilde N-1).
+$$
+
+Aquí $Y(\sigma+2\pi)=Y(\sigma)+2\pi wR$; $N$ cuenta excitaciones $\alpha_n$ y $\tilde N$ las de $\tilde\alpha_n$ anteriores. La última igualdad fija el signo de la igualdad de niveles. Los intercambios $R\leftrightarrow\alpha'/R$ y $n\leftrightarrow w$ conservan el espectro. Para $R=2\ell_s$ la contribución de momento unidad es $1/(2\ell_s)$ y la de una vuelta $2/\ell_s$; en el radio dual $\ell_s/2$ se invierten. Son contribuciones a la fórmula, no necesariamente la masa total del estado. [7](https://davidtong.org/pdfs/teaching/string-theory/string8.pdf)
+
+![Un círculo grande y su dual pequeño intercambian contribuciones de momento y enrollamiento al espectro de masas.](/images/diagrams/string-deep-duality.svg)
+
+*Azul: momento $1/R$. Naranja: enrollamiento $R/\alpha'$. Un esquema de cálculo, no una observación de dimensiones extras.*
+
+En modelos de cuatro dimensiones, seis dimensiones espaciales compactas poseen geometría, flujos y posiblemente branas. Sus tamaños y formas se convierten en campos escalares llamados **módulos**. Estabilizarlos importa: variaciones libres podrían cambiar acoplamientos o mediar fuerzas de largo alcance no observadas. «Demasiado pequeño para verlo» no constituye un modelo completo.
+
+## 7. Correspondencia AdS/CFT
+
+El ejemplo más estudiado de Maldacena relaciona cuerdas IIB sobre $\mathrm{AdS}_5\times S^5$ con super-Yang–Mills $\mathcal N=4$ en cuatro dimensiones. AdS tiene constante cosmológica negativa. La teoría de la frontera no tiene gravedad dinámica, pero se propone que codifique el interior gravitatorio. [8](https://arxiv.org/abs/hep-th/9711200)
+
+$$
+Z_{\mathrm{string}}[\phi|_{\partial}=\phi_0]
+=\left\langle\exp\left(\int d^dx\,\phi_0\mathcal O\right)\right\rangle_{\mathrm{CFT}}.
+$$
+
+El valor de frontera $\phi_0$ es fuente del operador $\mathcal O$; derivar respecto a la fuente produce funciones de correlación. Bajo la correspondencia, la teoría de frontera define no perturbativamente ese interior concreto. No es una demostración general de todas las dualidades holográficas propuestas. [9](https://arxiv.org/abs/hep-th/9802150)
+
+### Cuándo la geometría es una aproximación útil
+
+Sean $N_c$ el número de colores de la teoría gauge $SU(N_c)$ y $L$ el radio de AdS. Con una normalización habitual,
+
+$$
+\lambda=g_{\mathrm{YM}}^2N_c,\qquad
+\frac{L^4}{\alpha'^2}=\lambda,\qquad g_s=\frac{\lambda}{4\pi N_c}.
+$$
+
+Un acoplamiento de 't Hooft $\lambda$ grande suprime correcciones de longitud de cuerda; $N_c$ suficientemente grande a $\lambda$ fijo suprime bucles de cuerdas. La supergravedad clásica necesita ambas condiciones. Física gauge fuertemente acoplada puede corresponder a gravedad débilmente curvada; el acoplamiento gauge débil no suele dar esa misma geometría simple.
+
+![Anillo de frontera y disco interior ilustran las fuentes; dos desigualdades controlan separadamente la aproximación gravitatoria.](/images/diagrams/string-deep-holography.svg)
+
+*El disco es una sección espacial esquemática. Fuente de frontera y campo interior describen observables correspondientes. $\lambda\gg1$ y $g_s\ll1$ controlan correcciones distintas, no evidencia experimental.*
+
+## 8. Desafíos y preguntas abiertas
+
+Tres preguntas difieren: ¿es consistente una construcción?, ¿una dualidad relaciona dos construcciones?, ¿alguna describe nuestro universo? Resolver las dos primeras no resuelve la tercera. Nuestra cosmología no es el vacío AdS exacto anterior, y aquella teoría gauge no es el Modelo Estándar.
+
+El **paisaje** reúne muchos candidatos de compactificaciones y vacíos. Cifras como $10^{500}$ son estimaciones dependientes del modelo, no un recuento establecido de todos los universos físicos. Contar elecciones de flujo no determina estabilidad, selección cosmológica ni probabilidades. Denef y Douglas explicitan un problema concreto de recuento y sus hipótesis. [10](https://arxiv.org/abs/hep-th/0404116)
+
+### Qué muestra la evidencia y cuáles son sus límites
+
+Strominger y Vafa contaron estados protegidos de una clase especial de agujeros negros extremales supersimétricos en cinco dimensiones, reproduciendo la entropía principal de Bekenstein–Hawking. Esto conecta estados cuánticos y área del horizonte, pero no cuenta directamente estados de un agujero negro astrofísico observado ni explica por completo la evaporación genérica. [11](https://arxiv.org/abs/hep-th/9601029)
+
+Cheung y colaboradores, en un trabajo publicado en 2026, derivan amplitudes específicas de dispersión de cuerdas suponiendo dinámica a nivel árbol, comportamiento ultrasuave a altas energías y un mínimo de ceros de los residuos. El resultado concierne a esa clase de amplitudes; no deduce nuestro universo sin hipótesis ni es una confirmación experimental. [12](https://arxiv.org/abs/2508.09246)
+
+Los ensayos necesitan modelos concretos: partículas adicionales, escalas compactas, cuerdas cósmicas y señales cosmológicas requieren elecciones adicionales. Los defectos macroscópicos llamados cuerdas cósmicas no son automáticamente cuerdas fundamentales. Detectar supersimetría o una dimensión extra no seleccionaría únicamente este marco; excluir un intervalo accesible de parámetros no excluye todas las compactificaciones. La escala de cuerdas tampoco está fijada universalmente a la escala de Planck en cuatro dimensiones.
+
+## Estado de la investigación
+
+Comprobado hasta el **13 de octubre de 2026**: la teoría de cuerdas es candidata para la gravedad cuántica, con cálculos potentes y evidencia de dualidad, pero sin confirmación experimental directa establecida de cuerdas fundamentales en la naturaleza. Los resultados matemáticos deben leerse con sus hipótesis; las afirmaciones cosmológicas, evaluarse por predicciones observables. Sigue abierta la tarea de conectar un vacío controlado y una historia cosmológica con física distintiva y comprobable.

@@ -1,122 +1,153 @@
+---
+description: "Why black-hole evaporation challenges quantum mechanics: Hawking temperature, entanglement, a worked Page-curve model, firewalls, islands, and the distinction between theoretical evidence and observation."
+---
 
-**Conventions:** The Schwarzschild metric uses $c=1$; the temperature and Bekenstein–Hawking entropy formulas restore SI constants. The island formula uses $c=k_B=1$. The displayed occupation number is the bosonic thermal factor, before frequency-dependent greybody transmission factors.
+If a book falls into a black hole, recovering its words is certainly difficult. The **information paradox** asks a sharper question: can two distinct initial quantum states evolve into the same final state, even for an observer with perfect control over everything that remains? Ordinary burning scrambles information into smoke, light and correlations; fundamental erasure would change the laws of quantum mechanics.
+
+This question brings together three successful frameworks: general relativity, quantum field theory and statistical mechanics. Their combination is incomplete when the geometry itself must be quantum. We will separate what follows from controlled approximations, what follows only after assuming unitarity, and what has actually been observed.
+
+**Conventions:** SI constants are explicit until the island formula, where $c=k_B=1$. $S_{\mathrm{BH}}$ is thermodynamic entropy; $S(R)$ is dimensionless von Neumann entropy, with natural logarithms. Multiply the latter by $k_B$ for entropy units or divide by $\ln2$ for bits. We mainly consider a nonrotating, uncharged black hole.
 
 ## 1. Classical Black Holes
 
-In General Relativity, a black hole is a spacetime region with an **event horizon**.  
-The simplest solution is the Schwarzschild metric:
+An **event horizon** is the boundary of the region from which signals cannot reach the distant future exterior. It is a statement about causal paths through the whole spacetime, not a material surface. Outside a spherical, nonrotating body in vacuum, the Schwarzschild geometry is
 
 $$
-ds^2 = -\left(1-\frac{2GM}{r}\right) dt^2 
-+ \left(1-\frac{2GM}{r}\right)^{-1} dr^2 
-+ r^2 d\Omega^2.
+ds^2=-\left(1-\frac{r_s}{r}\right)c^2dt^2+\left(1-\frac{r_s}{r}\right)^{-1}dr^2+r^2d\Omega^2,\qquad r_s=\frac{2GM}{c^2}.
 $$
 
-Classically, nothing (not even light) escapes once it crosses $r=2GM$.  
-Thus, information about the matter that fell in seems lost.
+Here $M$ is the mass, $r$ the areal radius, and $d\Omega^2=d\theta^2+\sin^2\theta\,d\phi^2$ the unit-sphere metric. A sphere of radius $r$ has area $4\pi r^2$. The apparent divergence of these coordinates at $r=r_s$ can be removed with coordinates regular at the horizon; it is not the curvature singularity at $r=0$.
 
----
+For a sufficiently large black hole, freely falling observers can cross the horizon while local curvature is small. The obstacle to escape is the direction of future light cones, not an infinite local gravitational force at the horizon. The exterior may settle to a simple form described by mass, angular momentum and charge, but this does not prove that the full quantum state has only those three properties.
+
+**Why classical hiding is not yet the paradox.** An exterior observer lacks access to the interior, just as someone examining only one part of an entangled system lacks its joint correlations. That lack of access need not destroy the global state. The problem becomes sharp if quantum emission makes the black hole disappear entirely, leaving radiation with no remaining interior to purify it. Whether complete evaporation is justified at the final quantum-gravity stage is itself an assumption.
 
 ## 2. Hawking Radiation
 
-Hawking (1974) combined quantum field theory with curved spacetime.  
-He found that black holes emit thermal radiation:
+In [Hawking’s calculation (1975)](https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-43/issue-3/Particle-creation-by-black-holes/cmp/1103899181.pdf), quantum fields propagate on a classical collapse geometry. A mode that counts as positive frequency in the distant past mixes positive and negative frequencies in the distant future. Consequently the initial vacuum need not be empty of outgoing particles. For a slowly evolving Schwarzschild hole, observers far away obtain
 
 $$
-\langle N_\omega \rangle = \frac{1}{e^{\hbar \omega / k_B T_H} - 1},
+T_H=\frac{\hbar c^3}{8\pi GMk_B},\qquad \langle N_\omega\rangle=\frac{1}{e^{\hbar\omega/(k_BT_H)}-1}.
 $$
 
-![Schwarzschild black holes have Hawking temperature inversely proportional to their mass. Sizes and temperatures are schematic.](/images/diagrams/black-hole-temperature.svg)
+Here $\omega$ is angular frequency. The occupation number is the bosonic thermal factor; fermions have a plus sign in the denominator. Curvature scatters outgoing waves, so the measured flux also includes frequency- and angular-momentum-dependent **greybody transmission factors**. These modify the spectrum without by themselves resolving its entanglement with inaccessible degrees of freedom. The popular particle–antiparticle pair picture is a mnemonic, not a literal derivation or a unique location of particle creation.
 
-with **Hawking temperature**:
+**A numerical scale.** Substituting the solar mass $M_\odot\simeq1.99\times10^{30}\,\mathrm{kg}$ gives $r_s\simeq2.95\,\mathrm{km}$ and $T_H\simeq6.2\times10^{-8}\,\mathrm K$. Ten solar masses give a tenfold larger radius and a tenfold lower temperature. Thus the luminous gas around an astrophysical black hole is not its Hawking radiation. The emission calculation is most reliable for a large hole and slow changes; extrapolating it to Planck-scale mass is not controlled.
 
-$$
-T_H = \frac{\hbar c^3}{8\pi GM k_B}.
-$$
-
-And the **Bekenstein–Hawking entropy**:
+The entropy associated with the horizon is
 
 $$
-S_{\text{BH}} = \frac{k_B c^3}{4 G \hbar} A,
+A=4\pi r_s^2,\qquad S_{\mathrm{BH}}=\frac{k_BA}{4\ell_P^2}=\frac{4\pi k_BGM^2}{\hbar c},\qquad \ell_P^2=\frac{G\hbar}{c^3}.
 $$
 
-where $A$ is the horizon area.
+The area dependence, motivated by [Bekenstein (1973)](https://doi.org/10.1103/PhysRevD.7.2333), differs from the volume dependence familiar in ordinary matter. For one solar mass, $S_{\mathrm{BH}}/k_B\simeq1.05\times10^{77}$. Interpreting this as the logarithm of the number of compatible microscopic states is a statistical interpretation, not a direct count for every real black hole.
 
----
+There is a useful consistency check. Differentiating $S_{\mathrm{BH}}\propto M^2$ yields
+
+$$
+\frac{dS_{\mathrm{BH}}}{dM}=\frac{8\pi k_BGM}{\hbar c},\qquad T_H\,dS_{\mathrm{BH}}=c^2dM=dE.
+$$
+
+This is the first law for the nonrotating, uncharged case. Since $T_H\propto1/M$, losing energy raises the temperature: the isolated hole has negative heat capacity. This statement concerns its thermodynamics; it does not imply a negative absolute temperature.
 
 ## 3. The Information Paradox
 
-If Hawking radiation is **purely thermal**, then:
-
-- Initial state: pure (quantum field + collapsing matter)  
-- Final state: mixed thermal state  
-
-This implies **non-unitary evolution**:
+Let $R$ denote emitted radiation and $B$ the remaining black hole. If their joint state is pure, the state available to an observer of radiation alone is obtained by a **partial trace**:
 
 $$
-\rho_{\text{pure}} \;\;\longrightarrow\;\; \rho_{\text{thermal}}.
+\rho_R=\operatorname{Tr}_B|\Psi\rangle\langle\Psi|,\qquad S(R)=-\operatorname{Tr}(\rho_R\ln\rho_R).
 $$
 
-But quantum mechanics requires **unitarity**.  
-Thus, either:
+The trace discards access to $B$; it does not assert that $B$ has physically vanished. A pure density matrix has one eigenvalue equal to one and $S=0$. A mixed density matrix has several nonzero eigenvalues. Unitary evolution $\rho\mapsto U\rho U^\dagger$ preserves these eigenvalues for the complete closed system. A subsystem can nevertheless become mixed through entanglement.
 
-1. **Quantum mechanics fails**, or  
-2. **General relativity’s description of black holes fails**.  
+**Worked two-qubit example.** Consider
 
-This conflict is the **Black Hole Information Paradox**.
+$$
+|\Psi\rangle_{RB}=\frac{|0\rangle_R|0\rangle_B+|1\rangle_R|1\rangle_B}{\sqrt2},\qquad \rho_R=\frac12\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+$$
 
----
+Tracing over $B$ removes the off-diagonal joint terms because $\langle0|1\rangle=0$. The radiation qubit has two eigenvalues $1/2$, hence $S(R)=\ln2$; the joint pair has $S(RB)=0$. Neither qubit alone reveals the correlations. If both eventually become accessible radiation, the complete pair is pure even though each individual measurement looks random.
+
+![Two correlated qubits R and B form a pure joint state; either qubit alone is mixed. When both are collected, the joint entropy is zero.](/images/diagrams/bh-info-correlations.svg)
+
+*The connecting line represents quantum correlation, not a signal across the horizon. $S(R)=S(B)=\ln2$ while $S(RB)=0$. Collecting both subsystems changes access to the state, not its total purity.*
+
+At leading semiclassical order, successive outgoing Hawking modes are entangled with interior partners. If the interior disappears and nothing else carries their correlations, the final exterior state stays mixed despite a pure initial state. That is the conflict analyzed in [Hawking (1976)](https://doi.org/10.1103/PhysRevD.14.2460). The problematic combination is complete evaporation, ordinary local field theory near a smooth horizon, and a naive separation into independent interior and exterior states—not simply the existence of a horizon.
+
+“Thermal” must therefore be used carefully. A Planck-like spectrum or thermal one-particle statistics need not mean the full many-particle density matrix is exactly thermal. Information can reside in correlations involving many quanta. Conversely, saying “tiny corrections will fix it” is insufficient: [Mathur’s small-corrections argument](https://arxiv.org/abs/0909.1038) constrains that possibility while its assumptions about local pair creation and subsystem independence hold.
 
 ## 4. The Page Curve
 
-Page argued (1993) that if unitarity holds, the entanglement entropy of radiation $S_{\text{rad}}(t)$ must follow the **Page curve**:
+For a bipartite pure state, the Schmidt decomposition gives matching nonzero eigenvalues for $\rho_R$ and $\rho_B$. If the corresponding state spaces have dimensions $d_R$ and $d_B$, then
 
-![The solid Page curve returns to zero for unitary evaporation of an initially pure system. The dashed semiclassical radiation entropy continues increasing. This is a qualitative comparison.](/images/diagrams/page-curve.svg)
+$$
+S(R)=S(B)\leq\min(\ln d_R,\ln d_B),\qquad S(R)\approx\min\left(S_R^{\mathrm{coarse}},\frac{S_{\mathrm{BH}}}{k_B}\right).
+$$
 
-- Increases initially (Hawking’s result)  
-- Peaks at **Page time** $t_{\text{Page}} \sim (1/2)\, t_{\text{evap}}$  
-- Then decreases to zero as radiation becomes pure  
+The first relation is a general finite-dimensional bound. The second is a typical-state approximation: $S_R^{\mathrm{coarse}}$ is the radiation entropy obtained by ignoring detailed correlations, in dimensionless units. [Page’s subsystem calculation](https://arxiv.org/abs/gr-qc/9305007) explains why a small subsystem of a generic large pure state is nearly maximally mixed. Applying this reasoning to [black-hole radiation](https://arxiv.org/abs/hep-th/9306083) requires assumptions about unitary dynamics and effective state counting.
 
-Hawking’s calculation predicts a monotonically increasing entropy, in contradiction with unitarity.
+At first the radiation state space grows and its entropy rises. Later the remaining hole cannot purify an arbitrarily large radiation entropy: its effective number of states shrinks. The entropy turns over and, for complete unitary evaporation of an initially pure isolated system, ends at zero. **This does not say the radiation energy or temperature vanishes.** If the initial system was mixed or entangled with an external reference, radiation alone need not end pure.
 
----
+![A rising coarse radiation entropy and a falling black-hole entropy cross. Their lower envelope is a schematic Page curve.](/images/diagrams/bh-info-page-balance.svg)
+
+*Horizontal axis: elapsed evaporation time. Vertical axis: dimensionless entropy. The dashed rising curve is $S_R^{\mathrm{coarse}}$; the dotted falling curve is $S_{\mathrm{BH}}/k_B$; the thick lower envelope illustrates $S(R)$. Their crossing defines the turnover in this approximation. No universal time fraction is implied.*
+
+**A toy model of Page time.** Assume an isolated Schwarzschild hole obeys a mass-loss law with constant $\alpha>0$, and ignore changing particle species:
+
+$$
+\frac{dM}{dt}=-\frac{\alpha}{M^2},\qquad M(t)^3=M_0^3-3\alpha t,\qquad t_{\mathrm{evap}}=\frac{M_0^3}{3\alpha}.
+$$
+
+Now impose the additional idealization $S_R^{\mathrm{coarse}}=[S_{\mathrm{BH}}(0)-S_{\mathrm{BH}}(t)]/k_B$. Equality of the two branches occurs when the hole has half its initial entropy. Since entropy is proportional to $M^2$, this gives
+
+$$
+M_{\mathrm{Page}}=\frac{M_0}{\sqrt2},\qquad \frac{t_{\mathrm{Page}}}{t_{\mathrm{evap}}}=1-2^{-3/2}\approx0.646.
+$$
+
+The value $0.646$ is a result of these toy assumptions, not a prediction for realistic emission. Actual entropy production, greybody factors, spin, surrounding matter and particle thresholds change the balance. Even “half the entropy” does not mean half the mass or half the lifetime.
 
 ## 5. Proposed Resolutions
 
+A proposed resolution must specify which assumptions change and how the final correlations are accounted for. An entropy curve, an account of the microscopic state, and a practical decoding procedure are different achievements. The approaches below need not be mutually exclusive at every level.
+
 ### (a) Information loss (Hawking’s original view)
-Quantum mechanics is modified; evolution not unitary.  
-But this undermines the foundation of QM.
+
+Fundamental information loss would replace closed-system unitary evolution with a more general law. Merely tracing over a surviving environment does not accomplish this: that gives ordinary open-system evolution. A genuine loss proposal must supply a consistent dynamical rule and recover successful quantum predictions where gravity is weak. The paradox motivates testing assumptions; it is not experimental evidence that quantum mechanics fails.
 
 ### (b) Remnants
-Black holes leave Planck-mass remnants storing information.  
-Criticism: requires infinite species, problematic thermodynamics.
+
+A small long-lived or stable remnant could keep the missing information, so the radiation would not be the whole final system. If remnants of bounded mass must store states from arbitrarily massive progenitors, their possible internal states become extremely numerous. Production rates and state counting are then serious challenges, as studied in [Giddings (1993)](https://arxiv.org/abs/hep-th/9304027). These concerns depend on how remnants couple to external fields; “every remnant model is disproved” is too strong.
 
 ### (c) Information escapes with radiation
-Quantum gravity corrections allow subtle correlations in Hawking radiation.  
-Supported by **AdS/CFT correspondence**, which is manifestly unitary.
+
+In a unitary account, information survives in correlations among emitted quanta. [Maldacena’s AdS/CFT proposal](https://arxiv.org/abs/hep-th/9711200) relates certain gravitational theories with anti-de Sitter boundary conditions to quantum theories without gravity on the boundary. Assuming the duality, a unitary boundary description strongly constrains the bulk. It is powerful theoretical evidence, not a laboratory measurement of Hawking radiation or a direct construction for every asymptotically flat collapsing star.
+
+**The diary experiment.** Drop a small quantum message into an old, rapidly mixing black hole, while retaining its earlier radiation. In the [Hayden–Preskill model](https://arxiv.org/abs/0708.4025), enough subsequent radiation can make the message recoverable from correlations. The assumptions include unitary scrambling and essentially complete control of the radiation. An observer who has only the newest photons cannot simply read the diary; existence of a recovery operation does not guarantee feasible computation or collection.
 
 ### (d) Firewalls
-At the horizon, effective field theory breaks down, creating high-energy “firewalls” that destroy infalling observers.  
-Violates the equivalence principle.
+
+The [AMPS argument (2012)](https://arxiv.org/abs/1207.3123) sharpens a tension involving a late outgoing mode $b$, its interior partner $a$, and early radiation $R$. A smooth horizon suggests strong entanglement between $a$ and $b$. After the Page turnover, purification requires suitable correlations between $b$ and $R$. Treating all three as independent subsystems leads to an entanglement-monogamy conflict: $b$ cannot be maximally entangled with two independent systems.
+
+A firewall abandons the smooth-horizon vacuum in favor of energetic excitations. It is a proposed response to the incompatibility, not an observed wall or the unique implication of the argument. Other approaches question the independent-subsystem description or how interior operators are encoded in radiation.
 
 ### (e) Islands and Quantum Extremal Surfaces
-Recent progress (2019–2020):  
-Using the **replica trick** and quantum extremal surfaces, the **island formula** reproduces the Page curve:
+
+The island prescription computes fine-grained radiation entropy by allowing an interior region $\mathcal I$ to participate in the entropy calculation:
 
 $$
-S(R) = \min_{\mathcal{I}} \; \text{ext} \left\{ \frac{\text{Area}(\partial \mathcal{I})}{4G\hbar} + S_{\text{bulk}}(R \cup \mathcal{I}) \right\}.
+S(R)=\min_{\mathcal I}\operatorname*{ext}_{\partial\mathcal I}\left[\frac{\operatorname{Area}(\partial\mathcal I)}{4G\hbar}+S_{\mathrm{bulk}}(R\cup\mathcal I)\right].
 $$
 
-This suggests unitarity is preserved.
+First vary candidate boundaries $\partial\mathcal I$ until the expression is stationary; then choose the least generalized entropy among the permitted extrema, including the empty island. The area term is a gravitational entropy cost; $S_{\mathrm{bulk}}$ is the quantum-field entropy of the union. Their ultraviolet divergences must be treated consistently by renormalization. “Extremize then minimize” is not unrestricted minimization over arbitrary regions.
 
----
+In controlled evaporating models, the empty-island branch dominates early, while a nonempty island dominates later. [Penington (2019)](https://arxiv.org/abs/1905.08255) and [Almheiri, Engelhardt, Marolf and Maxfield (2019)](https://arxiv.org/abs/1905.08762) obtained the corresponding Page behavior in holographic settings. [Replica-wormhole calculations](https://arxiv.org/abs/1911.12333) provide a gravitational path-integral derivation in specific models: extra saddles connect replicated copies used to calculate entropy. These are not traversable tunnels carrying a message out of an astrophysical hole.
+
+The lesson concerns gravitational state counting and the encoding of interior information. An island is not extra matter ejected through the horizon. Reproducing the entropy curve also does not, by itself, provide every amplitude of the outgoing state or an efficient decoder.
 
 ## 6. Status
 
-- **Consensus today**: information is not lost.  
-- AdS/CFT and the island formula strongly indicate **unitary evaporation**.  
-- The precise **microscopic mechanism** in real (non-AdS) black holes remains under investigation.  
+**Evidence and its scope, checked 13 October 2026.** [Binary-merger gravitational waves](https://arxiv.org/abs/1602.03837) and [the M87 shadow analysis](https://arxiv.org/abs/1906.11243) support the astrophysical black-hole picture in general relativity. They do not measure the fine-grained entropy of Hawking radiation. The primary results cited here provide theoretical support for unitary descriptions in specified settings; they do not report direct detection of an astrophysical Page curve.
 
-The paradox continues to be a **window into quantum gravity**.
+Open problems include deriving a complete microscopic account for realistic rotating holes in our cosmological setting, identifying precisely where semiclassical subsystem reasoning fails, understanding the final evaporation stage, and connecting entropy calculations to physically accessible observables. The difficult part is to preserve successful low-energy physics while explaining the full quantum state.
 
----
+Three distinctions prevent common misunderstandings: inaccessibility is not fundamental erasure; a thermal-looking spectrum is not proof of a globally mixed state; and a Page curve in a gravitational model is not an experimental demonstration that every aspect of the paradox has been solved.

@@ -1,143 +1,183 @@
 ---
-description: "Gravidade quântica em loop: variáveis de Ashtekar, vínculos, holonomias, redes de spin, cosmologia quântica e desafios para recuperar o limite clássico."
+description: "Gravidade quântica em loop: conexões, vínculos, cálculo de área, espumas de spin e derivação de um rebote cosmológico, com hipóteses e limites observacionais explícitos."
 ---
 
 ## 1. Motivação
 
-A relatividade geral (RG) descreve o espaço-tempo como uma geometria suave governada pelas equações de Einstein:
+Na relatividade geral (RG), a geometria é dinâmica: matéria e geometria influenciam uma à outra. Em unidades com $c=1$, omitindo aqui a constante cosmológica,
 
 $$
-G_{\mu\nu} = 8\pi G \, T_{\mu\nu}.
+G_{\mu\nu}=8\pi G T_{\mu\nu}.
 $$
 
-A mecânica quântica exige que todos os campos dinâmicos sejam quantizados.  
-Como quantizar o **próprio espaço-tempo**, sem introduzir cordas ou dimensões extras?  
+A teoria quântica descreve a matéria com sucesso, mas estudar um campo quântico em um espaço-tempo curvo previamente escolhido ainda não quantiza o próprio espaço-tempo. Perto de uma singularidade clássica, a aproximação de uma geometria suave e clássica pode falhar. Isso motiva a gravidade quântica; não prova que uma quantização específica esteja correta, nem constitui um teorema de que todo campo clássico deva ser quantizado de uma única maneira.
 
-A **gravidade quântica em loop (LQG)** tenta fazer exatamente isso:  
-uma **quantização não perturbativa da RG, independente de um fundo fixo**.
+A **gravidade quântica em loop (LQG)** pergunta se é possível quantizar a RG sem fixar antes uma métrica de fundo e expandir em torno dela. “Não perturbativa” significa não começar com pequenas perturbações gravitacionais de uma geometria escolhida. “Independente de fundo” significa que comprimentos e áreas vêm das variáveis dinâmicas, não de uma métrica fixa. Uma variedade diferenciável e outras escolhas matemáticas continuam presentes. Veja a [exposição fundamental de Ashtekar e Lewandowski](https://arxiv.org/abs/gr-qc/0404018).
 
----
+A escala característica é $\ell_P=\sqrt{\hbar G/c^3}$, aproximadamente $1.6\times10^{-35}\,\mathrm{m}$. Essa combinação dimensional indica onde efeitos quânticos e gravitacionais podem ser importantes simultaneamente. Ela **não demonstra, sozinha**, que o espaço seja uma grade regular ou que toda distância tenha um mínimo. Afirmações mais específicas exigem espaço de estados, operadores geométricos e dinâmica consistente.
 
 ## 2. Quantização canônica da RG
 
-O ponto de partida é a formulação hamiltoniana da RG.  
-Com a decomposição ADM, obtêm-se a métrica espacial tridimensional $q_{ab}$ e seu momento conjugado $\pi^{ab}$.  
-Essas variáveis, porém, são difíceis de manipular.  
+A abordagem canônica descreve dados em uma fatia espacial $\Sigma$ e identifica quais dados representam o mesmo espaço-tempo. Na formulação ADM, as variáveis são a métrica espacial $q_{ab}$ e seu momento conjugado $\pi^{ab}$. A folheação organiza o cálculo, sem instituir um relógio físico privilegiado.
 
 ### Variáveis de Ashtekar
 
-Introduzem-se novas variáveis canônicas:
-
-- Conexão: $A^i_a$ (um campo de calibre $SU(2)$)  
-- Campo elétrico conjugado: $E^a_i$ (relacionado às tríades)  
-
-com os parênteses de Poisson:
+Usamos as variáveis reais de **Ashtekar–Barbero** para a RG lorentziana no calibre temporal, com tríades não degeneradas e $\gamma>0$ real. A conexão autodual original de Ashtekar é complexa: são formulações relacionadas, mas não variáveis idênticas. A [formulação real de Barbero](https://arxiv.org/abs/gr-qc/9410013) e a [ação de Holst](https://arxiv.org/abs/gr-qc/9511026) explicam essa mudança canônica.
 
 $$
-\{ A^i_a(x), E^b_j(y) \} = 8\pi G \, \gamma \, \delta^b_a \, \delta^i_j \, \delta^{(3)}(x,y).
+A_a^i=\Gamma_a^i(E)+\gamma K_a^i,
+\qquad E_i^a=\sqrt{q}\,e_i^a,
+\qquad E_i^aE_i^b=q\,q^{ab}.
 $$
 
-Aqui, $\gamma$ é o **parâmetro de Barbero–Immirzi**.
+Aqui $q=\det(q_{ab})$, $e_i^a$ é a tríade inversa, $\Gamma_a^i$ sua conexão de spin compatível e $K_a^i$ codifica a curvatura extrínseca, isto é, como a fatia se insere no espaço-tempo. $a,b$ são índices espaciais e $i$ identifica um referencial ortonormal interno. Assim, $E$ contém a geometria espacial, enquanto $A$ combina conexão intrínseca e curvatura extrínseca. Chamar $E$ de “campo elétrico” é uma analogia com teorias de calibre; não se trata de eletromagnetismo.
 
----
+Com $\kappa=8\pi G$ e $c=1$,
+
+$$
+\{A_a^i(x),E_j^b(y)\}=\kappa\gamma\,\delta_a^b\delta_j^i\delta^{(3)}(x,y).
+$$
+
+O **parâmetro de Barbero–Immirzi** $\gamma$, adimensional, identifica essa escolha canônica. As equações clássicas no vácuo não fixam seu valor. Como ele aparece nos espectros geométricos, sua interpretação quântica e determinação física são importantes. Um valor ilustrativo não é uma constante medida.
 
 ## 3. Vínculos
 
-Na forma canônica, a dinâmica da RG é codificada por vínculos:
+As variáveis contêm descrições redundantes. No vácuo, com constante cosmológica nula e omitindo um fator global não nulo de normalização em $\mathcal H$,
 
-1. **Vínculo de Gauss** (invariância de calibre interna $SU(2)$):
 $$
-\mathcal{G}_i = D_a E^a_i \approx 0.
-$$
-
-2. **Vínculo de difeomorfismos** (invariância espacial):
-$$
-\mathcal{V}_a = E^b_i F^i_{ab} \approx 0.
+\mathcal G_i=D_aE_i^a\approx0,
+\qquad \mathcal V_a=E_i^bF^i_{ab}\approx0,
 $$
 
-3. **Vínculo hamiltoniano** (evolução temporal):
 $$
-\mathcal{H} = \frac{E^a_i E^b_j}{\sqrt{\det E}} 
-\left( \epsilon^{ij}{}_{k} F^k_{ab} - 2(1+\gamma^2) K^i_{[a}K^j_{b]} \right) \approx 0.
+\mathcal H=\frac{E_i^aE_j^b}{\sqrt{|\det E|}}
+\left(\epsilon^{ij}{}_{k}F^k_{ab}
+-2(1+\gamma^2)K^i_{[a}K^j_{b]}\right)\approx0.
 $$
 
-Os estados físicos devem satisfazer os três vínculos.
+$F$ é a curvatura de $A$ e $D$ sua derivada covariante. $\approx0$ indica igualdade na superfície dos vínculos, não um pequeno erro. O vínculo de Gauss elimina rotações arbitrárias do referencial interno. O vínculo vetorial gera mudanças de coordenadas espaciais **a menos de uma transformação de Gauss**; o gerador de difeomorfismos espaciais puros inclui o termo de Gauss correspondente. O vínculo hamiltoniano implementa mudanças da folheação, em vez de uma evolução comum em relação a um tempo externo universal.
 
----
+A contagem ajuda: $A$ e $E$ fornecem 18 componentes do espaço de fases por ponto. Sete vínculos independentes de primeira classe removem 14 componentes, restando quatro, ou dois graus de liberdade de configuração: as polarizações locais gravitacionais. Essa é a contagem clássica regular no vácuo; fronteiras e setores singulares exigem tratamento separado.
+
+A quantização constrói primeiro a **cinemática**, depois implementa os vínculos e o produto interno físico. Portanto, uma rede de spin não é automaticamente uma solução física. Um observável relacional poderia ser a área de uma superfície definida pela matéria quando um relógio escalar assume um valor especificado. Definir essas grandezas e recuperar a álgebra clássica dos vínculos sem anomalias são tarefas centrais da dinâmica. A [construção de Thiemann](https://arxiv.org/abs/gr-qc/9606089) é uma proposta concreta, não uma teoria fenomenológica única e concluída.
 
 ## 4. Holonomias e fluxos
 
-Em vez de quantizar $A^i_a$ diretamente, a LQG usa:
+As variáveis básicas são integradas ao longo de curvas e sobre superfícies:
 
-- **Holonomias**: transportes paralelos da conexão $A^i_a$ ao longo de uma curva $\ell$:
 $$
-h_\ell[A] = \mathcal{P}\exp\!\left(\int_\ell A\right).
+h_\ell[A]=\mathcal P\exp\!\left(\int_\ell A_a^i\tau_i\,dx^a\right),
+\qquad E(S,f)=\int_S f^i E_i^a\,dS_a.
 $$
 
-- **Fluxos**: integrais de $E^a_i$ sobre superfícies.  
+$\tau_i$ são geradores de $\mathfrak{su}(2)$, $f^i$ é um campo de teste e $\mathcal P$ ordena matrizes não comutativas ao longo do caminho. A holonomia compara referenciais internos por transporte paralelo: é um elemento de $SU(2)$, não um comprimento. O fluxo mede informação orientada da tríade através de uma superfície. O sinal no exponencial depende da convenção para a conexão.
 
-Isso leva a uma **álgebra de holonomias e fluxos**, adequada à quantização independente de um fundo fixo.
+Imagine transportar um referencial ao redor de uma pequena curva fechada. Na geometria clássica suave, o termo dominante do desvio da holonomia em relação à identidade codifica a curvatura através do circuito. A LQG usa transportes finitos como variáveis fundamentais, sem presumir um operador $A(x)$ definido ponto a ponto. Holonomias atuam por multiplicação e fluxos por derivação em funções de holonomias. Sua álgebra depende das interseções entre caminhos e superfícies.
 
----
+O [teorema de unicidade da álgebra holonomia–fluxo](https://arxiv.org/abs/gr-qc/0504147) seleciona uma representação sob hipóteses específicas de álgebra, covariância e estado cíclico. Não demonstra que toda teoria possível de gravidade quântica seja LQG, nem escolhe o hamiltoniano.
 
 ## 5. Redes de spin
 
-O espaço de Hilbert cinemático da LQG é gerado por **estados de redes de spin**:
+Uma **rede de spin** invariante de calibre consiste em um grafo, spins $j=0,\tfrac12,1,\ldots$ nas arestas e tensores invariantes chamados **entrelaçadores**, ou intertwiners, nos vértices. Os spins identificam representações de $SU(2)$, não pequenas bolas girando. Um entrelaçador combina as representações incidentes em um objeto invariante, implementando o vínculo de Gauss. Os grafos especificam relações da geometria quântica; não precisam formar uma rede física regular.
 
-![Uma rede de spin tem representações associadas às arestas e operadores de entrelaçamento nos vértices. Arestas que perfuram uma superfície contribuem para seu autovalor de área.](/images/diagrams/spin-network.svg)
+Para uma superfície que cruza arestas transversalmente e longe dos vértices, os autovalores do operador usual de área são
 
-- Grafos cujas arestas são rotuladas por representações de $SU(2)$ (spins $j$)  
-- Vértices rotulados por operadores de entrelaçamento  
-
-Uma base adequada de redes de spin diagonaliza a **área**. O **volume** geralmente exige diagonalizar matrizes finitas nos espaços de entrelaçadores dos vértices. Os operadores têm, esquematicamente, a forma:
-
-- **Operador de área**:
 $$
-\hat{A}(S) = 8\pi \gamma \ell_P^2 \sum_{p\in S\cap \Gamma} \sqrt{j_p(j_p+1)}.
+A(S)=8\pi\gamma\ell_P^2\sum_{p\in S\cap\Gamma}\sqrt{j_p(j_p+1)}.
 $$
 
-- **Operador de volume**:
+O fluxo em uma perfuração atua como um gerador de momento angular. O Casimir quadrático de $SU(2)$ tem autovalor $j(j+1)$, cuja magnitude explica $\sqrt{j(j+1)}$. A [construção do operador de área](https://arxiv.org/abs/gr-qc/9602046) estabelece a discretização no espaço de Hilbert cinemático. Superfícies contendo vértices exigem a expressão mais geral. Como explicam [Dittrich e Thiemann](https://arxiv.org/abs/0708.1721), um espectro cinemático não determina sozinho o espectro de todo observável físico plenamente relacional.
+
+### Um cálculo de medição de área
+
+Considere uma região de superfície sem vértices, perfurada uma vez por $j=\tfrac12$ e uma vez por $j=1$. Então
+
 $$
-\hat{V}(R) = \sum_{v\in R\cap \Gamma} \sqrt{|\hat{q}_v|}.
+\frac{A}{8\pi\gamma\ell_P^2}
+=\sqrt{\tfrac12(\tfrac12+1)}+\sqrt{1(1+1)}
+=\frac{\sqrt3}{2}+\sqrt2\approx2.280.
 $$
 
-Resultado: **áreas e volumes têm espectros discretos**, com escalas características $\sim \ell_P^2$ e $\sim \ell_P^3$, respectivamente.
+Uma perfuração com $j=\tfrac12$ contribui $4\pi\sqrt3\,\gamma\ell_P^2$. Duas contribuem $8\pi\sqrt3\,\gamma\ell_P^2$, enquanto uma com $j=1$ contribui $8\pi\sqrt2\,\gamma\ell_P^2$. Portanto, somas iguais dos rótulos de spin não precisam produzir áreas iguais. São contribuições locais em uma rede admissível; o restante do grafo ainda deve satisfazer as condições dos entrelaçadores. Calculamos resultados possíveis na quantização adotada, não uma granulação já observada do espaço.
 
----
+![Duas arestas com spins diferentes cruzam uma superfície; suas contribuições à área somam raízes dos autovalores do Casimir de SU(2).](/images/diagrams/lqg-deep-area.svg)
+
+*A região sombreada tem duas perfurações transversais. A geometria é esquemática: quem determina o autovalor da área é a fórmula, não a distância desenhada.*
+
+O volume é mais sutil:
+
+$$
+\hat V(R)=\sum_{v\in R\cap\Gamma}\sqrt{|\hat q_v|}.
+$$
+
+$\hat q_v$ contém produtos triplos de geradores de fluxo, fatores de orientação e constantes dimensionais. Em geral, atua como matriz no espaço de entrelaçadores do vértice. Fixar os spins das arestas não necessariamente fixa o volume; também é necessária uma base adequada de entrelaçadores. A [construção dos operadores de volume](https://arxiv.org/abs/gr-qc/9711031) esclarece a diferença. Espectros geométricos discretos não implicam cubos de tamanhos iguais nem um tempo externo automaticamente discreto.
+
+### Das redes às espumas de spin
+
+Uma rede de spin descreve a geometria de fronteira. Uma **espuma de spin** é um complexo bidimensional rotulado que atribui amplitudes entre essas fronteiras: arestas do grafo varrem faces, enquanto vértices traçam arestas do complexo. São histórias em uma soma sobre geometrias quânticas, não vértices se movendo em um espaço preexistente.
+
+Em um complexo escolhido $\mathcal C$, escreve-se esquematicamente
+
+$$
+Z_{\mathcal C}=\sum_{\{j_f,i_e\}}\prod_f A_f\prod_e A_e\prod_v A_v.
+$$
+
+Somam-se os rótulos; as amplitudes de faces, arestas e vértices codificam a dinâmica do modelo. Dados de fronteira e normalização foram omitidos. A [construção EPRL](https://arxiv.org/abs/0711.0146) relaciona um vértice de espuma de spin em quatro dimensões a estados de fronteira da LQG por meio de vínculos de simplicidade. Especificar um complexo finito ainda não estabelece a teoria completa no contínuo.
+
+Para dados geométricos de fronteira adequados e não degenerados, a assíntota de grandes spins de uma amplitude de um 4-simplexo EPRL euclidiano contém a ação de Regge, uma ação gravitacional discretizada. Esse [resultado de consistência semiclássica](https://arxiv.org/abs/0902.1170) é valioso. Não prova que toda amplitude, limite de refinamento ou função de correlação de longa distância reproduza a RG.
 
 ## 6. Cosmologia quântica em loop (LQC)
 
-A aplicação das ideias da LQG a cosmologias homogêneas resulta em:
+A **LQC** aplica quantização inspirada em loops a sistemas cosmológicos reduzidos por simetria. Impor homogeneidade antes da quantização descarta infinitos modos não homogêneos. Um teorema no sistema reduzido não é automaticamente um teorema da LQG completa.
 
-![Uma solução efetiva esquemática da cosmologia quântica em loop homogênea se contrai até um fator de escala mínimo não nulo e volta a se expandir. A figura representa uma previsão do modelo, não uma observação.](/images/diagrams/quantum-bounce.svg)
+Considere o modelo padrão espacialmente plano, homogêneo e isotrópico, com escalar sem massa e estados semiclássicos fortemente concentrados, na prescrição de dinâmica melhorada. Suas equações efetivas incluem
 
-- A singularidade do Big Bang é substituída por um **ricochete quântico**.  
-- Equação de Friedmann modificada:
 $$
-H^2 = \frac{8\pi G}{3}\rho \left(1 - \frac{\rho}{\rho_c}\right),
+H^2=\frac{8\pi G}{3}\rho\left(1-\frac{\rho}{\rho_c}\right),
+\qquad \dot\rho=-3H(\rho+P),
 $$
-em que $\rho_c \sim \rho_{\text{Planck}}$.  
 
-Em $\rho = \rho_c$, a contração se transforma em expansão na solução com ricochete, evitando a singularidade.
+Aqui $H=\dot a/a$, $P$ é a pressão e $\rho_c$ uma densidade crítica dependente do modelo, da ordem da densidade de Planck. Em baixa densidade recupera-se a equação de Friedmann plana usual; a correção quadrática negativa dá $H=0$ em $\rho_c$. A [análise da dinâmica melhorada](https://arxiv.org/abs/gr-qc/0607039) explicita hipóteses e estuda o rebote analítica e numericamente.
 
----
+### Derivando um rebote no modelo efetivo
+
+Derivar a equação e usar a conservação de energia fornece, inicialmente para $H\ne0$ e depois por extensão contínua,
+
+$$
+\dot H=-4\pi G(\rho+P)\left(1-2\frac{\rho}{\rho_c}\right).
+$$
+
+Em $\rho=\rho_c$, matéria com $\rho+P>0$ tem $\dot H>0$: contração pode passar a expansão. Encontrar apenas $H=0$ não provaria um rebote. Para o escalar sem massa, $P=\rho$ e $\rho\propto a^{-6}$. Situando o rebote em $t=0$, a solução exata dessas equações efetivas é
+
+$$
+a(t)=a_B\left(1+\frac{t^2}{t_B^2}\right)^{1/6},
+\qquad \rho(t)=\frac{\rho_c}{1+t^2/t_B^2},
+\qquad t_B^{-2}=24\pi G\rho_c.
+$$
+
+A substituição dá $H=t/[3(t_B^2+t^2)]$ e verifica ambas as equações. Em $t=\pm t_B$, temos $\rho=\rho_c/2$ e $a=2^{1/6}a_B$. O valor numérico de $a_B$ depende da normalização das coordenadas espaciais; os pontos físicos são a densidade finita e a passagem da contração à expansão.
+
+![O fator de escala efetivo adimensional atinge seu mínimo no rebote enquanto a densidade atinge seu máximo; ambas as curvas são simétricas em torno do instante zero.](/images/diagrams/lqg-deep-bounce.svg)
+
+*Eixo horizontal: $t/t_B$. Curva superior: $a/a_B$; inferior: $\rho/\rho_c$. É a solução efetiva do escalar sem massa, não dados observacionais nem uma previsão universal para todas as cosmologias.*
+
+A LQC exatamente solúvel permite afirmações mais fortes sobre classes de estados quânticos do que esse cálculo efetivo isolado: veja [Ashtekar, Corichi e Singh](https://arxiv.org/abs/0710.3565). Estender conclusões a anisotropias, perturbações, outras matérias ou quantizações e à teoria completa exige argumentos adicionais. Um rebote de modelo não estabelece o que precedeu o universo primordial quente observado.
 
 ## 7. Desafios e questões em aberto
 
-- Resolver o **vínculo hamiltoniano** na LQG completa continua sendo difícil.  
-- O **limite semiclássico**, que recupera a RG suave em grandes escalas, ainda precisa ser estabelecido por completo.  
-- A conexão com **testes experimentais** (radiação cósmica de fundo, ondas gravitacionais) ainda é indireta.  
+- **Dinâmica e vínculos:** controlar o hamiltoniano quântico, escolhas de regularização, estados físicos e produto interno, preservando as simetrias de calibre apropriadas.
+- **Limites contínuo e semiclássico:** derivar geometria suave e RG de baixa energia com matéria a partir de muitas excitações. Spins grandes em um grafo fixo e refinamento com mais elementos são limites distintos que precisam de tratamento consistente.
+- **Parâmetro de Immirzi:** determinar qual dependência de $\gamma$ permanece nas previsões físicas. Ajustar a entropia de buracos negros sob determinadas hipóteses de contagem não é uma medição laboratorial independente.
+- **Observações:** uma característica da radiação cósmica de fundo ou modificação de ondas gravitacionais exige um modelo efetivo, estado inicial e tratamento de perturbações específicos. É necessário demonstrar robustez e distinção em relação à astrofísica convencional ou a outros modelos primordiais antes de falar em um teste de LQG.
 
----
+Um exemplo atual é a [revisão de setembro de 2026 de Assanioussi e Livine](https://arxiv.org/abs/2601.21644v2): analisa a dinâmica hamiltoniana clássica de pequenos grafos “candy” como blocos de construção e deixa explicitamente o regime quântico detalhado para trabalhos futuros. É progresso em um subsistema controlado, não a conclusão da dinâmica quântica completa nem uma detecção empírica.
+
+### Equívocos comuns
+
+**“Os loops são cordas.”** Holonomias são variáveis de transporte paralelo; os rótulos da rede descrevem geometria, não cordas em propagação. **“Independência de fundo elimina toda hipótese.”** Topologia, variáveis, quantização e fronteiras continuam importantes. **“Área discreta prova que o espaço é uma tela de pixels.”** O espectro pertence a um operador; estados podem ser superposições e não há grade regular privilegiada. **“O rebote prova um universo anterior.”** É um resultado condicional de modelo, sem essa observação fornecida pelo cálculo.
 
 ## Situação atual
 
-A LQG oferece uma estrutura matematicamente rigorosa na qual a **geometria do espaço-tempo é quantizada**.  
-Ela é complementar à teoria das cordas:  
+Pesquisa verificada até **13 de outubro de 2026**. A LQG possui construções cinemáticas precisas e extensa pesquisa sobre dinâmica e modelos reduzidos. Os artigos vinculados estabelecem resultados matemáticos e previsões de modelos; nenhum apresenta confirmação experimental dessa estrutura quântica proposta para nosso espaço-tempo. Uma rota controlada da dinâmica completa até previsões medidas e distinguíveis continua sendo objetivo de pesquisa.
 
-- Teoria das cordas: parte da unificação e depende de um fundo  
-- LQG: parte do espaço-tempo quântico e independe de um fundo fixo  
-
-As duas buscam a **gravidade quântica**, partindo de direções opostas.
-
----
+A LQG enfatiza quantizar a geometria gravitacional sem métrica de fundo fixa. A teoria de cordas começa com outros graus de liberdade e também possui formulações não perturbativas; classificá-la como invariavelmente dependente de fundo simplifica demais a comparação. Avalie cada proposta pelas hipóteses, consistência interna, recuperação da física conhecida e consequências observáveis.
