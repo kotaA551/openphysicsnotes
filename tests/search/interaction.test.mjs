@@ -85,8 +85,12 @@ test('real React combobox: debounce, keyboard, IME, cancellation, retry, repeat 
     await key('Escape');
     assert.equal(field().getAttribute('aria-expanded'), 'false');
     assert.equal(document.activeElement, field());
-    await key('ArrowDown'); await wait();
+    await key('ArrowUp'); await wait();
     assert.equal(options().length, 8);
+    assert.equal(field().getAttribute('aria-activedescendant'), options().at(-1).id, 'reopening cached results preserves keyboard selection after debounce');
+    await key('Enter');
+    assert.equal(navigated, '/chapters/1-Newton-mechanics#exact-heading-7');
+    await type('acceleration'); await wait();
     await click(document.querySelector('[aria-label="Clear search"]'));
     assert.equal(field().value, '');
     assert.equal(options().length, 0);

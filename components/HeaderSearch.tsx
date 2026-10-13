@@ -46,7 +46,7 @@ export default function HeaderSearch({ locale }: { locale: Locale }) {
   }, []);
 
   useEffect(() => {
-    if (!open || !meaningful || composing) return;
+    if (!open || !meaningful || composing || response?.query === query) return;
     const controller = new AbortController();
     const timer = window.setTimeout(async () => {
       try {
@@ -69,7 +69,7 @@ export default function HeaderSearch({ locale }: { locale: Locale }) {
       }
     }, 160);
     return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [query, locale, open, composing, meaningful, attempt]);
+  }, [query, locale, open, composing, meaningful, attempt, response]);
 
   useEffect(() => {
     if (active >= 0) document.getElementById(`${id}-option-${active}`)?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
