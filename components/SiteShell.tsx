@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import HeaderSearch from './HeaderSearch';
 import { usePathname, useRouter } from 'next/navigation';
 import { chapters } from '@/lib/chapters';
 import { curiosities } from '@/lib/curiosities';
@@ -61,6 +62,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         <Image src="/opn-logo-mark-512.png" alt="" width={30} height={30}/>
         <span translate="no">Open Physics Notes</span>
       </Link>
+      <HeaderSearch key={locale} locale={locale}/>
       <details ref={languageMenu} className="language-menu" onKeyDown={event => { if (event.key === 'Escape') { languageMenu.current?.removeAttribute('open'); languageButton.current?.focus(); } }}>
         <summary ref={languageButton} className="icon-button" aria-label={t.language} title={t.language}>
           <span aria-hidden="true">A<span className="language-divider">/</span>文</span>
