@@ -11,11 +11,10 @@ test('renderer inserts once at section end without changing anchors or touching 
   const source = '## Parent\n\n### Repeated\n\nFirst body\n\n### Repeated\n\nSecond body\n\n> ## Quoted heading\n> Quoted text\n\n## Last\n\nLast body';
   const { content } = await compileMDX({ source, components: { SectionDiscussion: ({ sectionId }) => createElement('aside', { 'data-section': sectionId }, 'Questions & Discussion') }, options: { mdxOptions: { rehypePlugins: [rehypeSlug, [rehypeAutolink, { behavior: 'wrap' }], rehypeDiscussions] } } });
   const html = renderToStaticMarkup(content);
-  assert.equal((html.match(/data-section=/g) || []).length, 3);
+  assert.equal((html.match(/data-section=/g) || []).length, 2);
   assert.ok(html.includes('id="repeated"')); assert.ok(html.includes('id="repeated-1"'));
-  assert.ok(html.indexOf('First body') < html.indexOf('data-section="repeated"'));
-  assert.ok(html.indexOf('data-section="repeated"') < html.indexOf('id="repeated-1"'));
-  assert.ok(!html.includes('data-section="parent"'));
+  assert.ok(html.indexOf('Second body') < html.indexOf('data-section="parent"'));
+  assert.ok(html.indexOf('data-section="parent"') < html.indexOf('id="last"'));
   assert.ok(!html.includes('data-section="quoted-heading"'));
   assert.ok(html.indexOf('Last body') < html.indexOf('data-section="last"'));
 });

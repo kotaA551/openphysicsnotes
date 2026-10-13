@@ -11,6 +11,7 @@ import Callout from './Callout';
 import RelatedBooks from './RelatedBooks';
 import AffiliateNote from './AffiliateNote';
 import TopicIndex from './TopicIndex';
+import CycloidalPendulumFigure from './CycloidalPendulumFigure';
 import SectionDiscussion from './discussions/SectionDiscussion';
 import { DiscussionProvider } from './discussions/DiscussionProvider';
 import rehypeDiscussions from '@/lib/discussions/sections.mjs';
@@ -26,6 +27,6 @@ export default function ArticlePage({ kind, slug, locale }: { kind: ArticleKind;
  const t = messages(locale);
  const bodyClass = kind === 'curiosities' && slug === 'differential-geometry' ? 'differential-geometry-body' : undefined;
  const schema = articleStructuredData(kind, slug, article);
- const components = { SectionDiscussion, Callout, RelatedBooks: (props: React.ComponentProps<typeof RelatedBooks>) => <RelatedBooks {...props} heading={t.reading}/>, AffiliateNote: () => <AffiliateNote text={t.affiliate}/> };
+ const components = { CycloidalPendulumFigure, SectionDiscussion, Callout, RelatedBooks: (props: React.ComponentProps<typeof RelatedBooks>) => <RelatedBooks {...props} heading={t.reading}/>, AffiliateNote: () => <AffiliateNote text={t.affiliate}/> };
  return <><nav className="breadcrumb" aria-label={t.home}><Link href={localePath(locale)}>{t.home}</Link><span aria-hidden="true">/</span><span>{t[kind]}</span></nav><article className="prose"><h1>{article.title}</h1>{!article.translated && <p className="translation-notice" role="status">{t.fallback}</p>}<DiscussionProvider key={`${kind}/${slug}/${article.contentLocale}`} articleKind={kind} articleSlug={slug} contentLocale={article.contentLocale} locale={locale}><div className={bodyClass} lang={article.contentLocale}><MDXRemote source={article.content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm, remarkMath], rehypePlugins: [rehypeKatex, rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeDiscussions], format: 'mdx' } }}/></div></DiscussionProvider></article><div className="article-navigation"><TopicIndex locale={locale}/></div>{schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}/>}</>;
 }

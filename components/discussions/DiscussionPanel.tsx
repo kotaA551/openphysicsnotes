@@ -68,7 +68,7 @@ function CommentBody({ comment, now, onReply }: { comment: Comment; now: number;
   return <><div className="discussion-author"><bdi>{comment.displayName || t.anonymous}</bdi><time dateTime={comment.createdAt} title={date.toLocaleString(locale)}>{new Intl.RelativeTimeFormat(locale, { numeric: 'auto' }).format(amount, unit)}</time></div><p className="discussion-text" dir="auto">{comment.content}</p><button type="button" className="discussion-reply-button" onClick={onReply}>{t.reply}</button></>;
 }
 
-export default function DiscussionPanel({ sectionId }: { sectionId: string }) {
+export default function DiscussionPanel({ sectionId, postSectionId = sectionId, onRootPosted }: { sectionId: string; postSectionId?: string; onRootPosted?: () => void }) {
   const { scope, t } = useDiscussion();
   const errorText = useErrorText();
   const [threads, setThreads] = useState<Thread[]>([]);
@@ -121,7 +121,10 @@ export default function DiscussionPanel({ sectionId }: { sectionId: string }) {
         }}/></div>}
       </li>)}</ul>
       {more && <button type="button" disabled={busy} onClick={() => void load()}>{t.more}</button>}
-      <CommentForm sectionId={sectionId} onPosted={comment => { setThreads(old => merge(old, [{ ...comment, replies: [], replyCount: 0 }])); setNow(Date.now()); }}/>
+      <CommentForm sectionId={postSectionId} onPosted={comment => {
+        if (postSectionId === sectionId) setThreads(old => merge(old, [{ ...comment, replies: [], replyCount: 0 }]));
+        setNow(Date.now()); onRootPosted?.();
+      }}/>
     </>}
   </div>;
 }

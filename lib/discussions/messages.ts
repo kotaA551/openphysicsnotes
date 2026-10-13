@@ -25,3 +25,20 @@ const rows: Record<Exclude<Locale, 'en'>, string[]> = {
 export function discussionMessages(locale: Locale): Copy {
   return locale === 'en' ? en : Object.fromEntries(Object.keys(en).map((key, i) => [key, rows[locale][i]])) as Copy;
 }
+
+const groupCopy: Record<Locale, [string, string]> = {
+  en: ['Conversations by heading', 'New questions are posted in:'],
+  ja: ['見出し別の会話', '新しい質問の投稿先：'],
+  fr: ['Conversations par titre', 'Les nouvelles questions sont publiées dans :'],
+  de: ['Gespräche nach Überschrift', 'Neue Fragen werden hier veröffentlicht:'],
+  it: ['Conversazioni per titolo', 'Le nuove domande vengono pubblicate in:'],
+  es: ['Conversaciones por encabezado', 'Las nuevas preguntas se publican en:'],
+  'pt-BR': ['Conversas por título', 'Novas perguntas são publicadas em:'],
+  'zh-CN': ['按标题查看讨论', '新问题发布到：'],
+  'zh-TW': ['依標題查看討論', '新問題發表於：'],
+  ko: ['제목별 대화', '새 질문이 게시되는 곳:'],
+};
+export function discussionGroupMessages(locale: Locale) {
+  const [locations, newQuestions] = groupCopy[locale];
+  return { locations, newQuestions };
+}
