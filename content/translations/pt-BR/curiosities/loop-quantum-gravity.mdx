@@ -1,0 +1,143 @@
+---
+description: "Gravidade quântica em loop: variáveis de Ashtekar, vínculos, holonomias, redes de spin, cosmologia quântica e desafios para recuperar o limite clássico."
+---
+
+## 1. Motivação
+
+A relatividade geral (RG) descreve o espaço-tempo como uma geometria suave governada pelas equações de Einstein:
+
+$$
+G_{\mu\nu} = 8\pi G \, T_{\mu\nu}.
+$$
+
+A mecânica quântica exige que todos os campos dinâmicos sejam quantizados.  
+Como quantizar o **próprio espaço-tempo**, sem introduzir cordas ou dimensões extras?  
+
+A **gravidade quântica em loop (LQG)** tenta fazer exatamente isso:  
+uma **quantização não perturbativa da RG, independente de um fundo fixo**.
+
+---
+
+## 2. Quantização canônica da RG
+
+O ponto de partida é a formulação hamiltoniana da RG.  
+Com a decomposição ADM, obtêm-se a métrica espacial tridimensional $q_{ab}$ e seu momento conjugado $\pi^{ab}$.  
+Essas variáveis, porém, são difíceis de manipular.  
+
+### Variáveis de Ashtekar
+
+Introduzem-se novas variáveis canônicas:
+
+- Conexão: $A^i_a$ (um campo de calibre $SU(2)$)  
+- Campo elétrico conjugado: $E^a_i$ (relacionado às tríades)  
+
+com os parênteses de Poisson:
+
+$$
+\{ A^i_a(x), E^b_j(y) \} = 8\pi G \, \gamma \, \delta^b_a \, \delta^i_j \, \delta^{(3)}(x,y).
+$$
+
+Aqui, $\gamma$ é o **parâmetro de Barbero–Immirzi**.
+
+---
+
+## 3. Vínculos
+
+Na forma canônica, a dinâmica da RG é codificada por vínculos:
+
+1. **Vínculo de Gauss** (invariância de calibre interna $SU(2)$):
+$$
+\mathcal{G}_i = D_a E^a_i \approx 0.
+$$
+
+2. **Vínculo de difeomorfismos** (invariância espacial):
+$$
+\mathcal{V}_a = E^b_i F^i_{ab} \approx 0.
+$$
+
+3. **Vínculo hamiltoniano** (evolução temporal):
+$$
+\mathcal{H} = \frac{E^a_i E^b_j}{\sqrt{\det E}} 
+\left( \epsilon^{ij}{}_{k} F^k_{ab} - 2(1+\gamma^2) K^i_{[a}K^j_{b]} \right) \approx 0.
+$$
+
+Os estados físicos devem satisfazer os três vínculos.
+
+---
+
+## 4. Holonomias e fluxos
+
+Em vez de quantizar $A^i_a$ diretamente, a LQG usa:
+
+- **Holonomias**: transportes paralelos da conexão $A^i_a$ ao longo de uma curva $\ell$:
+$$
+h_\ell[A] = \mathcal{P}\exp\!\left(\int_\ell A\right).
+$$
+
+- **Fluxos**: integrais de $E^a_i$ sobre superfícies.  
+
+Isso leva a uma **álgebra de holonomias e fluxos**, adequada à quantização independente de um fundo fixo.
+
+---
+
+## 5. Redes de spin
+
+O espaço de Hilbert cinemático da LQG é gerado por **estados de redes de spin**:
+
+![Uma rede de spin tem representações associadas às arestas e operadores de entrelaçamento nos vértices. Arestas que perfuram uma superfície contribuem para seu autovalor de área.](/images/diagrams/spin-network.svg)
+
+- Grafos cujas arestas são rotuladas por representações de $SU(2)$ (spins $j$)  
+- Vértices rotulados por operadores de entrelaçamento  
+
+Uma base adequada de redes de spin diagonaliza a **área**. O **volume** geralmente exige diagonalizar matrizes finitas nos espaços de entrelaçadores dos vértices. Os operadores têm, esquematicamente, a forma:
+
+- **Operador de área**:
+$$
+\hat{A}(S) = 8\pi \gamma \ell_P^2 \sum_{p\in S\cap \Gamma} \sqrt{j_p(j_p+1)}.
+$$
+
+- **Operador de volume**:
+$$
+\hat{V}(R) = \sum_{v\in R\cap \Gamma} \sqrt{|\hat{q}_v|}.
+$$
+
+Resultado: **áreas e volumes têm espectros discretos**, com escalas características $\sim \ell_P^2$ e $\sim \ell_P^3$, respectivamente.
+
+---
+
+## 6. Cosmologia quântica em loop (LQC)
+
+A aplicação das ideias da LQG a cosmologias homogêneas resulta em:
+
+![Uma solução efetiva esquemática da cosmologia quântica em loop homogênea se contrai até um fator de escala mínimo não nulo e volta a se expandir. A figura representa uma previsão do modelo, não uma observação.](/images/diagrams/quantum-bounce.svg)
+
+- A singularidade do Big Bang é substituída por um **ricochete quântico**.  
+- Equação de Friedmann modificada:
+$$
+H^2 = \frac{8\pi G}{3}\rho \left(1 - \frac{\rho}{\rho_c}\right),
+$$
+em que $\rho_c \sim \rho_{\text{Planck}}$.  
+
+Em $\rho = \rho_c$, a contração se transforma em expansão na solução com ricochete, evitando a singularidade.
+
+---
+
+## 7. Desafios e questões em aberto
+
+- Resolver o **vínculo hamiltoniano** na LQG completa continua sendo difícil.  
+- O **limite semiclássico**, que recupera a RG suave em grandes escalas, ainda precisa ser estabelecido por completo.  
+- A conexão com **testes experimentais** (radiação cósmica de fundo, ondas gravitacionais) ainda é indireta.  
+
+---
+
+## Situação atual
+
+A LQG oferece uma estrutura matematicamente rigorosa na qual a **geometria do espaço-tempo é quantizada**.  
+Ela é complementar à teoria das cordas:  
+
+- Teoria das cordas: parte da unificação e depende de um fundo  
+- LQG: parte do espaço-tempo quântico e independe de um fundo fixo  
+
+As duas buscam a **gravidade quântica**, partindo de direções opostas.
+
+---

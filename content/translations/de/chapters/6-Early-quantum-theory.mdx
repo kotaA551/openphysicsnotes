@@ -1,0 +1,1876 @@
+---
+description: "Von Plancks Strahlungsgesetz über Bohr und Materiewellen bis zu Spin und Quantenmechanik: Ideen, Experimente und Rechnungen der frühen Quantentheorie."
+---
+
+## 6.1 Einleitung: Risse im Gebäude der klassischen Physik
+
+Ende des 19. Jahrhunderts trat die Physik auf, als hätte sie die letzte große Hürde genommen. Newtons Mechanik erklärte Bewegungen, Maxwells Gleichungen die Felder und die Thermodynamik die Wärme. Doch Präzisionsexperimente bescherten der klassischen Theorie zunehmend Niederlagen. Eine neue Denkweise kündigte sich an: die Quantentheorie.
+
+Was geriet zuerst ins Wanken? Drei Säulen:
+
+1) **Strahlung und Wärme.** Das Spektrum eines idealen glühenden Hohlraums, eines schwarzen Körpers, widersprach den klassischen Vorhersagen. Gleichverteilung der Energie und Maxwells Wellen führten zu unendlich großer Energie im Ultravioletten — einer „Ultraviolettkatastrophe“.
+
+2) **Licht und Elektronen.** Licht löste aus sauberem Metall Elektronen heraus, wobei klare Regeln galten, die einer rein wellenbasierten Vorstellung widersprachen.
+
+3) **Atome und Spektren.** Gase leuchteten bei äußerst scharf bestimmten Frequenzen, die einfachen Formeln folgten. Klassisch müsste jedoch jedes Elektron auf einer Umlaufbahn um einen Kern strahlen und nach innen stürzen.
+
+Dies waren keine exotischen Sonderfälle, sondern vertraute physikalische Systeme mit unerwartetem Verhalten.
+
+---
+
+### 6.1.1 Die Hauptpersonen betreten die Bühne
+
+**Max Planck (1900).** Ein überzeugter Thermodynamiker, der zu einem Bruch mit der Tradition gedrängt wurde. Um die Schwarzkörperdaten zu erklären, quantisierte er den Energieaustausch in Portionen von $h\nu$. Er hielt dies für einen mathematischen Kunstgriff; die Natur nahm es wörtlich.
+
+**Albert Einstein (1905).** Der Patentamtsmitarbeiter sprach die radikale Idee aus: Licht selbst besteht aus Quanten, den Photonen. Damit wurden die Regeln des Photoeffekts verständlich, und $E=h\nu$ wirkte über die Hohlraumstrahlung hinaus bis in die Materie.
+
+**Ernest Rutherford (1911).** Nachdem Alphateilchen an Goldfolie um erstaunlich große Winkel abgelenkt worden waren, verwarf er Thomsons „Rosinenkuchenmodell“ zugunsten eines Atoms mit Kern. Doch ein klassisches Elektron, das um einen winzigen Kern kreist, müsste Energie abstrahlen und abstürzen. Stabile Atome waren so nicht zu erklären.
+
+**Niels Bohr (1913).** Er schlug vor, Elektronen dürften nur bestimmte Bahnen mit quantisiertem Drehimpuls einnehmen und durch Absorption oder Emission von Licht bestimmter Frequenzen zwischen ihnen springen. Das Wasserstoffspektrum ließ sich nun erklären — ein Teilerfolg, dessen ungewöhnliche Regeln eine tiefere Begründung verlangten.
+
+**Louis de Broglie (1923–24).** Wenn Licht wie Teilchen wirkt, verhält sich Materie vielleicht wie eine Welle. Er schlug $\lambda=h/p$ vor — eine Hypothese, die nach einer experimentellen Prüfung verlangte.
+
+---
+
+### 6.1.2 Wo die klassische Theorie scheitert — mit wenig Mathematik
+
+**Die Schwarzkörperkatastrophe.** Die klassische Gleichverteilung ordnet jeder elektromagnetischen Hohlraummode die mittlere Energie $k_B T$ zu. Das Abzählen der Moden ergibt eine spektrale Energiedichte, die mit $\propto \nu^2$ wächst und bei hohen Frequenzen divergiert. Die Messdaten widersprachen: Das Spektrum erreicht ein Maximum und fällt dann ab.
+
+In §6.2 zeigen wir, dass Energiequanten zur Planck-Verteilung führen und die Divergenz beseitigen:
+
+$$
+u(\nu,T) = \frac{8\pi h \nu^{3}}{c^{3}}\,\frac{1}{\exp\!\left(\frac{h\nu}{k_B T}\right)-1}
+$$
+
+Bei dieser Kurve bleibt die Ultraviolettkatastrophe aus.
+
+---
+
+**Die Regeln des Photoeffekts.** Experimente zeigten: (i) Unterhalb einer Grenzfrequenz werden unabhängig von der Lichtintensität keine Elektronen ausgelöst; (ii) oberhalb der Schwelle wächst die **maximale** kinetische Energie linear mit der Frequenz, nicht mit der Intensität; (iii) die Emission erfolgt praktisch sofort. Einsteins knappe Gleichung
+
+$$
+K_{\max} = h\nu - W
+$$
+
+traf den Kern; $W$ bezeichnet die Austrittsarbeit. Die Intensität bestimmt die Zahl eintreffender Photonen, nicht die Energie eines einzelnen Photons.
+
+---
+
+**Atomspektren.** Balmer und Rydberg formulierten elegante empirische Beziehungen für die Wasserstofflinien. Rutherfords Kernatom verschärfte das Problem: Elektronen um einen kleinen geladenen Kern müssten kontinuierlich strahlen und das Spektrum verwischen — ein Widerspruch. Bohr **quantisierte** Drehimpuls und Energieniveaus und erhielt diskrete Linien sowie eine Frequenzregel, die Rydbergs Daten erklärte. Aber warum gerade diese Bahnen? Die alte Quantentheorie war zunächst erfolgreich und kam dann an ihre Grenzen.
+
+---
+
+### 6.1.3 Der Grundgedanke: Diskretes trifft auf Wellen
+
+Die frühe Quantentheorie besteht aus einer Folge überraschender Doppelaspekte:
+
+- Licht interferiert wie eine Welle, tauscht aber Energie wie ein Teilchen aus.
+- Elektronen zeigen Teilchenspuren und werden dennoch an Kristallen wie Wellen gebeugt.
+- Atomare Energien bilden kein Kontinuum, sondern eine Anordnung von Niveaus mit erlaubten Übergängen.
+
+Der gemeinsame Faden ist die **Diskretheit**, die in zuvor kontinuierlich modellierten Systemen auftaucht. Sie zeigt sich in Spektren, spezifischen Wärmen, Schwellenphänomenen und Stabilität.
+
+---
+
+### 6.1.4 Mathematische Ziele für die folgenden Abschnitte
+
+- **Planck-Spektrum.** Aus dem Abzählen von Quanten mit dem Gewicht $\exp(-nh\nu/k_B T)$ leiten wir die obige Energiedichte her und gewinnen das Stefan-Boltzmann-Gesetz sowie Wiens Verschiebungsgesetz zurück:
+
+$$
+\lambda_{\text{peak}}\,T = \text{Konstante}
+$$
+
+- **Einsteins Gleichung des Photoeffekts.** Trägt man $K_{\max}$ gegen $\,\nu$ auf, erhält man eine Gerade mit Steigung $h$ und Achsenabschnitt $-W$. So bestimmten frühe Experimente das Plancksche Wirkungsquantum mit Elektronen.
+
+- **Bohrsche Energien.** Für wasserstoffähnliche Atome mit Kernladung $+Ze$ erhalten wir in SI-Einheiten und bei unendlich großer Kernmasse
+
+$$
+E_n = -\,\frac{m_e e^4}{2(4\pi\varepsilon_0)^2\hbar^2}\,\frac{Z^2}{n^2}
+$$
+
+und die Frequenz des bei einem Sprung $n\to n'$ emittierten Photons erfüllt $h\nu = E_n - E_{n'}$, wobei sich die Rydberg-Konstante von selbst ergibt.
+
+- **de-Broglie-Hypothese.** Mit $p=h/\lambda$ und $E=h\nu$ stimmt die Gruppengeschwindigkeit mit der Teilchengeschwindigkeit überein; außerdem folgt Elektronenbeugung, die später experimentell beobachtet wurde.
+
+---
+
+### 6.1.5 Was hier „frühe Quantentheorie“ bedeutet
+
+Wir bewegen uns überwiegend in den Jahren **1900–1925**: der **alten Quantentheorie** (Planck → Einstein → Bohr–Sommerfeld → de Broglie) und ihren entscheidenden Experimenten (Franck–Hertz, Davisson–Germer, Stern–Gerlach). Die vollständige Quantenmechanik — Heisenbergs Matrizen und Schrödingers Wellen von 1925–26 — bildet die Brücke zum nächsten Kapitel. Hier bereiten wir den Übergang vor: den Punkt, an dem die klassische Anschauung weicht und eine konsistente Quantenrechnung unvermeidlich wird.
+
+---
+
+## 6.2 Schwarzkörperstrahlung und Plancks Hypothese
+
+Bei der Schwarzkörperstrahlung scheiterte die klassische Physik, und die Quantentheorie nahm ihren Anfang. Ein **schwarzer Körper** lässt sich durch einen idealen Hohlraum mit kleiner Öffnung realisieren: Eintretendes Licht wird vielfach reflektiert und praktisch vollständig absorbiert; austretendes Licht trägt das Gleichgewichtsspektrum der Wände. In den 1890er-Jahren suchte man die Energiedichte dieser Strahlung als Funktion von Frequenz $\nu$ und Temperatur $T$. Warum steigt die Messkurve an, erreicht ein Maximum und fällt ab, statt zu divergieren? Die klassische Gleichverteilung sagte unendliche UV-Energie voraus; die Natur widersprach, und Max Planck führte Quanten ein, um die richtige Kurve zu erhalten.
+
+![Plancks spektrale Energiedichte pro Frequenz für drei Temperaturen in gemeinsamen willkürlichen Einheiten. Heißere Kurven erreichen ihr Maximum bei höheren Frequenzen und schließen eine größere Fläche ein.](/images/diagrams/blackbody.svg)
+
+---
+
+### 6.2.1 Die Experimente: Präzision setzt die Theorie unter Druck
+
+Deutsche Labore — Lummer, Pringsheim, Rubens und Kurlbaum — bauten äußerst sorgfältig kalibrierte Hohlräume und Detektoren. Bei mittleren und hohen Frequenzen folgten die Daten dem **Wienschen Strahlungsgesetz** bemerkenswert gut. Bei niedrigen Frequenzen, also langen Wellenlängen, wichen neue Messungen jedoch **von Wiens Exponentialform ab** und verlangten eine bessere Formel. Planck verfolgte die Kurven intensiv: Als Rubens ihm im Oktober 1900 neue langwellige Daten zeigte, ging er nach Hause und entwarf eine Kurve, die alle Bereiche traf.
+
+Das Spektrum wird üblicherweise pro Frequenz oder pro Wellenlänge angegeben. Diese Darstellungen hängen zusammen, haben aber unterschiedliche Formen, weil $\nu=c/\lambda$ das Integrationsmaß verändert:
+
+$$
+u_\nu(\nu,T)\,|d\nu| = u_\lambda(\lambda,T)\,|d\lambda|
+$$
+
+Es gibt zwei Standarddarstellungen. Nach Frequenz:
+
+$$
+u_\nu(\nu,T) \equiv \text{Energiedichte pro Frequenzeinheit}
+$$
+
+Nach Wellenlänge:
+
+$$
+u_\lambda(\lambda,T) \equiv \text{Energiedichte pro Wellenlängeneinheit}
+$$
+
+Wir leiten zuerst $u_\nu$ her und rechnen anschließend in $u_\lambda$ um.
+
+---
+
+### 6.2.2 Modenzählung im Hohlraum: der Faktor $8\pi \nu^{2}/c^{3}$
+
+Wir betrachten einen würfelförmigen Hohlraum mit ideal leitenden Wänden. Elektromagnetische stehende Wellen erlauben nur bestimmte Wellenvektoren $\boldsymbol k$; jede zulässige Mode ist ein harmonischer Oszillator. Zählt man die Moden zwischen $\nu$ und $\nu+d\nu$, erhält man die **Zustandsdichte** pro Volumen:
+
+$$
+g(\nu)\,d\nu = \frac{8\pi \nu^{2}}{c^{3}}\,d\nu
+$$
+
+Der Faktor $8\pi$ stammt aus Kugelschalen im $\boldsymbol k$-Raum und den zwei Polarisationszuständen. Er ist rein geometrisch beziehungsweise kinematisch und bleibt bei klassischer und quantenphysikalischer Herleitung gleich. Die eigentliche Physik steckt darin, welche mittlere Energie wir **jeder** Mode im Gleichgewicht zuordnen.
+
+---
+
+### 6.2.3 Der klassische Versuch: Gleichverteilung und Ultraviolettkatastrophe
+
+In der klassischen statistischen Mechanik trägt jeder quadratisch auftretende Freiheitsgrad $\tfrac{1}{2}k_B T$ zur mittleren Energie bei. Ein harmonischer Oszillator, also eine Mode, besitzt zwei quadratische Anteile, einen potenziellen und einen kinetischen. Die **mittlere Energie pro Mode** wäre daher
+
+$$
+\langle \varepsilon \rangle_{\text{klassisch}} = k_B T
+$$
+
+Multiplikation mit der Modendichte liefert die spektrale Energiedichte:
+
+$$
+u_\nu^{\text{RJ}}(\nu,T) = g(\nu)\,\langle \varepsilon \rangle = \frac{8\pi \nu^{2}}{c^{3}}\,k_B T
+$$
+
+Dies ist das **Rayleigh-Jeans-Gesetz**. Bei niedrigen Frequenzen funktioniert es, wächst aber wie $\nu^{2}$ und liefert über alle Frequenzen integriert ein divergentes Ergebnis. Diese **Ultraviolettkatastrophe** ist nicht bloß ein schillernder Name: Die klassische Physik sagt damit in jedem warmen Raum unendlich viel Strahlungsenergie voraus. Die Wirklichkeit macht nicht mit.
+
+---
+
+### 6.2.4 Wiens Gesetz: eine erfolgreiche halbe Wahrheit
+
+Wien schlug empirisch die Form
+
+$$
+u_\nu^{\text{Wien}}(\nu,T) = A\,\nu^{3}\,\exp\!\left(-\,\frac{B\,\nu}{T}\right)
+$$
+
+mit an Messdaten angepassten Konstanten $A,B$ vor. Sie beschreibt den **hochfrequenten** Bereich mit seinem exponentiellen Abfall richtig und ergibt das korrekte **Verschiebungsgesetz**: Die Frequenz des Maximums wächst linear mit $T$. Bei **niedrigen Frequenzen** versagt sie jedoch; dort zeigen Experimente $u_\nu\propto \nu^{2}T$, also Rayleigh-Jeans-Verhalten, statt $\nu^{3}$. Wien erfasst das Ultraviolette, Rayleigh–Jeans das Infrarote, aber keiner das gesamte Spektrum.
+
+---
+
+### 6.2.5 Plancks Schritt: den Energieaustausch diskret machen
+
+Plancks radikale Idee bestand darin, die Hohlraumwände als Ansammlung mikroskopischer **Oszillatoren** oder Resonatoren zu behandeln, die mit dem Strahlungsfeld **diskrete Energiepakete** der Größe $h\nu$ austauschen:
+
+$$
+\varepsilon_n = n\,h\nu,\qquad n=0,1,2,\dots
+$$
+
+Mit Boltzmann-Gewichten lautet die Zustandssumme eines Oszillators der Frequenz $\nu$:
+
+$$
+Z = \sum_{n=0}^\infty e^{-n h\nu/(k_B T)} = \frac{1}{1-e^{-h\nu/(k_B T)}}
+$$
+
+Seine mittlere Energie beträgt dann
+
+$$
+\langle \varepsilon \rangle_{\text{Planck}} = -\,\frac{\partial}{\partial \beta}\ln Z 
+= \frac{h\nu}{e^{h\nu/(k_B T)}-1},\qquad \beta \equiv \frac{1}{k_B T}
+$$
+
+Multiplizieren wir mit der Modendichte $g(\nu)$, erhalten wir das vollständige Spektrum:
+
+$$
+u_\nu(\nu,T) = \frac{8\pi h \nu^{3}}{c^{3}}\;\frac{1}{e^{h\nu/(k_B T)}-1}
+$$
+
+Dies ist das **Plancksche Strahlungsgesetz** von 1900. Bei niedrigen Frequenzen ergibt die Entwicklung der Exponentialfunktion Rayleigh–Jeans, bei hohen Frequenzen die Exponentialform von Wien. Eine einzige Kurve beschreibt beide Bereiche.
+
+---
+
+### 6.2.6 Grenzfälle niedriger und hoher Frequenzen
+
+Wir setzen $x \equiv h\nu/(k_B T)$.
+
+- **Niedrige Frequenz** ($x\ll 1$): $e^{x}-1 \approx x$, also
+
+$$
+u_\nu \approx \frac{8\pi h \nu^{3}}{c^{3}}\,\frac{1}{x}
+= \frac{8\pi \nu^{2}}{c^{3}}\,k_B T
+$$
+
+das Rayleigh-Jeans-Gesetz.
+
+- **Hohe Frequenz** ($x\gg 1$): $e^{x}-1 \approx e^{x}$, also
+
+$$
+u_\nu \approx \frac{8\pi h \nu^{3}}{c^{3}}\,e^{-\,h\nu/(k_B T)}
+$$
+
+das Wiensche Gesetz mit $A=8\pi h/c^{3}$ und $B=h/k_B$.
+
+Plancks Formel verbindet somit elegant die beiden Bereiche, die klassische und empirische Gesetze jeweils nur getrennt erfassten.
+
+
+---
+
+### 6.2.7 Gesamtenergie und Stefan-Boltzmann-Gesetz
+
+Die Integration von $u_\nu$ über alle Frequenzen ergibt die **gesamte Energiedichte** $u(T)$:
+
+$$
+u(T) = \int_{0}^{\infty} u_\nu(\nu,T)\,d\nu
+= \frac{8\pi h}{c^{3}}\int_{0}^{\infty}\frac{\nu^{3}\,d\nu}{e^{h\nu/(k_B T)}-1}
+$$
+
+Mit der Variablensubstitution $x=h\nu/(k_B T)$ gilt $d\nu = (k_B T/h)\,dx$ und
+
+$$
+u(T) = \frac{8\pi (k_B T)^{4}}{h^{3} c^{3}} \int_{0}^{\infty}\frac{x^{3}\,dx}{e^{x}-1}
+$$
+
+Das Integral ist ein bekanntes Standardergebnis:
+
+$$
+\int_{0}^{\infty}\frac{x^{3}\,dx}{e^{x}-1} = \frac{\pi^{4}}{15}
+$$
+
+Somit
+
+$$
+u(T) = a\,T^{4},\qquad a \equiv \frac{8\pi^{5} k_B^{4}}{15\,h^{3} c^{3}}
+$$
+
+Die **abgestrahlte Leistung pro Fläche** einer schwarzen Oberfläche folgt aus $I=\tfrac{c}{4}u$, dem kinematischen Faktor für isotrope Strahlung:
+
+$$
+I = \sigma T^{4},\qquad \sigma = \frac{2\pi^{5} k_B^{4}}{15\,h^{3} c^{2}}
+$$
+
+Dies ist das **Stefan-Boltzmann-Gesetz**, dessen Konstante $\sigma$ hier durch $k_B,h,c$ ausgedrückt ist.
+
+---
+
+### 6.2.8 Wo liegt das Maximum? Wiens Verschiebungsgesetz
+
+Wir maximieren $u_\nu(\nu,T)$ bei festem $T$ bezüglich $\nu$. Mit $x=h\nu/(k_B T)$ reduziert sich die Bedingung auf
+
+$$
+\frac{d}{dx}\left(\frac{x^{3}}{e^{x}-1}\right)=0 \quad\Rightarrow\quad 
+3\,(e^{x}-1) - x\,e^{x} = 0
+$$
+
+Diese transzendente Gleichung hat die Lösung
+
+$$
+x_\ast \approx 2.821439\ldots
+$$
+
+Die **Frequenz des Maximums** skaliert daher gemäß
+
+$$
+\nu_{\text{peak}} = \frac{x_\ast k_B}{h}\,T
+$$
+
+Verwendet man stattdessen die Wellenlängendarstellung
+
+$$
+u_\lambda(\lambda,T) = \frac{8\pi h c}{\lambda^{5}}\;\frac{1}{e^{hc/(\lambda k_B T)}-1}
+$$
+
+und maximiert bezüglich $\lambda$, erhält man **Wiens Verschiebungsgesetz**
+
+$$
+\lambda_{\text{peak}}\,T = b
+$$
+
+mit einer Konstanten $b$, die durch die Nullstelle einer etwas anderen transzendenten Gleichung bestimmt wird. Achtung: Die Maxima von $u_\nu$ und $u_\lambda$ entsprechen **nicht** derselben Photonenenergie, weil der Jacobi-Faktor $|d\nu/d\lambda|$ die Kurvenform verändert.
+
+---
+
+### 6.2.9 Umrechnung zwischen Frequenz- und Wellenlängenspektren
+
+Wir verwenden $u_\lambda\,|d\lambda| = u_\nu\,|d\nu|$ mit $\nu=c/\lambda$ und $d\nu = -\,c/\lambda^{2}\,d\lambda$. Dann gilt
+
+$$
+u_\lambda(\lambda,T) = u_\nu\!\left(\frac{c}{\lambda},T\right)\;\frac{c}{\lambda^{2}}
+$$
+
+Setzt man Plancks $u_\nu$ ein, erhält man das oben angegebene $u_\lambda$. Das Minuszeichen entfällt, weil abnehmendes $\lambda$ einem zunehmenden $\nu$ entspricht.
+
+---
+
+### 6.2.10 Statistisch-mechanische Sicht: warum Quantisierung entscheidend ist
+
+Klassisch ist Energie kontinuierlich, und die Gleichverteilung ordnet jeder Mode unabhängig von ihrer Frequenz $k_B T$ zu. Quantenstatistisch folgt die Besetzung einer Mode mit Energieabstand $h\nu$ der **Bose-Einstein-Verteilung** mit chemischem Potenzial null:
+
+$$
+\bar n(\nu) = \frac{1}{e^{h\nu/(k_B T)} - 1}
+$$
+
+Die mittlere Energie pro Mode ist $h\nu\,\bar n(\nu)$. Hochfrequente Moden sind exponentiell schwer anzuregen, weil zunächst $h\nu$ aufgebracht werden muss. Niederfrequente Moden verhalten sich klassisch, denn $h\nu \ll k_B T$ führt zu großem $\bar n$ und $\langle \varepsilon \rangle \to k_B T$. Die Katastrophe verschwindet, weil **diskrete Energieabstände das Ultraviolette unterdrücken**.
+
+---
+
+### 6.2.11 Planck: ein Revolutionär wider Willen
+
+Planck war der Thermodynamik zutiefst verbunden und suchte eine prinzipielle Herleitung von Wiens empirischem Gesetz. Als Rubens' Daten diesem bei kleinen $\nu$ widersprachen, suchte er eine Interpolation zwischen beiden Grenzfällen und konstruierte anschließend eine statistische Begründung dafür. Später nannte er die Quantisierung einen „Akt der Verzweiflung“. Sie blieb bestehen. Innerhalb von fünf Jahren gab Einstein den Energiepaketen — Photonen — beim Photoeffekt ein eigenständiges Dasein. Plancks Konstante $h$ wurde vom Anpassungsparameter einer Kurve zu einer fundamentalen Naturkonstante.
+
+---
+
+### 6.2.12 In der Praxis: Emissionsgrad und reale Oberflächen
+
+Reale Materialien sind keine perfekten schwarzen Körper. Hat eine Oberfläche den **Emissionsgrad** $\epsilon(\nu,T)$ zwischen 0 und 1, ist ihre spektrale Strahldichte
+
+$$
+I_\nu^{\text{real}}(\nu,T) = \epsilon(\nu,T)\,I_\nu^{\text{schwarz}}(\nu,T)
+$$
+
+Nach Kirchhoffs Strahlungsgesetz sind Emissions- und Absorptionsgrad bei jeder Frequenz gleich. Daher wirken Hohlräume mit kleiner Öffnung praktisch schwarz, auch wenn ihre Wände es nicht sind: Strahlen werden so oft reflektiert, bis sie absorbiert werden. Deshalb verwendet man im Labor Hohlräume als schwarze Körper.
+
+---
+
+### 6.2.13 Kurze Rechenbeispiele
+
+**(a) Leistung eines Sterns.** Nähern wir einen Stern als schwarzen Körper mit Radius $R$ und Oberflächentemperatur $T$ an, beträgt seine Leuchtkraft
+
+$$
+L = 4\pi R^{2}\,\sigma T^{4}
+$$
+
+**(b) Farbe des Strahlungsmaximums eines Glühfadens.** Nach $\lambda_{\text{peak}}\,T=b$ halbiert sich bei Verdopplung von $T$ die Wellenlänge des Maximums; die Verteilung verschiebt sich von Rot in Richtung Blau. Fotografien zeigen diese Veränderung, da Kamerasensoren die Wellenlängenverteilung $u_\lambda$ unterschiedlich gewichten.
+
+**(c) Photonenzahldichte im Hohlraum.** Das Photonenzahlspektrum ist $n_\nu = u_\nu/(h\nu)$; die gesamte Zahldichte ist daher
+
+$$
+n(T) = \int_{0}^{\infty}\frac{u_\nu}{h\nu}\,d\nu 
+= \frac{8\pi}{c^{3}}\int_{0}^{\infty}\frac{\nu^{2}\,d\nu}{e^{h\nu/(k_B T)} - 1}
+$$
+
+Die Substitution $x=h\nu/(k_B T)$ ergibt $n(T)\propto T^{3}$ mit einem Proportionalitätsfaktor, der $\zeta(3)$ enthält.
+
+---
+
+### 6.2.14 Das Wichtigste für die Prüfung
+
+- Die Geometrie liefert die Modendichte $g(\nu) = 8\pi \nu^{2}/c^{3}$, die Physik die mittlere Energie pro Mode.
+- Klassische Gleichverteilung $\Rightarrow$ Rayleigh–Jeans $\propto \nu^{2}T$ $\Rightarrow$ Ultraviolettkatastrophe.
+- Planck: Energieaustausch in Quanten $h\nu$ $\Rightarrow$ $\langle \varepsilon \rangle = h\nu/(e^{h\nu/(k_B T)}-1)$.
+- Ihr Produkt ergibt Plancks Gesetz; Integration liefert Stefan–Boltzmann $I=\sigma T^{4}$, Maximierung Wiens Verschiebungsgesetz.
+- Quantisierung ist kein optionaler Zusatz: Sie macht Thermodynamik und Elektromagnetismus im Hohlraum miteinander vereinbar.
+
+---
+
+## 6.3 Photoeffekt und Einsteins Lichtquanten
+
+Beleuchtet man ein sauberes Metall, können Elektronen austreten. Klassische Wellen erklärten „mehr Licht → mehr Energie“, doch die Experimente zu Beginn des 20. Jahrhunderts sagten: „Zuerst die Frequenz, dann die Intensität.“ Diese Wendung führte Einstein zu einer kühnen Idee: Lichtenergie kommt in diskreten Paketen der Größe $h\nu$ an. Beim Photoeffekt werden Photonen von einer Vorstellung zu einer präzisen Energiebilanz.
+
+![Oberhalb der Grenzfrequenz Nu null steigt die maximale kinetische Elektronenenergie linear mit der Frequenz; die Steigung ist h.](/images/diagrams/photoelectric.svg)
+
+---
+
+### 6.3.1 Die experimentellen Regeln: was erklärt werden musste
+
+Die Labore fanden einen klaren Satz von Tatsachen:
+
+- Es gibt eine **Grenzfrequenz** $\nu_0$, unterhalb der unabhängig von der Lichtintensität keine Elektronen emittiert werden.
+- Oberhalb der Schwelle hängt die **maximale kinetische Energie** der emittierten Elektronen linear von der Frequenz ab, nicht von der Intensität.
+- Die **Emission erfolgt innerhalb der experimentellen Zeitauflösung unmittelbar**, ohne die bei geringer Intensität klassisch erwartete lange Zeit zum Ansammeln von Energie.
+- Der **Photostrom**, also die Zahl der Elektronen pro Sekunde mal ihrer Ladung, wächst bei fester Frequenz mit der Lichtintensität, bis eine durch den Aufbau bedingte Sättigung eintritt.
+
+In einem reinen Wellenbild, bei dem die Energie über die Wellenfront verteilt ist und sich kontinuierlich ansammeln kann, sind diese Regeln überraschend.
+
+---
+
+### 6.3.2 Einsteins knappe Gleichung
+
+Einsteins Hypothese von 1905: Licht der Frequenz $\nu$ verhält sich wie ein Strom von Quanten, den Photonen, mit jeweils $h\nu$ Energie. Ein Elektron im Festkörper, das ein Photon absorbiert, benötigt einen Teil dieser Energie zum Verlassen des Materials — die **Austrittsarbeit** $W$ — und behält den Rest als kinetische Energie. Daher
+
+$$
+K_{\max} = h\nu - W
+$$
+
+Die Grenzfrequenz beträgt somit
+
+$$
+\nu_0 = \frac{W}{h}
+$$
+
+Die Intensität bestimmt, wie viele Photonen pro Sekunde eintreffen und damit wie viele Elektronen pro Sekunde emittiert werden können, aber nicht die maximale Energie jedes Elektrons. Die Frequenz legt das Energiebudget pro Elektron fest.
+
+---
+
+### 6.3.3 Messung von $h$ und $W$ mit Gegenspannungen
+
+Die maximale kinetische Energie wird durch eine Gegenspannung $V_s$ bestimmt, die selbst die schnellsten Elektronen daran hindert, den Kollektor zu erreichen. Definitionsgemäß gilt
+
+$$
+e\,V_s = K_{\max}
+$$
+
+Mit Einsteins Beziehung ergibt sich eine Geradengleichung:
+
+$$
+e\,V_s = h\nu - W
+$$
+
+Ein Diagramm von $V_s$ gegen $\nu$ hat also die Steigung $h/e$ und den Achsenabschnitt $-W/e$. So bestimmten frühe Experimente das Plancksche Wirkungsquantum und die Austrittsarbeit unmittelbar aus der Elektronenbewegung.
+
+---
+
+### 6.3.4 Warum das klassische Wellenbild scheitert
+
+Eine klassische Welle liefert kontinuierlich Energie mit einer zur Intensität proportionalen Rate. Wäre dies die ganze Geschichte, müssten Elektronen bei geringer Intensität lange genug Energie zum Austreten sammeln — mit messbarer Verzögerung. Außerdem müsste ausreichend intensives **niederfrequentes** Licht ebenfalls Elektronen auslösen; eine Grenzfrequenz gäbe es nicht. Beides wird nicht beobachtet. Die Daten sprechen für Energiepakete, von denen ein Elektron im betrachteten Bereich höchstens eines aufnimmt.
+
+---
+
+### 6.3.5 Millikans widerwillige Bestätigung
+
+Robert Millikan versuchte ein Jahrzehnt lang, Einsteins Deutung mit erstklassigen Messungen zu widerlegen. Er verbesserte Vakuumsysteme, Oberflächenpräparation und Elektronik. Das Ergebnis waren äußerst saubere Geraden: $eV_s$ gegen $\nu$ mit Steigung $h$ und einem Schnittpunkt mit der Frequenzachse bei $W/h$. Philosophisch missfiel Millikan die Photonenidee, doch seine Daten ließen keinen Spielraum. Wenn ein entschiedener Kritiker eine Theorie prüft und sie besteht, ist das eine starke Bestätigung.
+
+---
+
+### 6.3.6 Von der Intensität zum Fluss: wie viele Elektronen?
+
+Wir halten $\nu$ oberhalb der Schwelle konstant. Doppelte Intensität verdoppelt den Photonenfluss auf die Oberfläche. Bei sauberer Oberfläche und kontrollierten Raumladungseffekten wächst der Sättigungsstrom $I_{\text{sat}}$ linear mit der Intensität, da jedes absorbierte Photon höchstens ein Elektron freisetzen kann. Der tatsächlich austretende Anteil ist die Quanteneffizienz $\eta$; daher
+
+$$
+I_{\text{sat}} \approx \eta\,\frac{P}{h\nu}\,e
+$$
+
+Dabei ist $P$ die auf der aktiven Fläche absorbierte optische Leistung. Reale Werte von $\eta$ hängen von Material, Oberflächenzustand und davon ab, ob Photoelektronen zurückgestreut oder vor dem Erreichen des Kollektors eingefangen werden.
+
+---
+
+### 6.3.7 Energieverteilung und die Rolle des Festkörpers
+
+$K_{\max}$ ist die obere Grenze. Die Verteilung der kinetischen Energien hängt von Bandstruktur und Streuung im Festkörper ab. Besetzte Anfangszustände können weit unter dem Fermi-Niveau liegen; wenige $k_B T$ beschreiben nur dessen thermische Verschmierung, nicht das gesamte besetzte Band. Bei einer Bindungsenergie $E_B$ unterhalb des Fermi-Niveaus tritt ein Elektron ungefähr mit $h\nu-W-E_B$ abzüglich inelastischer Verluste aus. Deshalb sind Spektren breit; Elektronen nahe dem Fermi-Niveau bestimmen die Oberkante $h\nu-W$.
+
+---
+
+### 6.3.8 Flugzeit und „sofortige“ Emission
+
+Moderne schnelle Elektronik bestätigt die frühere Aussage: Die Emission erfolgt innerhalb von Pikosekunden oder schneller und passt zu einem **Einphotonenprozess** statt zu langer Energieansammlung. In der Photonensprache überträgt ein einzelner Absorptionsvorgang $h\nu$ auf einmal; man muss nicht warten, bis sich genug Energie angesammelt hat.
+
+---
+
+### 6.3.9 Oberflächenphysik und gezielte Änderung der Austrittsarbeit
+
+Die Austrittsarbeit $W$ ist eine Oberflächeneigenschaft: Sie hängt von Material, Kristallfläche, Sauberkeit und Adsorbaten ab. Alkalimetalle mit kleinem $W$ können auf rotes Licht reagieren; saubere Edelmetalle benötigen blaues oder UV-Licht. Beschichtungen und Cäsierung können $W$ senken und damit $\nu_0=W/h$ verkleinern. Deshalb ist die Oberflächenpräparation für Photozellen und Photokathoden entscheidend.
+
+---
+
+### 6.3.10 Typischer Ablauf einer Laboranalyse
+
+1) Eine frisch präparierte Metalloberfläche bei mehreren Frequenzen mit monochromatischem Licht beleuchten.
+2) Für jedes $\nu$ die Kollektorspannung ins Negative verändern, bis der Photostrom verschwindet, und so $V_s$ bestimmen.
+3) $eV_s$ gegen $\nu$ auftragen; aus einer Geradenanpassung die Steigung $h$ und den Achsenabschnitt $-W$ bestimmen.
+4) Unabhängig davon bei festem $\nu$ den Sättigungsstrom gegen die Intensität messen, um die lineare Beziehung zwischen Elektronenzahl und Photonenfluss zu prüfen.
+
+Die beiden Experimente prüfen unterschiedliche Teile von Einsteins Modell: die **Energie pro Photon** und die Zahl der Photonen.
+
+---
+
+### 6.3.11 Was bewirkt die Intensität bei fester Frequenz?
+
+Bei festem $\nu>\nu_0$ erhöht größere Intensität die Zahl emittierter Elektronen, also den Strom, lässt ihre **maximale Energie** aber unverändert, da $h\nu$ gleich bleibt. Bei fester Intensität wächst umgekehrt $K_{\max}$ linear mit der Frequenz. Im Diagramm $V_s$ gegen $\nu$ verändert die Intensität die Höhe des Photostroms, aber weder die ideale Steigung noch den Achsenabschnitt.
+
+---
+
+### 6.3.12 Photonen, Impuls und Konsistenzprüfungen
+
+Photonen tragen auch Impuls $p=h/\lambda$. Bei Photoemission von einer ebenen Oberfläche ist der Photonenimpuls meist klein gegenüber den Fermi-Impulsen der Elektronen. Daher ist $p$ für die Austrittsenergiebilanz weniger zentral als $h\nu$, doch Strahlungsdruck und lichtgetriebene Kräfte passen in dieselbe Bilanz. Spätere Phänomene wie die **Compton-Streuung** von Röntgenstrahlen erweitern das Teilchenbild: Ihre Wellenlängenverschiebungen verlangen Energie- und Impulserhaltung für Photonen. Der Photoeffekt ist der Einstieg, Compton die Fortsetzung.
+
+---
+
+### 6.3.13 Warum „ein Photon → ein Elektron“ Einschränkungen hat
+
+Bei hohen Intensitäten und kurzen Pulsen kann **Mehrphotonen-Photoemission** auftreten: Zwei oder mehr Photonen lösen gemeinsam ein Elektron aus, obwohl $h\nu$ unter $W$ liegt. Kennzeichen ist eine nichtlineare Stromabhängigkeit von der Intensität. In den ursprünglichen Experimenten mit kontinuierlichem Licht dominierte der Einphotonenprozess; deshalb beschrieb Einsteins lineares Gesetz sie. Die Quantenmechanik umfasst beide Bereiche — man verändert lediglich die Intensität.
+
+---
+
+### 6.3.14 Kurze Herleitungen auf einem Notizzettel
+
+**Schwelle.** Mit $K_{\max}=0$ folgt aus Einsteins Gesetz $\nu_0=W/h$. Dies ist eine besonders direkte Möglichkeit, $W$ experimentell mit Licht zu **definieren**.
+
+**Steigung bestimmen.** Aus $eV_s=h\nu - W$ folgt für $V_s$ gegen $\nu$ die Steigung $h/e$. Ihre Messung liefert $h$ unabhängig von Schwarzkörperanpassungen oder Spektroskopie.
+
+**Einheiten der Austrittsarbeit.** Wird $W$ in Elektronenvolt angegeben, ist die Grenzfrequenz in Hertz
+
+$$
+\nu_0 = \frac{W\,\text{(eV)}}{h/e}
+$$
+
+und als Wellenlänge
+
+$$
+\lambda_0 = \frac{c}{\nu_0}
+$$
+
+Für Photokathoden wird häufig $\lambda_0$ angegeben, weil technische Anwendungen meist mit Wellenlängen arbeiten.
+
+---
+
+### 6.3.15 Photoelektrische Geräte: vom Labor zur Technik
+
+- **Vakuumphotodioden und Photomultiplier.** Photoemission von einer Kathode mit kleinem $W$ liefert Elektronen; bei Photomultipliern werden sie anschließend an Dynoden vervielfacht. Die Gegenspannungsmethode mit $V_s$ führt zu Fragen der Verstärkungskalibrierung und Rauschanalyse.
+- **Solarzellen — ein anderer Effekt.** Photovoltaische Übergänge wandeln Licht über **Elektron-Loch-Paare** und eingebaute Felder in Strom um, nicht durch Photoemission ins Vakuum. Die Schwellenidee für $h\nu$ bestimmt dennoch, welche Photonen absorbiert werden können.
+- **Ultraschnelle Elektronenquellen.** Femtosekundenlaser regen Ein- oder Wenigphotonenemission an und erzeugen kurze Elektronenpakete für Beugung und Mikroskopie.
+
+---
+
+### 6.3.16 Prüfung der Grundideen
+
+- **Teilchenartiger Energietransfer.** $h\nu$ pro Photon, ein Photon pro primärem Elektronenaustritt im Einphotonenbereich.
+- **Materialabhängige Schwelle.** Die Austrittsarbeit $W$ bestimmt die Hürde; $\nu_0=W/h$ ist die entscheidende Frequenz.
+- **Lineare Oberkante.** $K_{\max}$ folgt unabhängig von der Intensität $h\nu-W$; die Gegenspannung erfasst dies als $eV_s$.
+- **Zahl und Energie unterscheiden.** Intensität verändert, **wie viele** Elektronen austreten; Frequenz, **wie energiereich** sie sein können.
+
+Die Quantenphysik übernimmt genau dort, wo die klassische Physik auf falschen Abhängigkeiten besteht.
+
+---
+
+## 6.4 Atomspektren und Bohrs Modell
+
+Spektrallinien waren die ersten Erkennungscodes der Atome: schmal, reproduzierbar und ein klarer Hinweis auf innere Struktur. Lange bevor die Quantenmechanik zu einer vollständigen Theorie wurde, ordnete präzise Spektroskopie diese Linien einfachen ganzzahligen Mustern zu. Der größte Erfolg der alten Quantentheorie war Bohrs Modell von 1913: ein halbklassisches Atom mit quantisierten Bahnen, das das Wasserstoffspektrum erklärte und auf ein tieferes Wellenbild hinwies.
+
+![Die gebundenen Energieniveaus des Wasserstoffs nähern sich null an. Ein Übergang von n gleich zwei nach n gleich eins emittiert ein Photon.](/images/diagrams/atomic-levels.svg)
+
+---
+
+### 6.4.1 Empirischer Auftakt: Balmer-Rydberg-Muster
+
+Die sichtbaren Wasserstofflinien folgten Balmers Formel von 1885; Rydberg verallgemeinerte sie bald zu einer Reihe für die **Wellenzahl**:
+
+$$
+\tilde\nu \equiv \frac{1}{\lambda} = R\,\left(\frac{1}{n_f^{2}} - \frac{1}{n_i^{2}}\right),\qquad n_i>n_f
+$$
+
+Dabei ist $R$ die Rydberg-Konstante; die positiven ganzen Zahlen $(n_i,n_f)$ bezeichnen Anfangs- und Endniveau. Bekannte Serien sind:
+
+- **Lyman:** $n_f=1$ (ultraviolett).
+- **Balmer:** $n_f=2$ (sichtbar; Hα ist $n_i=3\to2$ bei $\sim 656\,$nm).
+- **Paschen:** $n_f=3$ (infrarot).
+
+Zunächst waren dies reine Zahlenmuster — erstaunlich beständig auch bei anderen Gasen, sobald man geeignete effektive Konstanten einsetzte.
+
+---
+
+### 6.4.2 Rutherfords Atom und das klassische Scheitern
+
+Rutherfords Streumodell von 1911 ergab einen winzigen geladenen Kern. Klassische Elektronen auf Umlaufbahnen sind **beschleunigte Ladungen**; nach Maxwell strahlen sie und spiralen nach innen. Das bedeutet kontinuierliche Spektren und instabile Atome. Die Natur zeigte jedoch diskrete Linien und Stabilität. Hier setzte Bohr an.
+
+---
+
+### 6.4.3 Bohrs Postulate
+
+Bohr ergänzte die klassische Mechanik um drei Regeln:
+
+1) **Stationäre Zustände.** Bestimmte Bahnen sind erlaubt und strahlen trotz der Beschleunigung nicht.
+2) **Wirkungsquantum.** Der Drehimpuls ist quantisiert:
+
+$$
+m_e v r = n\,\hbar,\qquad n=1,2,3,\dots
+$$
+
+3) **Frequenzbedingung.** Strahlung tritt nur beim Übergang zwischen stationären Zuständen auf, mit der Photonenenergie
+
+$$
+h\nu = E_i - E_f
+$$
+
+Diese Zusatzregeln waren kühn und für Einelektronenatome erstaunlich erfolgreich.
+
+---
+
+### 6.4.4 Coulombkraft und Quantisierung: Radien, Geschwindigkeiten und Energien
+
+Für einen Kern der Ladung $+Ze$ und ein Elektron auf einer Kreisbahn mit Radius $r$ und Geschwindigkeit $v$ ist die Zentripetalkraft gleich der Coulombanziehung:
+
+$$
+\frac{m_e v^{2}}{r} = \frac{1}{4\pi \varepsilon_0}\,\frac{Z e^{2}}{r^{2}}
+$$
+
+Zusammen mit $m_e v r = n\hbar$ eliminieren wir $v$ und lösen nach $r_n$ auf:
+
+$$
+r_n = \frac{4\pi \varepsilon_0\,\hbar^{2}}{m_e e^{2}}\,\frac{n^{2}}{Z}
+$$
+
+Der Vorfaktor ist der **Bohrsche Radius**
+
+$$
+a_0 \equiv \frac{4\pi \varepsilon_0\,\hbar^{2}}{m_e e^{2}} = \frac{\hbar}{m_e c\,\alpha}
+$$
+
+also $r_n = \dfrac{n^{2}}{Z}\,a_0$. Für die Bahngeschwindigkeit folgt
+
+$$
+v_n = \frac{Z\,\alpha\,c}{n}
+$$
+
+wobei
+
+$$
+\alpha \equiv \frac{e^{2}}{4\pi \varepsilon_0 \hbar c}
+$$
+
+die Feinstrukturkonstante ist. Die Gesamtenergie setzt sich aus kinetischer und potenzieller Energie zusammen:
+
+$$
+E_n = \frac{1}{2} m_e v_n^{2} - \frac{1}{4\pi \varepsilon_0}\,\frac{Z e^{2}}{r_n}
+$$
+
+Das ergibt
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi \varepsilon_0)^{2} \hbar^{2}}\,\frac{Z^{2}}{n^{2}} 
+= -\,\frac{1}{2}\,m_e c^{2}\,\alpha^{2}\,\frac{Z^{2}}{n^{2}}
+$$
+
+Für Wasserstoff ($Z=1$) hat der Grundzustand die Energie
+
+$$
+E_1 = -\,13.6\,\text{eV}
+$$
+
+und die Niveaus skalieren wie $-13.6\,\text{eV}/n^{2}$.
+
+---
+
+### 6.4.5 Von Bohrs Niveaus zur Rydberg-Formel
+
+Bohrs Frequenzbedingung mit $E_i$ und $E_f$ liefert die Photonenwellenzahl
+
+$$
+\tilde\nu = \frac{\nu}{c} = \frac{E_i - E_f}{h c} 
+= \frac{m_e c\,\alpha^{2}}{2 h}\,Z^{2}\left(\frac{1}{n_f^{2}} - \frac{1}{n_i^{2}}\right)
+$$
+
+Im Grenzfall **unendlich großer Kernmasse** ist die Rydberg-Konstante somit
+
+$$
+R_\infty = \frac{\alpha^{2} m_e c}{2 h}
+$$
+
+Beim realen Wasserstoff bewegt sich das Elektron um den **Massenschwerpunkt**; wir ersetzen $m_e$ durch die **reduzierte Masse**
+
+$$
+\mu = \frac{m_e m_N}{m_e + m_N}
+$$
+
+und erhalten
+
+$$
+R_{\text{H}} = R_\infty\,\frac{\mu}{m_e}
+$$
+
+Diese kleine Korrektur erzeugt **Isotopenverschiebungen** zwischen H und D.
+
+---
+
+### 6.4.6 Warum $m v r = n\hbar$ später weniger willkürlich erschien
+
+Ein Jahrzehnt später schlug de Broglie Materiewellen mit $\lambda = h/p$ vor. Fordert man eine ganzzahlige Anzahl von Wellenlängen auf einer Kreisbahn,
+
+$$
+2\pi r_n = n\,\lambda = n\,\frac{h}{p}
+$$
+
+folgt
+
+$$
+p r_n = n\,\hbar
+$$
+
+also Bohrs Regel. Das Bild der **stehenden Welle** erklärt anschaulich, warum nur bestimmte Radien zulässig sind: Destruktive Interferenz schließt die übrigen aus. Diese Wellenlogik formalisiert Schrödinger in Kapitel 7.
+
+---
+
+### 6.4.7 Korrespondenzprinzip und große $n$
+
+Bohr forderte, dass sich Quantenvorhersagen bei großen Quantenzahlen den klassischen Ergebnissen annähern. Für $n\gg1$ nähert sich die **Umlauffrequenz** des Elektrons der **Emissionsfrequenz** benachbarter Niveaus; das Muster erlaubter Übergänge ähnelt den klassischen Fourierkomponenten einer Coulombbahn. Dieses Korrespondenzprinzip leitete die alte Quantentheorie, solange die vollständige Mechanik noch fehlte.
+
+---
+
+### 6.4.8 Auswahlregeln und Intensitäten: warum manche Linien stark sind
+
+Bohrs Modell bestimmt die Niveaus, berechnet aber keine Linienintensitäten. Empirisch folgen starke Linien drehimpulsbezogenen **Auswahlregeln** wie $\Delta l=\pm 1$, die später aus Dipolübergangsmatrixelementen der Wellenmechanik hervorgehen. Die alte Theorie erschloss sie aus klassischen Strahlungsmustern; die Quantenmechanik leitet sie systematisch her.
+
+---
+
+### 6.4.9 Kurze Herleitungen
+
+**(a) Wellenlänge von Lyman-α.** Für $n_i=2\to n_f=1$ gilt
+
+$$
+\tilde\nu = R_{\text{H}}\left(1 - \frac{1}{4}\right) = \frac{3}{4} R_{\text{H}}
+$$
+
+also
+
+$$
+\lambda_{\text{Ly}\alpha} = \frac{4}{3 R_{\text{H}}}
+$$
+
+Mit berücksichtigter reduzierter Masse $\mu$ ergibt sich ungefähr $121.6\,$nm.
+
+**(b) Balmer-Linie Hα.** Für $n_i=3\to n_f=2$ gilt
+
+$$
+\tilde\nu = R_{\text{H}}\left(\frac{1}{4} - \frac{1}{9}\right) = \frac{5}{36} R_{\text{H}}
+$$
+
+also
+
+$$
+\lambda_{\text{H}\alpha} = \frac{36}{5 R_{\text{H}}}
+$$
+
+mit dem Zahlenwert von etwa $656.3\,$nm.
+
+**(c) Ionisierungsenergie aus dem Niveau $n$.** Für den Übergang nach $n\to\infty$ wird die Energie
+
+$$
+E_{\text{ion}}(n) = -E_n = \frac{13.6\,\text{eV}}{n^{2}}
+$$
+
+benötigt, hier für Wasserstoff.
+
+---
+
+### 6.4.10 Sommerfelds Ellipsen und die frühe Feinstruktur
+
+Sommerfeld erweiterte das Modell um **elliptische** Bahnen und quantisierte sowohl die radiale als auch die Winkelwirkung. Eine relativistische Korrektur der Geschwindigkeitsabhängigkeit der Energie erklärte Teile der **Feinstruktur**, also kleiner Niveauaufspaltungen, und ungewöhnliche Abstände benachbarter Linien. Der Ansatz war raffiniert, aber umständlich und scheiterte an Mehrelektronenatomen sowie Präzisionsdetails.
+
+---
+
+### 6.4.11 Erfolge und Grenzen von Bohrs Modell
+
+**Erfolge**
+
+- Sagt $E_n \propto -1/n^{2}$ und bei Berücksichtigung der reduzierten Masse die führende nichtrelativistische Grobstruktur des Wasserstoffs und wasserstoffähnlicher Spektren voraus; nicht jedoch sämtliche Präzisionskorrekturen.
+- Erklärt **Seriengrenzen** und **Ionisierungsenergien**.
+- Nimmt de Broglies Ansatz vorweg und schafft eine klare Brücke zur Wellenmechanik.
+
+**Grenzen**
+
+- Kann **Linienintensitäten** und **Polarisationen** nicht aus ersten Prinzipien erklären.
+- Liefert keine vollständige Erklärung der **Feinstruktur** und der Anomalien des **Zeeman-Effekts**.
+- Scheitert an **Helium** und anderen Mehrelektronenatomen.
+- Postuliert strahlungsfreie „beschleunigte“ Elektronen, statt einen Mechanismus dafür zu liefern.
+
+Diese Misserfolge weisen den Weg zu einer Wellengleichung und zum Spin.
+
+---
+
+### 6.4.12 Nützliche Konstanten und Formeln
+
+Gleichwertige, praktische Ausdrücke:
+
+$$
+a_0 = \frac{4\pi \varepsilon_0 \hbar^{2}}{m_e e^{2}} = \frac{\hbar}{m_e c\,\alpha}
+$$
+
+$$
+E_n = -\,\frac{1}{2} m_e c^{2} \alpha^{2}\,\frac{Z^{2}}{n^{2}}
+$$
+
+$$
+R_\infty = \frac{\alpha^{2} m_e c}{2 h}
+$$
+
+Für ein wasserstoffähnliches Ion mit Kernladungszahl $Z$ erhält man eine Näherung, indem man $R_{\text{H}}$ durch $Z^{2} R_{\text{H}}$ und $E_n$ durch $-13.6\,Z^{2}\,\text{eV}/n^{2}$ ersetzt. Für das genaue Ergebnis bei endlicher Kernmasse ist die mit der reduzierten Masse dieses Kerns berechnete Rydberg-Konstante zu verwenden.
+
+---
+
+### 6.4.13 Begriffsprüfung: Bohr und Wellenmechanik
+
+Bohrs Radien $r_n$ entsprechen im Grenzfall unendlicher Kernmasse den Maxima der radialen Wahrscheinlichkeitsverteilung kreisförmiger wasserstoffähnlicher Zustände mit $l=n-1$, nicht denen allgemeiner Wasserstoffzustände. Die Quantenzahl $n$ bestimmt die nichtrelativistische Coulombenergie; $l$ und $m$ kennzeichnen entartete Winkelzustände sowie deren Form und Orientierung. Zusätzliche Wechselwirkungen können diese Entartung aufheben. Stationäre Zustände werden zu **stehenden Wellen** in drei Dimensionen. Die Frequenzbedingung bleibt als **Differenz von Energieeigenwerten** erhalten; Auswahlregeln folgen aus Matrixelementen des Dipoloperators.
+
+---
+
+### 6.4.14 Kleine Aufgabensammlung
+
+- Aus Kräftegleichgewicht und $m v r=n\hbar$ die Größen $r_n$ und $E_n$ herleiten und $a_0$ numerisch prüfen.
+- Aus $E_n$ die Rydberg-Formel gewinnen und $R_\infty$ durch $\alpha$ ausdrücken.
+- Die reduzierte Masse einbeziehen und die H–D-Isotopenverschiebung von Hα abschätzen.
+- Mit $v_n=Z\alpha c/n$ die nichtrelativistische Näherung prüfen ($v_1\approx \alpha c$ für H).
+
+---
+
+## 6.5 Rutherford-Streuung und das Kernatom
+
+Manchmal stürzt ein einziges Experiment ein ganzes Weltbild. Genau das tat der Goldfolienversuch von Geiger und Marsden. Sie schossen **Alphateilchen**, also Heliumkerne, auf eine äußerst dünne Goldfolie und zählten Lichtblitze auf einem Schirm. Die meisten Teilchen passierten die Folie mit nur geringer Ablenkung, doch überraschenderweise wurden einige um **große Winkel**, sogar rückwärts, gestreut. Wäre die positive Ladung wie in Thomsons „Rosinenkuchenmodell“ über das Atom verteilt, wären solche Ablenkungen praktisch unmöglich. Die Daten verlangten einen winzigen, konzentrierten, positiv geladenen **Kern**.
+
+---
+
+### 6.5.1 Was gemessen wurde und warum es überraschte
+
+- **Strahl:** Alphateilchen mit Energien von einigen MeV.
+- **Target:** Goldfolie mit einer Dicke unter einem Mikrometer, Ordnungszahl $Z=79$.
+- **Detektor:** Zinksulfidschirm zum Zählen einzelner Lichtblitze.
+- **Überraschung:** Ein äußerst kleiner Anteil wurde um mehrere zehn Grad oder mehr gestreut, manche Teilchen nahezu um $180^\circ$.
+
+Bei diffuser positiver Ladung könnten sich klassisch nur viele kleine Ablenkungen addieren. Große Streuwinkel erfordern praktisch eine nahe, starke Begegnung mit einem kompakten Zentrum — einem Kern.
+
+---
+
+### 6.5.2 Coulombabstoßung und Hyperbelbahnen
+
+Wir behandeln die Wechselwirkung als Coulombabstoßung zwischen einem Alphateilchen der Ladung $z e$ mit $z=2$ und einem Kern der Ladung $+Ze$:
+
+$$
+V(r) = \frac{1}{4\pi\varepsilon_0}\,\frac{Z z e^2}{r}
+$$
+
+Zweckmäßig ist die Definition
+
+$$
+k \equiv \frac{Z z e^2}{4\pi\varepsilon_0}
+$$
+
+Nichtrelativistische Bahnen sind Hyperbeln. Für ein Projektil mit kinetischer Energie $E$ hängen Streuwinkel $\theta$ und **Stoßparameter** $b$ zusammen durch
+
+$$
+\theta = 2\,\arctan\!\left(\frac{k}{2 E b}\right)
+$$
+
+beziehungsweise umgekehrt
+
+$$
+b(\theta) = \frac{k}{2E}\,\cot\!\left(\frac{\theta}{2}\right)
+$$
+
+Dabei gilt $E=\tfrac{1}{2}\mu v^2$ mit der reduzierten Masse $\mu$; für ein sehr schweres Target ist $\mu\approx m_{\alpha}$, und für die Bezugssysteme gilt Labor $\approx$ Schwerpunkt.
+
+---
+
+### 6.5.3 Der differentielle Rutherford-Wirkungsquerschnitt
+
+Messbar ist die Winkelverteilung, also der **differentielle Wirkungsquerschnitt**:
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{b}{\sin\theta}\,\left|\frac{db}{d\theta}\right|
+$$
+
+Mit dem obigen $b(\theta)$ und $db/d\theta = -\tfrac{k}{4E}\csc^2(\theta/2)$ folgt die berühmte Rutherford-Formel:
+
+$$
+\frac{d\sigma}{d\Omega} = \left(\frac{k}{4E}\right)^{2}\,\csc^{4}\!\left(\frac{\theta}{2}\right)
+$$
+
+Wichtige Skalierungen:
+- $\propto Z^{2} z^{2}$: Höhere Kernladungen bewirken stärkere Streuung.
+- $\propto E^{-2}$: Höhere Strahlenergie verringert die Streuung.
+- Für kleine Winkel divergiert der Ausdruck wie $\theta^{-4}$.
+
+Die Abhängigkeit $1/\sin^{4}(\theta/2)$ stimmt über einen weiten Bereich mit den Daten überein, bis Abschirmung, Kernkräfte oder Relativität wichtig werden.
+
+---
+
+### 6.5.4 Kleinster Abstand und Kerngröße
+
+Bei **frontaler** Annäherung ($b=0$, $\theta=\pi$) wird die kinetische Energie am Umkehrpunkt $r_{\min}$ vollständig in potenzielle Energie umgewandelt:
+
+$$
+E = \frac{k}{r_{\min}}
+$$
+
+also
+
+$$
+r_{\min} = \frac{k}{E}
+$$
+
+Praktisch ist der Zahlenwert $e^{2}/(4\pi\varepsilon_{0}) \approx 1.44\ \text{eV}\cdot\text{nm}$. Für Alphateilchen mit $z=2$ auf Gold ($Z=79$) gilt $k \approx 79\times 2\times 1.44\ \text{eV}\cdot\text{nm} \approx 227.5\ \text{eV}\cdot\text{nm}$. Bei $E=5\ \text{MeV}$ folgt
+
+$$
+r_{\min} \approx \frac{227.5\ \text{eV}\cdot\text{nm}}{5\times 10^{6}\ \text{eV}} \approx 4.6\times 10^{-5}\ \text{nm} = 4.6\times 10^{-14}\ \text{m}
+$$
+
+Das sind einige zehn Femtometer, also um Größenordnungen weniger als die Atomgröße von $\sim 10^{-10}\ \text{m}$. Höhere Energien verringern $r_{\min}$ auf wenige Femtometer, die Größenordnung von Kernradien, im Einklang mit einem **winzigen**, dichten Zentrum.
+
+---
+
+### 6.5.5 Von Zählraten zu Wirkungsquerschnitten in einer Folie
+
+Für ein dünnes Target mit Atomzahldichte $n$ und Dicke $t$ ist die erwartete Rate in den Raumwinkel $\Delta\Omega$ beim Winkel $\theta$
+
+$$
+\text{Zählungen} \propto N_{\text{beam}}\; n t\; \frac{d\sigma}{d\Omega}(\theta)\; \Delta\Omega
+$$
+
+„Dünn“ bedeutet, dass Einfachstreuung dominiert und Abschwächung vernachlässigbar ist. Bei größerem $t$ oder geringerer Strahlenergie verwischt **Mehrfachstreuung** die reine Rutherford-Verteilung bei kleinen Winkeln.
+
+---
+
+### 6.5.6 Grenzen des klassischen Bildes
+
+- **Atomare Abschirmung bei kleinem $\theta$.** Bei großem $b$ sieht das Projektil ein nahezu neutrales Atom; gebundene Elektronen schirmen die Kernladung ab. Das effektive $Z$ sinkt und begrenzt die Divergenz $\theta^{-4}$. Ein grober Grenzwinkel entspricht Stoßparametern oberhalb der Abschirmlänge $\sim a_{0}/Z^{1/3}$.
+
+- **Kerngröße und starke Kraft bei großem $\theta$ und hohem $E$.** Nähert sich $r_{\min}$ wenigen Femtometern, verändern der endliche Kernradius und die **starke Wechselwirkung** das reine Coulombpotenzial. Abweichungen bei größten Winkeln oder höchsten Energien enthalten Informationen über die Kernstruktur.
+
+- **Relativität und Spin.** Für schnelle Elektronen als Projektile benötigt man die **Mott-Streuung**, also Korrekturen aus der Dirac-Theorie und Spin-Bahn-Effekte. Die Form $\csc^{4}(\theta/2)$ bleibt als Grundstruktur erhalten, ergänzt durch spinabhängige Faktoren.
+
+- **Quantenmechanik.** Die Quantenrechnung mit Partialwellen oder Born-Näherung reproduziert für Coulombpotenziale die Rutherford-Formel — eine bemerkenswerte Übereinstimmung von klassischer und Quantenphysik.
+
+---
+
+### 6.5.7 Was das Experiment **bewies**
+
+1) **Positive Ladung und der größte Teil der Masse befinden sich in einem winzigen Volumen** gegenüber dem gesamten Atom.
+2) Elektronen befinden sich außerhalb dieses Zentrums; das Atom besteht überwiegend aus leerem Raum.
+3) Die weitreichende Ablenkung ist **coulombisch** und auf ein Zentrum gerichtet, kein diffuser Schub.
+
+Diese Befunde widerlegten das Rosinenkuchenmodell und begründeten das **Kernatom**. Sie bereiteten Bohrs quantisierte Bahnen (§6.4) und später die eigentliche Quantenmechanik vor.
+
+---
+
+### 6.5.8 Kurze Herleitungen
+
+**(a) Differentieller Wirkungsquerschnitt**
+
+Wir beginnen mit $b(\theta)=\tfrac{k}{2E}\cot(\theta/2)$:
+
+$$
+\frac{d\sigma}{d\Omega}
+= \frac{b}{\sin\theta}\left|\frac{db}{d\theta}\right|
+= \left(\frac{k}{2E}\frac{\cot(\theta/2)}{\sin\theta}\right)\left(\frac{k}{4E}\csc^{2}\!\frac{\theta}{2}\right)
+= \left(\frac{k}{4E}\right)^{2} \csc^{4}\!\frac{\theta}{2}
+$$
+
+**(b) Integrierte Ausbeute oberhalb des Grenzwinkels $\theta_{0}$**
+
+Mit $d\sigma/d\Omega \propto \csc^{4}(\theta/2)$ und $d\Omega=2\pi\sin\theta\,d\theta$ gilt
+
+$$
+\sigma(\theta>\theta_{0}) = 2\pi \int_{\theta_{0}}^{\pi}\! \left(\frac{k}{4E}\right)^{2} \csc^{4}\!\frac{\theta}{2}\,\sin\theta\,d\theta
+= \pi \left(\frac{k}{2E}\right)^{2}\,\cot^{2}\!\frac{\theta_{0}}{2}
+$$
+
+Dies ist hilfreich zur Abschätzung von Zählraten, wenn der Detektor große Winkelbereiche abdeckt.
+
+**(c) Kleinster Abstand bei von null verschiedenem $b$**
+
+Aus Energie- und Drehimpulserhaltung mit $L=\mu v b$ folgt am Umkehrpunkt $r_{\min}$
+
+$$
+E = \frac{L^{2}}{2\mu r_{\min}^{2}} + \frac{k}{r_{\min}}
+$$
+
+Die quadratische Gleichung für $1/r_{\min}$ verknüpft die Geometrie, also $(b)$, mit der größten Annäherung des Alphateilchens.
+
+---
+
+### 6.5.9 Aufgabensammlung
+
+- Mit $d\sigma/d\Omega$ das Verhältnis der Zählraten bei $30^\circ$ und $60^\circ$ für denselben Detektorraumwinkel bestimmen.
+- Für Alphateilchen mit $5\ \text{MeV}$ auf Au den Abstand $r_{\min}$ bei $b=0$ berechnen und mit dem Kernradius $R\approx r_{0} A^{1/3}$ bei $r_{0}\sim 1.2\ \text{fm}$ vergleichen.
+- Abschirmung durch einen maximalen Stoßparameter in Höhe der Abschirmlänge berücksichtigen und zeigen, wie dies die Kleinwinkeldivergenz begrenzt.
+- Die Beziehung zwischen Labor- und Schwerpunktenergie $E$ herleiten und erklären, warum die Laborenergie $E$ für $\text{Au}$-Targets eine sehr gute Näherung ist.
+
+---
+
+**Zusammenfassung:** Der Goldfolienversuch zeigte, dass Atome überwiegend aus leerem Raum bestehen und einen winzigen, massereichen, positiv geladenen Kern besitzen. Die Coulombstreuung liefert eine präzise Winkelabhängigkeit ohne freie Anpassungsparameter:
+
+$$
+\frac{d\sigma}{d\Omega} = \left(\frac{Z z e^{2}}{16\pi\varepsilon_0 E}\right)^{2} \csc^{4}\!\left(\frac{\theta}{2}\right)
+$$
+
+Die beobachteten großen Streuwinkel machten das Kernatom unvermeidlich. Mit einem kompakten Kern werden Bohrs quantisierte Bahnen und diskrete Spektren zu Bausteinen einer Struktur statt zu bloßen Kunstgriffen.
+
+---
+
+## 6.6 Materiewellen: von de Broglie zu Davisson und Germer
+
+Wenn Licht sich wie Teilchen verhalten kann, können sich Teilchen vielleicht wie Wellen verhalten. Diese kühne Symmetrieidee formulierte Louis de Broglie 1923–24. Er vermutete, jedem Materieteilchen mit Impuls $p$ sei die Wellenlänge $\lambda=h/p$ zugeordnet. Gewagt? Gewiss. Doch wenige Jahre später traf die Vorhersage zu: Elektronen wurden an Kristallen wie Röntgenstrahlen gebeugt, und die gemessenen Winkel passten zu $\lambda=h/p$. Materiewellen waren keine Metapher, sondern Laborwirklichkeit.
+
+---
+
+### 6.6.1 Die Hypothese
+
+De Broglies knappe Beziehung lautet
+
+$$
+\lambda = \frac{h}{p}
+$$
+
+Zusammen mit den Photonenbeziehungen $E=h\nu=\hbar \omega$ und $p=\hbar k$ schlug er das **Welle-Teilchen-Wörterbuch** vor:
+
+$$
+E = \hbar \omega,\qquad p = \hbar k
+$$
+
+Die beiden Gleichheiten besagen: Zu Energie und Impuls $(E,\boldsymbol p)$ gehört eine Welle mit Kreisfrequenz $\omega$ und Wellenvektor $\boldsymbol k$.
+
+---
+
+### 6.6.2 Phasen- und Gruppengeschwindigkeit
+
+Für ein freies Teilchen mit der Dispersionsrelation $E(\boldsymbol p)$ definieren wir
+
+$$
+\omega = \frac{E}{\hbar},\qquad \boldsymbol k = \frac{\boldsymbol p}{\hbar}
+$$
+
+Dann gilt
+
+$$
+v_{\text{phase}} \equiv \frac{\omega}{k} = \frac{E}{p},\qquad
+\boldsymbol v_{\text{group}} \equiv \nabla_{\boldsymbol k}\,\omega = \nabla_{\boldsymbol p} E
+$$
+
+- **Relativistisch** ergeben $E=\gamma m c^{2}$ und $p=\gamma m v$
+
+$$
+v_{\text{phase}} = \frac{c^{2}}{v},\qquad v_{\text{group}} = v
+$$
+
+Die Phase kann sich problemlos überlichtschnell bewegen, da sie keine Information trägt; die **Gruppengeschwindigkeit** entspricht der Teilchengeschwindigkeit.
+
+- **Nichtrelativistisch** liefert $E=p^{2}/(2m)$
+
+$$
+\omega = \frac{\hbar k^{2}}{2m},\qquad v_{\text{group}} = \frac{\hbar k}{m} = \frac{p}{m} = v
+$$
+
+Deshalb können Wellenpakete der Teilchenbewegung folgen.
+
+---
+
+### 6.6.3 Wellenpakete und Unschärfe: ein Ausblick
+
+Ein lokalisiertes Teilchen entspricht einer Überlagerung ebener Wellen, einem **Wellenpaket**. Bei einer Impulsbreite $\Delta p$, also einer Streuung in $k$, erfüllt die räumliche Breite
+
+$$
+\Delta x \,\Delta p \gtrsim \frac{\hbar}{2}
+$$
+
+Das Paket bewegt sich mit $v_{\text{group}}$, **zerfließt** aber bei nichtrelativistischem $E\propto k^{2}$ mit der Zeit, weil verschiedene $k$-Anteile leicht unterschiedliche Geschwindigkeiten haben. Darin liegen die Anfänge von Unschärfeprinzip und Schrödingerdynamik.
+
+---
+
+### 6.6.4 Beschleunigte Elektronen: nützliche Formeln
+
+Wird ein Elektron durch die Spannung $V$ beschleunigt, gewinnt es die kinetische Energie $eV$. Sein **nichtrelativistischer** Impuls ist
+
+$$
+p = \sqrt{2 m_e e V}
+$$
+
+also
+
+$$
+\lambda = \frac{h}{\sqrt{2 m_e e V}}
+$$
+
+Eine praktische Zahlenformel verwendet $\lambda$ in Ångström und die Beschleunigungsspannung $V$ in Volt:
+
+$$
+\lambda(\text{Å}) \approx \frac{12.27}{\sqrt{V(\text{V})}}
+$$
+
+Bei höheren Spannungen muss die Relativität berücksichtigt werden:
+
+$$
+\lambda = \frac{h c}{\sqrt{(eV)\,(eV + 2 m_e c^{2})}}
+$$
+
+Für $eV \ll m_e c^{2}$ geht dies in das nichtrelativistische Ergebnis über.
+
+---
+
+### 6.6.5 Beugung: Kristalle als Elektronengitter
+
+Ein Kristall ist ein dreidimensionales Beugungsgitter. Für Netzebenen mit Abstand $d$ folgt konstruktive Interferenz aus der **Bragg-Bedingung**:
+
+$$
+n\,\lambda = 2 d \sin\theta,\qquad n=1,2,\dots
+$$
+
+Mit $\lambda=h/p$ sollten Elektronen somit bei durch $d$ bestimmten Winkeln gebeugt werden — genau wie Röntgenstrahlen. Das war der entscheidende Nachweis, nach dem de Broglies Hypothese verlangte.
+
+---
+
+### 6.6.6 Davisson–Germer und G. P. Thomson: die Belege
+
+**Davisson und Germer (1927).** Elektronen mit einigen zehn eV wurden an einem Nickeleinkristall gestreut und erzeugten scharfe Intensitätsmaxima bei Winkeln, die mit Braggs Gesetz und $\lambda=h/p$ übereinstimmten. Eine Änderung der Beschleunigungsspannung verschob die Maxima entsprechend $\lambda\propto 1/\sqrt{V}$.
+
+**G. P. Thomson (ebenfalls 1927)** schickte Elektronen mit keV-Energien durch dünne polykristalline Folien und beobachtete **Ringmuster**, die Pulverbeugungsvariante der Bragg-Beugung. Zwei unabhängige Wege, ein Ergebnis: Materiewellen existieren.
+
+Faustregel: $V\sim 150\ \text{V}$ ergibt $\lambda\sim 1\ \text{Å}$, also typische Atomabstände — ideal für Kristallbeugung.
+
+---
+
+### 6.6.7 Von Bohr zu de Broglie: stehende Wellen
+
+Bohrs Drehimpulspostulat $m v r = n\hbar$ wirkt weniger willkürlich, wenn man **stehende Wellen** auf einer Kreisbahn fordert:
+
+$$
+2\pi r = n\,\lambda = n\,\frac{h}{p}
+$$
+
+Daraus folgt
+
+$$
+p r = n\,\hbar
+$$
+
+Dieselbe Quantisierung, nun mit einer Wellenbegründung. Nicht zugelassene Radien passen nicht zur Phasenbedingung und werden durch destruktive Interferenz ausgeschlossen. De Broglie lieferte damit die anschauliche Begründung, die Bohrs Modell fehlte.
+
+---
+
+### 6.6.8 Schrödingers Motivation: warum eine Wellengleichung?
+
+Wir nehmen die freie Dispersionsrelation $E=p^{2}/(2m)$ und de Broglies Zuordnung $E\to i\hbar\,\partial_t$, $\boldsymbol p\to -i\hbar\nabla$. Gefordert ist eine lineare Differentialgleichung, deren ebene Wellen $\omega=\hbar k^{2}/(2m)$ erfüllen. Mit zusätzlichem Potenzial gelangt man zu
+
+$$
+i\hbar\,\frac{\partial \psi}{\partial t} = -\,\frac{\hbar^{2}}{2m}\,\nabla^{2}\psi + V\psi
+$$
+
+der zeitabhängigen **Schrödingergleichung**. Anders gesagt: De Broglies $E(\boldsymbol p)$ ist die Dispersionsrelation, die Schrödingers partielle Differentialgleichung im Ortsraum verwirklicht.
+
+Eine ergänzende Sicht bietet die Hamilton-Jacobi-Theorie: Schreibt man $\psi \sim \exp(i S/\hbar)$, verhält sich $\nabla S$ wie der Impuls. **Phase** und **Interferenz** verbinden die klassische Mechanik mit der Quantenmechanik.
+
+---
+
+### 6.6.9 Elektronen am Doppelspalt: der entscheidende Versuch
+
+Man schickt einzelne Elektronen durch zwei Spalte und registriert jeden Einschlag. Mit der Zeit entsteht auf dem Schirm ein **Interferenzmuster**; misst man jedoch, **welchen Spalt** jedes Elektron passiert, verschwindet die Interferenz. Die zugehörige Wellenlänge stimmt mit $\lambda=h/p$ überein. Es geht nicht um verschmierte Elektronen: Wahrscheinlichkeitsamplituden **interferieren**, und ihre Phasen werden durch Wirkungsdifferenzen bestimmt.
+
+---
+
+### 6.6.10 Technik mit Materiewellen: Mikroskopie und Metrologie
+
+- **Elektronenmikroskope.** Die Auflösung skaliert grob mit $\sim \lambda$. Der Wechsel von sichtbarem Licht mit $\sim 500\ \text{nm}$ zu 100-keV-Elektronen mit relativistisch korrigiertem $\lambda\sim 0.004\ \text{nm}$ ermöglicht daher routinemäßig Einblicke in die Nanowelt.
+- **LEED/RHEED.** Die Beugung niederenergetischer Elektronen und die Reflexionsbeugung hochenergetischer Elektronen bestimmen Oberflächenstrukturen und verfolgen deren Wachstum in Echtzeit.
+- **Atominterferometrie.** Auch neutrale Atome besitzen de-Broglie-Wellen; ihre Aufspaltung und erneute Überlagerung misst Gravitation, Rotation und Naturkonstanten mit außerordentlicher Präzision.
+
+---
+
+### 6.6.11 Kurze Rechenbeispiele
+
+**(a) De-Broglie-Wellenlänge bei $54\ \text{eV}$.**
+
+Mit $\lambda(\text{Å})\approx 12.27/\sqrt{V(\text{V})}$ folgt
+
+$$
+\lambda \approx \frac{12.27}{\sqrt{54}}\ \text{Å} \approx 1.67\ \text{Å}
+$$
+
+Das liegt genau im Bereich typischer Kristallabstände; daher zeigten sich bereits bei mäßigen Spannungen deutliche Maxima.
+
+**(b) Spannung für $\lambda=1.0\ \text{Å}$.**
+
+Wir lösen dieselbe Regel umgekehrt auf:
+
+$$
+V \approx \left(\frac{12.27}{\lambda(\text{Å})}\right)^{2}\ \text{V} \approx 150\ \text{V}
+$$
+
+**(c) Prüfung der nichtrelativistischen Gruppengeschwindigkeit.**
+
+Mit $\omega=\hbar k^{2}/(2m)$ gilt
+
+$$
+v_{\text{group}} = \frac{d\omega}{dk} = \frac{\hbar k}{m} = \frac{p}{m} = v
+$$
+
+Das Paket bewegt sich wie das Teilchen: Die Beschreibung ist konsistent.
+
+**(d) Abschätzung des Bragg-Winkels.**
+
+Für $d=2.0\ \text{Å}$, $\lambda=1.0\ \text{Å}$ und die erste Ordnung $n=1$ gilt
+
+$$
+\sin\theta = \frac{\lambda}{2d} = \frac{1}{4}\quad\Rightarrow\quad \theta \approx 14.5^\circ
+$$
+
+Reale Experimente berücksichtigen geometrische Faktoren zwischen Einfalls- und Detektionsrichtung; die Skalierung stimmt jedoch.
+
+---
+
+### 6.6.12 Feinheiten und Grenzen
+
+- **Ausbreitung des Wellenpakets.** Nichtrelativistische Pakete werden mit der Zeit breiter; reale Strahlen werden fortlaufend kollimiert oder vor starker Dispersion nachgewiesen.
+- **Streuung und gebundene Zustände.** Bei elastischer Beugung wirkt ein Kristall als großes Phasengitter; in Atomen quantisieren stehende Wellen gebundener Zustände die Energien.
+- **Schwere Teilchen.** $\lambda=h/p$ nimmt bei fester Geschwindigkeit rasch mit der Masse ab; Neutronen- und Atominterferometer nutzen kleine Geschwindigkeiten, um brauchbare Wellenlängen zu erhalten.
+- **Relativistische Elektronen.** Die korrigierte Wellenlänge $\lambda$ verwenden: Bei 100 keV unterschätzen nichtrelativistische Formeln den Impuls und überschätzen $\lambda$.
+
+---
+
+### 6.6.13 Aufgabensammlung
+
+- Für ein freies relativistisches Teilchen $v_{\text{phase}}\,v_{\text{group}}=c^{2}$ zeigen.
+- Für einen Elektronenstrahl mit $200\ \text{keV}$ die Wellenlänge $\lambda$ mit und ohne relativistische Korrektur berechnen und vergleichen.
+- Für einen kubischen Kristall mit Gitterkonstante $a$ die Netzebenenabstände $d$ für $(100)$, $(110)$ und $(111)$ angeben und bei gewähltem $\lambda$ die Bragg-Winkel erster Ordnung bestimmen.
+- Ein gaußförmiges Wellenpaket $\psi(x,0)$ mit dem freien Schrödinger-Propagator zeitlich entwickeln und die Zeitabhängigkeit seiner quadratischen mittleren Breite bestimmen.
+
+---
+
+## 6.7 Alte Quantentheorie: Erfolge und Fehlschläge
+
+Bevor 1925–26 die vollständige Quantenmechanik entstand, ergänzten Physiker die klassische Mechanik durch einige kühne Zusatzregeln. Sie quantisierten bestimmte Integrale, führten Auswahlregeln ein und verknüpften sie mit Bohrs Frequenzbedingung. Diese **alte Quantentheorie** erklärte das Wasserstoffspektrum und deutete tiefere Strukturen an, scheiterte jedoch an Mehrelektronenatomen, Intensitäten und magnetischen Besonderheiten. Dieser Abschnitt zieht Bilanz: Was funktionierte, was versagte und was in die moderne Quantenmechanik einging.
+
+---
+
+### 6.7.1 Was „alte Quantentheorie“ bedeutete
+
+Das Vorgehen ruhte auf drei Säulen:
+
+1) Es gibt **stationäre Zustände**, die nicht strahlen, obwohl sich das Elektron auf einer Coulombbahn bewegt.
+2) Die **Bohr-Sommerfeld-Quantenbedingungen** wählen zulässige Bewegungen aus.
+3) **Bohrs Frequenzbedingung** verknüpft Energiedifferenzen mit Licht.
+
+Für Energieniveaus $E_n$ emittiert ein abwärts gerichteter Übergang $n\to n'$ ein Photon mit der folgenden Energie; Absorption ist der umgekehrte Vorgang:
+
+$$
+h\nu = E_n - E_{n'}
+$$
+
+Der mathematisch entscheidende Schritt war die Quantisierung von **Wirkungen**.
+
+---
+
+### 6.7.2 Bohr-Sommerfeld-Quantenbedingungen
+
+Für ein System mit separierbaren Koordinaten $q_i$ und konjugierten Impulsen $p_i$ erfüllen die erlaubten Bahnen
+
+$$
+\oint p_i\,dq_i = n_i\,h,\qquad n_i=0,1,2,\dots
+$$
+
+Das Linienintegral erstreckt sich über eine vollständige Periode der Bewegung in $q_i$. Wir definieren die **Wirkungsvariablen**
+
+$$
+J_i \equiv \oint p_i\,dq_i
+$$
+
+Dann lautet die Regel schlicht $J_i = n_i h$. Die $J_i$ sind **adiabatische Invarianten**: Bei langsamen Parameteränderungen bleiben sie konstant. Ehrenfest erhob diese Eigenschaft zum **Adiabatenprinzip**. Für integrable, separierbare Dynamik greifen die Regeln; andernfalls verlieren sie ihre Grundlage.
+
+---
+
+### 6.7.3 Wasserstoff, nun allgemeiner
+
+Bohrs Kreisbahnen sind ein Spezialfall. Mit Sommerfelds Ellipsen besitzt das Coulombproblem zwei Wirkungen: die **radiale** $J_r$ und die **Winkelwirkung** $J_\phi$. Die Quantisierung ergibt
+
+$$
+J_\phi = \ell\,h,\qquad J_r = n_r\,h,\qquad n = n_r + \ell
+$$
+
+und die Gesamtenergie hängt nur von $n$ ab:
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi\varepsilon_0)^2 \hbar^2}\,\frac{1}{n^{2}}
+$$
+
+Die Hauptquantenzahl $n$ ordnet die Zustände bereits in der alten Theorie, obwohl dort noch keine Wellenfunktion zur Interpretation der Knoten existiert. Sommerfeld fügte auch eine relativistische Korrektur hinzu und erhielt eine **Feinstrukturaufspaltung**, einen Vorgriff auf Diracs spätere systematische Theorie.
+
+---
+
+### 6.7.4 Harmonischer Oszillator: das „fast richtige“ Spektrum
+
+Für einen eindimensionalen harmonischen Oszillator mit Kreisfrequenz $\omega$ ergibt das Wirkungsintegral
+
+$$
+J = \oint p\,dq = \frac{2\pi E}{\omega}
+$$
+
+Bohr–Sommerfeld fordert $J = n h$, also
+
+$$
+E_n = n\,\hbar\omega
+$$
+
+Dies liegt **nahe** am richtigen Ergebnis; die moderne Quantenmechanik liefert $E_n=(n+\tfrac12)\hbar\omega$. Die fehlende $\tfrac12$ ist die **Nullpunktsenergie** des Oszillators — einer von mehreren Fällen, in denen die alte Quantentheorie um eine halbe Einheit danebenliegt.
+
+---
+
+### 6.7.5 Korrespondenzprinzip und Auswahlregeln
+
+Bohrs **Korrespondenzprinzip** leitete die Vermutungen: Für große Quantenzahlen $n\gg 1$ müssen Quantenvorhersagen in klassische Ergebnisse übergehen. Bei gebundener Bewegung lässt sich eine klassische Bahn in Fourierkomponenten zerlegen; die stärksten erlaubten Quantenübergänge nähern sich Frequenzen des klassischen Spektrums. Diese Überlegung unterstützte die empirische Dipol-**Auswahlregel**
+
+$$
+\Delta \ell = \pm 1
+$$
+
+und erklärte, warum Übergänge mit stark abweichenden Frequenzen schwach sind. Später erhielt das Prinzip in der **Kramers-Heisenberg-Dispersionsformel** und in Summenregeln eine präzise mathematische Form.
+
+---
+
+### 6.7.6 Einsteins $A$- und $B$-Koeffizienten: Schwarzkörperstrahlung aus Übergängen
+
+1916–17 formulierte Einstein ein kinetisches Modell für Strahlungsübergänge zwischen zwei Niveaus $1$ und $2$ mit Entartungsgraden $g_1,g_2$. In einem Strahlungsfeld der spektralen Energiedichte $\rho(\nu)$ lauten die Raten
+
+$$
+\text{Absorption: } N_1 B_{12}\,\rho(\nu),\qquad
+\text{stimulierte Emission: } N_2 B_{21}\,\rho(\nu),\qquad
+\text{spontane Emission: } N_2 A_{21}
+$$
+
+Thermisches Gleichgewicht und die Boltzmann-Faktoren $N_2/N_1=(g_2/g_1)\exp(-h\nu/k_B T)$ verlangen dann
+
+$$
+\frac{A_{21}}{B_{21}} = \frac{8\pi h \nu^{3}}{c^{3}},\qquad
+\frac{g_1\,B_{12}}{g_2\,B_{21}} = 1
+$$
+
+und reproduzieren **Plancks Gesetz** für $\rho(\nu)$. Hier erschien erstmals theoretisch die **stimulierte Emission**, die Jahrzehnte später in Lasern genutzt wurde. Die alte Quantentheorie konnte die Strahlungsbilanz korrekt aufstellen.
+
+---
+
+### 6.7.7 Dispersionstheorie und erste Summenregeln
+
+Kramers beschrieb optische Dispersion durch virtuelle Übergänge zwischen Niveaus. Mithilfe der Korrespondenz leitete er frequenzabhängige Polarisierbarkeiten her, die bei niedrigen Frequenzen dem klassischen Lorentz-Drude-Verhalten entsprachen und zugleich Quantenauswahlregeln berücksichtigten. Heisenberg und Born ersetzten daraufhin klassische Amplituden durch **Anordnungen** von Übergangsamplituden — die Brücke zur **Matrizenmechanik**. Schon zuvor lieferten **Summenregeln**, die Oszillatorstärken mit Ladungen verknüpfen, wichtige Einschränkungen für Spektren.
+
+---
+
+### 6.7.8 Thermodynamische Erfolge: Wärmekapazitäten von Festkörpern
+
+Die klassische Gleichverteilung sagt eine konstante molare Wärmekapazität $C_V=3R$ voraus, das Dulong-Petit-Gesetz. Messungen bei kleinen $T$ widersprechen. **Einsteins Modell** von 1907 behandelt jedes Atom als unabhängigen Quantenoszillator mit Frequenz $\omega_E$:
+
+$$
+C_V = 3R\,\left(\frac{\theta_E}{T}\right)^2 \frac{e^{\theta_E/T}}{\left(e^{\theta_E/T}-1\right)^2},\qquad \theta_E \equiv \frac{\hbar\omega_E}{k_B}
+$$
+
+Es erfasst den Abfall, aber nicht das genaue Potenzgesetz bei tiefen $T$. **Debye** verbesserte es durch Quantisierung akustischer Moden bis zu einer Grenzfrequenz $\omega_D$ und erhielt $C_V\propto T^3$ bei kleinem $T$ und $3R$ bei hohem $T$. Diese Erfolge gehören nicht zur Bahnquantisierung, zeigen aber, dass **Diskretheit** auch die Thermodynamik korrigiert.
+
+---
+
+### 6.7.9 Wo die alte Quantentheorie scheiterte
+
+- **Helium und Mehrelektronenatome.** Das Coulomb-Dreikörperproblem besitzt nicht genügend unabhängige Bewegungsintegrale für eine einfache Wirkungsquantisierung. Ad-hoc-Quantenbedingungen lieferten widersprüchliche Energien und falsche Termstrukturen. Helium blieb eine Problemzone, bis Wellenmechanik und **Spin** hinzukamen.
+
+- **Anomaler Zeeman-Effekt.** In schwachen Magnetfeldern zerfallen viele Spektrallinien in mehr Komponenten, als klassische Vorstellungen oder Bahndrehimpuls allein erklären. Dafür braucht man **Elektronenspin** und Spin-Bahn-Kopplung, die der alten Theorie fehlten.
+
+- **Intensitäten und Polarisationen.** Für wasserstoffähnliche Systeme stimmten die Niveaupositionen; **Linienstärken**, **Polarisationen** und **Lebensdauern** verlangten jedoch Matrixelemente von Operatoren zwischen Wellenfunktionen — Werkzeuge, die der alten Quantentheorie fehlten.
+
+- **Strahlung beschleunigter Ladungen.** Die alte Theorie erklärte stationäre Bahnen per Postulat für strahlungsfrei, obwohl beschleunigte Ladungen klassisch strahlen. Die Regel funktionierte phänomenologisch, blieb aber unbegründet, bis die Wellenmechanik die „Bahn“ durch eine stationäre **stehende Welle** ersetzte.
+
+- **Nichtseparierbare Systeme und Chaos.** Die Wirkungsquantisierung benötigt separierbare Koordinaten und geschlossene invariante Tori im Phasenraum. Viele Bewegungen, etwa gekoppelte anharmonische Oszillatoren oder allgemeine Moleküle, erfüllen dies nicht. Ohne partielle Differentialgleichung für $\psi$ kommt die Methode nicht weiter.
+
+- **Nullpunktsenergie.** Die fehlenden $\tfrac12\hbar\omega$ des Oszillators zeigen sich in Experimenten zu Tieftemperaturfluktuationen und später bei der Feldquantisierung. Die alte Theorie hatte keine allgemeine Regel dafür.
+
+---
+
+### 6.7.10 Was in der modernen Quantenmechanik weiterlebte
+
+- **Wirkungen und adiabatische Invarianten** gingen in die semiklassischen **WKB/EBK-Quantisierungsregeln** ein:
+
+$$
+\oint p\,dq = \left(n + \frac{\mu}{4}\right)h
+$$
+
+Die **Maslov-Indizes** $\mu$ liefern dabei die fehlenden halben Einheiten.
+
+- Das **Korrespondenzprinzip** bleibt eine Plausibilitätsprüfung und liegt Summenregeln, Auswahlregeln und semiklassischen Näherungen zugrunde.
+
+- **Einsteins $A$- und $B$-Koeffizienten** sowie Oszillatorstärken werden in Atomphysik, Lasertechnik und astrophysikalischer Diagnostik weiterverwendet.
+
+- **Quantenzahlen** $(n,\ell,m)$ bleiben die Kennzeichnungen; sie beschreiben nun Eigenwerte kommutierender Operatoren statt Flächen unter Kurven.
+
+- **De Broglies stehende Wellen** wurden zur vollständigen Theorie der **Eigenfunktionen**, die Stabilität und Strahlungswahrscheinlichkeiten aus Überlappungen statt aus Bahnen erklärt.
+
+---
+
+### 6.7.11 Kurze Rechenbeispiele
+
+**(a) Wirkung im Keplerproblem**
+
+Für das Coulombpotenzial lässt sich die radiale Wirkung zwischen Periapsis und Apoapsis berechnen. Man erhält $J_\phi=\ell h$ und
+
+$$
+J_r = h\,(n - \ell)
+$$
+
+Daher hängt $E$ nur von $n$ ab, mit $E_n\propto -1/n^2$ und Entartung in $\ell$. Spin-Bahn-Kopplung und Lamb-Verschiebung heben später Teile dieser Entartung auf.
+
+**(b) Die fehlende Hälfte des Oszillators**
+
+Aus $J=2\pi E/\omega$ und $J=n h$ folgt $E_n=n\hbar\omega$. In der WKB-Näherung tragen die beiden Umkehrpunkte jeweils eine Phase $\pi/2$ bei; dadurch wird $J=(n+\tfrac12)h$ und das richtige Ergebnis $E_n=(n+\tfrac12)\hbar\omega$ entsteht.
+
+**(c) Dipolauswahl**
+
+Man entwickle das Dipolmoment einer klassischen Kreisbahn in Fouriermoden bei Vielfachen der Umlauffrequenz. Die erste Harmonische ist die stärkste und entspricht im Grenzfall großer $n$ den Übergängen $\Delta \ell=\pm 1$ sowie benachbarten $n$-Werten.
+
+---
+
+### 6.7.12 Aufgabensammlung
+
+- Aus $\oint p\,dq = n h$ die Energien $E_n$ des harmonischen Oszillators herleiten und mit dem WKB-korrigierten Ergebnis $(n+\tfrac12)\hbar\omega$ vergleichen.
+- Für die Coulombbewegung $J_\phi$ und $J_r$ berechnen und zeigen, dass $E$ nur von $n=n_r+\ell$ abhängt.
+- Aus Einsteins Ratengleichungen $\rho(\nu)$ herleiten und $A_{21}/B_{21}$ sowie $B_{12}/B_{21}$ durch $(g_1,g_2)$ ausdrücken.
+- Zeigen, wie Kramers' Dispersion für $\hbar\omega \ll k_B T$ und dicht liegende Übergänge in das klassische Lorentz-Modell übergeht.
+- Ein System mit nichtseparierbaren Variablen benennen und erklären, warum die Bohr-Sommerfeld-Quantisierung ohne Wellenmechanik nicht weiterkommt.
+
+---
+
+**Zusammenfassung:** Die alte Quantentheorie war eine brillante Übergangslösung. Sie wählte die richtigen Invarianten zur Quantisierung, wahrte die Korrespondenz zur klassischen Physik und sagte sogar stimulierte Emission voraus. Ohne Wellenfunktionen, Operatoren und Spin konnte sie jedoch weder Intensitäten und Mehrelektronenspektren noch magnetische Einzelheiten berechnen. Ihre Erfolge bildeten das Gerüst für Heisenbergs Matrizen und Schrödingers Wellen; ihre Grenzen zeigten, wo die vollständige Theorie entstehen musste.
+
+---
+
+## 6.8 Spin, Stern–Gerlach und das Ausschlussprinzip
+
+In den 1910er- und 1920er-Jahren verrieten Atome ein Geheimnis: Drehimpuls trat in halben Einheiten auf, und die Plätze für Elektronen waren begrenzt. **Stern–Gerlach** spaltete neutrale Strahlen in diskrete Bahnen, **Spin** erklärte „anomale“ Zeeman-Aufspaltungen, und **Paulis Ausschlussprinzip** ordnete das Periodensystem und begründete die Stabilität der Materie. Dieser Abschnitt führt Spin als echten Quantenfreiheitsgrad ein, erläutert sein magnetisches Moment und die Wirkung von Feldern und erklärt, warum die Regel „keine zwei identischen Fermionen im selben Zustand“ Chemie und Weiße Zwerge trägt.
+
+---
+
+### 6.8.1 Stern–Gerlach: Richtungsquantelung wird sichtbar
+
+1922 schickten Otto Stern und Walther Gerlach einen Strahl neutraler Silberatome durch ein **inhomogenes** Magnetfeld. Klassisch könnte die Komponente des magnetischen Moments entlang des Feldgradienten kontinuierlich variieren und einen breiten Fleck erzeugen. Stattdessen beobachteten sie **zwei** getrennte Bereiche. Die Folgerung: Die $z$-Komponente des Drehimpulses ist **quantisiert**.
+
+Silber eignet sich, weil ein einzelnes ungepaartes Valenzelektron das magnetische Moment dominiert und das Atom zugleich neutral bleibt, also keine Lorentzablenkung erfährt. Die Kraft ist
+
+$$
+F_z = \mu_z\,\frac{\partial B_z}{\partial z}
+$$
+
+Die Zweifachaufspaltung zeigt, dass $\mu_z$ nur zwei Werte annimmt. In heutiger Sprache entspricht dies dem Spin mit $m_s=\pm \tfrac12$.
+
+---
+
+### 6.8.2 Spin-$\tfrac12$: Algebra und Eigenwerte
+
+Quantenmechanisch kommutieren die Spinkomponenten nicht:
+
+$$
+[S_i,S_j]=i\hbar\,\epsilon_{ijk}\,S_k
+$$
+
+Für ein Elektron lauten der Gesamtspin und seine $z$-Projektion
+
+$$
+S^2 = s(s+1)\hbar^2,\qquad s=\frac12
+$$
+
+$$
+S_z\,\ket{\uparrow}=\frac{\hbar}{2}\ket{\uparrow},\qquad
+S_z\,\ket{\downarrow}=-\frac{\hbar}{2}\ket{\downarrow}
+$$
+
+Eine praktische Matrixdarstellung verwendet die **Pauli-Matrizen** $\boldsymbol{\sigma}$ mit $S_i=\tfrac{\hbar}{2}\sigma_i$:
+
+$$
+\sigma_x=\begin{pmatrix}0&1\\[2pt]1&0\end{pmatrix},\quad
+\sigma_y=\begin{pmatrix}0&-i\\[2pt]i&0\end{pmatrix},\quad
+\sigma_z=\begin{pmatrix}1&0\\[2pt]0&-1\end{pmatrix}
+$$
+
+Spinzustände sind zweikomponentige **Spinoren**. Drehungen wirken über diese Matrizen, und eine Messung entlang einer beliebigen Achse liefert eines von zwei Ergebnissen.
+
+---
+
+### 6.8.3 Magnetisches Moment, Zeeman-Aufspaltung und Larmorpräzession
+
+Mit dem Elektronenspin ist ein magnetisches Moment verbunden:
+
+$$
+\boldsymbol{\mu}_s = -\,g_s\,\frac{e}{2m_e}\,\boldsymbol{S}
+$$
+
+Die Dirac-Theorie liefert $g_s\approx 2$, mit kleinen QED-Korrekturen. Wir definieren das **Bohrsche Magneton**
+
+$$
+\mu_B \equiv \frac{e\hbar}{2m_e}
+$$
+
+In einem homogenen Magnetfeld $\boldsymbol{B}=B\hat{\boldsymbol{z}}$ ist die Wechselwirkungsenergie
+
+$$
+H_Z = -\,\boldsymbol{\mu}\cdot\boldsymbol{B} = g_s\,\mu_B\,m_s\,B
+$$
+
+Ein Spin-$\tfrac12$ spaltet daher in zwei Niveaus mit dem Abstand
+
+$$
+\Delta E = g_s\,\mu_B\,B
+$$
+
+Spins **präzedieren** außerdem um $\boldsymbol{B}$ mit der **Larmorfrequenz** — klassisch anschaulich und dennoch quantenmechanisch exakt:
+
+$$
+\omega_L = \frac{g_s\,\mu_B\,B}{\hbar}
+$$
+
+Dies liegt der Magnetresonanz (NMR/EPR) zugrunde und erscheint als Schwebungsfrequenz in zeitabhängiger Spindynamik.
+
+---
+
+### 6.8.4 Normaler und „anomaler“ Zeeman-Effekt: Spin liefert die Erklärung
+
+Frühe Spektroskopie fand im Magnetfeld Aufspaltungen, die über das **normale Zeeman-Triplett** hinausgehen. Entscheidend ist der Gesamtdrehimpuls
+
+$$
+\boldsymbol{J}=\boldsymbol{L}+\boldsymbol{S}
+$$
+
+mit einem niveauspezifischen Landé-Faktor $g_J$. Die Zeeman-Energieverschiebung ist
+
+$$
+\Delta E = \mu_B\,g_J\,m_J\,B
+$$
+
+mit $m_J=-J,-J+1,\dots,J$. Spin erklärt die „anomalen“ Muster: $g_J$ folgt aus der Vektorkopplungsalgebra, und die Auswahlregeln $\Delta m_J=0,\pm 1$ bestimmen Zahl und Polarisation der Linien. Zusätzliche Hilfskonstruktionen sind unnötig.
+
+---
+
+### 6.8.5 Spin-Bahn-Kopplung und Thomas-Faktor
+
+Ein Elektron, das sich im Kernfeld bewegt, sieht in seinem Ruhesystem ein Magnetfeld, das $\boldsymbol{L}$ und $\boldsymbol{S}$ koppelt:
+
+$$
+H_{SO} = \xi(r)\,\boldsymbol{L}\cdot\boldsymbol{S}
+$$
+
+Eine sorgfältige relativistische Behandlung ergänzt den Faktor $\tfrac12$ der **Thomas-Präzession** und bringt die Vorhersagen mit der beobachteten **Feinstruktur** in Einklang. Terme spalten nach $J$ auf, selbst bei festem $n$ und $\ell$, etwa in den bekannten Dubletts der Alkalispektren.
+
+---
+
+### 6.8.6 Paulis Ausschlussprinzip: zwei Elektronen pro Orbital
+
+1925 schlug Wolfgang Pauli vor: **Keine zwei identischen Fermionen dürfen denselben Quantenzustand besetzen.** Für Elektronen in Atomen bedeutet dies höchstens zwei pro räumlichem Orbital, mit **entgegengesetzten Spins**. Ein Einelektronenzustand wird durch $(n,\ell,m_\ell,m_s)$ bezeichnet; identische Vierertupel sind ausgeschlossen. Unmittelbare Erfolge:
+
+- **Aufbau des Periodensystems.** Schalen und Unterschalen werden in der beobachteten Reihenfolge gefüllt, mit Korrekturen durch Korrelation und Abschirmung; so erklärt sich die chemische Valenz. Zwei Elektronen pro Orbital ergeben die Schalenkapazitäten $2,\,8,\,18,\dots$.
+- **Magnetismus.** Die meisten Elektronenspins sind gepaart; ungepaarte Spins erzeugen Paramagnetismus. Der **Pauli-Paramagnetismus** von Leitungselektronen in Metallen ist schwach und im Vergleich zum Curie-Gesetz lokalisierter Momente nahezu temperaturunabhängig.
+- **Stabilität der Materie.** Elektronen können nicht alle in das tiefste Orbital fallen. Dicht gepackte Fermionen erzeugen **Entartungsdruck**, der Kompression entgegenwirkt — bei mechanischen Eigenschaften von Metallen ebenso wie bei der Stabilisierung **Weißer Zwerge**.
+
+Die tiefere Grundlage ist das **Spin-Statistik-Theorem** der relativistischen Quantenfeldtheorie. Teilchen mit halbzahligem Spin, Fermionen, haben antisymmetrische Vielteilchenwellenfunktionen und gehorchen der **Fermi-Dirac-Statistik**; Teilchen mit ganzzahligem Spin, Bosonen, sind symmetrisch und gehorchen der **Bose-Einstein-Statistik**.
+
+---
+
+### 6.8.7 Fermi-Dirac-Verteilung und Fermisee
+
+Für identische Fermionen mit Einteilchenenergien $\epsilon$ und chemischem Potenzial $\mu$ gilt
+
+$$
+\bar n(\epsilon) = \frac{1}{\exp\!\left(\frac{\epsilon-\mu}{k_B T}\right)+1}
+$$
+
+Bei $T=0$ werden die Zustände bis zur **Fermi-Energie** $\epsilon_F$ gefüllt. Der Spin-$\tfrac12$-Faktor 2 verdoppelt die Zustandsdichte pro Energie, verändert bei fester Teilchendichte $\epsilon_F$ und beeinflusst die Metalleigenschaften. Die Pauli-Suszeptibilität eines einfachen Metalls skaliert mit der Zustandsdichte bei $\epsilon_F$: klein, aber nicht null.
+
+---
+
+### 6.8.8 Aufeinanderfolgende Stern-Gerlach-Messungen
+
+Wir führen einen Strahl durch drei Magnete: SG$_z$ mit Auswahl von $\uparrow$, dann SG$_x$ mit Aufspaltung in $\rightarrow$ und $\leftarrow$ und Auswahl von $\rightarrow$, schließlich erneut SG$_z$. Die letzte Stufe zeigt **sowohl** $\uparrow$ als auch $\downarrow$. Eine Messung entlang $x$ **präpariert den Spinzustand neu** und löscht die vorherige $z$-Information. Algebraisch gilt
+
+$$
+\ket{\uparrow_z}=\frac{1}{\sqrt2}\!\left(\ket{\rightarrow_x}+\ket{\leftarrow_x}\right)
+$$
+
+Eine projektive Messung in $x$ macht die späteren $z$-Ergebnisse also zufällig. Dies zeigt besonders anschaulich, dass inkompatible Observablen nicht gleichzeitig scharfe Werte besitzen.
+
+---
+
+### 6.8.9 Warum Stern–Gerlach neutrale Atome statt Elektronen verwendete
+
+Warum nicht eine Spinaufspaltung mit **Elektronen**? Freie Elektronen erfahren in inhomogenen Feldern große Lorentzkräfte $q\,\boldsymbol{v}\times\boldsymbol{B}$ sowie gegebenenfalls elektrische Kräfte in Randfeldern; diese überdecken die kleine Aufspaltung durch $\nabla(\boldsymbol{\mu}\cdot\boldsymbol{B})$. Neutrale Atome vermeiden diese starke elektromagnetische Ablenkung und machen die Quantisierung zugänglich.
+
+---
+
+### 6.8.10 Kleine, aber reale Abweichungen: $g-2$
+
+Diracs $g_s=2$ ist außerordentlich genau, aber nicht exakt. Die Quantenelektrodynamik ergänzt ein kleines **anomales magnetisches Moment**
+
+$$
+a_e \equiv \frac{g_s-2}{2}
+$$
+
+mit führendem Term $\alpha/(2\pi)$ und anspruchsvollen höheren Ordnungen. Präzisionsmessungen von $a_e$ prüfen das Standardmodell und helfen bei der Bestimmung der Feinstrukturkonstante $\alpha$.
+
+---
+
+### 6.8.11 Kurze Rechenbeispiele
+
+**(a) Größe der Zeeman-Aufspaltung**
+
+Für $B=1\ \text{T}$ und $g_s\approx 2$ gilt
+
+$$
+\Delta E = g_s\,\mu_B\,B \approx 2\times 5.788\times 10^{-5}\ \text{eV/T}\times 1\ \text{T}\approx 1.16\times 10^{-4}\ \text{eV}
+$$
+
+Die entsprechende Frequenz $\nu=\Delta E/h\sim 28\ \text{GHz}$ liegt im Mikrowellenbereich der EPR.
+
+**(b) Abschätzung der Stern-Gerlach-Ablenkung**
+
+Bei einem Gradienten $\partial B_z/\partial z = 10\ \text{T/m}$, einer Flugzeit $\tau=10^{-4}\ \text{s}$ und der Masse eines Ag-Atoms beträgt der Impulsstoß in $z$-Richtung
+
+$$
+\Delta p_z \approx \mu_B\,\frac{\partial B_z}{\partial z}\,\tau
+$$
+
+Für den Fleckabstand ist auch die Driftzeit nach dem Magneten nötig. Mit der Silbermasse $1.79\times10^{-25}\ \mathrm{kg}$, der Strahlgeschwindigkeit $500\ \mathrm{m/s}$ und einem Schirm $0.20\ \mathrm{m}$ hinter dem Magneten ergibt sich einschließlich der Ablenkung im Magneten ein Abstand von etwa $0.047\ \mathrm{mm}$. Millimeterabstände erfordern andere Parameter.
+
+**(c) Größenordnung für Weiße Zwerge**
+
+Der Elektronenentartungsdruck $P\sim \frac{\hbar^2}{m_e} n_e^{5/3}$ gleicht die Gravitation aus. Größeres $n_e$ erhöht $P$ ohne Erwärmung — das Ausschlussprinzip stützt buchstäblich die Struktur. Die Einzelheiten gehören zur Astrophysik; die Skalierung beruht auf Spin-$\tfrac12$ und Antisymmetrie.
+
+---
+
+### 6.8.12 Aufgabensammlung
+
+- Die Stern-Gerlach-Zweifachaufspaltung aus den Eigenwerten von $S_z$ herleiten und den Fleckabstand für vorgegebenen Feldgradienten und Flugzeit abschätzen.
+- Aus $H_Z=-\boldsymbol{\mu}\cdot\boldsymbol{B}$ und $S_i=\tfrac{\hbar}{2}\sigma_i$ zeigen, dass Spinoren mit $\omega_L=g_s\mu_B B/\hbar$ präzedieren.
+- Mit den Regeln der Vektoraddition $g_J$ für ein Termsymbol $^{2S+1}L_J$ berechnen und Zeeman-Komponenten sowie Polarisationen vorhersagen.
+- Zeigen, wie $H_{SO}=\xi(r)\,\boldsymbol{L}\cdot\boldsymbol{S}$ ein gegebenes $n,\ell$-Multiplett in $J=\ell\pm \tfrac12$ aufspaltet, und die nach Auswahlregeln erlaubten Linien skizzieren.
+- Aus der Fermi-Dirac-Verteilung Elektronenzahldichte und Fermi-Energie eines freien Elektronengases bei Temperatur null einschließlich Spinentartung herleiten.
+
+---
+
+**Zusammenfassung:** Spin ist keine winzige Umlaufbahn, sondern für das Elektron ein intrinsischer Zweizustandsfreiheitsgrad mit Algebra, Matrizen und magnetischem Moment. Stern–Gerlach machte seine Diskretheit sichtbar; Zeeman-Muster und Feinstruktur bestätigten die Kopplung an Felder und Bahnbewegung. Paulis Ausschlussprinzip machte Spin zum Strukturprinzip: Es füllt Schalen, bestimmt die Chemie und stützt Sterne. Zusammen mit Fermi-Dirac-Statistik und $g\approx 2$ entsteht die moderne Erklärung eines Jahrhunderts vermeintlicher „Anomalien“.
+
+---
+
+## 6.9 Von der alten Quantentheorie zur Wellen- und Matrizenmechanik
+
+1925 reichten die Zusatzregeln der alten Quantentheorie nicht mehr aus. Auswahlregeln funktionierten und Spektren stimmten weitgehend, doch Intensitäten, Mehrelektronenprobleme und die Begründung der Regeln verlangten einen neuen Ansatz. Fast gleichzeitig entstanden **Heisenbergs Matrizenmechanik**, gemeinsam mit Born und Jordan, und **Schrödingers Wellenmechanik**. Dieselbe Physik in völlig unterschiedlichen Formen. 1926 wurde ihre Äquivalenz gezeigt; damit besaß die Quantentheorie endlich einen konsistenten mathematischen Formalismus.
+
+---
+
+### 6.9.1 Von der Dispersion zur Umdeutung
+
+Heisenbergs Sprung begann mit der optischen **Dispersion**. Klassische Elektronen schwingen unter Lichteinwirkung und emittieren bei Kombinationsfrequenzen. Die alte Quantentheorie beschrieb dies durch **Übergangsfrequenzen** $\omega_{mn}=(E_m-E_n)/\hbar$ zwischen stationären Zuständen und mit Linienstärken verknüpfte **Amplituden**. Heisenbergs „Umdeutung“ verwarf unbeobachtbare Elektronenbahnen und behielt nur **beobachtbare** Übergangsdaten. Er ordnete sie in Feldern $X_{mn}$ an, deren Zeilen und Spalten Energieniveaus kennzeichnen. Die Zusammensetzung von Bewegungen wurde zur Matrixmultiplikation. An die Stelle der Bahnen trat eine **Algebra der Übergänge**.
+
+---
+
+### 6.9.2 Matrizenmechanik auf einer Seite
+
+Observablen sind Matrizen $A$ mit Elementen $A_{mn}$ in der Energieeigenbasis. Ihre Zeitabhängigkeit enthält die Bohrschen Frequenzen:
+
+$$
+A_{mn}(t) = A_{mn}\,e^{i\omega_{mn} t}
+$$
+
+Die Produktregel, die der Zusammensetzung von Übergängen entspricht, ist die Matrixmultiplikation. Mit $x\to X$ und $p\to P$ wird Newtons Gleichung $m\ddot x = -\partial V/\partial x$ zu
+
+$$
+m\,\ddot X = -\,\frac{\partial V(X)}{\partial X}
+$$
+
+Zeitableitungen wirken über die Phasen elementweise; bei großen Quantenzahlen wird Übereinstimmung mit dem **Korrespondenzprinzip** verlangt. Die entscheidende Struktur ist der **kanonische Kommutator**
+
+$$
+[X,P] \equiv X P - P X = i\hbar\,\mathbb I
+$$
+
+Er ist kein optionaler Zusatz, sondern das algebraische Grundprinzip anstelle der Poisson-Klammern. Mit ihm lassen sich harmonischer Oszillator, Rotor und Wasserstoffspektrum rein algebraisch behandeln.
+
+---
+
+### 6.9.3 Unschärfe aus Nichtkommutativität
+
+Gilt $[X,P]=i\hbar$, können die Streuungen inkompatibler Observablen nicht beide auf null verringert werden. Allgemein gilt die Ungleichung
+
+$$
+\Delta A\,\Delta B \ge \frac{1}{2}\,\big|\langle [A,B] \rangle\big|
+$$
+
+Mit $A=X$ und $B=P$ folgt die berühmte Schranke
+
+$$
+\Delta x\,\Delta p \ge \frac{\hbar}{2}
+$$
+
+Dies ist keine Ungenauigkeit der Messgeräte, sondern Geometrie im Hilbertraum. Die Schranke folgt aus Cauchy–Schwarz und der Operatoralgebra, unabhängig von einer postulierten „Störung“ durch Messung.
+
+---
+
+### 6.9.4 Schrödingers Wellenmechanik
+
+Schrödinger kam von der anderen Seite: den **Wellen**. Ausgehend von de Broglies $E=\hbar\omega$ und $p=\hbar k$ sucht man eine Wellengleichung mit der korrekten Dispersion für ebene Wellen. Das Ergebnis ist die **zeitabhängige Schrödingergleichung**
+
+$$
+i\hbar\,\frac{\partial \psi(\mathbf r,t)}{\partial t} = \left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\mathbf r)\right]\psi(\mathbf r,t)
+$$
+
+Der Ansatz für stationäre Zustände $\psi(\mathbf r,t)=\phi(\mathbf r)\,e^{-iEt/\hbar}$ liefert die **zeitunabhängige** Form
+
+$$
+\left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\mathbf r)\right]\phi(\mathbf r) = E\,\phi(\mathbf r)
+$$
+
+Randbedingungen diskretisieren bei gebundenen Zuständen $E$ und erzeugen die Spektrallinien, die Bohr beschrieben hatte.
+
+---
+
+### 6.9.5 Bornsche Regel und die Bedeutung von $\psi$
+
+Max Born lieferte 1926 den Schlüssel zur Deutung: $|\psi|^{2}$ ist eine **Wahrscheinlichkeitsdichte**. Erwartungswerte ergeben sich aus entsprechend gewichteten Integralen. Für einen normierten Zustand gilt
+
+$$
+\int |\psi(\mathbf r,t)|^{2}\,d^{3}r = 1
+$$
+
+und für einen auf Wellenfunktionen wirkenden Operator $\hat A$
+
+$$
+\langle A \rangle = \int \psi^{\ast}(\mathbf r,t)\,(\hat A \psi)(\mathbf r,t)\,d^{3}r
+$$
+
+Wahrscheinlichkeitsstrom und Kontinuitätsgleichung folgen aus der Schrödingergleichung und machen die statistische Deutung konsistent.
+
+---
+
+### 6.9.6 Operatoren und das kanonische Wörterbuch
+
+Die Wellenmechanik verwendet Differentialoperatoren mit denselben Kommutatoren wie die Matrizenmechanik:
+
+$$
+\hat x = x,\qquad \hat p = -\,i\hbar\,\nabla
+$$
+
+Sie erfüllen
+
+$$
+[\hat x_i,\hat p_j] = i\hbar\,\delta_{ij}\,\mathbb I
+$$
+
+Damit stimmen Unschärferelation und Observablenalgebra mit der Matrizenmechanik überein. Potenziale werden zu Multiplikationsoperatoren $V(\hat x)$, kinetische Energie zu $-\hbar^{2}\nabla^{2}/(2m)$. Das **Korrespondenzprinzip** wird formal durch die Zuordnung „Poisson-Klammern durch $(1/i\hbar)$ mal Kommutatoren ersetzen“ ausgedrückt.
+
+---
+
+### 6.9.7 Äquivalenz: zwei Darstellungen derselben Theorie
+
+Schrödinger selbst zeigte die unitäre Äquivalenz von Wellen- und Matrizenmechanik. In der Basis der Energieeigenfunktionen $\{\phi_n\}$ gilt
+
+$$
+A_{mn} = \int \phi_m^{\ast}(\mathbf r)\,(\hat A \phi_n)(\mathbf r)\,d^{3}r
+$$
+
+Dieses Integral ist genau das Matrixelement von Heisenberg, Born und Jordan. Umgekehrt definiert eine Matrix $A_{mn}$ den Operator $\hat A$ durch ihre Wirkung auf Entwicklungskoeffizienten. Spektren, Übergangsamplituden und Auswahlregeln sind identisch, nur die Darstellung unterscheidet sich. Dirac fasste dies später in Bra-Ket-Notation und Spektraltheorie zusammen; die wesentliche Äquivalenz liegt hier bereits vor.
+
+---
+
+### 6.9.8 Rechenbeispiele: harmonischer Oszillator und Wasserstoff
+
+**Harmonischer Oszillator.** In der Matrizenmechanik definieren wir Leiteroperatoren
+
+$$
+a = \frac{1}{\sqrt{2\hbar m\omega}}\left(m\omega X + i P\right),\qquad
+a^{\dagger} = \frac{1}{\sqrt{2\hbar m\omega}}\left(m\omega X - i P\right)
+$$
+
+mit
+
+$$
+[a,a^{\dagger}] = 1
+$$
+
+Der Hamiltonoperator wird zu
+
+$$
+H = \hbar\omega\left(a^{\dagger}a + \frac{1}{2}\right)
+$$
+
+und liefert die Eigenwerte
+
+$$
+E_n = \hbar\omega\left(n + \frac{1}{2}\right)
+$$
+
+Die Wellenmechanik löst die Differentialgleichung und erhält dieselbe Leiter und dieselben Energien. Dabei treten Hermite-Polynome auf, doch das Spektrum bleibt identisch.
+
+**Wasserstoff.** In der Wellenmechanik führt Separation in Kugelkoordinaten zu Radialgleichungen mit der Quantisierung gebundener Zustände
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi\varepsilon_0)^{2} \hbar^{2}}\,\frac{1}{n^{2}}
+$$
+
+Die Entartungen entsprechen der früheren Abhängigkeit allein von $n$. In der Matrizenmechanik reproduziert die verborgene **Runge-Lenz-Symmetrie** dasselbe $1/n^{2}$-Spektrum auf algebraischem Weg.
+
+---
+
+### 6.9.9 Ehrenfest-Theorem und klassischer Grenzfall
+
+Quantenmechanische Erwartungswerte erfüllen Gleichungen, die der klassischen Bewegung entsprechen:
+
+$$
+\frac{d}{dt}\langle \hat x \rangle = \frac{\langle \hat p \rangle}{m},\qquad
+\frac{d}{dt}\langle \hat p \rangle = -\,\left\langle \frac{\partial V}{\partial x} \right\rangle
+$$
+
+Dies ist das **Ehrenfest-Theorem**. Ist das Wellenpaket schmal und das Potenzial glatt, gilt $\langle \partial V/\partial x\rangle\approx \partial V(\langle x\rangle)/\partial x$, und der Schwerpunkt des Pakets folgt Newtons Gesetz. So erscheint das Korrespondenzprinzip als Dynamik.
+
+---
+
+### 6.9.10 Stationäre Zustände, Übergänge und Auswahlregeln
+
+In der Wellensprache sind stationäre Zustände $\phi_n$ Energieeigenfunktionen. Ihre Zeitabhängigkeit ist eine globale Phase $e^{-iE_n t/\hbar}$; Erwartungswerte von Observablen ohne explizite Zeitabhängigkeit bleiben daher konstant. Regt man das System mit einem schwachen periodischen Feld $H'=-\hat d\cdot \boldsymbol E_0\cos\omega t$ an, liefert zeitabhängige Störungstheorie Übergangsraten proportional zum Betragsquadrat der auf die Feldpolarisation projizierten Matrixelemente $\langle m|\hat d|n\rangle$ und eine Resonanz bei $\hbar\omega=E_m-E_n$. Der Dipoloperator erzwingt Auswahlregeln wie $\Delta \ell=\pm 1$, bestätigt die empirischen Regeln und berechnet zugleich die Intensitäten aus ersten Prinzipien.
+
+---
+
+### 6.9.11 Kommutatoren, Poisson-Klammern und Quantisierungsregeln
+
+Die formale Brücke von der klassischen Mechanik verwendet
+
+$$
+\{A,B\}_{\text{PB}} \longrightarrow \frac{1}{i\hbar}\,[\hat A,\hat B]
+$$
+
+und erhebt kanonische Variablen $(x,p)$ zu Operatoren mit $[x,p]=i\hbar$. Bei der Umwandlung nichtlinearer klassischer Ausdrücke entstehen Ordnungsmehrdeutigkeiten; frühe Vorschriften von Born–Jordan und Weyl versuchten, dies zu systematisieren. Praktisch legen Symmetrien und experimentelle Prüfungen die richtige Operatorform fest. Für quadratische Hamiltonfunktionen und gewöhnliche zentrale Potenziale funktioniert die direkte Zuordnung ohne Schwierigkeiten.
+
+---
+
+### 6.9.12 Variations- und Spektralbetrachtungen
+
+Schrödinger formulierte auch ein Variationsprinzip: Stationäre Zustände machen das Funktional
+
+$$
+\mathcal E[\phi] = \frac{\int \phi^{\ast}\left[-\frac{\hbar^{2}}{2m}\nabla^{2}+V\right]\phi\,d^{3}r}{\int |\phi|^{2}\,d^{3}r}
+$$
+
+stationär. Die Minimierung von $\mathcal E$ unter Normierung liefert den kleinsten Eigenwert; zusätzliche Orthogonalitätsbedingungen ergeben angeregte Zustände. Dies ist die Grundlage moderner **Rayleigh-Ritz-Verfahren**, die für Rechnungen an Atomen, Molekülen und Festkörpern zentral sind.
+
+---
+
+### 6.9.13 Kontinuum, Streuung und Phasenverschiebungen
+
+Nicht alle Spektren sind diskret. Oberhalb der Bindungsschwelle sind die Lösungen Streuzustände mit Deltafunktionsnormierung in Energie oder Impuls. In drei Dimensionen und bei kurzreichweitigem $V(r)$ bestehen die asymptotischen Wellenfunktionen aus ebenen und **auslaufenden Kugelwellen**. Die Physik steckt in den Partialwellen-**Phasenverschiebungen** $\delta_\ell(E)$, aus denen die Wirkungsquerschnitte folgen. Die Matrizenmechanik enthält dieselben Daten in der **$S$-Matrix**, deren Unitarität die Wahrscheinlichkeitserhaltung ausdrückt.
+
+---
+
+### 6.9.14 Was sich begrifflich veränderte
+
+- **Observablen als Operatoren.** Statt verborgener Bahnen stehen Spektren und Erwartungswerte von Operatoren für messbare Größen.
+- **Zustände als Vektoren.** Ein reiner Zustand wird durch einen Vektor in einem komplexen Raum mit Skalarprodukt beschrieben und durch eine lineare Gleichung entwickelt.
+- **Inkompatibilität durch Algebra.** Nichtkommutativität ersetzt klassische gleichzeitige Bestimmtheit; Unschärfe ist strukturell, nicht instrumentell.
+- **Wahrscheinlichkeiten aus Amplituden.** Interferenz betrifft komplexe Phasen von Amplituden, nicht nur räumliche Wellen.
+
+Die alten Regeln werden zu Folgerungen eines einzigen linearen Rahmens.
+
+---
+
+### 6.9.15 Kleine Aufgabensammlung
+
+- Mithilfe von Cauchy–Schwarz zeigen, dass $[x,p]=i\hbar$ die Ungleichung $\Delta x\,\Delta p\ge \hbar/2$ impliziert.
+- Den eindimensionalen unendlich tiefen Potenzialtopf mit der Schrödingergleichung lösen und Energien sowie orthonormale Eigenfunktionen bestimmen.
+- Die Leiteroperatoren des Oszillators konstruieren und $[a,a^{\dagger}]=1$ sowie $E_n=\hbar\omega(n+\tfrac12)$ beweisen.
+- Für Wasserstoff die Variablen in Kugelkoordinaten separieren und die drei Quantenzahlen $(n,\ell,m)$ samt Entartungen bestimmen.
+- Fermis goldene Regel für eine schwache periodische Störung herleiten und die Dipolauswahlregel $\Delta \ell=\pm 1$ gewinnen.
+
+---
+
+**Zusammenfassung:** Heisenberg ersetzte Bahnen durch eine Algebra der Übergänge; Schrödinger ersetzte Umläufe durch Wellen, deren Betragsquadrat eine Wahrscheinlichkeitsdichte ist. Born lieferte die Messregel, Kommutatoren die Logik, und beide Formalismen erwiesen sich als äquivalent. So wurde aus geschickten Zusatzregeln eine einheitliche Theorie, die Spektren und Dynamik vorhersagt, Intensitäten berechnet und die klassische Physik als besonderen Grenzfall erklärt. Kapitel 7 setzt diese Werkzeuge an Standardsystemen ein und entwickelt die Störungstheorie, auf der große Teile moderner Physik und Chemie beruhen.
+
+---

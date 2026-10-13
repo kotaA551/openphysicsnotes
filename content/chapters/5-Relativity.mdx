@@ -64,7 +64,7 @@ Under a Galilean transformation $x' = x - v t,\; t' = t$, the derivatives mix an
 
 $$
 \frac{\partial^2 \phi}{\partial x'^2}
-- \frac{1}{c^2}\left(\frac{\partial}{\partial t'} + v\,\frac{\partial}{\partial x'}\right)^{\!2}\phi = 0
+- \frac{1}{c^2}\left(\frac{\partial}{\partial t'} - v\,\frac{\partial}{\partial x'}\right)^{\!2}\phi = 0
 $$
 
 which is not the same form. In Galilean kinematics, a wave equation implicitly names a preferred medium: the wave’s speed is measured relative to that stuff. For sound, the medium is air, and a ground observer measures approximately $c_{\text{sound}}\pm v$.
@@ -171,7 +171,7 @@ and the transformation group (the Lorentz group) preserves this quantity.
 
 ### 5.1.11 The death of ether (and what replaced it)
 
-By the early twentieth century, the ether had been reduced to a metaphysical scaffold that explained nothing and predicted nothing new. Einstein’s 1905 paper did something radical by doing something minimal: he discarded the ether and kept only two principles—relativity and constant c—then showed that Lorentz’s mathematics flows from them. Space and time became spacetime; electric and magnetic fields became aspects of one tensor; simultaneity lost its absolute status. What replaced the ether was not a new material but a new geometry. The structure carrying electromagnetic waves is the metric of spacetime itself.
+By the early twentieth century, the ether had been reduced to a metaphysical scaffold that explained nothing and predicted nothing new. Einstein’s 1905 paper did something radical by doing something minimal: he discarded the ether and kept only two principles—relativity and constant c—then showed that Lorentz’s mathematics flows from them. Space and time became spacetime; electric and magnetic fields became aspects of one tensor; simultaneity lost its absolute status. What replaced the ether was not a new material but a new geometry. Electromagnetic waves are disturbances of the electromagnetic field; the spacetime metric determines their light-cone structure, not a material ether.
 
 ---
 
@@ -187,6 +187,8 @@ By the early twentieth century, the ether had been reduced to a metaphysical sca
 ## 5.2 Special Relativity: Postulates and Kinematics
 
 Special relativity is built on two simple principles and a lot of courage. The principles are 
+
+![The same light pulse travels vertically in the clock rest frame and diagonally in a frame where the clock moves horizontally.](/images/diagrams/light-clock.svg)
 
 (i) the **relativity principle**—the laws of physics have the same form in all inertial frames
 
@@ -204,7 +206,7 @@ Einstein proposed a physical protocol to define simultaneity. To synchronize dis
 
 ### 5.2.2 Deriving the Lorentz transformation
 
-Consider two frames $S$ and $S'$ in **standard configuration**: $S'$ moves with constant velocity $v$ along the $x$-axis of $S$, and origins coincide at $t=t'=0$. Homogeneity and isotropy of spacetime imply a **linear** relation between coordinates. Requiring that the worldline of a light pulse along $+x$ be $x=ct$ in $S$ and $x'=ct'$ in $S'$ fixes the transformation up to a scale, which normalization at $v=0$ removes. The result is
+Consider two frames $S$ and $S'$ in **standard configuration**: $S'$ moves with constant velocity $v$ along the $x$-axis of $S$, and origins coincide at $t=t'=0$. Homogeneity and isotropy of spacetime imply a **linear** relation between coordinates. Requiring that the worldline of a light pulse along $+x$ be $x=ct$ in $S$ and $x'=ct'$ in $S'$ fixes the transformation up to a scale, which is fixed by relativity, spatial isotropy, and reciprocal transformations, with the identity normalization at $v=0$. The result is
 
 $$
 \begin{aligned}
@@ -225,7 +227,7 @@ y &= y',\qquad z = z'
 \end{aligned}
 $$
 
-These are the unique linear maps that preserve light cones.
+Under these assumptions, these transformations preserve the spacetime interval and the light cone.
 
 ---
 
@@ -344,7 +346,7 @@ so observed frequency satisfies $\nu_{\text{obs}}=\mathcal{D}\,\nu_{\text{emit}}
 
 ### 5.2.9 Takeaways
 
-- The Lorentz transformation is the unique linear mapping that preserves the light cone and follows from the two postulates.  
+- In standard configuration with the usual symmetry assumptions, the two postulates yield the Lorentz transformation preserving the spacetime interval and light cone.  
 - Time dilation, length contraction, and simultaneity shift are different faces of the same transformation.  
 - Velocity addition prevents superluminal composition; rapidity linearizes collinear boosts.  
 - The invariant interval underlies proper time and causality; Minkowski geometry is the natural language of kinematics.
@@ -381,7 +383,8 @@ All inertial observers compute the same $ds^2$. This single scalar encodes what 
 
 For any pair of events A and B, the sign of $s^2$ classifies their relation:
 
-  ![Light cone](/images/light-cone.png)
+![With metric signature plus minus minus minus, timelike intervals lie inside the light cone, spacelike intervals outside, and lightlike intervals on its boundary.](/images/diagrams/light-cone.svg)
+
 
 - **Timelike:** $s^2>0$. There exists a frame in which the events occur at the same spatial point but different times; a slower-than-light traveler can go from A to B.  
 - **Lightlike (null):** $s^2=0$. Only a light signal can connect them.  
@@ -435,7 +438,7 @@ $$
 \eta_{\mu\nu} u^\mu a^\nu = 0
 $$
 
-meaning acceleration is purely “spacelike” in the instantaneous rest frame. These tools streamline relativistic dynamics (§5.5).
+meaning acceleration is purely “spacelike” in the instantaneous rest frame. These tools streamline relativistic dynamics (§5.4).
 
 ---
 
@@ -451,6 +454,8 @@ y'  &= y\\
 z'  &= z
 \end{aligned}
 $$
+
+![The moving time axis is x equals beta ct and its spatial axis is ct equals beta x. Light rays remain at forty five degrees.](/images/diagrams/lorentz-axes.svg)
 
 The matrix $\Lambda^\mu{}_\nu$ of this transformation obeys the invariance condition
 
@@ -472,7 +477,6 @@ and the boost becomes a hyperbolic rotation in the $ct$–$x$ plane. Composition
 
 A Minkowski diagram displays $ct$ vertically and $x$ horizontally. Light rays draw lines at slopes $\pm 45^\circ$ (since $x=\pm ct$ in units with $c=1$). Some practical rules:
 
-  ![Minkowski diagram](/images/minkowski-diagrams.png)
 
 1. **Axes of a moving frame.** The $x'$ axis is the line of events with $t'=0$, which tilts upward; the $ct'$ axis is the worldline $x'=0$, which tilts right. The two axes are symmetric with respect to the light cone.  
 2. **Simultaneity slices.** Lines of constant $t'$ are not horizontal unless $v=0$; that is the relativity of simultaneity made visible.  
@@ -487,7 +491,7 @@ Diagrams are not just pictures; they are calculators for ordering, time dilation
 
 Suppose there existed a signal with speed $u>c$ in some frame. A boost can be found that flips the temporal order of emission and reception for a spacelike separation. Combined with “you can send signals both ways,” this makes a closed causal loop—a paradox. Special relativity avoids this by forbidding superluminal signaling: physical worldlines are timelike or null, never spacelike. As a corollary, there are no perfectly rigid bodies; attempts to jerk one end of a rod cannot simultaneously affect the other end because stress information travels at material sound speeds $<c$.
 
-Microcausality in field theory is the quantum echo of this rule: field operators at spacelike separations commute so that measurements cannot influence one another.
+Microcausality in field theory is the quantum counterpart: local observable operators commute at spacelike separation, preventing measurements there from transmitting signals to one another.
 
 ---
 
@@ -522,7 +526,7 @@ $$
 
 which stays asymptotic to the light lines $x=\pm ct$. Proper acceleration is what an accelerometer reads; it is invariant, unlike coordinate acceleration which depends on frame.
 
-Accelerated frames bring in **Rindler coordinates** and horizons even in flat spacetime—useful stepping stones toward the equivalence principle (§5.8).
+Accelerated frames bring in **Rindler coordinates** and horizons even in flat spacetime—useful stepping stones toward the equivalence principle (§5.7).
 
 ---
 
@@ -651,7 +655,7 @@ $$
 K^\mu u_\mu = 0
 $$
 
-because $p^\mu p_\mu$ is constant. In §5.6 we will specialize this to charged particles in electromagnetic fields.
+because $p^\mu p_\mu$ is constant. In §5.5 we will specialize this to charged particles in electromagnetic fields.
 
 ---
 
@@ -681,13 +685,13 @@ $$
 
 Thus the energy–momentum relations are not assumptions but consequences of the variational principle built from the invariant length of worldlines.
 
-When a particle carries charge $q$ and interacts with an electromagnetic four-potential $A_\mu=(\phi/c,\,-\boldsymbol A)$, the minimal-coupling action adds $q\int A_\mu dx^\mu$. In ordinary variables the Lagrangian becomes
+When a particle carries charge $q$ and interacts with an electromagnetic four-potential $A_\mu=(\phi/c,\,-\boldsymbol A)$, the minimal-coupling action adds $-q\int A_\mu dx^\mu$. In ordinary variables the Lagrangian becomes
 
 $$
 L = - m c^2 \sqrt{1 - \frac{v^2}{c^2}} + q\,\boldsymbol v\cdot\boldsymbol A - q\,\phi
 $$
 
-whose Euler–Lagrange equations yield the Lorentz force in covariant form (shown in §5.6).
+whose Euler–Lagrange equations yield the Lorentz force in covariant form (shown in §5.5).
 
 ---
 
@@ -731,7 +735,7 @@ $$
 E_{a,\text{th}} = \frac{M_{\text{final}}^{\,2} c^4 - \left(m_a^2 + m_b^2\right) c^4}{2 m_b c^2}
 $$
 
-As a concrete example, consider $p + p \to p + p + \pi^0$ with one proton at rest. Taking $m_p$ and $m_\pi$ as the rest masses, $M_{\text{final}} = 2 m_p + m_\pi$, and the formula above gives the familiar multi-GeV threshold for pion production in fixed-target experiments.
+As a concrete example, consider $p + p \to p + p + \pi^0$ with one proton at rest. Taking $m_p$ and $m_\pi$ as the rest masses, $M_{\text{final}} = 2 m_p + m_\pi$, and the formula above gives a beam total-energy threshold of about 1.22 GeV, corresponding to a kinetic-energy threshold of about 0.28 GeV.
 
 ---
 
@@ -767,7 +771,7 @@ The four-velocity is undefined for lightlike worldlines, but the four-momentum r
 
 ### 5.4.7 Dynamics with constraints and radiation reaction (glimpse)
 
-For charged particles, the Lorentz force law reads in three-vector form (derived covariantly in §5.6)
+For charged particles, the Lorentz force law reads in three-vector form (derived covariantly in §5.5)
 
 $$
 \frac{d\boldsymbol p}{dt} = q\left(\boldsymbol E + \boldsymbol v \times \boldsymbol B\right), \qquad
@@ -837,7 +841,7 @@ $$
 
 With metric $\eta_{\mu\nu}=\mathrm{diag}(1,-1,-1,-1)$ (SI units),
 $$
-F^{0i} = \frac{E_i}{c},\qquad
+F^{0i} = -\frac{E_i}{c},\qquad
 F^{ij} = -\,\epsilon^{ijk} B_k
 $$
 
@@ -967,8 +971,8 @@ so $\mathcal I_1=\mathcal I_2=0$ (a **null field**). If $\mathcal I_1<0$ and $\m
 
 Package energy, momentum, and stresses into the **electromagnetic stress–energy tensor**
 $$
-T^{\mu\nu} = \frac{1}{\mu_0}\!\left(F^{\mu\alpha}F^\nu{}_{\alpha}
-- \tfrac14 \eta^{\mu\nu} F^{\alpha\beta}F_{\alpha\beta}\right)
+T^{\mu\nu} = \frac{1}{\mu_0}\!\left(-F^{\mu\alpha}F^\nu{}_{\alpha}
++ \tfrac14 \eta^{\mu\nu} F^{\alpha\beta}F_{\alpha\beta}\right)
 $$
 
 Its (non)conservation in the presence of sources reads
@@ -978,15 +982,15 @@ $$
 
 Components:
 $$
-T^{00} = \frac{1}{2}\varepsilon_0 \boldsymbol E^2 + \frac{1}{2\mu_0}\\boldsymbol B^2
+T^{00} = \frac{1}{2}\varepsilon_0 \boldsymbol E^2 + \frac{1}{2\mu_0}\boldsymbol B^2
 $$
 
 $$
-T^{0i} = \frac{1}{c^2} S_i,\qquad
+T^{0i} = \frac{1}{c} S_i,\qquad
 \boldsymbol S = \frac{1}{\mu_0}\,\boldsymbol E \times \boldsymbol B
 $$
 
-So $T^{00}$ is energy density, and $T^{0i}$ encodes momentum density via the **Poynting vector** $\boldsymbol S$. The spatial block $T^{ij}$ (Maxwell stress tensor) gives pressures and tensions exerted by fields.
+Thus $T^{00}$ is energy density, while $T^{0i}$ equals $S_i/c$ for the **Poynting vector** $\boldsymbol S$. The momentum density is $S_i/c^2$. The spatial block $T^{ij}$ is the momentum-flux tensor, the negative of the usual Maxwell stress tensor, and describes field pressures and tensions.
 
 ---
 
@@ -1034,7 +1038,7 @@ Special relativity reshapes how light looks when sources or observers move fast.
 
 ### 5.6.1 Relativistic Doppler: frequency shift as kinematics
 
-For motion strictly along the line of sight with speed $v$ (define $\beta \equiv v/c$), the observed frequency is related to the emitted one by the **Doppler factor**
+For motion strictly along the line of sight, let $v$ be the signed radial velocity, positive for approach and negative for recession (define $\beta \equiv v/c$). Then the observed frequency is related to the emitted one by the **Doppler factor**
 $$
 \mathcal D \equiv \sqrt{\frac{1+\beta}{1-\beta}}
 $$
@@ -1053,7 +1057,7 @@ $$
 
 ### 5.6.2 Aberration of light: where the rays appear to come from
 
-Motion squeezes apparent angles toward the direction of travel. If a light ray makes angle $\theta$ with the $x$-axis in $S$ and $\theta'$ in $S'$ that moves at speed $v$ along $+x$, then
+An observer's motion shifts apparent source directions toward the direction of travel; a source's arrival direction is opposite to the photon's propagation direction. In the following formula, $\theta$ is the angle of photon propagation relative to the $x$-axis in $S$, and $\theta'$ is the corresponding propagation angle in $S'$, which moves at speed $v$ along $+x$:
 
 $$
 \cos\theta'=\frac{\cos\theta-\beta}{1-\beta\cos\theta}
@@ -1062,7 +1066,7 @@ $$
 Equivalently,
 
 $$
-\tan\!\left(\frac{\theta'}{2}\right)=\sqrt{\frac{1-\beta}{1+\beta}}\;\tan\!\left(\frac{\theta}{2}\right)
+\tan\!\left(\frac{\theta'}{2}\right)=\sqrt{\frac{1+\beta}{1-\beta}}\;\tan\!\left(\frac{\theta}{2}\right)
 $$
 
 Starlight appears displaced (aberration), and radiation patterns are **forward-beamed** at high $\gamma$.
@@ -1201,7 +1205,7 @@ $$
 \frac{\Delta \nu}{\nu} \approx -\,\frac{g h}{c^{2}}
 $$
 
-Same lab, different stunt: toss a horizontal light pulse across the cabin. During the flight time $t\approx \ell/c$, the cabin accelerates downward relative to the beam, so the light **appears to curve**. By equivalence, light should also bend near a mass. The elevator thought experiment already whispers the core GR predictions.
+Same lab, different experiment: send a horizontal light pulse across the cabin. During the flight time $t\approx \ell/c$, the cabin accelerates upward relative to the beam, so the light **appears to curve downward** in the cabin. By equivalence, light should also bend near a mass. The elevator thought experiment already suggests the core GR predictions.
 
 ---
 
@@ -1238,7 +1242,7 @@ $$
 \frac{D^{2}\xi^{\mu}}{D\tau^{2}} = -\,R^{\mu}{}_{\nu\alpha\beta}\,u^{\nu}\,\xi^{\alpha}\,u^{\beta}
 $$
 
-$R^{\mu}{}_{\nu\alpha\beta}$ is the Riemann curvature tensor. If $R=0$, freely falling worldlines remain parallel (no tides). Nonzero curvature makes them focus or defocus—**that** is gravity in GR. The “gravitational field” is not a vector; it is geometry.
+$R^{\mu}{}_{\nu\alpha\beta}$ is the Riemann curvature tensor. If $R^{\mu}{}_{\nu\alpha\beta}=0$, initially parallel freely falling worldlines remain parallel (no curvature-induced tidal acceleration). Nonzero curvature makes them focus or defocus—**that** is gravity in GR. The “gravitational field” is not a vector; it is geometry.
 
 ---
 
@@ -1287,7 +1291,7 @@ $$
 d\tau = \sqrt{g_{00}}\,dt
 $$
 
-Near Earth, with $g_{00}\approx 1+2\Phi/c^{2}$ and small potential differences $\Delta\Phi\approx g\,\Delta h$, the fractional rate shift between altitudes is
+Near Earth, with $g_{00}\approx 1+2\Phi/c^{2}$ and a small upward potential difference $\Delta\Phi\approx g\,\Delta h$, the fractional frequency shift of light received above its emitter is
 
 $$
 \frac{\Delta \nu}{\nu} \approx -\,\frac{\Delta \Phi}{c^{2}} \approx -\,\frac{g\,\Delta h}{c^{2}}
@@ -1309,7 +1313,7 @@ $$
 In these coordinates the metric reads
 
 $$
-ds^{2} = \left(\frac{a\rho}{c}\right)^{2} c^{2} d\eta^{2} - d\rho^{2}
+ds^{2} = \left(\frac{a\rho}{c^{2}}\right)^{2} c^{2} d\eta^{2} - d\rho^{2}
 $$
 
 Clocks at different $\rho$ tick at different rates, mimicking gravitational redshift. Equivalence tells us that many “accelerated frame” effects have gravitational analogs when curvature is small over the lab.
@@ -1324,7 +1328,7 @@ $$
 \Delta\theta \approx \frac{4 G M}{c^{2} b}
 $$
 
-Signals skimming a mass experience an extra **Shapiro time delay** tied to $g_{00}$ and spatial curvature. Bound orbits in curved spacetime precess; Mercury’s perihelion shift (after subtracting planetary perturbations) matches GR. We will collect classic tests in §5.9.
+Signals skimming a mass experience an extra **Shapiro time delay** tied to $g_{00}$ and spatial curvature. Bound orbits in curved spacetime precess; Mercury’s perihelion shift (after subtracting planetary perturbations) matches GR. We will collect classic tests in §5.8.
 
 ---
 
@@ -1371,7 +1375,7 @@ $$
 
 This doubles the naive Newtonian-particle estimate because spacetime curvature bends both time and space.
 
-**Gravitational redshift.** In a static weak field, clocks at higher potential tick faster. For small height difference $h$ near Earth with acceleration $g$,
+**Gravitational redshift.** In a static weak field, clocks at higher potential tick faster, while upward-propagating light is received at lower frequency than it was emitted. For small upward height difference $h$ near Earth with acceleration $g$, the photon frequency shift is
 
 $$
 \frac{\Delta\nu}{\nu} \approx -\,\frac{g\,h}{c^{2}}
@@ -1425,7 +1429,7 @@ $$
 \dot f = \frac{96}{5}\,\pi^{8/3}\left(\frac{G M_{c}}{c^{3}}\right)^{5/3} f^{11/3}
 $$
 
-From $f(t)$ one extracts $M_{c}$ and distances without a cosmic distance ladder. Multi-detector triangulation localizes sources; polarization and phasing test GR’s waveform templates.
+From $f(t)$ one extracts $M_{c}$; combining this with the measured wave amplitude and source orientation gives distance estimates without a cosmic distance ladder. Multi-detector triangulation localizes sources; polarization and phasing test GR’s waveform templates.
 
 ---
 
@@ -1467,7 +1471,7 @@ To compare alternatives to GR, weak-field observables are written with parameter
 
 ### 5.8.9 Propagation speed, dispersion, and graviton mass
 
-If gravity propagated at a speed different from $c$, or if the graviton had mass $m_{g}$, waves would disperse. A massive graviton obeys
+A gravitational propagation speed different from $c$ can be tested through arrival times; dispersion specifically requires frequency-dependent propagation, as occurs if the graviton has mass $m_{g}$. A massive graviton obeys
 
 $$
 E^{2} = p^{2} c^{2} + m_{g}^{2} c^{4}

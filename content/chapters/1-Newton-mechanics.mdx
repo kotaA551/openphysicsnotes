@@ -21,7 +21,7 @@ Galileo Galilei shattered Aristotelian orthodoxy with experiments:
 
 1. **Inclined Plane Experiment**  
    Galileo rolled spheres down inclined planes to slow gravity’s effect.  
-   He discovered uniform acceleration:  
+   He discovered uniformly accelerated motion; for free fall from rest, the displacement is:  
 
    $$
    s = \tfrac{1}{2} g t^2
@@ -29,11 +29,10 @@ Galileo Galilei shattered Aristotelian orthodoxy with experiments:
 
    where $s$ is displacement, $t$ is time, and $g$ is the gravitational acceleration.  
 
-   → A universal constant $g$ governs free fall, independent of mass.  
+   → At a given location, the same gravitational acceleration $g$ governs free fall, independent of the falling body's mass.  
 
    > **Exercise 1.1**: Drop a hammer and a feather in a vacuum. Which hits first?  
 
-    ![Hammer & Feather in vacuum](/images/hammer-and-feather-hit-ground.png)
 
    > **Answer**: They land simultaneously, as acceleration $g$ is independent of mass.  
 
@@ -234,16 +233,17 @@ time-translation symmetry corresponds to conservation of energy.
 ---
 
 ### Example Problem 4.1 – Block on an Inclined Plane
+
+![Weight acts vertically downward; the normal force is perpendicular to the slope. The tangential weight is mg sin theta.](/images/diagrams/inclined-plane.svg)
+
 **Problem**: A block of mass $m$ slides down a frictionless incline at angle $\theta$. Find its acceleration $a$.  
 
-  ![Block on an Inclined Plane Problem](/images/block-on-an-inclined-plane-problem.svg)
 
 **Solution**:  
 Force along incline: $F = mg \sin\theta$  
 Newton’s Second Law: $F = ma$  
 So $a = g \sin\theta$.  
 
-  ![Block on an Inclined Plane Solution](/images/block-on-an-inclined-plane-solution.svg)
 
 If $\theta = 30^\circ$, $a = 4.9 \,\text{m/s}^2$.  
 
@@ -251,9 +251,10 @@ If $\theta = 30^\circ$, $a = 4.9 \,\text{m/s}^2$.
 
 ### Example Problem 4.2 – Simple Pendulum (small angle)
 
-  ![Simple Pendulum](/images/simple-pendulum.svg)
 
 We consider a simple pendulum consisting of a point mass $m$ attached to a rigid, massless rod (or string) of length $\ell$. The pivot is frictionless, and the angle from the vertical is denoted by $\theta(t)$.
+
+![A pendulum is displaced by theta. Tension points toward the pivot and gravity points downward.](/images/diagrams/pendulum.svg)
 
 The bob moves on a circular arc of radius $\ell$. Its tangential acceleration is
 
@@ -457,20 +458,20 @@ During a small interval $dt$, the rocket expels mass $|dM|$ backward with exhaus
 The change in momentum of the rocket is
 
 $$
-dP_{\text{rocket}} = M\,dv.
+dP_{\text{rocket}} = M\,dv + v\,dM.
 $$
 
 The expelled fuel has velocity $(v - u)$ in the inertial frame, so its momentum is
 
 $$
-dP_{\text{exhaust}} = (dM)(v - u).
+dP_{\text{exhaust}} = -(dM)(v - u).
 $$
 
 Here $dM<0$ because the rocket loses mass.  
 Conservation of total momentum gives
 
 $$
-M\,dv + (dM)(v - u) = v\,dM,
+M\,dv + v\,dM - (dM)(v - u) = 0,
 $$
 
 which simplifies to
@@ -611,10 +612,10 @@ $$
 g' = g \left(\frac{R}{R+h}\right)^2
 $$  
 $$
-\frac{g'}{g} \approx \left(\frac{6.4 \times 10^6}{6.4 \times 10^6 + 8.8 \times 10^3}\right)^2 \approx 0.999997
+\frac{g'}{g} \approx \left(\frac{6.4 \times 10^6}{6.4 \times 10^6 + 8.8 \times 10^3}\right)^2 \approx 0.997256
 $$  
 
-Gravity is only $0.0003\%$ weaker — imperceptible.  
+Gravity is about $0.274\%$ weaker at the summit in this spherical-Earth approximation.  
 
 ---
 
@@ -625,6 +626,8 @@ For central forces:
 $$
 \boldsymbol L = \boldsymbol r \times m \boldsymbol v
 $$
+
+![An elliptical orbit has its attracting mass at a focus. Force points to the focus; velocity is tangent to the orbit.](/images/diagrams/orbit.svg)
 
 Torque:
 
@@ -646,7 +649,7 @@ Thus **rotation symmetry → angular momentum conservation**.
 **Problem**: If Earth is twice as far from the Sun, how must its velocity change to conserve angular momentum?  
 
 **Solution**:  
-$L = mvr$ constant. If $r \to 2r$, then $v \to v/2$.  
+$L = mvr$ is constant, where $v$ is the tangential component of velocity. If $r \to 2r$, then $v \to v/2$.  
 
 ---
 
@@ -691,7 +694,7 @@ $$
 With $GM = 3.986 \times 10^{14}$,  
 
 $$
-T \approx 2.0 \times 10^4 \,\text{s} \approx 5.6 \,\text{hours}
+T \approx 1.44 \times 10^4 \,\text{s} \approx 4.00 \,\text{hours}
 $$  
 
 ---
@@ -735,8 +738,8 @@ This casual remark became the **Principia**, financed by Halley. Without his pus
 
 **Solution**:  
 Kepler’s 3rd law (in AU and years): $T^2 = a^3$  
-So $T = \sqrt{(17.8)^3} \approx 75.3 \,\text{years}$  
-Exactly the observed value.  
+So $T = \sqrt{(17.8)^3} \approx 75.1 \,\text{years}$  
+This is close to the observed period of roughly 76 years; planetary perturbations make the interval between returns vary.  
 
 ---
 
@@ -747,8 +750,8 @@ Newton’s mechanics revealed a cosmos like a machine: predictable tides, eclips
 But behind it lay deep conservation laws — the **operational code** of the universe.  
 
 ### Example Problem 13.1 – Tides
-**Problem**: Why do tides occur twice daily?  
-**Answer**: The Moon’s gravity creates bulges on both the near and far side of Earth. As Earth rotates, each location passes through two bulges per day.  
+**Problem**: Why do many coasts experience two high tides per lunar day?  
+**Answer**: In the simplified equilibrium-tide model, the Moon’s differential gravitational pull produces two tidal bulges, on the near and far sides of Earth. Earth rotates through this pattern in a lunar day of about 24 hours 50 minutes. Actual coasts may have semidiurnal, diurnal, or mixed tides because ocean basins, coastal geometry, and other effects modify the response.  
 
 ---
 
@@ -793,7 +796,7 @@ L = I \omega
 $$  
 
 #### Example Problem 15.1 – Uniform Rod
-**Problem**: A uniform rod of length $L$ rotates about its center. Find $I$.  
+**Problem**: A uniform rod of length $L$ rotates about an axis through its center perpendicular to the rod. Find $I$.  
 
 **Solution**:  
 $$
@@ -803,7 +806,7 @@ $$
 
 ### 15.2 Euler’s Equations
 
-For general rigid-body rotation:
+For general rigid-body rotation, using body-fixed components, with $I$ the inertia tensor and the time derivative taken in that frame:
 
 $$
 \frac{d}{dt}(I \mathbf \omega) + \mathbf \omega \times (I \mathbf \omega) = \mathbf \tau
@@ -827,24 +830,24 @@ Newton’s laws hold in inertial frames. But on Earth, which rotates, we must ad
 
 ### 16.1 Coriolis and Centrifugal Forces
 
-In a rotating frame with angular velocity $\vec \Omega$:  
+In a frame rotating at constant angular velocity $\vec \Omega$, with no translational acceleration of its origin:  
 
 $$
 \boldsymbol a' = \boldsymbol a - 2 \boldsymbol \Omega \times \boldsymbol v' - \boldsymbol \Omega \times (\boldsymbol \Omega \times \boldsymbol r)
 $$  
 
-- $-2 \boldsymbol \Omega \times \boldsymbol v'$ = Coriolis force  
-- $-\boldsymbol \Omega \times (\boldsymbol \Omega \times \boldsymbol r)$ = Centrifugal force  
+- $-2 \boldsymbol \Omega \times \boldsymbol v'$ = Coriolis acceleration  
+- $-\boldsymbol \Omega \times (\boldsymbol \Omega \times \boldsymbol r)$ = centrifugal acceleration  
 
 ### Example Problem 16.1 – Deflection of Falling Body
 **Problem**: A body falls from height $h$ at latitude $\phi$. How far is it deflected east by Coriolis force?  
 
 **Solution (approx)**:  
 Time of fall $t = \sqrt{2h/g}$.  
-Eastward acceleration $\approx 2 \Omega \sin\phi \cdot v_z$.  
+Eastward acceleration $\approx 2 \Omega \cos\phi \cdot v_z$, taking $v_z$ positive downward.  
 Displacement:  
 $$
-x \approx \tfrac{1}{3} \Omega \sin\phi \, g t^3
+x \approx \tfrac{1}{3} \Omega \cos\phi \, g t^3
 $$  
 
 For $h=100\,\text{m}, \phi=45^\circ$: $x \approx 2\,\text{cm}$.  
@@ -866,7 +869,7 @@ Yet, his mechanics transcended personal flaws: a framework both eternal and univ
 ### Example Problem 17.1 – The Mint’s Gold Coin
 **Problem**: If a counterfeit coin weighs 1% less than a true coin, how would Newton detect it with a balance?  
 
-**Solution**: Conservation of momentum in balances implies equal torques.  
+**Solution**: Static rotational equilibrium requires zero net torque, so the two gravitational torques balance.  
 A 1% mass difference causes measurable imbalance if compared against a standard reference. Newton’s obsession with precision ensured no counterfeiter escaped long.  
 
 ---
@@ -922,8 +925,8 @@ Energy conservation:
 $$
 mg(L+x) = \tfrac{1}{2}kx^2
 $$  
-Solve quadratic: $x \approx 27.7\,\text{m}$.  
-So maximum fall = $L+x \approx 57.7\,\text{m}$.  
+Solve the quadratic with $g=9.8\,\text{m/s}^{2}$: $x \approx 45.5\,\text{m}$.  
+So the maximum fall is $L+x \approx 75.5\,\text{m}$.  
 
 ---
 

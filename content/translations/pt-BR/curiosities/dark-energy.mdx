@@ -1,0 +1,179 @@
+---
+description: "Expansão acelerada, equação de estado da energia escura, distâncias e crescimento de estruturas: modelos, tensões cosmológicas e inferência de parâmetros."
+---
+
+**Unidades e geometria:** As equações de fundo e de campo usam $c=1$. A seção 3 explicita $c$ nas fórmulas de distância e pressupõe espaço plano para $d_L=(1+z)\chi$ e $D_A=\chi/(1+z)$.
+
+## 1. O fenômeno: a expansão acelerada do universo
+
+Observações de supernovas do tipo Ia (SNe Ia) mostram que a expansão cósmica está **acelerando**.  
+Em um espaço-tempo FLRW homogêneo e isotrópico,
+
+$$
+ds^2 = -dt^2 + a^2(t)\left[\frac{dr^2}{1 - k r^2} + r^2 d\Omega^2\right],
+$$
+
+![Uma curva esquemática de expansão exponencial tem concavidade para cima, enquanto a lei de potência de um universo dominado por matéria tem concavidade para baixo. As normalizações e as origens do tempo foram escolhidas para facilitar a comparação visual.](/images/diagrams/expansion.svg)
+
+a dinâmica obedece às equações de Friedmann:
+
+$$
+H^2 \equiv \left(\frac{\dot a}{a}\right)^2
+= \frac{8\pi G}{3}\,\rho - \frac{k}{a^2} + \frac{\Lambda}{3},
+$$
+
+$$
+\frac{\ddot a}{a} = -\frac{4\pi G}{3}\,(\rho + 3p) + \frac{\Lambda}{3}.
+$$
+
+A aceleração $\ddot a>0$ exige $\rho + 3p < \Lambda/(4\pi G)$ ou, para um fluido com $p = w\rho$, um valor **efetivo** $w < -1/3$.
+
+---
+
+## 2. Equação de estado e parametrizações
+
+Define-se o parâmetro da equação de estado da **energia escura**:
+
+$$
+w \equiv \frac{p_{\rm DE}}{\rho_{\rm DE}}.
+$$
+
+![A radiação e a matéria não relativística se diluem com a expansão do universo, enquanto uma constante cosmológica tem densidade de energia constante. Os dois eixos são logarítmicos.](/images/diagrams/cosmic-density.svg)
+
+- **Constante cosmológica**: $w=-1$, $\rho_\Lambda = \text{const}$.
+- **Quintessência** (campo escalar canônico $\phi$ com potencial não negativo e densidade de energia positiva): $w \in [-1,1]$, podendo variar com o tempo.
+- **Energia fantasma**: $w<-1$ (viola a condição de energia nula, NEC).
+- **K-essência / Horndeski / além de Horndeski**: termos cinéticos generalizados ou setores de gravidade modificada.
+
+Uma parametrização fenomenológica comum é a **CPL**:
+
+$$
+w(a) = w_0 + w_a (1-a) \quad \Longleftrightarrow \quad
+w(z) = w_0 + \frac{w_a z}{1+z}.
+$$
+
+Nesse caso, a densidade de energia escura evolui como
+
+$$
+\rho_{\rm DE}(z) = \rho_{\rm DE,0}
+\,(1+z)^{3(1+w_0+w_a)}\,\exp\!\left[-\frac{3w_a z}{1+z}\right].
+$$
+
+---
+
+## 3. Observáveis do fundo cosmológico
+
+### 3.1 Expansão de Hubble
+Para um universo plano ($k=0$) com matéria, radiação e energia escura,
+
+$$
+\frac{H^2(z)}{H_0^2}
+= \Omega_{r0}(1+z)^4 + \Omega_{m0}(1+z)^3
++ \Omega_{\rm DE,0}\, \frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}} .
+$$
+
+### 3.2 Distâncias (SNe Ia, BAO, CMB)
+A distância comóvel é:
+
+$$
+\chi(z) = c\int_0^z \frac{dz'}{H(z')}.
+$$
+
+Distância de luminosidade e módulo de distância:
+
+$$
+d_L(z) = (1+z)\,\chi(z), \qquad
+\mu(z) = 5\log_{10}\!\left(\frac{d_L(z)}{10\,{\rm pc}}\right).
+$$
+
+As oscilações acústicas bariônicas (BAO) fornecem uma régua padrão, o horizonte sonoro $r_d$, por meio de ângulos e desvios para o vermelho; uma medida isotrópica comum é:
+
+$$
+D_V(z) \equiv \left[ (1+z)^2 D_A^2(z)\,\frac{cz}{H(z)} \right]^{1/3},
+$$
+
+com $D_A(z)=\chi(z)/(1+z)$.
+
+A CMB restringe principalmente a distância até a última dispersão e a física do universo primordial, ajudando a **romper degenerescências** entre parâmetros de épocas tardias.
+
+---
+
+## 4. Crescimento de estruturas
+
+No calibre newtoniano, em regime linear e em escalas menores que o horizonte, as perturbações de matéria $\delta \equiv \delta\rho_m/\rho_m$ na RG obedecem a
+
+$$
+\ddot\delta + 2H\dot\delta - 4\pi G \rho_m \delta = 0.
+$$
+
+Define-se a **taxa de crescimento** $f \equiv d\ln D/d\ln a$, com $\delta \propto D(a)$.  
+Uma aproximação útil em RG+$\Lambda$CDM é $f \simeq \Omega_m(a)^\gamma$, com $\gamma \approx 0.55$.  
+As distorções no espaço de desvios para o vermelho medem $f\sigma_8(z)$ e testam a consistência entre **expansão** e **crescimento**, além de modelos de gravidade modificada.
+
+A gravidade modificada frequentemente se manifesta por acoplamentos efetivos dependentes da escala ou do tempo:
+
+$$
+k^2\Psi = -4\pi G_{\rm eff}(k,a)\,a^2 \rho_m \Delta, 
+\qquad \eta \equiv \frac{\Phi}{\Psi} \neq 1,
+$$
+
+em que $\Phi,\Psi$ são os potenciais de Bardeen. Desvios de $G_{\rm eff}=G$ ou $\eta=1$ sinalizam física além da RG/$\Lambda$.
+
+---
+
+## 5. Modelos microscópicos: um esboço
+
+### 5.1 Constante cosmológica $\Lambda$
+Energia do vácuo com $w=-1$.  
+O **antigo problema da constante cosmológica**: estimativas ingênuas da teoria quântica de campos superam o valor observado por um fator de $\sim 10^{60-120}$.
+
+### 5.2 Quintessência
+Um campo escalar canônico com densidade lagrangiana
+$$
+\mathcal{L} = -\frac12 (\partial \phi)^2 - V(\phi), \quad
+\rho_\phi = \frac12 \dot\phi^2 + V, \quad
+p_\phi = \frac12 \dot\phi^2 - V,
+$$
+de modo que
+$$
+w_\phi = \frac{\frac12 \dot\phi^2 - V}{\frac12 \dot\phi^2 + V}.
+$$
+Potenciais de rastreamento ou de descongelamento, por exemplo $V \propto \phi^{-\alpha}$ e $V \propto e^{-\lambda \phi/M_{\rm Pl}}$, podem amenizar o problema da coincidência.
+
+### 5.3 Gravidade modificada
+Por exemplo, gravidade $f(R)$ com ação $S = \int d^4x \sqrt{-g}\, \frac{M_{\rm Pl}^2}{2} f(R) + \dots$.  
+Ela é equivalente a uma teoria escalar-tensorial, com um grau de liberdade escalar adicional; **mecanismos de blindagem**, como camaleão e Vainshtein, recuperam a RG localmente.  
+As teorias de Horndeski têm equações de campo de segunda ordem; as teorias DHOST as estendem a teorias escalar-tensoriais degeneradas de ordem superior. As restrições de GW170817 exigem $c_T \simeq c$ na época atual, reduzindo o espaço de parâmetros.
+
+---
+
+## 6. Tensões e testes de consistência
+
+- **Tensão de Hubble**: a inferência de $H_0$ a partir da CMB, referente ao universo primordial, diverge das medições tardias pela escada de distâncias.  
+  A dinâmica da energia escura ou a energia escura primordial estão entre as explicações propostas, mas obter um ajuste coerente com **todos** os dados não é simples.
+
+- **Tensão em $S_8$**: o valor $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3}$ inferido por lentes gravitacionais fracas às vezes fica abaixo dos melhores ajustes de $\Lambda$CDM à CMB; isso pode indicar crescimento modificado ou efeitos sistemáticos.
+
+Uma estratégia robusta testa **conjuntamente** o **fundo cosmológico**, por meio das distâncias, e as **perturbações**, por meio do crescimento e das lentes.
+
+---
+
+## 7. Etapas da inferência: notas práticas
+
+Dado um vetor de parâmetros $\theta = \{\Omega_{m0}, \Omega_{b0}, H_0, w_0, w_a, \sigma_8, n_s, \dots\}$:
+
+1. Calcule $H(z|\theta)$ e as distâncias $\{\chi, D_A, d_L\}$.  
+2. Integre o crescimento linear $D(a|\theta)$ ou use $f \simeq \Omega_m^\gamma$.  
+3. Construa funções de verossimilhança para SNe Ia (módulos de distância), BAO ($D_A$, $H$, $D_V$), CMB (distância até a última dispersão e distribuições a priori), distorções no espaço de desvios para o vermelho ($f\sigma_8$) e lentes fracas ($S_8$).  
+4. Amostre as distribuições a posteriori e teste a **consistência interna**, por exemplo, entre crescimento e expansão.
+
+---
+
+## 8. Situação atual
+
+Os dados disponíveis são amplamente compatíveis com **$\Lambda$CDM ($w=-1$)**, mas pequenos desvios ainda são permitidos e algumas **tensões** persistem.  
+Levantamentos de nova geração (Euclid, Rubin/LSST, Roman, CMB-S4, DESI) restringirão melhor $w_0, w_a$ e testarão a RG por meio do crescimento de estruturas e das lentes gravitacionais.
+
+**Questão central:** a aceleração cósmica revela uma **nova componente de energia** ou indica que **a própria gravidade muda** em grandes escalas?
+
+---

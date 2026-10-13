@@ -3,6 +3,8 @@
 
 In the year 1583, inside the Cathedral of Pisa, a young medical student named **Galileo Galilei** leaned back in his pew and gazed upward. Above him, suspended from the lofty ceiling, hung a great bronze lamp. A sacristan had just extinguished its flame, and the lamp began to swing gently on its chain. Galileo, curious and restless, measured its oscillations against the beat of his own pulse.  
 
+![A pendulum is displaced by theta. Tension points toward the pivot and gravity points downward.](/images/diagrams/pendulum.svg)
+
 To his astonishment, the motion seemed isochronous: each swing, whether long or short, took nearly the same amount of time. What began as a casual observation during Mass would become a cornerstone of modern physics — the recognition that oscillatory motion obeys mathematical law.  
 
 ### From Metaphysics to Mechanics  
@@ -67,6 +69,8 @@ The link between oscillation and time was now firm: each swing could serve as a 
 
 If Galileo discovered the rhythm of oscillations, Robert Hooke gave that rhythm a universal law.  
 Born in 1635 on the Isle of Wight, Hooke was frail in childhood but intellectually fierce. By the time he became Curator of Experiments at the newly founded Royal Society, he was already known as a restless genius: architect, microscopist, astronomer, and mechanic. Yet it was his study of springs and elasticity that secured his name in the history of oscillations.  
+
+![The mass is displaced to the right of equilibrium; the restoring force points left.](/images/diagrams/spring.svg)
 
 In 1678, Hooke published the terse but immortal phrase:  
 
@@ -184,9 +188,8 @@ It is the heartbeat of oscillation — the universal pull back toward balance.
 
 While Galileo glimpsed the regularity of the pendulum, it was the Dutch polymath Christiaan Huygens (1629–1695) who transformed that insight into a technology that reshaped human life: the pendulum clock.  
 
-In 1656, Huygens patented the first clock regulated by a pendulum. Where earlier mechanical clocks drifted by minutes per day, Huygens’ device reduced the error to mere seconds. For sailors navigating the open oceans and astronomers mapping the heavens, this precision was revolutionary.  
+Huygens developed his pendulum clock in 1656; the patent followed on 16 June 1657. Where earlier mechanical clocks drifted by minutes per day, Huygens’ device reduced the error to mere seconds. For sailors navigating the open oceans and astronomers mapping the heavens, this precision was revolutionary.  
 
-  ![Pendulum Clock](\images\pendulum-clock.png)
 
 ---
 
@@ -202,13 +205,13 @@ But Huygens recognized a subtle problem: the isochronism is only approximate. At
 
 Huygens’ ingenious solution was the cycloidal pendulum. By constraining the pendulum to swing along the arc of a cycloid — the curve traced by a point on a rolling wheel — he ensured that the restoring force remained exactly proportional to displacement. The cycloid is the famous **tautochrone curve**: no matter where a bead starts, it takes the same time to reach the bottom.  
 
-Mathematically, this corrected equation of motion approaches:  
+For an ideal frictionless cycloidal pendulum, let $s$ denote signed arc length from the lowest point. Its exact equation is:
 
 $$
-\ddot{\theta} + \omega_0^2 \theta = 0,
+\ddot{s} + \omega_0^2 s = 0,
 $$  
 
-with deviations from amplitude eliminated to first order.  
+For a generating circle of radius $a$, $y=s^2/(8a)$ and $\omega_0^2=g/(4a)$. Thus the period is independent of amplitude within the accessible cycloidal arc; this is not an equation for the ordinary pendulum angle.
 
 Thus, Huygens gave the world a truly isochronous oscillator, anchoring time measurement with mathematical elegance.  
 
@@ -216,15 +219,15 @@ Thus, Huygens gave the world a truly isochronous oscillator, anchoring time meas
 
 ### Longitude and Empire  
 
-Accurate timekeeping was not mere curiosity. Determining **longitude at sea** required comparing local solar time with a reference time from the home port. A one-hour error in the ship’s clock meant a 15° error in position — potentially hundreds of kilometers adrift. Huygens’ clocks, housed in special gimbaled boxes, were deployed on Dutch ships, giving the Netherlands a navigational edge in the global contest for trade and empire.  
+Accurate timekeeping was not mere curiosity. Determining **longitude at sea** required comparing local solar time with a reference time from the home port. A one-hour error in the ship’s clock meant a 15° error in position — potentially hundreds of kilometers adrift. Huygens and collaborators tested pendulum clocks at sea, but ship motion made reliable timekeeping difficult; these trials did not solve the longitude problem.
 
 ---
 
 ### The Mystery of Synchrony  
 
-Late in life, bedridden from illness, Huygens noticed something uncanny. Two pendulum clocks, mounted on the same wall, would eventually fall into perfect synchrony, their ticks opposite one another. Even if disturbed, after some time they would drift back into alignment.  
+In February 1665, while confined to his rooms by illness, Huygens noticed something striking. Two pendulum clocks on a common support eventually synchronized in antiphase, swinging in opposite directions. After a disturbance, they returned to that phase relationship.
 
-He called this phenomenon an “odd sympathy.” Today, we recognize it as an example of coupled oscillators: tiny vibrations transmitted through the wall allowed energy exchange, pulling the pendulums into a common rhythm.  
+He called this phenomenon an “odd sympathy.” Today, we recognize it as an example of coupled oscillators: tiny vibrations transmitted through the common support allowed energy exchange, pulling the pendulums into a common rhythm.  
 
 The mathematics of coupled oscillators reveals that when two oscillators interact, they tend to settle into stable phase relationships. This principle underlies countless phenomena:  
 
@@ -352,6 +355,8 @@ The wave equation is his legacy: an eternal rhythm written not in sound but in s
 
 The discovery of the wave equation by d’Alembert ignited fierce debates across Europe. Mathematicians and physicists asked: how do we describe the general motion of a string? Was it one simple wave traveling back and forth, or something more complicated?  
 
+![The first three normal modes of a string fixed at both ends. The wavelength is 2L divided by n.](/images/diagrams/standing-waves.svg)
+
 Into this arena stepped two giants: **Daniel Bernoulli** (1700–1782), member of the prolific Swiss family of mathematicians, and **Leonhard Euler** (1707–1783), perhaps the most prolific mathematician in history. Their exchanges shaped not only wave theory, but the very foundations of modern analysis.  
 
 ---
@@ -457,7 +462,7 @@ This was shocking to his contemporaries. Functions with sharp corners or discont
 
 ### Fourier Series  
 
-Any periodic function $f(x)$ of period $2\pi$ can be written as:  
+Under suitable convergence conditions, a periodic function $f(x)$ of period $2\pi$ can be written as:  
 
 $$
 f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[a_n \cos(nx) + b_n \sin(nx)\right].
@@ -536,6 +541,8 @@ Every tone of music, every flicker of light, every pulse of data is a chord in F
 ## 2.7 Young’s Double-Slit and the Nature of Light  
 
 At the dawn of the 19th century, the nature of light was fiercely debated. **Isaac Newton** had argued that light consisted of corpuscles — tiny particles streaming through space. His authority was immense; the corpuscular theory dominated England for a century. Yet across Europe, wave theories lingered, proposed by Huygens and later supported by Euler. The question was unsettled: *was light a stream of particles or a wave?*  
+
+![Two slits lead to bright fringes when their path difference is an integer wavelength. Fringes are schematic.](/images/diagrams/double-slit.svg)
 
 Into this debate stepped the English polymath **Thomas Young** (1773–1829). Physician, linguist, Egyptologist, and physicist, Young embodied the Enlightenment ideal of universal curiosity. In 1801, he devised one of the simplest yet most profound experiments in physics: the double-slit experiment.  
 
@@ -631,7 +638,7 @@ Unlike reflection or refraction, diffraction could not be explained by simple ra
 
 ### Fresnel Integrals and Diffraction Patterns  
 
-For a slit of width $a$ illuminated by light of wavelength $\lambda$, Fresnel derived that the intensity distribution at angle $\theta$ is given approximately by:  
+For a slit of width $a$ illuminated by light of wavelength $\lambda$, the Fraunhofer (far-field) approximation gives the intensity distribution at angle $\theta$:
 
 $$
 I(\theta) \propto \left( \frac{\sin \beta}{\beta} \right)^2, \qquad \beta = \frac{\pi a \sin \theta}{\lambda}.
@@ -663,7 +670,6 @@ With Young’s two-slit fringes and Fresnel’s diffraction theory, the wave nat
 
 Fresnel was not only a theorist. He invented the **Fresnel lens**, a remarkable design that allowed lighthouses to project beams visible for miles while using less glass. These stepped, concentric lenses saved lives at sea and are still used today in projectors, headlights, and even solar panels.  
 
-  ![Fresnel Lens](\images\fresnel-lens.png)
 
 ---
 
@@ -688,7 +694,6 @@ Chladni sprinkled fine sand on a thin metal plate and then drew a violin bow alo
 
 Where the plate vibrates strongly, the sand is shaken away; where the plate stands still (nodes), the sand accumulates. Thus, an invisible oscillation becomes a visible design.  
 
-  ![Chladni figures](\images\chladni-figures.png)
 
 Napoleon Bonaparte himself once demanded a demonstration, and Chladni obliged, bowing his plates before the French court. The Emperor was so impressed that he offered a prize for a mathematical theory of vibrating plates — a challenge that inspired Sophie Germain to enter the annals of mathematical physics.  
 
@@ -777,7 +782,7 @@ This explains the familiar wail of a passing siren: the pitch drops suddenly as 
 
 ### Doppler Shift for Light  
 
-For electromagnetic waves, which require no medium, special relativity modifies the formula:  
+For electromagnetic waves, which require no medium, special relativity gives the following formula for collinear approach; $v$ is the positive relative approach speed:
 
 $$
 f' = f \sqrt{\frac{1+\beta}{1-\beta}}, \qquad \beta = \frac{v}{c}.
@@ -849,14 +854,14 @@ $$
 v_p = \frac{\omega}{k}.
 $$  
 
-- **Group velocity** (speed of the envelope, energy, or information):  
+- **Group velocity** (the propagation speed of a narrowband wave-packet envelope under suitable conditions):
 $$
 v_g = \frac{d\omega}{dk}.
 $$  
 
 This distinction became crucial in optics, acoustics, and later quantum mechanics. In many media, $v_p \neq v_g$, so the crests outrun the envelope or lag behind it.  
 
-Group velocity is what determines how signals and energy propagate. Without Rayleigh’s clarity, 20th-century wave physics would have lacked a vital concept.  
+In weakly absorbing media with sufficiently mild dispersion, group velocity can also describe energy transport. It is not generally identical to information or signal-front velocity, especially in anomalously dispersive media. This distinction is essential in modern wave physics.
 
 ---
 

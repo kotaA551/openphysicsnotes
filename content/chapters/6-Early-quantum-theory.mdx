@@ -77,12 +77,12 @@ $$
 \lambda_{\text{peak}}\,T = \text{constant}
 $$
 
-- **Einstein photoelectric equation.** Straight line plots of $K_{\max}$ vs $\,\nu$ give slope $h$ and intercept $W$—that is how early experiments measured Planck’s constant with electrons
+- **Einstein photoelectric equation.** Straight line plots of $K_{\max}$ vs $\,\nu$ give slope $h$ and intercept $-W$—that is how early experiments measured Planck’s constant with electrons
 
-- **Bohr energies.** For hydrogen-like atoms we will get
+- **Bohr energies.** For hydrogen-like atoms with nuclear charge $+Ze$, in SI units and the infinite-nuclear-mass approximation, we will get
 
 $$
-E_n = -\,\frac{m_e e^4}{2\hbar^2}\,\frac{1}{n^2}
+E_n = -\,\frac{m_e e^4}{2(4\pi\varepsilon_0)^2\hbar^2}\,\frac{Z^2}{n^2}
 $$
 
 and the emitted photon frequency from a jump $n\to n'$ will satisfy $h\nu = E_n - E_{n'}$ with Rydberg constant emerging naturally
@@ -101,6 +101,8 @@ We will live mostly in **1900–1925**: the **old quantum theory** (Planck → E
 
 Blackbody radiation is where classical physics face-planted and quantum theory quietly spawned. A **blackbody** is an ideal cavity with a tiny hole: light that enters bounces around and is essentially absorbed; light that leaves carries the equilibrium spectrum of the cavity walls. The mission in the 1890s was to predict the energy density of this radiation as a function of frequency $\nu$ and temperature $T$ and to explain why the measured curve rises, peaks, and then crashes instead of diverging. Spoiler: classical equipartition said “infinite UV energy,” nature said “lol, no,” and Max Planck invented quanta to get the curve right.
 
+![Planck spectral energy density per frequency for three temperatures in common arbitrary units. Hotter curves peak at higher frequency and have greater area.](/images/diagrams/blackbody.svg)
+
 ---
 
 ### 6.2.1 The experimental scene: precision burns theory
@@ -110,7 +112,7 @@ German labs (Lummer, Pringsheim, Rubens, Kurlbaum) built exquisitely calibrated 
 Two common ways to describe the spectrum are by frequency and by wavelength. They are related but not identical in shape because $\nu=c/\lambda$ changes the measure:
 
 $$
-u_\nu(\nu,T)\,d\nu = u_\lambda(\lambda,T)\,d\lambda
+u_\nu(\nu,T)\,|d\nu| = u_\lambda(\lambda,T)\,|d\lambda|
 $$
 
 You’ll see two standard forms. By frequency:
@@ -225,7 +227,6 @@ which is Wien’s law with $A=8\pi h/c^{3}$ and $B=h/k_B$
 
 So Planck’s formula gracefully bridges the two regimes that classical and empirical laws captured separately.
 
-  ![blackbody radiation](/images/blackbody-radiation.png)
 
 ---
 
@@ -305,7 +306,7 @@ with a constant $b$ fixed by the root of a slightly different transcendental equ
 
 ### 6.2.9 Converting between frequency and wavelength spectra
 
-Use $u_\lambda\,d\lambda = u_\nu\,d\nu$ with $\nu=c/\lambda$ and $d\nu = -\,c/\lambda^{2}\,d\lambda$. Then
+Use $u_\lambda\,|d\lambda| = u_\nu\,|d\nu|$ with $\nu=c/\lambda$ and $d\nu = -\,c/\lambda^{2}\,d\lambda$. Then
 
 $$
 u_\lambda(\lambda,T) = u_\nu\!\left(\frac{c}{\lambda},T\right)\;\frac{c}{\lambda^{2}}
@@ -380,6 +381,8 @@ Changing variables $x=h\nu/(k_B T)$ yields $n(T)\propto T^{3}$ with a proportion
 
 Shine light on a clean metal and electrons pop out. Classical waves could explain “more light → more energy,” but experiments in the early 1900s said “frequency first, intensity second.” That plot twist pushed Einstein to a bold take: light energy arrives in discrete packets of size $h\nu$. The photoelectric effect is where photons stop being poetry and start being accounting.
 
+![Maximum electron kinetic energy rises linearly with frequency above the threshold nu zero, with slope h.](/images/diagrams/photoelectric.svg)
+
 ---
 
 ### 6.3.1 The experimental rules (what needed explaining)
@@ -388,7 +391,7 @@ Laboratories found a crisp set of facts:
 
 - There exists a **threshold frequency** $\nu_0$ below which no electrons are emitted, however intense the light  
 - Above threshold, the **maximum kinetic energy** of emitted electrons depends linearly on frequency, not intensity  
-- The **emission is prompt** on the scale of the light cycle; no measurable delay even at low intensities  
+- The **emission is prompt** within experimental time resolution, with no long energy-accumulation delay even at low intensities
 - The **photoelectric current** (number of electrons per second) scales with light intensity for fixed frequency, up to a saturation set by the apparatus
 
 These rules are weird in a pure wave picture where energy is spread out over the wavefront and can accumulate continuously.
@@ -457,7 +460,7 @@ where $P$ is the optical power absorbed on the active area. Real values of $\eta
 
 ### 6.3.7 Energy distribution and the role of the solid
 
-$K_{\max}$ is the upper edge. The distribution of kinetic energies depends on the band structure and scattering within the solid. In simple metals one can sketch an “initial state” between the Fermi level and a few $k_B T$ below it; an electron that absorbs a photon emerges with energy roughly $h\nu - W$ minus any losses to inelastic scattering on the way out. That is why measured spectra are broad, not delta functions, even though the top edge follows $h\nu - W$ cleanly.
+$K_{\max}$ is the upper edge. The kinetic-energy distribution depends on band structure and scattering within the solid. Occupied initial states can lie well below the Fermi level; a few $k_B T$ characterizes thermal smearing near that level, not the full occupied band. For an initial binding energy $E_B$ below the Fermi level, an emitted electron has approximately $h\nu-W-E_B$ minus inelastic losses. Thus spectra are broad, while electrons near the Fermi level set the upper edge $h\nu-W$.
 
 ---
 
@@ -486,7 +489,7 @@ The two experiments probe different pieces of Einstein’s model: the **energy p
 
 ### 6.3.11 What about intensity at fixed frequency?
 
-At fixed $\nu>\nu_0$, increasing intensity raises the number of emitted electrons (current) but leaves the **maximum energy** unchanged because $h\nu$ is unchanged. Conversely, at fixed intensity, increasing frequency raises $K_{\max}$ linearly. On the $V_s$–$\nu$ plot, intensity just changes how quickly you reach saturation, not the slope or intercept.
+At fixed $\nu>\nu_0$, increasing intensity raises the number of emitted electrons (current) but leaves the **maximum energy** unchanged because $h\nu$ is unchanged. Conversely, at fixed intensity, increasing frequency raises $K_{\max}$ linearly. On the $V_s$–$\nu$ plot, intensity changes the photocurrent amplitude, not the ideal slope or intercept.
 
 ---
 
@@ -546,6 +549,8 @@ Quantum takes the wheel precisely where classical physics insists on the wrong d
 ## 6.4 Atomic Spectra and Bohr’s Model
 
 Spectral lines were the OG QR codes of atoms—thin, repeatable, and screaming “there’s structure in here.” Long before quantum mechanics became a full theory, careful spectroscopy mapped those lines into simple integer patterns. The old quantum theory’s biggest W was Bohr’s 1913 model: a semi-classical atom with quantized orbits that nailed hydrogen’s spectrum and hinted at a deeper wave picture.
+
+![Hydrogen bound energy levels converge toward zero. A downward transition from n equals two to n equals one emits a photon.](/images/diagrams/atomic-levels.svg)
 
 ---
 
@@ -760,7 +765,7 @@ To push further, Sommerfeld allowed **elliptical** orbits and quantized both the
 
 **Wins**
 
-- Predicts $E_n \propto -1/n^{2}$ and the exact hydrogen and hydrogenic spectra when reduced mass is included  
+- Predicts $E_n \propto -1/n^{2}$ and the leading nonrelativistic gross structure of hydrogen and hydrogenic spectra when reduced mass is included; it does not give all precision corrections.
 - Explains **series limits** and **ionization energies**  
 - Anticipates de Broglie and provides a clean bridge to wave mechanics
 
@@ -791,13 +796,13 @@ $$
 R_\infty = \frac{\alpha^{2} m_e c}{2 h}
 $$
 
-For a hydrogenic ion with nuclear charge $Z$, replace $R_{\text{H}}$ by $Z^{2} R_{\text{H}}$ and $E_n$ by $-13.6\,Z^{2}\,\text{eV}/n^{2}$.
+For a hydrogenic ion with nuclear charge $Z$, replacing $R_{\text{H}}$ by $Z^{2} R_{\text{H}}$ and $E_n$ by $-13.6\,Z^{2}\,\text{eV}/n^{2}$ gives an approximation. For the precise finite-nuclear-mass result, use the Rydberg constant calculated with that nucleus's reduced mass.
 
 ---
 
 ### 6.4.13 Concept check: Bohr vs wave mechanics
 
-Bohr’s radii $r_n$ correspond to maxima in the radial probability density of the exact hydrogen wavefunctions. The quantum number $n$ remains, but $l$ and $m$ split levels and determine shapes; stationary states become **standing waves** in three dimensions. The photon frequency condition survives as **energy eigenvalue differences**, while selection rules arise from matrix elements of the dipole operator.
+Bohr's radii $r_n$ coincide with radial-probability maxima for circular hydrogenic states with orbital quantum number $l=n-1$ in the infinite-nuclear-mass approximation, not for general hydrogen states. The quantum number $n$ fixes the nonrelativistic Coulomb energy; $l$ and $m$ label degenerate angular states and their shapes and orientations. Additional interactions can lift this degeneracy. Stationary states become **standing waves** in three dimensions. The photon frequency condition survives as **energy eigenvalue differences**, while selection rules arise from matrix elements of the dipole operator.
 
 ---
 
@@ -1076,10 +1081,10 @@ $$
 \lambda = \frac{h}{\sqrt{2 m_e e V}}
 $$
 
-Engineers love the quick constant (with $\lambda$ in ångström, $V$ in eV):
+A useful numerical formula uses $\lambda$ in angstroms and the accelerating voltage $V$ in volts:
 
 $$
-\lambda(\text{Å}) \approx \frac{12.27}{\sqrt{V(\text{eV})}}
+\lambda(\text{Å}) \approx \frac{12.27}{\sqrt{V(\text{V})}}
 $$
 
 For higher voltages, include relativity:
@@ -1110,7 +1115,7 @@ Given $\lambda=h/p$, electrons should diffract with angles set by $d$—just lik
 
 **G. P. Thomson** (also 1927) sent keV electrons through thin polycrystalline foils and recorded **ring patterns**—the powder-diffraction version of Bragg. Two independent routes, one conclusion: matter waves are real.
 
-Rule of thumb: $V\sim 150\ \text{eV}$ gives $\lambda\sim 1\ \text{Å}$ (interatomic distances), perfect for crystal diffraction.
+Rule of thumb: $V\sim 150\ \text{V}$ gives $\lambda\sim 1\ \text{Å}$ (interatomic distances), perfect for crystal diffraction.
 
 ---
 
@@ -1148,14 +1153,14 @@ A complementary viewpoint uses Hamilton–Jacobi theory: write $\psi \sim \exp(i
 
 ### 6.6.9 Electron double-slit: the mic drop
 
-Send single electrons through two slits; record impacts one by one. The screen builds an **interference pattern** over time—then vanishes when you measure **which slit** each electron took. The pattern wavelength matches $\lambda=h/p$. The message is not that electrons smear; it is that probabilities **interfere** with phases set by action differences.
+Send single electrons through two slits; record impacts one by one. The screen builds an **interference pattern** over time—then vanishes when you measure **which slit** each electron took. The pattern wavelength matches $\lambda=h/p$. The message is not that electrons smear; it is that probability amplitudes **interfere** with phases set by action differences.
 
 ---
 
 ### 6.6.10 Matter-wave tech: microscopes and metrology
 
 - **Electron microscopes.** Resolution scales roughly like $\sim \lambda$, so swapping visible light ($\sim 500\ \text{nm}$) for 100 keV electrons ($\lambda\sim 0.004\ \text{nm}$ with relativistic correction) makes nanoworld imaging routine  
-- **LEED/RHEED.** Low- and reflection-energy electron diffraction fingerprint surface structures and growth in real time  
+- **LEED/RHEED.** Low-energy electron diffraction and reflection high-energy electron diffraction identify surface structures and growth in real time.
 - **Atom interferometry.** Neutral atoms also carry de Broglie waves; splitting and recombining them measures gravity, rotations, and fundamental constants with absurd precision
 
 ---
@@ -1164,7 +1169,7 @@ Send single electrons through two slits; record impacts one by one. The screen b
 
 **(a) De Broglie wavelength at $54\ \text{eV}$.**
 
-Using $\lambda(\text{Å})\approx 12.27/\sqrt{V(\text{eV})}$,
+Using $\lambda(\text{Å})\approx 12.27/\sqrt{V(\text{V})}$,
 
 $$
 \lambda \approx \frac{12.27}{\sqrt{54}}\ \text{Å} \approx 1.67\ \text{Å}
@@ -1177,7 +1182,7 @@ Squarely in the range of crystal spacings—no wonder early peaks showed up near
 Invert the same rule:
 
 $$
-V \approx \left(\frac{12.27}{\lambda(\text{Å})}\right)^{2}\ \text{eV} \approx 150\ \text{eV}
+V \approx \left(\frac{12.27}{\lambda(\text{Å})}\right)^{2}\ \text{V} \approx 150\ \text{V}
 $$
 
 **(c) Group velocity check (nonrelativistic).**
@@ -1234,7 +1239,7 @@ The playbook had three pillars:
 2) **Bohr–Sommerfeld quantum conditions** select allowed motions  
 3) **Bohr frequency condition** connects level differences to light
 
-In symbols, energy levels $E_n$ and jumps $n\to n'$ emit or absorb photons with
+For energy levels $E_n$, a downward jump $n\to n'$ emits a photon with the energy below; absorption is the reverse transition:
 
 $$
 h\nu = E_n - E_{n'}
@@ -1276,7 +1281,7 @@ $$
 E_n = -\,\frac{m_e e^{4}}{2 (4\pi\varepsilon_0)^2 \hbar^2}\,\frac{1}{n^{2}}
 $$
 
-The principal quantum number $n$ counts nodes in the old theory too, but without a wavefunction to say it out loud. Sommerfeld also added a relativistic mass–velocity correction and extracted a qualitative **fine structure** splitting, a hint of what Dirac would do properly.
+The principal quantum number $n$ combines radial and angular action quantum numbers in the old theory; its precise relation to wavefunction nodes requires wave mechanics. Sommerfeld also added a relativistic correction and obtained fine-structure splittings, anticipating aspects of Dirac’s later theory.
 
 ---
 
@@ -1294,7 +1299,7 @@ $$
 E_n = n\,\hbar\omega
 $$
 
-This is **close** to the truth; modern QM gives $E_n=(n+\tfrac12)\hbar\omega$. The missing $\tfrac12$ is the vacuum’s **zero-point energy**, one of several places where old quantum theory is off by a half.
+This is **close** to the truth; modern QM gives $E_n=(n+\tfrac12)\hbar\omega$. The missing $\tfrac12$ is the oscillator’s **zero-point energy**, one of several places where old quantum theory is off by a half.
 
 ---
 
@@ -1612,7 +1617,7 @@ $$
 \Delta p_z \approx \mu_B\,\frac{\partial B_z}{\partial z}\,\tau
 $$
 
-Translate to a spot separation on a screen a few tens of cm away to see that mm-scale splits are reasonable
+The spot separation also requires the drift time after the magnet. With silver mass $1.79\times10^{-25}\ \mathrm{kg}$, beam speed $500\ \mathrm{m/s}$, and a screen $0.20\ \mathrm{m}$ beyond the magnet, these values give a separation of about $0.047\ \mathrm{mm}$, including deflection inside the magnet. Millimeter separation requires different parameters.
 
 **(c) White dwarf scale (order-of-magnitude)**
 
@@ -1808,7 +1813,7 @@ This is **Ehrenfest’s theorem**. When the wave packet is narrow and the potent
 
 ### 6.9.10 Stationary states, transitions, and selection rules
 
-In wave language, stationary states $\phi_n$ are energy eigenfunctions. Time dependence is a global phase $e^{-iE_n t/\hbar}$, so expectation values in a stationary state are time-independent. Driving the system with a weak periodic field $H'=-\hat d\cdot \boldsymbol E_0\cos\omega t$ and using time-dependent perturbation theory yields transition rates proportional to matrix elements $\langle m|\hat d|n\rangle$ and a resonance at $\hbar\omega=E_m-E_n$. The dipole operator enforces selection rules like $\Delta \ell=\pm 1$, matching old empirical rules while giving the intensities from first principles.
+In wave language, stationary states $\phi_n$ are energy eigenfunctions. Time dependence is a global phase $e^{-iE_n t/\hbar}$, so expectation values of observables with no explicit time dependence are time-independent. Driving the system with a weak periodic field $H'=-\hat d\cdot \boldsymbol E_0\cos\omega t$ and using time-dependent perturbation theory yields transition rates proportional to squared magnitudes of matrix elements $\langle m|\hat d|n\rangle$ projected onto the field polarization and a resonance at $\hbar\omega=E_m-E_n$. The dipole operator enforces selection rules like $\Delta \ell=\pm 1$, matching old empirical rules while giving the intensities from first principles.
 
 ---
 

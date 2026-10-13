@@ -1,0 +1,2653 @@
+---
+description: "从微观状态与系综出发，系统学习配分函数、经典和量子理想气体、涨落与响应、玻色–爱因斯坦凝聚、光子和声子、平均场与朗道理论、伊辛模型、临界现象和重整化群，以及线性响应、涨落–耗散定理、动理论和玻尔兹曼方程。通过公式推导、简短例题与练习，理解微观统计如何联系宏观热力学和输运现象。"
+---
+
+## 9.1 基础：从微观状态到热力学
+
+统计物理从**微观**的不确定性出发，预测**宏观**规律。我们永远无法确知包含 $10^{23}$ 个粒子的系统的精确状态；因此，我们用**系综**来组织这种未知，使系综平均能够再现温度、压强、磁化强度等宏观量。本节建立核心框架：微观状态与宏观状态、基本假设、三种标准系综以及热力学极限。我们还将展示，**信息论**的视角如何使“最大熵”成为导出这些熟悉分布的唯一机制。
+
+![最初被限制在容器一半空间中的气体膨胀，充满整个孤立容器。更多可访问的微观状态对应更大的熵。](/images/diagrams/entropy.svg)
+
+---
+
+### 9.1.1 微观状态、宏观状态与相空间
+
+**微观状态**是对系统自由度的完整描述。对于 $N$ 个经典质点，它是 $6N$ 维相空间中的一个点，其坐标为
+
+$$
+\Gamma \equiv (\boldsymbol r_{1},\dots,\boldsymbol r_{N};\boldsymbol p_{1},\dots,\boldsymbol p_{N})
+$$
+
+**宏观状态**由少数几个宏观变量定义，例如孤立气体的 $(E,V,N)$。许多微观状态对应同一个宏观状态。对这些微观状态计数，就引出了熵。
+
+刘维尔定理指出，哈密顿流在相空间中是**不可压缩的**，因此体积元沿轨迹保持不变。这使能量壳上的均匀分布在动力学上保持自洽。
+
+---
+
+### 9.1.2 基本假设与玻尔兹曼原理
+
+**基本假设。** 对于处于平衡态、$(E,V,N)$ 固定的孤立系统，满足这些约束的所有微观状态都**等概率**。
+
+设 $\Omega(E,V,N)$ 为能量处于 $[E,E+\delta E]$ 范围内的微观状态数，其中 $\delta E$ 很小，但仍是宏观尺度的能量间隔。那么，**熵**为
+
+$$
+S(E,V,N) = k_{B}\,\ln \Omega(E,V,N)
+$$
+
+热力学温度由下式给出
+
+$$
+\frac{1}{T} = \left(\frac{\partial S}{\partial E}\right)_{V,N}
+$$
+
+压强和化学势则为
+
+$$
+\frac{p}{T} = \left(\frac{\partial S}{\partial V}\right)_{E,N},\qquad -\,\frac{\mu}{T} = \left(\frac{\partial S}{\partial N}\right)_{E,V}
+$$
+
+对于相互作用很弱的子系统 $A$ 和 $B$，$S$ 在总能量 $E$ 固定时的可加性给出平衡条件 $T_{A}=T_{B}$：只需使 $S_{A}(E_{A})+S_{B}(E_{B})$ 在约束 $E_{A}+E_{B}=E$ 下达到最大值。
+
+---
+
+### 9.1.3 热力学极限、广延性与凹性
+
+**热力学极限**定义为 $N\to\infty$、$V\to\infty$，同时保持 $n=N/V$ 不变。在这一极限下：
+
+- 熵具有**广延性**：$S(\lambda E,\lambda V,\lambda N)\approx \lambda S(E,V,N)$  
+- $S$ 是其自然变量的**凹函数**，从而保证稳定性，并在适用时保证热容为正  
+- **强度**变量的涨落按 $1/\sqrt{N}$ 缩小，使热力学描述变得确定
+
+短程相互作用保证系综等价；长程相互作用的情形（自引力、未屏蔽的库仑相互作用）可能破坏可加性，需要谨慎处理。
+
+---
+
+### 9.1.4 微正则系综
+
+微正则概率密度相对于刘维尔测度诱导的不变能量壳测度均匀分布，而不是相对于欧几里得超曲面面积均匀分布。这里，$\omega(E,V,N)=\int d\Gamma\,\delta(H(\Gamma)-E)$ 是态密度；对于固定的窄能量间隔，它与有限能量壳内的状态数 $\Omega\simeq\omega\,\delta E$ 不同：
+
+$$
+\rho_{\text{mc}}(\Gamma) = \frac{1}{\omega(E,V,N)}\,\delta\!\left(H(\Gamma)-E\right)
+$$
+
+期望值为
+
+$$
+\langle A\rangle_{\text{mc}} = \frac{1}{\omega}\int d\Gamma\;A(\Gamma)\,\delta\!\left(H(\Gamma)-E\right)
+$$
+
+在约束条件下使 $S=k_{B}\ln\Omega$ 最大化，可以重现热力学关系。对于许多系统，这是概念上的基石；在实际计算中，正则系综往往更容易处理，并且在 $N$ 很大时与微正则系综等价。
+
+---
+
+### 9.1.5 通过热库引出正则系综
+
+让系统 $S$ 与一个巨大的热库 $R$ 弱耦合，并保持 $E_{\text{tot}}$ 固定。发现系统 $S$ 处于微观状态 $i$（能量为 $E_{i}$）的概率，正比于热库在能量 $E_{\text{tot}}-E_{i}$ 下的状态数：
+
+$$
+P(i) \propto \Omega_{R}(E_{\text{tot}}-E_{i}) \approx \exp\!\left[\frac{1}{k_{B}}\,S_{R}(E_{\text{tot}})-\frac{E_{i}}{k_{B}T}\right] \propto e^{-\beta E_{i}}
+$$
+
+其中逆温度 $\beta \equiv 1/(k_{B}T)$。归一化后得到
+
+$$
+P(i) = \frac{e^{-\beta E_{i}}}{Z},\qquad Z(\beta,V,N) \equiv \sum_{i} e^{-\beta E_{i}}
+$$
+
+$Z$ 是**配分函数**。热力学势由此得到：
+
+$$
+F(T,V,N) \equiv -\,k_{B}T\,\ln Z
+$$
+
+$$
+U = \langle E\rangle = -\,\frac{\partial}{\partial \beta}\ln Z
+$$
+
+$$
+S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = k_{B}\left(\ln Z + \beta U\right)
+$$
+
+能量涨落满足
+
+$$
+\langle (\Delta E)^{2}\rangle = k_{B}T^{2}C_{V}
+$$
+
+因此，对于通常的系统，相对涨落按 $1/\sqrt{N}$ 缩小。
+
+---
+
+### 9.1.6 巨正则系综：交换粒子
+
+如果系统与库同时交换能量和粒子，那么微观状态 $i$（具有 $(E_{i},N_{i})$）的概率为
+
+$$
+P(i) = \frac{e^{-\beta(E_{i}-\mu N_{i})}}{\Xi}
+$$
+
+其中**巨配分函数**为
+
+$$
+\Xi(\beta,V,\mu) \equiv \sum_{N=0}^{\infty}\sum_{i\in N} e^{-\beta(E_{i}-\mu N)}
+$$
+
+定义巨热力学势
+
+$$
+\Phi_{G}(T,V,\mu) \equiv -\,k_{B}T\,\ln \Xi
+$$
+
+则有
+
+$$
+p = -\left(\frac{\partial \Phi_{G}}{\partial V}\right)_{T,\mu},\quad N = -\left(\frac{\partial \Phi_{G}}{\partial \mu}\right)_{T,V},\quad S = -\left(\frac{\partial \Phi_{G}}{\partial T}\right)_{V,\mu}
+$$
+
+涨落为：
+
+$$
+\langle (\Delta N)^{2}\rangle = k_{B}T\left(\frac{\partial N}{\partial \mu}\right)_{T,V}
+$$
+
+而能量与粒子数的协方差由 $\ln \Xi$ 的混合导数给出。
+
+---
+
+### 9.1.7 勒让德变换与热力学势
+
+热力学通过勒让德变换来组织其结构，用这种变换替换自然变量：
+
+- $S=S(E,V,N)$  
+- $F=U-TS$，自然变量为 $(T,V,N)$  
+- $G=F+pV$，自然变量为 $(T,p,N)$  
+- $H=U+pV$，自然变量为 $(S,p,N)$  
+- $\Phi_{G}=F-\mu N$，自然变量为 $(T,V,\mu)$
+
+混合偏导数相等可导出麦克斯韦关系，例如
+
+$$
+\left(\frac{\partial S}{\partial V}\right)_{T} = \left(\frac{\partial p}{\partial T}\right)_{V}
+$$
+
+---
+
+### 9.1.8 信息论基础（杰恩斯观点）
+
+设 $\{p_{i}\}$ 为各微观状态的概率。**最大化**香农熵
+
+$$
+\mathcal S[p] \equiv -k_{B}\sum_{i} p_{i}\ln p_{i}
+$$
+
+同时满足已知约束。如果只有归一化条件和平均能量固定这两个约束，拉格朗日乘子法给出
+
+$$
+p_{i} = \frac{e^{-\beta E_{i}}}{Z}
+$$
+
+如果同时有能量和粒子数约束，就得到巨正则形式 $p_{i}\propto e^{-\beta(E_{i}-\mu N_{i})}$。因此，系综是与宏观数据相容的、**偏倚最小**的分布。
+
+相对熵 $D(p\Vert q)=\sum p_{i}\ln(p_{i}/q_{i})\ge 0$ 衡量分布与先验分布 $q$ 的差异。许多涨落定理和线性响应结果都可以用这种语言简洁地表达。
+
+---
+
+### 9.1.9 大偏差、集中与系综等价
+
+当 $N\gg 1$ 时，概率以指数方式集中在热力学值附近。如果 $A$ 是一个可加的可观测量，
+
+$$
+\mathbb P\!\left(\frac{A}{N}\approx a\right)\sim e^{-N\,I(a)}
+$$
+
+其中**速率函数** $I(a)\ge 0$ 在平衡值处为零。在标准的凸性条件下：
+
+- 微正则、正则和巨正则系综在热力学极限下**等价**  
+- 非凹性表明存在相共存；麦克斯韦构造在热力学势的层面上修复这些非凹部分
+
+---
+
+### 9.1.10 简短例题
+
+**(a) 二能级系统**  
+能级为 $0$ 和 $\epsilon$，共有 $N$ 个互不相互作用的格点。每个格点的正则配分函数为
+
+$$
+z = 1 + e^{-\beta\epsilon}
+$$
+
+总配分函数为 $Z=z^{N}$。平均能量为 $U=N\,\epsilon/(e^{\beta\epsilon}+1)$，热容在 $k_{B}T\sim \epsilon$ 附近出现肖特基峰。
+
+**(b) 量子谐振子**  
+对于单个振子，$E_{n}=(n+\tfrac12)\hbar\omega$ 给出
+
+$$
+Z = \frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}
+$$
+
+平均能量 $U=\frac{\hbar\omega}{2}+\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}$ 在 $T$ 很高时趋于 $k_{B}T$（能量均分），在 $T\to 0$ 时趋于 $\hbar\omega/2$。
+
+**(c) 抛硬币与斯特林公式**  
+对于 $N$ 枚独立的均匀硬币，出现 $k$ 个正面的多重度为 $\binom{N}{k}\approx \exp\!\left[N\,H(k/N)\right]/\sqrt{2\pi N x(1-x)}$，其中 $x=k/N$，二元熵为 $H(x)=-x\ln x-(1-x)\ln(1-x)$。这是大偏差的典型例子。
+
+**(d) 理想气体的微正则温度**  
+对于经典理想气体，状态计数给出
+
+$$
+\Omega(E,V,N) \propto \frac{V^{N}E^{\tfrac{3N}{2}-1}}{N!\,\Gamma\!\left(\tfrac{3N}{2}\right)}
+$$
+
+因此，在固定能量壳宽度下，$S=k_{B}\ln\Omega$ 给出 $U=(\tfrac{3N}{2}-1)k_{B}T$ 和 $pV=Nk_{B}T$。在热力学极限下，$U\simeq\tfrac{3}{2}Nk_{B}T$。
+
+**(e) 正则涨落**  
+通过计算 $\partial^{2}_{\beta}\ln Z$，证明 $\langle (\Delta E)^{2}\rangle = k_{B}T^{2}C_{V}$，并将热容与 $\ln Z$ 的曲率联系起来。
+
+---
+
+### 9.1.11 基础练习题组
+
+- 从 $S=k_{B}\ln\Omega$ 出发，推导 $1/T=(\partial S/\partial E)_{V,N}$ 和 $p/T=(\partial S/\partial V)_{E,N}$  
+- 在约束 $\sum p_{i}=1$ 和 $\sum p_{i}E_{i}=U$ 下最大化 $\mathcal S[p]$，推导正则系综  
+- 证明 $F=-k_{B}T\ln Z$ 蕴含 $S=-\partial F/\partial T$ 和 $p=-\partial F/\partial V$  
+- 对于经典理想气体，利用相空间体积计算 $\Omega(E,V,N)$（允许相差一个常数因子），并求得萨库尔–特特罗德熵  
+- 在巨正则系综中证明 $\langle (\Delta N)^{2}\rangle = k_{B}T\,(\partial N/\partial\mu)_{T,V}$  
+- 讨论系综等价何时失效，并给出一个具有长程力的物理实例
+
+---
+
+## 9.2 配分函数与热力学势
+
+配分函数生成所有热力学量。一旦得到 $Z$、$\Xi$ 或 $N\!pT$ 系综中对应的函数，通过求导就能得到 $U,p,S,\mu$ 以及所有响应系数。本节建立正则和巨正则系综的计算框架，加入等温等压系综，并说明勒让德变换和鞍点如何将它们与微正则熵联系起来。具体例题将帮助理解这些公式。
+
+---
+
+### 9.2.1 正则配分函数与累积量
+
+对于固定的 $(T,V,N)$，正则权重为 $P(i)\propto e^{-\beta E_{i}}$，其中
+
+$$
+Z(\beta,V,N) \equiv \sum_{i} e^{-\beta E_{i}}
+$$
+
+亥姆霍兹自由能为
+
+$$
+F(T,V,N) \equiv -\,k_{B}T\,\ln Z
+$$
+
+标准的导数关系为
+
+$$
+U \equiv \langle E\rangle = -\,\frac{\partial}{\partial \beta}\ln Z
+$$
+
+$$
+S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = k_{B}\left(\ln Z + \beta U\right)
+$$
+
+$$
+p = -\left(\frac{\partial F}{\partial V}\right)_{T,N}
+$$
+
+能量累积量由 $\ln Z$ 对 $\beta$ 的导数给出。例如
+
+$$
+\langle(\Delta E)^{2}\rangle = \frac{\partial^{2}}{\partial \beta^{2}}\ln Z = k_{B}T^{2} C_{V}
+$$
+
+对于进入 $H(\lambda)$ 的控制参数 $\lambda$，广义力满足
+
+$$
+\left(\frac{\partial F}{\partial \lambda}\right)_{T,V,N} = \left\langle \frac{\partial H}{\partial \lambda}\right\rangle
+$$
+
+例如：对于磁场 $B$，有 $M = -\left(\partial F/\partial B\right)_{T,V,N}$；对于体积，有 $p = -\left(\partial F/\partial V\right)_{T,N}$。
+
+---
+
+### 9.2.2 巨配分函数、逸度与压强
+
+当粒子数在固定的 $(T,V,\mu)$ 下涨落时
+
+$$
+\Xi(\beta,V,\mu) \equiv \sum_{N=0}^{\infty}\sum_{i\in N} e^{-\beta(E_{i}-\mu N)}
+$$
+
+定义巨热力学势
+
+$$
+\Phi_{G}(T,V,\mu) \equiv -\,k_{B}T\,\ln \Xi
+$$
+
+这一系综中的热力学关系可以简洁地写为
+
+$$
+p = -\left(\frac{\partial \Phi_{G}}{\partial V}\right)_{T,\mu}
+$$
+
+$$
+N = -\left(\frac{\partial \Phi_{G}}{\partial \mu}\right)_{T,V}
+$$
+
+$$
+S = -\left(\frac{\partial \Phi_{G}}{\partial T}\right)_{V,\mu}
+$$
+
+通常使用**逸度** $z\equiv e^{\beta \mu}$。粒子数涨落与压缩性的联系为
+
+$$
+\langle(\Delta N)^{2}\rangle = k_{B}T\left(\frac{\partial N}{\partial \mu}\right)_{T,V}
+$$
+
+对于均匀理想气体，可以得到实用的恒等式 $pV = k_{B}T \ln \Xi$。
+
+---
+
+### 9.2.3 等温等压系综与吉布斯自由能
+
+许多实验保持 $(T,p,N)$ 固定。等温等压配分函数是 $Z$ 对 $V$ 的拉普拉斯变换，其中固定的参考体积 $V_{0}$ 使其成为无量纲量：
+
+$$
+\Delta(\beta,p,N) \equiv \int_{0}^{\infty} \frac{dV}{V_{0}}\; e^{-\beta p V}\, Z(\beta,V,N)
+$$
+
+其热力学势是**吉布斯自由能**
+
+$$
+G(T,p,N) \equiv -\,k_{B}T\,\ln \Delta
+$$
+
+于是
+
+$$
+\left(\frac{\partial G}{\partial p}\right)_{T,N} = V,\qquad
+\left(\frac{\partial G}{\partial T}\right)_{p,N} = -S,\qquad
+\left(\frac{\partial G}{\partial N}\right)_{T,p} = \mu
+$$
+
+在固定 $(T,p,N)$ 下，$V$ 的涨落由 $\ln \Delta$ 的导数生成。
+
+---
+
+### 9.2.4 勒让德结构及其与微正则系综的联系
+
+正则系综和巨正则系综是微正则状态计数的**拉普拉斯变换**
+
+$$
+Z(\beta,V,N) = \int dE\; \omega(E,V,N)\,e^{-\beta E}
+$$
+
+对于大系统，积分由鞍点 $E^{\ast}$ 主导，且 $\partial_{E}\ln\omega|_{E^{\ast}}=\beta$，即 $1/T = \partial S/\partial E$。在鞍点处求值，得到勒让德关系
+
+$$
+F(T,V,N) = U - T S
+$$
+
+类似地，同时对 $E$ 和 $N$ 作巨正则变换，得到
+
+$$
+\Phi_{G}(T,V,\mu) = U - T S - \mu N
+$$
+
+这解释了为什么热力学势是 $S$ 的勒让德变换。
+
+---
+
+### 9.2.5 正则系综中的经典理想气体
+
+考虑 $N$ 个质量为 $m$ 的不可分辨粒子，其哈密顿量为 $H=\sum p_{i}^{2}/2m$，并忽略相互作用。正则配分函数分解为平动部分
+
+$$
+Z(\beta,V,N) = \frac{1}{N!}\left[\frac{V}{\lambda_{T}^{3}}\right]^{N}
+$$
+
+其中热波长为
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi \hbar^{2}}{m k_{B} T}}
+$$
+
+于是
+
+$$
+F = -\,k_{B}T \ln Z = -\,Nk_{B}T\left[\ln\!\left(\frac{V}{N\,\lambda_{T}^{3}}\right) + 1\right]
+$$
+
+立即得到状态方程
+
+$$
+pV = Nk_{B}T
+$$
+
+熵具有萨库尔–特特罗德形式
+
+$$
+S = Nk_{B}\left[\ln\!\left(\frac{V}{N\,\lambda_{T}^{3}}\right) + \frac{5}{2}\right]
+$$
+
+内能为 $U=\tfrac{3}{2}Nk_{B}T$，热容为 $C_{V}=\tfrac{3}{2}Nk_{B}$。因子 $1/N!$ 通过体现不可分辨性消除了吉布斯佯谬。
+
+---
+
+### 9.2.6 通过集团展开研究量子理想气体
+
+对于单粒子能量为 $\{\epsilon_{\alpha}\}$ 的无相互作用玻色子或费米子，
+
+$$
+\ln \Xi = \mp \sum_{\alpha} \ln\!\left(1 \mp z\,e^{-\beta \epsilon_{\alpha}}\right)
+$$
+
+上符号对应玻色子，下符号对应费米子。占有数为
+
+$$
+\langle n_{\alpha}\rangle = \frac{1}{z^{-1}e^{\beta \epsilon_{\alpha}} \mp 1}
+$$
+
+在连续极限下，用 $\sum_{\alpha}\to \int d\epsilon\,g(\epsilon)$ 替换求和，就能得到光子、声子或电子气体的热力学性质。可通过维里展开或集团展开以微扰方式计入相互作用，利用系数 $B_{2},B_{3},\dots$ 对 $\ln \Xi$ 作修正。
+
+---
+
+### 9.2.7 广义力与响应矩阵
+
+如果经典哈密顿量线性依赖于外部控制参数 $\boldsymbol{\lambda}=(\lambda_{1},\dots)$，那么 $F$ 的二阶导数矩阵给出下列协方差响应。与哈密顿量对易的量子可观测量也适用这种等时形式。非线性耦合需要额外的显式导数项，不对易的量子可观测量则需要虚时久保关联：
+
+$$
+\chi_{ab} \equiv -\left(\frac{\partial^{2} F}{\partial \lambda_{a}\,\partial \lambda_{b}}\right)_{T,V,N} = \beta\,\langle \Delta X_{a}\,\Delta X_{b}\rangle
+$$
+
+其中 $X_{a}\equiv -\partial H/\partial \lambda_{a}$ 是共轭可观测量。例如，磁化率、压缩系数和热容都属于此类响应。混合导数包含麦克斯韦关系，例如 $\left(\partial S/\partial V\right)_{T,N}=\left(\partial p/\partial T\right)_{V,N}$。
+
+---
+
+### 9.2.8 类伊辛晶格系统与计数练习
+
+对于自旋为 $s_{i}=\pm 1$、哈密顿量为 $H=-J\sum_{\langle ij\rangle}s_{i}s_{j}-h\sum_{i}s_{i}$ 的有限晶格，正则配分函数为
+
+$$
+Z(\beta,h) = \sum_{\lbrace s\rbrace} \exp\!\left[\beta J \sum_{\langle ij\rangle}s_{i}s_{j} + \beta h \sum_{i}s_{i}\right]
+$$
+
+虽然在一维以上精确求值很困难，但 $\ln Z$ 的导数仍然定义磁化强度 $M=\left(\partial \ln Z/\partial (\beta h)\right)$ 和磁化率 $\chi=\partial M/\partial h$。平均场或转移矩阵方法可以系统地近似计算 $Z$。
+
+---
+
+### 9.2.9 吉布斯–杜亥姆关系与广延性检验
+
+对于具有广延性的系统，$U(S,V,N)$ 是一次齐次函数，欧拉关系成立
+
+$$
+U = TS - pV + \mu N
+$$
+
+微分后得到**吉布斯–杜亥姆**方程
+
+$$
+S\,dT - V\,dp + N\,d\mu = 0
+$$
+
+它可用于检验从配分函数导出的任何状态方程是否自洽。
+
+---
+
+### 9.2.10 拉普拉斯变换技巧、鞍点与系综何时等价
+
+由于 $Z$ 和 $\Delta$ 是拉普拉斯变换，大 $N$ 系统的热力学由主导鞍点决定。$S(E,V,N)$ 的凹性保证系综等价。在一级相变处，$Z$ 出现多个相互竞争的鞍点；勒让德变换选取凸包络，而有限系统中的涨落则变为非高斯涨落。
+
+---
+
+### 9.2.11 简短例题
+
+**(a) $N\!pT$ 理想气体**
+
+利用 $Z=(V/\lambda_{T}^{3})^{N}/N!$ 计算理想气体的 $\Delta$，证明
+
+$$
+\Delta = \frac{1}{V_{0}\,\lambda_{T}^{3N}(\beta p)^{N+1}}
+$$
+
+并验证 $G=Nk_{B}T\ln\!\left(\beta p\,\lambda_{T}^{3}\right)+k_{B}T\ln(\beta pV_{0})$ 和 $V = \left(\partial G/\partial p\right)_{T,N} = (N+1)k_{B}T/p$。当 $N$ 很大时，相对的 $1/N$ 修正消失，且 $V\simeq Nk_{B}T/p$。
+
+**(b) 通过维里关系从 $Z$ 求压强**
+
+对于具有两体势 $u(r)$ 的经典相互作用气体，利用 $p=-(\partial F/\partial V)_{T,N}$ 和均匀缩放论证，证明 $p = Nk_{B}T/V - \tfrac{2\pi n^{2}}{3}\int_{0}^{\infty} dr\, r^{3} u'(r) g(r)$，其中 $n=N/V$，$g(r)$ 为对分布函数。
+
+**(c) 粒子数涨落与压缩系数**
+
+在巨正则系综中，验证 $\langle(\Delta N)^{2}\rangle = k_{B}T\,\left(\partial N/\partial \mu\right)_{T,V}$，并将其与等温压缩系数 $\kappa_{T}=\frac{1}{n^{2}}\left(\partial n/\partial \mu\right)_{T}$ 联系起来。
+
+**(d) 微正则 ↔ 正则**
+
+从 $Z\simeq\int (dE/\delta E)\,\exp[S(E)/k_{B}-\beta E]$ 出发，在 $E^{\ast}$ 附近将 $S(E)$ 展开到二阶，得到方差为 $k_{B}T^{2}C_{V}$ 的高斯能量涨落。
+
+**(e) 二能级系统的自由能**
+
+对于 $N$ 个相互独立、能级为 $0$ 和 $\epsilon$ 的二能级格点，计算 $Z=(1+e^{-\beta\epsilon})^{N}$，进而求出 $F$、$S$ 和 $C_{V}$，并确定肖特基峰的位置。
+
+---
+
+### 9.2.12 基础练习题组
+
+- 从 $F=-k_{B}T\ln Z$ 出发，推导 $U,S,p$ 的所有正则系综关系，并验证麦克斯韦关系 $\left(\partial S/\partial V\right)_{T,N}=\left(\partial p/\partial T\right)_{V,N}$  
+- 证明在巨正则系综中，理想气体满足 $pV=k_{B}T\ln\Xi$，并从 $\ln\Xi$ 的导数求出 $N$ 和 $S$  
+- 将经典谐振固体视为 $3N$ 个独立振子，计算其等温等压配分函数，并在压缩性很弱的极限下求出 $G(T,p,N)$  
+- 利用 $\ln \Xi = \mp\sum_{\alpha}\ln(1\mp z e^{-\beta\epsilon_{\alpha}})$，重新得到玻色–爱因斯坦分布和费米–狄拉克分布，以及 $z\ll 1$ 时的经典极限  
+- 从广延性出发，证明欧拉关系 $U=TS-pV+\mu N$，再证明吉布斯–杜亥姆方程，并用上述理想气体结果检验它们
+
+---
+
+## 9.3 经典理想气体与能量均分
+
+经典理想气体是统计物理的训练场：在这里，你学习计数状态、对配分函数的 $\ln$ 求导，并看着宏观规律轻松地浮现。我们将推导麦克斯韦–玻尔兹曼分布，证明能量均分定理，重新得到 $pV=Nk_{B}T$，并建立对绝热线、声速以及经典图像何时失效的直觉（这时就轮到 $\lambda_{T}$ 登场了）。
+
+---
+
+### 9.3.1 正则计数回顾与理想气体的 Z
+
+对于体积 $V$ 中 $N$ 个质量为 $m$ 的不可分辨质点，其哈密顿量为 $H=\sum_{i=1}^{N}\boldsymbol p_{i}^{2}/2m$，正则配分函数可因子化为：
+
+$$
+Z(\beta,V,N) = \frac{1}{N!}\left[\frac{V}{\lambda_{T}^{3}}\right]^{N}
+$$
+
+其中热波长为
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi\hbar^{2}}{m k_{B} T}}
+$$
+
+随即得到热力学关系：
+
+$$
+F = -\,Nk_{B}T\left[\ln\!\left(\frac{V}{N\lambda_{T}^{3}}\right) + 1\right],\qquad
+U = \frac{3}{2}Nk_{B}T,\qquad
+pV = Nk_{B}T
+$$
+
+热容为：
+
+$$
+C_{V} = \left(\frac{\partial U}{\partial T}\right)_{V,N} = \frac{3}{2}Nk_{B},\qquad
+C_{p} = C_{V} + Nk_{B} = \frac{5}{2}Nk_{B},\qquad
+\gamma \equiv \frac{C_{p}}{C_{V}} = \frac{5}{3}
+$$
+
+熵具有萨库尔–特特罗德形式：
+
+$$
+S = Nk_{B}\left[\ln\!\left(\frac{V}{N\lambda_{T}^{3}}\right) + \frac{5}{2}\right]
+$$
+
+因子 $1/N!$ 通过体现不可分辨性消除了吉布斯佯谬。
+
+---
+
+### 9.3.2 麦克斯韦–玻尔兹曼分布（速度、速率与能量）
+
+每个动量分量都服从高斯分布：
+
+$$
+f(p_{x}) = \sqrt{\frac{\beta}{2\pi m}}\;\exp\!\left(-\frac{\beta p_{x}^{2}}{2m}\right)
+$$
+
+等价地，每个速度分量都服从高斯分布，方差为 $\langle v_{x}^{2}\rangle = k_{B}T/m$。**速率**分布（速度空间中的径向分布）为
+
+$$
+f(v) = 4\pi \left(\frac{m}{2\pi k_{B}T}\right)^{3/2} v^{2} \exp\!\left(-\frac{m v^{2}}{2k_{B}T}\right)
+$$
+
+常用的矩为：
+
+$$
+v_{\text{mp}} = \sqrt{\frac{2k_{B}T}{m}},\qquad
+\langle v\rangle = \sqrt{\frac{8k_{B}T}{\pi m}},\qquad
+v_{\text{rms}} = \sqrt{\frac{3k_{B}T}{m}}
+$$
+
+动能分布类似于具有 $3$ 个自由度的 $\chi^{2}$ 分布：
+
+$$
+f(E) = \frac{2}{\sqrt{\pi}}\frac{1}{(k_{B}T)^{3/2}}\sqrt{E}\,e^{-E/k_{B}T},\qquad \langle E\rangle = \frac{3}{2}k_{B}T
+$$
+
+---
+
+### 9.3.3 能量均分定理
+
+**定理陈述。** 哈密顿量中的每个二次型自由度对平均能量贡献 $\tfrac{1}{2}k_{B}T$。
+
+**证明概要（正则系综，分部积分）。** 如果 $H$ 包含一项 $\alpha x^{2}$，那么
+
+$$
+\langle x\,\partial H/\partial x \rangle = k_{B}T
+$$
+
+对于 $H=\sum p_{i}^{2}/2m + \cdots$，每个二次项 $p_{i}^{2}/2m$ 都给出 $\langle p_{i}^{2}/2m\rangle = \tfrac{1}{2}k_{B}T$。单原子气体有 $3N$ 个平动动量分量 → $U=\tfrac{3}{2}Nk_{B}T$。
+
+**何时失效（以及为什么这反而有用）。** 当量子化转动或振动的能级间隔大于 $k_{B}T$ 时，即使哈密顿量仍是二次型，经典能量均分也会失效。其热激发贡献被“冻结”。这解释了低 $T$ 下比热的下降和杜隆–珀蒂定律的适用范围。
+
+---
+
+### 9.3.4 气体动理论
+
+由粒子与器壁的弹性碰撞，压强可写为
+
+$$
+p = \frac{2}{3}\frac{U}{V}
+$$
+
+结合 $U=\tfrac{3}{2}Nk_{B}T$，得到 $pV=Nk_{B}T$。更一般地，对于两体相互作用 $u(r)$，**维里定理**给出
+
+$$
+pV = Nk_{B}T + \frac{1}{3}\left\langle \sum_{i<j} \boldsymbol r_{ij}\cdot \boldsymbol F_{ij} \right\rangle
+$$
+
+理想气体满足 $\boldsymbol F_{ij}=0$，因此第二项为零。
+
+---
+
+### 9.3.5 绝热线、声速与简便的热力学推演
+
+对于单原子理想气体的**可逆绝热**变化（$dQ=0$），
+
+$$
+p V^{\gamma} = \text{const},\qquad T V^{\gamma-1} = \text{const},\qquad T^{\gamma} p^{1-\gamma} = \text{const}
+$$
+
+其中 $\gamma=5/3$。**声速**（小振幅绝热密度波的传播速度）为
+
+$$
+c_{s} = \sqrt{\gamma \frac{k_{B}T}{m}}
+$$
+
+对于混合物，将 $m$ 替换为平均分子质量，并将 $\gamma$ 替换为相应的热容比。
+
+---
+
+### 9.3.6 外场：气压公式与可分离性
+
+在均匀重力场 $U(z)=mgz$ 中，单粒子的玻尔兹曼权重可因子化：
+
+$$
+n(z) \propto e^{-\beta m g z},\qquad n(z) = n(0)\,e^{-z/H},\qquad H \equiv \frac{k_{B}T}{m g}
+$$
+
+动量部分与位置部分相互分离，因此动能相关的结果（能量均分、麦克斯韦–玻尔兹曼速率分布）保持不变。
+
+---
+
+### 9.3.7 输运概览：平均自由程及相关量
+
+对于直径为 $d$、数密度为 $n$ 的硬球，平均自由程为
+
+$$
+\ell \simeq \frac{1}{\sqrt{2}\,\pi d^{2}\,n}
+$$
+
+采用典型速率 $\bar v \sim \langle v\rangle$，
+
+$$
+D \sim \frac{1}{3}\bar v\,\ell,\qquad
+\eta \sim \frac{1}{3} n m \bar v\,\ell,\qquad
+\kappa \sim \frac{1}{3} n C_{V}^{\text{per particle}} \bar v\,\ell
+$$
+
+这些动理论标度关系对稀薄气体非常准确；考虑实际散射截面和混合物，可以进一步改进前面的系数。
+
+---
+
+### 9.3.8 经典图像的适用范围
+
+经典的非简并行为要求**稀薄程度**参数很小：
+
+$$
+n\,\lambda_{T}^{3} \ll 1
+$$
+
+如果 $n\lambda_{T}^{3}\gtrsim 1$（低 $T$ 或高 $n$），量子统计就开始发挥作用：玻色子遵循玻色–爱因斯坦统计，费米子受泡利原理约束，麦克斯韦–玻尔兹曼分布便不再适用。
+
+---
+
+### 9.3.9 超越单原子情形：能量均分究竟计数什么
+
+对于刚性的**线性双原子分子**，在中等 $T$ 下：
+
+- $3$ 个平动加 $2$ 个转动二次型模式 → 有效自由度为 $f=5$，因此 $C_{V} \approx \tfrac{5}{2}Nk_{B}$，$\gamma \approx 7/5$
+- 振动会再增加 $2$ 个二次型模式，但只有在 $k_{B}T$ 超过振动量子能级间隔时才会起作用；否则它们处于冻结状态
+
+要点是：**只计入在所考察的 $T$ 下已被激活的模式**。
+
+---
+
+### 9.3.10 简短例题
+
+**(a) 室温 $T$ 下空气的方均根速率**
+
+对于 $T=300\ \mathrm{K}$ 时的 $\mathrm{N}_{2}$，其质量为 $m\approx 28\,\mathrm{u}$，
+
+$$
+v_{\text{rms}}=\sqrt{\frac{3k_{B}T}{m}}
+$$
+
+代入数值，得到几百 $\mathrm{m/s}$；将其与 $v_{\text{mp}}$ 和 $\langle v\rangle$ 比较。
+
+**(b) 绝热压缩**
+
+单原子气体从 $(p_{1},V_{1})$ 绝热压缩到 $(p_{2},V_{2})$。利用 $pV^{\gamma}=\text{const}$，求出 $T_{2}/T_{1}=(V_{1}/V_{2})^{\gamma-1}$。
+
+**(c) 氦气的气压标高**
+
+对于 $T=300\ \mathrm{K}$ 下的 He，计算 $H=k_{B}T/(m g)$，并与 $\mathrm{N}_{2}$ 比较，从中看出质量的影响。
+
+**(d) 标准温度和压强下的平均自由程**
+
+取 $d\approx 0.3\ \mathrm{nm}$、$n\approx 2.5\times 10^{25}\ \mathrm{m}^{-3}$；估算 $\ell$，并说明气味为何能迅速扩散。
+
+**(e) 能量均分的合理性检验**
+
+直接从 $\int dp\;p^{2} e^{-\beta p^{2}/2m}$ 证明 $\langle p^{2}/2m\rangle = \tfrac{1}{2}k_{B}T$，并推广到三个分量。
+
+---
+
+### 9.3.11 基础练习题组
+
+- 从 $f(v)$ 出发，推导 $v_{\text{mp}}$、$\langle v\rangle$ 和 $v_{\text{rms}}$  
+- 对二次型坐标证明能量均分恒等式 $\langle x\,\partial H/\partial x\rangle=k_{B}T$，并将其应用于 $p^{2}/2m$  
+- 通过统计粒子与器壁的碰撞，推导 $p=\tfrac{2}{3}U/V$，并重新得到 $pV=Nk_{B}T$  
+- 对于转动常数为 $B$ 的线性双原子分子，通过比较 $k_{B}T$ 与 $\hbar^{2}/(2I)$，估算转动开始被“激活”的温度  
+- 检验数密度为 $n$、温度为 $T$ 的冷原子气体是否满足经典性判据：计算 $n\lambda_{T}^{3}$，并讨论何时需要量子统计
+
+---
+
+## 9.4 涨落与涨落–响应原理
+
+宏观规律看起来如此确定，是因为相对涨落按 $1/\sqrt{N}$ 缩小——直到这种标度不再成立。本节梳理**什么量会涨落**、**涨落有多大**，以及**为什么响应等于涨落**。我们将联系正则、巨正则和等温等压系综，介绍静态涨落–耗散关系，将对关联与压缩系数联系起来，并预览临界点附近哪些结论会失效。
+
+---
+
+### 9.4.1 能量与粒子数：两种代表性的方差
+
+**正则系综（固定 $T,V,N$）：**
+
+$$
+\langle(\Delta E)^{2}\rangle = \frac{\partial^{2}}{\partial \beta^{2}}\ln Z = k_{B}T^{2}\,C_{V}
+$$
+
+对于通常的系统，相对涨落按 $\langle(\Delta E)^{2}\rangle^{1/2}/U \sim 1/\sqrt{N}$ 缩小。
+
+**巨正则系综（固定 $T,V,\mu$）：**
+
+$$
+\langle(\Delta N)^{2}\rangle = k_{B}T\left(\frac{\partial N}{\partial \mu}\right)_{T,V}
+$$
+
+等价地，用数密度 $n=N/V$ 和等温压缩系数 $\kappa_{T} \equiv -\frac{1}{V}\left(\frac{\partial V}{\partial p}\right)_{T,N}$ 表示，
+
+$$
+\langle(\Delta N)^{2}\rangle = N\,k_{B}T\,n\,\kappa_{T}
+$$
+
+这里考虑的是单组分流体，使用了 $dn = \chi_{\mu}\,d\mu$ 和标准热力学恒等式。
+
+---
+
+### 9.4.2 固定压强下的体积涨落
+
+保持 $(T,p,N)$ 固定，等温等压配分函数 $\Delta$ 给出
+
+$$
+\langle(\Delta V)^{2}\rangle = -k_{B}T \left(\frac{\partial V}{\partial p}\right)_{T,N} = k_{B}T\,V\,\kappa_{T}
+$$
+
+这里再次体现了**涨落 = 响应**：压缩系数衡量 $p$ 发生微小变化时 $V$ 改变多少；同一个系数也决定了平衡态的方差。
+
+---
+
+### 9.4.3 一式概括静态涨落–响应关系
+
+设控制参数 $\lambda$ 通过 $H \to H - \lambda X$ 与不依赖于源的可观测量 $X$ 耦合（因此 $X=-\partial H/\partial \lambda$）。在经典正则系综中，或当量子可观测量与哈密顿量对易时，
+
+$$
+\chi_{XX} \equiv \left(\frac{\partial \langle X\rangle}{\partial \lambda}\right)_{T,V,N} = \beta\,\langle(\Delta X)^{2}\rangle
+$$
+
+特殊情形：
+
+- 对能量，$\partial U/\partial\beta=-\langle(\Delta E)^{2}\rangle$ 与 $\partial U/\partial T=C_{V}$ 给出 $\langle(\Delta E)^{2}\rangle=k_{B}T^{2}C_{V}$。这里逆温度是玻尔兹曼权重中的共轭参数；改变它不同于上面在固定温度下改变源 $\lambda$。  
+- 在巨正则系综中，$X=N$ 给出 $\left(\partial N/\partial \mu\right)_{T,V}=\beta\,\langle(\Delta N)^{2}\rangle$
+
+方差非负 $\Rightarrow$ **稳定性**：在固定 $T$ 的系综中，$C_{V}\ge 0$、$\kappa_{T}\ge 0$。
+
+---
+
+### 9.4.4 关联、结构因子与压缩系数求和规则
+
+定义微观密度 $\hat n(\boldsymbol r)=\sum_{i}\delta(\boldsymbol r-\boldsymbol r_{i})$、对关联函数 $g(\boldsymbol r)$，以及**静态结构因子**
+
+$$
+S(\boldsymbol k) \equiv \frac{1}{N}\left\langle \delta \hat n_{\boldsymbol k}\,\delta \hat n_{-\boldsymbol k}\right\rangle,\qquad \delta \hat n_{\boldsymbol k} \equiv \int d^{3}r\, e^{-i\mathbf k\cdot \mathbf r}\,[\hat n(\mathbf r)-n]
+$$
+
+在均匀流体中，
+
+$$
+S(\boldsymbol k) = 1 + n \int d^{3}r\, e^{-i\boldsymbol k\cdot \boldsymbol r}\,[g(\boldsymbol r)-1]
+$$
+
+取 $\boldsymbol k\to 0$，便将**微观关联**与**宏观响应**联系起来：
+
+$$
+S(0) = n\,k_{B}T\,\kappa_{T}
+$$
+
+这就是**压缩系数求和规则**。在临界点附近，$\kappa_{T}\to \infty$，$S(0)$ 急剧增大，也就是临界乳光现象。
+
+---
+
+### 9.4.5 鞍点、曲率与大偏差
+
+微正则熵 $S(E)$ 通过其**曲率**控制涨落。在最概然能量 $E^{\ast}$ 附近展开：
+
+$$
+S(E) \approx S(E^{\ast}) + \frac{E-E^{\ast}}{T} + \frac{1}{2}(E-E^{\ast})^{2}\left(\frac{\partial^{2} S}{\partial E^{2}}\right)_{E^{\ast}}
+$$
+
+通过拉普拉斯变换转到正则系综，可得到 $E$ 的高斯分布，方差为 $( -k_{B}/S'' )$，等价于 $k_{B}T^{2}C_{V}$。更一般地，可加的可观测量服从**大偏差原理**：
+
+$$
+\mathbb P\!\left(\frac{A}{N}\approx a\right)\sim e^{-N I(a)}
+$$
+
+其中 $I(a)\ge 0$ 是**速率函数**（累积量生成函数的勒让德变换）。在一级相变处，相关热力学势出现多个相互竞争的鞍点 → **非高斯**涨落与相共存。
+
+---
+
+### 9.4.6 临界涨落与关联长度
+
+设 $\phi$ 为序参量（例如磁化强度密度）。定义连通关联函数
+
+$$
+G(\boldsymbol r) \equiv \langle \phi(\boldsymbol r)\phi(\boldsymbol 0)\rangle_{c}
+$$
+
+远离临界点时，临界幂律在有限关联长度处被截断。示意性地可以写成
+
+$$
+G(\boldsymbol r) \sim \frac{e^{-r/\xi}}{r^{d-2+\eta}}
+$$
+
+其中关联长度 $\xi$ 有限；所示前因子并不是一般情形下严格的远距离渐近形式。将热归一化因子吸收到定义中的约化静态响应率 $\chi \equiv \int d^{d}r\, G(\boldsymbol r)$ 的标度为
+
+$$
+\chi \sim \xi^{2-\eta}
+$$
+
+因此，在体积 $V$ 中，空间平均序参量的方差按 $\mathrm{Var}(\bar\phi) \sim \chi/V$ 标度变化。当 $\xi$ 有限时，相对涨落 $\sim 1/\sqrt{V}$。当 $T\to T_{c}$ 时，$\xi\to\infty$，$1/\sqrt{N}$ 定律**失效**。
+
+---
+
+### 9.4.7 有限尺寸标度：N 很大但并非无穷大时
+
+- 对于**非临界**系统：可加量 $A$ 满足 $\mathrm{Var}(A) \propto N$ → 相对涨落 $\propto N^{-1/2}$。  
+- 在临界点附近：当 $\xi$ 与系统尺寸 $L$ 相当时，在标度公式中用 $L$ 替换 $\xi$；比热或响应率的峰会**变圆滑**并**移动**，其随 $L$ 的变化可以预测（可据此在数值计算中提取临界指数）。
+
+---
+
+### 9.4.8 例：无相互作用的顺磁体与居里定律
+
+磁场 $B$ 中有 $N$ 个自旋 $s=\tfrac12$，哈密顿量为 $H=-\mu B\sum_{i}\sigma_{i}$，其中 $\sigma_{i}=\pm 1$。单自旋配分函数为 $z=2\cosh(\beta\mu B)$，每个自旋的磁化量为
+
+$$
+m \equiv \frac{\langle M\rangle}{N} = \mu\,\tanh(\beta\mu B)
+$$
+
+$M$ 的方差由二项分布给出：
+
+$$
+\langle(\Delta M)^{2}\rangle = N\,\mu^{2}\,\mathrm{sech}^{2}(\beta\mu B)
+$$
+
+静态磁化率 $\chi \equiv \left(\partial \langle M\rangle/\partial B\right)_{T}$ 满足涨落–响应关系：
+
+$$
+\chi = \beta\,\langle(\Delta M)^{2}\rangle = \frac{N\mu^{2}}{k_{B}T}\,\mathrm{sech}^{2}(\beta\mu B)
+$$
+
+在弱场极限下，得到居里定律：
+
+$$
+\chi \approx \frac{N\mu^{2}}{k_{B}T}
+$$
+
+---
+
+### 9.4.9 例：理想气体的密度涨落与 S(0)
+
+在巨正则系综的经典理想气体中，粒子之间没有关联：$g(\boldsymbol r)=1$。因此，对所有 $\boldsymbol k$ 都有 $S(\boldsymbol k)=1$，并且
+
+$$
+S(0) = 1 = n\,k_{B}T\,\kappa_{T}
+$$
+
+所以 $\kappa_{T}=1/(n k_{B}T)$，这正是理想气体的结果。在这一与粒子库接触的系综中，子体积 $V'$ 的粒子数方差具有**泊松**形式：$\langle(\Delta N')^{2}\rangle=\langle N'\rangle$。若总粒子数固定，子体积涨落则服从二项分布（见9.4.11(e)），且波矢严格为零时的结构因子为零。此时，压缩系数求和规则指先取热力学极限、再取长波长极限。
+
+---
+
+### 9.4.10 常见误区
+
+- **混用系综。** 除非已经使系综与测量条件相匹配，否则不要将正则系综的 $C_{V}$ 与巨正则系综的粒子数涨落混用。  
+- **在相变附近强行作高斯拟合。** 在一级相变处，分布可能呈双峰（对应两相）；临界点处的序参量分布通常不是高斯分布，但其尾部不一定服从幂律。  
+- **忽略约束。** 守恒的总量会压低方差（例如，总 $N$ 固定会减小子体积中的涨落）。  
+- **将负 $C_{V}$ 称为“不稳定”。** 在具有长程力的微正则小系统中，可能出现 $C_{V}<0$；这表明系综不等价，而非代数计算错误。
+
+---
+
+### 9.4.11 简短例题
+
+**(a) $N\!pT$ 系综中的体积方差**  
+从 $\Delta=\int (dV/V_{0})\,e^{-\beta pV}Z$ 出发，证明 $\langle(\Delta V)^{2}\rangle = k_{B}T\,V\,\kappa_{T}$，并对理想气体验证这一关系。
+
+**(b) 压缩系数求和规则**  
+从 $S(\boldsymbol k)=1+n\int d^{3}r\,e^{-i\boldsymbol k\cdot\boldsymbol r}[g(r)-1]$ 出发，取 $\boldsymbol k\to 0$，并利用热力学推导 $S(0)=n k_{B}T\kappa_{T}$。
+
+**(c) 能量的大偏差**  
+从 $Z\simeq\int (dE/\delta E)\,e^{S(E)/k_{B}-\beta E}$ 出发，作二阶展开，并读出 $\langle(\Delta E)^{2}\rangle$；指出高斯近似何时失效。
+
+**(d) 顺磁体方差 → 居里定律**  
+从 $z$ 计算 $\langle M\rangle$ 和 $\langle M^{2}\rangle$，证明 $\chi=\beta\langle(\Delta M)^{2}\rangle$；取 $B\to 0$，得到 $\chi\propto 1/T$。
+
+**(e) 子体积涨落**  
+对于理想气体，将容器分为 $V'$ 和 $V-V'$ 两个体积。在总 $N$ 固定时，证明 $\mathrm{Var}(N')=N(V'/V)(1-V'/V)$（二项分布），并将其与巨正则系综的泊松方差作比较。
+
+---
+
+### 9.4.12 基础练习题组
+
+- 对含源项的 $\ln Z$ 求导，证明一般的静态关系 $\chi_{XX}=\beta\langle(\Delta X)^{2}\rangle$  
+- 推导 $\langle(\Delta N)^{2}\rangle = k_{B}T\left(\partial N/\partial\mu\right)_{T,V}$，并对单组分流体将其与 $\kappa_{T}$ 联系起来  
+- 证明由 $S(0)=n k_{B}T\kappa_{T}$ 可知，当液体接近其气液临界点时，$S(0)\to\infty$，并定性解释“临界乳光”  
+- 利用朗道 $\phi^{4}$ 自由能 $f=a(T-T_{c})\phi^{2}+b\phi^{4}$，计算 $T_{c}$ 以上的高斯涨落，并在平均场层面求得 $\chi\propto 1/(T-T_{c})$  
+- 对于序参量守恒的晶格模型，讨论在固定 $T$ 下，守恒如何改变长时间弛豫（但不改变等时静态方差）
+
+---
+
+## 9.5 量子气体：玻色与费米统计、多重对数及通往简并的道路
+
+经典的麦克斯韦–玻尔兹曼统计非常有效……直到 $n\lambda_{T}^{3}$ 不再很小。这时，不可分辨性和交换对称性会彻底改变局面。本节从巨正则系综推导玻色–爱因斯坦分布和费米–狄拉克分布，利用多重对数函数计算热力学量，通过维里展开联系经典极限，并建立包括索末菲展开在内的简并费米气体计算工具。我们还将梳理化学势如何随 $T$ 和 $n$ 变化。
+
+![当逆温度 beta 与能量减去化学势之差的乘积为正时，玻色占有数大于麦克斯韦–玻尔兹曼极限，而后者又大于费米占有数。](/images/diagrams/quantum-statistics.svg)
+
+---
+
+### 9.5.1 巨正则系综 → 玻色–爱因斯坦／费米–狄拉克分布
+
+将无相互作用的全同粒子置于 $(T,V,\mu)$ 下的巨正则系综中。取逸度 $z\equiv e^{\beta \mu}$ 和单粒子能级 $\{\epsilon_{\alpha}\}$，
+
+$$
+\ln \Xi = \mp \sum_{\alpha}\ln\!\left(1 \mp z\,e^{-\beta\epsilon_{\alpha}}\right)
+$$
+
+上符号对应玻色子，下符号对应费米子。占有数为
+
+$$
+\langle n_{\alpha}\rangle = \frac{1}{z^{-1}e^{\beta\epsilon_{\alpha}} \mp 1}
+$$
+
+分母中的减号给出**玻色–爱因斯坦**聚束效应，加号则给出**费米–狄拉克**阻塞效应。
+
+---
+
+### 9.5.2 三维态密度与连续近似
+
+对于体积 $V$ 中自旋简并度为 $g$、非相对论色散关系为 $\epsilon=\boldsymbol p^{2}/2m$ 的系统，
+
+$$
+g(\epsilon)\,d\epsilon = g\,\frac{V}{4\pi^{2}}\left(\frac{2m}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}\,d\epsilon
+$$
+
+求和变为积分 $\sum_{\alpha}\to \int d\epsilon\,g(\epsilon)$。
+
+定义热波长
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi \hbar^{2}}{m k_{B} T}}
+$$
+
+以及多重对数函数 $\operatorname{Li}_{s}(x) \equiv \sum_{k\ge1} x^{k}/k^{s}$。
+
+---
+
+### 9.5.3 多重对数形式的热力学：N、U 与 p
+
+对于玻色子和费米子，都可用多重对数函数简洁地表达结果。令
+
+$$
+g_{s}(z) \equiv \operatorname{Li}_{s}(z),\qquad f_{s}(z) \equiv -\,\operatorname{Li}_{s}(-z)
+$$
+
+那么，在 $d=3$ 维的均匀非相对论气体中，
+
+- **玻色子** $(\text{BE})$
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,g_{3/2}(z),\qquad 
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,g_{5/2}(z),\qquad 
+U = \frac{3}{2}\,pV
+$$
+
+- **费米子** $(\text{FD})$
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,f_{3/2}(z),\qquad 
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,f_{5/2}(z),\qquad 
+U = \frac{3}{2}\,pV
+$$
+
+维里恒等式 $U=\tfrac{3}{2}pV$ 对任何具有二次型色散关系的非相对论理想气体都成立。
+
+---
+
+### 9.5.4 经典极限与首个量子修正
+
+当 $z\ll 1$（高 $T$ 或低 $n$）时，由于 $g_{s}(z)\approx z$ 和 $f_{s}(z)\approx z$，两种统计都退化为麦克斯韦–玻尔兹曼统计。进一步展开，得到理想气体定律的首阶量子修正
+
+$$
+\frac{p}{n k_{B}T} = 1 \pm \frac{1}{2^{5/2}}\,\frac{n\,\lambda_{T}^{3}}{g} + \mathcal O\!\left((n\lambda_{T}^{3}/g)^{2}\right)
+$$
+
+上符号对应**费米子**（泡利“排斥”提高压强），下符号对应**玻色子**（玻色“吸引”降低压强）
+
+---
+
+### 9.5.5 化学势的变化规律
+
+- **玻色子**：$\mu \le 0$。在固定 $n$ 下，随着 $T$ 降低，$\mu$ 升高并趋近 $0^{-}$。对于均匀理想气体，激发态的容纳能力受到 $g_{3/2}(1)=\zeta(3/2)$ 的限制，因此当 $n\lambda_{T}^{3}$ 超过某个常数时，就会发生玻色–爱因斯坦凝聚。我们将在§9.7详细讨论这一现象。
+- **费米子**：$\mu$ 在低 $T$ 下为正，并趋近**费米能** $\epsilon_{F}$，当 $T\to 0$ 时达到该极限。取 $n\equiv N/V$，自旋简并度为 $g$，
+
+$$
+\epsilon_{F} = \frac{\hbar^{2}}{2m}\left(\frac{6\pi^{2} n}{g}\right)^{2/3},\qquad 
+k_{B}T_{F} \equiv \epsilon_{F}
+$$
+
+当 $T/T_{F}$ 有限但很小时，$\mu(T)$ 相对 $\epsilon_{F}$ 的下降量按 $\sim (T/T_{F})^{2}$ 标度变化。
+
+---
+
+### 9.5.6 简并费米气体与索末菲展开
+
+当 $T\ll T_{F}$ 时，对费米积分作渐近计算。令 $x\equiv T/T_{F}\ll 1$。
+
+- **化学势**
+
+$$
+\mu(T) = \epsilon_{F}\left[1 - \frac{\pi^{2}}{12}x^{2} - \frac{\pi^{4}}{80}x^{4} + \cdots\right]
+$$
+
+- **低 $T$ 下的内能与压强**
+
+$$
+U = \frac{3}{5}N\epsilon_{F}\left[1 + \frac{5\pi^{2}}{12}x^{2} + \cdots\right],\qquad 
+p = \frac{2}{5} n \epsilon_{F}\left[1 + \frac{5\pi^{2}}{12}x^{2} + \cdots\right]
+$$
+
+- **每个粒子的热容**
+
+$$
+\frac{C_{V}}{N k_{B}} = \frac{\pi^{2}}{2}\,x + \mathcal O(x^{3})
+$$
+
+热容随 $T$ 线性变化，标志着费米面附近存在一层热激活态，其薄壳厚度为 $\sim k_{B}T$。
+
+---
+
+### 9.5.7 非简并玻色气体与凝聚边缘
+
+在凝聚温度以上（基态没有宏观占据），$\mu<0$ 是方程 $n\lambda_{T}^{3} = g\,g_{3/2}(z)$ 的解。热力学量由§9.5.3在 $z<1$ 时的公式给出。在固定 $n$ 下降低 $T$ 时，$z\to 1^{-}$、$g_{s}(z)\to \zeta(s)$，激发态密度饱和于
+
+$$
+n_{\text{ex,max}} = \frac{g}{\lambda_{T}^{3}}\,\zeta(3/2)
+$$
+
+在§9.7给出的临界温度及以下，“多余”的粒子必须进入基态。
+
+---
+
+### 9.5.8 相对论与无质量极限（预告）
+
+对于满足 $\epsilon=pc$ 的无质量粒子，态密度为 $g(\epsilon)\propto \epsilon^{2}$。有质量的色散关系 $\epsilon=\sqrt{p^{2}c^{2}+m^{2}c^{4}}$ 仅在超相对论极限下趋近这一形式。无质量玻色子（光子）满足 $U\propto VT^{4}$，且 $p=U/3V$。我们将在§9.6进一步讨论光子和声子。
+
+---
+
+### 9.5.9 简短例题
+
+**(a) 经典极限检验**
+
+证明在 $N = gV\lambda_{T}^{-3} g_{3/2}(z)$ 和 $p = g k_{B}T \lambda_{T}^{-3} g_{5/2}(z)$ 中取 $z\ll 1$，可在最低阶重新得到 $pV=Nk_{B}T$，并在下一阶得到 $\pm 2^{-5/2} n\lambda_{T}^{3}/g$ 修正。
+
+**(b) 三维态密度**
+
+通过计算容器中的动量态数，并利用 $\epsilon=\boldsymbol p^{2}/2m$，推导 $g(\epsilon)$。
+
+**(c) 费米能的数值计算**
+
+对于金属中的电子，取 $n\approx 8.5\times 10^{28}\ \mathrm{m}^{-3}$ 和 $g=2$，计算 $\epsilon_{F}$ 与 $T_{F}$，再估算 $T=300\ \mathrm{K}$ 时的 $C_{V}/(Nk_{B})$。
+
+**(d) 费米子的低 $T$ 化学势 $\mu(T)$**
+
+对 $\int d\epsilon\,\epsilon^{1/2}/(e^{\beta(\epsilon-\mu)}+1)$ 使用索末菲展开，求得 $\mu(T)$ 直到 $\mathcal O(x^{4})$ 的级数。
+
+**(e) $z\to 1^{-}$ 附近的玻色气体**
+
+利用多重对数展开，在接近 $z=1$ 时数值计算 $g_{3/2}(z)$，并展示 $n\lambda_{T}^{3}$ 如何趋近 $g\,\zeta(3/2)$。
+
+---
+
+### 9.5.10 基础练习题组
+
+- 从 $\ln\Xi$ 出发，推导 $\langle n_{\alpha}\rangle$ 以及玻色–爱因斯坦和费米–狄拉克分布的形式  
+- 用 $\int d\epsilon\,g(\epsilon)$ 替换求和，得到 $d=3$ 时 $N$、$p$ 和 $U$ 的多重对数公式  
+- 将 $p/(n k_{B}T)$ 按 $n\lambda_{T}^{3}$ 的幂展开，并确定玻色子与费米子的第二维里系数的符号  
+- 推导费米能 $\epsilon_{F}$ 和 $p(T=0)=\tfrac{2}{5}n\epsilon_{F}$，再利用索末菲展开得到 $C_{V}\propto T$  
+- 对固定 $n$ 的理想玻色气体，证明当 $T\downarrow T_{c}$ 时 $\mu\to 0^{-}$，并由粒子数方程计算 $z\lesssim 1$ 时的斜率 $d\mu/dT$
+
+---
+
+## 9.6 光子与声子：黑体辐射和固体热容
+
+两种典型的玻色气体，却属于两个截然不同的世界。**光子**：无质量，自旋为1，粒子数不守恒，$\mu=0$，压强 $p=U/3V$，遵循 $T^{4}$ 定律。**声子**：晶格振动，在长波长下具有线性色散关系，有三个偏振方向，德拜截断保证共有 $3N$ 个模式。两者共同解释了光的频谱，以及固体的比热为何在低 $T$ 下趋于零。
+
+---
+
+### 9.6.1 光子气体基础
+
+在热平衡中，光子可以自由产生和湮灭，因此化学势**必须**为零。将电磁波置于体积为 $V$、采用周期性边界条件的大立方腔体中。按角频率 $\omega$ 计数横向模式，得到态密度
+
+$$
+g(\omega)\,d\omega = \frac{V}{\pi^{2}c^{3}}\,\omega^{2}\,d\omega
+$$
+
+在 $\mu=0$ 时，玻色占有数为 $n_{B}(\omega)=\left(e^{\beta\hbar\omega}-1\right)^{-1}$，从而得到**普朗克能量密度**
+
+$$
+u(\omega)\,d\omega \equiv \frac{dU}{V} = \frac{\hbar\omega^{3}}{\pi^{2}c^{3}}\;\frac{d\omega}{e^{\beta\hbar\omega}-1}
+$$
+
+**粒子数**谱可通过除以 $\hbar\omega$ 得到
+
+$$
+n(\omega)\,d\omega = \frac{\omega^{2}}{\pi^{2}c^{3}}\;\frac{d\omega}{e^{\beta\hbar\omega}-1}
+$$
+
+---
+
+### 9.6.2 斯特藩–玻尔兹曼与维恩：两个著名推论
+
+对所有 $\omega$ 积分 $u(\omega)$，得到
+
+$$
+\frac{U}{V} \equiv a\,T^{4},\qquad a = \frac{\pi^{2}k_{B}^{4}}{15\,\hbar^{3}c^{3}}
+$$
+
+各向同性光子气体的辐射压强为
+
+$$
+p = \frac{1}{3}\,\frac{U}{V}
+$$
+
+黑色表面的**辐射通量**为 $\Phi=\sigma T^{4}$，其中
+
+$$
+\sigma = \frac{a c}{4} = \frac{\pi^{2}k_{B}^{4}}{60\,\hbar^{3}c^{2}}
+$$
+
+光谱辐出度峰值对应的波长满足**维恩位移定律**
+
+$$
+\lambda_{\text{max}}\,T = b,\qquad b \approx 2.898\times 10^{-3}\ \text{m}\cdot\text{K}
+$$
+
+它可通过对普朗克定律的 $\lambda$ 形式求最大值得到。
+
+由 $p=U/3V$ 可求出熵密度和焓密度：
+
+$$
+s \equiv \frac{S}{V} = \frac{4}{3}aT^{3},\qquad h \equiv \frac{U+pV}{V} = \frac{4}{3}aT^{4}
+$$
+
+---
+
+### 9.6.3 声子：具有线性色散关系的量子化声波
+
+在晶体中，微小的晶格位移形成简正模式。在长波长下，**声学**支满足
+
+$$
+\omega = v_{s}\,k
+$$
+
+其中声速为 $v_{s}$，并有三个偏振方向（一个纵向、两个横向）。将这些模式视为无相互作用的玻色气体，其玻色占有数仍为 $n_{B}(\omega)$，但态密度中要用 $v_{s}$ 代替 $c$，而且必须引入**截断**，以保证模式数有限。
+
+德拜的关键做法是：将声学支近似为线性关系，直到截断波数 $k_{D}$；选择该截断，使**总模式数等于 $3N$**，其中 $N$ 为原子数
+
+$$
+\frac{V}{2\pi^{2}}\int_{0}^{k_{D}} k^{2}\,dk\times 3 = 3N \;\Rightarrow\; k_{D} = \left(6\pi^{2}\frac{N}{V}\right)^{1/3}
+$$
+
+定义**德拜频率**和**德拜温度**
+
+$$
+\omega_{D} \equiv v_{s}\,k_{D},\qquad \Theta_{D} \equiv \frac{\hbar\omega_{D}}{k_{B}}
+$$
+
+采用一个“平均”$v_{s}$，就能在体相热力学中相当准确地描述三个偏振方向。
+
+---
+
+### 9.6.4 德拜模型
+
+略去零点能项后，声子的内能为
+
+$$
+U = \int_{0}^{\omega_{D}} d\omega\; g_{D}(\omega)\,\hbar\omega\,n_{B}(\omega)
+$$
+
+其中德拜态密度为
+
+$$
+g_{D}(\omega) = \frac{9N}{\omega_{D}^{3}}\,\omega^{2}
+$$
+
+作变量代换 $x \equiv \hbar\omega/k_{B}T$，得到标准的德拜热容
+
+$$
+C_{V} = 9N k_{B}\left(\frac{T}{\Theta_{D}}\right)^{3} \int_{0}^{\Theta_{D}/T} dx\; \frac{x^{4} e^{x}}{(e^{x}-1)^{2}}
+$$
+
+渐近行为：
+
+- **低 $T$** $\left(T\ll \Theta_{D}\right)$
+
+$$
+C_{V} \simeq \frac{12\pi^{4}}{5}\,N k_{B}\left(\frac{T}{\Theta_{D}}\right)^{3}
+$$
+
+- **高 $T$** $\left(T\gg \Theta_{D}\right)$
+
+$$
+C_{V} \to 3N k_{B}
+$$
+
+从而恢复杜隆–珀蒂定律。
+
+---
+
+### 9.6.5 爱因斯坦模型：光学模式与过渡
+
+爱因斯坦将每个原子设想为频率均为 $\omega_{E}$ 的独立振子。于是
+
+$$
+C_{V}^{\text{Ein}} = 3N k_{B}\;\frac{x^{2} e^{x}}{(e^{x}-1)^{2}},\qquad x \equiv \frac{\hbar\omega_{E}}{k_{B}T}
+$$
+
+该模型能够描述**高 $T$** 极限，以及**指数**冻结行为（出现在低 $T$ 下），但无法得到 **$T^{3}$** 定律，因为它缺少低频声学模式。实际晶体往往介于两者之间：光学模式类似爱因斯坦模型，声学模式类似德拜模型。
+
+---
+
+### 9.6.6 声子气体的热力学
+
+对于 $\omega=v_{s}k$ 和三个偏振方向，自由声子气体的**能量密度**在低温 $T\ll \Theta_{D}$ 下与光子类似，只需作 $c\to v_{s}$ 的替换，并乘以因子 $3/2$，因为三个声学分支取代了光子的两个偏振
+
+$$
+u_{\text{ph}}(T) \propto \frac{(k_{B}T)^{4}}{\hbar^{3} v_{s}^{3}}
+$$
+
+求导得到 $C_{V}\propto T^{3}$，与德拜模型一致。在固体中，声子的“压强”会改变弹性响应，而不像气体那样对容器体积施压，但其标度直觉相同。
+
+---
+
+### 9.6.7 自然界中的黑体：简要巡览
+
+- **宇宙微波背景**是温度 $T\approx 2.725\ \text{K}$ 的近乎完美的黑体，是充满宇宙的遗存光子气体  
+- **恒星**在部分光谱范围内近似黑体；偏离黑体的部分包含恒星大气和谱线的信息  
+- 带有小孔的**实验室腔体**可模拟黑体辐射源，并用于建立辐射测量标准
+
+---
+
+### 9.6.8 常见误区
+
+- **忘记光子满足 $\mu=0$。** 除非同时通过泵浦约束频谱，否则试图在平衡态固定光子**数目**是不符合物理的  
+- **混淆 $\omega$ 谱与 $\lambda$ 谱的峰。** $u_{\omega}$ 与 $u_{\lambda}$ 的最大值出现在不同位置；维恩常数 $b$ 指的是**波长**谱的峰  
+- **忽略偏振或截断。** 德拜模型要求总共有 $3N$ 个模式；遗漏因子3或截断都会使 $C_{V}$ 出错  
+- **在量子单位下讨论高 $T$ 极限。** 在声称出现“经典”行为之前，始终检查 $\Theta_{D}/T$ 或 $x=\hbar\omega/k_{B}T$
+
+---
+
+### 9.6.9 简短例题
+
+**(a) 重新得到斯特藩–玻尔兹曼定律。**  
+对 $u(\omega)$ 积分，作代换 $x=\beta\hbar\omega$ 后利用 $\int_{0}^{\infty} dx\,x^{3}/(e^{x}-1)=\pi^{4}/15$，得到 $U/V=aT^{4}$ 和 $p=U/3V$。
+
+**(b) 维恩位移定律。**  
+对波长谱密度求最大值，证明 $\lambda_{\text{max}}T=b$，并通过超越方程数值求出 $b$。
+
+**(c) 德拜模型的低 $T$ 渐近式。**  
+在 $\Theta_{D}/T\to\infty$ 时展开德拜积分，推导 $C_{V}\simeq(12\pi^{4}/5)N k_{B}(T/\Theta_{D})^{3}$。
+
+**(d) 中等 $T$ 下的爱因斯坦模型与德拜模型。**  
+分别绘制两个模型中 $C_{V}/(3Nk_{B})$ 随 $T/\Theta$ 的变化，并解释为何实际数据通常在两者之间弯曲过渡。
+
+**(e) 光子气体的熵密度。**  
+利用 $p=U/3V$ 和 $dU=TdS-p\,dV$，推导 $s=(4/3)aT^{3}$。
+
+---
+
+### 9.6.10 基础练习题组
+
+- 从腔体模式计数出发，推导 $g(\omega)$ 和普朗克的 $u(\omega)$  
+- 对各向同性辐射的麦克斯韦应力张量取平均，证明 $p=U/3V$  
+- 证明采用德拜截断后的声子模式数等于 $3N$，并求出 $k_{D}$  
+- 在 $T/\Theta_{D}=\{0.05,0.2,1,3\}$ 时数值计算德拜热容积分，并取 $\omega_{E}\approx 0.806\,\omega_{D}$，与相同 $T$ 下的爱因斯坦模型预测比较  
+- 将光子计算中的 $c\to v_{s}$，推导低 $T$ 下声子能量密度的 $T^{4}$ 标度
+
+---
+
+## 9.7 玻色–爱因斯坦凝聚与简并费米气体
+
+把温度调低、相空间密度调高，量子统计便开始主导局面。**玻色子**涌入基态 → **玻色–爱因斯坦凝聚（BEC）**。**费米子**则填成费米海，产生**泡利压强**。我们将建立三维BEC的理想气体基准，加入陷阱和相互作用修正，通过玻戈留玻夫理论概述超流，并回顾简并费米气体，同时举几个例子说明这些内容为何重要。
+
+---
+
+### 9.7.1 均匀理想玻色气体中的BEC（三维）
+
+根据§9.5，对于无相互作用的玻色子，
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,g_{3/2}(z)
+$$
+
+其中 $z=e^{\beta\mu}$，$g_{s}$ 为多重对数函数。由于 $g_{3/2}(z)\le g_{3/2}(1)=\zeta(3/2)$，**激发态**至多容纳
+
+$$
+N_{\mathrm{ex,max}} = \frac{gV}{\lambda_{T}^{3}}\,\zeta(3/2)
+$$
+
+在固定数密度 $n=N/V$ 下，降低 $T$ 会使 $1/\lambda_{T}^{3}\propto T^{3/2}$ 减小，从而降低激发态能够容纳的最大粒子数。该容量等于总粒子数时的温度就是**临界温度**
+
+$$
+T_{c} = \frac{2\pi\hbar^{2}}{m k_{B}} \left(\frac{n}{g\,\zeta(3/2)}\right)^{2/3}
+$$
+
+低于 $T_{c}$ 时，化学势固定在 $\mu=0$，**凝聚比例**为
+
+$$
+\frac{N_{0}}{N} = 1 - \left(\frac{T}{T_{c}}\right)^{3/2}
+$$
+
+低于 $T_{c}$ 时，热力学性质完全来自激发（理想气体中的 $N_{0}$ 不贡献能量）：
+
+$$
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,\zeta(5/2),\qquad U = \frac{3}{2}pV
+$$
+
+当 $T<T_{c}$ 时，每个粒子的比热为
+
+$$
+\frac{C_{V}}{N k_{B}} = \frac{15}{4}\,\frac{\zeta(5/2)}{\zeta(3/2)}\left(\frac{T}{T_{c}}\right)^{3/2}
+$$
+
+高于 $T_{c}$ 时，$\mu<0$ 由 $n\lambda_{T}^{3}=g\,g_{3/2}(z)$ 确定，而 $C_{V}$ 在高 $T$ 下趋于经典值 $3N k_{B}/2$。在 $T_{c}$ 处，理想气体的 $C_{V}$ 出现尖点。
+
+---
+
+### 9.7.2 有限 $T$ 下均匀一维／二维系统中不存在BEC
+
+对于均匀理想气体，在 $d$ 维中有 $N_{\mathrm{ex}}\propto g_{d/2}(z)$。当 $d\le 2$ 时，级数在 $z\to 1^{-}$ 处发散：二维中 $g_{1}(1)$ 发散，$g_{1}(z)$ 按对数增长，而一维中的发散更强。因此，在热力学极限下，均匀一维／二维系统在有限 $T$ 时**不存在真正的BEC**；二维相互作用仍可通过科斯特利茨–索利斯转变支持**超流**，但这不是单个 $k=0$ 模式的宏观占据。
+
+---
+
+### 9.7.3 陷阱中的玻色气体：谐势
+
+实验将原子束缚在近似谐性的陷阱 $V(\mathbf r)=\tfrac{1}{2}m(\omega_{x}^{2}x^{2}+\omega_{y}^{2}y^{2}+\omega_{z}^{2}z^{2})$ 中。单粒子态密度变为 $g(\epsilon)\propto \epsilon^{2}/(\hbar\bar\omega)^{3}$，其中几何平均频率为 $\bar\omega\equiv(\omega_{x}\omega_{y}\omega_{z})^{1/3}$。理想陷阱气体的**临界温度**为
+
+$$
+k_{B}T_{c}^{\mathrm{trap}} = \hbar \bar\omega \left(\frac{N}{\zeta(3)}\right)^{1/3}
+$$
+
+并且，当 $T<T_{c}^{\mathrm{trap}}$ 时，
+
+$$
+\frac{N_{0}}{N} = 1 - \left(\frac{T}{T_{c}^{\mathrm{trap}}}\right)^{3}
+$$
+
+更大的指数反映了不同的态密度。
+
+---
+
+### 9.7.4 正则与巨正则涨落：“灾难”
+
+在理想BEC的**巨正则**系综中，$T_{c}$ 以下宏观占据的基态具有 $\mathrm{Var}(N_{0})\sim \mathcal O(N^{2})$；这一基于粒子库的结果不适用于粒子数固定的有限原子云。**正则**系综固定总 $N$，但剩余涨落的标度依赖于能谱。在通常的凝聚区间，三维谐振阱给出 $\mathrm{Var}(N_{0})\sim \mathcal O(N)$，而固定密度的均匀三维理想气体具有 $\mathrm{Var}(N_{0})\sim \mathcal O(N^{4/3})$。系综与限制势都应与实验条件对应。
+
+---
+
+### 9.7.5 相互作用与格罗斯–皮塔耶夫斯基（GP）平均场
+
+在超低温 $T$ 下，$s$ 波散射占主导，其振幅由散射长度 $a$ 决定。有效耦合常数为
+
+$$
+g_{\mathrm{int}} = \frac{4\pi\hbar^{2} a}{m}
+$$
+
+对于具有宏观波函数 $\Psi(\mathbf r,t)$ 的弱相互作用凝聚体，
+
+$$
+i\hbar\,\partial_{t}\Psi = \left[-\frac{\hbar^{2}\nabla^{2}}{2m}+V(\mathbf r)+g_{\mathrm{int}}\,|\Psi|^{2}\right]\Psi
+$$
+
+这就是**格罗斯–皮塔耶夫斯基方程**。在密度为 $n=|\Psi|^{2}$ 的均匀物质中，
+
+$$
+\mu = g_{\mathrm{int}}\,n,\qquad c = \sqrt{\frac{g_{\mathrm{int}}\,n}{m}},\qquad \xi \equiv \frac{\hbar}{\sqrt{2} m c}
+$$
+
+其中 $c$ 为声速，$\xi$ 为**愈合长度**，即序参量在缺陷或边界附近恢复到体相值的尺度。
+
+---
+
+### 9.7.6 玻戈留玻夫谱与超流（概述）
+
+对凝聚体附近的涨落作线性化，得到**玻戈留玻夫**色散关系
+
+$$
+\epsilon_{k} = \sqrt{\left(\frac{\hbar^{2}k^{2}}{2m}\right)^{2} + c^{2}\hbar^{2}k^{2}}
+$$
+
+在低 $k$ 下呈**声子**特征，$\epsilon_{k}\approx \hbar c k$；在高 $k$ 下则过渡到自由粒子形式 $\epsilon_{k}\approx \hbar^{2}k^{2}/2m$。朗道判据给出临界流速
+
+$$
+v_{c} = \min_{k}\frac{\epsilon_{k}}{\hbar k} = c
+$$
+
+这解释了为何弱相互作用BEC是**超流体**，其流速低于 $c$ 时可以无摩擦流动。
+
+---
+
+### 9.7.7 简并费米气体回顾：T=0 与低温
+
+根据§9.5，无相互作用费米气体的费米能为
+
+$$
+\epsilon_{F} = \frac{\hbar^{2}}{2m}\left(\frac{6\pi^{2}n}{g}\right)^{2/3},\qquad p(0) = \frac{2}{5}n\,\epsilon_{F},\qquad U(0) = \frac{3}{5}N\,\epsilon_{F}
+$$
+
+有限 $T$ 修正由索末菲展开给出：$C_{V}\propto T$，$\mu(T)\approx \epsilon_{F}\left[1-\frac{\pi^{2}}{12}(T/T_{F})^{2}+\cdots\right]$。$T=0$ 时的压强体现了**泡利压强**，它可以支撑系统免于坍缩，并决定金属和致密天体中的相关尺度。
+
+**谐性陷阱。** 对于三维谐性陷阱中的 $N$ 个费米子，取几何平均频率 $\bar\omega$，$T=0$ 时的费米能为
+
+$$
+\epsilon_{F}^{\mathrm{trap}} = \hbar \bar\omega\,(6N/g)^{1/3}
+$$
+
+原子云半径则由托马斯–费米分布给出。
+
+---
+
+### 9.7.8 两个简短应用
+
+- **白矮星（示意图像）。** 电子形成高度简并的气体。在相对论极限下，压强按 $p\sim n^{4/3}$ 而非 $n^{5/3}$ 变化，从而出现能够支撑的最大质量（钱德拉塞卡极限）。这里着重强调定性理解：简并压强确实存在，而热压强并非必需。
+- **冷原子实验室。** 费什巴赫共振可将 $a$ 调过零点 → 弱相互作用BEC、强相互作用的幺正费米气体，以及BEC–BCS过渡。玻戈留玻夫声波和集体模式是上述理论的典型实验验证。
+
+---
+
+### 9.7.9 常见误区
+
+- **忘记理想玻色气体满足 $\mu=0$，只要温度低于 $T_{c}$。** 凝聚体形成后，不要强行令 $\mu$ 为负  
+- **对固定 $N$ 的陷阱使用巨正则涨落。** 对于冷原子云，应采用正则系综的方差  
+- **声称均匀二维系统存在BEC。** 有限 $T$ 下并不存在；应当考察KT超流  
+- **未检查 $n a^{3}$ 就认为相互作用“很弱”。** 弱耦合的GP／玻戈留玻夫理论要求 $n a^{3}\ll 1$
+
+---
+
+### 9.7.10 简短例题
+
+**(a) 典型BEC的 $T_{c}$。**  
+取 $\mathrm{^{87}Rb}$，其质量 $m\approx 1.44\times 10^{-25}\ \mathrm{kg}$、$g=1$、数密度 $n=10^{20}\ \mathrm{m^{-3}}$。代入 $T_{c}$ 公式，并估算 $T=0.5T_{c}$ 时的凝聚比例。
+
+**(b) 二维中不存在BEC。**  
+通过将求和转为积分并识别其中的对数，证明对于均匀二维气体，$N_{\mathrm{ex}} \propto g_{1}(z)$ 在 $z\to 1^{-}$ 时发散。
+
+**(c) 陷阱中的 $T_{c}$。**  
+给定 $N=2\times 10^{5}$ 个原子和 $\bar\omega=2\pi\times 100\ \mathrm{Hz}$，计算 $T_{c}^{\mathrm{trap}}$，以及 $0.7T_{c}^{\mathrm{trap}}$ 时的凝聚比例。
+
+**(d) 愈合长度。**  
+对于 $a=5\ \mathrm{nm}$ 和 $n=10^{20}\ \mathrm{m^{-3}}$，估算 $g_{\mathrm{int}}$、$c$ 和 $\xi$。
+
+**(e) 玻戈留玻夫谱的斜率。**  
+验证在 $k\ll 1/\xi$ 时 $\epsilon_{k}\approx \hbar c k$，并求出色散关系偏离该近似例如 $10\%$ 时的过渡波数 $k$。
+
+**(f) 费米压强的数值检验。**  
+对于 $n=8\times 10^{28}\ \mathrm{m^{-3}}$ 的电子，计算 $\epsilon_{F}$ 和 $p(0)=\tfrac{2}{5}n\epsilon_{F}$，并与大气压强比较。
+
+---
+
+### 9.7.11 基础练习题组
+
+- 推导均匀理想玻色气体的 $T_{c}$ 和凝聚比例，再使用适当的态密度，对谐性陷阱重复推导  
+- 从 $p=(g k_{B}T/\lambda_{T}^{3})\zeta(5/2)$ 出发，计算 $T_{c}$ 以下的 $C_{V}$，并展示 $T_{c}$ 处的尖点  
+- 明确说明为何三维中的 $g_{3/2}(1)$ 收敛，而二维中的 $g_{1}(1)$ 发散，并将其与均匀二维系统中不存在BEC联系起来  
+- 在均匀解附近线性化GP方程，推导玻戈留玻夫色散关系和朗道临界速度  
+- 利用索末菲展开，求得三维费米气体的 $U(T)$ 和 $C_{V}(T)$，保留到 $(T/T_{F})^{2}$ 阶；推导谐性束缚下的 $\epsilon_{F}^{\mathrm{trap}}$
+
+---
+
+## 9.8 平均场与朗道理论：序参量、范德瓦耳斯与居里–外斯
+
+平均场是一种“集体协作”式的近似：每个自由度感受到的都是其他自由度的**平均**作用。它常能准确抓住相图的**形状**，并给出解析的临界指数。**朗道理论**将这一思想转化为依据**序参量**和对称性的可控展开。本节将建立居里–外斯磁性理论、带麦克斯韦构造的范德瓦耳斯流体、朗道自由能与临界指数、朗道–金兹堡理论中的关联长度，以及金兹堡判据，并讨论一级相变和三临界点如何出现。
+
+![对于实标量序参量，偶对称双阱有两个由对称性联系的极小值。选择其中任一极小值都会打破反射对称性。](/images/diagrams/symmetry-breaking.svg)
+
+---
+
+### 9.8.1 平均场作了哪些假设
+
+选择一个在所破缺的对称性变换下改变符号的序参量 $\phi$：
+
+- 铁磁体：$\phi \equiv m$（磁化强度密度），对称性为 $m\to -m$  
+- 液气系统：$\phi \equiv n-n_{c}$（密度偏差），没有伊辛对称性，但在 $T_{c}$ 附近具有相同的数学形式
+
+**平均场思想：** 用邻居的平均值替代邻居。当配位数很大或相互作用为长程时，可以忽略涨落；空间维数 $d$ 越高，这一点就越适用。
+
+---
+
+### 9.8.2 居里–外斯铁磁体（类伊辛模型，z 个邻居）
+
+从伊辛自旋 $\sigma_{i}=\pm 1$、耦合 $J>0$ 和外场 $h$ 出发。在平均场中，每个自旋感受到有效场 $h_{\text{eff}}=h + z J m$，其中 $m\equiv \langle \sigma\rangle$。单格点配分函数为 $z_{1}=2\cosh(\beta h_{\text{eff}})$，由此得到**自洽**方程
+
+$$
+m = \tanh\!\left[\beta\,(h + z J m)\right]
+$$
+
+在 $h=0$ 时，对小 $m$ 展开，得到**居里–外斯**临界温度
+
+$$
+k_{B}T_{c} = z J
+$$
+
+临界行为：
+
+- 当 $T>T_{c}$ 且 $h$ 很小时：$m \approx \chi h$，其中
+
+$$
+\chi = \frac{1}{k_{B}(T-T_{c})}
+$$
+
+因此 $\gamma_{\text{MF}}=1$
+
+- 当 $T<T_{c}$ 且 $h=0$ 时：出现非零解
+
+$$
+m \sim \left(1-\frac{T}{T_{c}}\right)^{1/2}
+$$
+
+因此 $\beta_{\text{MF}}=1/2$
+
+- 当 $T=T_{c}$ 时，$m \propto h^{1/3}$，因此 $\delta_{\text{MF}}=3$
+
+比热具有**有限跳跃**（不发散）：$\alpha_{\text{MF}}=0$
+
+---
+
+### 9.8.3 朗道自由能：对称性决定形式
+
+按照对称性要求，对序参量作**解析**展开。对于均匀系统中的类伊辛标量 $m$，
+
+$$
+F(m;T,h) = F_{0}(T) + a_{2}\,t\,m^{2} + a_{4}\,m^{4} + a_{6}\,m^{6} - h\,m
+$$
+
+其中温度偏差为 $t\equiv T-T_{c}$，标准二级相变要求 $a_{4}>0$。在这一普通临界点附近截断至四次项；下面的极小化与主要临界公式忽略六次项：
+
+$$
+\frac{\partial F}{\partial m} = 2 a_{2}\,t\,m + 4 a_{4}\,m^{3} - h = 0
+$$
+
+在 $h=0$ 时的结论：
+
+- 当 $t>0$ 时：极小值位于 $m=0$  
+- 当 $t<0$ 时：极小值位于
+
+$$
+m_{\star}(t) = \pm \sqrt{\frac{-a_{2}\,t}{2 a_{4}}}
+$$
+
+因此 $\beta_{\text{MF}}=1/2$
+
+由线性响应求得 $T_{c}$ 以上的响应率：
+
+$$
+\chi^{-1} = \left.\frac{\partial^{2}F}{\partial m^{2}}\right|_{m=0} = 2 a_{2}\,t
+$$
+
+因此 $\chi \propto t^{-1}$，$\gamma_{\text{MF}}=1$
+
+当 $t=0$ 且 $h\neq 0$ 时：
+
+$$
+4 a_{4}\,m^{3} = h \quad\Rightarrow\quad m \propto h^{1/3}
+$$
+
+因此 $\delta_{\text{MF}}=3$
+
+**比热跳跃。** 将 $m_{\star}$ 代入 $F$：
+
+$$
+F_{\min}(t<0) = F_{0}(T) - \frac{a_{2}^{2}}{4 a_{4}}\,t^{2}
+$$
+
+因此，$C = -T\,\partial^{2}F/\partial T^{2}$ 在 $T_{c}$ 处出现有限台阶，即 $\alpha_{\text{MF}}=0$，但存在不连续性。
+
+---
+
+### 9.8.4 一级相变与三临界行为
+
+如果微观物理使 $a_{4}<0$，$m^{4}$ 项会导致不稳定。取 $a_{6}>0$ 可恢复稳定。此时，随着 $t$ 改变，位于 $\pm m$ 的**两个极小值**会在 $t=0$ **之前**出现；当两个势阱等深，即达到共存条件 $t=t_{\text{coex}}$ 时，系统发生跃变。这一跃变是伴随潜热的**一级**相变。
+
+在 $t=0$ 处，$a_{4}$ 改变符号的点是**三临界点**。取 $a_{4}=0$ 的朗道分析预言不同的临界指数，例如 $m\sim (-t)^{1/4}$。
+
+---
+
+### 9.8.5 朗道–金兹堡泛函与关联长度
+
+允许序参量在空间中缓慢变化。**朗道–金兹堡**自由能泛函为
+
+$$
+\mathcal F[\phi] = \int d^{d}r\;\left[\frac{r_{0}}{2}\,\phi^{2} + \frac{c}{2}\,(\nabla \phi)^{2} + \frac{u}{4}\,\phi^{4} - h\,\phi\right]
+$$
+
+其中 $r_{0}\propto t$。在**高斯**区域（$u$ 很小，$t>0$）中，傅里叶空间的两点关联函数具有奥恩斯坦–泽尼克形式
+
+$$
+S(\boldsymbol k) \equiv \langle|\phi_{\boldsymbol k}|^{2}\rangle \propto \frac{1}{r_{0} + c k^{2}}
+$$
+
+定义**关联长度**
+
+$$
+\xi^{2} = \frac{c}{r_{0}} \propto t^{-1}
+$$
+
+因此 $\nu_{\text{MF}}=1/2$。在三维中，实空间关联函数具有 $e^{-r/\xi}/r^{d-2}$ 的形式；这一指数衰减前的幂因子不是任意维度下的通式。在大于二维的临界点，高斯关联函数按距离的“维度减二”次反比衰减，因此 $\eta_{\text{MF}}=0$。
+
+---
+
+### 9.8.6 金兹堡判据：平均场何时失效
+
+平均场忽略序参量涨落。将关联体积 $\xi^{d}$ 内的涨落大小与 $m_{\star}^{2}$ 比较。粗略地说，
+
+$$
+\frac{\langle \delta \phi^{2}\rangle_{\xi}}{m_{\star}^{2}} \sim \frac{k_{B}T}{u\,\xi^{d}\,m_{\star}^{4}}
+$$
+
+利用 $m_{\star}^{2}\sim |t|/u$ 和 $\xi\sim t^{-1/2}$，可得到一个**金兹堡数** $\mathrm{Gi}$，使得平均场仅在下列条件下有效
+
+$$
+|t| \gg \mathrm{Gi}
+$$
+
+简言之：对于 $d>4$，涨落积分行为良好，平均场在渐近意义下精确。对于 $d\le 4$，靠近 $T_{c}$ 的一个区域由**涨落主导**，需要使用重整化群（§9.10）。
+
+---
+
+### 9.8.7 范德瓦耳斯流体：液气系统的平均场
+
+用数密度 $n=N/V$ 写出状态方程：
+
+$$
+p(n,T) = \frac{n\,k_{B}T}{1 - b n} - a\,n^{2}
+$$
+
+其中 $b$ 表示排除体积，$a$ 表示吸引作用。**临界点**满足 $(\partial p/\partial n)_{T_{c}}=(\partial^{2}p/\partial n^{2})_{T_{c}}=0$，由此得到
+
+$$
+n_{c} = \frac{1}{3b},\qquad
+k_{B}T_{c} = \frac{8 a}{27 b},\qquad
+p_{c} = \frac{a}{27 b^{2}}
+$$
+
+采用摩尔形式 $p = RT/(V_{m}-b) - a/V_{m}^{2}$，可得 $V_{c}=3b$、$T_{c}=8a/(27 b R)$、$p_{c}=a/(27 b^{2})$。
+
+定义**约化变量** $p_{r}\equiv p/p_{c}$、$v_{r}\equiv V_{m}/V_{c}$、$T_{r}\equiv T/T_{c}$，得到**对应态定律**
+
+$$
+p_{r} = \frac{8 T_{r}}{3 v_{r}-1} - \frac{3}{v_{r}^{2}}
+$$
+
+在 $T_{c}$ 以下，$p(V)$ 呈S形。机械不稳定区域满足 $(\partial p/\partial V)_{T}>0$；**旋节线**由 $(\partial p/\partial V)_{T}=0$ 确定。给定 $T<T_{c}$ 时的**共存**压强由**麦克斯韦等面积**规则确定（因为两相中的 $g=\mu$ 必须相等）。
+
+在 $T_{c}$ 附近，密度差服从平均场定律
+
+$$
+\Delta n \propto (T_{c}-T)^{1/2}
+$$
+
+这与 $\beta_{\text{MF}}=1/2$ 一致。
+
+---
+
+### 9.8.8 亚稳态、成核与旋节线
+
+当 $t<0$ 且外场 $h$ 很小时，朗道双阱具有两个深度不同的极小值：较高的那个是**亚稳态**。衰变通过临界液滴的**成核**进行；静态平均场无法描述这一过程，但极小值之间的势垒暗示了它的存在。接近**旋节线**时，势垒消失；在平均场中，响应率和关联长度沿这一极限发散。
+
+---
+
+### 9.8.9 速查表：平均场指数与标度关系
+
+**平均场指数（类伊辛）：**
+
+| 指数 | 含义 | 数值 |
+|---|---|---|
+| $\alpha$ | $C \sim \lvert t\rvert^{-\alpha}$ | $0$，伴随跳跃 |
+| $\beta$ | $m \sim (-t)^{\beta}$ | $1/2$ |
+| $\gamma$ | $\chi \sim \lvert t\rvert^{-\gamma}$ | $1$ |
+| $\delta$ | $m \sim h^{1/\delta}$，在 $t=0$ 时 | $3$ |
+| $\nu$ | $\xi \sim \lvert t\rvert^{-\nu}$ | $1/2$ |
+| $\eta$ | $G(r)\sim r^{-(d-2+\eta)}$，在 $t=0$ 时 | $0$ |
+
+
+**标度关系（平均场满足）：**
+
+- 威多姆关系：$\gamma = \beta(\delta-1)$  
+- 拉什布鲁克关系：$\alpha + 2\beta + \gamma = 2$  
+- 约瑟夫森关系（超标度）：$2 - \alpha = d\,\nu$  
+  - 使用平均场指数时，它在 $d=d_{c}=4$ 的幂律层面成立（可能存在对数修正），而在 $d>d_{c}$ 时失效。低于 $d_{c}$ 时，应使用包含涨落修正的指数。
+
+---
+
+### 9.8.10 常见误区
+
+- **在 $T_{c}$ 以上、$h=0$ 时强行令 $m\neq 0$。** 在 $a_{4}>0$ 的朗道理论中，$t>0$ 时唯一的极小值为 $m=0$  
+- **混淆共存线与旋节线。** 麦克斯韦构造确定共存；旋节线则是亚稳态的极限，满足 $(\partial p/\partial V)_{T}=0$  
+- **忽略对称性。** 如果对称性禁止奇次项，就不要人为加入。如果外场 $h$ 打破该对称性，则应加入 $-h m$  
+- **宣称平均场“精确”。** 它在远离 $T_{c}$、高 $d$ 或长程相互作用下表现良好；在 $d\le 4$ 且接近 $T_{c}$ 时，请参见§9.10
+
+---
+
+### 9.8.11 简短例题
+
+**(a) 居里–外斯 $\chi$**  
+在 $h=0$ 时，对小 $m$ 线性化 $m=\tanh[\beta(zJ m + h)]$，推导 $\chi=1/[k_{B}(T-T_{c})]$，并确定 $T_{c}$。
+
+**(b) 朗道理论的 $m(T)$ 与 $C$ 跳跃**  
+在 $h=0$、$t<0$ 时，极小化 $F= a_{2} t m^{2} + a_{4} m^{4}$，得到 $m_{\star}^{2}=-a_{2}t/(2a_{4})$。将其代入 $F$，并计算 $T_{c}$ 处的比热不连续量。
+
+**(c) 奥恩斯坦–泽尼克形式**  
+从二次型朗道–金兹堡泛函出发，推导 $S(k)\propto 1/(r_{0}+c k^{2})$，并确定 $\xi=\sqrt{c/r_{0}}$。
+
+**(d) 范德瓦耳斯临界点**  
+利用 $p = n k_{B}T/(1-b n) - a n^{2}$，令 $\partial_{n}p=\partial_{n}^{2}p=0$，求出 $(n_{c},T_{c},p_{c})$；再写出约化状态方程。
+
+**(e) 三临界标度**  
+令 $a_{4}=0$，保持 $a_{6}>0$，极小化 $F=a_{2} t m^{2}+a_{6} m^{6}$。证明 $m\sim (-t)^{1/4}$，并求出 $\beta_{\text{tri}}$。
+
+---
+
+### 9.8.12 基础练习题组
+
+- 从朗道多项式推导平均场指数 $\alpha,\beta,\gamma,\delta$，并验证威多姆和拉什布鲁克关系  
+- 从朗道–金兹堡泛函出发，计算 $d$ 维实空间关联函数 $G(r)$，并确认 $\eta_{\text{MF}}=0$  
+- 对给定 $u$ 和 $c$ 的三维类伊辛磁体，应用金兹堡判据，估算非平均场临界区域 $|t|\lesssim \mathrm{Gi}$ 的宽度  
+- 对范德瓦耳斯流体，在 $T_{c}$ 附近解析地实施麦克斯韦等面积构造，并证明 $\Delta n \propto (T_{c}-T)^{1/2}$  
+- 探索 $a_{4}<0$ 的一级相变情形：通过令势阱等深，求出共存条件 $t_{\text{coex}}$，并确定极小值处二阶导数为零的旋节线
+
+---
+
+## 9.9 伊辛模型：转移矩阵、对偶性与精确的二维临界行为
+
+如果统计物理有吉祥物，那一定是伊辛模型：自旋 $\sigma_{i}=\pm 1$ 只与邻居相互作用，却能重现相变的丰富现象。在一维中，它很平静（没有有限 $T$ 相变）。在二维中，它则堪称经典：具有精确的临界点、非平均场指数和对数发散的比热。本节介绍一维精确解、畴壁直觉、克拉默斯–万尼尔对偶性、昂萨格解的核心结果，以及实际常用的标度数据。
+
+![比较双分格晶格上的平行自旋排列与相邻自旋交替排列。](/images/diagrams/magnetic-order.svg)
+
+---
+
+### 9.9.1 定义与记号
+
+在最近邻为 $\langle ij\rangle$、外场为 $H$ 的晶格上，
+
+$$
+H(\{\sigma\}) = -J \sum_{\langle ij\rangle} \sigma_{i}\sigma_{j} - H \sum_{i} \sigma_{i}
+$$
+
+我们还将使用**无量纲**耦合常数
+
+$$
+K \equiv \beta J,\qquad \tilde h \equiv \beta H
+$$
+
+正的 $J$ 有利于自旋同向排列（铁磁体）。配分函数为 $Z=\sum_{\{\sigma\}} e^{-\beta H(\{\sigma\})}$。
+
+---
+
+### 9.9.2 一维链：转移矩阵的精确解
+
+对于由 $N$ 个自旋组成的环（周期性边界条件），构造 $2\times 2$ 转移矩阵
+
+$$
+T_{\sigma,\sigma'} = \exp\!\left[K\,\sigma\sigma' + \frac{\tilde h}{2}(\sigma+\sigma')\right]
+$$
+
+其本征值为
+
+$$
+\lambda_{\pm} = e^{K}\cosh \tilde h \pm \sqrt{e^{2K}\sinh^{2}\tilde h + e^{-2K}}
+$$
+
+在 $N\to\infty$ 极限下，热力学由 $\lambda_{+}$ 决定：
+
+$$
+f \equiv -\frac{1}{\beta N}\ln Z = -\frac{1}{\beta}\ln \lambda_{+}
+$$
+
+在**零场** $\tilde h=0$ 时，
+
+$$
+\lambda_{+}=2\cosh K,\qquad \lambda_{-}=2\sinh K
+$$
+
+在任何 $T>0$ 下都**不存在**自发磁化，即 $m=\lim_{\tilde h\to 0}\frac{1}{N}\partial_{\tilde h}\ln Z=0$。连通两点函数呈指数衰减，
+
+$$
+\langle \sigma_{0}\sigma_{r}\rangle_{c} = \left(\frac{\lambda_{-}}{\lambda_{+}}\right)^{r}
+$$
+
+因此关联长度为
+
+$$
+\xi^{-1} = -\ln \tanh K
+$$
+
+它在所有 $T>0$ 时都有限，仅在 $T=0$ 时发散。结论：一维伊辛模型**不存在有限 $T$ 相变**。
+
+---
+
+### 9.9.3 畴壁（扭结）的直觉：为何一维保持无序
+
+翻转一段连续的自旋，就会产生**两个**畴壁，每个畴壁需要能量 $2J$。但它们的**熵**按 $\ln N$ 增长（因为可以放置它们的位置很多）。一对畴壁的自由能为 $\Delta F \sim 2\cdot 2J - k_{B}T\ln N$，因此对任意 $T>0$，当 $N$ 很大时熵项占优 → 畴壁大量出现 → 长程有序被破坏。在二维中，能量随**周长**增长，与熵的竞争方式不同，因此允许有限的 $T_{c}$。
+
+---
+
+### 9.9.4 二维正方晶格
+
+克拉默斯–万尼尔对偶性将耦合为 $K$ 的配分函数映射到**对偶**耦合 $K^{\star}$ 的配分函数，两者满足
+
+$$
+\sinh(2K)\,\sinh(2K^{\star}) = 1
+$$
+
+临界点位于**自对偶**处，即 $K=K^{\star}$，因此
+
+$$
+\sinh(2K_{c}) = 1
+$$
+
+等价地，
+
+$$
+\frac{k_{B}T_{c}}{J} = \frac{2}{\ln(1+\sqrt{2})}
+$$
+
+对于各向异性耦合 $J_{x},J_{y}$，临界线为 $\sinh(2K_{x})\sinh(2K_{y})=1$。
+
+---
+
+### 9.9.5 昂萨格解：精确的临界行为（H=0）
+
+$H=0$ 时的完整自由能已被精确求出（这里不再写出其积分），其**核心结果**如下：
+
+- **比热**呈对数发散
+
+$$
+C \sim -\ln|t|,\qquad t \equiv \frac{T-T_{c}}{T_{c}}
+$$
+
+因此 $\alpha=0$，但带有对数项
+
+- $T<T_{c}$ 时的**自发磁化**（杨振宁）
+
+$$
+m(T) = \left[\,1 - \sinh^{-4}(2K)\,\right]^{1/8}
+$$
+
+- **临界指数**（二维伊辛普适类）
+
+$$
+\alpha=0,\quad \beta=\frac{1}{8},\quad \gamma=\frac{7}{4},\quad \delta=15,\quad \nu=1,\quad \eta=\frac{1}{4}
+$$
+
+- **关联长度**按 $\xi \sim |t|^{-\nu}$ 发散，其中 $\nu=1$；二维中的临界关联函数按 $G(r)\sim r^{-d+2-\eta}=r^{-1/4}$ 衰减
+
+二维伊辛临界点也对应一个中心荷为 $c=\tfrac{1}{2}$ 的共形场论（这对后面的有限尺寸标度和精确振幅比很有用）。
+
+---
+
+### 9.9.6 转移矩阵、标度与有限尺寸技巧
+
+- **转移矩阵 ↔ 量子映射。** 二维经典伊辛模型可通过特罗特分解映射到**一维量子横场伊辛**链。经典的 $T=T_{c}$ $\leftrightarrow$ 量子零温临界点。许多有限尺寸公式可直接移用。
+- **有限尺寸标度。** 在线性尺寸为 $L$ 的盒子中，响应率和序参量的矩在 $T_{c}$ 处按以下规律变化
+
+$$
+\chi_{\max}(L) \propto L^{\gamma/\nu} = L^{7/4},\qquad m(T_{c},L) \propto L^{-\beta/\nu} = L^{-1/8}
+$$
+
+宾德累积量和交点法是在模拟中确定 $T_{c}$ 的实用方法。
+
+---
+
+### 9.9.7 普适性带来了什么
+
+你不必每次都重新处理晶格层面的数学。任何具有 $\mathbb Z_{2}$ 对称性破缺的二维短程系统（临界等温线上的液气系统、单轴磁体、二元合金），在临界点附近都具有**相同**的指数和标度函数。朗道平均场（§9.8）在定性上正确，但其指数不同；重整化（§9.10）解释了其中的原因。
+
+---
+
+### 9.9.8 常见误区
+
+- **忘记一维不存在有限 $T$ 有序态。** 如果代码在一维、$T>0$、$H=0$ 时给出 $m\neq 0$，那么你可能受到了有限尺寸效应的误导，或算法打破了对称性  
+- **混淆外场条件。** 上述 $m(T)$ 的闭式表达式仅适用于 $H=0$；打开 $H$ 后，这种精确形式的临界奇异性就会消失  
+- **用错 $T_{c}$。** 正确条件是 $\sinh(2K_{c})=1$，而不是 $\tanh$ 或 $\cosh$；等价地，$k_{B}T_{c}/J = 2/\ln(1+\sqrt{2})$  
+- **在二维使用平均场指数。** 平均场给出 $\beta=1/2$、$\gamma=1$ 等，但这些对二维伊辛模型**并不**正确；应使用上述精确指数  
+- **关联长度的符号错误。** 在一维中，$\xi^{-1}=-\ln(\tanh K)$；注意负号，以及 $T>0$ 时 $\tanh K<1$
+
+---
+
+### 9.9.9 简短例题
+
+**(a) $H=0$ 时的一维转移矩阵。**  
+推导 $\lambda_{\pm}=2(\cosh K,\ \sinh K)$，求得 $f=-k_{B}T\ln(2\cosh K)$，并证明 $\xi^{-1}=-\ln\tanh K$。
+
+**(b) 克拉默斯–万尼尔对偶性。**  
+从 $\ln Z$ 的高温和低温级数出发，证明在 $\sinh(2K)\sinh(2K^{\star})=1$ 下，两者除一个前置因子外相同，再由自对偶性推出 $K_{c}$。
+
+**(c) 磁化检验。**  
+由 $m(T)=\left[1-\sinh^{-4}(2K)\right]^{1/8}$ 验证 $m(T\!\to\!0)\to 1$，以及 $m(T\!\to\!T_{c}^{-})\sim |t|^{1/8}$。
+
+**(d) $\chi$ 的有限尺寸标度。**  
+假设 $\chi(t,L)=L^{\gamma/\nu}\,\Phi(t L^{1/\nu})$，证明二维中的峰值按 $L^{7/4}$ 标度变化，并说明如何通过数据塌缩提取 $\nu$。
+
+**(e) 一维畴壁气体。**  
+将扭结视为无相互作用、逸度为 $y\equiv e^{-2K}$ 的粒子。证明两点函数在最低阶 $\propto (1-2y)^{r}$，从而在 $y\ll 1$ 时重新得到 $\xi^{-1}\approx -\ln(1-2y)$。
+
+---
+
+### 9.9.10 基础练习题组
+
+- 构造带外场 $\tilde h$ 的一维转移矩阵，推导 $\lambda_{\pm}$ 和 $f(T,\tilde h)$；计算 $m=\partial_{\tilde h}\ln \lambda_{+}$，并检验 $T>0$ 时 $m(\tilde h\to 0)=0$  
+- 利用对偶性求出各向异性二维临界线 $\sinh(2K_{x})\sinh(2K_{y})=1$，再化为各向同性条件 $\sinh(2K_{c})=1$  
+- 从精确的 $m(T)$ 提取 $\beta=1/8$，并用 $\delta=15$ 和 $\gamma=7/4$ 确认威多姆关系 $\gamma=\beta(\delta-1)$  
+- 在 $T_{c}$ 附近展开昂萨格自由能积分，证明二维比热的行为为 $C \sim -\ln|t|$  
+- 将二维经典模型映射到一维量子横场伊辛链，并用横场与交换作用确定量子临界点
+
+---
+
+## 9.10 临界现象与重整化群基础
+
+接近连续相变时，系统会忘记微观细节，变得**尺度不变**。关联长度 $\xi$ 发散，涨落遍及所有尺度，热力学量呈现带有普适指数的幂律。**重整化群（RG）** 将这一图像转化为数学：粗粒化、重新缩放，并追踪耦合常数如何流动。不动点决定附近的行为，其本征值决定临界指数。
+
+---
+
+### 9.10.1 平均场为何失效
+
+平均场假定涨落很小。然而在临界点处，关联长度
+
+$$
+\xi \sim |t|^{-\nu},\qquad t \equiv \frac{T-T_{c}}{T_{c}}
+$$
+
+发生发散，$t=0$ 时的关联函数变为幂律
+
+$$
+G(r) \equiv \langle \phi(\mathbf r)\phi(\mathbf 0)\rangle_{c} \sim \frac{1}{r^{d-2+\eta}}
+$$
+
+自由能密度的奇异部分按 $f_{s}\sim \xi^{-d}$ 标度变化。当系统没有单一长度尺度时，就不能围绕某个单一尺度展开。
+
+---
+
+### 9.10.2 标度假设与齐次性定律
+
+假设自由能密度的**奇异**部分在按因子 $b>0$ 重新缩放时满足齐次关系
+
+$$
+f_{s}(t,h) = b^{-d}\, f_{s}\!\left(t\,b^{y_{t}},\, h\,b^{y_{h}}\right)
+$$
+
+这里 $h$ 是与序参量共轭的外场。选择 $b=|t|^{-1/y_{t}}$，并确定各指数：
+
+- 比热 $C \sim -\partial^{2}f_{s}/\partial T^{2} \sim |t|^{-\alpha}$，其中
+
+$$
+2 - \alpha = \frac{d}{y_{t}} \equiv d\,\nu
+$$
+
+- 序参量 $m \equiv -\partial f_{s}/\partial h|_{h\to 0} \sim |t|^{\beta}$，其中
+
+$$
+\beta = \frac{d - y_{h}}{y_{t}}
+$$
+
+- 响应率 $\chi \equiv \partial m/\partial h|_{h\to 0} \sim |t|^{-\gamma}$，其中
+
+$$
+\gamma = \frac{2 y_{h} - d}{y_{t}}
+$$
+
+在 $t=0$ 时，选择 $b=h^{-1/y_{h}}$，得到 $m \sim h^{1/\delta}$，其中
+
+$$
+\delta = \frac{y_{h}}{d - y_{h}}
+$$
+
+费舍尔关系通过临界关联函数将 $\eta$ 与 $y_{h}$ 联系起来：
+
+$$
+2 - \eta = 2y_{h}-d
+$$
+
+汇总经典的**标度关系**
+
+- 威多姆关系：$\gamma = \beta(\delta - 1)$  
+- 拉什布鲁克关系：$\alpha + 2\beta + \gamma = 2$  
+- 约瑟夫森关系（超标度）：$2 - \alpha = d\,\nu$  
+- 费舍尔关系：$\gamma = (2 - \eta)\,\nu$
+
+超标度通常在**上临界维数** $d_{c}$ **以下**成立。
+
+---
+
+### 9.10.3 卡达诺夫块自旋：有效的示意图像
+
+将自旋粗粒化为尺寸为 $b$ 的块，取平均得到新场 $\phi'$，再将长度重新缩放回原来的晶格。耦合 $\{K\}$ 流向新的耦合 $\{K'\}$。反复进行这一过程：
+
+- **相关**方向在重整化群变换下增大（$K'\!-\!K^{\star}\sim b^{y} (K-K^{\star})$，其中 $y>0$）  
+- **无关**方向缩小（$y<0$）  
+- **边缘**方向需要更高阶分析
+
+临界行为对应于流向一个**非平凡不动点** $K^{\star}$，该点至少有一个相关方向（温度）。关联长度指数是热本征值的倒数：
+
+$$
+\nu = \frac{1}{y_{t}}
+$$
+
+外场本征值则决定 $y_{h}$，从而通过§9.10.2决定 $\eta,\beta,\gamma,\delta$。
+
+---
+
+### 9.10.4 威尔逊动量壳重整化群与贝塔函数
+
+对于标量序参量，朗道–金兹堡–威尔逊（LGW）泛函为
+
+$$
+\mathcal F[\phi] = \int d^{d}x\left[\frac{1}{2}(\nabla\phi)^{2} + \frac{r}{2}\phi^{2} + \frac{u}{4!}\phi^{4} - h\,\phi\right]
+$$
+
+积分消去动量壳 $\Lambda/b < |\boldsymbol k| < \Lambda$ 内的模式以实现粗粒化，再作缩放 $\boldsymbol x\to \boldsymbol x/b$ 和 $\phi\to b^{(d-2+\eta)/2}\phi$。耦合随“重整化群时间”$\ell\equiv \ln b$ 的流动示意如下；省略号包括求温度方向本征值所必需的依赖质量参数的圈修正：
+
+$$
+\frac{dr}{d\ell} = 2 r - c_{1} u + \cdots,\qquad
+\frac{du}{d\ell} = \beta(u) = \epsilon\,u - c_{2}\,u^{2} + \cdots
+$$
+
+其中 $\epsilon \equiv 4 - d$。常数 $c_{1},c_{2}$ 取决于约定；关键在于：
+
+- 对于 $d<4$（$\epsilon>0$），存在**威尔逊–费舍尔**不动点 $u^{\star}\sim \epsilon/c_{2}$，给出非平均场指数  
+- 对于 $d>4$（$\epsilon<0$），高斯不动点 $u^{\star}=0$ 稳定，平均场指数成立（在 $d=4$ 时可能出现对数修正）
+
+对于 $O(N)$ 模型，$\epsilon$ 展开给出以下单圈关联长度指数与首个双圈反常维数：
+
+$$
+\nu = \frac{1}{2} + \frac{N+2}{4(N+8)}\,\epsilon + \mathcal O(\epsilon^{2})
+$$
+
+$$
+\eta = \frac{(N+2)}{2(N+8)^{2}}\,\epsilon^{2} + \mathcal O(\epsilon^{3})
+$$
+
+对于**伊辛**普适类（$N=1$）：
+
+$$
+\nu = \frac{1}{2} + \frac{1}{12}\,\epsilon + \cdots,\qquad
+\eta = \frac{1}{54}\,\epsilon^{2} + \cdots
+$$
+
+代入 $\epsilon=1$，可得到粗略的三维估计；更高圈计算结合重求和可以改进这些结果。
+
+---
+
+### 9.10.5 上临界维数与危险无关变量
+
+$\phi^{4}$ 耦合 $u$ 在 $d=4$ 时是**边缘**的，在 $d>4$ 时是**无关**的。然而，在 $d>4$ 时，它可能是**危险无关**的：它在重整化群变换下趋于零，却仍然决定 $T_{c}$ 以下 $m$ 的振幅，从而改变朴素的超标度关系。其结果包括：
+
+- 平均场指数 $\alpha=0,\beta=1/2,\gamma=1,\delta=3,\nu=1/2,\eta=0$ 对 $d\ge d_{c}=4$ 成立  
+- 超标度关系 $2-\alpha=d\nu$ 在 $d>4$ 时失效（若不作依赖 $u$ 的重新缩放，自由能密度就不按 $\xi^{-d}$ 标度变化）
+
+在 $d=4$ 时会出现对数项，例如 $C \sim |\ln t|^{p}$。
+
+---
+
+### 9.10.6 有限尺寸标度与数据塌缩
+
+对于尺寸为 $L$ 的周期性盒子，重整化群与齐次性意味着自由能奇异部分满足**有限尺寸标度（FSS）** 假设
+
+$$
+f_{s}(t,h;L) = L^{-d}\,\mathcal F\!\left(t\,L^{1/\nu},\ h\,L^{y_{h}}\right)
+$$
+
+可观测量的通用形式：
+
+- 序参量：$m(t,h=0;L) = L^{-\beta/\nu}\,\mathcal M(t\,L^{1/\nu})$  
+- 响应率：$\chi(t;L) = L^{\gamma/\nu}\,\mathcal X(t\,L^{1/\nu})$  
+- 比热：$C(t;L) = L^{\alpha/\nu}\,\mathcal C(t\,L^{1/\nu})$，另有可加的解析背景项
+
+**实际用途：** 以 $t L^{1/\nu}$ 为横坐标，并将序参量的纵坐标乘以 $L^{\beta/\nu}$，或将响应率的纵坐标乘以 $L^{-\gamma/\nu}$后，不同 $L$ 的曲线会塌缩到一起；伪临界温度的偏移满足
+
+$$
+T_{c}(L) - T_{c}(\infty) \propto L^{-1/\nu}
+$$
+
+---
+
+### 9.10.7 普适类（简图）
+
+- **伊辛（$O(1)$，$\mathbb Z_{2}$ 对称性）：** 单轴磁体、临界等温线上的液气系统、二元合金  
+- **XY（$O(2)$）：** 超流氦、平面自旋、薄膜超导体；在二维中具有**科斯特利茨–索利斯**转变（本质奇异性，而非幂律）  
+- **海森堡（$O(3)$）：** 各向同性磁体  
+- **渗流：** 几何连通性转变，具有自身的临界指数  
+- **有向渗流：** 吸收态相变（非平衡）
+
+相同维数 + 相同对称性 + 相似的守恒规则 → 相同指数。
+
+---
+
+### 9.10.8 KT转变插曲（二维XY）
+
+在二维中，涡旋在 $T_{\mathrm{KT}}$ 处解束缚，关联长度为
+
+$$
+\xi \sim \exp\!\left(\frac{b}{\sqrt{|T-T_{\mathrm{KT}}|}}\right)
+$$
+
+这里没有标准的幂律指数；取而代之的是超流刚度的普适跳跃。这仍然是重整化群，只是对应另一种流图，其耦合参数为涡旋逸度和刚度。
+
+---
+
+### 9.10.9 简短例题
+
+**(a) 两步得到标度关系**  
+从 $f_{s}(t,h)=b^{-d} f_{s}(t b^{y_{t}}, h b^{y_{h}})$ 出发，推导 $\alpha,\beta,\gamma,\delta$，并验证威多姆和拉什布鲁克关系。
+
+**(b) 单圈 $\phi^{4}$ 动量壳重整化群**  
+对LGW理论积分消去 $\Lambda/b<k<\Lambda$ 中的模式，重新缩放，并示意性地证明 $du/d\ell=\epsilon u - c_{2}u^{2}$ 和 $dr/d\ell=2r - c_{1}u$。确定 $u^{\star}$。若要将 $\nu=1/y_{t}$ 求至 $\mathcal O(\epsilon)$ 阶，须保留此示意流方程省略的依赖于质量参数的单圈项，移至临界面后再作线性化。
+
+**(c) 有限尺寸偏移**  
+假设 $\chi(t,L)=L^{\gamma/\nu}\,\mathcal X(t L^{1/\nu})$，证明响应率峰的位置满足 $t^{\ast}(L)\propto L^{-1/\nu}$。
+
+**(d) 数据塌缩步骤**  
+给定二维伊辛模型在 $H=0$ 时的 $m(T;L)$ 蒙特卡洛数据，取 $\beta=1/8$、$\nu=1$，作缩放 $m\to L^{\beta/\nu} m$ 和 $T\to (T-T_{c}) L^{1/\nu}$。解释可调参数和质量检查方法。
+
+**(e) $d_{c}$ 以上的危险无关变量 $u$**  
+在 $d>4$ 时，证明平均场层面上 $m\propto (-t)^{1/2} u^{-1/2}$，说明一个“无关”耦合如何决定振幅并破坏朴素的超标度关系。
+
+---
+
+### 9.10.10 常见误区
+
+- **在超标度失效的区域使用它。** 对类伊辛系统，在 $d_{c}=4$ 以上，不能不加限制地使用 $2-\alpha=d\nu$  
+- **混淆过渡行为与临界行为。** 在不动点附近但并未到达不动点的流会表现出随尺度漂移的**有效**指数  
+- **忽略解析背景。** 比热往往包含非奇异部分，可能掩盖较小的 $\alpha$  
+- **在有限尺寸标度中忘记边界条件。** 指数是普适的；标度函数和次领阶修正则**不是**  
+- **将KT与幂律标度混为一谈。** 在二维XY模型中，应预期本质奇异性和刚度跳跃，而非 $\beta,\gamma$ 等指数
+
+---
+
+### 9.10.11 基础练习题组
+
+- 从齐次性假设推导四个标准标度关系，并确定一组独立指数  
+- 对 $O(N)$ 模型计算 $\nu$ 和 $\eta$ 至 $\mathcal O(\epsilon)$ 阶，并分别取 $N=1,2,3$  
+- 证明在 $d=4$ 时高斯不动点是边缘的，并在 $\phi^{4}$ 理论中推导 $C$ 的一个对数修正  
+- 利用有限尺寸标度，从尺寸 $L=\{16,32,64,128\}$ 下合成或模拟的伊辛响应率峰估算 $\nu$  
+- 对KT重整化群流，写出刚度 $K$ 和涡旋逸度 $y$ 的最低阶方程，并展示对应于 $T_{\mathrm{KT}}$ 的分界轨线
+
+---
+
+## 9.11 线性响应与涨落–耗散
+
+轻轻扰动系统，观察它如何变化。**线性响应理论**将微小扰动转化为联系**耗散**与**平衡涨落**的普适公式。推迟关联函数决定响应，因果性给出克拉默斯–克罗尼希关系，而**涨落–耗散定理（FDT）** 将噪声谱与响应率的虚部联系起来。随后，输运系数可由流的自关联函数对时间积分求出（格林–久保关系）。
+
+---
+
+### 9.11.1 设置：源、可观测量与响应核
+
+用与算符 $A$ 耦合的弱含时外场 $h(t)$ 扰动平衡态哈密顿量：
+
+$$
+H'(t) = -\,h(t)\,A
+$$
+
+测量另一个可观测量 $B$。在线性阶，
+
+$$
+\delta\langle B(t)\rangle = \int_{-\infty}^{\infty} dt'\; \chi_{BA}(t-t')\,h(t')
+$$
+
+其中响应率满足**因果性**，即 $\chi_{BA}(t<0)=0$。在频域中，
+
+$$
+\delta\langle B(\omega)\rangle = \chi_{BA}(\omega)\,h(\omega)
+$$
+
+正弦驱动 $h(t)=h_{0}\cos\omega t$ 所产生的**吸收功率**由耗散部分 $\chi_{AA}''(\omega)$ 决定。
+
+---
+
+### 9.11.2 久保公式：量子与经典极限
+
+在海森堡绘景中，以 $\langle\cdots\rangle$ 表示平衡平均，**推迟**响应率为
+
+$$
+\chi_{BA}(t) = \frac{i}{\hbar}\,\Theta(t)\,\langle\,[B(t),A(0)]\,\rangle
+$$
+
+等价地，
+
+$$
+\chi_{BA}(\omega) = \int_{0}^{\infty} dt\; e^{i\omega t}\,\frac{i}{\hbar}\,\langle\,[B(t),A(0)]\,\rangle
+$$
+
+**经典极限。** 将对易子替换为 $i\hbar$ 乘以泊松括号，得到
+
+$$
+\chi_{BA}(t) = -\Theta(t)\,\beta\,\frac{d}{dt}\,C_{BA}(t),\qquad C_{BA}(t)\equiv \langle \delta B(t)\,\delta A(0)\rangle
+$$
+
+这就是共轭变量的时域涨落–耗散定理形式。
+
+---
+
+### 9.11.3 因果性 ⇒ 克拉默斯–克罗尼希关系
+
+因果性使 $\chi_{BA}(\omega)$ 在上半平面内**解析**。实部与虚部互为希尔伯特变换：
+
+$$
+\mathrm{Re}\,\chi(\omega) = \frac{1}{\pi}\,\mathcal P\!\int_{-\infty}^{\infty} d\omega'\,\frac{\chi''(\omega')}{\omega'-\omega}
+$$
+
+$$
+\chi''(\omega) = -\frac{1}{\pi}\,\mathcal P\!\int_{-\infty}^{\infty} d\omega'\,\frac{\mathrm{Re}\,\chi(\omega')}{\omega'-\omega}
+$$
+
+耗散 $\Leftrightarrow$ 色散：两者不可分离。
+
+---
+
+### 9.11.4 频域中的涨落–耗散定理
+
+定义 $A$ 的**对称化**平衡谱密度，
+
+$$
+S_{AA}(\omega) \equiv \int_{-\infty}^{\infty} dt\; e^{i\omega t}\,\frac{1}{2}\,\langle \{ \delta A(t),\delta A(0) \} \rangle
+$$
+
+那么，**量子涨落–耗散定理**表明
+
+$$
+S_{AA}(\omega) = \hbar\,\coth\!\left(\frac{\beta\hbar\omega}{2}\right)\,\chi_{AA}''(\omega)
+$$
+
+经典极限 $\beta\hbar\omega\ll 1$ 给出
+
+$$
+S_{AA}(\omega) = \frac{2 k_{B} T}{\omega}\,\chi_{AA}''(\omega)
+$$
+
+其含义是：在驱动下耗散能量的模式，也会在平衡态中发生涨落，两者之比由 $T$ 决定（在高频下则由 $\hbar\omega$ 决定）。
+
+---
+
+### 9.11.5 格林–久保关系：由自关联求输运
+
+输运系数是**流自关联函数的时间积分**。
+
+- $d$ 维中速度为 $\boldsymbol v$ 的粒子的**自扩散**：
+
+$$
+D = \frac{1}{d}\int_{0}^{\infty} dt\;\langle \boldsymbol v(t)\cdot \boldsymbol v(0)\rangle
+$$
+
+- 体积 $V$ 中总电流为 $J_{x}$ 时的**电导率**：
+
+$$
+\sigma = \frac{\beta}{V}\int_{0}^{\infty} dt\;\langle J_{x}(t)\,J_{x}(0)\rangle
+$$
+
+- 由体积积分后的微观应力分量 $\sigma_{xy}$ 得到的**剪切黏度**：
+
+$$
+\eta = \frac{\beta}{V}\int_{0}^{\infty} dt\;\langle \sigma_{xy}(t)\,\sigma_{xy}(0)\rangle
+$$
+
+- 对于各向同性的 $d$ 维系统，总热流 $\boldsymbol J_{Q}$（热流密度的体积积分）对应的**热导率**为：
+
+$$
+\kappa = \frac{k_{B}\beta^{2}}{dV}\int_{0}^{\infty} dt\;\langle \boldsymbol J_{Q}(t)\cdot \boldsymbol J_{Q}(0)\rangle
+$$
+
+所有平均都是采用**未受扰动**动力学的平衡平均。
+
+---
+
+### 9.11.6 朗之万、福克–普朗克与爱因斯坦关系
+
+对于黏性流体中位置为 $x$ 的布朗粒子，
+
+$$
+m\dot v = -\gamma v + \xi(t)
+$$
+
+其中高斯白噪声满足 $\langle \xi(t)\xi(0)\rangle = 2\gamma k_{B}T\,\delta(t)$。求解得到**爱因斯坦关系**
+
+$$
+D = \frac{k_{B} T}{\gamma}
+$$
+
+以及速度自关联函数 $\langle v(t)v(0)\rangle = (k_{B}T/m)\,e^{-t/\tau}$，其中 $\tau=m/\gamma$。相应的福克–普朗克方程描述概率密度的演化，并使其弛豫到麦克斯韦–玻尔兹曼稳态。
+
+---
+
+### 9.11.7 噪声实例：约翰逊–奈奎斯特噪声及其他
+
+对于经典区域 $\hbar\omega\ll k_{B}T$ 中的电阻 $R$，单边（正频率）**电压**噪声谱密度是9.11.4中定义的双边谱密度的两倍：
+
+$$
+S_{V}^{(1)}(\omega) = 4 k_{B} T\,R
+$$
+
+**量子**修正需要乘以 $\tfrac{\hbar\omega}{2k_{B}T}\coth(\beta\hbar\omega/2)$。对于单独的电阻，相应电流噪声为 $S_{I}^{(1)}(\omega)=4 k_{B} T/R$。同样的逻辑也是核磁共振中磁噪声、原子力显微镜中力噪声，以及介观导体中散粒噪声极限的基础。
+
+---
+
+### 9.11.8 昂萨格互易性与微观可逆性
+
+当广义流 $J_{i}$ 对热力学力 $X_{j}$ 作线性响应时，
+
+$$
+J_{i} = \sum_{j} L_{ij}\,X_{j}
+$$
+
+时间反演对称性意味着**昂萨格–卡西米尔**关系
+
+$$
+L_{ij}(B) = \epsilon_{i}\epsilon_{j}\,L_{ji}(-B)
+$$
+
+其中 $\epsilon_{i}=\pm 1$ 是 $J_{i}$ 的时间反演宇称。在零磁场下，对于具有相同宇称的力与流，$L_{ij}=L_{ji}$。互易性是平衡关联对称性在宏观上的体现。
+
+---
+
+### 9.11.9 因果性、无源性与求和规则
+
+- **无源性：** 对稳定的无源系统，$\omega>0$ 时 $\chi''(\omega)\ge 0$，这体现了正的耗散。  
+- **求和规则：** $\chi''(\omega)$ 的矩与等时对易子或静态响应率相联系，例如电荷响应的 $f$ 求和规则。  
+- **高频尾部：** 往往由短时间算符代数决定，可用于检验数值结果或截断模型。
+
+---
+
+### 9.11.10 常见误区
+
+- **在 $\chi$ 中使用对称关联函数而非推迟关联函数。** 久保公式的 $\chi$ 需要**对易子**和 $\Theta(t)$。  
+- **忘记选择系综。** 格林–久保平均应在与守恒量相匹配的**平衡**系综中计算。  
+- **在高频下滥用经典涨落–耗散定理。** 当 $\hbar\omega\gtrsim k_{B}T$ 时，应使用量子因子 $\coth(\beta\hbar\omega/2)$。  
+- **混淆响应通道。** 耦合 $H'=-hA$ 意味着正确的涨落–耗散关系联系的是 $S_{AA}$ 与 $\chi_{AA}''$，而非其他算符。  
+- **忽略守恒律。** 与守恒密度相关的流具有流体力学长时间尾部，可能改变对积分收敛性的朴素判断。
+
+---
+
+### 9.11.11 简短例题
+
+**(a) 由因果性得到克拉默斯–克罗尼希关系**  
+假设 $t<0$ 时 $\chi(t)=0$，作傅里叶变换，并证明 $\mathrm{Re}\,\chi$ 与 $\chi''$ 的希尔伯特变换关系。
+
+**(b) 时域中的经典涨落–耗散定理**  
+取 $H'=-h(t)A$ 且 $B=A$，证明 $\chi_{AA}(t)=-\Theta(t)\beta\,\frac{d}{dt}C_{AA}(t)$，并重新得到 $S_{AA}(\omega)=\tfrac{2k_{B}T}{\omega}\chi_{AA}''(\omega)$。
+
+**(c) 约翰逊噪声**  
+考虑一个仅含电阻的电路。利用 $I(\omega)=V(\omega)/R$ 和涨落–耗散定理，推导经典频段内的 $S_{V}^{(1)}=4k_{B}TR$。
+
+**(d) 由速度关联求扩散**  
+对于单个笛卡尔速度分量，其指数型关联函数为 $\langle v(t)v(0)\rangle=v_{0}^{2}e^{-t/\tau}$，积分得到 $D=v_{0}^{2}\tau$；取 $v_{0}^{2}=k_{B}T/m$ 和 $\tau=m/\gamma$，将其与 $D=k_{B}T/\gamma$ 比较。
+
+**(e) 电导率的格林–久保关系**  
+证明在矢势等于负电场乘以时间的时间规范下，均匀电场的耦合形式为 $H'=+E_{x}J_{x}t$，并推导 $\sigma=(\beta/V)\int_{0}^{\infty}dt\,\langle J_{x}(t)J_{x}(0)\rangle$。
+
+**(f) 昂萨格互易性检验**  
+对于包含电流和热流的热电输运，写出 $2\times 2$ 的 $L$ 矩阵，并论证 $L_{12}(B)=L_{21}(-B)$。
+
+---
+
+### 9.11.12 基础练习题组
+
+- 从久保公式出发，证明量子涨落–耗散定理 $S_{AA}(\omega)=\hbar\coth(\beta\hbar\omega/2)\chi_{AA}''(\omega)$  
+- 将迁移率 $\mu$ 与速度响应的低频极限联系起来，推导爱因斯坦关系 $D=\mu k_{B}T$  
+- 通过计算正弦驱动下的平均吸收功率，证明无源系统满足 $\chi''(\omega)\ge 0$  
+- 从连续性方程出发，将流关联的长时间尾部与流体力学扩散联系起来，并讨论格林–久保积分的收敛性  
+- 通过应力自关联函数，从微观硬球模型计算 $\eta$，并与动理论标度比较
+
+---
+
+## 9.12 动理论与玻尔兹曼方程
+
+统计力学告诉我们平衡态是什么样子。动理论则解释系统如何趋近平衡，以及尚未达到平衡时会发生什么。主角是**玻尔兹曼方程**，它是描述单粒子分布 $f(\boldsymbol r,\boldsymbol v,t)$ 的介观演化规律。由此，我们将推导输运系数，联系流体力学，并考察这一理论在哪里、为何失效。
+
+---
+
+### 9.12.1 从微观到介观：分布函数
+
+定义 $f(\boldsymbol r,\boldsymbol v,t)$，使 $f\,d^{3}r\,d^{3}v$ 表示相空间单元中粒子的**期望数目**。归一化为 $N=\int d^{3}r\,d^{3}v\,f$。守恒密度是 $f$ 的矩：
+
+$$
+n(\boldsymbol r,t) = \int d^{3}v\, f,\quad
+\boldsymbol u(\boldsymbol r,t) = \frac{1}{n}\int d^{3}v\, \boldsymbol v\, f,\quad
+\varepsilon(\boldsymbol r,t) = \int d^{3}v\, \tfrac{1}{2} m v^{2}\, f
+$$
+
+压强张量和热流密度是相对流速 $\boldsymbol c\equiv\boldsymbol v-\boldsymbol u$ 的更高阶矩。
+
+---
+
+### 9.12.2 玻尔兹曼方程与分子混沌
+
+在外力 $\boldsymbol F$ 下，
+
+$$
+\frac{\partial f}{\partial t} + \boldsymbol v\cdot\nabla_{\boldsymbol r} f + \frac{\boldsymbol F}{m}\cdot\nabla_{\boldsymbol v} f = C[f]
+$$
+
+碰撞积分 $C[f]$ 描述二体碰撞。对于短程相互作用，并采用**分子混沌**假设（Stosszahlansatz：碰撞前速度不相关），
+
+$$
+C[f](\boldsymbol r,\boldsymbol v) = \int d^{3}v_{2}\int d\Omega\; g\,\sigma(g,\Omega)\,\big[f'f_{2}' - f f_{2}\big]
+$$
+
+其中 $g=|\boldsymbol v-\boldsymbol v_{2}|$，$\sigma$ 为微分截面，$f'=f(\boldsymbol r,\boldsymbol v',t)$ 为由能量–动量守恒决定的碰撞后取值。
+
+**碰撞不变量。** 当 $\psi(\boldsymbol v)$ 取 $1$、$\boldsymbol v$ 或 $v^{2}$ 时，均有
+
+$$
+\int d^{3}v\; \psi(\boldsymbol v)\,C[f] = 0
+$$
+
+从而得到质量、动量和能量的局域守恒。
+
+---
+
+### 9.12.3 局域平衡 = 麦克斯韦–玻尔兹曼分布
+
+$C[f]=0$（对所有截面而言）当且仅当 $f$ 为**局域麦克斯韦分布**，
+
+$$
+f_{\mathrm{LE}}(\boldsymbol r,\boldsymbol v,t) = n(\boldsymbol r,t) \left(\frac{m}{2\pi k_{B} T(\boldsymbol r,t)}\right)^{3/2} \exp\!\left[-\frac{m|\boldsymbol v-\boldsymbol u(\boldsymbol r,t)|^{2}}{2k_{B}T(\boldsymbol r,t)}\right]
+$$
+
+给定 $n,\boldsymbol u,T$ 时，这一 $f_{\mathrm{LE}}$ 使局域熵密度最大，并且是碰撞过程的不动点。
+
+---
+
+### 9.12.4 H定理：熵增长
+
+定义玻尔兹曼的 $H\equiv \int d^{3}r\,d^{3}v\, f\ln f$。利用碰撞积分，
+
+$$
+\frac{dH}{dt} = \int d^{3}r\,d^{3}v\, C[f]\,(1+\ln f) \le 0
+$$
+
+等号仅在 $f=f_{\mathrm{LE}}$ 时成立。令 $S=-k_{B} H + \text{const}$，便得到趋向局域平衡时的**熵单调增加**。需要注意：这一结论依赖分子混沌以及稀薄气体的二体碰撞；长程力和碰撞前的关联可能使证明失效。
+
+---
+
+### 9.12.5 作为矩方程的流体力学
+
+对玻尔兹曼方程取矩，并利用碰撞不变量，得到**欧拉**（理想）方程或**纳维–斯托克斯–傅里叶**（耗散）方程。令 $\rho=mn$、$p=nk_{B}T$。
+
+- **连续性**
+
+$$
+\partial_{t}\rho + \nabla\cdot(\rho\,\boldsymbol u) = 0
+$$
+
+- **动量**
+
+$$
+\partial_{t}(\rho \boldsymbol u) + \nabla\cdot(\rho \boldsymbol u\boldsymbol u + p\,\mathbb I + \boldsymbol{\Pi}) = n\boldsymbol F
+$$
+
+- **能量**
+
+$$
+\partial_{t}\varepsilon + \nabla\cdot\big[(\varepsilon+p)\boldsymbol u + \boldsymbol{\Pi}\cdot\boldsymbol u + \boldsymbol q\big] = n\boldsymbol F\cdot\boldsymbol u
+$$
+
+$\boldsymbol{\Pi}$ 为黏性应力，$\boldsymbol q$ 为热流密度。为了使这些方程**闭合**，需要在 $f_{\mathrm{LE}}$ 附近展开。
+
+---
+
+### 9.12.6 查普曼–恩斯科格方法与输运系数
+
+假设梯度很弱（克努森数 $K\!n\equiv \ell/L$ 很小），并写成 $f=f_{\mathrm{LE}} + f^{(1)} + \cdots$，其中 $f^{(1)}$ 对梯度为线性。求解一阶玻尔兹曼方程，得到**牛顿黏性定律**和**傅里叶导热定律**：
+
+$$
+\boldsymbol{\Pi} = -\eta\left[\nabla\boldsymbol u + (\nabla\boldsymbol u)^{T} - \tfrac{2}{3}(\nabla\cdot\boldsymbol u)\mathbb I\right] - \zeta\,(\nabla\cdot\boldsymbol u)\,\mathbb I
+$$
+
+$$
+\boldsymbol q = -\kappa\,\nabla T
+$$
+
+对于数密度为 $n$、温度为 $T$ 的硬球（质量 $m$、直径 $d$），
+
+$$
+\eta \sim \frac{5}{16 d^{2}} \sqrt{\frac{m k_{B} T}{\pi}},\qquad
+\kappa \sim \frac{75 k_{B}}{64 d^{2}} \sqrt{\frac{k_{B} T}{\pi m}}
+$$
+
+这些结果还可乘以较小的索宁多项式修正因子；单原子理想气体的**体积黏度** $\zeta$ 为零。
+
+---
+
+### 9.12.7 弛豫时间与BGK模型
+
+精确的碰撞积分很难处理。**巴特纳格尔–格罗斯–克鲁克**（BGK）模型将 $C[f]$ 替换为以单一速率向局域平衡弛豫的形式：
+
+$$
+C_{\mathrm{BGK}}[f] = -\frac{f - f_{\mathrm{LE}}}{\tau}
+$$
+
+选择 $\tau$ 以匹配 $\eta$，可以重现一阶流体力学，并将 $\kappa$ 确定为模型的预测。对于单原子气体，单一弛豫时间的BGK模型给出 $\mathrm{Pr}=1$，因此不能独立拟合这两个系数。此类弛豫模型广泛用于格子玻尔兹曼方法和半导体输运。固体中更简单的**弛豫时间近似**对电子散射采取同样的处理。
+
+---
+
+### 9.12.8 克努森数、边界层与理论失效
+
+- **流体力学区域** $K\!n\ll 1$：纳维–斯托克斯–傅里叶方程有效。  
+- **过渡区域** $K\!n \sim 0.1$：出现滑移流和壁面附近的克努森层，需要动理论边界条件。  
+- **弹道区域** $K\!n\gtrsim 1$：自由分子流；需使用不作梯度展开的玻尔兹曼方程，甚至无碰撞的弗拉索夫动力学（对于长程力）。  
+- **稠密气体**：恩斯科格修正会改变 $C[f]$ 和输运。  
+- **长程库仑作用**：多次小角偏转 → **朗道**（福克–普朗克）碰撞算符。
+
+---
+
+### 9.12.9 量子玻尔兹曼方程与泡利／玻色因子
+
+对于温度 $T$ 足够高、相干长度较短的稀薄量子气体，碰撞项需计入末态的**受激增强／阻塞**：
+
+$$
+C_{\mathrm{Q}}[f] \propto \int\! d\Gamma\; \big[f' f_{2}' (1 \pm f)(1 \pm f_{2}) - f f_{2} (1 \pm f')(1 \pm f_{2}')\big]
+$$
+
+上符号对应玻色子，下符号对应费米子。这就是**尤林–乌伦贝克**修正。在超流体的极低 $T$ 下，动理论必须包含集体模式（声子、玻戈留玻夫准粒子）。
+
+---
+
+### 9.12.10 固体中的玻尔兹曼输运（电子与声子）
+
+在晶体中，$f(\boldsymbol k,\boldsymbol r,t)$ 在 **$\boldsymbol k$ 空间**中演化，能带速度为 $\boldsymbol v_{\boldsymbol k}=\nabla_{\boldsymbol k}\epsilon_{\boldsymbol k}/\hbar$，作用力来自电场和贝里曲率（进阶主题）。采用弛豫时间 $\tau(\boldsymbol k)$，
+
+$$
+\sigma_{xx} = e^{2}\!\int\!\frac{d^{3}k}{(2\pi)^{3}}\; \tau(\boldsymbol k)\, v_{x}^{2}\, \left(-\frac{\partial f_{0}}{\partial \epsilon}\right)
+$$
+
+这一结果在自由电子能带中重现**德鲁德**模型；声子玻尔兹曼方程则通过三声子散射和边界限制解释晶格热导率。
+
+---
+
+### 9.12.11 线性响应与动理论：同一问题，不同视角
+
+格林–久保关系（9.11）指出，输运系数等于自关联函数的时间积分。查普曼–恩斯科格方法则指出，输运系数来自玻尔兹曼方程对梯度的一阶解。两者都适用时，结果一致。动理论在**平均自由程**和**截面**明确时更有优势；对于相互作用液体，准粒子图像不清晰，但模拟能够测量关联，此时格林–久保方法更有优势。
+
+---
+
+### 9.12.12 简短例题
+
+**(a) 平均自由程与黏度**  
+对于数密度为 $n$、截面为 $\sigma=\pi d^{2}$ 的硬球，证明 $\ell\simeq 1/(\sqrt{2}\,n\sigma)$，并估算 $\eta\sim \tfrac{1}{3} n m \bar v\,\ell$；将其与查普曼–恩斯科格结果比较。
+
+**(b) 从BGK到纳维–斯托克斯方程**  
+将 $C_{\mathrm{BGK}}$ 代入玻尔兹曼方程，求解 $f^{(1)}$，并推导单原子气体的 $\eta = p \tau$ 和 $\kappa = \tfrac{5}{2} k_{B}^{2} T n \tau/m$。
+
+**(c) 声衰减**  
+对于平面波 $e^{i(\mathbf k\cdot\mathbf r - \omega t)}$，在 $f_{\mathrm{LE}}$ 附近线性化玻尔兹曼方程，并用 $\eta$ 和 $\kappa$ 计算衰减系数。
+
+**(d) 洛伦兹气体**  
+对于在数密度为 $n_{i}$ 的固定硬散射中心上发生弹性散射的轻粒子，计算 $D$，并展示各向异性截面如何改变输运。
+
+**(e) 量子修正**  
+对双态费米子碰撞推导包含泡利阻塞的细致平衡，并说明它如何在低 $T$ 下压缩截面为 $\sigma$ 的散射所能利用的相空间。解释为何对电导率的影响取决于这些碰撞是否弛豫动量。
+
+---
+
+### 9.12.13 常见误区
+
+- **忘记 $C[f]$ 中的守恒约束。** 任何模型碰撞算符都必须守恒质量、动量和能量（如果 $f_{\mathrm{LE}}$ 与局域矩匹配，BGK在构造上就满足这一点）。  
+- **在大 $K\!n$ 下使用纳维–斯托克斯方程。** 此时应预期滑移、克努森层或弹道行为，转而使用动理论。  
+- **普遍假定 $\zeta=0$。** 这只对单原子理想气体成立；内部模式会产生体积黏度。  
+- **忽略边界条件。** 壁面上的镜面反射与漫反射会使近壁输运产生量级为一的差别。  
+- **将库仑作用当作硬球碰撞。** 多体小角偏转占主导时，需要朗道／福克–普朗克处理，而非描述稀少强碰撞的玻尔兹曼处理。
+
+---
+
+### 9.12.14 基础练习题组
+
+- 从玻尔兹曼方程出发，推导连续性、动量和能量方程，并确定 $\boldsymbol{\Pi}$ 与 $\boldsymbol q$  
+- 对硬球完成索宁多项式展开的第一步，计算最低阶 $\eta$，并与启发式结果 $\tfrac{1}{3} n m \bar v \ell$ 比较  
+- 实现BGK并证明 $\eta=p\tau$；用实测黏度拟合 $\tau$，以预测热导率和普朗特数  
+- 对存在弹性杂质散射的稀薄电子气体，在弛豫时间近似下计算 $\sigma$，并定性讨论马蒂森定则  
+- 推导不可分辨粒子的尤林–乌伦贝克碰撞项，并证明它在 $f\ll 1$ 时退化为经典玻尔兹曼形式
+
+---
+
+**总结：** 玻尔兹曼方程是从微观碰撞通向宏观流动的桥梁。在分子混沌和短程散射条件下，它驱动 $f$ 趋向局域麦克斯韦分布；该分布的缓慢梯度产生流体力学，其中 $\eta,\kappa,\zeta$ 可由截面计算。当平均自由程过大、密度过高或相互作用范围过长时，方程的形式会改变，但核心思想仍然成立：支配非平衡物理的是**分布**的动力学，而不仅是单个粒子的运动
+
+---

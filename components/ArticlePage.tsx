@@ -14,23 +14,17 @@ import TopicIndex from './TopicIndex';
 import SectionDiscussion from './discussions/SectionDiscussion';
 import { DiscussionProvider } from './discussions/DiscussionProvider';
 import rehypeDiscussions from '@/lib/discussions/sections.mjs';
-import { hasTranslation, loadArticle, type ArticleKind } from '@/lib/articles';
-import { locales, localePath, messages, type Locale } from '@/lib/i18n';
-import { pageMetadata, siteUrl } from '@/lib/seo';
+import { loadArticle, type ArticleKind } from '@/lib/articles';
+import { localePath, messages, type Locale } from '@/lib/i18n';
+import { articleMetadata as buildArticleMetadata, articleStructuredData } from '@/lib/seo';
 export function articleMetadata(kind: ArticleKind, slug: string, locale: Locale) {
- const article = loadArticle(kind, slug, locale); if (!article) notFound();
- const result = pageMetadata(article.title, article.description, `/${kind}/${slug}`, locale, article.translated);
- // Only publish hreflang entries for actual translated article content.
- if (article.translated && result.alternates) result.alternates.languages = Object.fromEntries([
-  ...locales.filter(language => hasTranslation(kind, slug, language)).map(language => [language, localePath(language, `/${kind}/${slug}`)]),
-  ['x-default', `/${kind}/${slug}`],
- ]);
+ const result = buildArticleMetadata(kind, slug, locale); if (!result) notFound();
  return result;
 }
 export default function ArticlePage({ kind, slug, locale }: { kind: ArticleKind; slug: string; locale: Locale }) {
  const article = loadArticle(kind, slug, locale); if (!article) notFound();
  const t = messages(locale);
- const schema = { '@context': 'https://schema.org', '@type': 'LearningResource', name: article.title, description: article.description, inLanguage: article.contentLocale, url: siteUrl + (article.translated ? localePath(locale, `/${kind}/${slug}`) : `/${kind}/${slug}`), isAccessibleForFree: true, learningResourceType: 'Lecture notes', publisher: { '@type': 'Organization', name: 'Open Physics Notes' } };
+ const schema = articleStructuredData(kind, slug, article);
  const components = { SectionDiscussion, Callout, RelatedBooks: (props: React.ComponentProps<typeof RelatedBooks>) => <RelatedBooks {...props} heading={t.reading}/>, AffiliateNote: () => <AffiliateNote text={t.affiliate}/> };
- return <><nav className="breadcrumb" aria-label={t.home}><Link href={localePath(locale)}>{t.home}</Link><span aria-hidden="true">/</span><span>{t[kind]}</span></nav><article className="prose"><h1>{article.title}</h1>{!article.translated && <p className="translation-notice" role="status">{t.fallback}</p>}<DiscussionProvider key={`${kind}/${slug}/${article.contentLocale}`} articleKind={kind} articleSlug={slug} contentLocale={article.contentLocale} locale={locale}><div lang={article.contentLocale}><MDXRemote source={article.content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm, remarkMath], rehypePlugins: [rehypeKatex, rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeDiscussions], format: 'mdx' } }}/></div></DiscussionProvider></article><div className="article-navigation"><TopicIndex locale={locale}/></div><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}/></>;
+ return <><nav className="breadcrumb" aria-label={t.home}><Link href={localePath(locale)}>{t.home}</Link><span aria-hidden="true">/</span><span>{t[kind]}</span></nav><article className="prose"><h1>{article.title}</h1>{!article.translated && <p className="translation-notice" role="status">{t.fallback}</p>}<DiscussionProvider key={`${kind}/${slug}/${article.contentLocale}`} articleKind={kind} articleSlug={slug} contentLocale={article.contentLocale} locale={locale}><div lang={article.contentLocale}><MDXRemote source={article.content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm, remarkMath], rehypePlugins: [rehypeKatex, rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeDiscussions], format: 'mdx' } }}/></div></DiscussionProvider></article><div className="article-navigation"><TopicIndex locale={locale}/></div>{schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}/>}</>;
 }

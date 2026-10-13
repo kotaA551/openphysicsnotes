@@ -1,0 +1,226 @@
+---
+description: "Navier–Stokes das leis de conservação à turbulência: viscosidade, vorticidade, energia, regularidade, condições de contorno e métodos numéricos."
+---
+## 1. Por que isso importa: um Problema do Milênio
+Fluidos estão por toda parte: nas estrelas, nos oceanos, no ar e nos plasmas.  
+Apesar disso, ainda não há uma prova de **existência e unicidade global de soluções suaves** das **equações de Navier–Stokes incompressíveis em 3D** para dados suaves: um dos Problemas do Milênio do Clay Mathematics Institute.  
+Entender a regularidade também é fundamental para a **turbulência**, possivelmente o último grande problema da física clássica.
+
+---
+
+## 2. Campos contínuos e leis de conservação
+
+Sejam $\rho(\boldsymbol x,t)$ a densidade de massa, $\boldsymbol v(\boldsymbol x,t)$ a velocidade, $p(\boldsymbol x,t)$ a pressão e $\boldsymbol{\sigma}$ o tensor de tensões de Cauchy. A força de volume por unidade de massa é $\boldsymbol f$, como a gravidade.
+
+### 2.1 Conservação da massa
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+### 2.2 Conservação do momento (Cauchy)
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+Decompõe-se a tensão em pressão isotrópica e parte viscosa:
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+---
+
+## 3. Lei constitutiva de um fluido newtoniano
+
+Para um fluido newtoniano isotrópico,
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+com viscosidade dinâmica $\mu$ e segundo coeficiente de viscosidade $\lambda$; a viscosidade volumétrica é $\zeta=\lambda+2\mu/3$.
+
+![Entre uma placa inferior estacionária e uma placa superior em movimento, a velocidade laminar estacionária aumenta linearmente com a altura. Isso ilustra o cisalhamento viscoso e a condição de não deslizamento.](/images/diagrams/couette-flow.svg)
+
+Para coeficientes de viscosidade espacialmente constantes, a substituição no balanço de momento fornece as **equações de Navier–Stokes compressíveis**:
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+Define-se a viscosidade cinemática $\nu \equiv \mu/\rho$ quando $\rho$ é constante.
+
+---
+
+## 4. Forma incompressível
+
+Para densidade constante $\rho=\rho_0$ e
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+obtemos
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+Tomar a divergência da equação de momento fornece uma **equação de Poisson para a pressão**, com condições de contorno adequadas:
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. Vorticidade e helicidade
+
+Define-se a vorticidade $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.  
+Para um escoamento incompressível ($\nabla\!\cdot\!\boldsymbol v=0$):
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+Em componentes:
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+O termo $\omega_j \partial_j v_i$ é o **estiramento de vórtices**, presente apenas em 3D.  
+A helicidade $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ caracteriza a topologia das linhas de vorticidade.
+
+![Uma circulação no sentido anti-horário no plano tem vorticidade apontando para fora da página, representada por um ponto dentro de um círculo.](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. Balanço de energia no caso incompressível
+
+Multiplica-se escalarmente a equação de momento por $\boldsymbol v$ e integra-se sobre um domínio $\Omega$ com condição de não deslizamento em $\partial\Omega$:
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+Para $\boldsymbol f=\boldsymbol 0$, a energia cinética decai monotonicamente; a dissipação viscosa é dada por $\nu\|\nabla \boldsymbol v\|_2^2$.
+
+---
+
+## 7. Adimensionalização e parâmetros de controle
+
+Escolha escalas características $L$ para o comprimento e $U$ para a velocidade e defina
+$\boldsymbol x'=\boldsymbol x/L$, $t' = tU/L$, $\boldsymbol v'=\boldsymbol v/U$, $p'=p/(\rho U^2)$.
+
+As equações incompressíveis tornam-se
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+com o **número de Reynolds**
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+Outros grupos adimensionais, conforme necessário:
+- **Mach** $\mathrm{Ma}=U/c_s$ (compressibilidade),
+- **Froude** $\mathrm{Fr}=U/\sqrt{gL}$ (gravidade),
+- **Prandtl** $\mathrm{Pr}=\nu/\kappa$ (difusão de momento em relação à difusão térmica).
+
+---
+
+## 8. Navier–Stokes–Fourier compressível: um esboço
+
+Inclui-se a energia interna $e$ ou a temperatura $T$, com o fluxo de calor de Fourier $\boldsymbol q=-k_{\rm th} \nabla T$. A condutividade térmica $k_{\rm th}$ é distinta da difusividade térmica $\kappa$ usada acima:
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+Uma equação de estado, por exemplo a de um gás ideal, fecha o sistema: $p=(\gamma-1)\rho e$.
+
+---
+
+## 9. Teoria matemática: existência e unicidade
+
+### 9.1 Soluções fracas de Leray–Hopf
+Para as equações de Navier–Stokes incompressíveis em 3D com dados em $L^2$, existem **soluções fracas globais no tempo** que satisfazem a **desigualdade de energia**.  
+A **unicidade** depende da classe de soluções, dos dados e da força. A não unicidade está demonstrada para certas forças de volume ([Albritton, Brué e Colombo](https://arxiv.org/abs/2112.03116)). Um preprint de [Hou, Wang e Yang de 2025–2026](https://arxiv.org/abs/2509.25116) relata uma prova assistida por computador de não unicidade sem força para dados iniciais singulares; isso não resolve a regularidade global para dados suaves.
+
+### 9.2 Critérios de regularidade em 3D
+- **Beale–Kato–Majda**: uma explosão da solução no instante $T$ implica
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+- **Condições de Prodi–Serrin**: se $\boldsymbol v \in L^p(0,T;L^q)$ com
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+então a solução é suave em $(0,T]$.
+- **Caffarelli–Kohn–Nirenberg**: soluções fracas adequadas têm um conjunto singular no espaço-tempo com dimensão de Hausdorff parabólica $\le 1$ (regularidade parcial).
+
+### 9.3 Regularidade global em 2D
+Para dados suaves, valem a **existência e a unicidade global** em 2D.  
+A enstrofia $\int |\boldsymbol{\omega}|^2 dV$ permanece limitada; não há estiramento de vórtices.
+
+### 9.4 Escoamentos compressíveis
+Existem **soluções fracas globais de energia finita**, sob certas condições para gases com lei $\gamma$, mas regularidade e unicidade permanecem, em grande parte, em aberto.
+
+> **Problema do Milênio:** provar que, em 3D, dados iniciais suaves e de divergência nula produzem uma **solução global suave e única**, ou apresentar um contraexemplo com singularidade em tempo finito.
+
+---
+
+## 10. Turbulência e espectros
+
+Na turbulência homogênea e isotrópica com alto $\mathrm{Re}$ (K41), o espectro de energia na faixa inercial é
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+com taxa média de dissipação $\varepsilon$ e constante de Kolmogorov $C_K\!\sim\! \mathcal O(1)$.
+
+**Microescala de Kolmogorov:**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+O custo da simulação numérica direta (DNS) cresce rapidamente: o número de pontos da malha escala como $\sim \mathrm{Re}^{9/4}$ em 3D. Isso motiva os fechamentos **LES** e **RANS**; o **problema de fechamento**, incluindo a modelagem das tensões não resolvidas, continua central.
+
+---
+
+## 11. Condições de contorno e geometria
+
+- **Parede sem deslizamento:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
+- **Deslizamento livre:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
+- **Caixa periódica (toro)** para teoria e DNS  
+- **Entrada e saída** com especificações adequadas de tensão ou pressão
+
+A escolha afeta a boa colocação do problema, o balanço de energia e a estabilidade numérica.
+
+---
+
+## 12. Métodos numéricos: um guia compacto
+
+- **Métodos de projeção:** avance $\boldsymbol v^\ast$, resolva a equação de Poisson para $p$ e projete para obter $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.  
+- **Esquemas estáveis em energia:** a forma antissimétrica do termo convectivo preserva a energia discreta.  
+- **Restrição CFL para esquemas explícitos de advecção/difusão:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
+- **Controle da divergência:** bases espectrais de divergência nula ou elementos finitos mistos com pares velocidade–pressão estáveis na condição inf–sup. A divergência exatamente nula exige espaços adequados; a estabilidade inf–sup, sozinha, não a garante.
+
+---
+
+## 13. Conexões e extensões
+
+- **Limite de Euler:** $\nu\to 0$ leva às equações de Euler incompressíveis; possíveis singularidades em tempo finito constituem um grande desafio paralelo.  
+- **Hidrodinâmica relativística:** a formulação ingênua de Navier–Stokes é acausal; teorias de **Israel–Stewart** de segunda ordem podem restaurar a causalidade sob condições adequadas para os coeficientes de transporte e os estados do fluido ([um exemplo rigoroso com viscosidade volumétrica](https://arxiv.org/abs/1901.06701)).  
+- **Fluidos quânticos:** análogos superfluidos das equações de Navier–Stokes com modelos de dois fluidos e vórtices quantizados.
+
+---
+
+## 14. Situação atual
+
+- 2D: a teoria está bem estabelecida; a suavidade global é conhecida.  
+- 3D: a **existência de soluções globais suaves** ou a **explosão em tempo finito** permanece **em aberto**.  
+- A fenomenologia da turbulência (K41) é amplamente bem-sucedida, mas a **intermitência** e os fechamentos continuam sendo temas de pesquisa ativa.  
+
+**Em poucas palavras:** conseguimos simular e medir com precisão impressionante, mas a **matemática profunda** da regularidade e da turbulência ainda esconde o desafio final.
+
+---

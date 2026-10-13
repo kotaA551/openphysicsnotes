@@ -8,7 +8,13 @@ test('PostgreSQL: scopes, threads, pagination, permissions, moderation, abuse co
   const db = new PGlite();
   try {
     await db.exec('create role anon; create role authenticated; create role service_role bypassrls;');
-    await db.exec(await fs.readFile('supabase/migrations/202609290001_discussions.sql', 'utf8'));
+    for (const migration of (await fs.readdir('supabase/migrations')).filter(name => name.endsWith('.sql')).sort()) {
+      await db.exec(await fs.readFile(`supabase/migrations/${migration}`, 'utf8'));
+    }
+    await db.query("insert into public.discussion_comments(article_kind,article_slug,content_locale,section_id,content) values ('chapters','test','pt-BR','portuguese','Comentário em português')");
+    assert.deepEqual((await db.query("select public.discussion_counts('chapters','test','pt-BR') as counts")).rows[0].counts, { portuguese: 1 });
+    assert.deepEqual((await db.query("select public.discussion_counts('chapters','test','de') as counts")).rows[0].counts, {});
+    await assert.rejects(db.query("insert into public.discussion_comments(article_kind,article_slug,content_locale,section_id,content) values ('chapters','test','pt','portuguese','Unsupported locale')"), /content_locale_check/);
     const token = 'a'.repeat(64), fingerprint = 'b'.repeat(64);
     const post = async (overrides = {}) => {
       const p = { section: 'first', parent: null, content: '<script>alert(1)</script>', name: '', token, fingerprint, request: randomUUID(), ...overrides };

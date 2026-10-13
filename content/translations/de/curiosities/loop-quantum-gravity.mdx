@@ -1,0 +1,143 @@
+---
+description: "Schleifenquantengravitation: Ashtekar-Variablen, Zwangsbedingungen, Holonomien, Spinnetzwerke und Quantenkosmologie samt offenen Fragen zum klassischen Grenzfall."
+---
+
+## 1. Motivation
+
+Die allgemeine Relativitätstheorie (ART) beschreibt die Raumzeit als glatte Geometrie, die den Einstein-Gleichungen gehorcht:
+
+$$
+G_{\mu\nu} = 8\pi G \, T_{\mu\nu}.
+$$
+
+Die Quantenmechanik verlangt, dass alle dynamischen Felder quantisiert werden.  
+Wie lässt sich die **Raumzeit selbst** quantisieren, ohne Strings oder zusätzliche Dimensionen einzuführen?  
+
+Die **Schleifenquantengravitation (LQG)** versucht genau dies:  
+eine **hintergrundunabhängige, nichtperturbative Quantisierung der ART**.
+
+---
+
+## 2. Kanonische Quantisierung der ART
+
+Ausgangspunkt ist die Hamiltonsche Formulierung der ART.  
+Mithilfe der ADM-Zerlegung erhält man die räumliche Dreiermetrik $q_{ab}$ und ihren konjugierten Impuls $\pi^{ab}$.  
+Diese Variablen sind jedoch unhandlich.  
+
+### Ashtekar-Variablen
+
+Man führt neue kanonische Variablen ein:
+
+- Zusammenhang: $A^i_a$ (ein $SU(2)$-Eichfeld)  
+- Konjugiertes elektrisches Feld: $E^a_i$ (mit den Triaden verknüpft)  
+
+mit den Poisson-Klammern:
+
+$$
+\{ A^i_a(x), E^b_j(y) \} = 8\pi G \, \gamma \, \delta^b_a \, \delta^i_j \, \delta^{(3)}(x,y).
+$$
+
+Dabei ist $\gamma$ der **Barbero–Immirzi-Parameter**.
+
+---
+
+## 3. Zwangsbedingungen
+
+In kanonischer Form wird die Dynamik der ART durch Zwangsbedingungen beschrieben:
+
+1. **Gauß-Zwangsbedingung** (interne $SU(2)$-Eichinvarianz):
+$$
+\mathcal{G}_i = D_a E^a_i \approx 0.
+$$
+
+2. **Diffeomorphismus-Zwangsbedingung** (räumliche Invarianz):
+$$
+\mathcal{V}_a = E^b_i F^i_{ab} \approx 0.
+$$
+
+3. **Hamiltonsche Zwangsbedingung** (Zeitentwicklung):
+$$
+\mathcal{H} = \frac{E^a_i E^b_j}{\sqrt{\det E}} 
+\left( \epsilon^{ij}{}_{k} F^k_{ab} - 2(1+\gamma^2) K^i_{[a}K^j_{b]} \right) \approx 0.
+$$
+
+Physikalische Zustände müssen alle drei Zwangsbedingungen erfüllen.
+
+---
+
+## 4. Holonomien und Flüsse
+
+Statt $A^i_a$ unmittelbar zu quantisieren, verwendet die LQG:
+
+- **Holonomien**: Paralleltransporte des Zusammenhangs $A^i_a$ entlang einer Kurve $\ell$:
+$$
+h_\ell[A] = \mathcal{P}\exp\!\left(\int_\ell A\right).
+$$
+
+- **Flüsse**: über Flächen integrierte Größen aus $E^a_i$.  
+
+Dies führt zu einer **Holonomie-Fluss-Algebra**, die sich gut für eine hintergrundunabhängige Quantisierung eignet.
+
+---
+
+## 5. Spinnetzwerke
+
+Der kinematische Hilbertraum der LQG wird von **Spinnetzwerkzuständen** aufgespannt:
+
+![Die Kanten eines Spinnetzwerks sind mit Darstellungen beschriftet, die Knoten mit verflechtenden Abbildungen. Kanten, die eine Fläche durchstoßen, tragen zu deren Flächeneigenwert bei.](/images/diagrams/spin-network.svg)
+
+- Graphen mit Kanten, die durch $SU(2)$-Darstellungen (Spins $j$) gekennzeichnet sind  
+- Knoten, die mit Verflechtungsoperatoren (Intertwinern) beschriftet sind  
+
+Eine geeignete Spinnetzwerkbasis diagonalisiert die **Fläche**. Für das **Volumen** müssen im Allgemeinen endliche Matrizen in den Intertwiner-Räumen der Knoten diagonalisiert werden. Die Operatoren haben schematisch die Form:
+
+- **Flächenoperator**:
+$$
+\hat{A}(S) = 8\pi \gamma \ell_P^2 \sum_{p\in S\cap \Gamma} \sqrt{j_p(j_p+1)}.
+$$
+
+- **Volumenoperator**:
+$$
+\hat{V}(R) = \sum_{v\in R\cap \Gamma} \sqrt{|\hat{q}_v|}.
+$$
+
+Ergebnis: **Flächen und Volumina haben diskrete Spektren**, mit charakteristischen Skalen $\sim \ell_P^2$ beziehungsweise $\sim \ell_P^3$.
+
+---
+
+## 6. Schleifenquantenkosmologie (LQC)
+
+Wendet man Ideen der LQG auf homogene kosmologische Modelle an, erhält man:
+
+![Eine schematische effektive Lösung der homogenen Schleifenquantenkosmologie kontrahiert bis zu einem positiven minimalen Skalenfaktor und expandiert danach wieder. Sie zeigt eine Modellvorhersage und keine Beobachtung.](/images/diagrams/quantum-bounce.svg)
+
+- Die Urknallsingularität wird durch einen **Quantenrückprall** ersetzt.  
+- Modifizierte Friedmann-Gleichung:
+$$
+H^2 = \frac{8\pi G}{3}\rho \left(1 - \frac{\rho}{\rho_c}\right),
+$$
+wobei $\rho_c \sim \rho_{\text{Planck}}$ gilt.  
+
+Bei $\rho = \rho_c$ geht in der Rückpralllösung die Kontraktion in Expansion über; eine Singularität wird vermieden.
+
+---
+
+## 7. Herausforderungen und offene Fragen
+
+- Die **Hamiltonsche Zwangsbedingung** in der vollständigen LQG zu lösen, bleibt schwierig.  
+- Der **semiklassische Grenzfall**, der auf großen Skalen die glatte ART zurückliefert, muss noch vollständig nachgewiesen werden.  
+- Der Bezug zu **experimentellen Tests** (kosmische Mikrowellenhintergrundstrahlung, Gravitationswellen) ist weiterhin indirekt.  
+
+---
+
+## Stand der Forschung
+
+Die LQG bietet einen mathematisch präzisen Rahmen, in dem die **Geometrie der Raumzeit quantisiert** wird.  
+Sie ergänzt die Stringtheorie:  
+
+- Stringtheorie: Vereinigung der Wechselwirkungen als Ausgangspunkt, hintergrundabhängig  
+- LQG: Quantenraumzeit als Ausgangspunkt, hintergrundunabhängig  
+
+Beide streben nach einer **Quantengravitation**, gehen dabei aber aus entgegengesetzten Richtungen vor.
+
+---

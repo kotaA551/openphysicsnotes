@@ -3,6 +3,8 @@
 
 Crystalline solids are periodic in space. Periodicity gives you enormous leverage: lattices turn sums into selection rules, Fourier transforms quantize $k$, and diffraction fingerprints structure. This section lays down the lattice–basis language, reciprocal vectors, Brillouin zones, Miller indices, and the diffraction toolkit (Bragg, Laue, Ewald, structure factors). We’ll tie together fcc/bcc duality, selection rules for common crystals, and quick ways to not get lost in indices.
 
+![A square lattice and its reciprocal lattice. Their primitive vectors obey the reciprocal basis relation.](/images/diagrams/reciprocal-lattice.svg)
+
 ---
 
 ### 10.1.1 Lattice, basis, crystal structure
@@ -18,7 +20,7 @@ with three linearly independent **primitive vectors** $\boldsymbol a_{i}$. A **c
 - **Wigner–Seitz cell**: the set of points closer to a given lattice point than any other.  
 - **Conventional vs primitive**: conventional cubic cells are nicer to look at; primitive cells are minimal-volume and great for theory.
 
-**Pro tip**: never say “the diamond lattice.” Diamond has an **fcc lattice** with a two-point basis $\{(0,0,0),\,(\tfrac12,\tfrac12,\tfrac12)a\}$.
+**Pro tip**: never say “the diamond lattice.” Diamond has an **fcc lattice** with a two-point basis $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$.
 
 ---
 
@@ -156,7 +158,7 @@ Intensity alternates with $h+k+\ell$ depending on $f$-contrast.
 
 If $\{\boldsymbol a_{i}\}$ are **fcc** vectors, the reciprocal $\{\boldsymbol b_{i}\}$ generate a **bcc** lattice in $k$-space (and vice versa). Learn the standard labels:
 
-- **fcc BZ**: $\Gamma$ center, $X$ at face centers, $L$ at BZ corners, $W$ mid-edges.  
+- **fcc BZ**: $\Gamma$ center, $X$ at square-face centers, $L$ at hexagonal-face centers, $W$ at vertices.  
 - **bcc BZ**: $\Gamma$, $H$, $N$, $P$ points.  
 
 These are where band extrema and degeneracies love to appear and where experimentalists measure ARPES and quantum oscillations.
@@ -185,7 +187,7 @@ $$
 ### 10.1.10 Worked mini-examples
 
 **(a) Reciprocal of bcc is fcc**  
-Start with bcc conventional cubic cell of side $a$ and primitive vectors $\boldsymbol a_{1}=\tfrac a2(\hat y+\hat z-\hat x)$ etc. Compute $\boldsymbol b_{i}$ and show the reciprocal points sit at face centers of a cubic net with spacing $2\pi/a$.
+Start with bcc conventional cubic cell of side $a$ and primitive vectors $\boldsymbol a_{1}=\tfrac a2(\hat y+\hat z-\hat x)$ etc. Compute $\boldsymbol b_{i}$ and show the reciprocal points sit at corners and face centers of a conventional cubic cell of edge $4\pi/a$.
 
 **(b) $d_{hkl}$ for cubic**  
 Using $\boldsymbol G_{hkl}=(2\pi/a)(h\,\hat x + k\,\hat y + \ell\,\hat z)$, show $d_{hkl}=a/\sqrt{h^{2}+k^{2}+\ell^{2}}$. Bragg gives $2d\sin\theta=n\lambda$; solve for the $(111)$ first-order reflection angle for given $\lambda/a$.
@@ -242,7 +244,7 @@ $$
 M_{\kappa}\,\ddot u_{\kappa\alpha}(\boldsymbol R,t) = -\sum_{\boldsymbol R'\kappa'\beta} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa'\beta}(\boldsymbol R',t)
 $$
 
-Try plane-wave solutions $u_{\kappa\alpha}(\boldsymbol R,t)=e_{\kappa\alpha}(\boldsymbol q)\,e^{i(\boldsymbol q\cdot \boldsymbol R - \omega t)}$. You get an eigenproblem
+Try plane-wave solutions $u_{\kappa\alpha}(\boldsymbol R,t)=M_{\kappa}^{-1/2}e_{\kappa\alpha}(\boldsymbol q)\,e^{i(\boldsymbol q\cdot \boldsymbol R - \omega t)}$. You get an eigenproblem
 
 $$
 \sum_{\kappa'\beta} D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q)\,e_{\kappa'\beta}(\boldsymbol q) = \omega^{2}(\boldsymbol q)\,e_{\kappa\alpha}(\boldsymbol q)
@@ -252,7 +254,7 @@ with the **dynamical matrix**
 
 $$
 D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q) = \frac{1}{\sqrt{M_{\kappa}M_{\kappa'}}}
-\sum_{\boldsymbol R} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R)\,e^{i\boldsymbol q\cdot \boldsymbol R}
+\sum_{\boldsymbol R} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R)\,e^{-i\boldsymbol q\cdot \boldsymbol R}
 $$
 
 For $r$ atoms per cell you get $3r$ branches: 3 acoustic $\omega\to 0$ as $\boldsymbol q\to 0$, and $3r-3$ optical.
@@ -301,7 +303,7 @@ $$
 - The **minus** sign is the **acoustic** branch with $\omega\to 0$ as $k\to 0$  
 - The **plus** sign is the **optical** branch with $\omega(k=0)=\sqrt{2K(1/m_{1}+1/m_{2})}$
 
-At $k=0$ the acoustic mode moves the two atoms **in phase**; the optical mode moves them **out of phase**. A **gap** opens at the zone boundary.
+At $k=0$ the acoustic mode moves the two atoms **in phase**; the optical mode moves them **out of phase**. For unequal masses, a **gap** opens at the zone boundary.
 
 ---
 
@@ -313,7 +315,7 @@ $$
 \omega_{\text{LA}}(\boldsymbol q) \approx v_{L}|\boldsymbol q|,\qquad \omega_{\text{TA}}(\boldsymbol q) \approx v_{T}|\boldsymbol q|
 $$
 
-In cubic crystals the speeds relate to elastic constants and mass density $\rho$ (continuum limit):
+For propagation along a cubic axis in cubic crystals the speeds relate to elastic constants and mass density $\rho$ (continuum limit):
 
 $$
 v_{L} = \sqrt{\frac{C_{11}}{\rho}},\qquad v_{T} = \sqrt{\frac{C_{44}}{\rho}}
@@ -337,7 +339,7 @@ with $[b_{\boldsymbol q s},b^{\dagger}_{\boldsymbol q' s'}]=\delta_{\boldsymbol 
 
 $$
 \boldsymbol u_{\kappa}(\boldsymbol R) = \sum_{\boldsymbol q,s} \sqrt{\frac{\hbar}{2M_{\kappa} N \omega_{\boldsymbol q s}}}\;
-\boldsymbol e_{\kappa s}(\boldsymbol q)\,\left(b_{\boldsymbol q s} e^{i\boldsymbol q\cdot \boldsymbol R} + b^{\dagger}_{\boldsymbol q s} e^{-i\boldsymbol q\cdot \boldsymbol R}\right)
+\left[\boldsymbol e_{\kappa s}(\boldsymbol q)b_{\boldsymbol q s} e^{i\boldsymbol q\cdot \boldsymbol R} + \boldsymbol e_{\kappa s}^{\ast}(\boldsymbol q)b^{\dagger}_{\boldsymbol q s} e^{-i\boldsymbol q\cdot \boldsymbol R}\right]
 $$
 
 Phonon occupation follows Bose statistics with chemical potential $\mu=0$ in equilibrium.
@@ -355,10 +357,10 @@ Total phonon energy per volume $U/V=\sum_{s}\int d\omega\,\hbar\omega\,g_{s}(\om
 In a crystal, heat is mostly carried by acoustic phonons. Kinetic theory gives
 
 $$
-\kappa = \frac{1}{3}\sum_{s}\int d\omega\; C_{\omega s}\,v_{g}^{2}(\omega,s)\,\tau(\omega,s)
+\kappa = \frac{1}{3}\sum_{s}\int d\omega\; g_s(\omega)\,C_{\omega s}\,v_{g}^{2}(\omega,s)\,\tau(\omega,s)
 $$
 
-where $C_{\omega s}=\hbar\omega\,\partial n_{B}/\partial T$ is the mode heat capacity, $v_{g}=\partial\omega/\partial q$ the group velocity, and $\tau$ the lifetime. Scattering channels:
+where the density of states per volume is denoted by g, $C_{\omega s}=\hbar\omega\,\partial n_{B}/\partial T$ is the mode heat capacity, $v_{g}=\partial\omega/\partial q$ the group velocity, and $\tau$ the lifetime. Scattering channels:
 
 - **Phonon–phonon** (anharmonic). Split into **Normal (N)** processes conserving crystal momentum and **Umklapp (U)** with $\boldsymbol q_{1}+\boldsymbol q_{2}=\boldsymbol q_{3}+\boldsymbol G$ that degrade heat current  
 - **Boundary** scattering (dominant in nanoscale or at very low $T$)  
@@ -410,7 +412,7 @@ Consequences:
 
 ### 10.2.10 Instabilities and soft modes: Peierls in 1D
 
-In 1D metals the electronic susceptibility peaks at $q=2k_{F}$. Electron–phonon coupling softens the phonon at that wavevector; below a critical $T$ the $\omega(2k_{F})\to 0$ **soft mode** drives a lattice distortion with doubled period (dimerization), opening a gap: a **Peierls transition**. In higher dimensions, charge-density waves and structural transitions follow similar logic.
+In 1D metals the electronic susceptibility peaks at $q=2k_{F}$. Electron–phonon coupling softens the phonon at that wavevector; below a critical $T$ the $\omega(2k_{F})\to 0$ **soft mode** drives a lattice distortion with wavevector 2kF (a doubled period, or dimerization, at half filling), opening a gap: a **Peierls transition**. In higher dimensions, charge-density waves and structural transitions follow similar logic.
 
 ---
 
@@ -427,7 +429,7 @@ In 1D metals the electronic susceptibility peaks at $q=2k_{F}$. Electron–phono
 ### 10.2.12 Worked mini-examples
 
 **(a) Group velocity in the monatomic chain**  
-From $\omega(k)=2\sqrt{K/m}\,\left|\sin(ka/2)\right|$, compute $v_{g}(k)$ and show $v_{g}\to v_{s}=a\sqrt{K/m}$ as $k\to 0$.
+From $\omega(k)=2\sqrt{K/m}\,\left|\sin(ka/2)\right|$, compute $v_{g}(k)$ and show $v_{g}\to v_{s}=a\sqrt{K/m}$ as $k\to 0^{+}$.
 
 **(b) DOS edge singularity**  
 Use $g(\omega)=(L/\pi)/|d\omega/dk|$ to show the 1D DOS diverges at $k=\pi/a$.
@@ -496,7 +498,7 @@ $$
 \sigma(\omega) = \frac{\sigma_{0}}{1 - i\omega\tau}
 $$
 
-Real part is a Lorentzian of width $1/\tau$; imaginary part switches sign at $\omega\sim 1/\tau$.
+Real part is a Lorentzian of width $1/\tau$; the imaginary part is positive at positive frequency and peaks at $\omega\sim 1/\tau$.
 
 - **Plasma frequency** (free-electron pole in optics):
 
@@ -521,8 +523,8 @@ With $\boldsymbol B = B\hat z$, the Drude solution gives the conductivity tensor
 $$
 \sigma = 
 \begin{pmatrix}
-\dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & 0 \\
--\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & 0 \\
+\dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & -\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & 0 \\
+\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & 0 \\
 0 & 0 & \sigma_{0}
 \end{pmatrix},
 \qquad
@@ -587,7 +589,7 @@ $$
 C_{e} = \gamma\,T,\qquad \gamma = \frac{\pi^{2}}{3}\,k_{B}^{2}\,g(\epsilon_{F})
 $$
 
-Linear $T$ matches experiments and is tiny compared to $3Nk_{B}$ at room temperature because only $\sim (T/T_{F})$ of electrons participate.
+Linear $T$ matches experiments and is tiny compared to $3n_{\mathrm{atom}}k_{B}$ (with n_atom the atomic number density) at room temperature because only $\sim (T/T_{F})$ of electrons participate.
 
 ---
 
@@ -631,7 +633,7 @@ for a free-electron gas. In real metals the net $\chi$ also includes core diamag
 
 ### 10.3.8 Thermopower and the Mott formula (one-liner)
 
-The Seebeck coefficient $S$ (voltage from a temperature gradient) vanishes in Drude’s classical picture but, with Fermi statistics,
+The Seebeck coefficient $S$ (voltage from a temperature gradient) is not correctly described at low temperature by the classical Drude model; with Fermi statistics,
 
 $$
 S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
@@ -664,7 +666,7 @@ Anisotropic $m^{\ast}$ makes $\sigma$ a tensor even at $B=0$. Real transport use
 
 ### 10.3.11 Optical sum rule and spectral weight
 
-The f-sum rule ties the integrated Drude weight to carrier density:
+For a parabolic single-band Drude model, the integrated conductivity weight is tied to carrier density:
 
 $$
 \int_{0}^{\infty} d\omega\;\mathrm{Re}\,\sigma(\omega) = \frac{\pi ne^{2}}{2 m^{\ast}}
@@ -680,7 +682,7 @@ In correlated systems, Drude weight can be suppressed and shifted to mid-infrare
 Take $n=8.5\times 10^{28}\ \mathrm{m^{-3}}$, $\tau=3\times 10^{-14}\ \mathrm{s}$, $m^{\ast}=m_{e}$. Compute $\sigma_{0}$, $\rho_{0}$, $\omega_{p}$, and $\delta$ at $\omega/2\pi=10\ \mathrm{GHz}$.
 
 **(b) Hall bar**  
-For a sample with thickness $t$, width $w$, current $I$ along $x$, and field $B\hat z$, show the Hall voltage $V_{H} = I\,B/(ne\,t)$ in the Drude single-band limit. Estimate $V_{H}$ for copper with the numbers from (a).
+For a sample with thickness $t$, width $w$, current $I$ along $x$, and field $B\hat z$, show the magnitude of the Hall voltage $V_{H} = I\,B/(ne\,t)$ in the Drude single-band limit. Express $V_{H}$ for copper parametrically in current, field, and thickness using the material parameters from (a).
 
 **(c) Sommerfeld $C_{e}$**  
 Derive $C_{e}=\gamma T$ using the Sommerfeld expansion and express $\gamma$ in terms of $n$ and $m^{\ast}$.
@@ -706,6 +708,8 @@ Assuming $\sigma(\epsilon)\propto \epsilon^{s}$ near $\epsilon_{F}$, show $S = -
 ## 10.4 Bloch Theorem & Band Structure
 
 Periodic potentials take messy atomic chaos and compress it into clean momentum-space rules. The headline: **Bloch’s theorem** says electrons in a crystal move as plane waves modulated by a lattice-periodic envelope. From that, gaps pop open at Brillouin-zone boundaries, dispersions $E_{n}(\boldsymbol k)$ define velocities and effective masses, and both “nearly free” and “tight-binding” lenses become the same story, zoomed in from opposite sides.
+
+![Schematic valence and conduction bands are separated by a forbidden energy interval. Energy varies periodically with crystal momentum.](/images/diagrams/band-gap.svg)
 
 ---
 
@@ -735,9 +739,9 @@ It’s an infinite linear system in the plane-wave coefficients $c$. Truncate se
 
 ### 10.4.2 Zone folding and reduced vs extended zone
 
-Free electrons have parabolas $E=\hbar^{2}|\boldsymbol k|^{2}/2m$ that repeat every reciprocal vector: $\boldsymbol k$ and $\boldsymbol k+\boldsymbol G$ are equivalent. You can:
+Free electrons have the parabolic dispersion $E=\hbar^{2}|\boldsymbol k|^{2}/2m$. In a lattice representation, $\boldsymbol k$ and $\boldsymbol k+\boldsymbol G$ have the same reduced wavevector but may belong to different bands. You can:
 
-- **Extended-zone**: keep $E(\boldsymbol k)$ as endlessly repeated parabolas in $k$-space  
+- **Extended-zone**: display $E(\boldsymbol k)$ across successive zones in $k$-space  
 - **Reduced-zone**: fold all momenta back into the first Brillouin zone; copies become separate **bands** indexed by $n$
 
 When $V\neq 0$, states that were degenerate under folding **mix** and gaps open at the crossings.
@@ -780,7 +784,7 @@ Moral: stronger Fourier components of the lattice potential at reciprocal vector
 
 ### 10.4.4 Kronig–Penney in one line (1D intuition)
 
-For a 1D periodic array of barriers (lattice constant $a$), the dispersion satisfies a transcendental relation
+For a 1D periodic array of delta barriers (lattice constant $a$), the dispersion satisfies a transcendental relation
 
 $$
 \cos(ka) = \cos(\alpha a) + \frac{P}{\alpha a}\,\sin(\alpha a)
@@ -808,13 +812,13 @@ $$
 
 Curvature $\uparrow$ ⇒ light mass; curvature $\downarrow$ ⇒ heavy mass. Negative curvature near a valence-band maximum means **holes** with positive charge and positive mass run the transport.
 
-- **Density of states** for a single band in 3D
+- **Density of states** for a single spin-degenerate band in 3D
 
 $$
 g(E) = \frac{1}{4\pi^{3}} \int_{E_{n}(\boldsymbol k)=E} \frac{dS_{k}}{|\nabla_{\boldsymbol k} E_{n}|}
 $$
 
-The DOS diverges where the gradient vanishes along the constant-energy surface (van Hove singularities).
+Critical points where the energy gradient vanishes cause van Hove nonanalyticities; a divergence depends on dimension and critical-point type, and generic three-dimensional extrema or saddles give finite cusps.
 
 ---
 
@@ -829,10 +833,10 @@ Both are limits of the same Bloch machinery. NFE explains gap openings and light
 
 ### 10.4.7 $k\cdot p$ method: local expansion near a band edge
 
-Near a high-symmetry $\boldsymbol k_{0}$, expand the Hamiltonian as $H(\boldsymbol k)\approx H(\boldsymbol k_{0})+\frac{\hbar}{m}\,\boldsymbol k\cdot \boldsymbol p + \cdots$. Second-order perturbation yields
+Near a high-symmetry $\boldsymbol k_{0}$, expand the Hamiltonian as $H(\boldsymbol k)\approx H(\boldsymbol k_{0})+\frac{\hbar}{m}\,(\boldsymbol k-\boldsymbol k_{0})\cdot (\boldsymbol p+\hbar\boldsymbol k_{0}) + \cdots$. Second-order perturbation yields
 
 $$
-\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{m}\delta_{\alpha\beta} + \frac{2}{m^{2}} \sum_{m\neq n} \frac{\langle n0|p_{\alpha}|m0\rangle \langle m0|p_{\beta}|n0\rangle}{E_{n0}-E_{m0}}
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{m}\delta_{\alpha\beta} + \frac{2}{m^{2}} \sum_{m\neq n} \frac{\operatorname{Re}\!\left[\langle n0|p_{\alpha}|m0\rangle \langle m0|p_{\beta}|n0\rangle\right]}{E_{n0}-E_{m0}}
 $$
 
 where $\{|m0\rangle\}$ are Bloch states at $\boldsymbol k_{0}$. This connects effective mass to interband matrix elements and symmetry selection rules (e.g., heavy vs light holes in semiconductors).
@@ -861,7 +865,7 @@ Bloch dispersion + scattering time is the whole transport game in §10.7.
 
 ### 10.4.10 Wannier functions: real-space avatars of bands
 
-A unitary transform of Bloch states over the BZ gives **Wannier functions** $|n,\boldsymbol R\rangle$ localized near cell $\boldsymbol R$. Smooth gauge choices yield maximally localized Wanniers that act like tight-binding orbitals and are perfect for model building, interpolation, and computing real-space responses. We build on this in §10.5.
+A unitary transform of Bloch states over the BZ gives **Wannier functions** $|n,\boldsymbol R\rangle$ localized near cell $\boldsymbol R$. For a localizable band subspace, smooth gauges followed by spread minimization yield maximally localized Wanniers that act like tight-binding orbitals and are perfect for model building, interpolation, and computing real-space responses. We build on this in §10.5.
 
 ---
 
@@ -886,7 +890,7 @@ On a square lattice TB band $E(\boldsymbol k)=-2t(\cos k_{x}a+\cos k_{y}a)$, loc
 Start from a free-electron parabola and fold by $\pm G$ into the first BZ. Draw where degeneracies occur and mark which get lifted when $U_{G}\neq 0$.
 
 **(e) $k\cdot p$ for a direct-gap semiconductor**  
-At $\Gamma$, use symmetry to argue that conduction and valence states have opposite parity so the linear-in-$k$ coupling vanishes; show why the conduction-band mass is then dominated by second-order coupling to remote bands.
+At $\Gamma$ in an inversion-symmetric direct-gap model, show that opposite-parity conduction and valence states allow a nonzero momentum matrix element and hence linear-in-$k$ interband coupling; show how second-order coupling to other bands corrects the nondegenerate conduction-band energy and mass.
 
 ---
 
@@ -951,7 +955,7 @@ $$
 E(k)=\varepsilon_{0}-2t\cos(ka)
 $$
 
-Bandwidth $W=4t$. Effective mass near an extremum at $k=0$ is
+Bandwidth $W=4|t|$. Effective mass near an extremum at $k=0$ is
 
 $$
 \frac{1}{m^{\ast}}=\frac{1}{\hbar^{2}}\frac{\partial^{2}E}{\partial k^{2}}=\frac{2ta^{2}}{\hbar^{2}}
@@ -963,7 +967,7 @@ Sign of $t$ sets band **curvature** and which end is bonding vs antibonding.
 
 ### 10.5.3 Diatomic chain and the SSH teaser
 
-Two sites per cell, $A$ at $0$, $B$ at $a/2$, hoppings $t_{1}$ and $t_{2}$ alternating. In the $(A,B)$ basis
+Two sites per cell, $A$ at $0$, $B$ at $a/2$, hoppings $t_{1}$ and $t_{2}$ alternating. In the cell-phase-gauge $(A,B)$ basis
 
 $$
 H(k)=
@@ -1007,7 +1011,7 @@ $$
 E_{\pm}(\boldsymbol k)=\pm t\,\Big|1+e^{i\boldsymbol k\cdot \boldsymbol a_{1}}+e^{i\boldsymbol k\cdot \boldsymbol a_{2}}\Big|
 $$
 
-Touch at **Dirac cones** $K,K'$ with linear dispersion and Fermi velocity $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$.
+Touch at **Dirac cones** $K,K'$ with linear dispersion and Fermi velocity $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$, with a the triangular Bravais-lattice constant.
 
 ---
 
@@ -1052,7 +1056,7 @@ $$
 t_{ij}\ \longrightarrow\ t_{ij}\,\exp\!\left(\frac{ie}{\hbar}\int_{\boldsymbol r_{i}}^{\boldsymbol r_{j}} \boldsymbol A\cdot d\boldsymbol\ell\right)
 $$
 
-So the product of phases around a plaquette equals the magnetic flux $2\pi\Phi/\Phi_{0}$. On a square lattice with rational flux $\Phi/\Phi_{0}=p/q$, translation symmetry enlarges to a **magnetic unit cell** and the spectrum fractures into Hofstadter’s butterfly.
+So the sum of phase angles around a plaquette equals $2\pi\Phi/\Phi_{0}$. On a square lattice with rational flux $\Phi/\Phi_{0}=p/q$, translation symmetry enlarges to a **magnetic unit cell** and the spectrum fractures into Hofstadter’s butterfly.
 
 ---
 
@@ -1068,13 +1072,13 @@ Real materials have impurities. Add site randomness $\varepsilon_{i}$ or bond ra
 
 ### 10.5.9 Wannier functions: localized avatars of bands
 
-Given Bloch states $\{|u_{n\boldsymbol k}\rangle\}$ in a band (or group) subspace, define **Wannier functions**
+Given Bloch states $\{|\psi_{n\boldsymbol k}\rangle\}$ in a band (or group) subspace, define **Wannier functions**
 
 $$
-|\,\boldsymbol R, n\,\rangle = \frac{V_{\text{BZ}}}{(2\pi)^{3}}\int_{\text{BZ}} d^{3}k\; e^{-i\boldsymbol k\cdot \boldsymbol R}\, \sum_{m} U_{mn}(\boldsymbol k)\,|\,u_{m\boldsymbol k}\rangle
+|\,\boldsymbol R, n\,\rangle = \frac{1}{\sqrt{N}}\sum_{\boldsymbol k\in\mathrm{BZ}} e^{-i\boldsymbol k\cdot \boldsymbol R}\, \sum_{m} U_{mn}(\boldsymbol k)\,|\,\psi_{m\boldsymbol k}\rangle
 $$
 
-where $U(\boldsymbol k)$ is a **gauge** unitary within the subspace. Properties:
+where N is the number of cells, the Bloch states are normalized over the finite crystal, and $U(\boldsymbol k)$ is a **gauge** unitary within the subspace. Properties:
 
 - **Orthonormal** and **cell-localized**. The choice of $U(\boldsymbol k)$ controls spread  
 - **Maximally localized Wanniers (MLWFs)** choose $U$ to minimize total spread $\Omega=\sum_{n}\big[\langle r^{2}\rangle_{n}-|\langle \boldsymbol r\rangle_{n}|^{2}\big]$  
@@ -1092,7 +1096,7 @@ The **interpolation** $H(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\c
 
 ### 10.5.10 Polarization and Wannier centers (Berry twist)
 
-Electronic polarization per cell of an insulator relates to Wannier **centers** $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$:
+Electronic polarization density of an insulator relates to Wannier **centers** $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$:
 
 $$
 \boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{modulo a quantum}
@@ -1104,14 +1108,14 @@ Equivalent **Berry-phase formula** uses the Bloch gauge. Practically, track Wann
 
 ### 10.5.11 Edge physics with TB: the SSH demo in 15 seconds
 
-Open a finite chain with alternating $t_{1},t_{2}$. In the **topological** phase $|t_{2}|>|t_{1}|$ you get midgap edge modes exponentially localized with decay $\sim (t_{1}/t_{2})^{x}$. Chiral symmetry pins them at $E=0$ until perturbations that break sublattice symmetry lift them.
+Open a finite chain with alternating $t_{1},t_{2}$. In the **topological** phase $|t_{2}|>|t_{1}|$ the edge modes decay as $\sim (t_{1}/t_{2})^{x}$, with x measured in cells. Chiral symmetry pins an isolated semi-infinite edge mode at $E=0$; in a finite chain, edge hybridization can produce an exponentially small symmetric splitting, and sublattice-symmetry-breaking perturbations can also shift the energies.
 
 ---
 
 ### 10.5.12 Worked mini-examples
 
 **(a) Wannier from a 1D cosine band**  
-For $E(k)=\varepsilon_{0}-2t\cos ka$, show the Wannier $w_{0}(x)$ is proportional to a modified Bessel $K_{0}(|x|/\xi)$ asymptotically, with localization length $\xi\sim a\sqrt{t/\Delta}$ set by the nearest gap.
+For the orthogonal one-orbital model $E(k)=\varepsilon_{0}-2t\cos ka$, show that inverse Bloch transformation recovers the chosen localized orbital $w_{0}(x)$. Explain why the dispersion alone implies neither a $K_{0}(|x|/\xi)$ asymptotic form nor $\xi\sim a\sqrt{t/\Delta}$: Bloch eigenfunctions and the other bands must also be specified.
 
 **(b) Graphene Fermi velocity**  
 From the honeycomb nn Hamiltonian, linearize near $K$ to get $H_{\text{Dirac}}=\hbar v_{F}\,\boldsymbol\sigma\cdot \boldsymbol q$ and extract $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$.
@@ -1135,7 +1139,7 @@ Diagonalize a 40-site open SSH chain numerically (TB) and plot the wavefunctions
 - **Forgetting overlap**: many intro TBs set $S=\mathbb I$; when orbitals are not orthogonal, use the generalized problem or orthogonalize first  
 - **Illegal hoppings**: if symmetry forbids a matrix element, do not sneak it in. Use Slater–Koster or group theory to zero the right terms  
 - **Gauge sloppiness in Wanniers**: random phases across $\boldsymbol k$ give delocalized Wanniers. MLWFs fix the gauge—do that before trusting real-space hoppings  
-- **Peierls without flux accounting**: ensure the product of link phases equals $2\pi\Phi/\Phi_{0}$ per plaquette, independent of gauge  
+- **Peierls without flux accounting**: ensure the sum of link phase angles equals $2\pi\Phi/\Phi_{0}$ per plaquette, independent of gauge  
 - **Overfitting TB**: too many parameters hide physics and blow up outside the fit window. Start minimal; add neighbors only as data demand
 
 ---
@@ -1174,7 +1178,7 @@ N_{v}(T) = 2\left(\frac{m_{h}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)
 $$
 
 These feed the carrier statistics.
-e carrier statistics.
+
 
 ---
 
@@ -1222,7 +1226,7 @@ n \approx \frac{1}{2}\left[(N_{D}-N_{A}) + \sqrt{(N_{D}-N_{A})^{2} + 4 n_{i}^{2}
 p = \frac{n_{i}^{2}}{n}
 $$
 
-In the **majority-carrier** limit $N_{D}\gg n_{i}$, $n\approx N_{D}-N_{A}$ and $p\approx n_{i}^{2}/n$.
+In the **majority-carrier** limit $N_{D}-N_{A}\gg n_{i}$, $n\approx N_{D}-N_{A}$ and $p\approx n_{i}^{2}/n$.
 
 At low $T$, partial ionization leads to a **freeze-out** region where $n<N_{D}$; use Fermi–Dirac occupancy of dopant levels.
 
@@ -1248,13 +1252,13 @@ $$
 R_{H} = \frac{p\mu_{p}^{2} - n\mu_{n}^{2}}{q\,(n\mu_{n}+p\mu_{p})^{2}}
 $$
 
-Sign reveals the dominant carrier type.
+The sign identifies the mobility-weighted dominant carrier type.
 
 ---
 
 ### 10.6.5 Drift–diffusion and Einstein relation
 
-Carrier continuity with drift and diffusion reads
+The drift–diffusion carrier current densities read
 
 $$
 \boldsymbol J_{n} = q\,n\mu_{n}\boldsymbol E + q D_{n}\nabla n,\qquad
@@ -1335,7 +1339,7 @@ where $I_{0}\propto n_{i}^{2}$ scales inversely with diffusion lengths and dopin
 
 ### 10.6.9 Metal–semiconductor contacts: ohmic vs Schottky in one breath
 
-A metal on a lightly doped semiconductor forms either:
+A metal on a semiconductor forms either:
 
 - **Ohmic** contact if the barrier is thin/low enough for tunneling or if heavy doping bends bands into easy injection  
 - **Schottky** barrier with rectification otherwise. Barrier height is set by metal work function, semiconductor electron affinity, and interface pinning
@@ -1348,7 +1352,7 @@ Transport across a Schottky contact at forward bias often follows thermionic emi
 
 For a doped semiconductor as $T$ rises:
 
-1) **Freeze-out**: dopants partially ionized, $n<predictably< N_{D}$  
+1) **Freeze-out**: dopants partially ionized, $n<N_{D}$  
 2) **Extrinsic**: plateau where $n\approx N_{D}$ (or $p\approx N_{A}$) and $np\approx n_{i}^{2}$  
 3) **Intrinsic**: $n\approx p\approx n_{i}$ once $n_{i}$ surpasses dopant densities exponentially
 
@@ -1359,7 +1363,7 @@ Resistivity and Hall data vs $T$ let you read off activation energies and domina
 ### 10.6.11 Worked mini-examples
 
 **(a) Intrinsic carrier density**  
-Given $m_{e}^{\ast,\mathrm{DOS}}=0.26\,m_{e}$, $m_{h}^{\ast,\mathrm{DOS}}=0.39\,m_{e}$, $E_{g}=1.12\ \mathrm{eV}$ at $300\ \mathrm{K}$, estimate $n_{i}$ for Si using the $T^{3/2} e^{-E_{g}/2k_{B}T}$ form.
+Given $m_{e}^{\ast,\mathrm{DOS}}=0.26\,m_{e}$, $m_{h}^{\ast,\mathrm{DOS}}=0.39\,m_{e}$, $E_{g}=1.12\ \mathrm{eV}$ at $300\ \mathrm{K}$, estimate $n_{i}$ for this illustrative model with a silicon-like gap using the $T^{3/2} e^{-E_{g}/2k_{B}T}$ form; treat the supplied masses as exercise parameters, not precise silicon DOS masses.
 
 **(b) Fermi level in doped Si**  
 For $N_{D}=10^{16}\ \mathrm{cm^{-3}}$ and $n_{i}=10^{10}\ \mathrm{cm^{-3}}$ at $300\ \mathrm{K}$, find $n,p$ and locate $E_{F}$ relative to $E_{c0}$ via $n=N_{c} e^{-(E_{c0}-E_{F})/k_{B}T}$.
@@ -1412,7 +1416,7 @@ $$
 \omega_{c} = \frac{eB}{m_{c}}
 $$
 
-where the **cyclotron mass** is set by the extremal $k$-space orbit area $A(E)$ normal to $\boldsymbol B$:
+where the **cyclotron mass** is set by the relevant $k$-space orbit area $A(E)$ normal to $\boldsymbol B$:
 
 $$
 m_{c}(E) = \frac{\hbar^{2}}{2\pi}\,\frac{\partial A(E)}{\partial E}\Big|_{E=\epsilon_{F}}
@@ -1428,28 +1432,28 @@ Linearizing the Boltzmann equation in a steady field with relaxation time $\tau(
 
 $$
 \boldsymbol J = -e \int \frac{d^{3}k}{4\pi^{3}}\,\boldsymbol v(\boldsymbol k)\,\delta f(\boldsymbol k),\qquad
-\delta f = -\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \boldsymbol E
+\delta f = -e\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \boldsymbol E
 $$
 
 In **Chambers’ formula** the vector mean free path is a history average along the orbit
 
 $$
-\boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; e^{-t/\tau(\boldsymbol k_{-t})}\,\boldsymbol v(\boldsymbol k_{-t})
+\boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; \exp\!\left[-\int_{0}^{t}\frac{dt'}{\tau(\boldsymbol k_{-t'})}\right]\,\boldsymbol v(\boldsymbol k_{-t})
 $$
 
 leading to the conductivity tensor (schematically)
 
 $$
-\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\bar v_{\beta}
+\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\Lambda_{\beta}
 $$
 
-where $\bar v_{\beta}$ is the orbit-averaged, decay-weighted velocity. For an isotropic, single-$\tau$ metal this collapses to Drude.
+where the vector mean free path is defined by the preceding history integral. For an isotropic, single-$\tau$ metal this collapses to Drude.
 
 ---
 
 ### 10.7.4 Hall angle, mobility tensor, mean free path
 
-Define **mobility** $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$ and **Hall angle** $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx \omega_{c}\tau$ (single band). The **mean free path**
+Define **mobility** $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$ and **Hall angle** $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx -\omega_{c}\tau$ (single band). The **mean free path**
 
 $$
 \ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{for good quasiparticles}
@@ -1482,8 +1486,8 @@ $$
 
 Invert to get $\rho_{xx},\rho_{xy}$. Key regimes:
 
-- **Compensation** $n_{e}\approx n_{h}$ with high mobilities ⇒ large, nearly quadratic **unsaturating MR**  
-- **Dominant carrier** $n_{e}\gg n_{h}$ ⇒ Hall sign fixed, MR smaller and tends to saturate
+- **Compensation** $n_{e}\approx n_{h}$ with high mobilities ⇒ large, nearly quadratic **unsaturating MR** over the compensation regime; exact compensation is required for asymptotic nonsaturation  
+- **Dominant carrier** $n_{e}\gg n_{h}$ ⇒ Hall sign fixed only if mobility differences do not reverse the weak-field sign, MR smaller and tends to saturate
 
 Multiband fits to $\rho_{xx}(B)$ and $\rho_{xy}(B)$ are the day-one way to read carrier types and mobilities.
 
@@ -1493,7 +1497,7 @@ Multiband fits to $\rho_{xx}(B)$ and $\rho_{xy}(B)$ are the day-one way to read 
 
 - **Closed orbits** on closed FS pockets give conventional $\omega_{c}$ and oscillations.  
 - **Open orbits** (e.g., warped quasi-1D sheets) allow carriers to stream along a direction; MR becomes strongly **anisotropic** and can grow linearly or quadratically without saturation depending on geometry.  
-- **AMRO** (angle-dependent MR oscillations) in layered metals arise when tilting $\boldsymbol B$ threads Landau orbits across a warped quasi-2D FS; minima occur at **Yamaji angles** set by interlayer warping.
+- **AMRO** (angle-dependent MR oscillations) in layered metals arise from orbital motion on a warped quasi-2D FS as $\boldsymbol B$ tilts; in the standard coherent cylindrical model, interlayer resistance maxima occur at **Yamaji angles** set by the warping.
 
 ---
 
@@ -1525,7 +1529,7 @@ $$
 R_{S} = \cos\!\left(\frac{\pi g m_{c}}{2 m_{e}}\right)
 $$
 
-$R_{T}$ gives the **mass plot** to read $m_{c}$, $R_{D}$ the **Dingle** factor for scattering, and $R_{S}$ the spin-splitting modulation. The phase $\gamma$ can encode Berry phase for Dirac/Weyl systems (see §10.11).
+$R_{T}$ gives the **mass plot** to read $m_{c}$, $R_{D}$ the **Dingle** factor for scattering, with quantum lifetime rather than necessarily the transport lifetime, and $R_{S}$ the spin-splitting modulation. The phase $\gamma$ can encode Berry phase for Dirac/Weyl systems (see §10.11).
 
 ---
 
@@ -1567,7 +1571,7 @@ At very large $B$, carriers collapse into a few lowest Landau levels. In the **q
 You measure $F=1.0\ \mathrm{kT}$ for $\mathbf B\parallel \hat z$. Compute the extremal area
 
 $$
-A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \mathrm{\AA^{-2}}
+A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \text{\AA}^{-2}
 $$
 
 and an equivalent circular Fermi wavevector $k_{F}=\sqrt{A_{F}/\pi}$.
@@ -1579,10 +1583,10 @@ Given oscillation amplitudes vs $T$ at fixed $B$, fit $R_{T}=X/\sinh X$ to extra
 Take $n_{e}=n_{h}=5\times 10^{25}\ \mathrm{m^{-3}}$, $\mu_{e}=1.5\ \mathrm{m^{2}/Vs}$, $\mu_{h}=0.8\ \mathrm{m^{2}/Vs}$. Evaluate $\rho_{xx}(B)$ and show quadratic growth up to several tesla without saturation.
 
 **(d) AMRO/Yamaji**  
-For a quasi-2D FS with interlayer dispersion $-2t_{\perp}\cos k_{z}c$, show that MR minima occur when $\tan\theta \approx \pi \nu/(k_{F} c)$ with integer $\nu$, giving $k_{F}$ from the angular period.
+For a cylindrical quasi-2D FS with interlayer dispersion $-2t_{\perp}\cos k_{z}c$, in the coherent high-field orbit-averaging limit show that interlayer MR maxima occur near $\tan\theta \approx \pi (\nu-1/4)/(k_{F} c)$ with positive integer $\nu$, giving $k_{F}$ from the angular period.
 
 **(e) Ioffe–Regel check**  
-With $k_{F}=0.8\ \mathrm{\AA^{-1}}$, $v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$, and $\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$ in a single band, estimate $\tau=m^{\ast}/(ne^{2}\rho_{0})$, compute $\ell=v_{F}\tau$, and comment on $k_{F}\ell$.
+With $k_{F}=0.8\ \text{\AA}^{-1}$, $v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$, and $\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$ in a single band, estimate $\tau=m^{\ast}/(ne^{2}\rho_{0})$, compute $\ell=v_{F}\tau$, and comment on $k_{F}\ell$.
 
 ---
 
@@ -1600,6 +1604,8 @@ With $k_{F}=0.8\ \mathrm{\AA^{-1}}$, $v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$, and
 ## 10.8 Magnetism
 
 Magnetism comes in two big flavors: **localized** moments that behave like tiny quantum spins coupled by exchange, and **itinerant** magnetism where the Fermi sea itself polarizes. From Curie–Weiss laws to spin waves and ferromagnetic resonance, this section builds the standard playbook: Heisenberg models and exchange mechanisms (direct, superexchange, double exchange, RKKY), Stoner ferromagnets, magnons in ferro/antiferromagnets, anisotropy and domains, and the Mermin–Wagner no-go in 1D/2D without symmetry breaking fields. We keep the math tight and the takeaways actionable.
+
+![Parallel spins compared with alternating neighboring spins on a bipartite lattice.](/images/diagrams/magnetic-order.svg)
 
 ---
 
@@ -1630,7 +1636,7 @@ $$
 - **Heisenberg (SU(2)-symmetric)**
 
 $$
-H = -\sum_{\langle ij\rangle} J_{ij}\,\boldsymbol S_{i}\cdot \boldsymbol S_{j} - g\mu_{B} B \sum_{i} S_{i}^{z}
+H = -\sum_{\langle ij\rangle} J_{ij}\,\boldsymbol S_{i}\cdot \boldsymbol S_{j} + g\mu_{B} B \sum_{i} S_{i}^{z}
 $$
 
 - **XXZ anisotropy**
@@ -1639,7 +1645,7 @@ $$
 H = -\sum_{\langle ij\rangle} \left[J_{\perp}\,(S_{i}^{x} S_{j}^{x}+S_{i}^{y} S_{j}^{y}) + J_{z}\,S_{i}^{z} S_{j}^{z}\right]
 $$
 
-Here $J>0$ favors **ferromagnetism** (FM) and $J<0$ **antiferromagnetism** (AFM) in our sign convention.
+Here spins are dimensionless (angular momentum divided by $\hbar$), each nearest-neighbor bond is counted once, and $N$ below denotes number density. Then $J>0$ favors **ferromagnetism** (FM) and $J<0$ **antiferromagnetism** (AFM) in our sign convention.
 
 **Curie–Weiss** phenomenology for paramagnets: above the ordering temperature,
 
@@ -1658,7 +1664,7 @@ The sign of $\Theta_{\mathrm{CW}}$ hints at dominant FM ($>0$) or AFM ($<0$) exc
 - **Superexchange**: virtual hopping via a nonmagnetic ligand (e.g., TM–O–TM). For a half-filled Hubbard-like situation,
 
 $$
-J \sim \frac{4t^{2}}{U}
+J \sim -\frac{4t^{2}}{U}
 $$
 
 often **antiferromagnetic**.  
@@ -1702,13 +1708,13 @@ On a $z$-coordination lattice with exchange $J$ between near neighbors, Weiss me
 - **FM Heisenberg**
 
 $$
-k_{B} T_{C}^{\mathrm{MF}} = \frac{2}{3}\,z J S(S+1)
+k_{B} T_{C}^{\mathrm{MF}} = \frac{1}{3}\,z J S(S+1)
 $$
 
 - **AFM (bipartite)**
 
 $$
-k_{B} T_{N}^{\mathrm{MF}} = \frac{2}{3}\,z |J| S(S+1)
+k_{B} T_{N}^{\mathrm{MF}} = \frac{1}{3}\,z |J| S(S+1)
 $$
 
 Real $T_{C/N}$ are reduced by fluctuations, especially in low dimensions or small $S$.
@@ -1746,7 +1752,7 @@ This is the **Bloch $T^{3/2}$ law** in 3D FMs.
 For a collinear AFM on a bipartite lattice, linear spin-wave theory yields two branches with **linear** dispersion at small $k$:
 
 $$
-\hbar \omega_{\boldsymbol k} \approx c\,|\boldsymbol k|
+\hbar \omega_{\boldsymbol k} \approx \hbar c\,|\boldsymbol k|
 $$
 
 Velocity $c$ depends on $|J|$, $S$, and lattice spacing. Anisotropy produces a small gap. The uniform susceptibility often shows a cusp at $T_{N}$; below, transverse and longitudinal components differ.
@@ -1772,13 +1778,13 @@ affects coercivity and domain structure.
 Magnetization dynamics obey **Landau–Lifshitz–Gilbert** (LLG)
 
 $$
-\frac{d\boldsymbol M}{dt} = -\gamma\,\boldsymbol M\times \boldsymbol H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\boldsymbol M\times \frac{d\boldsymbol M}{dt}
+\frac{d\boldsymbol M}{dt} = -\gamma\mu_{0}\,\boldsymbol M\times \boldsymbol H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\boldsymbol M\times \frac{d\boldsymbol M}{dt}
 $$
 
-with gyromagnetic ratio $\gamma$ and damping $\alpha$. For a uniform mode in an in-plane thin film (Kittel formula, simple case),
+with positive gyromagnetic-ratio magnitude $\gamma$ in radians per second per tesla and damping $\alpha$. For a uniform mode in an in-plane thin film (Kittel formula, simple case),
 
 $$
-\omega^{2} = \gamma^{2}\,(H+H_{k})(H+H_{k}+4\pi M_{s})
+\omega^{2} = (\gamma\mu_{0})^{2}\,(H+H_{k})(H+H_{k}+M_{s})
 $$
 
 FMR reads out anisotropy fields $H_{k}$ and damping.
@@ -1805,19 +1811,19 @@ Continuous-symmetry magnets in strictly 1D/2D with short-range exchange cannot o
 ### 10.8.12 Worked mini-examples
 
 **(a) Curie–Weiss slope**  
-Given $S=5/2$, $g=2$, number density $N$, show that the high-$T$ slope of $1/\chi(T)$ is $k_{B}/(C)$ with $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$. Fit data to extract $N$ or $S$.
+Given $S=5/2$, $g=2$, number density $N$, show that the high-$T$ slope of $1/\chi(T)$ is $1/C$ with $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$. Fit data to extract $N$ or $S$.
 
 **(b) Spin-wave stiffness in a cubic FM**  
 Nearest-neighbor Heisenberg on cubic lattice (spacing $a$): show
 
 $$
-\hbar \omega_{\mathbf k} = 2 J S z \left(1-\gamma_{\mathbf k}\right)
+\hbar \omega_{\mathbf k} = J S z \left(1-\gamma_{\mathbf k}\right)
 $$
 
 with $z=6$ and $\gamma_{\mathbf k}=\tfrac{1}{3}[\cos(k_{x}a)+\cos(k_{y}a)+\cos(k_{z}a)]$. Expand for small $k$ to extract $D$.
 
 **(c) AFM two-sublattice dispersion**  
-For a bipartite AFM with nn exchange $J<0$, derive the linear small-$k$ magnon velocity $c=a\sqrt{2|J|S z/\hbar^{2}}$ up to geometry factors.
+For a hypercubic bipartite AFM with nn exchange $J<0$, derive the linear small-$k$ magnon velocity $c=|J|Sa\sqrt{2z}/\hbar$ up to geometry factors.
 
 **(d) Stoner enhancement**  
 Given $\chi/\chi_{0}=5$, estimate $I N(\epsilon_{F})$ and comment on proximity to instability $=1$.
@@ -1826,7 +1832,7 @@ Given $\chi/\chi_{0}=5$, estimate $I N(\epsilon_{F})$ and comment on proximity t
 With $A=1\times 10^{-11}\ \mathrm{J/m}$ and $K=5\times 10^{4}\ \mathrm{J/m^{3}}$, estimate $\delta=\sqrt{A/K}$ and $\sigma\sim\sqrt{A K}$.
 
 **(f) RKKY sign changes**  
-For $k_{F}=1.2\ \mathrm{\AA^{-1}}$, compute the first few zeros/sign flips of $\cos(2k_{F} r)$ to see at what separations the coupling toggles FM/AFM.
+For $k_{F}=1.2\ \text{\AA}^{-1}$, compute the first few zeros/sign flips of $\cos(2k_{F} r)$ to see at what separations the coupling toggles FM/AFM.
 
 ---
 
@@ -1859,7 +1865,7 @@ Superconductors are the drama queens of condensed matter: below a critical tempe
 
 ### 10.9.1 London equations and the Meissner effect
 
-Phenomenology first. The **London equations** for the supercurrent $\boldsymbol J_{s}$ are
+Phenomenology first. In the London gauge with uniform condensate phase and no vortices, the **London equations** for the supercurrent $\boldsymbol J_{s}$ are (with $n_s$ the superconducting electron density)
 
 $$
 \frac{\partial \boldsymbol J_{s}}{\partial t} = \frac{n_{s} e^{2}}{m}\,\boldsymbol E
@@ -1940,7 +1946,7 @@ $$
 N_{s}(E) = N(0)\,\mathrm{Re}\,\frac{|E|}{\sqrt{E^{2}-\Delta^{2}}}
 $$
 
-with coherence peaks at $E=\pm \Delta$. The specific heat jumps by $\Delta C/C_{n}|_{T_{c}}=1.43$; the low-$T$ behavior is activated $C\sim e^{-\Delta/T}$ for fully gapped $s$-wave.
+with coherence peaks at $E=\pm \Delta$. The specific heat jumps by $\Delta C/C_{n}|_{T_{c}}=1.43$; the low-$T$ behavior is activated $C\sim e^{-\Delta/(k_{B}T)}$ for fully gapped $s$-wave.
 
 **BCS coherence length** (clean limit):
 
@@ -1952,7 +1958,7 @@ $$
 
 ### 10.9.4 Critical fields, currents, and the mixed state
 
-Type I has a **thermodynamic critical field** $H_{c}(T)$ that satisfies $F_{s}(H_{c})=F_{n}(0)$.
+Using free-energy densities $F_s,F_n$, Type I has a **thermodynamic critical field** $H_{c}(T)$ that satisfies $F_{n}(0)-F_{s}(0)=\mu_{0}H_{c}^{2}/2$.
 
 Type II features three scales:
 
@@ -1973,7 +1979,7 @@ For $H_{c1}<H<H_{c2}$, magnetic field penetrates via **Abrikosov vortices** carr
 **Critical current density** (GL depairing estimate near $T_{c}$):
 
 $$
-J_{d} \sim \frac{H_{c}}{\mu_{0}\lambda}
+J_{d} \sim \frac{H_{c}}{\lambda}
 $$
 
 In practice, **vortex motion** (flux flow) limits current; strong pinning raises the **critical current** $J_{c}\ll J_{d}$ used in applications.
@@ -1985,10 +1991,10 @@ In practice, **vortex motion** (flux flow) limits current; strong pinning raises
 Single-valuedness of the condensate phase $\varphi$ around a loop gives
 
 $$
-\oint \left(\nabla \varphi - \frac{2e}{\hbar}\boldsymbol A\right)\cdot d\boldsymbol\ell = 2\pi n
+\oint \nabla \varphi\cdot d\boldsymbol\ell = 2\pi n
 $$
 
-which implies **flux quantization** $\Phi=n\Phi_{0}$ in a multiply connected superconductor. The phase rigidity is the origin of persistent currents and of the Josephson effects.
+Together with the supercurrent relation this gives fluxoid quantization; **flux quantization** $\Phi=n\Phi_{0}$ follows when the contour lies deep inside a multiply connected superconductor where the supercurrent vanishes. The phase rigidity is the origin of persistent currents and of the Josephson effects.
 
 ---
 
@@ -2032,7 +2038,7 @@ Not all superconductors are $s$-wave. **$d$-wave** pairing (cuprates) features l
 
 - **Transport**: zero resistance below $T_{c}$; finite voltage only when current exceeds $J_{c}$ or vortices move  
 - **Magnetization**: Meissner expulsion, irreversible hysteresis from vortex pinning in Type II  
-- **Thermodynamics**: specific-heat jump at $T_{c}$; condensation energy from integrating $C/T$  
+- **Thermodynamics**: specific-heat jump at $T_{c}$; entropy from integrating $C/T$, followed by integration of the entropy difference to obtain condensation energy  
 - **Spectroscopy**: tunneling/STM coherence peaks at $\pm \Delta$; ARPES gap symmetry; optical conductivity with missing area transferred to the zero-frequency delta (Ferrell–Glover–Tinkham sum rule)  
 - **Microwave/THz**: AC conductivity shows a superfluid delta plus a finite-frequency quasiparticle response  
 - **Muon/NMR**: penetration depth, vortex lattice, and gap symmetry from relaxation rates
@@ -2057,13 +2063,13 @@ What microwave frequency results from $V=1.00\ \mathrm{mV}$ across a junction Us
 A superconducting loop of area $A=20\ \mu\mathrm{m}^{2}$ shows SQUID oscillations with period $\Delta B$. Verify $\Delta B=\Phi_{0}/A$ and compute the period.
 
 **(f) Depairing current (order of magnitude)**  
-Given $\mu_{0}H_{c}=0.2\ \mathrm{T}$ and $\lambda=120\ \mathrm{nm}$, estimate $J_{d}\sim H_{c}/(\mu_{0}\lambda)$ and compare with a measured $J_{c}$ limited by pinning.
+Given $\mu_{0}H_{c}=0.2\ \mathrm{T}$ and $\lambda=120\ \mathrm{nm}$, estimate $J_{d}\sim H_{c}/\lambda$ and compare with a measured $J_{c}$ limited by pinning.
 
 ---
 
 ### 10.9.11 Common pitfalls
 
-- **Meissner vs perfect conductor**: superconductors expel *newly applied* fields; perfect conductors merely lock in whatever field is present on cooling  
+- **Meissner vs perfect conductor**: in the Meissner state, superconductors expel *pre-existing as well as newly applied* fields; perfect conductors merely lock in whatever field is present on cooling  
 - **Forgetting the $2e$**: Cooper pairs carry charge $2e$; flux quantum is $h/2e$, not $h/e$  
 - **Type I/II mix-ups**: classification uses $\kappa=\lambda/\xi$; it is not about “how strong the field is” but interfacial energy sign  
 - **Ignoring vortices**: in Type II, finite resistance under current + field often comes from vortex motion, not a destroyed gap  
@@ -2076,9 +2082,9 @@ Given $\mu_{0}H_{c}=0.2\ \mathrm{T}$ and $\lambda=120\ \mathrm{nm}$, estimate $J
 
 - Starting from the London equations, derive $\nabla^{2}\boldsymbol B=\boldsymbol B/\lambda^{2}$ and show exponential decay of $B(x)$ in a half-space  
 - From GL, compute the surface energy between normal and superconducting regions and reproduce the Type I/II boundary at $\kappa=1/\sqrt{2}$  
-- Show that flux quantization follows from single-valuedness of $\psi$ and derive $\Phi_{0}=h/2e$  
+- Use single-valuedness of $\psi$ and the supercurrent relation to derive fluxoid quantization; obtain $\Phi_{0}=h/2e$ and flux quantization for a contour with vanishing supercurrent  
 - Use the weak-coupling BCS gap equation to obtain $\Delta(0)$ and the ratio $2\Delta(0)/k_{B}T_{c}$  
-- Derive $H_{c2}=\Phi_{0}/(2\pi \xi^{2})$ by linearizing the GL equation in a field and mapping to Landau levels for the order parameter  
+- Derive $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$ by linearizing the GL equation in a field and mapping to Landau levels for the order parameter  
 - Compute the Fraunhofer $I_{c}(B)$ envelope for a rectangular Josephson junction and extract the junction area from the period
 
 ---
@@ -2098,7 +2104,7 @@ H = -t \sum_{\langle i j \rangle,\sigma}\!\left(c^{\dagger}_{i\sigma} c_{j\sigma
 + U \sum_{i} n_{i\uparrow} n_{i\downarrow} - \mu \sum_{i} n_{i}
 $$
 
-- At **half filling** and **$U/W \ll 1$** (bandwidth $W$), you get a metal.  
+- At **half filling** and **$U/W \ll 1$** (bandwidth $W$), a paramagnetic metallic description can apply, provided no ordering or low-dimensional instability opens a gap.  
 - For **$U/W \gg 1$**, charge motion freezes: each site wants one electron to dodge $U$, producing a Mott insulator with local moments.  
 - Doping away from half filling introduces mobile carriers in a strongly interacting background → strange transport and, in some materials, high-$T_{c}$ superconductivity.
 
@@ -2122,7 +2128,7 @@ This is **superexchange**. Intuition: parallel spins block exchange by Pauli, an
 Doping a Mott insulator while keeping $U$ large gives the constrained model
 
 $$
-H_{tJ} = -t \sum_{\langle i j\rangle,\sigma}\! \tilde c^{\dagger}_{i\sigma} \tilde c_{j\sigma}
+H_{tJ} = -t \sum_{\langle i j\rangle,\sigma}\! \left(\tilde c^{\dagger}_{i\sigma} \tilde c_{j\sigma}+\text{h.c.}\right)
 + J \sum_{\langle i j\rangle} \left(\boldsymbol S_{i}\cdot \boldsymbol S_{j} - \frac{1}{4}\,n_{i} n_{j}\right)
 $$
 
@@ -2172,7 +2178,7 @@ The divergence of $m^{\ast}$ and collapse of Drude weight are hallmarks. In real
 
 ### 10.10.7 Optical and ARPES fingerprints (how to spot Mottness)
 
-- **Optics**: Drude weight shrinks as $Z$, while a mid-infrared feature and Hubbard-band absorption grow. **Spectral weight transfer** violates simple band sum rules—weight moves over eV scales when you dope by a few percent.  
+- **Optics**: Drude weight shrinks as $Z$, while a mid-infrared feature and Hubbard-band absorption grow. **Spectral weight transfer** redistributes weight beyond a low-energy integration window while respecting the full optical f-sum rule—weight moves over eV scales when you dope by a few percent.  
 - **ARPES**: coherent QP peak near $E_{F}$ plus broad incoherent background and high-energy waterfalls. Doping a Mott insulator pulls new low-energy states from the upper Hubbard band and reshapes the dispersion (strong **kink** structures if electron–phonon also matters).  
 - **Transport**: resistivity above the Mott–Ioffe–Regel (MIR) limit (“bad metal”), huge thermopower asymmetries, Hall coefficient that changes sign with $T$ and doping.
 
@@ -2180,7 +2186,7 @@ The divergence of $m^{\ast}$ and collapse of Drude weight are hallmarks. In real
 
 ### 10.10.8 Charge-transfer vs Mott insulators (Zaanen–Sawatzky–Allen)
 
-In transition-metal oxides, the lowest unoccupied state might live on ligand $p$ orbitals rather than the metal $d$. Compare $U$ (on $d$) to the **charge-transfer energy** $\Delta$ (from O $2p$ to TM $d$):
+In transition-metal oxides, the highest occupied states may be predominantly ligand $p$ states rather than lower metal $d$ Hubbard states. Compare $U$ (on $d$) to the **charge-transfer energy** $\Delta$ (from O $2p$ to TM $d$):
 
 - **Mott–Hubbard insulator**: $\Delta > U$; gap mostly between lower and upper $d$-Hubbard bands.  
 - **Charge-transfer insulator**: $\Delta < U$; gap is from O $p$ to upper $d$ band. Doping holes lands you on oxygen-like states (hello, cuprates).
@@ -2320,7 +2326,7 @@ $$
 For a fully filled set of bands,
 
 $$
-\sigma_{xy} = \frac{e^{2}}{h} \sum_{n\in \text{occ}} C_{n}
+\sigma_{xy} = -\frac{e^{2}}{h} \sum_{n\in \text{occ}} C_{n}
 $$
 
 This is the TKNN integer quantum Hall result: a **bulk** topological invariant predicts a **boundary** chiral edge count. Change $C$ → the gap must close somewhere.
@@ -2359,13 +2365,13 @@ $$
 H(\boldsymbol k)=v(k_{x}\sigma_{x}+k_{y}\sigma_{y}) + m\,\sigma_{z}
 $$
 
-The valence-band Chern number is
+The continuum cone contribution from the valence band (before lattice regularization) is
 
 $$
-C = -\frac{1}{2}\,\mathrm{sgn}(m)
+C = +\frac{1}{2}\,\mathrm{sgn}(m)
 $$
 
-Two cones (as on honeycomb) contribute; if their masses have **opposite** signs, total $C=\pm 1$ → a **Chern insulator** with one chiral edge channel.
+Two opposite-chirality cones (as on honeycomb) contribute; if their masses have **opposite** signs, total $C=\pm 1$ → a **Chern insulator** with one chiral edge channel.
 
 ---
 
@@ -2418,7 +2424,7 @@ $$
 H_{R} = \alpha (\boldsymbol\sigma \times \boldsymbol k)\cdot \hat{\boldsymbol z}
 $$
 
-Topological surface states in TIs show **spin–momentum locking** (helical textures), suppressing backscattering from nonmagnetic disorder. Magnetic perturbations gap the surface Dirac cone, enabling quantized magneto-electric responses (axion physics below).
+Topological surface states in TIs show **spin–momentum locking** (helical textures), suppressing backscattering from nonmagnetic disorder. Magnetic perturbations that generate a Dirac mass (for example, a perpendicular exchange field in the simplest surface model) can gap the surface Dirac cone, enabling quantized magneto-electric responses (axion physics below); an in-plane exchange field can instead shift the cone.
 
 ---
 
@@ -2461,7 +2467,7 @@ Two Berry-phase byproducts:
 |---|---|---|---|
 | A (no symm) | –, –, – | $\mathbb{Z}$ (Chern) | 0 |
 | AII (TRS with $\mathcal T^{2}=-1$) | ✓, –, – | $\mathbb{Z}_{2}$ | $\mathbb{Z}_{2}$ (strong $\nu_{0}$) |
-| AIII (chiral only) | –, –, ✓ | $\mathbb{Z}$ (winding) | 0 |
+| AIII (chiral only) | –, –, ✓ | 0 | $\mathbb{Z}$ (winding) |
 
 The full **tenfold way** covers superconductors (BdG) and more invariants; we focus on the workhorses for electrons.
 
@@ -2480,7 +2486,7 @@ The full **tenfold way** covers superconductors (BdG) and more invariants; we fo
 ### 10.11.15 Worked mini-examples
 
 **(a) Chern of a two-band Dirac**  
-For $H=v(k_{x}\sigma_{x}+k_{y}\sigma_{y})+m\sigma_{z}$, compute $\Omega_{z}(\boldsymbol k)$ and integrate to show $C=-\tfrac{1}{2}\mathrm{sgn}(m)$ per cone; two inequivalent cones with opposite $m$ give $C=\pm 1$.
+For $H=v(k_{x}\sigma_{x}+k_{y}\sigma_{y})+m\sigma_{z}$, compute $\Omega_{z}(\boldsymbol k)$ and integrate to show $C=+\tfrac{1}{2}\mathrm{sgn}(m)$ per cone; two opposite-chirality inequivalent cones with opposite $m$ give $C=\pm 1$.
 
 **(b) Parity test**  
 Given inversion eigenvalues at four 2D TRIM as $(+,+,+,-)$ for the occupied Kramers pairs, evaluate $(-1)^{\nu}=-1$ ⇒ topological.
@@ -2512,7 +2518,7 @@ Assuming a TI with a magnetized surface so $\Delta\theta=\pi$, integrate $\mathc
 
 ### 10.11.17 Minimal problem kit
 
-- Derive the TKNN formula starting from Kubo and show $\sigma_{xy}=(e^{2}/h)\sum C_{n}$ for a clean 2D insulator  
+- Derive the TKNN formula starting from Kubo and show $\sigma_{xy}=-(e^{2}/h)\sum C_{n}$ for a clean 2D insulator  
 - Implement a discrete-BZ Chern number computation via link variables and validate on the two-band Dirac model  
 - For a centrosymmetric SOC insulator, compute Fu–Kane $\mathbb{Z}_{2}$ from tabulated parities at TRIM; then confirm by Wilson-loop flow  
 - Build a two-node Weyl model, compute surface Green’s function for a slab, and plot Fermi arcs  
@@ -2692,7 +2698,7 @@ Given a 2D magnetoconductance trace with a sharp cusp at $B=0$ and curvature rev
 Show how thermal averaging over an energy window $k_{B}T$ reduces variance $\mathrm{var}(G)$ when $k_{B}T$ exceeds the Thouless energy $E_{T}=\hbar D/L^{2}$.
 
 **(f) Contact resistance**  
-A ballistic single-mode nanowire of length $L\ll \ell$ shows $R\approx R_{\mathrm{Q}}$. Explain why adding a **fourth** probe pair reports nearly zero internal resistance while two-probe still reads $\sim R_{\mathrm{Q}}$.
+A ballistic single-mode nanowire of length $L\ll \ell$ shows $R\approx R_{\mathrm{Q}}$. Explain why adding a **voltage** probe pair for a four-probe measurement reports nearly zero internal resistance while two-probe still reads $\sim R_{\mathrm{Q}}$.
 
 ---
 
@@ -2732,7 +2738,7 @@ with random on-site energies $\epsilon_{i}$ drawn from a distribution of width $
 Define the **dimensionless conductance** $g$ of a hypercubic sample of size $L$:
 
 $$
-g(L) \equiv \frac{G(L)}{e^{2}/h} \sim \nu(E_{F})\, D\, L^{d-2} \sim \frac{E_{T}}{\Delta}
+g(L) \equiv \frac{G(L)}{e^{2}/h} \sim h\,\nu(E_{F})\, D\, L^{d-2} \sim \frac{E_{T}}{\Delta}
 $$
 
 with density of states $\nu$, diffusion constant $D$, Thouless energy $E_{T}=\hbar D/L^{2}$, and level spacing $\Delta\sim [\nu L^{d}]^{-1}$. The **one-parameter scaling** postulate (Abrahams–Anderson–Licciardello–Ramakrishnan) says
@@ -2815,7 +2821,7 @@ The fate of 2D is not one-size-fits-all; it depends on global symmetries:
 - **Unitary (TRS broken by $B$)**: cooperon suppressed; localization still wins in the end in 2D, but $\beta$ is less negative.  
 - **Symplectic (strong SOC, TRS intact)**: **WAL** makes $\beta(g)>0$ at large $g$ and allows a genuine **2D MIT** tuned by disorder or carrier density.
 
-Other classes (chiral, Bogoliubov–de Gennes) add special cases: e.g., integer **quantum Hall** plateaus (class A) with topological transitions between localized Hall plateaus.
+Other classes (chiral, Bogoliubov–de Gennes) add special cases. Within the unitary class A itself, integer **quantum Hall** plateaus also exhibit topological transitions between localized Hall plateaus.
 
 ---
 
@@ -2873,7 +2879,7 @@ MBL requires isolation; phonons or leads eventually delocalize. Still, it’s a 
 Show $g\simeq E_{T}/\Delta$ by comparing energy sensitivity of levels under twisted boundary conditions (Thouless) to the mean level spacing.
 
 **(b) 2D WL slope**  
-Starting from the Cooperon loop integral, derive $\delta \sigma(0)=-(e^{2}/\pi h)\ln(L_{\phi}/\ell)$ in 2D and explain why a perpendicular $B$ cuts off the log via $L_{B}=\sqrt{\hbar/(2eB)}$.
+For one independent spin channel, starting from the Cooperon loop integral, derive $\delta \sigma(0)=-(e^{2}/\pi h)\ln(L_{\phi}/\ell)$ in 2D and explain why a perpendicular $B$ cuts off the log via $L_{B}=\sqrt{\hbar/(2eB)}$.
 
 **(c) VRH exponents**  
 From a constant DOS in $d$ dimensions, optimize hopping distance and energy to obtain the Mott VRH exponent $1/(d+1)$. Then include a Coulomb gap $g(E)\propto |E-E_{F}|^{d-1}$ to get the Efros–Shklovskii $1/2$ law.
@@ -2885,7 +2891,7 @@ Sketch $\lambda_{M}/M$ vs $W$ for widths $M=8,12,16$ and mark the single crossin
 Given eigenstate amplitudes on a $L^{d}$ lattice, compute $P_{2}$ and extract an effective fractal dimension $D_{2}$ from a log–log fit across sizes.
 
 **(f) Symmetry flip**  
-Argue qualitatively how adding strong SOC flips the sign of the Cooperon contribution and yields WAL, and why a small $B$ restores WL-like behavior.
+Argue qualitatively how adding strong SOC flips the sign of the Cooperon contribution and yields WAL, and why a small $B$ suppresses the interference correction by breaking time reversal.
 
 ---
 
@@ -2896,7 +2902,7 @@ Argue qualitatively how adding strong SOC flips the sign of the Cooperon contrib
 - **Equating $k_{F}\ell\sim 1$ with the transition.** It’s a heuristic boundary of diffusive physics, not the precise $W_{c}$.  
 - **Ignoring interactions in 2D.** Altshuler–Aronov terms are often as large as WL. If your $\ln T$ slope flips with gate-tuned SOC, that’s WAL, not an interaction sign change.  
 - **Over-reading finite samples.** A rising $\rho(L)$ does not prove insulating if $L\ll \xi$; do finite-size scaling.  
-- **MBL ≠ Anderson.** MBL is an interacting, highly excited-state phenomenon; Anderson localization is single-particle (or noninteracting) at $T=0$.
+- **MBL ≠ Anderson.** MBL is an interacting, highly excited-state phenomenon; Anderson localization is a single-particle (or noninteracting) eigenstate property, not restricted to $T=0$.
 
 ---
 
@@ -2907,7 +2913,7 @@ Argue qualitatively how adding strong SOC flips the sign of the Cooperon contrib
 - Fit synthetic $\rho(T)$ to Mott vs Efros–Shklovskii VRH and decide the presence of a Coulomb gap  
 - Implement a 3D Anderson model transfer-matrix code, produce $\lambda_{M}/M$ crossings, and estimate $\nu$ by data collapse  
 - Evaluate $P_{q}$ for $q=2,3$ at $W\approx W_{c}$ and verify multifractal scaling across sizes  
-- Show that $g=E_{T}/\Delta$ reduces to $g\sim \sigma L^{d-2}/(e^{2}/h)$ by inserting $D=\sigma/(e^{2}\nu)$ and $\Delta^{-1}=\nu L^{d}$
+- Show that $g\sim E_{T}/\Delta$ reduces to $g\sim \sigma L^{d-2}/(e^{2}/h)$ by inserting $D=\sigma/(e^{2}\nu)$ and $\Delta^{-1}=\nu L^{d}$
 
 ---
 
@@ -2973,7 +2979,7 @@ At low fillings and large $r_{s}$, kinetic energy loses and **Wigner crystals** 
 Monolayer TMDs carry **valley-contrasting Berry curvature**; stacking and moiré folding can engineer **Chern bands** even without net magnetic field. Valley-resolved Hall responses:
 
 $$
-\sigma_{xy}^{v} = \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K)} - \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K')}
+\sigma_{xy}^{v} = -\frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K)} + \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K')}
 $$
 
 Time-reversal demands total Chern $C_{\text{tot}}=0$ if both valleys are equally filled, but **spontaneous valley polarization** breaks that balance, yielding **quantum anomalous Hall** in zero $B$.
@@ -2994,10 +3000,10 @@ Dial carrier density per moiré cell $\nu$ (via dual gates) and the phase diagra
 A minimalist effective interaction for pairing in a flat band with DOS $N(0)$:
 
 $$
-T_{c} \sim W\, \exp\!\left(-\frac{1}{\lambda_{\text{eff}}}\right),\qquad \lambda_{\text{eff}} \equiv V_{\text{eff}} N(0)
+k_{B}T_{c} \sim W\, \exp\!\left(-\frac{1}{\lambda_{\text{eff}}}\right),\qquad \lambda_{\text{eff}} \equiv V_{\text{eff}} N(0)
 $$
 
-Even modest $V_{\text{eff}}$ gives sizable $T_{c}$ if $W$ is tiny; details hinge on valley/spin structure and form factors.
+A narrow $W$ can enhance the DOS and hence the coupling from modest $V_{\text{eff}}$, but also reduces the prefactor for $T_{c}$; the weak-coupling estimate alone does not guarantee a large transition temperature. Details hinge on valley/spin structure and form factors.
 
 ---
 
@@ -3005,13 +3011,13 @@ Even modest $V_{\text{eff}}$ gives sizable $T_{c}$ if $W$ is tiny; details hinge
 
 Monolayer TMDs host tightly bound **excitons** (hundreds of meV) thanks to reduced screening and 2D kinematics. Stacking two different TMDs forms **type-II** band alignment and **interlayer excitons** with electron and hole on different layers:
 
-- Long lifetimes (ns–$\mu$s), large **electric dipoles**, drift under in-plane fields.
+- Long lifetimes (ns–$\mu$s), large **electric dipoles**, drift under spatial gradients of the out-of-plane electric field.
 - With a twist, the moiré potential creates **exciton minibands** and **trapped arrays** (an “exciton lattice”).
 
-A hydrogenic estimate for a 2D exciton (with effective masses and dielectric constant) still helps:
+For a strictly 2D exciton with a local dielectric constant and a $1/r$ Coulomb potential, the hydrogenic ground-state binding estimate is:
 
 $$
-E_{X} \approx \frac{\mu^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}} \times 13.6\ \mathrm{eV}
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}} \times 54.4\ \mathrm{eV}
 $$
 
 Real numbers require the **Keldysh** screening model, but the scaling with $\mu^{\ast}$ and $\varepsilon_{r}$ is the vibe.
@@ -3025,7 +3031,7 @@ Couple the excitons to a cavity: you get **moiré exciton–polaritons** with tu
 In TMD monolayers, SOC locks spin to valley. **Circularly polarized** light addresses $K$ vs $K'$ selectively, enabling **valley polarization**. With broken inversion in bilayers (or applied displacement field), you can steer **valley Hall** currents transverse to $\boldsymbol E$ without $B$. The **nonlinear Hall effect** emerges from a finite Berry curvature dipole $\boldsymbol D$:
 
 $$
-\boldsymbol J^{(2\omega)} \propto \tau\, \boldsymbol D \times \boldsymbol E(\omega)^{2}
+\boldsymbol J^{(2\omega)} \propto \frac{e^{3}\tau}{\hbar^{2}(1+i\omega\tau)}\, [\hat{\boldsymbol z}\times\boldsymbol E(\omega)]\,[\boldsymbol D\cdot\boldsymbol E(\omega)]
 $$
 
 measurable as a second-harmonic Hall voltage at zero magnetic field.
@@ -3069,7 +3075,7 @@ If a single-valley Chern band with $C=1$ is fully polarized, what is $\sigma_{xy
 For layer spacing $d=0.7\ \mathrm{nm}$, estimate the dipole moment $p=ed$ and the Stark shift $\Delta E = -pE$ for $E=0.1\ \mathrm{V/nm}$.
 
 **(f) Nonlinear Hall estimate**  
-Given a Berry curvature dipole $|D|=0.1\ \mathrm{\AA}$ and relaxation time $\tau=0.1\ \mathrm{ps}$, estimate the order of magnitude of the second-harmonic Hall current under $E(\omega)=1\ \mathrm{kV/cm}$ (scaling answer is fine).
+Given a Berry curvature dipole $|D|=0.1\ \text{\AA}$ and relaxation time $\tau=0.1\ \mathrm{ps}$, estimate the order of magnitude of the second-harmonic Hall current under $E(\omega)=1\ \mathrm{kV/cm}$ (scaling answer is fine).
 
 ---
 

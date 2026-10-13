@@ -1,0 +1,179 @@
+---
+description: "Beschleunigte Expansion, Zustandsgleichung dunkler Energie, Entfernungen und Strukturwachstum: Modelle, kosmologische Spannungen und praktische Parameterschätzung."
+---
+
+**Einheiten und Geometrie:** Die Hintergrund- und Feldgleichungen verwenden $c=1$. Abschnitt 3 schreibt $c$ in den Entfernungsformeln explizit aus und setzt für $d_L=(1+z)\chi$ und $D_A=\chi/(1+z)$ räumliche Flachheit voraus.
+
+## 1. Das Phänomen: die beschleunigte Expansion des Universums
+
+Beobachtungen von Supernovae des Typs Ia (SNe Ia) zeigen, dass sich die kosmische Expansion **beschleunigt**.  
+In einer homogenen und isotropen FLRW-Raumzeit
+
+$$
+ds^2 = -dt^2 + a^2(t)\left[\frac{dr^2}{1 - k r^2} + r^2 d\Omega^2\right],
+$$
+
+![Eine schematische exponentielle Expansionskurve ist nach oben gekrümmt, während das Potenzgesetz eines materiedominierten Universums nach unten gekrümmt ist. Normierungen und Zeitursprünge sind für den visuellen Vergleich gewählt.](/images/diagrams/expansion.svg)
+
+gehorcht die Dynamik den Friedmann-Gleichungen:
+
+$$
+H^2 \equiv \left(\frac{\dot a}{a}\right)^2
+= \frac{8\pi G}{3}\,\rho - \frac{k}{a^2} + \frac{\Lambda}{3},
+$$
+
+$$
+\frac{\ddot a}{a} = -\frac{4\pi G}{3}\,(\rho + 3p) + \frac{\Lambda}{3}.
+$$
+
+Beschleunigung, $\ddot a>0$, erfordert $\rho + 3p < \Lambda/(4\pi G)$ oder für ein Fluid mit $p = w\rho$ einen **effektiven** Wert $w < -1/3$.
+
+---
+
+## 2. Zustandsgleichung und Parametrisierungen
+
+Wir definieren den Zustandsgleichungsparameter der **dunklen Energie**:
+
+$$
+w \equiv \frac{p_{\rm DE}}{\rho_{\rm DE}}.
+$$
+
+![Strahlung und nichtrelativistische Materie verdünnen sich bei der Expansion des Universums; die Energiedichte einer kosmologischen Konstante bleibt konstant. Beide Achsen sind logarithmisch.](/images/diagrams/cosmic-density.svg)
+
+- **Kosmologische Konstante**: $w=-1$, $\rho_\Lambda = \text{const}$.
+- **Quintessenz** (kanonisches Skalarfeld $\phi$ mit nichtnegativem Potenzial und positiver Energiedichte): $w \in [-1,1]$, wobei sich der Wert mit der Zeit ändern kann.
+- **Phantomenergie**: $w<-1$ (verletzt die Nullenergiebedingung, NEC).
+- **K-Essenz / Horndeski / Beyond-Horndeski**: verallgemeinerte kinetische Terme beziehungsweise modifizierte Gravitationssektoren.
+
+Eine gebräuchliche phänomenologische Parametrisierung ist **CPL**:
+
+$$
+w(a) = w_0 + w_a (1-a) \quad \Longleftrightarrow \quad
+w(z) = w_0 + \frac{w_a z}{1+z}.
+$$
+
+Dann entwickelt sich die Dichte der dunklen Energie gemäß
+
+$$
+\rho_{\rm DE}(z) = \rho_{\rm DE,0}
+\,(1+z)^{3(1+w_0+w_a)}\,\exp\!\left[-\frac{3w_a z}{1+z}\right].
+$$
+
+---
+
+## 3. Beobachtungsgrößen des kosmologischen Hintergrunds
+
+### 3.1 Hubble-Expansion
+Für ein flaches Universum ($k=0$) mit Materie, Strahlung und dunkler Energie gilt
+
+$$
+\frac{H^2(z)}{H_0^2}
+= \Omega_{r0}(1+z)^4 + \Omega_{m0}(1+z)^3
++ \Omega_{\rm DE,0}\, \frac{\rho_{\rm DE}(z)}{\rho_{\rm DE,0}} .
+$$
+
+### 3.2 Entfernungen (SNe Ia, BAO, CMB)
+Die mitbewegte Entfernung lautet:
+
+$$
+\chi(z) = c\int_0^z \frac{dz'}{H(z')}.
+$$
+
+Leuchtkraftentfernung und Entfernungsmodul:
+
+$$
+d_L(z) = (1+z)\,\chi(z), \qquad
+\mu(z) = 5\log_{10}\!\left(\frac{d_L(z)}{10\,{\rm pc}}\right).
+$$
+
+BAO liefern über Winkel und Rotverschiebungen einen Standardmaßstab, den Schallhorizont $r_d$. Eine häufig verwendete isotrope Ersatzgröße ist:
+
+$$
+D_V(z) \equiv \left[ (1+z)^2 D_A^2(z)\,\frac{cz}{H(z)} \right]^{1/3},
+$$
+
+mit $D_A(z)=\chi(z)/(1+z)$.
+
+Die CMB schränkt vor allem die Entfernung zur letzten Streuung und die Physik des frühen Universums ein. Sie hilft dadurch, **Entartungen aufzulösen**, bei denen verschiedene späte Parameter ähnliche Beobachtungen ergeben.
+
+---
+
+## 4. Wachstum kosmischer Strukturen
+
+In der Newtonschen Eichung folgen Materiestörungen $\delta \equiv \delta\rho_m/\rho_m$ in der ART auf Skalen innerhalb des Horizonts und im linearen Bereich der Gleichung
+
+$$
+\ddot\delta + 2H\dot\delta - 4\pi G \rho_m \delta = 0.
+$$
+
+Wir definieren die **Wachstumsrate** $f \equiv d\ln D/d\ln a$, wobei $\delta \propto D(a)$ gilt.  
+Eine nützliche Näherung in ART+$\Lambda$CDM ist $f \simeq \Omega_m(a)^\gamma$ mit $\gamma \approx 0.55$.  
+Verzerrungen im Rotverschiebungsraum messen $f\sigma_8(z)$. Damit lässt sich die Übereinstimmung von **Expansion** und **Strukturwachstum** überprüfen und modifizierte Gravitation testen.
+
+Modifizierte Gravitation zeigt sich häufig in skalen- oder zeitabhängigen effektiven Kopplungen:
+
+$$
+k^2\Psi = -4\pi G_{\rm eff}(k,a)\,a^2 \rho_m \Delta, 
+\qquad \eta \equiv \frac{\Phi}{\Psi} \neq 1,
+$$
+
+Dabei sind $\Phi,\Psi$ die Bardeen-Potentiale. Abweichungen von $G_{\rm eff}=G$ oder $\eta=1$ weisen auf Physik jenseits von ART/$\Lambda$ hin.
+
+---
+
+## 5. Mikroskopische Modelle im Überblick
+
+### 5.1 Kosmologische Konstante $\Lambda$
+Vakuumenergie mit $w=-1$.  
+Das **alte Problem der kosmologischen Konstante**: Naive Abschätzungen aus der Quantenfeldtheorie überschreiten den beobachteten Wert um einen Faktor von $\sim 10^{60-120}$.
+
+### 5.2 Quintessenz
+Ein kanonisches Skalarfeld mit der Lagrangedichte
+$$
+\mathcal{L} = -\frac12 (\partial \phi)^2 - V(\phi), \quad
+\rho_\phi = \frac12 \dot\phi^2 + V, \quad
+p_\phi = \frac12 \dot\phi^2 - V,
+$$
+liefert
+$$
+w_\phi = \frac{\frac12 \dot\phi^2 - V}{\frac12 \dot\phi^2 + V}.
+$$
+Tracker- oder auftauende Potentiale, etwa $V \propto \phi^{-\alpha}$ und $V \propto e^{-\lambda \phi/M_{\rm Pl}}$, können das Koinzidenzproblem abmildern.
+
+### 5.3 Modifizierte Gravitation
+Zum Beispiel $f(R)$-Gravitation mit der Wirkung $S = \int d^4x \sqrt{-g}\, \frac{M_{\rm Pl}^2}{2} f(R) + \dots$.  
+Sie ist einer Skalar-Tensor-Theorie mit einem zusätzlichen skalaren Freiheitsgrad äquivalent. **Abschirmmechanismen** wie der Chamäleon- oder der Vainshtein-Mechanismus stellen lokal die ART wieder her.  
+Horndeski-Theorien besitzen Feldgleichungen zweiter Ordnung. DHOST-Theorien erweitern sie zu entarteten Skalar-Tensor-Theorien höherer Ordnung. Die Einschränkungen aus GW170817 verlangen heute $c_T \simeq c$ und begrenzen damit den Parameterraum.
+
+---
+
+## 6. Spannungen und Konsistenztests
+
+- **Hubble-Spannung**: Die aus der CMB für das frühe Universum erschlossenen Werte von $H_0$ stimmen nicht mit den Messungen der kosmischen Entfernungsleiter im späten Universum überein.  
+  Dynamische oder frühe dunkle Energie gehören zu den vorgeschlagenen Erklärungen. Eine konsistente Anpassung an **alle** Daten ist jedoch schwierig.
+
+- **$S_8$-Spannung**: Der aus schwachen Gravitationslinsen erschlossene Wert $S_8 \equiv \sigma_8 \sqrt{\Omega_m/0.3}$ liegt teils unter den besten Anpassungen von $\Lambda$CDM an die CMB. Dies könnte auf verändertes Strukturwachstum oder systematische Effekte hinweisen.
+
+Ein belastbarer Ansatz prüft **Hintergrund** (Entfernungen) und **Störungen** (Wachstum, Gravitationslinsen) **gemeinsam**.
+
+---
+
+## 7. Ablauf der Parameterschätzung: praktische Hinweise
+
+Für einen Parametervektor $\theta = \{\Omega_{m0}, \Omega_{b0}, H_0, w_0, w_a, \sigma_8, n_s, \dots\}$:
+
+1. Berechne $H(z|\theta)$ und die Entfernungen $\{\chi, D_A, d_L\}$.  
+2. Integriere das lineare Wachstum $D(a|\theta)$ oder verwende $f \simeq \Omega_m^\gamma$.  
+3. Erstelle Likelihood-Funktionen für SNe Ia (Entfernungsmodule), BAO ($D_A$, $H$, $D_V$), CMB (Entfernung zur letzten Streuung und Vorwissen), Rotverschiebungsverzerrungen ($f\sigma_8$) und schwache Gravitationslinsen ($S_8$).  
+4. Ziehe Stichproben aus den Posteriorverteilungen und prüfe die **interne Konsistenz**, etwa zwischen Wachstum und Expansion.
+
+---
+
+## 8. Stand der Forschung
+
+Die bisherigen Daten sind weitgehend mit **$\Lambda$CDM ($w=-1$)** vereinbar. Kleine Abweichungen sind jedoch noch möglich, und einige **Spannungen** bestehen fort.  
+Neue Himmelsdurchmusterungen (Euclid, Rubin/LSST, Roman, CMB-S4, DESI) werden $w_0, w_a$ enger eingrenzen und die ART anhand von Strukturwachstum und Gravitationslinsen auf die Probe stellen.
+
+**Die Schlüsselfrage:** Ist die beschleunigte kosmische Expansion auf eine **neue Energiekomponente** zurückzuführen oder darauf, dass sich die **Gravitation selbst** auf großen Skalen verändert?
+
+---

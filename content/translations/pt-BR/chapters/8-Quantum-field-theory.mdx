@@ -1,0 +1,2469 @@
+---
+description: "Teoria quântica de campos: campos escalares e de Dirac, teorias de gauge, renormalização, mecanismo de Higgs, QCD e anomalias."
+---
+
+## 8.1 Das partículas aos campos: por que teoria quântica de campos?
+
+A mecânica quântica descreve os átomos com precisão; a relatividade especial faz o mesmo com movimentos rápidos. Juntas, porém, entram em conflito sobre a contagem de partículas. A relatividade permite criar e destruir partículas; a mecânica quântica de uma partícula não. A **teoria quântica de campos (TQC)** resolve isso: os objetos fundamentais são campos, e as partículas são quanta, ou excitações, desses campos. Esta seção apresenta as bases: por que precisamos de campos, como quantizar um campo simples, como surgem as partículas e quais princípios, como localidade e simetria, garantem a consistência.
+
+---
+
+### 8.1.1 O que falha na mecânica quântica de uma partícula
+
+- A **relação relativística de energia** $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ permite valores negativos de $E$, e fica difícil manter uma equação de onda de uma partícula com uma densidade de probabilidade confiável  
+- **Criação e aniquilação de partículas.** Um fóton de alta energia se transforma em $e^{+}e^{-}$; um átomo excitado emite um fóton. Espaços de Hilbert com $N$ fixo nem sequer conseguem descrever esses canais  
+- **Localidade e causalidade.** Medidas em pontos separados por um intervalo do tipo espaço não devem influenciar umas às outras. Impor isso usando apenas funções de onda com um número fixo de partículas logo se torna complicado
+
+A TQC resolve esses problemas promovendo os campos a operadores. Os estados pertencem a um espaço de Fock, no qual o número de partículas pode variar, e a microcausalidade está incorporada aos comutadores dos campos.
+
+---
+
+### 8.1.2 Campos como “infinitos osciladores”
+
+Considere um campo clássico livre e faça sua expansão de Fourier em modos identificados pelo momento $\boldsymbol k$. Cada modo é um oscilador harmônico. A quantização repete então o procedimento do Capítulo 7, mas para cada $\boldsymbol k$. A ideia central é essa: quantizar todos os modos normais.
+
+![Um campo associa uma amplitude a cada ponto do espaço. Os modos de Fourier fornecem coordenadas de osciladores para a quantização do campo.](/images/diagrams/field-modes.svg)
+
+---
+
+### 8.1.3 Preparação clássica: o campo de Klein–Gordon
+
+Para um campo escalar real $\phi(x)$ com $x=(ct,\boldsymbol x)$, a ação invariante de Lorentz é
+
+$$
+S[\phi] = \int d^{4}x\;\mathcal L,\qquad
+\mathcal L = \frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,\frac{m^{2}c^{2}}{\hbar^{2}}\,\phi^{2}
+$$
+
+A equação de Euler–Lagrange fornece a **equação de Klein–Gordon (KG)**
+
+$$
+\left(\Box + \frac{m^{2}c^{2}}{\hbar^{2}}\right)\phi(x) = 0,\qquad \Box \equiv \partial_{\mu}\partial^{\mu}
+$$
+
+As soluções de ondas planas satisfazem $k_{\mu}k^{\mu} = m^{2}c^{2}/\hbar^{2}$, isto é, a relação de dispersão relativística.
+
+---
+
+### 8.1.4 Quantização canônica: relações a tempos iguais
+
+Promovemos $\phi$ e seu momento conjugado
+
+$$
+\pi(x) \equiv \frac{\partial \mathcal L}{\partial(\partial_{0}\phi)} = \partial_{0}\phi
+$$
+
+a operadores com relações de comutação a tempos iguais
+
+$$
+[\hat\phi(t,\boldsymbol x),\hat\phi(t,\boldsymbol y)] = 0
+$$
+
+$$
+[\hat\pi(t,\boldsymbol x),\hat\pi(t,\boldsymbol y)] = 0
+$$
+
+$$
+[\hat\phi(t,\boldsymbol x),\hat\pi(t,\boldsymbol y)] = i\hbar\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
+$$
+
+Esse é o equivalente de $[x,p]=i\hbar$ na teoria de campos.
+
+---
+
+### 8.1.5 Expansão em modos e operadores de criação e aniquilação
+
+Consideramos uma caixa grande de volume $V$ (depois, $V\to\infty$) e expandimos
+
+$$
+\hat\phi(x) = \frac{1}{\sqrt{V}}\sum_{\boldsymbol k} \sqrt{\frac{\hbar c}{2\omega_{\boldsymbol k}}}\left(\hat a_{\boldsymbol k}\,e^{-i\omega_{\boldsymbol k} t + i\boldsymbol k\cdot\boldsymbol x} + \hat a_{\boldsymbol k}^{\dagger}\,e^{i\omega_{\boldsymbol k} t - i\boldsymbol k\cdot\boldsymbol x}\right)
+$$
+
+com
+
+$$
+\omega_{\boldsymbol k} = \sqrt{c^{2}\boldsymbol k^{2} + \frac{m^{2}c^{4}}{\hbar^{2}}}
+$$
+
+Escolhemos a normalização de modo que
+
+$$
+[\hat a_{\boldsymbol k},\hat a_{\boldsymbol k'}^{\dagger}] = \delta_{\boldsymbol k\boldsymbol k'},\qquad
+[\hat a_{\boldsymbol k},\hat a_{\boldsymbol k'}] = 0,\qquad
+[\hat a_{\boldsymbol k}^{\dagger},\hat a_{\boldsymbol k'}^{\dagger}] = 0
+$$
+
+É exatamente a álgebra do oscilador da §7.3, agora para cada momento.
+
+---
+
+### 8.1.6 Espaço de Fock e partículas
+
+Definimos o vácuo por $\hat a_{\boldsymbol k}\ket{0}=0$. Os estados de **uma partícula** são
+
+$$
+\ket{\boldsymbol k} \equiv \hat a_{\boldsymbol k}^{\dagger}\ket{0}
+$$
+
+e os estados de várias partículas são obtidos aplicando mais operadores de criação. O operador número do modo $\boldsymbol k$ é $\hat N_{\boldsymbol k}=\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}$. O hamiltoniano do campo livre é
+
+$$
+\hat H = \sum_{\boldsymbol k}\hbar\omega_{\boldsymbol k}\left(\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k} + \frac{1}{2}\right)
+$$
+
+O termo $\tfrac12$ se acumula sobre todos os modos, produzindo a energia do vácuo. Em problemas sem gravidade, normalmente usamos a **ordenação normal** para removê-lo.
+
+---
+
+### 8.1.7 Ordenação normal e energia do vácuo
+
+Definimos a ordenação normal $:\cdots:$ colocando todos os $\hat a^{\dagger}$ à esquerda de todos os $\hat a$. Então
+
+$$
+:\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}: = \hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}
+$$
+
+e
+
+$$
+:\hat H: = \sum_{\boldsymbol k}\hbar\omega_{\boldsymbol k}\,\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}
+$$
+
+Isso fixa a energia do vácuo em zero por convenção. No espaço-tempo curvo ou na gravidade, é preciso lidar com seu valor absoluto; na física de partículas em espaço-tempo plano, interessam as **diferenças**, de modo que a ordenação normal é adequada.
+
+---
+
+### 8.1.8 Localidade e microcausalidade
+
+Uma exigência central da TQC é a **microcausalidade**:
+
+$$
+[\hat\phi(x),\hat\phi(y)] = 0\quad\text{for}\quad (x-y)^{2}<0
+$$
+
+Ou seja, os campos comutam quando a separação é do tipo espaço. Para o campo KG livre, o comutador é um número comum que se anula fora do cone de luz. É assim que a TQC incorpora a ausência de influências mais rápidas que a luz no nível dos operadores.
+
+---
+
+### 8.1.9 Funções de Green e propagadores
+
+As funções de correlação codificam toda a informação. A função de dois pontos ordenada temporalmente, ou propagador de Feynman, é
+
+$$
+\hbar\,\Delta_{F}(x-y) \equiv \langle 0|\,T\{\hat\phi(x)\hat\phi(y)\}\,|0\rangle
+$$
+
+Ela é a função de Green do operador KG:
+
+$$
+\left(\Box + \frac{m^{2}c^{2}}{\hbar^{2}}\right)\Delta_{F}(x-y) = -\,i\,\delta^{(4)}(x-y)
+$$
+
+No espaço dos momentos,
+
+$$
+\Delta_{F}(k) = \frac{i}{k^{2} - \frac{m^{2}c^{2}}{\hbar^{2}} + i\epsilon}
+$$
+
+Os polos na camada de massa e o $i\epsilon$ indicam como contorná-los: a causalidade expressa na linguagem da análise complexa.
+
+---
+
+### 8.1.10 Correntes de Noether e tensor energia-momento
+
+Simetrias contínuas da ação fornecem correntes conservadas. Para translações no espaço-tempo, obtemos o **tensor energia-momento** $T^{\mu\nu}$. Uma forma simétrica conveniente é
+
+$$
+T^{\mu\nu} = \partial^{\mu}\phi\,\partial^{\nu}\phi - \eta^{\mu\nu}\,\mathcal L
+$$
+
+que satisfaz $\partial_{\mu}T^{\mu\nu}=0$. As cargas conservadas formam o quadrimomento
+
+$$
+P^{\nu} = \int d^{3}x\;T^{0\nu}
+$$
+
+que atua como gerador de translações no espaço-tempo sobre os campos.
+
+Se $\phi$ é complexo e possui uma simetria global $U(1)$, $\phi\to e^{i\alpha}\phi$, também obtemos uma **corrente de Noether** e uma carga conservadas: o número de partículas menos o de antipartículas, para um campo escalar complexo livre com carga unitária.
+
+---
+
+### 8.1.11 Bósons, férmions e a relação spin-estatística
+
+Tanto a experiência quanto a teoria indicam que campos de spin inteiro são quantizados com comutadores (bósons), e campos de spin semi-inteiro, com anticomutadores (férmions). Para um espinor $\psi$, as relações a tempos iguais são
+
+$$
+\{\hat\psi_{\alpha}(t,\boldsymbol x),\hat\psi_{\beta}^{\dagger}(t,\boldsymbol y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
+$$
+
+Essa escolha não é um detalhe opcional: a relação **spin-estatística**, a localidade e a positividade a impõem.
+
+---
+
+### 8.1.12 Como entram as interações: uma prévia
+
+Acrescentamos termos de interação à lagrangiana, por exemplo, para um campo escalar
+
+$$
+\mathcal L = \frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,m^{2}\phi^{2} - \frac{\lambda}{4!}\,\phi^{4}
+$$
+
+Ou acoplamos campos, por exemplo, por uma interação de Yukawa $\bar\psi\psi\phi$ ou por acoplamentos de gauge via derivadas covariantes. A teoria de perturbações expande então as funções de correlação em **diagramas de Feynman**, com propagadores como linhas e acoplamentos como vértices. A renormalização trata as divergências e define os parâmetros físicos.
+
+---
+
+### 8.1.13 Pequenos exemplos de cálculo
+
+**(a) Normalização de uma partícula.**  
+Mostre $\langle \boldsymbol k'|\boldsymbol k\rangle = \delta_{\boldsymbol k'\boldsymbol k}$ usando a álgebra de $[\hat a,\hat a^{\dagger}]$.
+
+**(b) Função de dois pontos no vácuo.**  
+Insira a expansão em modos em $\langle 0|T\{\hat\phi(x)\hat\phi(y)\}|0\rangle$ para deduzir $\Delta_{F}(x-y)$ e sua forma no espaço dos momentos.
+
+**(c) Verificação da microcausalidade.**  
+Calcule $[\hat\phi(x),\hat\phi(y)]$ para o campo livre e mostre, por integração de contorno, que ele se anula quando $(x-y)^{2}<0$.
+
+**(d) Energia de um estado com um quantum.**  
+Aplique $\hat H$ a $\ket{\boldsymbol k}$ e confirme $E=\hbar\omega_{\boldsymbol k}$.
+
+---
+
+### 8.1.14 Conjunto básico de exercícios
+
+- Partindo de $\mathcal L=\tfrac12(\partial\phi)^{2}-\tfrac12 m^{2}\phi^{2}$, deduza o momento canônico $\pi$ e os comutadores a tempos iguais que reproduzem a álgebra dos modos  
+- Quantize um campo escalar complexo; identifique o operador de carga $U(1)$ conservada e mostre que ele conta partículas menos antipartículas  
+- Calcule a função de Green retardada $\Delta_{R}(x)$ e compare seu suporte com o de $\Delta_{F}(x)$  
+- Para um campo escalar livre em espaço-tempo plano, coloque tanto $\hat H$ quanto $T^{\mu\nu}$ em ordenação normal e verifique que seus valores esperados no vácuo se anulam. Distinga essa subtração do vácuo de uma anomalia de traço em uma teoria com interações ou em espaço-tempo curvo.
+- Para um campo escalar com condições de contorno periódicas em uma caixa, substitua a soma por uma integral quando $V\to\infty$ e recupere as funções delta do contínuo
+
+---
+
+## 8.2 O campo de Dirac: espinores, anticomutadores e férmions relativísticos
+
+Para descrever elétrons e todas as partículas de spin $\tfrac12$ respeitando a mecânica quântica **e** a relatividade especial, precisamos de campos com graus de liberdade **espinoriais** e **anticomutação** a tempos iguais. A equação de Dirac fornece ambos, prevê antipartículas e já incorpora $g\approx 2$ para o momento magnético. Nesta seção, estabelecemos a álgebra, as soluções, a quantização, as correntes e o limite não relativístico.
+
+> Escolha de unidades: usaremos **unidades naturais** $\hbar=c=1$ para simplificar a notação, salvo indicação em contrário. É possível restaurar $\hbar$ e $c$ por análise dimensional.
+
+---
+
+### 8.2.1 Motivação em uma página
+
+As ondas de Klein–Gordon incorporam a relatividade, mas descrevem spin 0 e permitem densidades negativas. Queremos uma equação de primeira ordem no tempo com densidade de probabilidade positiva definida, consistente com $E^{2}=\boldsymbol p^{2}+m^{2}$. A ideia de Dirac é linearizar a relação de dispersão relativística usando matrizes que obedecem a uma nova álgebra.
+
+---
+
+### 8.2.2 Matrizes gama e álgebra de Clifford
+
+Introduzimos matrizes $4\times4$, $\gamma^{\mu}$, que obedecem a
+
+$$
+\{\gamma^{\mu},\gamma^{\nu}\} \equiv \gamma^{\mu}\gamma^{\nu}+\gamma^{\nu}\gamma^{\mu} = 2\,\eta^{\mu\nu}\,\mathbb I
+$$
+
+com a métrica $\eta^{\mu\nu}=\mathrm{diag}(+,-,-,-)$. Duas representações comuns são:
+
+- **Base de Dirac**: $\gamma^{0}=\begin{pmatrix}\mathbb I&0\\0&-\mathbb I\end{pmatrix}$, $\gamma^{i}=\begin{pmatrix}0&\sigma^{i}\\-\,\sigma^{i}&0\end{pmatrix}$
+- **Base quiral (de Weyl)**: $\gamma^{0}=\begin{pmatrix}0&\mathbb I\\ \mathbb I&0\end{pmatrix}$, $\gamma^{i}=\begin{pmatrix}0&\sigma^{i}\\ -\sigma^{i}&0\end{pmatrix}$
+
+Definimos
+
+$$
+\gamma^{5} \equiv i\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3},\qquad (\gamma^{5})^{2}=1,\qquad \{\gamma^{5},\gamma^{\mu}\}=0
+$$
+
+e as matrizes **sigma**
+
+$$
+\sigma^{\mu\nu} \equiv \frac{i}{2}\,[\gamma^{\mu},\gamma^{\nu}]
+$$
+
+---
+
+### 8.2.3 Equação de Dirac, adjunto e lagrangiana
+
+A **equação de Dirac** para um campo espinorial $\psi(x)$ é
+
+$$
+(i\gamma^{\mu}\partial_{\mu} - m)\,\psi(x) = 0
+$$
+
+Definimos o adjunto $\bar\psi \equiv \psi^{\dagger}\gamma^{0}$. A lagrangiana invariante de Lorentz é
+
+$$
+\mathcal L = \bar\psi\,(i\gamma^{\mu}\partial_{\mu} - m)\,\psi
+$$
+
+A variação em relação a $\bar\psi$ fornece a equação de Dirac; a variação em relação a $\psi$ fornece a equação adjunta $\bar\psi\,(i\overleftarrow{\partial}_{\mu}\gamma^{\mu}+m)=0$.
+
+**Corrente conservada** pelo teorema de Noether (fase global $U(1)$):
+
+$$
+j^{\mu} = \bar\psi\,\gamma^{\mu}\,\psi,\qquad \partial_{\mu}j^{\mu}=0
+$$
+
+Para as soluções, $j^{0}=\psi^{\dagger}\psi$ é positiva definida, fornecendo uma densidade de probabilidade adequada.
+
+---
+
+### 8.2.4 Espinores de ondas planas e completeza
+
+Buscamos ondas planas $\psi=u_{s}(p)\,e^{-ip\cdot x}$ e $\psi=v_{s}(p)\,e^{+ip\cdot x}$ na camada de massa $p^{2}=m^{2}$. Elas satisfazem
+
+$$
+(/\!\!p - m)\,u_{s}(p) = 0,\qquad (/\!\!p + m)\,v_{s}(p) = 0
+$$
+
+em que $/\!\!p\equiv \gamma^{\mu}p_{\mu}$ e $s$ identifica o spin. Normalizações convenientes para a TQC são:
+
+$$
+\bar u_{s}(p)\,u_{s'}(p)=2m\,\delta_{ss'},\qquad \bar v_{s}(p)\,v_{s'}(p)=-2m\,\delta_{ss'}
+$$
+
+Somas sobre spin (completeza):
+
+$$
+\sum_{s} u_{s}(p)\,\bar u_{s}(p) = /\!\!p + m
+$$
+
+$$
+\sum_{s} v_{s}(p)\,\bar v_{s}(p) = /\!\!p - m
+$$
+
+Essas identidades são ferramentas essenciais no cálculo de seções de choque e propagadores.
+
+---
+
+### 8.2.5 Acoplamento mínimo e termo de Pauli: uma prévia
+
+O eletromagnetismo entra pela **derivada covariante** $D_{\mu}=\partial_{\mu}+ieA_{\mu}$. A equação de Dirac se torna $(i\gamma^{\mu}D_{\mu}-m)\psi=0$ e a lagrangiana, $\mathcal L=\bar\psi(i\gamma^{\mu}D_{\mu}-m)\psi$. No limite não relativístico, isso produz uma interação magnética com momento
+
+$$
+\boldsymbol{\mu} = g\,\frac{e}{2m}\,\boldsymbol S,\qquad g_{\text{Dirac}}=2
+$$
+
+As correções radiativas da QED levam a $g=2(1+a_{e})$, com $a_{e}$ muito pequeno.
+
+---
+
+### 8.2.6 Quantização canônica e anticomutadores
+
+Promovemos $\psi$ a um campo de operadores e impomos anticomutação a tempos iguais:
+
+$$
+\{\hat\psi_{\alpha}(t,\boldsymbol x),\hat\psi_{\beta}^{\dagger}(t,\boldsymbol y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
+$$
+
+$$
+\{\hat\psi,\hat\psi\}=\{\hat\psi^{\dagger},\hat\psi^{\dagger}\}=0
+$$
+
+Expandimos em modos (normalização em uma caixa; depois, $\sum\to\int$):
+
+$$
+\hat\psi(x) = \sum_{s}\int\!\frac{d^{3}\boldsymbol p}{(2\pi)^{3}}\;\frac{1}{\sqrt{2E_{\boldsymbol p}}}\left[
+\hat b_{s}(\boldsymbol p)\,u_{s}(p)\,e^{-ip\cdot x} + \hat d_{s}^{\dagger}(\boldsymbol p)\,v_{s}(p)\,e^{+ip\cdot x}\right]
+$$
+
+com $E_{\boldsymbol p}=\sqrt{\boldsymbol p^{2}+m^{2}}$ e
+
+$$
+\{\hat b_{s}(\boldsymbol p),\hat b_{s'}^{\dagger}(\boldsymbol p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\boldsymbol p-\boldsymbol p')
+$$
+
+$$
+\{\hat d_{s}(\boldsymbol p),\hat d_{s'}^{\dagger}(\boldsymbol p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\boldsymbol p-\boldsymbol p')
+$$
+
+Todos os outros anticomutadores se anulam. Aqui, $\hat b^{\dagger}$ cria uma partícula e $\hat d^{\dagger}$ cria uma antipartícula.
+
+O hamiltoniano em ordenação normal é
+
+$$
+:\hat H: = \sum_{s}\int\!\frac{d^{3}\boldsymbol p}{(2\pi)^{3}}\;E_{\boldsymbol p}\left[\hat b_{s}^{\dagger}(\boldsymbol p)\hat b_{s}(\boldsymbol p)+\hat d_{s}^{\dagger}(\boldsymbol p)\hat d_{s}(\boldsymbol p)\right]
+$$
+
+---
+
+### 8.2.7 Propagador e regras de Feynman
+
+A função de dois pontos ordenada temporalmente, ou propagador de Dirac, é
+
+$$
+S_{F}(x-y) \equiv \langle 0|\,T\{\hat\psi(x)\,\bar{\hat\psi}(y)\}\,|0\rangle
+$$
+
+No espaço dos momentos,
+
+$$
+S_{F}(p) = \frac{i}{/\!\!p - m + i\epsilon} = i\,\frac{/\!\!p+m}{p^{2}-m^{2}+i\epsilon}
+$$
+
+Uma linha de Dirac livre em um diagrama de Feynman carrega esse fator; as interações introduzem vértices, por exemplo, $-ie\gamma^{\mu}$ na QED.
+
+
+---
+
+### 8.2.8 Bilineares, correntes e identidade de Gordon
+
+**Bilineares** úteis e suas propriedades de transformação:
+
+- Escalar $\bar\psi\psi$
+- Pseudoescalar $i\bar\psi\gamma^{5}\psi$
+- Vetor $\bar\psi\gamma^{\mu}\psi$
+- Vetor axial $\bar\psi\gamma^{\mu}\gamma^{5}\psi$
+- Tensor $\bar\psi\sigma^{\mu\nu}\psi$
+
+A corrente vetorial é conservada pela simetria global de fase. A **identidade de Gordon** relaciona correntes vetoriais a contribuições orbitais e de spin:
+
+$$
+\bar u(p')\,\gamma^{\mu}\,u(p) = \frac{1}{2m}\,\bar u(p')\!\left[(p'+p)^{\mu} + i\,\sigma^{\mu\nu}(p'-p)_{\nu}\right]\!u(p)
+$$
+
+Ela é a origem algébrica do termo magnético de Pauli em expansões de baixa energia.
+
+---
+
+### 8.2.9 Quiralidade, helicidade e limite sem massa
+
+Definimos os projetores quirais
+
+$$
+P_{L}=\frac{1-\gamma^{5}}{2},\qquad P_{R}=\frac{1+\gamma^{5}}{2}
+$$
+
+As componentes esquerdas e direitas $\psi_{L,R}=P_{L,R}\psi$ se desacoplam quando $m=0$. A **helicidade**, isto é, o spin ao longo do momento, coincide com a quiralidade apenas para estados sem massa. As interações fracas de corrente carregada do Modelo Padrão se acoplam a $\psi_{L}$, mas não a $\psi_{R}$, para léptons: a quiralidade importa.
+
+**Majorana e Dirac.** Um campo de Majorana satisfaz $\psi^{c}=\psi$, sendo igual ao seu conjugado de carga, e não possui antipartícula independente. Campos de Dirac, como o do elétron, carregam uma carga $U(1)$ conservada.
+
+---
+
+### 8.2.10 Simetrias discretas $C$, $P$ e $T$: um esboço
+
+As implementações dependem da representação, a menos de fases:
+
+- **Paridade $P$**: $\psi(t,\mathbf x)\to \gamma^{0}\psi(t,-\mathbf x)$
+- **Conjugação de carga $C$**: $\psi \to C\,\bar\psi^{T}$ com $C^{-1}\gamma^{\mu}C=-(\gamma^{\mu})^{T}$
+- **Reversão temporal $T$**: antiunitária; aproximadamente $\psi(t,\mathbf x)\to i\gamma^{1}\gamma^{3}\psi^{\ast}(-t,\mathbf x)$ na base de Dirac
+
+Interações locais invariantes de Lorentz construídas com as bilineares podem ser classificadas por suas paridades sob $C$, $P$ e $T$.
+
+---
+
+### 8.2.11 Limite não relativístico → equação de Pauli
+
+Inserimos o acoplamento mínimo $D_{\mu}$ e separamos as componentes “grandes” e “pequenas” na base de Dirac. Eliminar a componente pequena até a ordem $1/m$ fornece o **hamiltoniano de Pauli**
+
+$$
+H_{\text{Pauli}} = \frac{1}{2m}\,(\boldsymbol p - e\boldsymbol A)^{2} + e\phi - \frac{e}{2m}\,\boldsymbol{\sigma}\cdot \boldsymbol B
+$$
+
+com $\boldsymbol B=\nabla\times\boldsymbol A$. O termo $\boldsymbol{\sigma}\cdot\boldsymbol B$ fornece $g=2$ no nível de árvore. Ordens superiores acrescentam os termos de spin-órbita e de Darwin, reproduzindo a estrutura fina do hidrogênio.
+
+---
+
+### 8.2.12 Pequenos exemplos de cálculo
+
+**(a) Conservação da corrente.**  
+Use a equação de Dirac e sua adjunta para mostrar $\partial_{\mu}(\bar\psi\gamma^{\mu}\psi)=0$.
+
+**(b) Inversão do propagador.**  
+Verifique $(/\!\!p-m)\,[(/\!\!p+m)/(p^{2}-m^{2})] = \mathbb I$.
+
+**(c) Somas sobre spin.**  
+Prove $\sum_{s}u_{s}(p)\bar u_{s}(p)=/\!\!p+m$ pela completeza das soluções de ondas planas.
+
+**(d) Redução de Pauli.**  
+Partindo de $(\boldsymbol{\alpha}\cdot\boldsymbol{\pi}+ \beta m + e\phi)\psi=i\partial_{t}\psi$, com $\boldsymbol{\pi}=\boldsymbol p-e\boldsymbol A$, elimine a componente pequena até a ordem $1/m$ e recupere $-\tfrac{e}{2m}\boldsymbol{\sigma}\cdot\boldsymbol B$.
+
+**(e) Conservação da helicidade para $m=0$.**  
+Mostre que $[H,\boldsymbol{\Sigma}\cdot \hat{\boldsymbol p}]=0$ para o hamiltoniano de Dirac livre sem massa, de modo que a helicidade é conservada.
+
+---
+
+### 8.2.13 Conjunto básico de exercícios
+
+- Verifique a álgebra de Clifford para as matrizes gama explícitas de Dirac ou quirais e calcule $\gamma^{5}$  
+- Deduza os coeficientes da expansão em modos projetando $\hat\psi$ sobre $u_{s}(p)$ e $v_{s}(p)$; recupere as álgebras de $\{\hat b,\hat b^{\dagger}\}$ e $\{\hat d,\hat d^{\dagger}\}$  
+- Usando a identidade de Gordon, obtenha o limite não relativístico da corrente eletromagnética e identifique o termo do momento magnético de spin  
+- Classifique as bilineares $\bar\psi\Gamma\psi$ por suas propriedades de transformação sob $C$, $P$ e $T$  
+- Mostre explicitamente que o termo de massa $m\bar\psi\psi$ mistura quiralidades, enquanto $\bar\psi\gamma^{\mu}\psi$ não o faz  
+- Para um campo de Majorana, escreva a condição de realidade na base quiral e conte os graus de liberdade na camada de massa em comparação com um campo de Dirac
+
+---
+
+## 8.2A Espinores de Weyl e Majorana: duas componentes, termos de massa e contagem de graus de liberdade
+
+Espinores de Dirac são úteis, mas muitos cálculos ficam mais organizados na linguagem de **duas componentes**. Na base quiral, um espinor de Dirac se decompõe como $\psi = \begin{pmatrix}\chi\\ \phi\end{pmatrix}$, com os espinores de Weyl esquerdo e direito $\chi$ e $\phi$.
+
+---
+
+### 8.2A.1 Equações de Weyl e helicidade
+
+Para um férmion sem massa, as componentes esquerdas e direitas se desacoplam:
+
+$$
+i\,\sigma^{\mu}\partial_{\mu}\,\chi = 0,\qquad
+i\,\bar\sigma^{\mu}\partial_{\mu}\,\phi = 0
+$$
+
+com $\sigma^{\mu}=(\mathbb I,\boldsymbol{\sigma})$ e $\bar\sigma^{\mu}=(\mathbb I,-\boldsymbol{\sigma})$. Um único campo de Weyl possui dois graus de liberdade na camada de massa: partícula e antipartícula com **quiralidade fixa**; para $m=0$, a helicidade coincide com a quiralidade.
+
+---
+
+### 8.2A.2 Massa de Dirac e mistura de quiralidades
+
+O termo de massa de Dirac na notação de duas componentes é
+
+$$
+\mathcal L_{m_D} = -\,m_D\left(\chi^{\dagger}\phi + \phi^{\dagger}\chi\right)
+$$
+
+Ele preserva uma simetria global $U(1)$, correspondente ao número de férmions, e acopla $\chi$ a $\phi$. Ao ativá-lo, os dois campos de Weyl se unem em um férmion de Dirac.
+
+---
+
+### 8.2A.3 Massa de Majorana e condição de realidade
+
+A conjugação de carga atua como $\psi^{c} \equiv C\,\bar\psi^{T}$. Um férmion de **Majorana** satisfaz a condição de realidade
+
+$$
+\psi = \psi^{c}
+$$
+
+Na notação de duas componentes, podemos escrever uma massa de Majorana para um único campo de Weyl, por exemplo, de quiralidade esquerda
+
+$$
+\mathcal L_{m_M} = -\,\frac{1}{2}\,m_M\left(\chi^{T} i\sigma^{2}\chi + \chi^{\dagger} i\sigma^{2}\chi^{\ast}\right)
+$$
+
+Ela **viola** a simetria de número $U(1)$, pois partícula $\leftrightarrow$ antipartícula são a mesma entidade. Também é possível combinar massas de Dirac e Majorana para obter estruturas do mecanismo seesaw.
+
+---
+
+### 8.2A.4 Graus de liberdade: a contagem
+
+- **Dirac**: 4 estados na camada de massa = 2 estados de spin $\times$ (partícula, antipartícula)  
+- **Majorana**: 2 estados na camada de massa = 2 estados de spin, mas a partícula é sua própria antipartícula  
+- **Weyl sem massa**: 2 estados na camada de massa associados a uma quiralidade; a helicidade é fixa no limite sem massa
+
+---
+
+### 8.2A.5 Identidades úteis em duas componentes
+
+As contrações de espinores usam $\epsilon^{ab}$ ($\epsilon^{12}=+1$). Algumas relações fundamentais:
+
+$$
+\sigma^{\mu}\bar\sigma^{\nu} + \sigma^{\nu}\bar\sigma^{\mu} = 2\eta^{\mu\nu}\,\mathbb I,\qquad
+\bar\sigma^{\mu}\sigma^{\nu} + \bar\sigma^{\nu}\sigma^{\mu} = 2\eta^{\mu\nu}\,\mathbb I
+$$
+
+Para momentos $p\cdot\sigma \equiv p_{\mu}\sigma^{\mu}$ e $p\cdot\bar\sigma \equiv p_{\mu}\bar\sigma^{\mu}$,
+
+$$
+(p\cdot\sigma)(p\cdot\bar\sigma) = p^{2}\,\mathbb I
+$$
+
+Essas identidades permitem transitar facilmente entre a álgebra de espinores de duas e de quatro componentes.
+
+---
+
+### 8.2A.6 Exercícios
+
+- Mostre que uma massa de Majorana é incompatível com uma simetria global $U(1)$ conservada para o mesmo campo  
+- Deduza o termo de massa de Dirac $\bar\psi\psi$ a partir da expressão de duas componentes acima  
+- Prove que, para $m=0$, o operador de helicidade coincide com a quiralidade nas soluções de ondas planas  
+- Conte os graus de liberdade físicos de Dirac e de Majorana construindo explicitamente os estados de uma partícula
+
+---
+
+**Em resumo:** espinores de Weyl são os blocos quirais mínimos; a massa de Dirac une esquerda e direita; a massa de Majorana une um campo ao seu próprio conjugado de carga e elimina a conservação do número $U(1)$. A contagem se simplifica, e muitos argumentos de simetria ficam mais claros em duas componentes.
+
+---
+
+## 8.2B Guia de simetrias discretas: $C$, $P$ e $T$ em espinores e bilineares
+
+As simetrias discretas organizam quais interações são permitidas. A seguir está um guia compacto. As convenções correspondem a uma escolha comum de fases na base de Dirac; $T$ é **antiunitária**. Sinais globais podem depender das convenções de fase, mas o padrão é o usual.
+
+---
+
+### 8.2B.1 Ações sobre os campos: uma convenção padrão
+
+- **Paridade $P$**: $\psi(t,\mathbf x)\to \gamma^{0}\psi(t,-\mathbf x)$, $\bar\psi\to \bar\psi(t,-\mathbf x)\gamma^{0}$  
+- **Conjugação de carga $C$**: $\psi \to C\,\bar\psi^{T}$, $\bar\psi \to -\,\psi^{T} C^{-1}$, com $C^{-1}\gamma^{\mu}C = -(\gamma^{\mu})^{T}$  
+- **Reversão temporal $T$**: $\psi(t,\mathbf x)\to i\gamma^{1}\gamma^{3}\,\psi^{\ast}(-t,\mathbf x)$ (antiunitária)
+
+---
+
+### 8.2B.2 Dicionário de bilineares e sinais de transformação
+
+Definimos as bilineares
+- Escalar $S=\bar\psi\psi$
+- Pseudoescalar $P=i\bar\psi\gamma^{5}\psi$
+- Vetor $V^{\mu}=\bar\psi\gamma^{\mu}\psi$
+- Vetor axial $A^{\mu}=\bar\psi\gamma^{\mu}\gamma^{5}\psi$
+- Tensor $T^{\mu\nu}=\bar\psi\sigma^{\mu\nu}\psi$, com $\sigma^{\mu\nu}=\tfrac{i}{2}[\gamma^{\mu},\gamma^{\nu}]$
+
+**Sob $C$** (conjugação de carga):
+
+- $S$: par  
+- $P$: par  
+- $V^{\mu}$: ímpar  
+- $A^{\mu}$: par  
+- $T^{\mu\nu}$: ímpar
+
+**Sob $P$** (paridade):
+
+- $S$: par  
+- $P$: ímpar  
+- $V^{0}$: par, $V^{i}$: ímpar  
+- $A^{0}$: ímpar, $A^{i}$: par  
+- $T^{0i}$: ímpar, $T^{ij}$: par
+
+**Sob $T$** (reversão temporal; antiunitária, convenção padrão):
+
+- $S$: par  
+- $P$: ímpar  
+- $V^{0}$: par, $V^{i}$: ímpar  
+- $A^{0}$: par, $A^{i}$: ímpar  
+- $T^{0i}$: par, $T^{ij}$: ímpar
+
+> Verificações de consistência: $CP$ torna $P$, um pseudoescalar, ímpar, como usado na física de áxions e do termo $\theta$; $CPT$ mantém invariante qualquer densidade lagrangiana local invariante de Lorentz.
+
+---
+
+### 8.2B.3 Aplicações rápidas
+
+- Construção de termos de modelos: classifique o operador completo contraído, incluindo todos os campos que o acompanham, sob $CP$. A presença isolada de $S$, $V^{\mu}$, $P$ ou $A^{\mu}$ não determina sua paridade total.
+- Espectroscopia: classificar transições por $J^{PC}$ usando bilineares como operadores interpoladores  
+- Testes de momento de dipolo elétrico: o operador $\bar\psi i\sigma^{\mu\nu}\gamma^{5}\psi\,F_{\mu\nu}$ do momento de dipolo elétrico do elétron é ímpar sob $P$ e $T$ → uma sonda clara de violação de $CP$ via $CPT$
+
+---
+
+### 8.2B.4 Exercícios
+
+- Deduza a paridade sob $C$ de $V^{\mu}$ usando $C^{-1}\gamma^{\mu}C=-(\gamma^{\mu})^{T}$  
+- Mostre a troca de sinal sob $P$ entre $V^{0}$ e $V^{i}$ por inversão espacial explícita  
+- Usando a antiunitariedade de $T$, isto é, a conjugação complexa, acompanhe o sinal adicional do pseudoescalar  
+- Classifique as propriedades de $\bar\psi\sigma^{\mu\nu}\gamma^{5}\psi$ sob $C$, $P$ e $T$ e relacione-as aos tensores duais $\tilde F^{\mu\nu}$
+
+---
+
+**Em resumo:** com uma convenção fixa, $C$, $P$ e $T$ atuam de forma previsível sobre as cinco bilineares básicas. Esta tabela permite identificar rapidamente quais operadores respeitam ou violam determinadas simetrias discretas.
+
+---
+
+## 8.2C Vértice da QED e identidade de Ward: invariância de gauge em uma página
+
+O acoplamento mínimo torna o eletromagnetismo surpreendentemente simples na TQC. A **identidade de Ward** é a expressão algébrica de que a simetria de gauge elimina contribuições de polarização não físicas.
+
+![Duas linhas orientadas de férmions encontram uma linha de fóton em um vértice da QED. Trata-se de um termo diagramático de uma amplitude de espalhamento, não de uma trajetória literal.](/images/diagrams/qed-vertex.svg)
+
+---
+
+### 8.2C.1 Do acoplamento mínimo à regra de Feynman
+
+Partimos de
+
+$$
+\mathcal L_{\text{QED}} = \bar\psi(i\gamma^{\mu}D_{\mu} - m)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu},\qquad D_{\mu}=\partial_{\mu}+ieA_{\mu}
+$$
+
+O termo de interação é
+
+$$
+\mathcal L_{\text{int}} = -\,e\,\bar\psi\gamma^{\mu}\psi\,A_{\mu}
+$$
+
+portanto, o **fator de vértice** para um fóton e duas linhas de férmions é
+
+$$
+-\,i e\,\gamma^{\mu}
+$$
+
+Em todos os casos, férmions externos carregam espinores $u,\bar u$ ou $v,\bar v$, e linhas internas contribuem com os propagadores usuais.
+
+---
+
+### 8.2C.2 Identidade de Ward no nível de árvore, na camada de massa
+
+Para um fóton externo de momento $q=p'-p$ ligado a uma linha de férmion, a contribuição à amplitude é $\mathcal M^{\mu}=\bar u(p')\gamma^{\mu}u(p)$. Contraindo com $q_{\mu}$:
+
+$$
+q_{\mu}\,\mathcal M^{\mu} = \bar u(p')\,(/\!\!{p'}-/\!\!p)\,u(p)
+$$
+
+Inserindo $(/\!\!p-m)u(p)=0$ e $\bar u(p')(/\!\!{p'}-m)=0$, obtemos
+
+$$
+q_{\mu}\,\mathcal M^{\mu} = 0
+$$
+
+Assim, substituir a polarização do fóton $\epsilon^{\mu}$ por $\epsilon^{\mu} + \alpha\,q^{\mu}$ deixa a amplitude inalterada: a invariância de gauge em ação.
+
+---
+
+### 8.2C.3 Identidade de Ward–Takahashi para funções de Green completas
+
+Além do nível de árvore, para o vértice completo $\Gamma^{\mu}(p',p)$ e o propagador exato do férmion $S(p)$,
+
+$$
+q_{\mu}\,\Gamma^{\mu}(p',p) = S^{-1}(p') - S^{-1}(p)
+$$
+
+Essa identidade impõe a conservação da carga, relaciona constantes de renormalização ($Z_{1}=Z_{2}$ na QED) e explica por que modos longitudinais do fóton nunca aparecem em elementos físicos da matriz $S$.
+
+---
+
+### 8.2C.4 Somas de polarizações e escolha de gauge
+
+Em um gauge covariante, o propagador do fóton
+
+$$
+D_{\mu\nu}(k) = \frac{-i}{k^{2}+i\epsilon}\left[g_{\mu\nu} - (1-\xi)\frac{k_{\mu}k_{\nu}}{k^{2}}\right]
+$$
+
+contém um parâmetro de gauge $\xi$. As identidades de Ward garantem que todas as contribuições dependentes de $\xi$ se cancelem nas observáveis. Para fótons reais externos, podemos usar $\sum_{\lambda}\epsilon_{\mu}^{(\lambda)}\epsilon_{\nu}^{(\lambda)\ast}=-g_{\mu\nu}$ após projetar as partes não físicas, graças a $q\cdot\mathcal M=0$.
+
+---
+
+### 8.2C.5 Pequenos exemplos de cálculo
+
+**(a) Espalhamento de elétrons por uma corrente clássica.**  
+Para o elemento de matriz $\mathcal M^{\mu}=\bar u(p')\gamma^{\mu}u(p)$, verifique $q_{\mu}\mathcal M^{\mu}=0$ como acima.
+
+**(b) $e^{-}\mu^{-}\to e^{-}\mu^{-}$ no nível de árvore.**  
+Mostre que as partes longitudinais do propagador do fóton não contribuem para a amplitude, usando a conservação da corrente nas duas linhas de férmions.
+
+**(c) $Z_{1}=Z_{2}$ a partir de Ward–Takahashi.**  
+Esboce como $q_{\mu}\Gamma^{\mu}=S^{-1}(p')-S^{-1}(p)$ implica a igualdade entre a renormalização do vértice e a da função de onda na QED.
+
+---
+
+### 8.2C.6 Exercícios
+
+- Partindo da invariância de gauge de $\mathcal L_{\text{QED}}$, deduza $q_{\mu}\mathcal M^{\mu}=0$ para um fóton externo em qualquer amplitude de árvore  
+- Prove a identidade de Ward–Takahashi a partir da conservação da corrente dentro do produto ordenado temporalmente ou por deslocamentos das fontes na integral de caminho  
+- Em gauge covariante, calcule o espalhamento Compton para mostrar o cancelamento explícito dos termos de $\xi$  
+- Mostre que acrescentar um termo proporcional a $q^{\mu}$ a cada vetor de polarização de fóton externo deixa invariante qualquer amplitude de árvore da QED
+
+---
+
+## 8.3 Integrais de caminho para campos: funcionais geradores, diagramas e técnicas euclidianas
+
+A teoria quântica de campos revela toda a sua força quando mudamos de perspectiva: em vez de evoluir operadores, somamos sobre **todas as configurações dos campos**, ponderadas por uma fase. O ganho é enorme: correlatores surgem de derivadas de um funcional gerador, a teoria de perturbações se torna uma série de Taylor, e simetrias se traduzem em identidades entre funções de Green. Nesta seção, construímos o caso escalar, mostramos como as interações geram regras de Feynman, explicamos os funcionais conexos e 1PI e fazemos a rotação euclidiana essencial para cálculos e métodos na rede.
+
+> Escolha de unidades: usamos unidades naturais $\hbar=c=1$ em toda a seção.
+
+---
+
+### 8.3.1 Das partículas aos campos: retomando a ideia
+
+Para uma partícula não relativística, a amplitude de transição é uma soma sobre caminhos com peso $e^{iS[x]}$. A TQC passa do “caminho $x(t)$” ao “campo $\phi(x)$ em todos os pontos”, substituindo somas por integrais funcionais. As observáveis são **funções de correlação** dos campos; a ferramenta central é o **funcional gerador**.
+
+---
+
+### 8.3.2 Campo escalar livre: $Z[J]$ em um passo
+
+Considere um campo real de Klein–Gordon com ação
+
+$$
+S_{0}[\phi] = \int d^{4}x\;\left[\frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,m^{2}\phi^{2}\right]
+$$
+
+Introduzimos uma fonte $J(x)$ e definimos
+
+$$
+Z_{0}[J] \equiv \int \mathcal D\phi\;\exp\!\left\{i\int d^{4}x\left[\frac{1}{2}\,\partial\phi\cdot\partial\phi - \frac{1}{2}m^{2}\phi^{2} + J\phi\right]\right\}
+$$
+
+Completamos o quadrado usando a função de Green $\Delta_{F}$, que satisfaz
+
+$$
+(\Box + m^{2})\,\Delta_{F}(x-y) = -\,i\,\delta^{(4)}(x-y)
+$$
+
+A integral gaussiana fornece
+
+$$
+Z_{0}[J] = Z_{0}[0]\;\exp\!\left[-\,\frac{1}{2}\int d^{4}x\,d^{4}y\;J(x)\,\Delta_{F}(x-y)\,J(y)\right]
+$$
+
+Todos os correlatores da teoria livre são obtidos por diferenciação em relação a $J$.
+
+---
+
+### 8.3.3 Correlatores, contribuições conexas e teorema de Wick
+
+As funções de $n$ pontos ordenadas temporalmente são
+
+$$
+G^{(n)}(x_{1},\dots,x_{n}) \equiv \langle 0|\,T\{\phi(x_{1})\cdots\phi(x_{n})\}\,|0\rangle = \left.\frac{1}{Z_{0}[0]}\left(\frac{1}{i}\frac{\delta}{\delta J(x_{1})}\right)\!\cdots\!\left(\frac{1}{i}\frac{\delta}{\delta J(x_{n})}\right) Z_{0}[J]\right|_{J=0}
+$$
+
+Definimos
+
+$$
+W[J] \equiv -\,i\,\ln Z[J]
+$$
+
+Então os correlatores **conexos** são obtidos de $W$:
+
+$$
+G^{(n)}_{\text{conn}}(x_{1},\dots,x_{n}) = \left.i^{1-n}\frac{\delta^{n} W[J]}{\delta J(x_{1})\cdots \delta J(x_{n})}\right|_{J=0}
+$$
+
+Para a teoria livre, gaussiana, o teorema de Wick diz que funções de $n$ pontos são somas de produtos de funções de dois pontos $\Delta_{F}$: exatamente o que produz a exponencial de uma forma quadrática.
+
+---
+
+### 8.3.4 Ativando interações: $\phi^{4}$ e a geração de diagramas
+
+Acrescentamos um termo quártico:
+
+$$
+S[\phi] = S_{0}[\phi] - \int d^{4}x\,\frac{\lambda}{4!}\,\phi^{4}(x)
+$$
+
+O funcional gerador com interação é
+
+$$
+Z[J] = \int \mathcal D\phi\;\exp\!\left\{iS_{0}[\phi] + i\int d^{4}x\left[J\phi - \frac{\lambda}{4!}\phi^{4}\right]\right\}
+$$
+
+Tratamos a interação como um operador que atua sobre $Z_{0}[J]$ livre:
+
+$$
+Z[J] = \exp\!\left[-\,i\,\frac{\lambda}{4!}\int d^{4}x\left(\frac{1}{i}\frac{\delta}{\delta J(x)}\right)^{\!4}\right] Z_{0}[J]
+$$
+
+Expandir a exponencial fornece diagramas de Feynman com as regras:
+
+- **Propagador** (linha interna): $\Delta_{F}(x-y)$ ou, no espaço dos momentos, $i/(p^{2}-m^{2}+i\epsilon)$  
+- **Vértice**: fator $-i\lambda$ e encontro de quatro linhas  
+- **Pernas externas**: conectar fontes e depois impor $J=0$ para obter estruturas amputadas ou conexas  
+- **Fatores de simetria**: $1/S$ para os automorfismos de cada diagrama
+
+Esse é o esquema básico de toda a teoria de perturbações.
+
+
+> **Nota.** Em um diagrama de Feynman:
+> - **Linhas retas com setas** representam férmions, como elétrons ou pósitrons.  
+>   - Seta no sentido de avanço do tempo: elétron.  
+>   - Seta no sentido contrário ao avanço do tempo: pósitron.  
+> - **Linhas onduladas** representam fótons ou, de modo mais geral, bósons de gauge.  
+> - **Vértices** são pontos de interação onde as linhas se encontram.  
+>   - Na QED, cada vértice corresponde a um fator $-ie\gamma^{\mu}$, que representa o acoplamento elétron-fóton.  
+
+---
+
+### 8.3.5 Ação efetiva e 1PI: um princípio de organização sistemático
+
+Definimos o campo clássico, também chamado campo médio,
+
+$$
+\phi_{c}(x) \equiv \frac{\delta W[J]}{\delta J(x)}
+$$
+
+e fazemos a transformação de Legendre para a **ação efetiva**
+
+$$
+\Gamma[\phi_{c}] \equiv W[J] - \int d^{4}x\,J(x)\,\phi_{c}(x)
+$$
+
+com $J$ escolhido para produzir o $\phi_{c}$ dado. Então
+
+$$
+\frac{\delta \Gamma}{\delta \phi_{c}(x)} = -\,J(x)
+$$
+
+Impor $J=0$ fornece as equações quânticas de movimento $\delta\Gamma/\delta\phi_{c}=0$. Derivadas funcionais de $\Gamma$ em um fundo constante geram vértices **1PI**, ou irredutíveis em uma partícula; expandir $\Gamma$ em laços é a expansão semiclássica sistemática.
+
+---
+
+### 8.3.6 Equações de Schwinger–Dyson: integração por partes no espaço dos campos
+
+Como derivadas funcionais totais se anulam sob a integral,
+
+$$
+\int \mathcal D\phi\;\frac{\delta}{\delta \phi(x)}\left[\,\mathcal F[\phi]\;e^{iS[\phi]}\right] = 0
+$$
+
+Escolher $\mathcal F=\phi(y)$ para a teoria escalar fornece
+
+$$
+\left\langle T\!\left\{\left[\left(\Box_{x} + m^{2}\right)\phi(x) + \frac{\lambda}{3!}\phi^{3}(x)\right]\phi(y)\right\}\right\rangle = -\,i\,\delta^{(4)}(x-y)
+$$
+
+Mais geralmente, surge uma hierarquia que relaciona funções de $n$ pontos a funções de mais pontos, com as ordens determinadas pela interação. No espaço dos momentos, elas se tornam equações integrais exatas para propagadores e vértices completos.
+
+---
+
+### 8.3.7 Rotação de Wick: o caminho euclidiano
+
+Integrais em tempo real oscilam e dificultam os cálculos numéricos. Fazemos a rotação para o tempo euclidiano $t\to -i\tau$:
+
+$$
+S_{E}[\phi] = \int d^{4}x_{E}\left[\frac{1}{2}(\partial_{\mu}\phi)^{2} + \frac{1}{2}m^{2}\phi^{2} + \frac{\lambda}{4!}\phi^{4}\right]
+$$
+
+O peso se torna $e^{-S_{E}}$, e
+
+$$
+Z_{E}[J] = \int \mathcal D\phi\;\exp\!\left[-\,S_{E}[\phi] + \int d^{4}x_{E}\,J\phi\right]
+$$
+
+Agora $Z_{E}$ se parece com uma função de partição estatística. Isso abre o caminho para a **TQC na rede**, a amostragem de Monte Carlo e as ideias que conectam a TQC aos fenômenos críticos. A continuação analítica leva os resultados de volta ao espaço-tempo de Minkowski.
+
+---
+
+### 8.3.8 Campos de gauge na integral de caminho: fixação e fantasmas em um panorama
+
+Para campos de gauge $A_{\mu}$, a expressão ingênua
+
+$$
+Z = \int \mathcal D A\;e^{iS[A]}
+$$
+
+conta várias vezes configurações fisicamente equivalentes. Inserimos uma função delta de fixação de gauge e o **determinante de Faddeev–Popov**:
+
+$$
+Z = \int \mathcal D A\,\mathcal D\bar c\,\mathcal D c\;\exp\!\left\{iS[A] + iS_{\text{gf}}[A] + iS_{\text{FP}}[\bar c,c,A]\right\}
+$$
+
+Em gauges covariantes,
+
+$$
+S_{\text{gf}} = -\,\frac{1}{2\xi}\int d^{4}x\,(\partial_{\mu}A^{\mu})^{2}
+$$
+
+A ação dos fantasmas surge do determinante. Uma simetria global oculta, **BRST**, organiza o cálculo e implica identidades de Ward ou Slavnov–Taylor que protegem a invariância de gauge após a quantização.
+
+---
+
+### 8.3.9 Renormalização e regularização nessa linguagem
+
+Integrais de laço divergem. Primeiro, regularizamos por corte, regularização dimensional ou Pauli–Villars; depois, **renormalizamos** acrescentando contratermos a $S$ para que as funções físicas de $n$ pontos correspondam aos experimentos. A perspectiva da integral de caminho deixa claro que:
+
+- Contratermos são contribuições locais adicionais à ação  
+- O grupo de renormalização acompanha como a **ação efetiva** muda com a escala  
+- Anomalias, como a anomalia quiral, aparecem como **não invariância da medida** sob certas transformações, no método de Fujikawa
+
+---
+
+### 8.3.10 O significado dos desenhos: regras a partir de $Z[J]$
+
+- **Desconexos e conexos.** $Z$ gera tudo; $W=-i\ln Z$ elimina as contribuições desconexas  
+- **Amputados e 1PI.** Diferenciar $W$ e depois amputar os propagadores externos fornece núcleos de espalhamento; diferenciar $\Gamma$ fornece diretamente vértices 1PI  
+- **Fatores de simetria.** Eles vêm da combinatória de derivadas repetidas atuando nos mesmos fatores de fonte: o $1/S$ que multiplica os diagramas
+
+---
+
+### 8.3.11 Pequenos exemplos de cálculo
+
+**(a) Verificação do caso gaussiano livre.**  
+Mostre diretamente a partir de $Z_{0}[J]$ que
+
+$$
+G^{(2)}(x,y) = \Delta_{F}(x-y),\qquad G^{(4)}(x_{1},\dots,x_{4}) = \Delta_{12}\Delta_{34} + \Delta_{13}\Delta_{24} + \Delta_{14}\Delta_{23}
+$$
+
+com $\Delta_{ij}\equiv \Delta_{F}(x_{i}-x_{j})$.
+
+**(b) $\phi^{4}$ em dimensão zero, um modelo simplificado.**  
+Substitua $\int \mathcal D\phi$ por $\int d\phi$ em
+
+$$
+Z(J) = \int_{-\infty}^{\infty} d\phi\;\exp\!\left[i\left(\frac{1}{2}m^{2}\phi^{2} - \frac{\lambda}{4!}\phi^{4} + J\phi\right)\right]
+$$
+
+Expanda em $\lambda$ e compare com a série de diagramas de Feynman: sem espaço-tempo, apenas combinatória.
+
+**(c) Estrutura do diagrama girino de um laço em $\phi^{4}$.**  
+A partir da expansão em operadores $\exp[-i(\lambda/4!)\int (\delta/i\delta J)^{4}]$, a correção de ordem $O(\lambda)$ a $G^{(2)}$ inclui
+
+$$
+\frac{-i\lambda}{2}\int d^{4}z\;\Delta_{F}(x-z)\,\Delta_{F}(0)\,\Delta_{F}(z-y)
+$$
+
+que exibe uma divergência UV em $\Delta_{F}(0)$ e motiva a renormalização da massa.
+
+**(d) Limite clássico por fase estacionária.**  
+Faça a mudança de escala $S\to S/\hbar$ e tome $\hbar\to 0$. A contribuição dominante a $Z$ vem dos campos que resolvem $\delta S/\delta\phi=0$, enquanto as flutuações geram a expansão em laços. Esse é o sentido preciso em que “laços são quânticos”.
+
+**(e) Identidade de Ward por mudança de variáveis.**  
+Para uma simetria global $\phi\to \phi + \epsilon\,\delta\phi$, a invariância da medida e da ação implica
+
+$$
+\partial_{\mu}\left\langle T\!\left\{J^{\mu}(x)\,\mathcal O[\phi]\right\}\right\rangle = -\,i\left\langle T\!\left\{\delta\phi(x)\,\frac{\delta\mathcal O[\phi]}{\delta\phi(x)}\right\}\right\rangle
+$$
+
+a versão funcional da conservação da corrente dentro de correlatores.
+
+---
+
+### 8.3.12 Conjunto básico de exercícios
+
+- Deduza $Z_{0}[J]$ completando o quadrado e fixe a normalização exigindo $Z_{0}[0]=1$  
+- Partindo de $Z[J]$ para $\phi^{4}$, obtenha as regras de Feynman no espaço dos momentos e identifique o fator de simetria do diagrama “peixe” de um laço na função de quatro pontos  
+- Calcule a função conexa de dois pontos como $-i\,\delta^{2}W/\delta J \delta J$ e confirme que $W=-i\ln Z$ remove contribuições desconexas  
+- Faça cuidadosamente a rotação de Wick para $\phi^{4}$, mostrando que $iS\to -S_{E}$ e $Z\to Z_{E}$, e identifique como os propagadores mudam  
+- Escreva a equação de Schwinger–Dyson para o propagador completo $G(x,y)$ em $\phi^{4}$ e expresse-a diagramaticamente  
+- Para uma teoria de gauge $U(1)$, esboce o procedimento de Faddeev–Popov que leva aos fantasmas em gauges covariantes e escreva as transformações BRST
+
+---
+
+## 8.4 Redução LSZ e amplitudes de espalhamento
+
+Funções de Green são ótimas para a teoria; os experimentos pedem **seções de choque**. A ligação é a **fórmula de redução LSZ**: amputamos os propagadores externos dos correlatores ordenados temporalmente, colocamos as pernas externas na camada de massa e obtemos a **amplitude da matriz $S$**, $\mathcal M$. Esta seção apresenta a LSZ para escalares e férmions, como $Z$ aparece, espaço de fase, seções de choque e alguns exemplos, além da unitariedade pelo teorema óptico.
+
+---
+
+### 8.4.1 Dos correlatores às amplitudes: a ideia central
+
+- Correlatores: $G^{(n)} = \langle 0|T\{\phi\cdots\phi\}|0\rangle$  
+- Contribuições conexas: $W=-i\ln Z$  
+- **Amputação**: remover propagadores externos  
+- **Limite na camada de massa**: $p^{2}\to m^{2}$ ou $/\!\!p\to m$ para férmions  
+- **Renormalização da função de onda**: os resíduos dos polos de uma partícula definem os fatores $Z$
+
+O resultado é $\mathcal M$, a grandeza que entra em $|\mathcal M|^{2}$ nas seções de choque.
+
+---
+
+### 8.4.2 Polo, resíduo e fator $Z$
+
+Para um campo escalar real, a função completa de dois pontos no espaço dos momentos se comporta, perto do polo de uma partícula, como
+
+$$
+\tilde G^{(2)}(p) = \int d^{4}x\,e^{ip\cdot x}\,G^{(2)}(x) \;\sim\; \frac{i\,Z_{\phi}}{p^{2}-m^{2}+i\epsilon} + \text{regular}
+$$
+
+O **resíduo** $Z_{\phi}$ é a probabilidade de criar o estado de uma partícula a partir do campo. Portanto, cada perna externa contribui com $Z_{\phi}^{-1/2}$ na LSZ.
+
+Para um campo de Dirac, de forma semelhante,
+
+$$
+\tilde S(p) \equiv \int d^{4}x\,e^{ip\cdot x}\,\langle 0|T\{\psi(x)\bar\psi(0)\}|0\rangle \;\sim\; \frac{i\,Z_{\psi}(/\!\!p+m)}{p^{2}-m^{2}+i\epsilon}
+$$
+
+---
+
+### 8.4.3 Redução LSZ escalar: entrada → saída
+
+Considere um processo $n\to m$ de um escalar neutro de massa $m$. Seja $G^{(n+m)}$ o correlator completo ordenado temporalmente. A amplitude amputada na camada de massa é
+
+$$
+\mathcal M(\{p\}\to\{p'\}) =
+\left[\prod_{a=1}^{n} Z_{\phi}^{-1/2}\; i\!\int d^{4}x_{a}\;e^{ip_{a}\cdot x_{a}}\left(\Box_{x_{a}}+m^{2}\right)\right]
+\left[\prod_{b=1}^{m} Z_{\phi}^{-1/2}\; i\!\int d^{4}y_{b}\;e^{-ip'_{b}\cdot y_{b}}\left(\Box_{y_{b}}+m^{2}\right)\right]
+\,G^{(n+m)}(\{x\};\{y\})
+$$
+
+Todos os momentos externos são colocados na camada de massa após as diferenciações, $p_{a}^{2}=m^{2}$ e $(p'_{b})^{2}=m^{2}$. A conservação do momento aparece como o fator global $(2\pi)^{4}\delta^{(4)}(\sum p-\sum p')$ na transformada de Fourier.
+
+---
+
+### 8.4.4 LSZ fermiônica com espinores
+
+Para férmions de entrada e antiférmions de saída, fazemos projeções com espinores e usamos operadores de Dirac. A forma esquemática para um férmion de entrada com momento $p$ e um férmion de saída com momento $p'$ é:
+
+$$
+\mathcal M \;\propto\; Z_{\psi}^{-1/2}\, \bar u(p') \left[ -i\!\int d^{4}y\,e^{-ip'\cdot y}\,\left(i\overleftarrow{/\!\!partial}_{y}+m\right)\right]
+\,\langle 0|T\{\psi(y)\cdots\bar\psi(x)\}|0\rangle\,
+\left[i\!\int d^{4}x\,e^{ip\cdot x}\,\left(i/\!\!partial_{x}-m\right)\right] Z_{\psi}^{-1/2}\, u(p)
+$$
+
+Aplicar todos os operadores externos e tomar os limites na camada de massa reproduz a amplitude padrão das regras de Feynman. Para antiférmions externos, substitua as projeções com $u\leftrightarrow v$ e $\psi\leftrightarrow \bar\psi$ de acordo com o caso.
+
+---
+
+### 8.4.5 Por que funções de Green conexas amputadas importam
+
+- **Conexas**: $W=-i\ln Z$ remove contribuições desconexas para evitar a contagem dupla de partículas espectadoras  
+- **Amputadas**: dividir pelos propagadores externos fornece núcleos que entram diretamente em $\mathcal M$  
+- **1PI e conexas**: vértices 1PI de $\Gamma[\phi_{c}]$ constroem funções conexas amputadas quando são ligados por propagadores completos
+
+Essa é a álgebra por trás de “desenhar diagramas, conectar pernas externas e calcular”.
+
+---
+
+### 8.4.6 Ondas planas, pacotes de onda e $i\epsilon$
+
+Rigorosamente, a LSZ usa **pacotes de onda** para que as integrais de sobreposição convirjam e para que faça sentido ligar e desligar a interação adiabaticamente. Na prática, calculamos com ondas planas, e a **prescrição $i\epsilon$** preserva a causalidade e coloca os polos do lado correto.
+
+---
+
+### 8.4.7 Espaço de fase, seções de choque e taxas de decaimento
+
+Para o espalhamento $n_{i}\to n_{f}$, definimos o espaço de fase invariante de Lorentz de $n$ corpos
+
+$$
+d\Pi_{n_{f}}(P;\{p_{f}\}) = \left[\prod_{k=1}^{n_{f}} \frac{d^{3}\mathbf p_{k}}{(2\pi)^{3}\,2E_{k}}\right]
+(2\pi)^{4}\,\delta^{(4)}\!\left(P-\sum_{k} p_{k}\right)
+$$
+
+O espalhamento de dois corpos no referencial do centro de massa possui o fator de fluxo
+
+$$
+\mathcal F = 4\sqrt{(p_{1}\cdot p_{2})^{2} - m_{1}^{2}m_{2}^{2}}
+$$
+
+e a seção de choque diferencial
+
+$$
+d\sigma = \frac{|\mathcal M|^{2}}{\mathcal F}\; d\Pi_{n_{f}}
+$$
+
+Para o decaimento de uma partícula de massa $M$ e momento total $P$, a largura é
+
+$$
+d\Gamma = \frac{|\mathcal M|^{2}}{2M}\; d\Pi_{n_{f}}(P;\{p_{f}\})
+$$
+
+Somas sobre spin e médias sobre as polarizações iniciais são aplicadas a $|\mathcal M|^{2}$ conforme necessário.
+
+---
+
+### 8.4.8 Unitariedade e teorema óptico
+
+$S = 1 + iT$ com $S^{\dagger}S=\mathbb I$ implica
+
+$$
+2\,\mathrm{Im}\,\mathcal M_{i\to i} = \sum_{X}\int d\Pi_{X}\; |\mathcal M_{i\to X}|^{2}
+$$
+
+A parte imaginária da amplitude **frontal** corresponde à seção de choque total; as regras de Cutkosky cortam laços para impor essa relação no nível dos diagramas.
+
+---
+
+### 8.4.9 Simetria de cruzamento: fundamentos da continuação analítica
+
+Como as amplitudes são valores de contorno de funções analíticas, mover uma partícula do estado inicial para o final corresponde à continuação $p\to -p$. Uma única $\mathcal M$ codifica os canais $s$, $t$ e $u$: processos físicos diferentes são regiões cinemáticas distintas.
+
+---
+
+### 8.4.10 Exemplos rápidos
+
+**(a) $\phi^{4}$, $2\to 2$ no nível de árvore**
+
+Com a interação $\mathcal L_{\text{int}}=-\lambda\phi^{4}/4!$ e pernas externas devidamente normalizadas,
+
+$$
+\mathcal M_{\text{tree}}(2\to 2) = -\,i\lambda
+$$
+
+Não há dependência do momento no nível de árvore; um laço acrescenta logaritmos de $s,t,u$ e contratermos.
+
+**(b) Troca de Yukawa, $f\bar f\to f\bar f$ no nível de árvore**
+
+Para $\mathcal L_{\text{int}}=-g\,\bar\psi\psi\,\phi$, a troca de escalar no canal $t$ fornece
+
+$$
+\mathcal M = (-ig)^{2}\;\bar u(p_{3})u(p_{1})\;\frac{i}{t-m_{\phi}^{2}+i\epsilon}\;\bar v(p_{2})v(p_{4})
+$$
+
+com $t=(p_{3}-p_{1})^{2}$. As somas sobre spin convertem as bilineares em traços.
+
+**(c) Conservação da corrente da QED nas pernas externas**
+
+Para um fóton ligado a uma linha de férmion,
+
+$$
+q_{\mu}\,\bar u(p')\gamma^{\mu}u(p)=0
+$$
+
+na camada de massa, de modo que a polarização longitudinal desaparece de qualquer amplitude de árvore, pela identidade de Ward.
+
+---
+
+### 8.4.11 Normalizações práticas e fatores fáceis de esquecer
+
+- Cada perna escalar externa contribui com $Z_{\phi}^{-1/2}$; cada espinor externo contribui com $Z_{\psi}^{-1/2}$ e uma função de onda espinorial $u$ ou $v$  
+- Além do nível de árvore, linhas internas sempre usam propagadores **completos**  
+- Tire a média sobre os estados iniciais de spin ou polarização e some sobre os finais  
+- Fatores de partículas idênticas no espaço de fase: divida por $n!$ para $n$ bósons finais idênticos
+
+---
+
+### 8.4.12 Ressalvas: quanta sem massa e infravermelho
+
+Em teorias com bósons de gauge sem massa, a LSZ para estados de Fock estritos exige cuidado. Radiação **suave** e **colinear** torna as probabilidades exclusivas divergentes no infravermelho; taxas inclusivas são finitas pelo teorema KLN. Na prática, somam-se emissões suaves abaixo da resolução do detector e correções virtuais.
+
+---
+
+### 8.4.13 Pequenos exemplos de cálculo
+
+**(1) Deduzir a LSZ escalar a partir da estrutura de polos.**  
+Parta da transformada de Fourier de $G^{(n+m)}$, isole os polos de uma partícula, identifique os resíduos $Z_{\phi}$ e mostre que aplicar $(\Box+m^{2})$ amputa um propagador externo.
+
+**(2) Seção de choque para espalhamento de contato $\phi^{4}$.**  
+No referencial do centro de massa, com massas idênticas $m$ e $|\mathcal M|^{2}=\lambda^{2}$,
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{\lambda^{2}}{64\pi^{2}s}\,\frac{|\mathbf p_{f}|}{|\mathbf p_{i}|}
+$$
+
+com $s=(p_{1}+p_{2})^{2}$, e massas iguais fornecem $|\mathbf p_{f}|=|\mathbf p_{i}|$.
+
+**(3) Verificação do teorema óptico em $\phi^{4}$ a um laço.**  
+Considere a bolha no canal $s$. Sua parte imaginária acima do limiar corresponde à integral no espaço de fase $2\to 2$ do módulo ao quadrado da amplitude de árvore.
+
+**(4) Projetor LSZ para férmions.**  
+Mostre que inserir $(i\overleftarrow{/\!\!partial}+m)$ em uma linha $\psi$ de saída e contrair com $\bar u(p')$ reproduz o fator usual do espinor externo quando $p'^{2}=m^{2}$.
+
+---
+
+### 8.4.14 Conjunto básico de exercícios
+
+- Partindo da função exata de dois pontos, prove que $Z_{\phi}^{-1/2}(\Box+m^{2})G^{(n+m)}$ amputa uma perna escalar e repita para $n+m$ pernas  
+- Escreva a fórmula LSZ para $e^{-}\mu^{-}\to e^{-}\mu^{-}$ e recupere a amplitude de árvore padrão da QED usando propagadores e vértices  
+- Deduza o elemento de espaço de fase de dois corpos $d\Pi_{2}$ no centro de massa e integre para obter a seção de choque total usual $2\to 2$ para $\mathcal M$ constante  
+- Use as regras de Cutkosky para calcular $\mathrm{Im}\,\mathcal M_{ii}$ em um diagrama simples de um laço e verifique o teorema óptico  
+- Mostre explicitamente como o cruzamento transforma a amplitude $\phi^{4}$ de $2\to 2$ entre os canais $s$, $t$ e $u$ por continuação analítica dos momentos externos
+
+---
+
+## 8.5 Renormalização: divergências, contratermos e evolução das constantes de acoplamento
+
+Diagramas de laço divergem no ultravioleta. A renormalização controla essas infinidades, define parâmetros físicos e prevê a dependência da escala. Nesta seção, aplicamos o procedimento ao exemplo acessível do campo escalar real $\phi^{4}$ em $d=4$, introduzimos contratermos, usamos regularização dimensional, extraímos a função $\beta$ e escrevemos a equação de Callan–Symanzik. A ideia é que os acoplamentos **evoluem com a escala**, os campos adquirem **dimensões anômalas**, e as previsões contêm uma **escala de renormalização** $\mu$, embora as observáveis não dependam dela.
+
+---
+
+### 8.5.1 Contagem de potências e o significado de “renormalizável”
+
+Considere um campo escalar real com
+
+$$
+\mathcal L = \frac{1}{2}(\partial_\mu\phi)(\partial^\mu\phi) - \frac{1}{2}m^{2}\phi^{2} - \frac{\lambda}{4!}\phi^{4}
+$$
+
+Em $d=4$, o campo tem dimensão de massa $[\phi]=1$, portanto $[\lambda]=0$ e $[m^{2}]=2$. O grau superficial de divergência UV $D$ de um diagrama com $L$ laços, $I$ linhas internas e $V_{4}$ vértices quárticos é
+
+$$
+D = 4L - 2I
+$$
+
+Usando identidades topológicas, encontramos que, para $\phi^{4}$, apenas amplitudes de **dois pontos** e de **quatro pontos** podem ser primitivamente divergentes em $d=4$; funções de $n$ pontos superiores são superficialmente convergentes. É a renormalizabilidade em ação.
+
+---
+
+### 8.5.2 Lagrangiana de contratermos e condições de renormalização
+
+As grandezas nuas recebem chapéus e são decompostas em partes renormalizadas finitas e contratermos
+
+$$
+\phi_{0} = Z_{\phi}^{1/2}\,\phi,\qquad m_{0}^{2} = m^{2} + \delta m^{2},\qquad \lambda_{0} = \mu^{\epsilon}\,(\lambda + \delta\lambda)
+$$
+
+Introduzimos a regularização dimensional com $d=4-\epsilon$ e uma escala $\mu$ para manter $\lambda$ adimensional. A lagrangiana se torna
+
+$$
+\mathcal L = \frac{1}{2}Z_{\phi}(\partial\phi)^{2} - \frac{1}{2}(m^{2} + \delta m^{2})\phi^{2} - \frac{1}{4!}(\lambda + \delta\lambda)\phi^{4}
+$$
+
+Expandir $Z_{\phi}=1+\delta Z_{\phi}$ fornece a **lagrangiana de contratermos**
+
+$$
+\mathcal L_{\text{ct}} = \frac{1}{2}\delta Z_{\phi}(\partial\phi)^{2} - \frac{1}{2}\delta m^{2}\phi^{2} - \frac{1}{4!}\delta\lambda\,\phi^{4}
+$$
+
+As **condições** de renormalização fixam $\delta Z_{\phi},\delta m^{2},\delta\lambda$. Duas escolhas comuns:
+
+- **Na camada de massa (OS)**: o propagador exato tem polo em $p^{2}=m^{2}$ com resíduo $1$, e a função de $4$ pontos $1\text{PI}$ em um ponto cinemático especificado é igual a $\lambda$  
+- **Subtração mínima (MS ou $\overline{\text{MS}}$)**: os contratermos cancelam apenas os polos em $1/\epsilon$ e, em $\overline{\text{MS}}$, algumas constantes. É rápida e conveniente para cálculos com o grupo de renormalização
+
+---
+
+### 8.5.3 Um laço: girino de dois pontos e renormalização da massa
+
+O diagrama de $2$ pontos com $1$ laço é o **girino**. Na regularização dimensional,
+
+$$
+-i\Sigma_{\text{tad}} = \frac{-i\lambda}{2}\int\!\frac{d^{d}k}{(2\pi)^{d}}\,\frac{i}{k^{2}-m^{2}+i\epsilon}
+$$
+
+O cálculo fornece
+
+$$
+\Sigma_{\text{tad}} = \frac{\lambda m^{2}}{32\pi^{2}}\left(\frac{2}{\epsilon} - \gamma_{E} + \ln 4\pi + \ln\frac{\mu^{2}}{m^{2}} + 1\right) + \text{finite}
+$$
+
+Em $\overline{\text{MS}}$, subtraímos o polo junto com $-\gamma_{E}+\ln 4\pi$ e definimos $\delta m^{2}$ para que a autoenergia **renormalizada** seja finita. Note que, a um laço, $\delta Z_{\phi}=0$ em $\phi^{4}$; a renormalização da função de onda começa a dois laços.
+
+---
+
+### 8.5.4 Um laço: diagrama “peixe” de quatro pontos e renormalização do acoplamento
+
+A correção de $1$ laço à função de $4$ pontos $1\text{PI}$ vem do diagrama **peixe** nos canais $s,t,u$. Com massas externas nulas ou no ponto euclidiano simétrico, podemos isolar a divergência:
+
+$$
+\Gamma^{(4)}_{\text{1-loop, div}} = -\,\frac{3\lambda^{2}}{16\pi^{2}}\;\frac{1}{\epsilon}
+$$
+
+portanto, em $\overline{\text{MS}}$,
+
+$$
+\delta\lambda = \frac{3\lambda^{2}}{16\pi^{2}}\;\frac{1}{\epsilon}
+$$
+
+O fator $3$ conta $s,t,u$. As partes finitas dependem da cinemática e do esquema, mas não afetam a função $\beta$ nessa ordem.
+
+---
+
+### 8.5.5 Grupo de renormalização e função $\beta$
+
+Os parâmetros nus **não** dependem de $\mu$, portanto $\mu\,d\lambda_{0}/d\mu=0$. Usando $\lambda_{0}=\mu^{\epsilon}Z_{\lambda}\lambda$ com $Z_{\lambda}=1+\delta\lambda/\lambda$, definimos
+
+$$
+\beta(\lambda) \equiv \mu\frac{d\lambda}{d\mu}\Big|_{\lambda_{0}} ,\qquad \gamma_{\phi}(\lambda) \equiv \frac{1}{2}\mu\frac{d\ln Z_{\phi}}{d\mu}\Big|_{\lambda_{0}},\qquad \gamma_{m}(\lambda) \equiv \frac{1}{m^{2}}\mu\frac{d m^{2}}{d\mu}\Big|_{\lambda_{0}}
+$$
+
+A um laço, para a teoria real $\phi^{4}$ em $d=4$,
+
+$$
+\beta(\lambda) = \frac{3}{16\pi^{2}}\lambda^{2}
+$$
+
+$$
+\gamma_{\phi}(\lambda) = 0 + \mathcal O(\lambda^{2})
+$$
+
+$$
+\gamma_{m}(\lambda) = \frac{\lambda}{16\pi^{2}} + \mathcal O(\lambda^{2})
+$$
+
+Assim, $\lambda$ **cresce** com a escala no UV. Resolver $d\lambda/d\ln\mu = \frac{3}{16\pi^{2}}\lambda^{2}$ fornece
+
+$$
+\lambda(\mu) = \frac{\lambda(\mu_{0})}{1 - \dfrac{3\lambda(\mu_{0})}{16\pi^{2}}\ln\!\left(\frac{\mu}{\mu_{0}}\right)}
+$$
+
+O denominador pode se anular em um $\mu$ finito: o **polo de Landau**. Isso indica que a teoria pura $\phi^{4}$ em $d=4$ não é, por si só, completa no UV.
+
+---
+
+### 8.5.6 Equação de Callan–Symanzik e comportamento de escala
+
+Uma função de Green renormalizada de $n$ pontos, $G^{(n)}$, satisfaz
+
+$$
+\left[\mu\frac{\partial}{\partial\mu} + \beta(\lambda)\frac{\partial}{\partial\lambda} - n\,\gamma_{\phi}(\lambda) + \gamma_{m}(\lambda)\,m^{2}\frac{\partial}{\partial m^{2}}\right] G^{(n)}(x_{1},\dots,x_{n};\lambda,m,\mu) = 0
+$$
+
+Isso expressa que a física não pode depender da escala arbitrária $\mu$. Sua solução **ressoma** grandes logaritmos $\ln(p/\mu)$ ao evoluir acoplamentos e massas até a escala relevante.
+
+---
+
+### 8.5.7 Dependência do esquema e observáveis
+
+Mudar o **esquema** de renormalização altera o valor numérico de $\lambda(\mu)$, mas os **elementos da matriz $S$** e as taxas mensuráveis independem do esquema na teoria exata. Resultados de ordem finita ajustados de modo consistente diferem apenas nas ordens superiores omitidas. Escolhas comuns:
+
+- **Na camada de massa**: intuitivo, mas complicado além de um laço  
+- **$\overline{\text{MS}}$**: remoção simples dos polos, álgebra organizada, padrão para cálculos de RG
+
+É possível converter entre esquemas por redefinições finitas $\lambda \to \lambda + c_{1}\lambda^{2} + \cdots$.
+
+---
+
+### 8.5.8 Dimensões anômalas e normalização do campo
+
+Embora $\gamma_{\phi}=0$ a um laço em $\phi^{4}$, em geral os campos adquirem **dimensões anômalas**. Os correlatores passam a escalar com potências corrigidas por $\gamma_{\phi}$. Em teorias conformes nos pontos fixos $\beta=0$, as dimensões dos operadores são a soma das partes **clássica e anômala**, determinadas pelos dados da CFT.
+
+---
+
+### 8.5.9 UV e IR, divergências logarítmicas e de potência
+
+A regularização dimensional converte divergências quadráticas em polos e dependência da massa, preservando a organização das simetrias. Divergências UV correspondem a polos em $1/\epsilon$; divergências IR surgem como polos separados quando as massas se anulam. Boas práticas:
+
+- Use **regularização dimensional** para teorias de gauge e RG  
+- Mantenha um regulador IR quando as massas forem nulas e remova-o após formar as observáveis inclusivas
+
+---
+
+### 8.5.10 Pequenos exemplos de cálculo
+
+**(a) Girino em $\overline{\text{MS}}$**
+
+Mostre que a escolha
+
+$$
+\delta m^{2} = \frac{\lambda m^{2}}{32\pi^{2}}\left(\frac{2}{\epsilon}\right)
+$$
+
+cancela o polo UV de $\Sigma_{\text{tad}}$ em $\overline{\text{MS}}$ e escreva a autoenergia finita restante
+
+**(b) $\beta$ a um laço pela álgebra dos contratermos**
+
+Partindo de $\lambda_{0}=\mu^{\epsilon}(\lambda+\delta\lambda)$ com $\delta\lambda = \tfrac{3\lambda^{2}}{16\pi^{2}}\tfrac{1}{\epsilon}$, imponha $d\lambda_{0}/d\mu=0$ e deduza $\beta(\lambda)=\tfrac{3}{16\pi^{2}}\lambda^{2}$
+
+**(c) Evolução do acoplamento e polo de Landau**
+
+Dado $\lambda(\mu_{0})=0.1$ em $\mu_{0}=m$, encontre a escala na qual o denominador se anula e interprete-a fisicamente
+
+**(d) Renormalização no ponto simétrico**
+
+Defina $\lambda$ pela função $1\text{PI}$ de $4$ pontos em $s=t=u=-\mu^{2}$. Mostre que mudar $\mu$ desloca $\lambda$ segundo a mesma $\beta$ de um laço
+
+**(e) Callan–Symanzik para $G^{(2)}$**
+
+Escreva a equação para $G^{(2)}(p^{2})$ no espaço dos momentos, use $\gamma_{\phi}=0$ a um laço e resolva o propagador melhorado por RG para somar os logaritmos dominantes
+
+---
+
+### 8.5.11 Conjunto básico de exercícios
+
+- Calcule o diagrama peixe de um laço com regularização dimensional e extraia seu polo  
+- Mostre que $\delta Z_{\phi}=0$ a um laço examinando a dependência da autoenergia em relação ao momento  
+- Calcule $\gamma_{m}$ a um laço a partir do contratermo $\delta m^{2}$ e verifique o resultado acima  
+- Partindo da equação CS, mostre que funções de $n$ pontos em momentos elevados são governadas pelos acoplamentos em evolução avaliados na escala dura  
+- Compare as definições OS e $\overline{\text{MS}}$ de $\lambda$ a um laço e deduza a conversão finita
+
+---
+
+## 8.6 Campos de gauge não abelianos e teoria de Yang–Mills
+
+O eletromagnetismo é uma teoria de gauge abeliana $U(1)$: os campos de gauge não interagem diretamente entre si. O Modelo Padrão se baseia em simetria de gauge **não abeliana**, na qual os bósons de gauge carregam carga e apresentam **autointerações**. Esta seção constrói a teoria de Yang–Mills (YM), acopla-a à matéria, quantiza-a com fixação de gauge e fantasmas e esboça a simetria BRST, as linhas de Wilson e a função $\beta$ de um laço por trás da liberdade assintótica.
+
+
+---
+
+### 8.6.1 Grupos de gauge, geradores e derivadas covariantes
+
+Seja $G$ um grupo de Lie compacto com geradores $T^{a}$ em alguma representação, satisfazendo
+
+$$
+[T^{a},T^{b}] = i f^{abc} T^{c}
+$$
+
+Normalizamos a álgebra de cor por
+
+$$
+\mathrm{tr}(T^{a}T^{b}) = T_{R}\,\delta^{ab},\qquad T^{a}T^{a} = C_{F}\,\mathbb I,\qquad f^{acd}f^{bcd} = C_{A}\,\delta^{ab}
+$$
+
+Para $G=SU(N)$ na representação fundamental, $T_{R}=\tfrac12$, $C_{F}=\tfrac{N^{2}-1}{2N}$, $C_{A}=N$.
+
+Um campo de matéria $\psi$ se transforma como $\psi \to U(x)\psi$, com $U(x)\in G$. A **derivada covariante** é
+
+$$
+D_{\mu} \equiv \partial_{\mu} + i g\,A_{\mu}^{a} T^{a}
+$$
+
+de modo que $D_{\mu}\psi$ se transforma como $\psi$. A intensidade de campo não abeliana vem do comutador
+
+$$
+[D_{\mu},D_{\nu}] = i g\,F_{\mu\nu}^{a} T^{a}
+$$
+
+com
+
+$$
+F_{\mu\nu}^{a} = \partial_{\mu}A_{\nu}^{a} - \partial_{\nu}A_{\mu}^{a} + g f^{abc} A_{\mu}^{b} A_{\nu}^{c}
+$$
+
+---
+
+### 8.6.2 Lagrangiana de Yang–Mills e equações de movimento
+
+A ação YM com matéria de Dirac é
+
+$$
+\mathcal L_{\mathrm{YM+mat}} = -\,\frac{1}{4}\,F_{\mu\nu}^{a} F^{a\,\mu\nu} + \bar\psi\,(i\gamma^{\mu} D_{\mu} - m)\,\psi
+$$
+
+Transformações de gauge infinitesimais com parâmetros $\alpha^{a}(x)$ atuam como
+
+$$
+\delta \psi = i g\,\alpha^{a} T^{a} \psi,\qquad
+\delta A_{\mu}^{a} = -\,\frac{1}{g}\,(D_{\mu}\alpha)^{a}
+$$
+
+As equações de movimento YM são
+
+$$
+(D_{\mu} F^{\mu\nu})^{a} = g\,\bar\psi\,\gamma^{\nu} T^{a}\psi
+$$
+
+juntamente com a identidade de Bianchi $D_{[\mu}F_{\nu\rho]}=0$.
+
+**Interações de três e quatro glúons.** Expandir $F^{2}$ revela autointerações cúbicas $\sim g f^{abc}(\partial A)AA$ e quárticas $\sim g^{2} f^{abe} f^{cde} A^{a}A^{b}A^{c}A^{d}$, ausentes na QED.
+
+---
+
+### 8.6.3 Fixação de gauge, fantasmas e propagadores
+
+A integral de caminho sobre $A_{\mu}$ conta várias vezes configurações equivalentes por gauge. Em gauges covariantes, acrescentamos
+
+$$
+\mathcal L_{\mathrm{gf}} = -\,\frac{1}{2\xi}\,(\partial_{\mu}A^{a\,\mu})^{2}
+$$
+
+e campos fantasmas de Faddeev–Popov $c^{a},\bar c^{a}$ com
+
+$$
+\mathcal L_{\mathrm{FP}} = (\partial_{\mu}\bar c^{a})\,(D^{\mu} c)^{a}
+$$
+
+Fantasmas são escalares anticomutantes que aparecem apenas em laços. No espaço dos momentos, o propagador do glúon é
+
+$$
+\tilde D_{\mu\nu}^{ab}(k) = \frac{-\,i\,\delta^{ab}}{k^{2}+i\epsilon}\left[g_{\mu\nu} - (1-\xi)\frac{k_{\mu}k_{\nu}}{k^{2}}\right]
+$$
+
+e o propagador do fantasma é $i\,\delta^{ab}/(k^{2}+i\epsilon)$. O gauge de Feynman corresponde a $\xi=1$, e o de Landau a $\xi=0$.
+
+---
+
+### 8.6.4 Simetria BRST em um panorama
+
+A fixação de gauge quebra a simetria de gauge, mas preserva uma invariância global **BRST**, gerada por uma diferencial nilpotente $s$:
+
+$$
+s\,A_{\mu}^{a} = (D_{\mu} c)^{a},\qquad
+s\,c^{a} = -\,\frac{g}{2}\,f^{abc} c^{b} c^{c},\qquad
+s\,\bar c^{a} = \frac{1}{\xi}\,\partial_{\mu}A^{a\,\mu},\qquad
+s\,\psi = i g\,c^{a} T^{a}\psi
+$$
+
+com $s^{2}=0$ em todos os campos. A ação com gauge fixado $\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{gf}}+\mathcal L_{\mathrm{FP}}$ é invariante BRST. Os estados físicos pertencem à **cohomologia BRST**, sendo fechados, mas não exatos. Isso garante o desacoplamento de polarizações não físicas e fantasmas.
+
+---
+
+### 8.6.5 Regras de Feynman e fatores de cor
+
+Lista de vértices, com todos os momentos de entrada:
+
+- **Glúon–glúon–glúon**  
+  Vértice $-g f^{abc}\,[g^{\mu\nu}(k-p)^{\rho} + g^{\nu\rho}(p-q)^{\mu} + g^{\rho\mu}(q-k)^{\nu}]$
+
+- **Quatro glúons**  
+  $-i g^{2}\big[f^{abe}f^{cde}(g^{\mu\rho}g^{\nu\sigma}-g^{\mu\sigma}g^{\nu\rho}) + \text{cyclic}\big]$
+
+- **Glúon–fantasma–fantasma**  
+  $-g f^{abc}\,k_{\mu}$, em que $k$ flui do fantasma para o antifantasma entrando no vértice
+
+- **Glúon–férmion–férmion**  
+  $-i g\,\gamma^{\mu} T^{a}$
+
+Identidades úteis da álgebra de cor:
+
+$$
+T^{a}_{ij} T^{a}_{kl} = T_{R}\left(\delta_{il}\delta_{jk} - \frac{1}{N}\delta_{ij}\delta_{kl}\right)\quad\text{for}\ SU(N)
+$$
+
+e
+
+$$
+\sum_{a} (T^{a}T^{a})_{ij} = C_{F}\,\delta_{ij}
+$$
+
+Essas relações aparecem ao elevar amplitudes ao quadrado e somar sobre cores.
+
+---
+
+### 8.6.6 Linhas e laços de Wilson e observáveis invariantes de gauge
+
+O transporte paralelo ao longo de um caminho $\mathcal C$ usa a **linha de Wilson**
+
+$$
+W(\mathcal C) = \mathcal P \exp\!\left(i g \int_{\mathcal C} A_{\mu}^{a} T^{a}\,dx^{\mu}\right)
+$$
+
+Laços fechados $\mathrm{tr}\,W(\mathcal C)$ são invariantes de gauge. No regime não perturbativo, a lei de área em contraste com a lei de perímetro de grandes laços retangulares diagnostica o confinamento. Na teoria de perturbações, linhas de Wilson ressomam os efeitos de glúons suaves.
+
+---
+
+### 8.6.7 Função beta e liberdade assintótica
+
+A um laço, com $n_{f}$ férmions de Dirac e $n_{s}$ escalares complexos na representação fundamental,
+
+$$
+\beta(g) \equiv \mu\,\frac{dg}{d\mu} = -\,\frac{g^{3}}{16\pi^{2}}\left(\frac{11}{3}C_{A} - \frac{4}{3}T_{R} n_{f} - \frac{1}{3} T_{R} n_{s}\right)
+$$
+
+Para a QCD, com $SU(3)$, $T_{R}=\tfrac12$ e $n_{s}=0$,
+
+$$
+\beta(g) = -\,\frac{g^{3}}{16\pi^{2}}\left(11 - \frac{2}{3}n_{f}\right)
+$$
+
+$\beta$ negativo significa que o acoplamento **diminui** em escalas altas: liberdade assintótica, se $n_{f} < 17$ para $SU(3)$. Inversamente, ele cresce no IR, sugerindo confinamento.
+
+---
+
+### 8.6.8 Termo topológico e $CP$
+
+Além de $-\tfrac14 F^{2}$, a densidade invariante de Lorentz e de gauge
+
+$$
+\mathcal L_{\theta} = \theta\,\frac{g^{2}}{32\pi^{2}}\,F_{\mu\nu}^{a}\,\tilde F^{a\,\mu\nu},\qquad \tilde F^{\mu\nu} \equiv \frac{1}{2}\,\epsilon^{\mu\nu\rho\sigma} F_{\rho\sigma}
+$$
+
+é uma derivada total classicamente, mas afeta a física quântica por meio de fibrados de gauge não triviais. A densidade topológica contraída é par sob $C$ e ímpar sob $P$, $T$ e $CP$, tanto para campos de gauge abelianos quanto não abelianos. Voltaremos a anomalias e topologia na §8.10.
+
+---
+
+### 8.6.9 Pequenos exemplos de cálculo
+
+**(a) Deduzir o vértice de três glúons.**  
+Expanda $-\tfrac14 F^{a}_{\mu\nu}F^{a\,\mu\nu}$ mantendo os termos cúbicos em $A$ e identifique a regra no espaço dos momentos.
+
+**(b) Fatores de cor em $q\bar q\to q'\bar q'$.**  
+Mostre que a média sobre as cores iniciais fornece um fator global $T_{R}^{2}$ e um traço $C_{F}$ na linha do férmion.
+
+**(c) Laço de fantasmas na autoenergia do glúon.**  
+Calcule o sinal e a estrutura tensorial; confirme que a soma dos laços de glúons e fantasmas é transversal, $k_{\mu}\Pi^{\mu\nu}(k)=0$.
+
+**(d) Nilpotência BRST em $A_{\mu}$.**  
+Use $s A_{\mu}^{a}=(D_{\mu}c)^{a}$ e $s c^{a}=-\tfrac{g}{2} f^{abc} c^{b}c^{c}$ para mostrar $s^{2}A_{\mu}^{a}=0$ pela identidade de Jacobi.
+
+**(e) Sinal de $\beta$ a um laço.**  
+Conte os diagramas que contribuem para a função de dois pontos do glúon: laço de glúons $\propto +\tfrac{11}{3}C_{A}$, laço de férmions $\propto -\tfrac{4}{3}T_{R} n_{f}$, laço de escalares $\propto -\tfrac{1}{3}T_{R} n_{s}$, e combine-os.
+
+---
+
+### 8.6.10 Conjunto básico de exercícios
+
+- Partindo de $D_{\mu}$, deduza $F_{\mu\nu}$ e prove a identidade de Bianchi $D_{[\mu}F_{\nu\rho]}=0$  
+- Quantize YM em gauge covariante e escreva as regras de Feynman completas, incluindo fantasmas  
+- Mostre que a identidade de Slavnov–Taylor impõe a transversalidade do propagador renormalizado do glúon e a universalidade da carga no vértice quark-glúon  
+- Calcule o laço de Wilson em torno de um retângulo até a ordem $g^{2}$ e interprete o potencial de Coulomb a partir de seu logaritmo  
+- Deduza a função $\beta$ de um laço usando o gauge de campo de fundo para manter manifesta a invariância de gauge da ação efetiva
+
+---
+
+## 8.7 QED na prática: processos fundamentais, efeitos de um laço e evolução de $\alpha$
+
+A QED é o laboratório de precisão da física de partículas: uma teoria de gauge rigorosamente testada, na qual a simetria orienta os cálculos e os números concordam em mais de doze dígitos. Esta seção coloca as ferramentas em prática: espalhamento no nível de árvore, como surge a segurança infravermelha, o que um laço produz — polarização do vácuo, correção de vértice e autoenergia do elétron — e por que a carga elétrica **evolui** com a escala.
+
+> Convenções: unidades naturais ($\hbar=c=1$). Métrica $g_{\mu\nu}=\mathrm{diag}(+,-,-,-)$. Carga do elétron $e>0$, de modo que o elétron tem $-e$. Constante de estrutura fina $\alpha\equiv e^{2}/4\pi$.
+
+---
+
+### 8.7.1 Lagrangiana, campos e identidades de Ward: uma revisão
+
+A lagrangiana da QED é
+
+$$
+\mathcal L_{\mathrm{QED}}=\bar\psi(i\gamma^{\mu}D_{\mu}-m)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu},\qquad D_{\mu}=\partial_{\mu}+ieA_{\mu}
+$$
+
+A invariância de gauge $\psi\to e^{i\alpha(x)}\psi$, $A_{\mu}\to A_{\mu}-\partial_{\mu}\alpha/e$ implica a conservação da corrente e a **identidade de Ward–Takahashi**
+
+$$
+q_{\mu}\,\Gamma^{\mu}(p',p) = S^{-1}(p') - S^{-1}(p)
+$$
+
+que impõe $Z_{1}=Z_{2}$, a igualdade entre as renormalizações do vértice e da função de onda, e elimina contribuições longitudinais do fóton nas amplitudes.
+
+---
+
+### 8.7.2 Regras de Feynman usadas na prática
+
+- **Propagador do férmion**: $i(/\!\! p + m)/(p^{2}-m^{2}+i\epsilon)$  
+- **Propagador do fóton em gauge covariante**:
+
+$$
+\frac{-i}{k^{2}+i\epsilon}\left[g_{\mu\nu} - (1-\xi)\frac{k_{\mu}k_{\nu}}{k^{2}}\right]
+$$
+
+- **Vértice**: $-ie\gamma^{\mu}$  
+- **Linhas externas**: espinores $u,\bar u,v,\bar v$; polarização do fóton $\epsilon^{\mu}$ com $q\cdot\epsilon=0$ em gauges físicos
+
+---
+
+### 8.7.3 Exemplo clássico no nível de árvore: $e^{+}e^{-}\to \mu^{+}\mu^{-}$
+
+Um fóton no canal $s$:
+
+$$
+\mathcal M = \bar v(p_{2})\,(-ie\gamma^{\mu})\,u(p_{1})\;\frac{-i g_{\mu\nu}}{s}\;\bar u(k_{1})\,(-ie\gamma^{\nu})\,v(k_{2})
+$$
+
+No centro de massa, com $m_{e},m_{\mu}\approx 0$, obtemos
+
+$$
+\overline{|\mathcal M|^{2}} = 2 e^{4}\,(1+\cos^{2}\theta)
+$$
+
+e a seção de choque diferencial
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{\alpha^{2}}{4s}\,(1+\cos^{2}\theta)
+$$
+
+A seção de choque total é
+
+$$
+\sigma(e^{+}e^{-}\to \mu^{+}\mu^{-}) = \frac{4\pi\alpha^{2}}{3s}
+$$
+
+Essa é a referência da **razão R**, usada para observar limiares de quarks ao substituir $\mu$ por $\sum_{q}Q_{q}^{2}$ multiplicado pelo fator de cor.
+
+---
+
+### 8.7.4 Bhabha e Møller: cargas idênticas e contribuições do canal $t$
+
+- **Bhabha** ($e^{+}e^{-}\to e^{+}e^{-}$): os canais $s$ $+$ $t$ interferem. Em ângulos pequenos, domina o canal $t$, $\sim 1/\theta^{4}$, usado no monitoramento da luminosidade.  
+- **Møller** ($e^{-}e^{-}\to e^{-}e^{-}$): $t$ e $u$ com sinais negativos da estatística de Fermi; novamente há um pico na direção frontal.
+
+Ambos são excelentes exercícios de traços de espinores e interferência. Lembre-se de tirar médias e somar spins e de incluir o fator $1/2!$ para partículas idênticas quando necessário.
+
+---
+
+### 8.7.5 Espalhamento Compton: $e\gamma\to e\gamma$
+
+Há dois diagramas, nos canais s e u. A fórmula de Klein–Nishina surge após as somas sobre spin. No referencial de repouso do elétron, com energia do fóton incidente $\omega$ e ângulo de espalhamento $\theta$,
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{r_{e}^{2}}{2}\left(\frac{\omega'}{\omega}\right)^{2}\left(\frac{\omega'}{\omega}+\frac{\omega}{\omega'}-\sin^{2}\theta\right)
+$$
+
+com o raio clássico $r_{e}=e^{2}/4\pi m$ e
+
+$$
+\omega' = \frac{\omega}{1+\frac{\omega}{m}(1-\cos\theta)}
+$$
+
+O limite de baixa energia $\omega\ll m$ fornece o espalhamento Thomson $d\sigma/d\Omega = r_{e}^{2}(1+\cos^{2}\theta)/2$.
+
+---
+
+### 8.7.6 Espalhamento Mott: elétrons em um campo de Coulomb
+
+O espalhamento por uma carga externa $Z$ via troca de um fóton fornece a seção de choque de **Mott**
+
+$$
+\left(\frac{d\sigma}{d\Omega}\right)_{\mathrm{Mott}} = \left(\frac{Z\alpha}{2p\sin^{2}\tfrac{\theta}{2}}\right)^{2}\cos^{2}\tfrac{\theta}{2}
+$$
+
+Os efeitos relativísticos de spin aparecem no fator $\cos^{2}\tfrac{\theta}{2}$ em comparação com Rutherford.
+
+---
+
+### 8.7.7 Física infravermelha: fótons suaves e segurança KLN
+
+Diagramas virtuais de um laço com fótons causam **divergências IR**, assim como emissões reais de um fóton **suave** de energia $\omega<\Delta E$. O teorema de Bloch–Nordsieck/KLN afirma que **virtual + real**, com resolução fixa do detector, é finito. O esquema para qualquer processo $2\to 2$ da QED é:
+
+- Correção virtual suave $\propto \alpha\,\ln^{2}\!\left(\frac{\lambda}{E}\right)$ ou $\alpha\,\ln\!\lambda$ com regulador IR $\lambda$  
+- Emissão real suave $\propto -$ os mesmos logaritmos com $\lambda\to \Delta E$  
+- Soma: o regulador se cancela, e o $\ln(E/\Delta E)$ restante é físico, dependendo do que conta como “observado”
+
+Regra prática: ao calcular em NLO, sempre acrescente a contribuição de fótons reais suaves e colineares compatível com a medida.
+
+---
+
+### 8.7.8 Autoenergias de um laço e exemplos de renormalização
+
+A **autoenergia do elétron** $\Sigma(/\!\! p)$ renormaliza a massa e a função de onda. Em $\overline{\mathrm{MS}}$, a um laço,
+
+$$
+\Sigma(/\!\! p) = \frac{\alpha}{4\pi}\left[\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi\right)(-/\!\! p + 4m) + \cdots\right]
+$$
+
+A **polarização do vácuo**, ou autoenergia do fóton, possui a estrutura tensorial
+
+$$
+\Pi_{\mu\nu}(q) = \left(q_{\mu}q_{\nu}-q^{2}g_{\mu\nu}\right)\Pi(q^{2})
+$$
+
+A invariância de gauge impõe a transversalidade $q^{\mu}\Pi_{\mu\nu}=0$. A um laço, com um férmion de massa $m$,
+
+$$
+\Pi(q^{2}) = \frac{\alpha}{3\pi}\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi - \ln\frac{m^{2}}{\mu^{2}}\right) + \text{finite}(q^{2}/m^{2})
+$$
+
+A **correção de vértice** $\Gamma^{\mu}=\gamma^{\mu}F_{1}(q^{2}) + \frac{i\sigma^{\mu\nu}q_{\nu}}{2m}F_{2}(q^{2})$ gera o **momento magnético anômalo** $a_{e}=F_{2}(0)$.
+
+A um laço, segundo Schwinger:
+
+$$
+a_{e} = \frac{\alpha}{2\pi}
+$$
+
+Laços superiores acrescentam correções cada vez menores, que os experimentos continuam confirmando.
+
+---
+
+### 8.7.9 Evolução do acoplamento eletromagnético
+
+A polarização do vácuo modifica o propagador do fóton e torna a carga efetiva dependente da escala. Definimos
+
+$$
+\alpha(q^{2}) = \frac{\alpha(\mu^{2})}{1 - \Delta\alpha(q^{2},\mu^{2})}
+$$
+
+Na ordem dominante, para um férmion de carga $Q_{f}$ e massa $m_{f}$,
+
+$$
+\Delta\alpha(q^{2},\mu^{2}) = \frac{\alpha}{3\pi}\,Q_{f}^{2}\,\ln\!\left(\frac{q^{2}}{\mu^{2}}\right) + \cdots
+$$
+
+Somar todas as espécies carregadas que contribuem até a escala considerada aumenta $\alpha$ moderadamente: de $\alpha^{-1}\approx 137$ em $q^{2}\approx 0$ para $\alpha^{-1}\approx 128$ perto do polo $Z$. São valores ilustrativos; os detalhes dependem da polarização hadrônica do vácuo.
+
+---
+
+### 8.7.10 Somas de polarizações, escolhas de gauge e verificações de consistência
+
+- Para fótons internos em gauges covariantes, mantenha o propagador completo; identidades de Ward garantem que $\xi$ se cancele nas observáveis  
+- Para fótons reais externos, podemos usar
+
+$$
+\sum_{\lambda}\epsilon_{\mu}^{(\lambda)}(q)\,\epsilon_{\nu}^{(\lambda)\ast}(q) = -g_{\mu\nu}
+$$
+
+após provar $q_{\mu}\mathcal M^{\mu}=0$ para cada corrente acoplada  
+- Para somas sobre spin, os traços usuais são:
+
+$$
+\sum_{s}u^{s}(p)\bar u^{s}(p)=/\!\! p+m,\qquad \sum_{s}v^{s}(p)\bar v^{s}(p)=/\!\! p-m
+$$
+
+---
+
+### 8.7.11 Pequenos exemplos de cálculo
+
+**(a) Exercício de traços para $e^{+}e^{-}\to \mu^{+}\mu^{-}$**  
+Calcule $\overline{|\mathcal M|^{2}}$ usando traços de matrizes $\gamma$ e confirme $(1+\cos^{2}\theta)$.
+
+**(b) Fatorização de fótons suaves**  
+Mostre que, no limite suave, a amplitude $n\to m+\gamma_{\mathrm{soft}}$ se fatoriza:
+
+$$
+\mathcal M_{\mathrm{soft}} = \mathcal M_{0}\;\left[e\sum_{i\in\text{charged legs}}\eta_{i}\frac{p_{i}\cdot \epsilon}{p_{i}\cdot q}\right]
+$$
+
+com $\eta_{i}=\pm 1$ para cargas de saída e de entrada.
+
+**(c) Esboço de $a_{e}$ a um laço**  
+Projete o vértice sobre $\sigma^{\mu\nu}$ em $q^{2}\to 0$ e integre os parâmetros de Feynman para obter $F_{2}(0)=\alpha/2\pi$.
+
+**(d) Polarização do vácuo e $\alpha(q^{2})$**  
+Calcule $\Pi(q^{2})$ no limite $|q^{2}|\gg m^{2}$ e deduza o logaritmo dominante da evolução de $\alpha$.
+
+**(e) Limite de baixa energia do espalhamento Compton**  
+Expanda a amplitude de árvore para $\omega\ll m$ e recupere a seção de choque Thomson.
+
+---
+
+### 8.7.12 Conjunto básico de exercícios
+
+- Deduza a seção de choque diferencial de Bhabha no nível de árvore no limite sem massa; identifique a simetria $s\leftrightarrow t$ e o comportamento em ângulos pequenos  
+- Calcule a fórmula de Klein–Nishina a partir dos dois diagramas e mostre o limite Thomson  
+- Demonstre o cancelamento do regulador IR entre contribuições virtuais e reais suaves para $e^{+}e^{-}\to \mu^{+}\mu^{-}$ em NLO, restando $\ln(E/\Delta E)$  
+- Usando Ward–Takahashi, prove $Z_{1}=Z_{2}$ a um laço na regularização dimensional  
+- A partir do propagador renormalizado do fóton, extraia a carga efetiva no limite Thomson e perto do limiar de um férmion pesado; discuta desacoplamento e matching
+
+---
+
+## 8.8 Quebra espontânea de simetria: mecanismos de Goldstone e de Higgs
+
+Às vezes, as equações possuem mais simetria do que o estado fundamental manifesta. Essa diferença é a **quebra espontânea de simetria (SSB)**. Em teorias globais, ela produz **bósons de Goldstone** sem massa; em teorias de gauge, esses modos de Goldstone são absorvidos, dando massa aos bósons de gauge pelo **mecanismo de Higgs**. Esta seção aborda a teoria global $U(1)$, o modelo de Higgs abeliano, a generalização não abeliana e uma prévia do setor eletrofraco. Também discutimos potenciais efetivos e apresentamos brevemente os defeitos topológicos.
+
+---
+
+### 8.8.1 O significado de “espontânea”
+
+A lagrangiana possui uma simetria contínua, mas o **vácuo** não. Há mínimos degenerados relacionados pela simetria, e a teoria “escolhe um”, quebrando-a. As excitações nas direções planas são modos de Goldstone; as transversais a elas têm massa.
+
+Um parâmetro de ordem é um campo ou operador composto cujo valor esperado no vácuo, ou vev, não é invariante sob a simetria. Vamos denotá-lo por $v$.
+
+---
+
+### 8.8.2 $U(1)$ global com um escalar complexo: o potencial de chapéu mexicano
+
+Considere um único escalar complexo $\phi$ com simetria global $U(1)$, $\phi\to e^{i\alpha}\phi$, e
+
+$$
+\mathcal L = \partial_{\mu}\phi^{\ast}\partial^{\mu}\phi - V(\phi),\qquad
+V(\phi) = -\,\mu^{2}\,|\phi|^{2} + \frac{\lambda}{2}\,|\phi|^{4},\quad \mu^{2}>0,\ \lambda>0
+$$
+
+![Os mínimos do potencial de um escalar complexo formam um círculo no espaço dos campos. Perturbações radiais e angulares são distintas; a direção angular é plana para a simetria global.](/images/diagrams/vacuum-circle.svg)
+
+Os mínimos satisfazem $|\phi|^{2}=v^{2}/2$ com
+
+$$
+v \equiv \sqrt{\frac{2\mu^{2}}{\lambda}}
+$$
+
+Escolhemos um vácuo e expandimos
+
+$$
+\phi(x) = \frac{1}{\sqrt{2}}\,[v + h(x) + i\,\pi(x)]
+$$
+
+Substituindo e mantendo os termos quadráticos,
+
+$$
+\mathcal L_{\text{quad}} = \frac{1}{2}(\partial h)^{2} + \frac{1}{2}(\partial \pi)^{2} - \frac{1}{2}\,m_{h}^{2}\,h^{2}
+$$
+
+com
+
+$$
+m_{h}^{2} = \lambda v^{2},\qquad m_{\pi}^{2} = 0
+$$
+
+Assim, $h$ é um modo radial massivo e $\pi$ é um **bóson de Goldstone** sem massa, resultante da quebra de $U(1)\to \{\}$
+
+---
+
+### 8.8.3 Teorema de Goldstone em um panorama
+
+Para uma simetria **global** contínua com corrente conservada $J^{\mu}_{a}$ e carga $Q_{a}$, se algum operador local $\mathcal O$ possui um vev não invariante, $\langle 0|[Q_{a},\mathcal O]|0\rangle\neq 0$, então existe um modo sem massa de spin 0. Mais geralmente, para um grupo de Lie $G$ quebrado para $H$, o número de modos de Goldstone é igual ao número de geradores quebrados
+
+$$
+N_{\text{GB}} = \dim G - \dim H
+$$
+
+Em teorias relativísticas com vácuos invariantes de Lorentz, os modos de Goldstone possuem dispersão linear em pequenos momentos
+
+---
+
+### 8.8.4 Mecanismo de Higgs abeliano: absorvendo o bóson de Goldstone
+
+Agora tornamos $U(1)$ uma simetria de gauge com acoplamento $g$. Substituímos $\partial_{\mu}\to D_{\mu}=\partial_{\mu}+igA_{\mu}$
+
+$$
+\mathcal L = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + |D_{\mu}\phi|^{2} - \left(-\mu^{2}|\phi|^{2} + \frac{\lambda}{2}|\phi|^{4}\right)
+$$
+
+Expandimos em torno do mesmo vev. No **gauge unitário**, fixamos a fase em zero e escrevemos
+
+$$
+\phi(x) = \frac{1}{\sqrt{2}}\,[v + h(x)]
+$$
+
+A lagrangiana quadrática contém
+
+$$
+\mathcal L_{\text{quad}} \supset \frac{1}{2}(\partial h)^{2} - \frac{1}{2}m_{h}^{2}h^{2} + \frac{1}{2}m_{A}^{2}\,A_{\mu}A^{\mu}
+$$
+
+com massas
+
+$$
+m_{h}^{2} = \lambda v^{2},\qquad m_{A}^{2} = g^{2} v^{2}
+$$
+
+Balanço dos graus de liberdade:
+
+- Antes da SSB: escalar complexo $=2$ graus de liberdade reais mais campo de gauge sem massa $=2$ polarizações transversais, total $4$  
+- Após a SSB: um escalar real $h$ $=1$ mais vetor massivo $A_{\mu}$ $=3$ polarizações, total $4$
+
+O bóson de Goldstone $\pi$ não desapareceu: tornou-se a polarização longitudinal do bóson de gauge massivo
+
+---
+
+### 8.8.5 Gauges $R_{\xi}$, modos que seriam de Goldstone e BRST
+
+O gauge unitário oculta a renormalizabilidade. Em gauges covariantes $R_{\xi}$, acrescentamos
+
+$$
+\mathcal L_{\text{gf}} = -\,\frac{1}{2\xi}\left(\partial_{\mu}A^{\mu} - \xi\,g\,v\,\pi\right)^{2}
+$$
+
+O modo que seria de Goldstone $\pi$ se propaga com massa
+
+$$
+m_{\pi}^{2} = \xi\,m_{A}^{2}
+$$
+
+e os fantasmas de Faddeev–Popov também adquirem massas dependentes de $\xi$. As observáveis físicas independem de $\xi$; a simetria **BRST** garante os cancelamentos necessários
+
+---
+
+### 8.8.6 Mecanismo de Higgs não abeliano: $G\to H$
+
+Seja $\phi$ um campo que se transforma em uma representação de um grupo não abeliano $G$. Escolhemos um potencial cujos mínimos quebram $G$ para um subgrupo $H$ e escrevemos a derivada covariante $D_{\mu}=\partial_{\mu}+ig A_{\mu}^{a} T^{a}$. Expandir em torno de um vev $\langle\phi\rangle$ fornece uma matriz de massas dos bósons de gauge
+
+$$
+(M^{2})^{ab} \propto g^{2}\,\langle\phi\rangle^{\dagger}\{T^{a},T^{b}\}\langle\phi\rangle
+$$
+
+Bósons de gauge associados a geradores **quebrados** adquirem massa e absorvem os modos de Goldstone correspondentes; aqueles dos geradores **não quebrados** permanecem sem massa e geram o grupo de gauge residual $H$
+
+---
+
+### 8.8.7 Prévia eletrofraca: $SU(2)_{L}\times U(1)_{Y}\to U(1)_{\text{em}}$
+
+Considere um dubleto escalar complexo $H$ com hipercarga $Y=1/2$ e potencial $V=-\mu^{2}H^{\dagger}H+\lambda(H^{\dagger}H)^{2}$. Com
+
+$$
+\langle H\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\ v\end{pmatrix},\qquad v \approx 246\ \text{GeV}
+$$
+
+as massas dos bósons de gauge são
+
+$$
+m_{W} = \frac{g v}{2},\qquad m_{Z} = \frac{\sqrt{g^{2}+g'^{2}}\,v}{2},\qquad m_{\gamma} = 0
+$$
+
+O escalar físico $h$ possui
+
+$$
+m_{h}^{2} = 2\lambda v^{2}
+$$
+
+Acoplamentos de Yukawa $\mathcal L_{Y} = -\,y_{f}\,\bar f_{L} H f_{R} + \text{h.c.}$ fornecem massas aos férmions
+
+$$
+m_{f} = \frac{y_{f} v}{\sqrt{2}}
+$$
+
+Assim, os acoplamentos a $h$ são proporcionais à massa, razão pela qual partículas pesadas se acoplam fortemente ao Higgs
+
+---
+
+### 8.8.8 Potencial efetivo e quebra radiativa
+
+As correções quânticas transformam o potencial em um **potencial efetivo** $V_{\text{eff}}(\phi)$, cujos mínimos determinam o verdadeiro vácuo
+
+$$
+e^{i\int d^{4}x\,\left[-V_{\text{eff}}(\phi_{c})\right]} \sim \int \mathcal D\varphi\ \exp\!\left\{iS[\phi_{c}+\varphi]\right\}
+$$
+
+A um laço em $\overline{\text{MS}}$, temos esquematicamente
+
+$$
+V_{\text{eff}}^{(1)}(\phi) = \sum_{i}\frac{n_{i}}{64\pi^{2}}\,M_{i}^{4}(\phi)\left[\ln\!\left(\frac{M_{i}^{2}(\phi)}{\mu^{2}}\right) - c_{i}\right]
+$$
+
+em que $M_{i}(\phi)$ são massas dependentes do campo e $n_{i}$ conta os graus de liberdade com um sinal para férmions. Às vezes, os efeitos radiativos **induzem** SSB mesmo quando $\mu^{2}=0$ no nível de árvore: o mecanismo de Coleman–Weinberg
+
+---
+
+### 8.8.9 Estruturas topológicas: quando os vácuos têm buracos
+
+A variedade dos vácuos $\mathcal M=G/H$ pode ter topologia não trivial. Os defeitos dependem de seus grupos de homotopia
+
+- $\pi_{0}(\mathcal M)\neq 0$ → **paredes de domínio** por quebra discreta  
+- $\pi_{1}(\mathcal M)\neq 0$ → **cordas**; $U(1)$ global fornece cordas globais, e $U(1)$ de gauge fornece vórtices de Abrikosov–Nielsen–Olesen  
+- $\pi_{2}(\mathcal M)\neq 0$ → **monopolos** em quebras não abelianas apropriadas
+
+Eles podem surgir na matéria condensada ou na cosmologia e deixar sinais mensuráveis
+
+---
+
+### 8.8.10 Pequenos exemplos de cálculo
+
+**(a) Espectro de massas no modelo de Higgs abeliano**
+
+Parta de $|D\phi|^{2}$ com $\phi=(v+h+i\pi)/\sqrt{2}$. Expanda o termo cinético para mostrar que $A_{\mu}$ adquire $\tfrac{1}{2}g^{2}v^{2}A_{\mu}A^{\mu}$ e que a mistura $A_{\mu}\partial^{\mu}\pi$ é removida pela escolha de fixação de gauge $R_{\xi}$, restando $m_{A}^{2}=g^{2}v^{2}$ e $m_{\pi}^{2}=\xi m_{A}^{2}$
+
+**(b) Contagem de modos de Goldstone para $O(N)\to O(N-1)$**
+
+Um vetor real de $N$ componentes $\boldsymbol{\phi}$ com $V=-\tfrac{1}{2}\mu^{2}\boldsymbol{\phi}^{2}+\tfrac{\lambda}{4}(\boldsymbol{\phi}^{2})^{2}$ fornece $G/H=O(N)/O(N-1)\cong S^{N-1}$. Os geradores quebrados resultam em $N-1$ modos de Goldstone e um modo radial massivo com $m_{h}^{2}=2\lambda v^{2}$
+
+**(c) Massas de Yukawa a partir do vev**
+
+Dado $-y\bar\psi_{L}\phi \psi_{R}+\text{h.c.}$ para um escalar complexo com $\langle\phi\rangle=v/\sqrt{2}$, mostre que a massa do férmion é $m=yv/\sqrt{2}$ e o parâmetro de Yukawa é $y=\sqrt{2}m/v$, enquanto o coeficiente do acoplamento físico do Higgs é $y/\sqrt{2}=m/v$
+
+**(d) Matriz de massas não abeliana**
+
+Para $\phi$ na representação $R$, deduza $(M^{2})^{ab} \propto g^{2}\,\langle\phi\rangle^{\dagger} T^{\{a}T^{b\}} \langle\phi\rangle$ e diagonalize em um exemplo simples de $SU(2)\to \{\}$ para encontrar três bósons de gauge massivos degenerados
+
+**(e) Estacionariedade de $V_{\text{eff}}$ a um laço**
+
+Considere o espectro simplificado $M_{h}^{2}(\phi)=3\lambda\phi^{2}-\mu^{2}$, $M_{\pi}^{2}(\phi)=\lambda\phi^{2}-\mu^{2}$ para $U(1)$ global. Escreva a condição de estacionariedade $dV_{\text{eff}}/d\phi=0$ e discuta a melhoria pelo acoplamento em evolução ao escolher $\mu\sim \phi$
+
+---
+
+### 8.8.11 Conjunto básico de exercícios
+
+- Prove a contagem de modos de Goldstone $N_{\text{GB}}=\dim G - \dim H$ para uma teoria relativística com vácuo invariante de Lorentz  
+- Deduza o espectro de massas do modelo de Higgs abeliano no gauge $R_{\xi}$ e verifique a independência das massas dos polos em relação a $\xi$  
+- Para $SU(2)_{L}\times U(1)_{Y}$ com um único dubleto de Higgs, deduza $m_{W}$, $m_{Z}$ e a relação do ângulo de mistura fraco $\cos\theta_{W}=m_{W}/m_{Z}$  
+- Calcule a amplitude de espalhamento $W_{L}W_{L}\to W_{L}W_{L}$ em alta energia e mostre como a troca de Higgs controla o crescimento com $s$  
+- Em um modelo $U(1)$ global, construa a corrente de Noether e mostre que o modo de Goldstone se acopla por derivadas, produzindo amplitudes suprimidas em baixas energias
+
+---
+
+## 8.9 Cromodinâmica quântica (QCD): cor, pártons e confinamento
+
+A QCD é a teoria de gauge não abeliana $SU(3)_{\text{color}}$ de quarks e glúons. Seu acoplamento é fraco em distâncias curtas, pela liberdade assintótica, e forte em distâncias longas, no confinamento. Os graus de liberdade que espalham nos colisores são **pártons**; o que detectamos são **hádrons**. A ligação envolve **fatorização**, **evolução com a escala** e amplo uso de **simetrias**.
+
+---
+
+### 8.9.1 Lagrangiana, campos e álgebra de cor
+
+Com $n_{f}$ sabores de quarks $\psi_{f}$ na representação fundamental de $SU(3)$ e glúons $A_{\mu}^{a}$ na adjunta, a lagrangiana da QCD é
+
+$$
+\mathcal L_{\mathrm{QCD}} = -\,\frac{1}{4}\,F_{\mu\nu}^{a} F^{a\,\mu\nu} + \sum_{f=1}^{n_{f}} \bar\psi_{f}\,(i\gamma^{\mu} D_{\mu} - m_{f})\,\psi_{f}
+$$
+
+com derivada covariante e intensidade de campo
+
+$$
+D_{\mu} = \partial_{\mu} + i g\,A_{\mu}^{a} T^{a},\qquad
+F_{\mu\nu}^{a} = \partial_{\mu}A_{\nu}^{a} - \partial_{\nu}A_{\mu}^{a} + g f^{abc} A_{\mu}^{b} A_{\nu}^{c}
+$$
+
+Fatores de cor para $SU(3)$:
+
+$$
+C_{A}=3,\qquad C_{F}=\frac{4}{3},\qquad T_{R}=\frac{1}{2}
+$$
+
+Essas constantes governam amplitudes, funções de desdobramento e a função $\beta$.
+
+---
+
+### 8.9.2 Liberdade assintótica e evolução do acoplamento
+
+A um laço, a função $\beta$ da QCD é
+
+$$
+\beta(g) \equiv \mu\frac{dg}{d\mu} = -\,\frac{g^{3}}{16\pi^{2}}\left(\frac{11}{3}C_{A} - \frac{4}{3}T_{R} n_{f}\right) + \cdots
+$$
+
+Para $SU(3)$, isso se torna $\beta(g)=-(g^{3}/16\pi^{2})(11 - 2n_{f}/3)$, que é **negativo** para valores físicos de $n_{f}$. Em termos de $\alpha_{s}\equiv g^{2}/4\pi$,
+
+$$
+\alpha_{s}(\mu) = \frac{4\pi}{\beta_{0}\,\ln(\mu^{2}/\Lambda_{\mathrm{QCD}}^{2})},\qquad \beta_{0}=11 - \frac{2}{3}n_{f}
+$$
+
+O acoplamento diminui em $\mu$ alto, a liberdade UV, e cresce perto de $\Lambda_{\mathrm{QCD}}$, onde a dinâmica IR se intensifica. Ao cruzar limiares de quarks pesados, fazemos o **matching** entre descrições com diferentes $n_{f}$.
+
+---
+
+### 8.9.3 Confinamento, tubos de fluxo e hadronização
+
+A QCD não perturbativa parece confinar a cor: quarks e glúons isolados não são observados. A intuição é:
+
+- As linhas de campo não abelianas interagem entre si e se agrupam em **tubos de fluxo**. Cordas longas custam energia $\propto r$ e acabam se rompendo, criando pares quark-antiquark  
+- Na rede, o potencial estático entre quarks apresenta a forma de **Cornell**
+
+$$
+V(r) \simeq -\,\frac{4\alpha_{s}}{3\,r} + \kappa r
+$$
+
+com comportamento de Coulomb em distâncias curtas e crescimento linear em distâncias longas. Em eventos de alta energia, o confinamento aparece como **jatos**: feixes colimados de partículas que preservam informações sobre o párton original.
+
+---
+
+### 8.9.4 Simetria quiral e sua quebra
+
+Com quarks leves $u,d,s$ e $m_{q}\ll \Lambda_{\mathrm{QCD}}$, a lagrangiana clássica possui uma simetria global aproximada
+
+$$
+SU(N_{f})_{L}\times SU(N_{f})_{R} \to SU(N_{f})_{V}
+$$
+
+espontaneamente quebrada por um condensado de quarks $\langle \bar q q\rangle$. Os bósons de Goldstone resultantes são os pseudoescalares leves; as massas explícitas dos quarks os tornam **pseudo**-Goldstones. A relação de Gell-Mann–Oakes–Renner é
+
+$$
+f_{\pi}^{2} m_{\pi}^{2} \simeq -\,(m_{u}+m_{d})\,\langle \bar q q \rangle
+$$
+
+Uma simetria axial $U(1)_{A}$ é violada pela anomalia
+
+$$
+\partial_{\mu} J_{5}^{\mu} = \frac{n_{f}\,g^{2}}{16\pi^{2}}\,F_{\mu\nu}^{a}\,\tilde F^{a\,\mu\nu}
+$$
+
+que eleva a massa do $\eta'$ muito acima das massas dos píons.
+
+---
+
+### 8.9.5 Espalhamento profundamente inelástico e pártons
+
+Léptons sondam hádrons por uma transferência de momento dura $Q^{2}=-q^{2}$. Na ordem dominante, com **escalonamento de Bjorken**, o elétron vê pártons quase livres de spin $\tfrac12$. As funções de estrutura $F_{1}(x,Q^{2})$ e $F_{2}(x,Q^{2})$ dependem da variável de Bjorken $x=Q^{2}/(2P\cdot q)$. Para pártons de spin $\tfrac12$, a relação de **Callan–Gross** vale na ordem dominante
+
+$$
+F_{2}(x,Q^{2}) = 2x\,F_{1}(x,Q^{2})
+$$
+
+As violações do escalonamento vêm da radiação da QCD e são previstas pela evolução **DGLAP**
+
+$$
+\mu \frac{\partial f_{i}(x,\mu)}{\partial \mu} = \sum_{j}\int_{x}^{1}\frac{dz}{z}\,P_{ij}\!\left(z,\alpha_{s}(\mu)\right)\,f_{j}\!\left(\frac{x}{z},\mu\right)
+$$
+
+em que $f_{i}$ são **funções de distribuição de pártons (PDFs)** e $P_{ij}$ são núcleos de desdobramento construídos a partir de $C_{F},C_{A},T_{R}$.
+
+---
+
+### 8.9.6 Fatorização: entram hádrons, saem pártons
+
+Processos duros na escala $Q\gg \Lambda_{\mathrm{QCD}}$ se fatorizam em contribuições universais de longa distância e núcleos perturbativos de curta distância
+
+$$
+\sigma_{AB\to X}(Q) = \sum_{i,j}\int_{0}^{1} dx_{a}\,dx_{b}\; f_{i/A}(x_{a},\mu)\,f_{j/B}(x_{b},\mu)\; \hat\sigma_{ij\to X}(\hat s,Q,\mu) + \mathcal O\!\left(\frac{\Lambda_{\mathrm{QCD}}}{Q}\right)^{p}
+$$
+
+Hádrons no estado final são descritos por **funções de fragmentação** $D_{h/k}(z,\mu)$, que também evoluem por DGLAP. As previsões físicas independem da escala não física $\mu$, a menos de ordens superiores.
+
+---
+
+### 8.9.7 Física de jatos e estrutura suave e colinear
+
+Quarks e glúons emitem preferencialmente quanta suaves e colineares, gerando logaritmos de **Sudakov**. A segurança infravermelha e colinear garante observáveis bem definidas. Na prática:
+
+- Use algoritmos de jatos seguros no infravermelho e no limite colinear, como $k_{T}$ e anti-$k_{T}$  
+- Ressome grandes logaritmos com métodos de RG no espaço dos momentos ou em teorias efetivas, pela fatorização suave e colinear  
+- Fatores de cor controlam os padrões de radiação: jatos de glúons são mais largos que jatos de quarks por $C_{A}/C_{F}$
+
+---
+
+### 8.9.8 Quarks pesados e quarkônios
+
+Quando $m_{Q}\gg \Lambda_{\mathrm{QCD}}$, a produção em curta distância é perturbativa, enquanto a ligação é não perturbativa, mas não relativística. Um potencial simplificado que funciona surpreendentemente bem é a forma de **Cornell** apresentada acima. Teorias efetivas como HQET e NRQCD expandem em $1/m_{Q}$ ou na velocidade do quark para separar as escalas.
+
+---
+
+### 8.9.9 QCD na rede: a força das integrais de caminho euclidianas
+
+Fazemos a rotação para o tempo euclidiano, discretizamos o espaço-tempo com espaçamento de rede $a$ e calculamos
+
+$$
+Z_{E} = \int \mathcal D U\,\mathcal D \bar\psi\,\mathcal D\psi\;\exp\!\left[-\,S_{E}[U,\bar\psi,\psi]\right]
+$$
+
+Os campos de gauge vivem nos elos $U=\exp(i a g A)$, e os férmions exigem discretizações cuidadosas. Extrapolamos para $a\to 0$, volumes grandes e massas físicas dos quarks. Os resultados incluem espectros de hádrons, elementos de matriz e o potencial estático.
+
+---
+
+### 8.9.10 Anomalias, topologia e $\theta$
+
+Fibrados de gauge não triviais permitem um ângulo do vácuo ímpar sob CP
+
+$$
+\mathcal L_{\theta} = \theta\,\frac{g^{2}}{32\pi^{2}}\,F_{\mu\nu}^{a}\,\tilde F^{a\,\mu\nu}
+$$
+
+Objetos topológicos, os instantons, conectam vácuos identificados pelo número de enrolamento e contribuem para a anomalia axial. A pequenez da violação forte de $CP$ é um enigma em aberto e motiva modelos de áxions, mas a dinâmica central da QCD descrita acima independe disso.
+
+---
+
+### 8.9.11 Pequenos exemplos de cálculo
+
+**(a) Evolução de $\alpha_{s}$ a um laço.**  
+Resolva $d\alpha_{s}/d\ln\mu = -\beta_{0}\alpha_{s}^{2}/(2\pi)$ para obter o inverso do logaritmo e identifique o crescimento IR semelhante a um polo de Landau em $\mu\sim \Lambda_{\mathrm{QCD}}$.
+
+**(b) Callan–Gross a partir do modelo de pártons.**  
+Supondo espalhamento por pártons livres de spin $\tfrac12$, deduza $F_{2}=2xF_{1}$ e discuta como a radiação de glúons viola o escalonamento exato via DGLAP.
+
+**(c) Fatores de cor em $q q \to q q$.**  
+Calcule a álgebra de cor da troca de glúon no canal $t$ e mostre que esse canal contribui com o fator de cor $T_{R}^{2}(N_{c}^{2}-1)/N_{c}^{2}$ para $|\mathcal M|^{2}$ após somar as cores finais e tirar a média das iniciais. Sabores idênticos também exigem o outro canal e sua interferência.
+
+**(d) Desdobramento suave e colinear.**  
+A partir da probabilidade de desdobramento quark $\to$ quark + glúon, recupere o núcleo de ordem dominante
+
+$$
+P_{qq}(z) = C_{F}\left[\frac{1+z^{2}}{1-z}\right]_{+}
+$$
+
+e explique a prescrição “mais” como uma subtração segura no infravermelho.
+
+**(e) Escalonamento GMOR.**  
+Usando a contagem de potências da teoria de perturbações quiral, mostre como $m_{\pi}^{2}$ varia linearmente com a massa média dos quarks leves na ordem dominante.
+
+---
+
+### 8.9.12 Conjunto básico de exercícios
+
+- Deduza a função $\beta$ da QCD a um laço e explique a mudança de sinal em relação à QED  
+- Partindo da fatorização, calcule a seção de choque hadrônica de ordem dominante para a produção Drell–Yan em termos de PDFs e do núcleo partônico $q\bar q\to \gamma^{\ast}$  
+- Evolua a PDF simplificada $f(x,\mu_{0})=x^{a}(1-x)^{b}$ por um passo em $\ln\mu$ usando o núcleo $P_{qq}$ e discuta o comportamento em $x$ pequeno e $x$ grande  
+- Mostre que jatos de glúons devem ser mais largos que jatos de quarks pela razão $C_{A}/C_{F}$ na ordem dominante e relacione isso ao escalonamento da multiplicidade  
+- Usando o potencial de Cornell, estime o raio de Bohr do estado fundamental de um quarkônio pesado e discuta quando uma descrição coulombiana é autoconsistente
+
+---
+
+## 8.10 Anomalias e topologia: quando a mecânica quântica quebra simetrias clássicas
+
+Algumas simetrias sobrevivem à quantização; outras, não. Quando uma simetria da lagrangiana clássica falha na teoria quântica, geralmente manifestando-se como uma divergência não nula de uma corrente classicamente conservada, dizemos que ela possui uma **anomalia**. Anomalias não são erros de cálculo, mas restrições profundas. Anomalias de **gauge** precisam se cancelar, ou a teoria é inconsistente. Anomalias de simetrias **globais** podem ser físicas, prevendo processos reais como $\pi^{0}\to\gamma\gamma$ ou restringindo a dinâmica IR pelo matching de ’t Hooft. A topologia está no centro desses resultados, por meio de $F\tilde F$, instantons e formas de Chern–Simons.
+
+---
+
+### 8.10.1 O que caracteriza uma anomalia
+
+Uma corrente clássica de Noether $J^{\mu}$ obedece a $\partial_{\mu}J^{\mu}=0$. Quanticamente, essa afirmação pode falhar:
+
+$$
+\partial_{\mu}J^{\mu} = \mathcal A
+$$
+
+em que $\mathcal A$ é um operador local fixado pelos dados UV e pelas simetrias. Se $J^{\mu}$ se acopla a um campo de gauge, $\mathcal A\neq 0$ destrói a invariância de gauge e a unitariedade. Se $J^{\mu}$ é **global**, $\mathcal A$ é permitido e frequentemente mensurável.
+
+---
+
+### 8.10.2 Anomalia axial (ABJ) na QED: o diagrama triangular
+
+Para um férmion de Dirac sem massa na QED, a corrente axial clássica $J_{5}^{\mu}=\bar\psi\gamma^{\mu}\gamma^{5}\psi$ é conservada, mas o triângulo de um laço fornece
+
+$$
+\partial_{\mu}J_{5}^{\mu} = \frac{e^{2}}{8\pi^{2}}\,F_{\mu\nu}\,\tilde F^{\mu\nu}
+$$
+
+com a intensidade de campo dual
+
+$$
+\tilde F^{\mu\nu} \equiv \frac{1}{2}\,\epsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}
+$$
+
+Para um férmion massivo, acrescente a contribuição clássica $2im\,\bar\psi\gamma^{5}\psi$ ao lado direito. A anomalia explica a taxa medida de $\pi^{0}\to\gamma\gamma$ por meio da corrente axial dos quarks.
+
+---
+
+### 8.10.3 Dedução de Fujikawa pela integral de caminho: o segredo está na medida
+
+Considere uma rotação quiral $\psi\to e^{i\alpha\gamma^{5}}\psi$, $\bar\psi\to \bar\psi e^{i\alpha\gamma^{5}}$. A ação muda por um termo de superfície, mas a **medida funcional** adquire um jacobiano
+
+$$
+\mathcal D\bar\psi\,\mathcal D\psi \;\to\; \mathcal D\bar\psi\,\mathcal D\psi\;\exp\!\left[i\int d^{4}x\;\alpha(x)\,\frac{e^{2}}{8\pi^{2}}\,F_{\mu\nu}\tilde F^{\mu\nu}\right]
+$$
+
+após regularizar $\mathrm{Tr}\,\gamma^{5}\exp(-/\!\! D^{2}/\Lambda^{2})$. Isso produz o mesmo resultado ABJ e se generaliza para casos não abelianos.
+
+---
+
+### 8.10.4 Anomalias quirais não abelianas e consistência
+
+Para um campo de Dirac sem massa $\psi$ em uma representação $R$ de um grupo de gauge, a anomalia da corrente axial singleto é
+
+$$
+\partial_{\mu}J_{5}^{\mu} \supset \frac{g^{2}}{8\pi^{2}}\,\mathrm{tr}_{R}\!\left(F_{\mu\nu}\tilde F^{\mu\nu}\right)
+$$
+
+Aqui $F_{\mu\nu}=F_{\mu\nu}^{a}T^{a}$, de modo que o coeficiente envolve o **índice quadrático** por $\mathrm{tr}_{R}(T^{a}T^{b})=T_{R}\delta^{ab}$. Já as anomalias de gauge quirais envolvem o **traço cúbico** $\mathrm{tr}_{R}(T^{a}\{T^{b},T^{c}\})$; sua soma com sinais sobre os férmions quirais deve se anular. As condições de consistência de Wess–Zumino restringem a compatibilidade entre as anomalias das diferentes correntes de gauge.
+
+---
+
+### 8.10.5 Cancelamento de anomalias de gauge: por que o Modelo Padrão funciona
+
+Em quatro dimensões, é preciso cancelar:
+
+- Não abelianas puras $[G]^{3}$  
+- Mistas $[G]^{2}\!-\!U(1)$  
+- Abelianas $[U(1)]^{3}$  
+- Mistas de gauge e gravidade $[\text{grav}]^{2}\!-\!U(1)$
+
+Em uma geração do Modelo Padrão, as hipercargas satisfazem $\sum Y = \sum Y^{3} = 0$, com fatores de cor organizados de modo que $SU(3)^{2}\!-\!U(1)$ e $SU(2)^{2}\!-\!U(1)$ se anulem, enquanto $[SU(2)]^{3}$ se cancela automaticamente para dubletos. Assim, as anomalias de gauge se cancelam e a teoria é consistente.
+
+---
+
+### 8.10.6 Matching de anomalias de ’t Hooft: informações UV sobrevivem à RG
+
+Se uma simetria **global** possui uma anomalia não nula no UV, a descrição IR deve reproduzir a mesma anomalia. Não se pode fluir para uma teoria trivial, simétrica e com gap, a menos que a anomalia seja reproduzida por graus de liberdade topológicos. Isso restringe os possíveis padrões de confinamento e quebra de simetria e é uma razão importante para a plausibilidade de certas dualidades.
+
+---
+
+### 8.10.7 Instantons, topologia e o termo $\theta$
+
+Na teoria de gauge euclidiana $SU(N)$, configurações de ação finita são identificadas por um número inteiro:
+
+$$
+Q \equiv \frac{1}{32\pi^{2}}\int d^{4}x\ \mathrm{tr}\left(F_{\mu\nu}\tilde F^{\mu\nu}\right)
+$$
+
+Instantons possuem $Q=\pm 1,\pm 2,\dots$ e interpolam entre vácuos com diferentes números de Chern–Simons. O termo ímpar sob CP
+
+$$
+\mathcal L_{\theta} = \theta\,\frac{g^{2}}{32\pi^{2}}\,\mathrm{tr}(F_{\mu\nu}\tilde F^{\mu\nu})
+$$
+
+não altera as equações de movimento, mas afeta o vácuo e viola $CP$. A pequenez da violação forte de $CP$ é o enigma de $\theta$ e motiva os áxions.
+
+O teorema do índice de Atiyah–Singer relaciona a topologia aos modos zero do operador de Dirac
+
+$$
+n_{+} - n_{-} = Q
+$$
+
+e fundamenta a origem não perturbativa da anomalia axial, o problema $U(1)_{A}$ e as regras de seleção para processos que violam a quiralidade.
+
+---
+
+### 8.10.8 Esfálerons e violação anômala de $B+L$
+
+Na teoria eletrofraca a temperatura finita, transições sobre a barreira, por meio do **esfáleron**, mudam o número de Chern–Simons e violam os números bariônico e leptônico, preservando $B-L$. A variação líquida por salto topológico unitário é
+
+$$
+\Delta B = \Delta L = N_{g}
+$$
+
+em que $N_{g}$ é o número de gerações de férmions, para uma variação positiva unitária do número de Chern–Simons. Cada geração contribui com três quarks de número bariônico um terço cada e um lépton de número leptônico um. Assim, três gerações fornecem uma variação do número bariônico de três e do número leptônico de três; um salto negativo inverte ambos os sinais. Isso conecta as anomalias a cenários de bariogênese no universo primordial.
+
+---
+
+### 8.10.9 Formas de Chern–Simons, influxo de anomalia e anomalia de paridade
+
+Na linguagem das formas diferenciais,
+
+$$
+d\,\mathrm{CS}_{3}(A) = \mathrm{tr}\,F\wedge F
+$$
+
+com
+
+$$
+\mathrm{CS}_{3}(A) = \mathrm{tr}\left(A\wedge dA + \frac{2i g}{3}A\wedge A\wedge A\right)
+$$
+
+Acoplar uma fronteira a um termo de Chern–Simons no interior produz **influxo de anomalia**: a variação anômala da fronteira é cancelada pelo interior, garantindo a invariância de gauge global do sistema. Em dimensões ímpares, integrar um férmion pode induzir um termo de Chern–Simons cuja quantização de nível resolve problemas com grandes transformações de gauge; a falta dessa quantização produz a **anomalia de paridade**.
+
+---
+
+### 8.10.10 Termos de Wess–Zumino–Witten e $\pi^{0}\to\gamma\gamma$
+
+As anomalias UV se traduzem em operadores IR específicos. Em lagrangianas quirais, o termo de **Wess–Zumino–Witten (WZW)** é fixado pela anomalia e possui um coeficiente inteiro proporcional a $N_{c}$. A amplitude de $\pi^{0}\to\gamma\gamma$ é
+
+$$
+\mathcal A(\pi^{0}\to\gamma\gamma) = \frac{\alpha\,N_{c}}{3\pi f_{\pi}}\,\epsilon^{\mu\nu\rho\sigma}\,\epsilon_{\mu}q_{\nu}\,\epsilon'_{\rho}q'_{\sigma}
+$$
+
+levando à largura de decaimento
+
+$$
+\Gamma(\pi^{0}\to\gamma\gamma) = \frac{\alpha^{2}\,m_{\pi}^{3}}{64\pi^{3} f_{\pi}^{2}}
+$$
+
+em bom acordo com o experimento: uma previsão da anomalia traduzida em um número.
+
+---
+
+### 8.10.11 Anomalias mistas de gauge e gravidade e anomalias gravitacionais puras
+
+A matéria quiral pode apresentar uma anomalia mista
+
+$$
+\partial_{\mu}J^{\mu} \supset \frac{1}{384\pi^{2}}\,\epsilon^{\mu\nu\rho\sigma}R^{\alpha}{}_{\beta\mu\nu}R^{\beta}{}_{\alpha\rho\sigma}
+$$
+
+e, em dimensões pares, certas teorias apresentam anomalias **gravitacionais puras**, que precisam se cancelar por consistência. Em compactificações de cordas, essas restrições selecionam espectros viáveis; em fronteiras de sistemas de matéria condensada, o influxo de um interior de dimensão superior as cancela.
+
+---
+
+### 8.10.12 Pequenos exemplos de cálculo
+
+**(a) Triângulo ABJ com escolha do fluxo de momentos**  
+Regularize a integral linearmente divergente ambígua e mostre que preservar as identidades de Ward da corrente vetorial impõe o coeficiente da anomalia axial $e^{2}/8\pi^{2}$
+
+**(b) Traço de Fujikawa**  
+Calcule $\mathrm{Tr}\,\gamma^{5}\exp(-\not D^{2}/\Lambda^{2})$ na ordem dominante em $1/\Lambda$ e extraia $F\tilde F$
+
+**(c) Número de instanton a partir de um gauge puro no infinito**  
+Mostre que, para campos de ação finita, $A_{\mu}\to U^{-1}\partial_{\mu}U/g$ no infinito espacial e que $Q$ mede o número de enrolamento de $U:S^{3}\to SU(2)$
+
+**(d) Verificação de anomalias no Modelo Padrão**  
+Para uma geração, verifique $\sum Y=0$, $\sum Y^{3}=0$ e o anulamento das anomalias $SU(2)^{2}\!-\!U(1)$ e $SU(3)^{2}\!-\!U(1)$ usando a multiplicidade de cor dos quarks
+
+**(e) $\pi^{0}\to\gamma\gamma$ a partir de WZW**  
+Partindo do termo WZW, deduza o acoplamento $\pi^{0}F\tilde F$ e recupere a largura acima
+
+---
+
+### 8.10.13 Conjunto básico de exercícios
+
+- Deduza o coeficiente da anomalia axial singleto para um férmion de Dirac na representação $R$ e expresse seu fator de grupo por $\mathrm{tr}_{R}(T^{a}T^{b})$; distinga-o de uma anomalia de gauge quiral  
+- Use o matching de anomalias de ’t Hooft para restringir o IR de uma teoria de gauge simplificada $SU(N)$ com $N_{f}$ sabores sob a simetria global quiral  
+- Mostre que a divergência da corrente $B+L$ na teoria eletrofraca é proporcional a $\mathrm{tr}\,W_{\mu\nu}\tilde W^{\mu\nu}$ e calcule a regra de seleção para $\Delta(B+L)$  
+- Demonstre o influxo de anomalia variando um termo $\theta\int \mathrm{tr}\,F\wedge F$ no interior e relacionando-o à não conservação de uma corrente na fronteira  
+- Em $2+1$ dimensões, integre um férmion de Dirac pesado acoplado a $U(1)$ e mostre que o nível de Chern–Simons induzido é $\tfrac12\,\mathrm{sign}(m)$; explique por que a invariância sob grandes transformações de gauge quantiza o nível total
+
+---

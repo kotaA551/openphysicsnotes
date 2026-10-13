@@ -1,3 +1,6 @@
+
+**Historical note:** Several anecdotes and attributed quotations below are included as narrative illustrations. Their exact wording and provenance have not been verified against primary historical documents; they should not be treated as authenticated quotations.
+
 # 1. Introduction: The Geometry Behind Physics
 
 Geometry is perhaps the oldest language of science. From the moment early civilizations studied the heavens and measured fields for agriculture, geometry has been present as the bridge between numbers and the world. Yet, what we now call **differential geometry** is something profoundly deeper: a mathematical framework capable of describing not only curved surfaces or abstract spaces but also the very structure of spacetime and the dynamics of the fundamental forces.  
@@ -31,6 +34,8 @@ Bernhard Riemann took Gauss’s vision and expanded it into a vast, breathtaking
 $$
 ds^2 = \sum_{i,j} g_{ij}(x)\,dx^i dx^j.
 $$
+
+![A patch of a curved manifold maps to coordinates in a plane. Coordinates describe the patch without requiring a flat intrinsic geometry.](/images/diagrams/manifold-chart.svg)
 
 Here, $g_{ij}(x)$ is the **metric tensor**, encoding the way infinitesimal distances behave at each point in the manifold. The genius of Riemann’s idea was that geometry was no longer confined to flat or curved surfaces embedded in $\mathbb{R}^3$. Instead, entire universes of arbitrary dimension could be defined purely internally, with curvature derived from the metric itself.  
 
@@ -66,7 +71,7 @@ Even outside physics, differential geometry has reshaped mathematics itself: top
 
 Why does nature speak in geometry? Why should the universe’s deepest laws be written in the language of metrics and curvature? There is a profound resonance here between abstraction and reality.  
 
-To walk along the Earth’s surface is to trace a geodesic, unaware of the equations beneath our feet. To look at the stars is to witness light following curved paths through spacetime. To study subatomic particles is to encounter fields and connections, the modern heirs of Riemann’s metric.  
+To follow a locally straightest path along the Earth’s surface is to trace a geodesic, unaware of the equations beneath our feet. To look at the stars is to witness light following curved paths through spacetime. To study subatomic particles is to encounter fields and connections, the modern heirs of Riemann’s metric.  
 
 Differential geometry is not only mathematics; it is **cosmic literature**. It is the silent poetry of the universe, where symbols like $g_{ij}$ and $R_{\mu\nu}$ are the letters of a language older than humanity itself.  
 
@@ -90,6 +95,8 @@ The story of differential geometry truly begins with the tension between the anc
 ## 2.1 Gauss and the Theorema Egregium
 
 Carl Friedrich Gauss (1777–1855), often hailed as the “Prince of Mathematicians,” revolutionized number theory, astronomy, geodesy, and, crucially, geometry. In his work on land surveying in Hanover, Gauss confronted the Earth as a physical object. Measuring large triangles on the Earth’s surface, he noticed tiny deviations: the angles did not quite add up to $180^{\circ}$.  
+
+![A sphere, plane, and saddle illustrate positive, zero, and negative Gaussian curvature, respectively.](/images/diagrams/gaussian-curvature.svg)
 
 Out of these practical observations emerged a profound insight. In his *Disquisitiones generales circa superficies curvas* (1827), Gauss introduced the concept of **Gaussian curvature** and proved the *Theorema Egregium* (“Remarkable Theorem”): the curvature of a surface is intrinsic.  
 
@@ -162,7 +169,7 @@ R^{l}{}_{ijk} = \partial_j \Gamma^{l}_{ik} - \partial_i \Gamma^{l}_{jk}
 + \Gamma^{l}_{jm} \Gamma^{m}_{ik} - \Gamma^{l}_{im} \Gamma^{m}_{jk}.
 $$
 
-This tensor measures the failure of second derivatives to commute, capturing the essence of curvature in arbitrary dimensions.  
+This tensor measures the failure of covariant derivatives to commute on vector fields, capturing the essence of curvature in arbitrary dimensions.  
 
 Such definitions may seem abstract, but they underpin the geodesics traced by planets around stars and the distortion of spacetime around black holes.  
 
@@ -223,7 +230,7 @@ It was a stunning unification: gravity had become geometry.
 
 Einstein himself admitted: *“Never before in my life have I been tormented by anything like this.”* He spent years lost in what he called a “mathematical jungle.” Without Grossmann’s guidance through Ricci’s tensor calculus, Einstein might never have succeeded.  
 
-A famous story recounts how David Hilbert, one of the leading mathematicians of the time, derived the field equations independently using the principle of least action. Einstein, worried he would be scooped, worked feverishly in November 1915, presenting his final form just days before Hilbert. In the end, both men arrived at the same theory, but Einstein’s physical insight made him its true father.  
+Einstein and David Hilbert both worked on gravitational field equations in November 1915. Einstein presented his final generally covariant equations on 25 November. Their exchanges and the revisions of Hilbert’s work make the priority question historically complex; a simple claim that Einstein presented the final equations “days before Hilbert” is misleading. Einstein’s physical development of the theory remains central ([historical analysis](https://arxiv.org/abs/1412.1816)).  
 
 When Einstein’s equations explained the anomalous precession of Mercury’s orbit, which Newtonian gravity could not, he felt vindicated. Later, the 1919 Eddington expedition confirmed that starlight bent around the Sun during an eclipse—an experimental triumph that catapulted Einstein to global fame.  
 
@@ -321,7 +328,7 @@ Mathematically, gauge theory is described by **principal fiber bundles**. If spa
 
 A **connection** on this bundle is precisely the gauge potential $A$, and its **curvature** is the field strength $F$. Cartan’s structure equations reappear in modern dress:
 
-- Torsion-free condition (for gauge fields, usually suppressed):
+- Cartan torsion (for a tangent-bundle connection and coframe; torsion-free means setting this expression to zero):
 $$
 T = d\theta + \omega \wedge \theta
 $$
@@ -420,7 +427,7 @@ In the context of Einstein’s general relativity, the simplest black hole space
 
 #### Derivation from Einstein’s equations
 
-We begin with Einstein’s field equations in vacuum:
+We begin with Einstein’s field equations in vacuum, with zero cosmological constant. Throughout this derivation we use units with c = 1:
 
 $$
 R_{\mu\nu} - \tfrac{1}{2}R\,g_{\mu\nu} = 0 \;\;\;\;\Rightarrow\;\;\; R_{\mu\nu} = 0.
@@ -445,12 +452,12 @@ with $\phi(r)$ and $\lambda(r)$ functions to determine.
 
 The independent equations from $R_{\mu\nu}=0$ are:
 
-- From $R_{tt}=0$:
+- From the combination $e^{-2\phi}R_{tt}+e^{-2\lambda}R_{rr}=0$:
 $$
 \phi'(r) + \lambda'(r) = 0.
 $$
 
-- From $R_{rr}=0$:
+- From $G_{tt}=0$, which follows from the vacuum equations:
 $$
 \frac{d}{dr}\!\Bigl(r\,(1-e^{-2\lambda(r)})\Bigr) = 0.
 $$
@@ -519,7 +526,7 @@ $$
 SU(3) \times SU(2) \times U(1),
 $$
 
-with each factor corresponding to a force. The quarks, leptons, and bosons of nature are sections of associated vector bundles, while the Higgs field provides a mechanism for symmetry breaking.  
+with the first factor describing the strong interaction and the last two together describing the electroweak interaction. Quark, lepton, and Higgs fields are sections of associated vector bundles, while gauge potentials are connections. The Higgs field provides a mechanism for symmetry breaking.  
 
 Thus, the fundamental forces are no longer “forces” in the Newtonian sense but manifestations of geometry—curvature not of spacetime, but of abstract internal spaces.  
 

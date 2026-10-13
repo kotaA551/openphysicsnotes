@@ -1,0 +1,3095 @@
+---
+description: >-
+  結晶と逆格子、フォノン、金属と半導体、バンド理論から磁性と超伝導へ進む物性物理学の日本語ノート。強相関、トポロジー、メゾスコピック輸送、アンダーソン局在、モアレ量子物質も扱います。数式と演習を通して、多数の粒子が示す集団的な性質を学び、模型や近似と実際の物質を結び付けて考えます。
+---
+
+## 10.1 結晶と逆空間
+
+結晶性固体は空間的な周期性をもつ。この周期性は強力な手がかりとなる。格子上の和から選択則が生まれ、フーリエ変換によって $k$ が離散化され、回折パターンから構造を識別できる。本節では、格子と基底という記述法、逆格子ベクトル、ブリルアンゾーン、ミラー指数、および回折の道具立て（ブラッグ、ラウエ、エワルド、構造因子）を導入する。fcc と bcc の双対性、代表的な結晶の選択則、指数を取り違えないための要点を結びつけて学ぼう。
+
+![正方格子とその逆格子。両者の基本ベクトルは逆格子基底の関係を満たす。](/images/diagrams/reciprocal-lattice.svg)
+
+---
+
+### 10.1.1 格子、基底、結晶構造
+
+ **ブラベー格子** とは、次の点の集合である。
+
+$$
+\boldsymbol R = n_{1}\,\boldsymbol a_{1} + n_{2}\,\boldsymbol a_{2} + n_{3}\,\boldsymbol a_{3},\qquad n_{i}\in\mathbb Z
+$$
+
+ここで $\boldsymbol a_{i}$ は互いに線形独立な3本の **基本ベクトル** である。 **結晶構造** は、格子に、基本単位胞内の位置 $\{\boldsymbol\tau_{j}\}$ にある原子の基底を **加えた** もの。原子位置は $\boldsymbol r = \boldsymbol R + \boldsymbol\tau_{j}$ となる。
+
+- **ウィグナー–ザイツ胞** ：ある格子点までの距離が、ほかのどの格子点までの距離よりも短い点の集合。  
+- **慣用単位胞と基本単位胞** ：慣用的な立方単位胞は構造を見通しやすく、基本単位胞は体積が最小で理論的な扱いに適している。
+
+ **覚えておこう** ：「ダイヤモンド格子」という呼び方は避けよう。ダイヤモンドは、2点の基底 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$ をもつ **fcc 格子** からなる。
+
+---
+
+### 10.1.2 対称性：点群と空間群の概観
+
+- **点群** ：少なくとも1点を固定したまま行う回転、鏡映、反転。  
+- **空間群** ：点群の操作に、 **並進** 、 **らせん** 回転、 **映進** を加えたもの。  
+- 3次元には **14種のブラベー格子** 、 **32種** の結晶点群、 **230種** の空間群がある。バンド理論では、主に格子と高対称な $k$ 点の小群が必要となる。
+
+---
+
+### 10.1.3 逆格子とブリルアンゾーン
+
+ **逆格子の基本ベクトル** $\boldsymbol b_{i}$ を $\boldsymbol a_{i}\cdot \boldsymbol b_{j}=2\pi\delta_{ij}$ により定義する。ベクトル表示では、
+
+$$
+\boldsymbol b_{1} = 2\pi \frac{\boldsymbol a_{2}\times \boldsymbol a_{3}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{2} = 2\pi \frac{\boldsymbol a_{3}\times \boldsymbol a_{1}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{3} = 2\pi \frac{\boldsymbol a_{1}\times \boldsymbol a_{2}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})}
+$$
+
+ **逆格子** は、整数 $(h,k,\ell)$ を用いたベクトル $\boldsymbol G = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}$ からなる。
+
+ **第1ブリルアンゾーン（BZ）** は逆格子のウィグナー–ザイツ胞である。これは $k$ 空間の基本単位胞であり、ブロッホ波数を選ぶ自然な領域となる。
+
+- 双対性： **fcc $\leftrightarrow$ bcc** 。fcc の逆格子は bcc であり、その逆も成り立つ。単純立方格子は自己双対である。
+
+---
+
+### 10.1.4 ブロッホの定理を一式で表す
+
+周期ポテンシャル $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$ における一粒子固有状態は、 **ブロッホ波** である。
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R) = u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+波数ベクトル $\boldsymbol k$ は第1 BZ 内に選べる。$\boldsymbol k\to \boldsymbol k+\boldsymbol G$ と移しても、物理は変わらない。
+
+---
+
+### 10.1.5 面、方向、指数：ミラー指数入門
+
+- **方向** は角括弧 $[u\,v\,w]$ で表し、$u\,\boldsymbol a_{1}+v\,\boldsymbol a_{2}+w\,\boldsymbol a_{3}$ に比例する格子ベクトルを示す。等価な方向の族は $\langle u\,v\,w\rangle$ と書く。  
+- **面** は丸括弧 $(h\,k\,\ell)$ を用いる。この **ミラー指数** は、$\boldsymbol a_{i}$ 方向の切片の逆数から定義される。等価な面の族は $\{h\,k\,\ell\}$ と書く。  
+- 面群 $(h\,k\,\ell)$ の **面間隔** は、逆格子ベクトル $\boldsymbol G_{hkl}$ と次の関係にある。
+
+$$
+\boldsymbol G_{hkl} = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}
+$$
+
+$$
+d_{hkl} = \frac{2\pi}{|\boldsymbol G_{hkl}|}
+$$
+
+ **立方晶** で $a_{1}=a\,\hat x$ などとすると、$d_{hkl}= a/\sqrt{h^{2}+k^{2}+\ell^{2}}$ となる。
+
+ **六方晶** では、底面の対称性を明示するため、$i=-(h+k)$ を満たすミラー–ブラベー指数 $(h\,k\,i\,\ell)$ がよく使われる。
+
+---
+
+### 10.1.6 回折：ブラッグ、ラウエ、エワルドの共通する内容
+
+弾性散乱では $|\boldsymbol k|=|\boldsymbol k'|$ が保たれ、移行する結晶運動量 $\Delta\boldsymbol k=\boldsymbol k'-\boldsymbol k$ は逆格子ベクトルに等しい。
+
+$$
+\Delta \boldsymbol k = \boldsymbol G
+$$
+
+実空間における **ブラッグ条件** は、
+
+$$
+2 d_{hkl}\,\sin\theta = n\,\lambda
+$$
+
+$k$ 空間の **ラウエ条件** は、まさに $\boldsymbol k'-\boldsymbol k=\boldsymbol G$ である。 **エワルド球** の作図では、$\boldsymbol k$ の始点を中心として半径 $|\boldsymbol k|=2\pi/\lambda$ の球を描く。球面上の逆格子点が、許される反射を与える。
+
+ **構造因子** は基底の情報を表す。
+
+$$
+F(\boldsymbol G) = \sum_{j=1}^{m} f_{j}\,e^{-i\boldsymbol G\cdot \boldsymbol\tau_{j}}
+$$
+
+ここで $f_{j}$ は原子形状因子である。回折強度は、
+
+$$
+I(\boldsymbol G) \propto |F(\boldsymbol G)|^{2}
+$$
+
+格子上の和により、$\boldsymbol G$ は逆格子に属するものに限られる。その反射が実際に現れるかどうかは $F$ が決める。
+
+---
+
+### 10.1.7 代表的な構造の選択則
+
+- $(0,0,0)$ に原子を1個もつ **単純立方構造（sc）** ：
+
+$$
+F(\mathbf G)=f,\quad \text{no systematic absences}
+$$
+
+- **体心立方構造（bcc）** 、基底 $\{(0,0,0),\,(\tfrac12,\tfrac12,\tfrac12)a\}$：
+
+$$
+F = f\left[1 + e^{-i\pi(h+k+\ell)}\right] = 
+\begin{cases}
+2f & h+k+\ell\ \text{even} \\
+0 & h+k+\ell\ \text{odd}
+\end{cases}
+$$
+
+- **面心立方構造（fcc）** 、基底 $\{(0,0,0),\,(\tfrac12,\tfrac12,0)a,\,(\tfrac12,0,\tfrac12)a,\,(0,\tfrac12,\tfrac12)a\}$：
+
+$$
+F = f\left[1 + e^{-i\pi(h+k)} + e^{-i\pi(h+\ell)} + e^{-i\pi(k+\ell)}\right] =
+\begin{cases}
+4f & h,k,\ell\ \text{all even or all odd} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+- **NaCl（岩塩）** ：2種類の原子からなる基底 $\{(0,0,0)\ \text{Na},\ (\tfrac12,\tfrac12,\tfrac12)a\ \text{Cl}\}$ をもつ fcc 格子。このとき、
+
+$$
+F = f_{\mathrm{Na}} + f_{\mathrm{Cl}}\,e^{-i\pi(h+k+\ell)}
+$$
+
+$f$ の差に応じて、$h+k+\ell$ の偶奇で強度が交互に変わる。
+
+- **ダイヤモンド** ：基底 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$ をもつ fcc 格子。付加的な位相により、fcc の消滅則に加えてさらに系統的な消滅が生じる。
+
+---
+
+### 10.1.8 fcc–bcc の双対性と高対称な $k$ 点
+
+$\{\boldsymbol a_{i}\}$ が **fcc** の基本ベクトルなら、逆格子の $\{\boldsymbol b_{i}\}$ は $k$ 空間で **bcc** 格子を生成する。その逆も成り立つ。標準的な点の名称を覚えておこう。
+
+- **fcc の BZ** ：$\Gamma$ は中心、$X$ は正方形の面の中心、$L$ は六角形の面の中心、$W$ は頂点。  
+- **bcc の BZ** ：$\Gamma$、$H$、$N$、$P$ 点。  
+
+これらの点にはバンドの極値や縮退が現れやすく、ARPES や量子振動の実験でも注目される。
+
+---
+
+### 10.1.9 実空間と逆空間の幾何：便利な関係
+
+- **体積の関係** ：
+
+$$
+V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast} = (2\pi)^{3}
+$$
+
+- **面の法線** ：逆格子ベクトル $\boldsymbol G_{hkl}$ は $(hkl)$ 面に **垂直** である。  
+- $(h_{1}k_{1}\ell_{1})$ 面と $(h_{2}k_{2}\ell_{2})$ 面の **なす角** ：
+
+$$
+\cos\theta = \frac{\boldsymbol G_{1}\cdot \boldsymbol G_{2}}{|\boldsymbol G_{1}|\,|\boldsymbol G_{2}|}
+$$
+
+- **面間隔** を再掲すると、$d_{hkl}=2\pi/|\boldsymbol G_{hkl}|$。
+
+---
+
+### 10.1.10 短い計算例
+
+**(a) bcc の逆格子は fcc**  
+一辺 $a$ の bcc の慣用立方単位胞と、基本ベクトル $\boldsymbol a_{1}=\tfrac a2(\hat y+\hat z-\hat x)$ などから出発する。$\boldsymbol b_{i}$ を計算し、逆格子点が一辺 $4\pi/a$ の慣用立方単位胞の頂点と面の中心に位置することを示そう。
+
+**(b) 立方晶の $d_{hkl}$**  
+$\boldsymbol G_{hkl}=(2\pi/a)(h\,\hat x + k\,\hat y + \ell\,\hat z)$ を用いて、$d_{hkl}=a/\sqrt{h^{2}+k^{2}+\ell^{2}}$ を示そう。ブラッグ条件は $2d\sin\theta=n\lambda$ である。与えられた $\lambda/a$ に対し、$(111)$ の1次反射角を求めよう。
+
+**(c) fcc の系統的消滅**  
+$(100)$、$(110)$、$(111)$ の面群について $F$ を計算し、「すべて偶数」または「すべて奇数」の場合だけが残ることを確かめよう。
+
+**(d) ダイヤモンドの消滅反射**  
+ダイヤモンドでは $F \propto \left[1 + e^{-i\pi(h+k+\ell)/2}\right]\times(\text{fcc factor})$ である。X線回折の表と一致して、$(222)$ は消滅し、$(111)$ は許されることを示そう。
+
+**(e) エワルド作図の概略**  
+$\lambda=1.54\ \text{\AA}$（Cu K$\alpha$ 線）について、逆空間の fcc 格子の原点を通る半径 $2\pi/\lambda$ の円を描こう。結晶の向きを与えたとき、円上にあって反射を与える $\boldsymbol G$ ベクトルを示そう。
+
+---
+
+### 10.1.11 よくある落とし穴
+
+- **格子と構造の混同** ：格子は周期的な骨組みであり、 **基底** がその上に原子を配置する。  
+- **逆空間の単位の取り違え** ：結晶学では $2\pi$ を含めない規約がよく使われるが、ここでは $a_{i}\cdot b_{j}=2\pi\delta_{ij}$ とする。どちらかに統一しよう。  
+- **ミラー指数と方向指数の混同** ：$(hkl)$ は面、$[uvw]$ は方向を表す。立方晶では $(hkl)\perp [hkl]$ だが、一般には成り立たない。  
+- **形状因子の見落とし** ：$F\neq 0$ でも、$f_{j}(\boldsymbol G)$ は $|\boldsymbol G|$ とともに減衰し、強度分布を変える。  
+- **BZ の表示の混同** ：「還元ゾーン」表示では $k$ を第1 BZ 内に折り畳む。バンドが二重に見えたら、拡張ゾーン表示と還元ゾーン表示を混同していないか確かめよう。
+
+---
+
+### 10.1.12 基本演習
+
+- $\boldsymbol a_{i}$ から逆格子ベクトル $\boldsymbol b_{i}$ を導き、$V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast}=(2\pi)^{3}$ を証明しよう。  
+- $\boldsymbol G$ の幾何を用い、ラウエ条件 $\boldsymbol k'-\boldsymbol k=\boldsymbol G$ とブラッグの法則 $2d\sin\theta=n\lambda$ が等価であることを示そう。  
+- NaCl と CsCl の構造因子と選択則を求め、それぞれで消滅する $(hkl)$ を比較しよう。  
+- 格子定数 $a$、$c$ の六方格子について、$\boldsymbol b_{i}$ を書き、$(h\,k\,i\,\ell)$ を用いて $d_{hkl}$ を求めよう。  
+- $a$ を与えたとき、fcc の高対称点 $\Gamma$、$X$、$L$、$W$ の位置を直交 $k$ 座標で求め、第1 BZ の概形を描こう。
+
+---
+
+## 10.2 格子振動とフォノン
+
+結晶中の原子は静止しているわけではなく、振動している。その集団的な振動を量子化した格子の基準モードが **フォノン** である。本節では、1次元鎖から3次元の動力学行列へ進み、 **音響** 分枝と **光学** 分枝を区別し、分散関係、群速度、状態密度を計算した後に量子化を行う。熱輸送、非調和性、グリューナイゼンパラメータによる熱膨張、電子–フォノン結合、そして中性子・ラマン・赤外実験での特徴も扱う。
+
+---
+
+### 10.2.1 調和格子：準備
+
+ブラベー格子点を $\boldsymbol R$、単位胞内の基底原子を $\kappa$ で表す。原子 $(\boldsymbol R,\kappa)$ の変位は $\boldsymbol u_{\kappa}(\boldsymbol R,t)$ である。 **調和** 近似では、ポテンシャルエネルギーは変位の2次式となる。
+
+$$
+U = \tfrac{1}{2}\sum_{\boldsymbol R\kappa\alpha}\sum_{\boldsymbol R'\kappa'\beta}
+\Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa\alpha}(\boldsymbol R)\,u_{\kappa'\beta}(\boldsymbol R')
+$$
+
+ここで $\Phi$ は **力定数**、$\alpha,\beta\in\{x,y,z\}$ である。ニュートンの運動方程式は、
+
+$$
+M_{\kappa}\,\ddot u_{\kappa\alpha}(\boldsymbol R,t) = -\sum_{\boldsymbol R'\kappa'\beta} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa'\beta}(\boldsymbol R',t)
+$$
+
+平面波解 $u_{\kappa\alpha}(\boldsymbol R,t)=M_{\kappa}^{-1/2}e_{\kappa\alpha}(\boldsymbol q)\,e^{i(\boldsymbol q\cdot \boldsymbol R - \omega t)}$ を代入すると、次の固有値問題が得られる。
+
+$$
+\sum_{\kappa'\beta} D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q)\,e_{\kappa'\beta}(\boldsymbol q) = \omega^{2}(\boldsymbol q)\,e_{\kappa\alpha}(\boldsymbol q)
+$$
+
+ここで **動力学行列** は、
+
+$$
+D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q) = \frac{1}{\sqrt{M_{\kappa}M_{\kappa'}}}
+\sum_{\boldsymbol R} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R)\,e^{-i\boldsymbol q\cdot \boldsymbol R}
+$$
+
+単位胞あたり $r$ 個の原子があれば、分枝は $3r$ 本ある。そのうち3本は $\boldsymbol q\to 0$ で $\omega\to 0$ となる音響分枝、残りの $3r-3$ 本は光学分枝である。
+
+---
+
+### 10.2.2 1次元単原子鎖：最も簡単な例
+
+質量 $m$ の原子をばね定数 $K$ のばねでつなぎ、格子間隔を $a$ とする。格子点 $n$ の変位を $u_{n}$ とすると、運動方程式は、
+
+$$
+m\,\ddot u_{n} = K\,(u_{n+1} - 2u_{n} + u_{n-1})
+$$
+
+$u_{n}=u_{0}e^{i(nka-\omega t)}$ とおくと、分散関係は、
+
+$$
+\omega(k) = 2\sqrt{\frac{K}{m}}\;\left|\sin\frac{ka}{2}\right|
+$$
+
+要点は次のとおり。
+
+- **音響** 分枝だけが存在し、$k=0$ 付近では線形で、音速は $v_{s}=a\sqrt{K/m}$ となる。  
+- **ブリルアンゾーン** は $-\pi/a<k\le \pi/a$。$\omega(k)$ は周期 $2\pi/a$ をもつ。  
+- **群速度** $v_{g}(k)=\partial\omega/\partial k$ がエネルギーの流れを決める。
+
+1次元の単一分枝の **状態密度** は、
+
+$$
+g(\omega) = \frac{L}{\pi}\,\frac{1}{|d\omega/dk|}
+$$
+
+したがって $d\omega/dk\to 0$ となる BZ 端では $g(\omega)$ が発散する。これがファン・ホーベ特異点である。
+
+---
+
+### 10.2.3 1次元二原子鎖：音響分枝と光学分枝
+
+2種類の質量 $m_{1},m_{2}$ を交互に並べ、同じばね定数 $K$ で結ぶ。両原子を含む単位胞の長さを $a$ とする。最近接結合の場合、2本の分枝の分散関係は、
+
+$$
+\omega^{2}(k) = K\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)
+\pm \sqrt{K^{2}\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)^{2} - \frac{4K^{2}}{m_{1}m_{2}}\sin^{2}\!\frac{ka}{2}}
+$$
+
+- **マイナス** 符号は **音響** 分枝を表し、$k\to 0$ で $\omega\to 0$ となる。  
+- **プラス** 符号は **光学** 分枝を表し、$\omega(k=0)=\sqrt{2K(1/m_{1}+1/m_{2})}$ となる。
+
+$k=0$ では、音響モードの2原子は **同位相**、光学モードでは **逆位相** で動く。質量が異なれば、ゾーン境界に **ギャップ** が開く。
+
+---
+
+### 10.2.4 3次元結晶：偏極と音速
+
+$r=1$（単原子ブラベー格子）では、 **縦波**（LA）1本と **横波**（TA）2本の計3本の音響分枝がある。$\boldsymbol q=0$ 付近では、線形分散をもつ **音波** となる。
+
+$$
+\omega_{\text{LA}}(\boldsymbol q) \approx v_{L}|\boldsymbol q|,\qquad \omega_{\text{TA}}(\boldsymbol q) \approx v_{T}|\boldsymbol q|
+$$
+
+立方晶で立方軸に沿って伝播する場合、速さは弾性定数と質量密度 $\rho$ に次のように関係する（連続体極限）。
+
+$$
+v_{L} = \sqrt{\frac{C_{11}}{\rho}},\qquad v_{T} = \sqrt{\frac{C_{44}}{\rho}}
+$$
+
+より一般には、クリストッフェル方程式から方向に依存する速度が得られる。
+
+$r>1$ では、ゾーン中心付近で $\boldsymbol q$ 依存性の弱い **光学** 分枝が $3r-3$ 本加わることが多い。基底が正負の電荷をもつ場合、一部の光学モードは **赤外活性** となる（§10.14参照）。
+
+---
+
+### 10.2.5 量子化：ボース粒子としてのフォノン
+
+各基準モード $(\boldsymbol q,s)$ を調和振動子として量子化する。
+
+$$
+H = \sum_{\boldsymbol q,s} \hbar\omega_{\boldsymbol q s}\left(b^{\dagger}_{\boldsymbol q s} b_{\boldsymbol q s} + \tfrac{1}{2}\right)
+$$
+
+交換関係は $[b_{\boldsymbol q s},b^{\dagger}_{\boldsymbol q' s'}]=\delta_{\boldsymbol q\boldsymbol q'}\delta_{ss'}$ である。変位演算子は、
+
+$$
+\boldsymbol u_{\kappa}(\boldsymbol R) = \sum_{\boldsymbol q,s} \sqrt{\frac{\hbar}{2M_{\kappa} N \omega_{\boldsymbol q s}}}\;
+\left[\boldsymbol e_{\kappa s}(\boldsymbol q)b_{\boldsymbol q s} e^{i\boldsymbol q\cdot \boldsymbol R} + \boldsymbol e_{\kappa s}^{\ast}(\boldsymbol q)b^{\dagger}_{\boldsymbol q s} e^{-i\boldsymbol q\cdot \boldsymbol R}\right]
+$$
+
+フォノンの占有数はボース統計に従い、平衡状態の化学ポテンシャルは $\mu=0$ である。
+
+---
+
+### 10.2.6 熱容量とデバイ模型の再確認
+
+単位体積あたりの全フォノンエネルギーは $U/V=\sum_{s}\int d\omega\,\hbar\omega\,g_{s}(\omega)\,n_{B}(\omega)$ で、$n_{B}=(e^{\beta\hbar\omega}-1)^{-1}$ である。低 $T$ の音響モード $\Rightarrow$ 3次元の **デバイ則** $C_{V}\propto T^{3}$、高 $T$ $\Rightarrow$ デュロン–プティ則 $3Nk_{B}$ が得られる（デバイ積分の詳細は§9.6参照）。光学モードは、そのギャップを熱的に励起できるようになると、ショットキー型の盛り上がりを加える。
+
+---
+
+### 10.2.7 熱輸送：運動論から求める $\kappa$
+
+結晶では、熱は主に音響フォノンが運ぶ。運動論によると、
+
+$$
+\kappa = \frac{1}{3}\sum_{s}\int d\omega\; g_s(\omega)\,C_{\omega s}\,v_{g}^{2}(\omega,s)\,\tau(\omega,s)
+$$
+
+ここで単位体積あたりの状態密度を g とし、$C_{\omega s}=\hbar\omega\,\partial n_{B}/\partial T$ は各モードの熱容量、$v_{g}=\partial\omega/\partial q$ は群速度、$\tau$ は寿命である。散乱過程には次がある。
+
+- **フォノン–フォノン** 散乱（非調和性による）。結晶運動量を保存する **正常（N）** 過程と、$\boldsymbol q_{1}+\boldsymbol q_{2}=\boldsymbol q_{3}+\boldsymbol G$ を満たして熱流を緩和する **ウムクラップ（U）** 過程に分かれる。  
+- **境界** 散乱（ナノスケールまたは極低 $T$ で支配的）。  
+- **同位体・無秩序** 散乱。  
+- 金属での **フォノン–電子** 散乱と **フォノン–欠陥** 散乱。
+
+実験的には、$\kappa(T)$ は極低 $T$ で $\sim T^{3}$ と増大し（弾道的輸送・境界散乱）、極大を経て、高 $T$ ではおよそ $1/T$ で減少することが多い（ウムクラップ散乱による制限）。
+
+---
+
+### 10.2.8 非調和性、振動数シフト、寿命
+
+実際の結晶は完全には調和的でない。3次項と4次項は次を生じさせる。
+
+- **熱膨張**（準調和効果）。  
+- **振動数の繰り込み** $\omega(\boldsymbol q,T)$。  
+- 3フォノン・4フォノン散乱による **有限の寿命** $\tau_{\boldsymbol q s}$。
+
+物質全体の指標として便利なのが **グリューナイゼンパラメータ** である。
+
+$$
+\gamma_{\boldsymbol q s} \equiv -\frac{\partial \ln \omega_{\boldsymbol q s}}{\partial \ln V},\qquad
+\gamma \equiv \frac{\sum_{\boldsymbol q s} \gamma_{\boldsymbol q s} C_{\boldsymbol q s}}{\sum_{\boldsymbol q s} C_{\boldsymbol q s}}
+$$
+
+体積 **熱膨張係数** $\alpha$ は、$\gamma$ および体積弾性率 $B$ と次の関係にある。
+
+$$
+\alpha = \frac{\gamma\,C_{V}}{B\,V}
+$$
+
+（準調和近似による。多くの単純な固体でよく成り立つ。）
+
+---
+
+### 10.2.9 電子–フォノン結合：抵抗率と対形成を生む振動
+
+変位は電子のハミルトニアン $H_{e}$ を変調し、相互作用 $H_{e\text{-}ph}$ を生む。代表例は2つある。
+
+- **変形ポテンシャル**（短距離）：$\delta V \sim \Xi\,\nabla\cdot \boldsymbol u$ が LA フォノンに結合する。  
+- **フレーリッヒ結合**（長距離の極性相互作用）：イオン結晶では LO フォノンが巨視的電場を生み、電子と強く結合する。
+
+その結果として、
+
+- **金属の抵抗率**：低温 $T\ll \Theta_{D}$ ではブロッホ–グリューナイゼン則 $\rho \propto T^{5}$、高 $T$ ではおよそ $\rho\propto T$ となる。  
+- **超伝導**：仮想フォノンの交換が有効な引力を与え、フェルミ面付近でクーロン斥力に打ち勝つことがある（BCS）。
+
+---
+
+### 10.2.10 不安定性とソフトモード：1次元のパイエルス転移
+
+1次元金属では、電子の感受率が $q=2k_{F}$ で極大となる。電子–フォノン結合はその波数のフォノンを軟化させる。臨界 $T$ より下では、$\omega(2k_{F})\to 0$ となる **ソフトモード** が波数 2kF の格子変形を引き起こす（半充填では周期の倍化、すなわち二量体化）。これによりギャップが開くのが **パイエルス転移** である。高次元の電荷密度波や構造相転移にも同様の考え方が適用される。
+
+---
+
+### 10.2.11 実験に現れるフォノンの特徴
+
+- **非弾性中性子散乱（INS）**：動的構造因子 $S(\boldsymbol q,\omega)$ を測定し、$\omega(\boldsymbol q)$ の全体と固有ベクトルを調べる。  
+- **ラマン分光**：ゾーン中心の光学フォノンを調べる。対称性による選択則が働く。  
+- **赤外（IR）** 吸収・反射：極性結晶の赤外活性な光学フォノンでは、$\Gamma$ 点で LO と TO が分裂する（リディーン–ザックス–テラー関係）。  
+- **ブリルアン光散乱**：長波長の音響フォノン（GHz 帯）を調べる。  
+- $T$ に対する **比熱** と **熱伝導率**：状態密度と散乱の特徴が、バルクの熱力学的性質に現れる。
+
+---
+
+### 10.2.12 短い計算例
+
+**(a) 単原子鎖の群速度**  
+$\omega(k)=2\sqrt{K/m}\,\left|\sin(ka/2)\right|$ から $v_{g}(k)$ を求め、$k\to 0^{+}$ で $v_{g}\to v_{s}=a\sqrt{K/m}$ となることを示そう。
+
+**(b) 状態密度の端の特異点**  
+$g(\omega)=(L/\pi)/|d\omega/dk|$ を用い、1次元の状態密度が $k=\pi/a$ で発散することを示そう。
+
+**(c) $\Gamma$ 点の二原子鎖のギャップ**  
+二原子鎖の $\omega_{\text{opt}}(0)$ と $\omega_{\text{ac}}(0)$ を求め、固有ベクトルの意味を説明しよう。
+
+**(d) デバイの $T^{3}$ 則**  
+3本の音響分枝がデバイ切断波数 $q_{D}$ まで線形分散をもつと仮定し、積分により低 $T$ で $C_{V}\propto T^{3}$ を導こう。
+
+**(e) ウムクラップ過程のしきい値**  
+ウムクラップ過程には $\boldsymbol q_{1}+\boldsymbol q_{2}$ が第1 BZ の外に出る必要があることを示そう。デバイ波数 $q_{D}$ の単純立方格子で、そのような $\boldsymbol q$ が熱的に占有され始める最低温度を見積もろう。
+
+**(f) $\gamma$ から求める熱膨張**  
+$F(T,V)=U_{\text{el}}(V)+\sum_{\boldsymbol q s}\left[\tfrac{1}{2}\hbar\omega_{\boldsymbol q s} + k_{B}T\ln(1-e^{-\beta\hbar\omega_{\boldsymbol q s}})\right]$ から出発し、準調和近似で $\alpha=\gamma C_{V}/(BV)$ が成り立つことを示そう。
+
+---
+
+### 10.2.13 よくある落とし穴
+
+- **「光学フォノンにはイオンが必要」** は誤り。単位胞内の原子数が $r>1$ であればよい。 **赤外活性** には極性が必要だが、光学フォノン自体は極性によらず存在する。  
+- **位相速度と群速度**：エネルギー輸送に関わるのは $\omega/k$ ではなく $v_{g}=\partial\omega/\partial k$ である。  
+- **選択則の見落とし**：ラマン分光はラマン活性の対称性を、赤外分光は赤外活性モードを観測する。中性子は原子核の位置と磁気モーメントに結合する。  
+- **BZ 表示の混同**：還元ゾーンと拡張ゾーンでは分枝の現れる位置が変わるが、物理は同じ。  
+- **調和近似への過度の依存**：熱輸送や膨張には非調和性が必要である。$\kappa(T)$ の模型では N 過程と U 過程を考慮しよう。
+
+---
+
+### 10.2.14 基本演習
+
+- 1次元の単原子鎖と二原子鎖の分散関係を導き、第1 BZ 内で両者の概形を描こう。  
+- 2原子の立方晶基底について、最近接中心力による $6\times 6$ の動力学行列を構成し、高対称線上の $\omega(\boldsymbol q)$ を求めよう。  
+- $d=1,2,3$ のデバイ模型の $g(\omega)$ を求め、それぞれの低 $T$ 比熱のスケーリングを示そう。  
+- 境界、同位体、ウムクラップ散乱の散乱率をマティーセン則で組み合わせ、合成した $\kappa(T)$ 曲線を当てはめよう。極大温度が試料サイズにどう依存するか求めよう。  
+- $v_{s}$ と $k_{F}$ を与えた金属で、ブロッホ–グリューナイゼン温度と $T^{5}$ 則のクロスオーバーを見積もろう。
+
+---
+
+## 10.3 ドルーデ–ゾンマーフェルトの金属論
+
+金属は原子スケールでは複雑に見えるが、電子は驚くほど明確な法則に従う。 **ドルーデ** は1900年に、古典的電子を、ときどき衝突する帯電した粒子の気体として扱う最初の運動論的描像を与えた。 **ゾンマーフェルト** は1928年、フェルミ–ディラック統計を用いてその大きな欠点を修正した。両者は今も、直流・交流伝導、ホール効果、磁場中の輸送、比熱、パウリ常磁性、ウィーデマン–フランツ則など、金属物理の広い範囲の基礎となっている。
+
+---
+
+### 10.3.1 ドルーデ模型：一つの緩和時間で広く説明する
+
+（有効）質量 $m^{\ast}$、電荷 $-e$ の伝導電子が、平均時間 $\tau$ ごとに運動をランダム化する衝突を受けると仮定する。
+
+場 $(\boldsymbol E,\boldsymbol B)$ のもとでの平均速度 $\boldsymbol v$ の **運動方程式（定常駆動）** は、
+
+$$
+m^{\ast}\,\frac{d\boldsymbol v}{dt} = -e\left(\boldsymbol E + \boldsymbol v\times \boldsymbol B\right) - \frac{m^{\ast}\boldsymbol v}{\tau}
+$$
+
+- $B=0$ における **直流伝導率**。電流密度は $\boldsymbol J = -ne\,\boldsymbol v$：
+
+$$
+\sigma_{0} = \frac{ne^{2}\tau}{m^{\ast}},\qquad \rho_{0} \equiv \frac{1}{\sigma_{0}} = \frac{m^{\ast}}{ne^{2}\tau}
+$$
+
+**移動度** を $\mu \equiv e\tau/m^{\ast}$ と定義すると、$\sigma_{0}=ne\mu$ となる。
+
+- $\propto e^{-i\omega t}$ の電場に対する **交流（ドルーデ）伝導率**：
+
+$$
+\sigma(\omega) = \frac{\sigma_{0}}{1 - i\omega\tau}
+$$
+
+実部は幅 $1/\tau$ のローレンツ型となる。虚部は正の周波数で正であり、$\omega\sim 1/\tau$ で極大となる。
+
+- **プラズマ周波数**（光学応答における自由電子の極）：
+
+$$
+\omega_{p}^{2} = \frac{ne^{2}}{\varepsilon_{0} m^{\ast}}
+$$
+
+$\omega\ll\omega_{p}$ では金属は光を反射し、$\omega>\omega_{p}$ では誘電体のように透過させる。
+
+- 良導体極限（$\omega\tau\ll 1$）の **表皮深さ**：
+
+$$
+\delta = \sqrt{\frac{2}{\mu_{0}\,\omega\,\sigma_{0}}}
+$$
+
+---
+
+### 10.3.2 ホール効果と伝導率テンソル
+
+$\boldsymbol B = B\hat z$ とすると、ドルーデ模型の解から伝導率テンソルが得られる。
+
+$$
+\sigma = 
+\begin{pmatrix}
+\dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & -\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & 0 \\
+\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & 0 \\
+0 & 0 & \sigma_{0}
+\end{pmatrix},
+\qquad
+\omega_{c} \equiv \frac{eB}{m^{\ast}}
+$$
+
+逆行列をとると抵抗率テンソルとなる。重要な結果は2つある。
+
+- **ホール係数**（弱磁場）：
+
+$$
+R_{H} \equiv \frac{E_{y}}{J_{x}B} = -\,\frac{1}{ne}
+$$
+
+- **単一バンド・等方的** なドルーデ模型の **磁気抵抗** は **ゼロ** である。$\sigma_{xx}$ が減少しても、テンソルの逆行列をとる際に相殺され、$\rho_{xx}(B)=\rho_{0}$ となる。実際の物質では、複数バンド、異方性、または $\tau(\boldsymbol k)$ の変化によって有限の磁気抵抗が生じる。
+
+---
+
+### 10.3.3 ドルーデの熱輸送とウィーデマン–フランツ則：予告
+
+単純な運動論の見積もりから、電子熱伝導率は $\kappa_{e}\sim \tfrac{1}{3} C_{e} v_{F}^{2}\tau$ となる（$v_{F}$ は後で導入する）。ドルーデ模型の素朴な計算は、 **ウィーデマン–フランツ比** を次のように予測する。
+
+$$
+\frac{\kappa_{e}}{\sigma T} \equiv L \stackrel{?}{=}\text{const}
+$$
+
+しかし、正しい **ローレンツ数** は **ゾンマーフェルト** 統計を用いて初めて得られる。
+
+$$
+L_{0} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2}
+$$
+
+電子気体を量子化した後で、これをきちんと導出する。
+
+---
+
+### 10.3.4 改良：ゾンマーフェルトの自由電子気体
+
+電子は **フェルミ粒子** である。体積 $V$ の箱に $N$ 個を入れ、運動量状態を **フェルミ球** まで詰めていく。
+
+- **フェルミ波数とフェルミエネルギー**（スピン縮退度 $g=2$）：
+
+$$
+k_{F} = \left(3\pi^{2} n\right)^{1/3},\qquad \epsilon_{F} = \frac{\hbar^{2} k_{F}^{2}}{2 m^{\ast}},\qquad v_{F}=\frac{\hbar k_{F}}{m^{\ast}}
+$$
+
+- 放物線バンドの単位体積あたりの **状態密度**：
+
+$$
+g(\epsilon) = \frac{1}{2\pi^{2}}\left(\frac{2m^{\ast}}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}
+$$
+
+低温 $T\ll T_{F}$ では、$\epsilon_{F}$ 付近の幅 $\sim k_{B}T$ の殻だけが熱的に応答する。これが古典的なドルーデ熱力学の大部分が失敗した理由である。
+
+---
+
+### 10.3.5 電子比熱：$T$ に比例
+
+ゾンマーフェルト展開を用いると、
+
+$$
+C_{e} = \gamma\,T,\qquad \gamma = \frac{\pi^{2}}{3}\,k_{B}^{2}\,g(\epsilon_{F})
+$$
+
+$T$ に比例する結果は実験に一致する。応答する電子は全体の $\sim (T/T_{F})$ だけなので、室温でも $3n_{\mathrm{atom}}k_{B}$（n_atom は原子の数密度）に比べて非常に小さい。
+
+---
+
+### 10.3.6 ウィーデマン–フランツ則の正しい導出
+
+フェルミ統計を用いた運動論から、
+
+$$
+\kappa_{e} = \frac{1}{3} v_{F}^{2}\tau\,C_{e}
+$$
+
+これを $\sigma_{0}=ne^{2}\tau/m^{\ast}$ および $n=\int^{\epsilon_{F}} g(\epsilon)\,d\epsilon$ と組み合わせる。エネルギーに依存しない $\tau$ をもつ弾性散乱では、
+
+$$
+\frac{\kappa_{e}}{\sigma T} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2} \equiv L_{0}
+$$
+
+$L$ の $L_{0}$ からのずれは、非弾性散乱、$\tau$ の強いエネルギー依存性、またはフォノンやマグノンなどの追加の熱担体を調べる手がかりとなる。
+
+---
+
+### 10.3.7 パウリ常磁性とランダウ反磁性の概略
+
+- 磁場 $B$ 中のスピン分極による **パウリ常磁性**：
+
+$$
+\chi_{\text{Pauli}} = \mu_{0}\,\mu_{B}^{2}\,g(\epsilon_{F})
+$$
+
+小さく、主要な次数では $T$ に依存しない。
+
+- 量子化を起こす磁場中の軌道運動による **ランダウ反磁性** は、
+
+$$
+\chi_{\text{Landau}} = -\frac{1}{3}\,\chi_{\text{Pauli}}
+$$
+
+となる（自由電子気体の場合）。実際の金属の全 $\chi$ には、内殻電子の反磁性やファン・フレック項も加わりうる。
+
+---
+
+### 10.3.8 熱起電力とモットの公式
+
+ゼーベック係数 $S$（温度勾配によって生じる電圧）は、低温では古典的ドルーデ模型では正しく記述できない。フェルミ統計を用いると、
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+この **モットの公式** により、$S$ は $\epsilon_{F}$ 付近の粒子–正孔非対称性と散乱を敏感に反映する量となる。
+
+---
+
+### 10.3.9 ドルーデ模型の限界とゾンマーフェルトの改良
+
+- **熱容量**：古典的ドルーデ模型は $C_{e}\sim Nk_{B}$ を予測するが、実験では $C_{e}\propto T\ll Nk_{B}$。ゾンマーフェルト模型はこれを修正する。  
+- **ホール係数の符号**：単一バンドのドルーデ模型では $R_{H}=-1/ne$（電子）となる。多くの物質では、正孔型フェルミ面や多バンドの補償により $R_{H}$ が **正** となる。  
+- **磁気抵抗**：単一バンドのドルーデ模型ではゼロだが、現実には異方性、複数のポケット、$\tau(\boldsymbol k)$ により有限となる。  
+- **高周波の光学応答**：ドルーデ模型だけではバンド間吸収や束縛電荷の寄与を捉えられない。現実的な $\varepsilon(\omega)$ にはローレンツ振動子を加える。
+
+---
+
+### 10.3.10 バンド構造とのつながり
+
+$m^{\ast}$ を、フェルミ面付近の分散 $\epsilon(\boldsymbol k)$ から求まる **バンド有効質量** に置き換える。
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{\hbar^{2}}\left.\frac{\partial^{2}\epsilon(\boldsymbol k)}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{F}}
+$$
+
+$m^{\ast}$ に異方性があると、$B=0$ でも $\sigma$ はテンソルとなる。実際の輸送には、$\tau(\boldsymbol k)$ を用い、フェルミ面付近で線形化した **ボルツマン** 理論を使う（§10.7参照）。
+
+---
+
+### 10.3.11 光学総和則とスペクトル重み
+
+放物線型の単一バンド・ドルーデ模型では、伝導率を積分した重みはキャリア密度と結びついている。
+
+$$
+\int_{0}^{\infty} d\omega\;\mathrm{Re}\,\sigma(\omega) = \frac{\pi ne^{2}}{2 m^{\ast}}
+$$
+
+相関の強い系ではドルーデ重みが抑制され、中赤外のバンド間遷移に似た構造へ移ることがある。これはしばしば準粒子重みの減少を示す特徴と解釈される。
+
+---
+
+### 10.3.12 短い計算例
+
+**(a) 具体的な数値**  
+$n=8.5\times 10^{28}\ \mathrm{m^{-3}}$、$\tau=3\times 10^{-14}\ \mathrm{s}$、$m^{\ast}=m_{e}$ とする。$\sigma_{0}$、$\rho_{0}$、$\omega_{p}$、および $\omega/2\pi=10\ \mathrm{GHz}$ での $\delta$ を求めよう。
+
+**(b) ホールバー**  
+厚さ $t$、幅 $w$ の試料に $x$ 方向の電流 $I$ と磁場 $B\hat z$ を加える。ドルーデ単一バンド極限でホール電圧の大きさが $V_{H} = I\,B/(ne\,t)$ となることを示そう。(a)の物質パラメータを用い、銅の $V_{H}$ を電流、磁場、厚さの関数として表そう。
+
+**(c) ゾンマーフェルトの $C_{e}$**  
+ゾンマーフェルト展開から $C_{e}=\gamma T$ を導き、$\gamma$ を $n$ と $m^{\ast}$ で表そう。
+
+**(d) ボルツマン方程式からウィーデマン–フランツ則へ**  
+弾性不純物散乱を含むボルツマン方程式を線形化し、$\epsilon_{F}$ 付近で $\tau(\epsilon)$ が一定なら $L=L_{0}$ となることを示そう。
+
+**(e) モット熱起電力の符号**  
+$\epsilon_{F}$ 付近で $\sigma(\epsilon)\propto \epsilon^{s}$ と仮定し、$S = -(\pi^{2}/3)(k_{B}^{2}T/e)\,s/\epsilon_{F}$ を示そう。$S>0$ と $S<0$ の意味を説明しよう。
+
+---
+
+### 10.3.13 よくある落とし穴
+
+- **有効質量の見落とし**：輸送の式には、裸の $m_{e}$ ではなく、バンド構造の $m^{\ast}$ を使おう。  
+- **$\sigma_{xx}$ から磁気抵抗を判断すること**：単一バンドのドルーデ模型では、$\sigma_{xx}$ が減少しても測定される $\rho_{xx}$ は $B$ に依存しないことがある。テンソルの逆行列をとろう。  
+- **$R_{H}=-1/ne$ が普遍的だと思うこと**：多バンドの補償や歪んだフェルミ面によって、符号が反転したり絶対値が小さくなったりする。  
+- **一定の $\tau$ への過度の依存**：エネルギーや角度に依存する散乱は、$L$、$S$、磁気抵抗を変える。低 $T$ の不純物散乱支配領域以外では注意しよう。  
+- **光学質量と輸送質量の混同**：異方的な系や相互作用のある系では、サイクロトロン質量、熱力学的質量、バンド質量は異なりうる。
+
+---
+
+## 10.4 ブロッホの定理とバンド構造
+
+周期ポテンシャルは、複雑な原子の配列を、運動量空間の明快な規則にまとめる。中心となる **ブロッホの定理** は、結晶中の電子が、格子周期をもつ包絡関数で変調された平面波として運動すると述べる。そこからブリルアンゾーン境界のギャップが生まれ、分散 $E_{n}(\boldsymbol k)$ が速度と有効質量を決める。「ほぼ自由な電子」と「強束縛」は、同じ現象を反対側から見る二つの描像となる。
+
+![価電子帯と伝導帯の間に禁制エネルギー領域がある模式図。エネルギーは結晶運動量に対して周期的に変化する。](/images/diagrams/band-gap.svg)
+
+---
+
+### 10.4.1 ブロッホ状態と中心方程式
+
+周期ポテンシャル $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$ 中の1個の電子について、
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R)=u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+格子周期をもつ部分を逆格子ベクトル $\boldsymbol G$ で展開する。
+
+$$
+u_{n\boldsymbol k}(\boldsymbol r) = \sum_{\boldsymbol G} c_{n}(\boldsymbol k+\boldsymbol G)\,e^{i\boldsymbol G\cdot \boldsymbol r}
+$$
+
+ポテンシャルも $V(\boldsymbol r)=\sum_{\boldsymbol G} U_{\boldsymbol G}\,e^{i\boldsymbol G\cdot \boldsymbol r}$ と展開する。シュレーディンガー方程式に代入すると、 **中心方程式** が得られる。
+
+$$
+\left[\frac{\hbar^{2}}{2m}\,|\boldsymbol k+\boldsymbol G|^{2} - E\right] c(\boldsymbol k+\boldsymbol G) + \sum_{\boldsymbol G'} U_{\boldsymbol G-\boldsymbol G'}\,c(\boldsymbol k+\boldsymbol G') = 0
+$$
+
+これは平面波係数 $c$ に関する無限個の連立一次方程式である。適切に打ち切ればバンドが求まる。
+
+---
+
+### 10.4.2 ゾーンの折り畳みと還元・拡張ゾーン表示
+
+自由電子は放物線分散 $E=\hbar^{2}|\boldsymbol k|^{2}/2m$ をもつ。格子を用いた表示では、$\boldsymbol k$ と $\boldsymbol k+\boldsymbol G$ は同じ還元波数をもつが、異なるバンドに属することがある。表示法は次のとおり。
+
+- **拡張ゾーン**：$k$ 空間の連続するゾーンにわたって $E(\boldsymbol k)$ を表示する。  
+- **還元ゾーン**：すべての運動量を第1ブリルアンゾーンに折り畳む。複製された曲線は、$n$ で番号をつける別々の **バンド** となる。
+
+$V\neq 0$ では、折り畳みによって縮退していた状態が **混成** し、交差点にギャップが開く。
+
+---
+
+### 10.4.3 ブラッグ反射によるギャップ：2×2の例
+
+自由電子の $\boldsymbol k$ と $\boldsymbol k'=\boldsymbol k-\boldsymbol G$ が縮退する境界で、中心方程式にこの2つの平面波だけを残す。固有値問題は、
+
+$$
+\begin{pmatrix}
+\epsilon_{\boldsymbol k} & U_{\boldsymbol G} \\
+U_{\boldsymbol G}^{\ast} & \epsilon_{\boldsymbol k'}
+\end{pmatrix}
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+= E
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+$$
+
+ここで $\epsilon_{\boldsymbol q}=\hbar^{2}|\boldsymbol q|^{2}/2m$ である。$\epsilon_{\boldsymbol k}=\epsilon_{\boldsymbol k'}$ が成り立つちょうどゾーン境界では、2つのエネルギーが次のように分裂する。
+
+$$
+E_{\pm} = \epsilon_{0} \pm |U_{\boldsymbol G}|
+$$
+
+したがって **バンドギャップ** は、
+
+$$
+E_{g} = 2\,|U_{\boldsymbol G}|
+$$
+
+つまり、逆格子ベクトル $\boldsymbol G$ に対応する格子ポテンシャルのフーリエ成分が強いほど、対応するブリルアンゾーン面に大きなギャップが開く。
+
+---
+
+### 10.4.4 クローニッヒ–ペニー模型の一式：1次元での直観
+
+デルタ関数障壁を1次元に周期配列した系（格子定数 $a$）では、分散関係は次の超越方程式を満たす。
+
+$$
+\cos(ka) = \cos(\alpha a) + \frac{P}{\alpha a}\,\sin(\alpha a)
+$$
+
+ここで井戸内では $\alpha=\sqrt{2mE}/\hbar$、$P$ は障壁の強さを表す。右辺の絶対値が $\le 1$ の領域が **許容バンド**、1を超える領域が **禁制ギャップ** である。$P$ を変えると、ほぼ自由な電子（$P\to 0$）から強束縛（$P\gg 1$）へ連続的に移る。
+
+---
+
+### 10.4.5 群速度、有効質量、状態密度
+
+バンド分散は単なる図ではない。その微分が物理量を与える。
+
+- **群速度**
+
+$$
+\boldsymbol v_{n}(\boldsymbol k) = \frac{1}{\hbar}\,\nabla_{\boldsymbol k} E_{n}(\boldsymbol k)
+$$
+
+- 極値付近の **有効質量テンソル**
+
+$$
+\left(m_{n}^{\ast}\right)^{-1}_{\alpha\beta} = \frac{1}{\hbar^{2}}\,\left.\frac{\partial^{2}E_{n}}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{0}}
+$$
+
+曲率 $\uparrow$ なら軽い質量、曲率 $\downarrow$ なら重い質量となる。価電子帯の極大付近で曲率が負であることは、正の電荷と正の質量をもつ **正孔** が輸送を担うことを意味する。
+
+- 3次元のスピン縮退した単一バンドの **状態密度**
+
+$$
+g(E) = \frac{1}{4\pi^{3}} \int_{E_{n}(\boldsymbol k)=E} \frac{dS_{k}}{|\nabla_{\boldsymbol k} E_{n}|}
+$$
+
+エネルギー勾配がゼロとなる臨界点は、ファン・ホーベ型の非解析性を生む。発散するかどうかは次元と臨界点の種類による。一般的な3次元の極値や鞍点では、有限のカスプとなる。
+
+---
+
+### 10.4.6 ほぼ自由な電子と強束縛：同じ現象の二つの見方
+
+- **ほぼ自由な電子（NFE）**：放物線から出発し、交差点に摂動論でギャップを開く。$|U_{\boldsymbol G}| \ll \epsilon_{F}$ の場合に適している。  
+- **強束縛（TB）**：局在軌道と格子点間のホッピング $t$ から出発し、結合性・反結合性の組合せからバンドを得る。軌道がコンパクトで、$t$ がオンサイトエネルギーに比べて小さい場合に適している。
+
+両者は同じブロッホの枠組みの極限である。NFE は単純金属のギャップ形成と軽い質量を説明し、TB は共有結合性・イオン性固体のバンド形状を捉える。§10.5では TB を詳しく扱う。ワニエ関数もここに関係する。
+
+---
+
+### 10.4.7 $k\cdot p$ 法：バンド端付近での局所展開
+
+高対称点 $\boldsymbol k_{0}$ 付近で、ハミルトニアンを $H(\boldsymbol k)\approx H(\boldsymbol k_{0})+\frac{\hbar}{m}\,(\boldsymbol k-\boldsymbol k_{0})\cdot (\boldsymbol p+\hbar\boldsymbol k_{0}) + \cdots$ と展開する。2次の摂動論から、
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{m}\delta_{\alpha\beta} + \frac{2}{m^{2}} \sum_{m\neq n} \frac{\operatorname{Re}\!\left[\langle n0|p_{\alpha}|m0\rangle \langle m0|p_{\beta}|n0\rangle\right]}{E_{n0}-E_{m0}}
+$$
+
+ここで $\{|m0\rangle\}$ は $\boldsymbol k_{0}$ におけるブロッホ状態である。これにより、有効質量がバンド間行列要素と対称性の選択則に結びつく（例：半導体の重い正孔と軽い正孔）。
+
+---
+
+### 10.4.8 対称性、縮退、スピン–軌道結合
+
+- 結晶の対称性は、高対称な $k$ 点や線上の縮退を保護する。ひずみや場によって対称性を破ると、縮退は分裂する。  
+- **反転** と **時間反転** がともにあると、スピンをもつ系にはクラマース二重項が存在する。  
+- **スピン–軌道結合（SOC）** はスピンと軌道の性質を混ぜる。反転対称性が破れると、 **ラシュバ** 型の分裂が生じうる。ここでは概要にとどめ、§10.11でトポロジーに戻る。
+
+---
+
+### 10.4.9 フェルミ面と輸送の要点
+
+**フェルミ面** は等エネルギー面 $E_{n}(\boldsymbol k)=\epsilon_{F}$ である。その曲率とつながり方が次を支配する。
+
+- サイクロトロン質量と量子振動（ド・ハース–ファン・アルフェン効果、シュブニコフ–ド・ハース効果）。  
+- 異方的伝導率とホール効果（フェルミ面上の速度と寿命を通じて）。  
+- 密度波不安定性を増幅しうるネスティングベクトル。
+
+§10.7の輸送論は、ブロッホ分散と散乱時間を組み合わせて進める。
+
+---
+
+### 10.4.10 ワニエ関数：バンドの実空間表示
+
+BZ 全体にわたるブロッホ状態のユニタリ変換により、単位胞 $\boldsymbol R$ 付近に局在する **ワニエ関数** $|n,\boldsymbol R\rangle$ が得られる。局在化可能なバンド部分空間では、滑らかなゲージを選んで広がりを最小化すると、最大局在ワニエ関数が得られる。これらは強束縛軌道のように働き、模型構築、補間、実空間応答の計算に適している。§10.5で詳しく扱う。
+
+---
+
+### 10.4.11 ARPES とバンド測定：$E(\boldsymbol k)$ をどう見るか
+
+**角度分解光電子分光（ARPES）** は、$E(\boldsymbol k)$ の占有部分を直接測定する。2次元物質ではほぼそのまま読み取れるが、3次元では $k_{z}$ の扱いに注意が必要となる。量子振動や光学伝導率と組み合わせることで、輸送を支配する低エネルギーのバンド構造を再構成できる。
+
+---
+
+### 10.4.12 短い計算例
+
+**(a) 単一フーリエ成分から求めるギャップ幅**  
+$G=2\pi/a$ として1次元の余弦ポテンシャル $V(x)=2U_{G}\cos(Gx)$ を考える。$k=G/2$ で中心方程式を2×2に打ち切り、$E_{g}=2|U_{G}|$ を示そう。
+
+**(b) バンド極小付近の有効質量**  
+1次元の $E(k)\approx E_{0}+\alpha k^{2}+\beta k^{4}$ について、$m^{\ast}=\hbar^{2}/(2\alpha)$ を求めよう。$k^{4}$ 項が状態密度を変える一方、極小点の $m^{\ast}$ は変えないことを説明しよう。
+
+**(c) 2次元の状態密度特異点**  
+正方格子の TB バンド $E(\boldsymbol k)=-2t(\cos k_{x}a+\cos k_{y}a)$ で鞍点を求め、$g(E)$ の対数的なファン・ホーベ特異点を示そう。
+
+**(d) ゾーン折り畳みの確認**  
+自由電子の放物線から出発し、$\pm G$ だけ移して第1 BZ に折り畳む。縮退が生じる位置を描き、$U_{G}\neq 0$ にすると解ける縮退を示そう。
+
+**(e) 直接ギャップ半導体の $k\cdot p$ 法**  
+反転対称な直接ギャップ模型の $\Gamma$ 点で、逆のパリティをもつ伝導帯・価電子帯状態の間には非ゼロの運動量行列要素が許され、したがって $k$ に線形なバンド間結合が生じることを示そう。他バンドへの2次の結合が、非縮退な伝導帯のエネルギーと質量をどう補正するか示そう。
+
+---
+
+### 10.4.13 よくある落とし穴
+
+- **還元ゾーンと拡張ゾーンの混同**：「交差」が実際のものか、折り畳んだ複製なのかを確認しよう。  
+- **曲率と速さの同一視**：速度は1階微分であり、曲率ではない。平坦なバンド $\Rightarrow$ 重い質量と遅いキャリア。  
+- **基底の見落とし**：選択則とギャップ幅は、原子基底と結合の情報を含む **フーリエ成分** $U_{\boldsymbol G}$ に依存する。  
+- **どこでも放物線と仮定すること**：有効質量による近似は極値付近だけで有効。離れると非放物線性や異方性が重要になる。  
+- **大きな SOC の無視**：重元素や反転対称性の破れた結晶では、SOC がバンド順序や分裂を変え、トポロジーに決定的な影響を与える。
+
+---
+
+### 10.4.14 基本演習
+
+- ブロッホ展開から中心方程式を導き、有限個の $\boldsymbol G$ に対する行列固有値問題として書こう。  
+- 法線 $\boldsymbol G$ をもつ一般のゾーン面で2×2のギャップ形成を計算し、$E_{g}=2|U_{\boldsymbol G}|$ を得よう。  
+- 楕円体の等エネルギー面の $m^{\ast}$ テンソルを求め、任意方向の磁場に対するサイクロトロン質量との関係を導こう。  
+- デルタ障壁の1次元クローニッヒ–ペニー模型で、いくつかの $P$ に対する許容バンドを描き、NFE 極限と TB 極限を確認しよう。  
+- 蜂の巣格子の簡単な TB 模型を用い、ディラック円錐が生じる仕組みと、副格子交替ポテンシャルが質量ギャップを開く仕組みを示そう。
+
+---
+
+## 10.5 強束縛とワニエ関数：局所軌道からバンドへ
+
+電子が広く動き回るよりも各原子の近くにとどまる場合、 **強束縛（TB）** の描像が役に立つ。局在した原子状軌道から出発し、格子点間をホッピングさせると、実空間の化学結合に応じた形状と対称性のバンドが生まれる。 **ワニエ関数** はブロッホバンドを実空間で表す正規直交関数であり、模型の構築、応答の計算、場や無秩序の導入に適している。本節では TB を基礎から構成し、多軌道系とスレーター–コスター則、パイエルス位相による磁場の扱いを導入する。さらにワニエ関数と分極・端の物理とのつながりを示す（SSH 模型の予告）。
+
+---
+
+### 10.5.1 軌道からブロッホ和へ
+
+単位胞 $\boldsymbol R$ 内の基底位置 $\boldsymbol\tau_{\alpha}$ を中心とする軌道 $\{\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})\}$ を選ぶ。$\alpha$ は軌道のラベルである（例：$s,p_{x},p_{y},p_{z}$）。
+
+**ブロッホ和** を作る。
+
+$$
+\varphi_{\alpha\boldsymbol k}(\boldsymbol r) = \frac{1}{\sqrt{N}} \sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\alpha})}\,\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})
+$$
+
+固有状態を $\psi_{n\boldsymbol k}=\sum_{\alpha} c_{n\alpha}(\boldsymbol k)\,\varphi_{\alpha\boldsymbol k}$ と展開する。行列要素は、
+
+$$
+H_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,t_{\alpha\beta}(\boldsymbol R),\qquad
+S_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,s_{\alpha\beta}(\boldsymbol R)
+$$
+
+ここで **ホッピング** は $t_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|H|\phi_{\beta\boldsymbol R}\rangle$、 **重なり** は $s_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|\phi_{\beta\boldsymbol R}\rangle$ である。次の **一般化** 固有値問題を解く。
+
+$$
+H(\boldsymbol k)\,c_{n}(\boldsymbol k)=E_{n}(\boldsymbol k)\,S(\boldsymbol k)\,c_{n}(\boldsymbol k)
+$$
+
+**直交 TB** では $S=\mathbb I$ と近似する。
+
+---
+
+### 10.5.2 1次元単原子鎖（直交 TB）
+
+各格子点に1軌道を置き、格子定数を $a$、オンサイトエネルギーを $\varepsilon_{0}$、最近接ホッピングを $-t$ とする。
+
+$$
+E(k)=\varepsilon_{0}-2t\cos(ka)
+$$
+
+バンド幅は $W=4|t|$。$k=0$ の極値付近の有効質量は、
+
+$$
+\frac{1}{m^{\ast}}=\frac{1}{\hbar^{2}}\frac{\partial^{2}E}{\partial k^{2}}=\frac{2ta^{2}}{\hbar^{2}}
+$$
+
+$t$ の符号がバンドの **曲率** を決め、どちらの端が結合性・反結合性かを決める。
+
+---
+
+### 10.5.3 二原子鎖と SSH 模型の予告
+
+単位胞あたり2点を置き、$A$ を $0$、$B$ を $a/2$ に配置する。ホッピング $t_{1}$ と $t_{2}$ は交互に並ぶ。単位胞位相ゲージの $(A,B)$ 基底では、
+
+$$
+H(k)=
+\begin{pmatrix}
+\varepsilon_{A} & -t_{1}-t_{2}\,e^{-ika} \\
+-t_{1}-t_{2}\,e^{ika} & \varepsilon_{B}
+\end{pmatrix}
+$$
+
+$\varepsilon_{A}=\varepsilon_{B}$ のとき分散は、
+
+$$
+E_{\pm}(k)=\varepsilon_{0}\pm \sqrt{t_{1}^{2}+t_{2}^{2}+2t_{1}t_{2}\cos(ka)}
+$$
+
+ゾーン境界 $k=\pi/a$ のギャップは $2|t_{1}-t_{2}|$ である。 **SSH 極限**（$\varepsilon_{A}=\varepsilon_{B}$）では、開放境界のもとで $|t_{2}|>|t_{1}|$ の場合にトポロジカルな端状態が現れる。§10.11でそのトポロジーを再び扱う。
+
+---
+
+### 10.5.4 正方格子と蜂の巣格子：代表例
+
+**正方格子（1軌道、最近接）**
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t\big[\cos(k_{x}a)+\cos(k_{y}a)\big]
+$$
+
+**蜂の巣格子（グラフェン、各点に1個の $p_{z}$ 軌道、最近接）**。2点の基底 $A,B$ と、3本の最近接ベクトル $\{\boldsymbol\delta_{i}\}$ を用いる。
+
+$$
+H(\boldsymbol k)=
+\begin{pmatrix}
+0 & -t\,\sum_{i=1}^{3}e^{i\boldsymbol k\cdot \boldsymbol\delta_{i}} \\
+-t\,\sum_{i=1}^{3}e^{-i\boldsymbol k\cdot \boldsymbol\delta_{i}} & 0
+\end{pmatrix}
+$$
+
+固有値は、
+
+$$
+E_{\pm}(\boldsymbol k)=\pm t\,\Big|1+e^{i\boldsymbol k\cdot \boldsymbol a_{1}}+e^{i\boldsymbol k\cdot \boldsymbol a_{2}}\Big|
+$$
+
+バンドは $K,K'$ の **ディラック円錐** で接触し、線形分散とフェルミ速度 $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$ をもつ。ここで a は三角ブラベー格子の格子定数である。
+
+---
+
+### 10.5.5 多軌道 TB とスレーター–コスター則
+
+ホッピングは、結合に対する軌道の向きに依存する。 **スレーター–コスター** 法は、格子点間の方向余弦 $(l,m,n)$ を用いて二中心積分をパラメータ化する。
+
+例：
+
+- $s$–$s$：$t_{ss\sigma}$。  
+- $s$–$p$：$t_{sp\sigma}\,(l,m,n)$ を $p$ 軌道の軸に射影する。  
+- $p$–$p$：$\sigma$ チャネルと $\pi$ チャネル。
+
+$\hat x$ 方向の結合では、
+
+$$
+\langle p_{x}|H|p_{x}\rangle = t_{pp\sigma},\qquad
+\langle p_{y}|H|p_{y}\rangle = \langle p_{z}|H|p_{z}\rangle = t_{pp\pi}
+$$
+
+$\langle s|H|p_{x}\rangle\propto t_{sp\sigma}$ のような異なる軌道間のホッピングには、適切な方向余弦を掛ける。この対称性の整理により、実際の結晶の $H(\boldsymbol k)$ を素早く書け、禁じられたホッピングも避けられる。
+
+---
+
+### 10.5.6 最近接を超えて：ファン・ホーベ特異点の移動
+
+次近接ホッピング $t'$ などを加えると、曲率や状態密度の特異点が変化する。正方格子では、
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t[\cos k_{x}a+\cos k_{y}a]-4t'\cos k_{x}a\cos k_{y}a
+$$
+
+$t'$ の調整により **ファン・ホーベ** 鞍点が $\epsilon_{F}$ を横切る。これは層状物質で密度波や超伝導などの不安定性へ至る典型的な経路である。
+
+---
+
+### 10.5.7 磁場：パイエルス置換
+
+TB の最小結合は、ホッピングに付く **パイエルス位相** として導入される。
+
+$$
+t_{ij}\ \longrightarrow\ t_{ij}\,\exp\!\left(\frac{ie}{\hbar}\int_{\boldsymbol r_{i}}^{\boldsymbol r_{j}} \boldsymbol A\cdot d\boldsymbol\ell\right)
+$$
+
+したがって、プラケットを一周する位相角の和は $2\pi\Phi/\Phi_{0}$ となる。正方格子で磁束が有理数 $\Phi/\Phi_{0}=p/q$ の場合、並進対称性に対応する単位胞は **磁気単位胞** へ拡大し、スペクトルはホフスタッターの蝶を形成する。
+
+---
+
+### 10.5.8 無秩序と実空間グリーン関数
+
+実際の物質には不純物がある。サイトのランダム性 $\varepsilon_{i}$ や結合のランダム性 $t_{ij}\to t_{ij}+\delta t_{ij}$ を加えよう。実空間の TB ハミルトニアンは次の研究に適している。
+
+- **アンダーソン局在**（§10.13参照）。  
+- 有限幅リボンや再帰的グリーン関数による **表面・端** のスペクトル。  
+- ランダウアー–ビューティカー形式による **輸送**。$G=(2e^{2}/h)\,T(E_{F})$ であり、$T$ は実空間 TB とリードから求める。
+
+---
+
+### 10.5.9 ワニエ関数：バンドの局在表示
+
+単一バンドまたはバンド群の部分空間で、ブロッホ状態 $\{|\psi_{n\boldsymbol k}\rangle\}$ を与え、 **ワニエ関数** を定義する。
+
+$$
+|\,\boldsymbol R, n\,\rangle = \frac{1}{\sqrt{N}}\sum_{\boldsymbol k\in\mathrm{BZ}} e^{-i\boldsymbol k\cdot \boldsymbol R}\, \sum_{m} U_{mn}(\boldsymbol k)\,|\,\psi_{m\boldsymbol k}\rangle
+$$
+
+ここで N は単位胞数、ブロッホ状態は有限結晶全体で規格化され、$U(\boldsymbol k)$ は部分空間内の **ゲージ** ユニタリ変換である。性質は次のとおり。
+
+- **正規直交** し、 **単位胞付近に局在** する。$U(\boldsymbol k)$ の選び方が広がりを決める。  
+- **最大局在ワニエ関数（MLWF）** は、全広がり $\Omega=\sum_{n}\big[\langle r^{2}\rangle_{n}-|\langle \boldsymbol r\rangle_{n}|^{2}\big]$ が最小となるように $U$ を選ぶ。  
+- トポロジーが自明な孤立バンドでは、指数関数的に局在するワニエ関数が存在し、バンドを正確に再現する。
+
+**ワニエ関数から強束縛へ。** ホッピングはワニエ関数間の行列要素である。
+
+$$
+t_{nm}(\boldsymbol R)=\langle \boldsymbol 0,n|H|\boldsymbol R,m\rangle
+$$
+
+**補間** $H(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot \boldsymbol R}\,t(\boldsymbol R)$ により、第一原理計算の部分空間と同じバンドを TB 程度の計算量で得られる。
+
+---
+
+### 10.5.10 分極とワニエ中心：ベリー位相とのつながり
+
+絶縁体の電子分極密度は、ワニエ **中心** $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$ と関係する。
+
+$$
+\boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{modulo a quantum}
+$$
+
+等価な **ベリー位相の公式** はブロッホゲージを用いる。実際には、断熱変化に伴うワニエ中心の移動を追跡し、分極差や圧電応答を計算する（トポロジーは§10.11で再登場する）。
+
+---
+
+### 10.5.11 TB による端の物理：SSH 模型の要点
+
+$t_{1},t_{2}$ が交互に並ぶ有限鎖に開放境界を設ける。 **トポロジカル** 相 $|t_{2}|>|t_{1}|$ では、端モードは $\sim (t_{1}/t_{2})^{x}$ と減衰する。x は単位胞を単位として測る。カイラル対称性は、半無限系の孤立した端モードを $E=0$ に固定する。有限鎖では、両端の混成によって指数関数的に小さな対称的分裂が生じうる。また、副格子対称性を破る摂動もエネルギーをずらしうる。
+
+---
+
+### 10.5.12 短い計算例
+
+**(a) 1次元余弦バンドのワニエ関数**  
+直交1軌道模型 $E(k)=\varepsilon_{0}-2t\cos ka$ で、逆ブロッホ変換により選んだ局在軌道 $w_{0}(x)$ が戻ることを示そう。分散関係だけでは、$K_{0}(|x|/\xi)$ という漸近形も $\xi\sim a\sqrt{t/\Delta}$ も導けない理由を説明しよう。ブロッホ固有関数と他のバンドも指定する必要がある。
+
+**(b) グラフェンのフェルミ速度**  
+蜂の巣格子の最近接ハミルトニアンを $K$ 付近で線形化し、$H_{\text{Dirac}}=\hbar v_{F}\,\boldsymbol\sigma\cdot \boldsymbol q$ と $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$ を求めよう。
+
+**(c) 立方晶の結合でのスレーター–コスター法**  
+各格子点に1個の $s$ 軌道と3個の $p$ 軌道をもち、座標軸に沿う最近接結合をもつ立方晶で、$t_{ss\sigma},t_{sp\sigma},t_{pp\sigma},t_{pp\pi}$ を用いて $H(\boldsymbol k)$ を書こう。
+
+**(d) パイエルス位相の確認**  
+ランダウゲージ $\boldsymbol A=(0,Bx,0)$ の正方格子で、$\hat y$ 方向のホッピングに位相 $e^{i 2\pi \phi\, m}$ が付き、$\hat x$ 方向は実数のままとなることを示そう。ここで $\phi\equiv \Phi/\Phi_{0}$、$m$ は $x$ 方向の格子点番号である。
+
+**(e) 重なりの効果**  
+1次元鎖に最近接の重なり $s$ を含め、一般化固有値問題を解いて、分散が $E(k)=(\varepsilon_{0}-2t\cos ka)/(1+2s\cos ka)$ となることを示そう。
+
+**(f) SSH の端状態**  
+40サイトの開放 SSH 鎖を数値的に対角化し（TB）、ギャップ内の2状態の波動関数を描こう。指数関数的な局在と両端でのパリティを確かめよう。
+
+---
+
+### 10.5.13 よくある落とし穴
+
+- **重なりの見落とし**：入門的な TB では $S=\mathbb I$ とすることが多い。軌道が直交していなければ、一般化固有値問題を使うか、先に直交化しよう。  
+- **禁じられたホッピング**：対称性が行列要素を禁じるなら、その項を入れてはいけない。スレーター–コスター法や群論で、対応する項をゼロにしよう。  
+- **ワニエ関数のゲージの不統一**：$\boldsymbol k$ ごとにランダムな位相を選ぶと、ワニエ関数は非局在化する。MLWF によってゲージを整えてから、実空間ホッピングを解釈しよう。  
+- **磁束を確認しないパイエルス置換**：ゲージによらず、各プラケットのリンク位相角の和が $2\pi\Phi/\Phi_{0}$ となることを確かめよう。  
+- **TB の過剰適合**：パラメータが多すぎると物理が見えにくく、当てはめ範囲外で破綻する。最小模型から始め、データが必要とするときだけ遠方へのホッピングを加えよう。
+
+---
+
+### 10.5.14 基本演習
+
+- 1次元単原子鎖と二原子鎖の TB 分散を構成し、バンド端付近の有効質量を求めよう。  
+- 蜂の巣格子の最近接ハミルトニアンを書き、$K,K'$ を求め、線形化してディラックハミルトニアンと $v_{F}$ を得よう。  
+- スレーター–コスター法で $pp\pi$ と $pp\sigma$ 部分を含むグラフェンの $sp^{2}$ TB を構成し、平坦なシートで $p_{z}$ が分離する理由を説明しよう。  
+- 有理磁束 $p/q$ の正方格子 TB にパイエルス位相を実装し、$q\le 10$ でホフスタッタースペクトルを描こう。  
+- 2バンドの簡単な模型で MLWF を作り、$t(\boldsymbol R)$ を求め、ワニエ補間した $E(\boldsymbol k)$ が厳密なバンドと計算機精度で一致することを示そう。  
+- SSH 模型の二量体化を滑らせたときの分極変化をワニエ中心の移動から求め、ベリー位相の結果と比較しよう。
+
+---
+
+## 10.6 半導体とドーピング
+
+半導体では、バンドギャップを調整する、不純物を添加する、光を当てるといった操作をしない限り、キャリアは少ない。本節では、有効質量の描像、真性・不純物半導体の統計、アインシュタイン関係を含むドリフト–拡散、再結合過程、光学的特徴、pn 接合の基本的な道具立てを構築する。バンド構造に基づきながら、デバイスへの応用も見据える。
+
+---
+
+### 10.6.1 バンド端、有効質量、状態密度
+
+伝導帯の極小と価電子帯の極大付近では、
+
+$$
+E_{c}(\boldsymbol k) \approx E_{c0} + \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{e}^{\ast -1}\,\boldsymbol k,\qquad
+E_{v}(\boldsymbol k) \approx E_{v0} - \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{h}^{\ast -1}\,\boldsymbol k
+$$
+
+バンドギャップを $E_{g}=E_{c0}-E_{v0}$ と定義する。有効質量テンソル $m_{e}^{\ast},m_{h}^{\ast}$ は異方的でありうる。3次元の状態密度を定義する際には、状態密度質量 $m_{e}^{\ast,\mathrm{DOS}}, m_{h}^{\ast,\mathrm{DOS}}$ がよく使われる。
+
+$$
+N_{c}(T) = 2\left(\frac{m_{e}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2},\qquad
+N_{v}(T) = 2\left(\frac{m_{h}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2}
+$$
+
+これらを用いてキャリアの統計を求める。
+
+
+---
+
+### 10.6.2 真性キャリアと質量作用則
+
+フェルミ準位を $E_{F}$ とすると、非縮退（ボルツマン）領域のキャリア数密度は、
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{F})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{F}-E_{v0})/k_{B}T}
+$$
+
+両者を掛けると **質量作用則** が得られる。
+
+$$
+np = n_{i}^{2},\qquad
+n_{i}(T) = \sqrt{N_{c}N_{v}}\;e^{-E_{g}/(2k_{B}T)} \propto T^{3/2}\,e^{-E_{g}/(2k_{B}T)}
+$$
+
+真性結晶では $n=p=n_{i}$ であり、$E_{F}$ はギャップの中央付近に位置するが、状態密度質量の差によってずれる。
+
+---
+
+### 10.6.3 ドーピング：ドナー、アクセプター、電荷中性
+
+置換型不純物は、浅い水素原子型準位を加える。有効質量理論から、
+
+$$
+E_{D} \approx \frac{m_{e}^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{D}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{m_{e}^{\ast}}\,a_{0}
+$$
+
+アクセプターも $m_{h}^{\ast}$ を用いて同様に扱える。室温 $T$ では、浅い不純物は通常イオン化している。
+
+ドナー密度 $N_{D}$、アクセプター密度 $N_{A}$ の n 型結晶では、
+
+$$
+n - p + N_{A}^{-} - N_{D}^{+} = 0
+$$
+
+非縮退領域で完全イオン化を仮定すると、$N_{D}^{+}\approx N_{D}$、$N_{A}^{-}\approx N_{A}$ であり、
+
+$$
+n \approx \frac{1}{2}\left[(N_{D}-N_{A}) + \sqrt{(N_{D}-N_{A})^{2} + 4 n_{i}^{2}}\right],\qquad
+p = \frac{n_{i}^{2}}{n}
+$$
+
+**多数キャリア** 極限 $N_{D}-N_{A}\gg n_{i}$ では、$n\approx N_{D}-N_{A}$、$p\approx n_{i}^{2}/n$ となる。
+
+低 $T$ では不完全なイオン化によって $n<N_{D}$ の **凍結** 領域が現れる。不純物準位のフェルミ–ディラック占有を用いよう。
+
+---
+
+### 10.6.4 移動度、散乱、伝導率
+
+各キャリアは移動度 $\mu$ をもち、ドリフト速度は $\boldsymbol v_{d}=\pm \mu \boldsymbol E$ である。伝導率は、
+
+$$
+\sigma = q\,(n\mu_{n} + p\mu_{p}),\qquad \rho = \frac{1}{\sigma}
+$$
+
+散乱源には次がある。
+
+- 格子（フォノン）：3次元では典型的に $\mu \propto T^{-3/2}$。  
+- イオン化不純物：低 $T$ で $\mu \propto T^{+3/2}$。  
+- 散乱率のマティーセン則：$\mu^{-1}\approx \mu_{\mathrm{ph}}^{-1}+\mu_{\mathrm{imp}}^{-1}+\cdots$。
+
+2種類のキャリアのホール係数（弱磁場）には補償が現れる。
+
+$$
+R_{H} = \frac{p\mu_{p}^{2} - n\mu_{n}^{2}}{q\,(n\mu_{n}+p\mu_{p})^{2}}
+$$
+
+その符号は、移動度で重み付けしたときに支配的なキャリアの種類を示す。
+
+---
+
+### 10.6.5 ドリフト–拡散とアインシュタイン関係
+
+キャリアのドリフト–拡散電流密度は、
+
+$$
+\boldsymbol J_{n} = q\,n\mu_{n}\boldsymbol E + q D_{n}\nabla n,\qquad
+\boldsymbol J_{p} = q\,p\mu_{p}\boldsymbol E - q D_{p}\nabla p
+$$
+
+非縮退統計では、
+
+$$
+D_{n} = \frac{k_{B}T}{q}\,\mu_{n},\qquad
+D_{p} = \frac{k_{B}T}{q}\,\mu_{p}
+$$
+
+この **アインシュタイン関係** は、半導体における揺動散逸の関係である。
+
+---
+
+### 10.6.6 再結合、寿命、擬フェルミ準位
+
+光照射や注入による非平衡状態では、電子と正孔を **擬フェルミ準位** $E_{Fn},E_{Fp}$ で記述できる。
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{Fn})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{Fp}-E_{v0})/k_{B}T}
+$$
+
+正味の再結合・生成過程には次がある。
+
+- **放射再結合（バンド間）**：$R_{\mathrm{rad}} = B\,(np - n_{i}^{2})$。  
+- **ショックレー–リード–ホール再結合（トラップを介する）**：およそ $R_{\mathrm{SRH}} \approx \frac{np - n_{i}^{2}}{\tau_{p}(n+n_{1}) + \tau_{n}(p+p_{1})}$。$n_{1},p_{1}$ はトラップのパラメータである。  
+- **オージェ再結合**：$R_{\mathrm{Auger}} = C_{n} n (np-n_{i}^{2}) + C_{p} p (np-n_{i}^{2})$。
+
+微小信号での $R\approx \delta n/\tau$ によって少数キャリア寿命 $\tau$ を定義する。寿命は拡散長 $L=\sqrt{D\tau}$ を決め、フォトダイオードや太陽電池のキャリア収集を支配する。
+
+---
+
+### 10.6.7 直接・間接ギャップ、吸収、励起子
+
+バンド端付近の光吸収係数は、
+
+- **直接ギャップ**：$\alpha(\hbar\omega)\propto \sqrt{\hbar\omega - E_{g}}$。  
+- **間接ギャップ**：フォノンが補助する。$\alpha$ は緩やかに立ち上がり、温度依存性を示す。
+
+電子–正孔対が束縛されると、水素原子型の系列をもつ **励起子** が生じる。有効質量理論の見積もりは、
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}}\,\frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{X}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{\mu^{\ast}}\,a_{0}
+$$
+
+換算質量は $\mu^{\ast}=(m_{e}^{\ast} m_{h}^{\ast})/(m_{e}^{\ast}+m_{h}^{\ast})$ である。清浄な結晶や2次元物質では、吸収端に励起子ピークが現れる。
+
+---
+
+### 10.6.8 pn 接合の基本：内蔵電位、空乏層、ダイオード則
+
+p 領域と n 領域を接合すると、キャリアが拡散し、イオン化した不純物が残って、内蔵電場をもつ **空乏層** ができる。平衡状態では、
+
+$$
+V_{\mathrm{bi}} = \frac{k_{B}T}{q}\,\ln\!\left(\frac{N_{A} N_{D}}{n_{i}^{2}}\right)
+$$
+
+空乏層内の自由電荷を無視すると（階段接合）、印加バイアス $V$ における全空乏層幅は、
+
+$$
+W = \sqrt{\frac{2\varepsilon_{s}}{q}\,\frac{N_{A}+N_{D}}{N_{A}N_{D}}\,(V_{\mathrm{bi}} - V)}
+$$
+
+順方向バイアスは障壁を下げる。理想的な **ショックレーのダイオード方程式** は、
+
+$$
+I = I_{0}\left(e^{qV/(k_{B}T)} - 1\right)
+$$
+
+ここで $I_{0}\propto n_{i}^{2}$ は、拡散長と不純物濃度に反比例する。逆方向バイアスでは、ツェナー・トンネル機構やなだれ機構による降伏が始まるまで、電流はほぼ $-I_{0}$ にとどまる。
+
+---
+
+### 10.6.9 金属–半導体接触：オーミック接触とショットキー接触
+
+半導体に接した金属は、次のいずれかを形成する。
+
+- **オーミック** 接触：障壁が十分に薄い・低いためトンネルが可能、または高濃度ドーピングによるバンドの曲がりで注入が容易な場合。  
+- それ以外では、整流性をもつ **ショットキー** 障壁。障壁高さは金属の仕事関数、半導体の電子親和力、界面でのピンニングで決まる。
+
+順方向バイアスでのショットキー接触を横切る輸送は、しばしば $I\propto T^{2} e^{-q\Phi_{B}/k_{B}T}\,(e^{qV/k_{B}T}-1)$ という熱電子放出に従う。
+
+---
+
+### 10.6.10 温度による三つの領域
+
+不純物半導体で $T$ を上げると、
+
+1) **凍結領域**：不純物は部分的にイオン化し、$n<N_{D}$。  
+2) **不純物支配領域**：$n\approx N_{D}$（または $p\approx N_{A}$）かつ $np\approx n_{i}^{2}$ のプラトー。  
+3) **真性領域**：$n_{i}$ が指数関数的に増えて不純物濃度を上回ると、$n\approx p\approx n_{i}$。
+
+$T$ に対する抵抗率とホール測定から、活性化エネルギーと支配的な散乱を読み取れる。
+
+---
+
+### 10.6.11 短い計算例
+
+**(a) 真性キャリア密度**  
+$300\ \mathrm{K}$ で $m_{e}^{\ast,\mathrm{DOS}}=0.26\,m_{e}$、$m_{h}^{\ast,\mathrm{DOS}}=0.39\,m_{e}$、$E_{g}=1.12\ \mathrm{eV}$ とする。シリコンに似たギャップをもつこの例示模型で、$T^{3/2} e^{-E_{g}/2k_{B}T}$ の形を使って $n_{i}$ を見積もろう。与えた質量は演習用パラメータであり、シリコンの正確な状態密度質量ではない。
+
+**(b) ドープした Si のフェルミ準位**  
+$300\ \mathrm{K}$ で $N_{D}=10^{16}\ \mathrm{cm^{-3}}$、$n_{i}=10^{10}\ \mathrm{cm^{-3}}$ とする。$n,p$ を求め、$n=N_{c} e^{-(E_{c0}-E_{F})/k_{B}T}$ から $E_{c0}$ に対する $E_{F}$ の位置を求めよう。
+
+**(c) アインシュタイン関係の確認**  
+$300\ \mathrm{K}$ の Si で測定した $\mu_{n}=1350\ \mathrm{cm^{2}/Vs}$ から、$D_{n}$ と、$\tau_{n}=1\ \mu\mathrm{s}$ に対する拡散長を求めよう。
+
+**(d) 空乏層幅**  
+$N_{A}=10^{17}$、$N_{D}=10^{16}\ \mathrm{cm^{-3}}$、$\varepsilon_{s}=11.7\,\varepsilon_{0}$ の Si pn 接合で、$V=0$ および $V=0.6\ \mathrm{V}$ における $W$ を計算しよう。
+
+**(e) 放射再結合と SRH 再結合**  
+$B=10^{-10}\ \mathrm{cm^{3}/s}$、$n=p=10^{15}\ \mathrm{cm^{-3}}$ として $R_{\mathrm{rad}}$ を見積もり、$\tau=1\ \mu\mathrm{s}$ の SRH 再結合率と比較しよう。
+
+---
+
+### 10.6.12 よくある落とし穴
+
+- **質量作用則の見落とし**：平衡ではドープした物質でも $np=n_{i}^{2}$。これが破れれば注入や光照射を示す。  
+- **アインシュタイン関係の適用範囲外での使用**：標準的な $D=\mu k_{B}T/q$ は非縮退統計を前提とする。縮退半導体にはフェルミ–ディラック補正が必要。  
+- **完全イオン化の仮定**：低 $T$ や深い不純物準位では、不純物占有数を自己無撞着に求めよう。  
+- **状態密度質量と伝導質量の混同**：$N_{c,v}(T)$ には状態密度質量、輸送には伝導質量テンソルと散乱が必要。  
+- **理想ダイオード模型への固執**：実際のダイオードには直列抵抗、空乏層内再結合（理想係数 $n_{\mathrm{id}}>1$）、界面準位がある。
+
+---
+
+## 10.7 フェルミ面と輸送
+
+**フェルミ面（FS）** は金属の低温輸送の中心である。伝導率、ホール効果、磁気抵抗、量子振動のほとんどは、そのすぐ近くにある準粒子が担う。$k$ 空間の幾何が、実験室で測れる物理量になる。本節では、半古典的運動方程式、ボルツマン・チェンバースの方法、多バンドと補償を含む磁場中の輸送、量子振動の道具立て（オンザガー関係とリフシッツ–コセビッチ公式）を構築する。フェルミ面のトポロジー、すなわち閉軌道・開軌道の違いが磁気応答をどう支配するかも示す。
+
+---
+
+### 10.7.1 半古典的運動方程式：ベリー曲率は後で
+
+場 $(\boldsymbol E,\boldsymbol B)$ 中のバンド $\epsilon(\boldsymbol k)$ の半古典的運動は、
+
+$$
+\hbar\,\dot{\boldsymbol k} = -e\left(\boldsymbol E + \dot{\boldsymbol r}\times \boldsymbol B\right),\qquad
+\dot{\boldsymbol r} = \frac{1}{\hbar}\,\nabla_{\boldsymbol k}\epsilon(\boldsymbol k)
+$$
+
+$\boldsymbol E=0$ では、$\boldsymbol B$ に垂直な等エネルギー線に沿って $k$ 空間の **サイクロトロン運動** が起こる。実空間の速度は $\boldsymbol v=\dot{\boldsymbol r}$ である。ベリー曲率と異常速度は§10.11で扱う。
+
+---
+
+### 10.7.2 サイクロトロン周波数と質量
+
+閉軌道の周波数は、
+
+$$
+\omega_{c} = \frac{eB}{m_{c}}
+$$
+
+**サイクロトロン質量** は、$\boldsymbol B$ に垂直な対応する $k$ 空間軌道の面積 $A(E)$ によって決まる。
+
+$$
+m_{c}(E) = \frac{\hbar^{2}}{2\pi}\,\frac{\partial A(E)}{\partial E}\Big|_{E=\epsilon_{F}}
+$$
+
+等方的放物線 $E=\hbar^{2}k^{2}/2m^{\ast}$ では $m_{c}=m^{\ast}$。異方的楕円体では $m_{c}$ は磁場方向に依存する。
+
+---
+
+### 10.7.3 ボルツマン輸送：緩和時間とチェンバース公式
+
+定常場で緩和時間 $\tau(\boldsymbol k)$ を用いてボルツマン方程式を線形化すると、電流は、
+
+$$
+\boldsymbol J = -e \int \frac{d^{3}k}{4\pi^{3}}\,\boldsymbol v(\boldsymbol k)\,\delta f(\boldsymbol k),\qquad
+\delta f = -e\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \boldsymbol E
+$$
+
+**チェンバース公式** では、ベクトル平均自由行程は軌道に沿った履歴平均である。
+
+$$
+\boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; \exp\!\left[-\int_{0}^{t}\frac{dt'}{\tau(\boldsymbol k_{-t'})}\right]\,\boldsymbol v(\boldsymbol k_{-t})
+$$
+
+これにより、伝導率テンソルは概略的に、
+
+$$
+\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\Lambda_{\beta}
+$$
+
+となる。ベクトル平均自由行程は上の履歴積分で定義される。等方的で単一の $\tau$ をもつ金属では、ドルーデ模型に帰着する。
+
+---
+
+### 10.7.4 ホール角、移動度テンソル、平均自由行程
+
+**移動度** を $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$、 **ホール角** を $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx -\omega_{c}\tau$（単一バンド）と定義する。 **平均自由行程** は、
+
+$$
+\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{for good quasiparticles}
+$$
+
+**イオッフェ–リーゲル** 極限 $k_{F}\ell\sim 1$ に近づくと、金属は「悪い金属」となり、半古典的輸送の記述が崩れ始める。
+
+---
+
+### 10.7.5 磁気抵抗：単一バンドのドルーデ模型で一定になる理由
+
+一定の $\tau$ をもつ等方的な単一バンドでは、$\sigma_{xx}$ が減少しても、抵抗率 $\rho_{xx}$ は **磁場に依存しない**。テンソルの逆行列をとると相殺されるためである。実際の物質では、(i) 複数種類のキャリア、(ii) フェルミ面の異方性・歪み、(iii) 角度依存の $\tau(\boldsymbol k)$、(iv) 開軌道により磁気抵抗が現れる。実用的な整理法が **コーラー則** である。
+
+$$
+\frac{\Delta \rho}{\rho_{0}} \equiv \frac{\rho(B)-\rho_{0}}{\rho_{0}} = F\!\left(\frac{B}{\rho_{0}}\right) \approx F(\omega_{c}\tau)
+$$
+
+すべてを単一の散乱時間が支配するなら、異なる $T$ の曲線を $B/\rho_{0}(T)$ に対して描くと、同じ曲線に重なる。
+
+---
+
+### 10.7.6 2バンド模型：電子と正孔
+
+密度と移動度を $(n_{e},\mu_{e})$、$(n_{h},\mu_{h})$、電荷の符号を $s_{e}=-1$、$s_{h}=+1$ とする。伝導率は和となる。
+
+$$
+\sigma_{xx} = \sum_{i=e,h} \frac{n_{i} e \mu_{i}}{1+(\mu_{i}B)^{2}},\qquad
+\sigma_{xy} = \sum_{i=e,h} \frac{s_{i} n_{i} e \mu_{i}^{2} B}{1+(\mu_{i}B)^{2}}
+$$
+
+逆行列から $\rho_{xx},\rho_{xy}$ を求める。重要な領域は次のとおり。
+
+- **補償** $n_{e}\approx n_{h}$ と高い移動度 ⇒ 補償領域では、大きくほぼ2次的な **非飽和磁気抵抗**。漸近的にも飽和しないためには完全補償が必要。  
+- **支配的なキャリア** $n_{e}\gg n_{h}$ ⇒ 移動度の差が弱磁場の符号を反転させない場合に限り、ホール符号は固定される。磁気抵抗は小さくなり、飽和しやすい。
+
+$\rho_{xx}(B)$ と $\rho_{xy}(B)$ の多バンド当てはめは、キャリアの種類と移動度を調べる基本的な方法である。
+
+---
+
+### 10.7.7 開軌道と閉軌道、角度依存性
+
+- 閉じたフェルミ面ポケット上の **閉軌道** は、通常の $\omega_{c}$ と量子振動を与える。  
+- **開軌道**（例：歪んだ擬1次元シート）では、キャリアが一方向に流れ続けられる。磁気抵抗は強い **異方性** をもち、幾何に応じて飽和せず線形または2次的に増大しうる。  
+- 層状金属の **AMRO**（角度依存磁気抵抗振動）は、$\boldsymbol B$ を傾けたとき、歪んだ擬2次元フェルミ面上の軌道運動によって生じる。標準的なコヒーレント円筒模型では、層間抵抗は歪みによって決まる **山地角** で極大となる。
+
+---
+
+### 10.7.8 量子振動：オンザガー関係とリフシッツ–コセビッチ公式
+
+ランダウ量子化は軌道面積を離散準位へ変える。 **オンザガー関係** は、$1/B$ に対する振動周波数 $F$ を、$\boldsymbol B$ に垂直なフェルミ面の極値断面積 $A_{F}$ に結びつける。
+
+$$
+F = \frac{\hbar}{2\pi e}\,A_{F}
+$$
+
+**リフシッツ–コセビッチ（LK）** 振幅は、代表的な三つの因子をもつ。
+
+$$
+\Delta M,\ \Delta \rho \ \propto\ R_{T}\,R_{D}\,R_{S}\,\cos\!\left(2\pi\frac{F}{B} - \gamma\right)
+$$
+
+ここで、
+
+$$
+R_{T} = \frac{X}{\sinh X},\quad X=\frac{2\pi^{2} k_{B} T}{\hbar \omega_{c}}
+$$
+
+$$
+R_{D} = \exp\!\left(-\frac{\pi}{\omega_{c}\tau}\right) = \exp\!\left(-\frac{2\pi^{2} k_{B} T_{D}}{\hbar \omega_{c}}\right)
+$$
+
+$$
+R_{S} = \cos\!\left(\frac{\pi g m_{c}}{2 m_{e}}\right)
+$$
+
+$R_{T}$ は $m_{c}$ を読み取る **質量プロット** を与え、$R_{D}$ は散乱の **ディングル** 因子を表す。その寿命は量子寿命であり、輸送寿命と同じとは限らない。$R_{S}$ はスピン分裂による変調を表す。位相 $\gamma$ には、ディラック・ワイル系のベリー位相が反映されることがある（§10.11参照）。
+
+---
+
+### 10.7.9 サイクロトロン共鳴と光学測定
+
+清浄な試料では、交流場によって $\omega=n\,\omega_{c}$ の共鳴が観測され、$m_{c}$ が直接求まる。 **光学伝導率** はドルーデ成分とバンド間寄与に分かれ、 **f 総和則** が全スペクトル重みを決める（§10.3参照）。層状導体では、磁場の傾きに対する **層間伝導率** からフェルミ面の歪みがわかる。
+
+---
+
+### 10.7.10 フェルミ面の実際の測定：ARPES と量子振動
+
+- **ARPES** は占有バンドとフェルミ面の輪郭を $k_{\parallel}$ で直接測る。2次元系や表面に適しているが、バルクの $k_{z}$ の測定は難しい。  
+- **量子振動** は **極値** 面積だけを観測するが、非常に高精度で、バルクに敏感である。  
+- **量子振動の角度走査** は $F(\theta)$ からフェルミ面全体の形を再構成する。ARPES と組み合わせれば、ポケットや3次元的歪みの曖昧さを減らせる。
+
+---
+
+### 10.7.11 熱電効果とネルンスト効果の手がかり
+
+フェルミ面付近では、 **モットの公式** がゼーベック係数を $\epsilon_{F}$ における伝導率のエネルギー微分に結びつける。
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+**ネルンスト効果**（$B$ 中で温度勾配から生じる横電圧）は、フェルミ面の曲率と準粒子寿命の非対称性に非常に敏感で、小さなポケットを示す手がかりとなることが多い。
+
+---
+
+### 10.7.12 強磁場と量子極限の特徴
+
+非常に大きな $B$ では、キャリアは少数の低いランダウ準位に集まる。 **量子極限**（$n=0$ のみ占有）では、磁気抵抗や熱電効果がドルーデ型から外れ、ときには **$B$ に線形** になったり符号が反転したりする。ディラック・ワイル物質では、$\boldsymbol E\parallel \boldsymbol B$ のとき、縦磁気抵抗にカイラル異常の寄与が現れうる（詳細は§10.11）。
+
+---
+
+### 10.7.13 短い計算例
+
+**(a) 周波数からオンザガー面積へ**  
+$\mathbf B\parallel \hat z$ で $F=1.0\ \mathrm{kT}$ を測定した。極値面積を求めよう。
+
+$$
+A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \text{\AA}^{-2}
+$$
+
+さらに、等価な円形断面のフェルミ波数 $k_{F}=\sqrt{A_{F}/\pi}$ を求めよう。
+
+**(b) LK の質量プロット**  
+一定の $B$ で測った振動振幅の $T$ 依存性を $R_{T}=X/\sinh X$ で当てはめ、$X=(2\pi^{2}k_{B}T m_{c})/(e\hbar B)$ から $m_{c}$ を求めよう。
+
+**(c) 2バンドの磁気抵抗**  
+$n_{e}=n_{h}=5\times 10^{25}\ \mathrm{m^{-3}}$、$\mu_{e}=1.5\ \mathrm{m^{2}/Vs}$、$\mu_{h}=0.8\ \mathrm{m^{2}/Vs}$ とする。$\rho_{xx}(B)$ を求め、数テスラまで飽和せず2次的に増大することを示そう。
+
+**(d) AMRO と山地角**  
+層間分散 $-2t_{\perp}\cos k_{z}c$ をもつ円筒状の擬2次元フェルミ面を考える。コヒーレントな強磁場の軌道平均極限で、層間磁気抵抗の極大が、正整数 $\nu$ に対して $\tan\theta \approx \pi (\nu-1/4)/(k_{F} c)$ 付近に現れることを示そう。角度周期から $k_{F}$ が得られる。
+
+**(e) イオッフェ–リーゲル条件の確認**  
+単一バンドで $k_{F}=0.8\ \text{\AA}^{-1}$、$v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$、$\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$ とする。$\tau=m^{\ast}/(ne^{2}\rho_{0})$ を見積もり、$\ell=v_{F}\tau$ を求め、$k_{F}\ell$ を考察しよう。
+
+---
+
+### 10.7.14 よくある落とし穴
+
+- **質量の混同**：異方的・多バンド系では、$m^{\ast}$（バンド曲率）、$m_{c}$（サイクロトロン）、光学質量、熱力学的質量は異なる。  
+- **テンソルの逆行列の見落とし**：$\sigma_{xx}$ の変化がそのまま $\rho_{xx}$ に対応するわけではない。必ず全テンソルを反転しよう。  
+- **単一の $\tau$ の仮定**：散乱の強い点・弱い点や異方的散乱は、コーラー則の曲線の重なりを崩し、多バンド的な磁気抵抗に見えることがある。  
+- **振動位相の誤読**：ベリー位相の抽出には、背景の差し引きと指数の規約への注意が必要。スピンゼロ点は見かけの位相をずらしうる。  
+- **幾何の無視**：高移動度の補償結晶では、試料の傾きや電流集中が、見かけ上巨大な線形磁気抵抗を生むことがある。  
+- **開軌道の見落とし**：「飽和する磁気抵抗」を不純物のせいにしても、実際の原因はフェルミ面のトポロジーと磁場方向かもしれない。
+
+---
+
+## 10.8 磁性
+
+磁性には大きく二つの描像がある。 **局在** モーメントは、交換相互作用で結合した小さな量子スピンとして振る舞う。一方、 **遍歴** 磁性ではフェルミ海自体が分極する。本節では、キュリー–ワイス則からスピン波と強磁性共鳴まで、標準的な理論を組み立てる。ハイゼンベルク模型、交換機構（直接交換、超交換、二重交換、RKKY）、ストーナー強磁性、強磁性体・反強磁性体のマグノン、異方性と磁区、そして対称性を破る場のない1・2次元でのマーミン–ワグナー定理を扱う。数式と物理的な要点を結びつけて学ぼう。
+
+![平行にそろうスピンと、二部格子上で隣接スピンが交互に反転する配列の比較。](/images/diagrams/magnetic-order.svg)
+
+---
+
+### 10.8.1 磁気モーメント、$g$ 因子、単位
+
+電子はスピン $\boldsymbol S$ をもち、軌道角運動量 $\boldsymbol L$ も寄与しうる。磁気モーメント演算子は、
+
+$$
+\boldsymbol{\mu} = -g_{S}\mu_{B}\,\boldsymbol S/\hbar - g_{L}\mu_{B}\,\boldsymbol L/\hbar
+$$
+
+ここでボーア磁子は $\mu_{B}=e\hbar/(2m_{e})$、$g_{S}\approx 2$ である。固体では、結晶場による軌道角運動量の **消失（クエンチング）** によって有効スピンモーメントが残ることが多い。スピン–軌道結合の効果が加わり、異方性を生むこともある。
+
+**磁化** $\boldsymbol M$ は単位体積あたりのモーメントである。線形応答では、$\boldsymbol M=\chi \boldsymbol H$（等方的な場合）によって磁化率 $\chi$ を定義し、$\boldsymbol B=\mu_{0}(\boldsymbol H+\boldsymbol M)$ が成り立つ。
+
+---
+
+### 10.8.2 局在モーメント模型：イジング、ハイゼンベルク、XXZ
+
+格子上の局在スピン $\{\boldsymbol S_{i}\}$ に対する最小限のハミルトニアンは、
+
+- **イジング**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,S_{i}^{z} S_{j}^{z} - h\sum_{i} S_{i}^{z}
+$$
+
+- **ハイゼンベルク（SU(2) 対称）**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,\boldsymbol S_{i}\cdot \boldsymbol S_{j} + g\mu_{B} B \sum_{i} S_{i}^{z}
+$$
+
+- **XXZ 異方性**
+
+$$
+H = -\sum_{\langle ij\rangle} \left[J_{\perp}\,(S_{i}^{x} S_{j}^{x}+S_{i}^{y} S_{j}^{y}) + J_{z}\,S_{i}^{z} S_{j}^{z}\right]
+$$
+
+ここでスピンは無次元（角運動量を $\hbar$ で割ったもの）とし、最近接の各結合は一度だけ数える。以下の $N$ は数密度を表す。この符号規約では、$J>0$ は **強磁性**（FM）、$J<0$ は **反強磁性**（AFM）を安定化する。
+
+常磁性体の **キュリー–ワイス** 現象論では、秩序温度より上で、
+
+$$
+\chi(T) = \frac{C}{T-\Theta_{\mathrm{CW}}},\qquad
+C = \frac{\mu_{0} N g^{2} \mu_{B}^{2} S(S+1)}{3k_{B}}
+$$
+
+$\Theta_{\mathrm{CW}}$ の符号は、支配的な交換が FM（$>0$）か AFM（$<0$）かを示唆する。
+
+---
+
+### 10.8.3 交換機構：$J$ はどこから来るか
+
+- **直接交換**：隣接する局所軌道の重なりにより、パウリ原理とクーロン相互作用が平行・反平行スピン配置のエネルギー差を生む。  
+- **超交換**：非磁性配位子を介する仮想ホッピング（例：遷移金属–酸素–遷移金属）。半充填のハバード型の状況では、
+
+$$
+J \sim -\frac{4t^{2}}{U}
+$$
+
+となり、多くの場合 **反強磁性的** である。  
+- **二重交換**（混合原子価マンガン酸化物）：遍歴電子がホッピングを最大にするよう局所的な内殻スピンをそろえ、強磁性と金属性を安定化する。  
+- **RKKY**（局在モーメントをもつ金属）：伝導電子が振動する結合を媒介する。
+
+$$
+J(r) \propto \frac{\cos(2k_{F} r)}{r^{3}}
+$$
+
+この結合は複雑な秩序を生み、無秩序で位相が乱れるとスピングラスを生じうる。
+
+---
+
+### 10.8.4 遍歴強磁性：ストーナー条件
+
+単純なバンドでは、スピン分極がバンドを $\pm \Delta/2$ だけ分裂させると、交換によりエネルギーが下がる。 **ストーナー** 平均場理論の条件は、
+
+$$
+I\,N(\epsilon_{F}) > 1
+$$
+
+ここで $I$ は相互作用パラメータ、$N(\epsilon_{F})$ はフェルミ準位でのスピンあたりの状態密度である。その帰結は、
+
+- 有限の **パウリ磁化率** は次のように増強される。
+
+$$
+\chi = \frac{\chi_{0}}{1 - I N(\epsilon_{F})}
+$$
+
+- 対称性が破れた相では **スピン波剛性** が現れる（§10.8.6参照）。
+
+遍歴磁性体ではバンド構造と相互作用が結びつく。ARPES、量子振動、光学総和則はそれらを区別する手がかりとなる。
+
+---
+
+### 10.8.5 平均場での秩序温度
+
+配位数 $z$ の格子で最近接交換を $J$ とすると、ワイス平均場理論は次を予測する。
+
+- **強磁性ハイゼンベルク模型**
+
+$$
+k_{B} T_{C}^{\mathrm{MF}} = \frac{1}{3}\,z J S(S+1)
+$$
+
+- **反強磁性（二部格子）**
+
+$$
+k_{B} T_{N}^{\mathrm{MF}} = \frac{1}{3}\,z |J| S(S+1)
+$$
+
+実際の $T_{C/N}$ は揺らぎによって低下する。低次元や小さな $S$ では特に顕著である。
+
+---
+
+### 10.8.6 強磁性体のスピン波：マグノン
+
+強磁性ハイゼンベルク模型の小さな横振動が **マグノン** である。ホルスタイン–プリマコフ変換により、最低次で、
+
+$$
+H \approx E_{0} + \sum_{\boldsymbol k} \hbar \omega_{\boldsymbol k}\, b_{\boldsymbol k}^{\dagger} b_{\boldsymbol k}
+$$
+
+$\boldsymbol k=0$ 付近の分散は、
+
+$$
+\hbar \omega_{\boldsymbol k} \approx D\,k^{2} + \Delta_{\mathrm{ani}}
+$$
+
+ここで $D$ は $J$ と格子の幾何で決まる **スピン波剛性**、$\Delta_{\mathrm{ani}}$ は異方性によるギャップである（異方性がなければゴールドストーンモードとしてギャップレス）。マグノンの熱励起は磁化を減らす。
+
+$$
+M(T) \approx M(0)\left[1 - A\,T^{3/2}\right]
+$$
+
+これが3次元強磁性体の **ブロッホの $T^{3/2}$ 則** である。
+
+3次元のマグノンの **比熱** は低 $T$ で $C_{\mathrm{mag}}\propto T^{3/2}$ となる（2次分散 → 状態密度 $\propto \sqrt{E}$）。
+
+---
+
+### 10.8.7 反強磁性体：二副格子のスピン波
+
+二部格子上の共線反強磁性体では、線形スピン波理論から、小さな $k$ で **線形** 分散をもつ2本の分枝が得られる。
+
+$$
+\hbar \omega_{\boldsymbol k} \approx \hbar c\,|\boldsymbol k|
+$$
+
+速度 $c$ は $|J|$、$S$、格子間隔に依存する。異方性は小さなギャップを生む。一様磁化率は $T_{N}$ にカスプを示すことが多く、その下では横成分と縦成分が異なる。
+
+---
+
+### 10.8.8 磁気異方性、反磁場、磁区
+
+- スピン–軌道結合による **結晶磁気異方性** は、磁化容易軸や容易面を選ぶ。最小模型は、
+
+$$
+E_{\mathrm{ani}} = K_{1} \sin^{2}\theta + K_{2} \sin^{4}\theta + \cdots
+$$
+
+であり、保磁力と磁区構造に影響する。  
+- **反磁場** は、表面の $\nabla\cdot \boldsymbol M$ が「磁荷」のように働くことで生じる。形状が反磁場テンソル $\mathsf N$ を決め、場は $\boldsymbol H_{d}=-\mathsf N \boldsymbol M$ となる。  
+- **磁区** は、磁壁エネルギーと静磁エネルギーの釣り合いから形成される。 **磁壁** の幅は $\delta \sim \sqrt{A/K}$、エネルギーは $\sigma \sim \sqrt{A K}$。$A$ は交換剛性、$K$ は異方性である。
+
+---
+
+### 10.8.9 強磁性共鳴（FMR）と動力学
+
+磁化の動力学は **ランダウ–リフシッツ–ギルバート**（LLG）方程式に従う。
+
+$$
+\frac{d\boldsymbol M}{dt} = -\gamma\mu_{0}\,\boldsymbol M\times \boldsymbol H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\boldsymbol M\times \frac{d\boldsymbol M}{dt}
+$$
+
+ここで $\gamma$ は正の磁気回転比の大きさ（単位はラジアン毎秒毎テスラ）、$\alpha$ は減衰である。面内磁化した薄膜の一様モードでは（簡単な場合のキッテル公式）、
+
+$$
+\omega^{2} = (\gamma\mu_{0})^{2}\,(H+H_{k})(H+H_{k}+M_{s})
+$$
+
+FMR から異方性場 $H_{k}$ と減衰を読み取れる。
+
+---
+
+### 10.8.10 次元性：マーミン–ワグナーとコステリッツ–サウレス
+
+短距離交換をもつ厳密な1・2次元の連続対称な磁性体は、有限 $T$ で長距離秩序をもてない。ギャップのないゴールドストーンモードが長距離秩序を壊すためである。これが **マーミン–ワグナー定理** である。回避するには、
+
+- **異方性**（イジング型への離散化）、長距離の双極子項、または層間結合を加える。  
+- 2次元 XY 系では、通常の $T_{C}$ ではなく、渦の解離と代数的秩序を伴う **コステリッツ–サウレス** 転移が期待される。
+
+---
+
+### 10.8.11 磁場中の輸送の要点
+
+- 強磁性体の **異常ホール効果（AHE）**：$\rho_{xy}=R_{0}B + R_{s} M$。内因的なベリー曲率機構と、外因的なスキュー散乱・サイドジャンプ機構がある。  
+- **スピン波と抵抗率**：強磁性体では、低 $T$ でマグノン散乱による $T^{2}$ または $T^{3/2}$ の追加寄与が現れる。  
+- **スピンカロリトロニクス**：スピンゼーベック効果やマグノンドラッグの信号が、マグノンと電荷・熱の輸送を結びつける。
+
+---
+
+### 10.8.12 短い計算例
+
+**(a) キュリー–ワイス則の傾き**  
+$S=5/2$、$g=2$、数密度 $N$ として、高 $T$ での $1/\chi(T)$ の傾きが $1/C$、ただし $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$ となることを示そう。データを当てはめて $N$ または $S$ を求めよう。
+
+**(b) 立方格子強磁性体のスピン波剛性**  
+格子間隔 $a$ の立方格子上の最近接ハイゼンベルク模型で、次を示そう。
+
+$$
+\hbar \omega_{\mathbf k} = J S z \left(1-\gamma_{\mathbf k}\right)
+$$
+
+ここで $z=6$、$\gamma_{\mathbf k}=\tfrac{1}{3}[\cos(k_{x}a)+\cos(k_{y}a)+\cos(k_{z}a)]$。小さな $k$ で展開して $D$ を求めよう。
+
+**(c) 反強磁性体の二副格子分散**  
+最近接交換 $J<0$ をもつ超立方二部格子の反強磁性体で、小さな $k$ における線形マグノン速度 $c=|J|Sa\sqrt{2z}/\hbar$ を幾何因子に注意して導こう。
+
+**(d) ストーナー増強**  
+$\chi/\chi_{0}=5$ から $I N(\epsilon_{F})$ を見積もり、不安定条件 $=1$ への近さを考察しよう。
+
+**(e) 磁壁幅**  
+$A=1\times 10^{-11}\ \mathrm{J/m}$、$K=5\times 10^{4}\ \mathrm{J/m^{3}}$ として、$\delta=\sqrt{A/K}$ と $\sigma\sim\sqrt{A K}$ を見積もろう。
+
+**(f) RKKY の符号反転**  
+$k_{F}=1.2\ \text{\AA}^{-1}$ に対し、$\cos(2k_{F} r)$ の最初のいくつかのゼロ点・符号反転を計算し、どの距離で結合が FM と AFM の間で切り替わるか調べよう。
+
+---
+
+### 10.8.13 よくある落とし穴
+
+- **$J$ の符号規約**：ハミルトニアンが $-J \boldsymbol S_{i}\cdot \boldsymbol S_{j}$ か $+J$ か確認しよう。選択によって FM と AFM の符号が反転する。  
+- **キュリー–ワイス則の過剰適用**：これは **高 $T$** の法則である。$T_{C/N}$ 付近やそれ以下では、臨界揺らぎによって平均場の直線から外れる。  
+- **異方性の無視**：2次元では、異方性や長距離項なしに有限 $T$ の秩序は生じない。小さな $K$ も重要である。  
+- **パウリ常磁性とキュリー常磁性の混同**：遍歴常磁性（パウリ）の $\chi$ は $T$ に依存せず、局在モーメント（キュリー）では $1/T$ に比例する。実物質には両方がありうる。  
+- **反磁場と内因的性質の混同**：生の磁化ループは形状に依存する。内因的な $M(H)$ を得るには反磁場補正が必要。  
+- **マグノンギャップの見落とし**：FM・AFM のスピン波スペクトルに有限周波数の切片があれば、異方性やゼーマンギャップを示す。完全なギャップレスとして当てはめないこと。
+
+---
+
+### 10.8.14 基本演習
+
+- スピン $S$ のワイス場 $H_{\mathrm{eff}}=\lambda M$ からキュリー–ワイス磁化率を導き、$\Theta_{\mathrm{CW}}$ を $\lambda$ および微視的な $J$ に結びつけよう。  
+- 立方格子ハイゼンベルク強磁性体の平均場で $T_{C}^{\mathrm{MF}}$ と $M(T)$ を求め、低 $T$ のブロッホ $T^{3/2}$ 則と比較して、それぞれの適用範囲を考察しよう。  
+- 1次元強磁性鎖の線形スピン波理論（ホルスタイン–プリマコフ）から $\omega_{k}$ を求め、有限 $T$ の長距離秩序がない理由を赤外発散から示そう。  
+- LLG から、一軸異方性をもつ薄膜のキッテル公式を導き、$H_{k}=2K/\mu_{0} M_{s}$ を確認しよう。  
+- ストーナーパラメータ $I$ をもつ単純な放物線バンドで、平均場の磁化 $m$ の $T$ 依存性を求め、$(I N(\epsilon_{F}),T)$ 空間の相図を描こう。
+
+---
+
+## 10.9 超伝導
+
+超伝導体は臨界温度より下で直流抵抗が実質的にゼロになり、 **さらに** 磁場を排除する（マイスナー効果）。微視的には、電子が **クーパー対** を形成し、位相のそろった量子状態へ凝縮する。本節では、現象論（ロンドン、マイスナー）、中間スケールの場の理論（ギンツブルグ–ランダウ）、微視的な BCS の結果（ギャップ、$T_{c}$、状態密度）を構築する。さらに第I種・第II種、渦、臨界磁場・電流、ジョセフソン効果といった観測上の特徴を扱う。
+
+---
+
+### 10.9.1 ロンドン方程式とマイスナー効果
+
+まず現象論から始める。凝縮体の位相が一様で渦のないロンドンゲージでは、超電流 $\boldsymbol J_{s}$ の **ロンドン方程式** は次のとおりである（$n_s$ は超伝導電子密度）。
+
+$$
+\frac{\partial \boldsymbol J_{s}}{\partial t} = \frac{n_{s} e^{2}}{m}\,\boldsymbol E
+$$
+
+$$
+\boldsymbol J_{s} = -\frac{1}{\mu_{0}\lambda^{2}}\,\boldsymbol A,\qquad
+\lambda^{2} \equiv \frac{m}{\mu_{0} n_{s} e^{2}}
+$$
+
+マクスウェル方程式と組み合わせて $\boldsymbol J_{s}$ を消去すると、 **磁場の遮蔽** が得られる。
+
+$$
+\nabla^{2}\boldsymbol B = \frac{\boldsymbol B}{\lambda^{2}}
+$$
+
+したがって、静磁場は超伝導体内部で $B(x)=B_{0} e^{-x/\lambda}$ と減衰する。この **マイスナー効果** は、超伝導体を、冷却時にあった $B$ をそのまま固定するだけの理想的な（非超伝導の）完全導体と区別する。
+
+---
+
+### 10.9.2 ギンツブルグ–ランダウ（GL）理論
+
+GL 理論は、ベクトルポテンシャルに最小結合した複素秩序変数 $\psi(\boldsymbol r)$（クーパー対の波動関数）のランダウ自由エネルギーである。
+
+$$
+\mathcal F[\psi,\boldsymbol A] = \alpha |\psi|^{2} + \frac{\beta}{2} |\psi|^{4}
++ \frac{1}{2m^{\ast}} \left| \left(-i\hbar \nabla - 2e\,\boldsymbol A\right)\psi \right|^{2}
++ \frac{|\boldsymbol B|^{2}}{2\mu_{0}}
+$$
+
+最小化により **GL 方程式** が得られる。
+
+$$
+\alpha \psi + \beta |\psi|^{2}\psi + \frac{1}{2m^{\ast}}\left(-i\hbar \nabla - 2e\boldsymbol A\right)^{2}\psi = 0
+$$
+
+$$
+\boldsymbol J_{s} = \frac{2e}{m^{\ast}}\,\mathrm{Re}\left\{\psi^{\ast}\left(-i\hbar \nabla - 2e\boldsymbol A\right)\psi\right\}
+$$
+
+重要な GL の長さは、
+
+$$
+\xi = \sqrt{\frac{\hbar^{2}}{2 m^{\ast} |\alpha|}},\qquad
+\lambda = \sqrt{\frac{m^{\ast}}{4 \mu_{0} e^{2} |\psi|^{2}}}
+$$
+
+無次元の **GL パラメータ** $\kappa \equiv \lambda/\xi$ が超伝導体を分類する。
+
+- $\kappa < 1/\sqrt{2}$ なら **第I種**（単一の臨界磁場 $H_{c}$ をもち、急に超伝導が壊れるまで完全なマイスナー状態）。  
+- $\kappa > 1/\sqrt{2}$ なら **第II種**（$H_{c1}$ と $H_{c2}$ の間に渦をもつ混合状態）。
+
+---
+
+### 10.9.3 BCS の要点：対形成、ギャップ、$T_{c}$
+
+BCS 理論によると、$\epsilon_{F}$ 付近の電子間に弱い遅延引力（例：フォノン媒介）があれば、 **クーパー不安定性** が生じ、エネルギーギャップ $\Delta$ をもつ対形成基底状態となる。
+
+ゼロ温度ギャップと臨界温度（等方的 $s$ 波、弱結合）は、
+
+$$
+\Delta(0) = 2\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+$$
+k_{B} T_{c} = 1.14\,\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+普遍的な BCS 比は、
+
+$$
+\frac{2\Delta(0)}{k_{B} T_{c}} \approx 3.53
+$$
+
+準粒子のスピンあたりの **状態密度** は、
+
+$$
+N_{s}(E) = N(0)\,\mathrm{Re}\,\frac{|E|}{\sqrt{E^{2}-\Delta^{2}}}
+$$
+
+となり、$E=\pm \Delta$ にコヒーレンスピークをもつ。比熱の跳びは $\Delta C/C_{n}|_{T_{c}}=1.43$。完全にギャップの開いた $s$ 波では、低 $T$ の比熱は活性化型 $C\sim e^{-\Delta/(k_{B}T)}$ となる。
+
+**BCS コヒーレンス長**（清浄極限）：
+
+$$
+\xi_{0} = \frac{\hbar v_{F}}{\pi \Delta(0)}
+$$
+
+---
+
+### 10.9.4 臨界磁場、臨界電流、混合状態
+
+自由エネルギー密度 $F_s,F_n$ を用いると、第I種の **熱力学的臨界磁場** $H_{c}(T)$ は $F_{n}(0)-F_{s}(0)=\mu_{0}H_{c}^{2}/2$ を満たす。
+
+第II種には三つのスケールがある。
+
+$$
+\mu_{0} H_{c1} \approx \frac{\Phi_{0}}{4\pi \lambda^{2}} \ln \kappa
+$$
+
+$$
+\mu_{0} H_{c2} = \frac{\Phi_{0}}{2\pi \xi^{2}}
+$$
+
+$$
+\Phi_{0} = \frac{h}{2e}
+$$
+
+$H_{c1}<H<H_{c2}$ では、磁場は1磁束量子 $\Phi_{0}$ を運ぶ **アブリコソフ渦** として侵入する。渦芯の半径は $\sim \xi$ で、そこで $|\psi|$ が抑制される。循環する超電流は $\lambda$ の距離で減衰する。ピンニングのない清浄な物質では渦は三角格子を作る。
+
+**臨界電流密度**（$T_{c}$ 付近での GL 対破壊の見積もり）：
+
+$$
+J_{d} \sim \frac{H_{c}}{\lambda}
+$$
+
+実際には **渦の運動**（磁束フロー）が電流を制限する。強いピンニングは、応用で用いられる **臨界電流** $J_{c}\ll J_{d}$ を高める。
+
+---
+
+### 10.9.5 磁束の量子化と位相剛性
+
+閉路を一周したときの凝縮体位相 $\varphi$ の一価性から、
+
+$$
+\oint \nabla \varphi\cdot d\boldsymbol\ell = 2\pi n
+$$
+
+これを超電流の関係と組み合わせると、フラクソイドの量子化が得られる。多重連結な超伝導体の十分内部で、超電流が消える経路を選ぶと、 **磁束の量子化** $\Phi=n\Phi_{0}$ が従う。位相の剛性が永久電流とジョセフソン効果の起源である。
+
+---
+
+### 10.9.6 ジョセフソン効果
+
+薄い障壁を挟んだ二つの超伝導体（SIS）には、電圧なしに **超電流** が流れる。
+
+- **直流ジョセフソン効果**：
+
+$$
+I = I_{c}\,\sin\phi
+$$
+
+ここで $\phi$ は位相差、$I_{c}$ は臨界電流である。磁場中では、幅 $W$ の接合を横切る干渉によって **フラウンホーファーパターン** $I_{c}(B)\propto |\sin(\pi \Phi/\Phi_{0})/(\pi \Phi/\Phi_{0})|$ が現れる。
+
+- **交流ジョセフソン効果**：直流電圧 $V$ によって位相が $\dot\phi = 2eV/\hbar$ で進み、次の周波数の交流電流が生じる。
+
+$$
+f = \frac{2e}{h}\,V
+$$
+
+マイクロ波照射により、電圧 $V_{n}=n\,h f/(2e)$ に **シャピロステップ** が現れる。閉路内に二つの接合を置くと **SQUID** となり、印加磁束に対して周期 $\Phi_{0}$ をもち、超高感度の磁気測定が可能になる。
+
+SNS 接合では、ギャップ以下の輸送は **アンドレーエフ反射** によって進み、超電流を運ぶ離散的なアンドレーエフ束縛状態が形成される。
+
+---
+
+### 10.9.7 近接効果とメゾスコピック効果
+
+超伝導体に良好に接触した常伝導金属には、 **近接効果の長さ** にわたって対相関が誘起される（汚れた極限で $L_{\phi}\sim \sqrt{\hbar D/k_{B}T}$）。NS 界面のギャップ以下のコンダクタンスはアンドレーエフ反射で増強され、完全透過接触のゼロバイアスにおける理想的 BTK 極限では2倍に近づく。
+
+---
+
+### 10.9.8 非従来型超伝導と高 $T_{c}$ の補足
+
+すべての超伝導体が $s$ 波とは限らない。 **$d$ 波** 対形成（銅酸化物）は線状ノードをもち、べき則の熱力学（3次元で $C\sim T^{2}$）と V 字型のトンネル状態密度を示す。 **$p$ 波** などの特殊な状態は、トポロジカルな状況でマヨラナ束縛状態をもちうる。非従来型超伝導の多くでは、対を結ぶ相互作用はフォノンではなく電子間相互作用（スピン揺らぎ）であり、BCS 比も3.53からずれる。
+
+---
+
+### 10.9.9 実験に現れる特徴
+
+- **輸送**：$T_{c}$ 以下でゼロ抵抗。電流が $J_{c}$ を超えるか、渦が動くと有限電圧が生じる。  
+- **磁化**：マイスナー排除、第II種での渦ピンニングによる不可逆なヒステリシス。  
+- **熱力学**：$T_{c}$ での比熱の跳び。$C/T$ の積分からエントロピーを求め、さらにエントロピー差を積分して凝縮エネルギーを得る。  
+- **分光**：トンネル・STM の $\pm \Delta$ におけるコヒーレンスピーク、ARPES によるギャップ対称性、光学伝導率の欠損面積がゼロ周波数デルタ関数へ移ること（フェレル–グローバー–ティンカム総和則）。  
+- **マイクロ波・THz**：交流伝導率には、超流動のデルタ関数と有限周波数の準粒子応答が現れる。  
+- **ミューオン・NMR**：緩和率から侵入長、渦格子、ギャップ対称性を調べる。
+
+---
+
+### 10.9.10 短い計算例
+
+**(a) キャリア密度から侵入長へ**  
+$\lambda^{2}=m/(\mu_{0} n_{s} e^{2})$ を用い、$n_{s}=10^{28}\ \mathrm{m^{-3}}$、$m=m_{e}$ に対する $\lambda$ を見積もろう。
+
+**(b) $H_{c2}$ の見積もり**  
+第II種超伝導体の $\xi=4\ \mathrm{nm}$ とする。$\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$ を計算しよう。
+
+**(c) ギャップと $v_{F}$ からコヒーレンス長へ**  
+$v_{F}=2.0\times 10^{5}\ \mathrm{m/s}$、$\Delta(0)=1.5\ \mathrm{meV}$ として、$\xi_{0}=\hbar v_{F}/(\pi \Delta)$ を見積もり、$T_{c}$ 付近の GL の $\xi$ と比較しよう。
+
+**(d) ジョセフソン周波数**  
+接合に $V=1.00\ \mathrm{mV}$ を加えると、どの周波数が生じるか。$f=(2e/h)V$ を用いて、$f\approx 483.6\ \mathrm{GHz/mV}\times 1.00\ \mathrm{mV}$ を示そう。
+
+**(e) リングの磁束量子化**  
+面積 $A=20\ \mu\mathrm{m}^{2}$ の超伝導ループが周期 $\Delta B$ の SQUID 振動を示す。$\Delta B=\Phi_{0}/A$ を確かめ、周期を求めよう。
+
+**(f) 対破壊電流の桁の見積もり**  
+$\mu_{0}H_{c}=0.2\ \mathrm{T}$、$\lambda=120\ \mathrm{nm}$ として、$J_{d}\sim H_{c}/\lambda$ を見積もり、ピンニングで制限された測定値 $J_{c}$ と比較しよう。
+
+---
+
+### 10.9.11 よくある落とし穴
+
+- **マイスナー効果と完全導体**：マイスナー状態の超伝導体は、*すでに存在する磁場も新たに加えた磁場も* 排除する。完全導体は冷却時にあった場を固定するだけ。  
+- **$2e$ の見落とし**：クーパー対の電荷は $2e$。磁束量子は $h/e$ ではなく $h/2e$ である。  
+- **第I種・第II種の混同**：分類には $\kappa=\lambda/\xi$ を用いる。磁場の強さではなく、界面エネルギーの符号の問題である。  
+- **渦の無視**：第II種で電流と磁場のもとに有限抵抗が生じる原因は、ギャップの消失よりも渦の運動であることが多い。  
+- **汚れた試料への清浄極限の式の使用**：不純物散乱により $\xi$ と $\lambda$ は変わる。平均自由行程 $l$ と $\xi_{0}$ を比較しよう。  
+- **$s$ 波の決めつけ**：ギャップ対称性は重要。$C(T)$ や $\lambda(T)$ のべき則とノード準粒子は、非従来型対形成の手がかりとなる。
+
+---
+
+### 10.9.12 基本演習
+
+- ロンドン方程式から $\nabla^{2}\boldsymbol B=\boldsymbol B/\lambda^{2}$ を導き、半無限空間で $B(x)$ が指数関数的に減衰することを示そう。  
+- GL 理論から常伝導・超伝導領域間の表面エネルギーを計算し、第I種・第II種の境界 $\kappa=1/\sqrt{2}$ を再現しよう。  
+- $\psi$ の一価性と超電流の関係からフラクソイド量子化を導こう。$\Phi_{0}=h/2e$ を求め、超電流が消える経路で磁束量子化を得よう。  
+- 弱結合 BCS ギャップ方程式から $\Delta(0)$ と比 $2\Delta(0)/k_{B}T_{c}$ を求めよう。  
+- 磁場中の GL 方程式を線形化し、秩序変数のランダウ準位に対応させて、$\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$ を導こう。  
+- 長方形ジョセフソン接合のフラウンホーファー包絡線 $I_{c}(B)$ を求め、周期から接合面積を読み取ろう。
+
+---
+
+## 10.10 強相関とモット物理
+
+強く相関した電子は、単純なバンド描像とは異なる振る舞いを示す。バンド理論では説明できない局在、巨大な有効質量、悪い金属の輸送、数％のドーピング変化に伴う eV スケールのスペクトル重み移動などである。代表例が **モット絶縁体** だ。半充填バンドなのでバンド理論では伝導するはずだが、オンサイト斥力 $U$ が大きいと電子が同じサイトを占めるのを避け、絶縁化する。本節では、ハバード模型群、超交換と $t$–$J$ 模型、モット転移（ブリンクマン–ライスとスレーターの比較）、スペクトル重み移動、多軌道・フント物理、DMFT の基礎を、実験的特徴とともに学ぶ。
+
+---
+
+### 10.10.1 ハバード模型：最小限の強相関模型
+
+格子上の電子が振幅 $t$ でホッピングし、二重占有にエネルギー $U$ を課す。
+
+$$
+H = -t \sum_{\langle i j \rangle,\sigma}\!\left(c^{\dagger}_{i\sigma} c_{j\sigma} + \text{h.c.}\right)
++ U \sum_{i} n_{i\uparrow} n_{i\downarrow} - \mu \sum_{i} n_{i}
+$$
+
+- **半充填** かつ **$U/W \ll 1$**（バンド幅 $W$）では、秩序化や低次元の不安定性でギャップが開かなければ、常磁性金属の記述が適用できる。  
+- **$U/W \gg 1$** では電荷運動が凍結する。各サイトは $U$ を避けて1電子を占め、局在モーメントをもつモット絶縁体となる。  
+- 半充填からドープすると、強く相互作用する背景に可動キャリアが入り、特異な輸送や、物質によっては高 $T_{c}$ 超伝導を生む。
+
+---
+
+### 10.10.2 ハバードからハイゼンベルクへ：超交換
+
+半充填で $U\gg t$ のとき、仮想ホッピングが隣接スピン間の有効な **反強磁性** 交換を生む。
+
+$$
+H_{\text{eff}} = J \sum_{\langle i j\rangle} \boldsymbol S_{i}\cdot \boldsymbol S_{j},\qquad
+J = \frac{4 t^{2}}{U}
+$$
+
+これが **超交換** である。平行スピンではパウリ原理が交換を阻むが、反平行スピンでは仮想的に二重占有して戻ることができ、エネルギーが下がる。
+
+---
+
+### 10.10.3 $t$–$J$ 模型：ドープしたモット絶縁体
+
+$U$ を大きく保ったままモット絶縁体をドープすると、制約付き模型が得られる。
+
+$$
+H_{tJ} = -t \sum_{\langle i j\rangle,\sigma}\! \left(\tilde c^{\dagger}_{i\sigma} \tilde c_{j\sigma}+\text{h.c.}\right)
++ J \sum_{\langle i j\rangle} \left(\boldsymbol S_{i}\cdot \boldsymbol S_{j} - \frac{1}{4}\,n_{i} n_{j}\right)
+$$
+
+$\tilde c$ は二重占有を禁じる。 **二重占有禁止** の制約が難しさの中心であり、平均場、スレーブボソン・フェルミオン、数値計算などで扱う。2次元では、運動エネルギーとスピン一重項形成の競合が $d$ 波対形成への傾向を生む。
+
+---
+
+### 10.10.4 スレーターとモット：絶縁体にも違いがある
+
+半充填でギャップが開く二つの経路は、
+
+- **スレーター絶縁体**：弱結合の反強磁性体。長距離秩序が単位胞を倍化し、バンドを折り畳んで平均場ギャップ $\propto m$ を開く。このギャップはネール温度 $T_{N}$ より上で閉じる。  
+- **モット絶縁体**：局所的な物理からギャップ $\sim U$ が生じる。長距離秩序が **なくても**、$T_{N}$ より上でも絶縁性を保つ。
+
+**実験での見分け方**：高 $T$ 相でも大きな活性化エネルギーをもつ絶縁体で、ARPES が化学ポテンシャルから遠く離れた上下ハバードバンドを示せば、モット型と考えられる（例：NiO）。小さなスペクトル再編だけで、ちょうど $T_{N}$ でギャップが消えるならスレーター型に近い。
+
+---
+
+### 10.10.5 スペクトル関数の構造：ハバードバンドと準粒子
+
+一電子スペクトル関数 $A(\boldsymbol k,\omega)$ を定義する。モット転移に近い相関金属では、
+
+- 重み $Z$ の狭い **準粒子（QP）ピーク** がフェルミ準位をまたぐ。  
+- 非コヒーレントな **ハバードバンド** が $\omega \sim \pm U/2$ に位置し、重み $1-Z$ を担う。
+
+**準粒子重み** は、
+
+$$
+Z = \left[1 - \left.\frac{\partial \mathrm{Re}\,\Sigma(\omega)}{\partial \omega}\right|_{\omega=0}\right]^{-1}
+$$
+
+ここで $\Sigma$ は自己エネルギーである。相関が強まると $Z \downarrow$、有効質量は $m^{\ast}\propto 1/Z \uparrow$。モット転移点では $Z\to 0$ となり、準粒子が消えてハバードバンドだけが残る。
+
+---
+
+### 10.10.6 ブリンクマン–ライス描像と金属–絶縁体転移
+
+相関を扱うフェルミ液体の平均場では、運動エネルギーが $Z$ によって繰り込まれ、 **モット金属–絶縁体転移**（MIT）は次の条件で起こる。
+
+$$
+Z \to 0 \quad \text{as} \quad U \to U_{c}^{-}
+$$
+
+$m^{\ast}$ の発散とドルーデ重みの消失が特徴である。実際の3次元格子では、有限 $T$ の転移はしばしばヒステリシスを伴う **1次転移** となる。金属と絶縁体の二つの解が共存し、臨界終点で合流する。この振る舞いを DMFT はよく捉える。
+
+---
+
+### 10.10.7 光学と ARPES に現れるモット相関の特徴
+
+- **光学**：ドルーデ重みは $Z$ とともに減り、中赤外構造とハバードバンド吸収が増える。 **スペクトル重み移動** は、全光学 f 総和則を保ちつつ、低エネルギー積分窓を越えて重みを再配分する。数％のドーピングで eV スケールの移動が起こる。  
+- **ARPES**：$E_{F}$ 付近のコヒーレントな準粒子ピークに、幅広い非コヒーレント背景と高エネルギーの滝状構造が加わる。モット絶縁体へのドーピングは上部ハバードバンドから新しい低エネルギー状態を引き出し、分散を変える。電子–フォノン結合も重要なら、強い **キンク** 構造が現れる。  
+- **輸送**：モット–イオッフェ–リーゲル（MIR）限界を超える抵抗率（悪い金属）、大きな熱起電力の非対称性、$T$ やドーピングで符号の変わるホール係数。
+
+---
+
+### 10.10.8 電荷移動絶縁体とモット絶縁体：ZSA 分類
+
+遷移金属酸化物では、最高占有状態が金属の下部 $d$ ハバード状態よりも、主に配位子の $p$ 状態となることがある。$d$ 軌道上の $U$ と、O $2p$ から遷移金属 $d$ への **電荷移動エネルギー** $\Delta$ を比較する。
+
+- **モット–ハバード絶縁体**：$\Delta > U$。ギャップは主に上下の $d$ ハバードバンド間にある。  
+- **電荷移動絶縁体**：$\Delta < U$。ギャップは O $p$ から上部 $d$ バンドへのもの。正孔ドーピングでは酸素的な状態に正孔が入る（銅酸化物が代表例）。
+
+この分類は、類似した元素からなる酸化物でも、ドーピング応答や光学吸収端が大きく異なる理由を説明する。
+
+---
+
+### 10.10.9 フント金属と多軌道の物理
+
+複数の軌道が関与すると、 **フント結合** $J_{H}$ が同じ原子上のスピンをそろえる。その効果は、
+
+- 軌道間電荷揺らぎを抑え、中程度の $U$ でも $Z$ を減らす。重い準粒子と強い散乱をもつ **フント金属** となる。  
+- 軌道選択性を促す。一部の軌道はモット局在し、他は遍歴性を保つ（ **軌道選択的モット相** ）。  
+- 結晶場や SOC と競合・協調する。ルテニウム酸化物、鉄系超伝導体、4d・5d 酸化物で重要である。
+
+---
+
+### 10.10.10 DMFT の概観：局所自己エネルギーと全体の振る舞い
+
+**動的平均場理論（DMFT）** は、格子模型を自己無撞着な浴に埋め込まれた **量子不純物** へ写像する。自己エネルギーを **局所的**（運動量非依存）と仮定する：$\Sigma(\boldsymbol k,\omega)\to \Sigma(\omega)$。無限配位数では厳密で、3次元でもよく働く。
+
+半バンド幅 $D$ のベーテ格子の自己無撞着条件は、
+
+$$
+\Delta(\omega) = t^{2} G_{\text{loc}}(\omega),\qquad
+G_{\text{loc}}(\omega) = \int \frac{d\epsilon\,\rho_{0}(\epsilon)}{\omega+\mu-\Sigma(\omega)-\epsilon}
+$$
+
+ここで $\Delta$ は不純物の混成関数、$\rho_{0}$ は非相互作用状態密度である。不純物問題を解く → $\Sigma$ を得る → $G_{\text{loc}}$ を再計算 → $\Delta$ を更新、という反復を行う。
+
+**DMFT がよく捉えるもの**
+
+- 3ピークのスペクトル（準粒子と上下ハバードバンド）、$U_{c}$ での $Z$ の消失、共存領域を伴う1次の金属–絶縁体転移。  
+- 悪い金属の振る舞いを含む抵抗率の温度変化。  
+- ドーピングの非対称性とスペクトル重み移動。  
+- LDA のバンドを入力する LDA+DMFT による実物質の記述。例：V$_2$O$_3$、SrVO$_3$、鉄プニクタイド。
+
+---
+
+### 10.10.11 1次元特有の物理：ラッティンジャー液体とスピン–電荷分離
+
+厳密な1次元ではフェルミ液体は不安定で、相関によりスピンモードと電荷モードが分離した **ラッティンジャー液体** が生じる。特徴は、べき則のトンネル状態密度と、ARPES や冷却原子系で見られるスピン・電荷励起の異なる速度である。1次元ハバード模型はベーテ仮説によって **厳密に解け**、半充填では任意の $U>0$ でモットギャップをもつ。
+
+---
+
+### 10.10.12 近藤効果、重い電子、近藤格子の概略
+
+金属中の局在モーメントは **近藤温度** $T_{K}$ 以下で伝導電子に遮蔽され、一重項と $E_{F}$ の狭い共鳴を形成する。そのモーメントが周期配列した近藤格子では、低 $T$ で混成が起こり、$m^{\ast}\!\gg m_{e}$ の重い準粒子が生まれる。充填と対称性により、重いフェルミ液体、非従来型超伝導、近藤絶縁体が現れうる。詳しい説明は独立した節に譲るが、要点は「相関はバンドを分裂させるだけでなく、新たに **生み出す** こともある」ということだ。
+
+---
+
+### 10.10.13 短い計算例
+
+**(a) 超交換の符号と大きさ**  
+半充填の2サイト・ハバード二量体で $t/U$ の2次摂動論を行い、$J=4t^{2}/U$ と反強磁性的になる理由を示そう。
+
+**(b) ブリンクマン–ライスの質量発散**  
+金属–絶縁体転移付近で $Z=1-(U/U_{c})^{2}$ と仮定し、$U\to U_{c}^{-}$ で $m^{\ast}/m=1/Z$ が発散し、ドルーデ重みが $Z$ に比例することを示そう。
+
+**(c) ベーテ格子の DMFT 自己無撞着条件**  
+半円型状態密度 $\rho_{0}(\epsilon)=\frac{2}{\pi D^{2}}\sqrt{D^{2}-\epsilon^{2}}$ と $D=2t$ を用い、$\Delta(\omega)=t^{2}G_{\text{loc}}(\omega)$ を導こう。
+
+**(d) 光学スペクトル重みの移動**  
+f 総和則を用い、一定充填で $U$ とともに低エネルギー積分重みが減る理由を説明しよう。ドーピングがドルーデ重みを回復させながら中赤外吸収も作る様子を描こう。
+
+**(e) ZSA 分類**  
+$U=6\ \mathrm{eV}$、電荷移動エネルギー $\Delta=3\ \mathrm{eV}$ から絶縁体の種類を判定し、正孔ドーピングが O-$p$ 型か遷移金属-$d$ 型のキャリアを作るか予測しよう。
+
+**(f) フント金属の簡単な模型**  
+中程度の $U$ と有限の $J_{H}$ をもつ2軌道ハバード–フント模型で、$J_{H}=0$ の場合に比べて軌道間電荷揺らぎが抑えられ、$Z$ が減る理由を定性的に説明しよう。
+
+---
+
+### 10.10.14 よくある落とし穴
+
+- **反強磁性絶縁体をすべて「モット」と呼ぶこと**：ギャップが $T_{N}$ で消えるならスレーター型の可能性が高い。常磁性相を調べよう。  
+- **大きな $U$ なら任意の充填で絶縁体だと思うこと**：半充填から離れると、小さな $Z$ の **相関金属** になりえ、必ずしも絶縁体ではない。  
+- **スペクトル重み移動の見落とし**：単純なバンド描像はドーピングで低エネルギー重みを保つが、モット相関では **そうならない**。  
+- **相関系の当てはめにバンド有効質量を使うこと**：輸送と熱力学が見るのは $m^{\ast}\sim m/Z$。繰り込まれた値を用いよう。  
+- **運動量依存を無視する DMFT の過剰適用**：単一サイト DMFT は $k$ 依存の擬ギャップや短距離秩序を十分捉えられない。クラスター DMFT・DCA やダイアグラム法が必要。  
+- **モットとアンダーソンの混同**：相互作用による局在（モット）と無秩序による局在（アンダーソン）は異なる。共存もできるが、診断法は異なる（相互作用と無秩序のどちらを変えるかなど）。
+
+---
+
+### 10.10.15 基本演習
+
+- 半充填かつ $U\gg t$ のハバード模型から、シュリーファー–ウォルフ変換によりハイゼンベルク交換 $J=4t^{2}/U$ を導こう。  
+- Hubbard-I 自己エネルギーを実装し、$U$ の増大とともに上下ハバードバンドが現れる様子を描き、DMFT の3ピーク構造と比較しよう。  
+- 半円型状態密度について、反復摂動論で $T=0$ の DMFT 方程式を解き、$Z(U)$ を描いて $U_{c}$ を求めよう。  
+- 準粒子と上下ハバードバンドからなる簡単な3ピーク模型で、光学伝導率のドーピング変化を求め、スペクトル重み移動を確かめよう。  
+- 表にある $U$ と $\Delta$ から酸化物をモット–ハバード型か電荷移動型か分類し、少量の正孔ドーピングによるゼーベック係数の符号・大きさの傾向を予測しよう。  
+- 2軌道ハバード–フント平均場模型を構築し、$U$、$J_{H}$、結晶場分裂の関数として、軌道選択的モット相の現れる領域を求めよう。
+
+---
+
+## 10.11 トポロジカルバンド理論
+
+バンド絶縁体の中には、ギャップがあるだけでなく、保護された境界状態、量子化された応答、ベリー曲率に由来する性質を秘めたものがある。 **トポロジカルバンド理論** は、$k$ 空間の幾何（ベリー位相・曲率）と対称性（時間反転・反転・カイラル）を用いて相を分類する。バルク不変量が端モードを予測する。不変量を変えるには、どこかでギャップを閉じる必要があり、ディラック点やワイル点を伴う相転移が現れる。その道具立てを学ぼう。
+
+---
+
+### 10.11.1 ベリー位相、接続、曲率
+
+$\boldsymbol k$ に対して滑らかなブロッホバンド $|u_{n\boldsymbol k}\rangle$ について、
+
+- **ベリー接続**
+
+$$
+\boldsymbol A_{n}(\boldsymbol k) \equiv i \langle u_{n\boldsymbol k} | \nabla_{\boldsymbol k} u_{n\boldsymbol k} \rangle
+$$
+
+- **ベリー曲率**
+
+$$
+\boldsymbol\Omega_{n}(\boldsymbol k) \equiv \nabla_{\boldsymbol k} \times \boldsymbol A_{n}(\boldsymbol k)
+$$
+
+- ブリルアンゾーン（BZ）の閉路 $\mathcal C$ に沿う **ベリー位相**
+
+$$
+\gamma_{n}[\mathcal C] = \oint_{\mathcal C} \boldsymbol A_{n}\cdot d\boldsymbol k
+$$
+
+ゲージについて：$\boldsymbol A$ は $|u\rangle$ の位相選択に依存するが、$\boldsymbol\Omega$ と $2\pi$ を法とする閉路位相は依存しない。1次元では、占有バンドのベリー位相が **分極** を決める（現代的分極理論）。$P$ は BZ 全体のベリー位相で表される（§10.5.10参照）。
+
+---
+
+### 10.11.2 チャーン数と量子ホール効果
+
+2次元のバンド $n$ の **チャーン数** は、
+
+$$
+C_{n} = \frac{1}{2\pi} \int_{\mathrm{BZ}} d^{2}k\; \Omega_{n,z}(\boldsymbol k)
+$$
+
+完全に占有されたバンド群について、
+
+$$
+\sigma_{xy} = -\frac{e^{2}}{h} \sum_{n\in \text{occ}} C_{n}
+$$
+
+これが TKNN の整数量子ホール効果の結果である。 **バルク** のトポロジカル不変量が、 **境界** のカイラル端モード数を予測する。$C$ を変えるには、どこかでギャップが閉じなければならない。
+
+---
+
+### 10.11.3 異常ホール効果：$B$ がなくても働くベリー曲率
+
+$B=0$ でも、時間反転対称性（TRS）が破れると **内因性異常ホール** 効果が生じる。
+
+$$
+\sigma_{xy}^{\mathrm{int}} = -\frac{e^{2}}{\hbar} \sum_{n} \int \frac{d^{3}k}{(2\pi)^{3}} f_{n\boldsymbol k}\,\Omega_{n,z}(\boldsymbol k)
+$$
+
+$f$ はフェルミ関数である。$\boldsymbol\Omega$ は波束を曲げる「$k$ 空間の磁場」と考えられる（§10.7で後回しにしたベリー項）。
+
+---
+
+### 10.11.4 1次元の巻き数と SSH 模型
+
+$d_{z}=0$ の2バンド・カイラル対称な1次元模型 $H(k)=\boldsymbol d(k)\cdot\boldsymbol\sigma$ で、$\phi(k)=\arg[d_{x}+id_{y}]$ と定義する。 **巻き数** は、
+
+$$
+\nu = \frac{1}{2\pi} \int_{-\pi/a}^{\pi/a} dk\; \partial_{k}\phi(k)
+$$
+
+であり、$\boldsymbol d$ が原点を何周するかを数える。バルクの $\nu=1$ は、SSH 鎖の **端のゼロモード** を与える（§10.5.3）。
+
+---
+
+### 10.11.5 2次元ディラック質量の反転とチャーン絶縁体
+
+質量をもつ単一のディラック円錐を考える。
+
+$$
+H(\boldsymbol k)=v(k_{x}\sigma_{x}+k_{y}\sigma_{y}) + m\,\sigma_{z}
+$$
+
+格子正則化を行う前の連続体円錐で、価電子帯からの寄与は、
+
+$$
+C = +\frac{1}{2}\,\mathrm{sgn}(m)
+$$
+
+蜂の巣格子のように、逆のカイラリティをもつ二つの円錐が寄与する。質量の符号が **反対** なら全 $C=\pm 1$ となり、1本のカイラル端チャネルをもつ **チャーン絶縁体** が得られる。
+
+---
+
+### 10.11.6 時間反転対称性と $\mathbb{Z}_{2}$ トポロジカル絶縁体
+
+TRS（電子では $\mathcal T^{2}=-1$）があると、バンドは **クラマース対** をなす。2・3次元の絶縁体は **$\mathbb{Z}_{2}$** 指数 $\nu$（2次元）、または $(\nu_{0};\nu_{1}\nu_{2}\nu_{3})$（3次元）で分類される。反転対称性があれば、 **フー–ケーンのパリティ** 判定が使える。
+
+- 各 TRIM $\Gamma_{i}$ で、占有クラマース対の反転固有値を掛けて $\delta_{i}$ を求める。
+- すると、
+
+$$
+(-1)^{\nu} = \prod_{i}\delta_{i}
+$$
+
+3次元の強い指数は $(-1)^{\nu_{0}}=\prod_{i}\delta_{i}$ である。弱い指数の詳細は省略する。 **強い TI**（$\nu_{0}=1$）は、TRS で保護された奇数個のディラック円錐をどの表面にももつ。
+
+反転対称性がなければ、ベリー接続の **ウィルソンループ**（ワニエ電荷中心の流れともいう）を計算する。混成ワニエ中心が BZ を横切って **巻き付く** なら、その相はトポロジカルである。
+
+---
+
+### 10.11.7 バルク–境界対応の要点
+
+非自明なバルク不変量 ⇒ バルクギャップを閉じるか、保護する対称性を破らない限りギャップを開けられない、頑健な境界状態。  
+- チャーン絶縁体（$C$）：$|C|$ 本の **カイラル** 端モード（一方向）。  
+- 2次元 $\mathbb{Z}_{2}$ TI： **ヘリカル** 端状態（逆方向に進むクラマース対）。  
+- 3次元の強い TI：奇数個の **表面ディラック円錐**。  
+- 鏡映や回転で保護された結晶トポロジカル相は、対称性に応じた境界状態をもつ。
+
+---
+
+### 10.11.8 ディラック・ワイル半金属：ギャップのないトポロジー
+
+ギャップレスな関連物質には、
+
+- **ワイル点**：3次元のベリー曲率の単極子で、整数の **カイラル電荷** $C=\pm 1$ をもつ。$\boldsymbol k$ 空間で点を分離するには、TRS または反転対称性を破る必要がある。その結果、表面の **フェルミ弧** と **カイラル異常**（$\boldsymbol E\parallel \boldsymbol B$ での負の縦磁気抵抗）が現れる。異常の方程式は、
+
+$$
+\partial_{t}\rho_{5} + \nabla\cdot \boldsymbol j_{5} = \frac{e^{2}}{2\pi^{2}\hbar^{2}}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+- **ディラック半金属**：逆のカイラリティをもつワイル点が、対称性によって同じ場所に重ね合わされる。対称性を破るとワイル対へ分裂する。
+
+---
+
+### 10.11.9 ラシュバ効果、スピン–運動量固定、表面ディラック円錐
+
+スピン–軌道結合（SOC）と反転対称性の破れにより、 **ラシュバ** 分裂が生じる。
+
+$$
+H_{R} = \alpha (\boldsymbol\sigma \times \boldsymbol k)\cdot \hat{\boldsymbol z}
+$$
+
+TI のトポロジカル表面状態は **スピン–運動量固定**（ヘリカルな配列）を示し、非磁性無秩序による後方散乱を抑える。ディラック質量を生む磁性摂動（最も単純な表面モデルでは、例えば表面に垂直な交換場）は表面ディラック円錐にギャップを開き、量子化された磁気電気応答を可能にする（以下のアクシオン物理）。一方、面内交換場は円錐を移動させる場合がある。
+
+---
+
+### 10.11.10 アクシオン電磁気学と磁気電気応答
+
+3次元 TI の有効電磁作用には、次の項が加わる。
+
+$$
+\mathcal L_{\theta} = \frac{\theta e^{2}}{2\pi h}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+TRS があれば、$2\pi$ を法として $\theta=0$（自明）または $\pi$（強い TI）となる。$\theta$ が $\pi$ だけ跳ぶ表面で、境界の TRS を明示的に破ると、 **半量子化** された表面ホールコンダクタンス $e^{2}/(2h)$ が得られる。
+
+---
+
+### 10.11.11 ウィルソンループとワニエ中心の流れ：不変量の計算
+
+閉路 $\mathcal C$ に沿って $\boldsymbol k$ を離散化し、 **ウィルソンループ** を構成する。
+
+$$
+W[\mathcal C] = \mathcal P \exp\!\left(i\int_{\mathcal C}\! \mathsf A(\boldsymbol k)\cdot d\boldsymbol k\right)
+$$
+
+$\mathsf A$ は占有部分空間の非可換ベリー接続である。$W$ の固有位相は **ワニエ中心** を与え、横方向の $\boldsymbol k$ に対するその流れが、チャーン不変量（$\nu$ が BZ ごとに $2\pi C$ 巻く）または $\mathbb{Z}_{2}$ 不変量（対の交換が奇数回か偶数回か）を明らかにする。
+
+---
+
+### 10.11.12 軌道磁化と現代的分極理論：再びベリー位相
+
+ベリー位相から得られる二つの量は、
+
+- 絶縁体の **分極** は、BZ 全体の占有状態のベリー位相である。物理的なのは **変化** であり、断熱的な一周期では量子化される（サウレスポンプ）。
+- 結晶の **軌道磁化** は、$\boldsymbol\Omega$ とバンドエネルギーを含む BZ 積分で表せる。内因性 AHE や現代的な磁気電気係数に結びつく。
+
+---
+
+### 10.11.13 対称性クラスの簡易表：十重分類の一部
+
+| クラス | 対称性（TRS、PHS、カイラル） | 2次元不変量 | 3次元不変量 |
+|---|---|---|---|
+| A（対称性なし） | –, –, – | $\mathbb{Z}$（チャーン） | 0 |
+| AII（$\mathcal T^{2}=-1$ の TRS） | ✓, –, – | $\mathbb{Z}_{2}$ | $\mathbb{Z}_{2}$（強い指数 $\nu_{0}$） |
+| AIII（カイラルのみ） | –, –, ✓ | 0 | $\mathbb{Z}$（巻き数） |
+
+完全な **十重分類** は超伝導体（BdG）やさらに多くの不変量を含む。ここでは電子系でよく使うものに絞った。
+
+---
+
+### 10.11.14 実験に現れる特徴
+
+- **輸送**：整数量子ホールプラトー、チャーン絶縁体の量子化端コンダクタンス、$\pi$ ベリー位相による弱反局在、ワイル系の負の縦磁気抵抗（幾何による偽信号に注意）。  
+- **ARPES**：表面ディラック円錐、フェルミ弧、ラシュバ分裂。スピン分解 ARPES でスピン配列を確認する。  
+- **STM・STS**：ヘリカル表面の QPI で $180^{\circ}$ 後方散乱が見られないこと、ベリー位相 $\pi$ を示すランダウ準位列。  
+- **光学**：磁化した TI 表面の大きなカー・ファラデー回転角、非自明な位相ずれを伴うサイクロトロン共鳴。  
+- **量子振動**：ベリー位相に結びつく位相ずれ（ランダウ指数プロットの切片）。ただしスピン分裂に注意が必要。
+
+---
+
+### 10.11.15 短い計算例
+
+**(a) 2バンド・ディラック模型のチャーン数**  
+$H=v(k_{x}\sigma_{x}+k_{y}\sigma_{y})+m\sigma_{z}$ の $\Omega_{z}(\boldsymbol k)$ を求め、積分して円錐あたり $C=+\tfrac{1}{2}\mathrm{sgn}(m)$ を示そう。逆のカイラリティをもつ非等価な二つの円錐で $m$ の符号が逆なら、$C=\pm 1$ となる。
+
+**(b) パリティ判定**  
+2次元の四つの TRIM における占有クラマース対の反転固有値が $(+,+,+,-)$ なら、$(-1)^{\nu}=-1$ となり、トポロジカルであることを確かめよう。
+
+**(c) ウィルソンループの巻き付き**  
+$C=1$ のチャーンバンドで、$k_{y}$ が BZ を横切るとワニエ中心角 $\theta(k_{y})$ が $2\pi$ 進むことを示し、自明なバンドと比較しよう。
+
+**(d) SSH の端状態**  
+$H(k)=(t_{1}+t_{2}\cos ka)\sigma_{x}+t_{2}\sin ka\,\sigma_{y}$ の巻き数を計算し、$|t_{2}|>|t_{1}|$ で $\nu=1$ を示そう。開放鎖の端スペクトルを描こう。
+
+**(e) ワイル単極子の電荷**  
+ワイル点を囲む小球を通る $\boldsymbol\Omega$ のフラックスが $\pm 2\pi$（電荷 $\pm 1$）となることを示そう。
+
+**(f) アクシオン項から表面ホール応答へ**  
+磁化した表面をもつ TI で $\Delta\theta=\pi$ と仮定し、境界をまたいで $\mathcal L_{\theta}$ を積分して $\sigma_{xy}=e^{2}/(2h)$ を得よう。
+
+---
+
+### 10.11.16 よくある落とし穴
+
+- **ゲージの落とし穴**：$\boldsymbol A$ はゲージ依存で、物理的なのは $\boldsymbol\Omega$ と $2\pi$ を法とする閉路位相である。数値計算には滑らかなゲージやウィルソンループを使おう。  
+- **反転対称性なしでフー–ケーン判定を使うこと**：パリティによる近道には反転対称性が必要。それ以外はウィルソンループやワニエ中心の流れを使う。  
+- **ラシュバ効果とトポロジーの混同**：ラシュバ分裂だけでは TI ではない。バルクギャップと非自明な $\mathbb{Z}_{2}$ 指数が必要。  
+- **振動位相の誤読**：ランダウファン図からベリー位相を抽出するには、ゼーマン効果、歪み、3次元幾何を考慮する。  
+- **端や表面なら常に保護されるという誤解**：保護するのは対称性であり、境界でそれを破ればギャップが開く（例：TI 表面の磁性無秩序）。  
+- **TRS 系のチャーン数**：TRS が破れず磁気秩序もなければ、占有バンドの **全** チャーン数はゼロでなければならない。それでも $\mathbb{Z}_{2}$ 指数は非自明になりうる。
+
+---
+
+### 10.11.17 基本演習
+
+- 久保公式から TKNN 公式を導き、清浄な2次元絶縁体で $\sigma_{xy}=-(e^{2}/h)\sum C_{n}$ を示そう。  
+- リンク変数による離散 BZ のチャーン数計算を実装し、2バンド・ディラック模型で検証しよう。  
+- 反転対称な SOC 絶縁体について、TRIM のパリティ表からフー–ケーンの $\mathbb{Z}_{2}$ 指数を求め、ウィルソンループの流れで確認しよう。  
+- 2点のワイル模型を構成し、スラブの表面グリーン関数を求めてフェルミ弧を描こう。  
+- 3次元 TI のディラック円錐に表面ゼーマン項を加え、ギャップの形成と半量子化ホールコンダクタンスを示そう。  
+- 1次元格子の断熱サウレスポンプを模擬し、量子化された輸送電荷が $(k,t)$ トーラスのチャーン数に等しいことを示そう。
+
+---
+
+## 10.12 メゾスコピック輸送と量子コヒーレンス
+
+導体の大きさをコヒーレンス長や平均自由行程程度まで小さくすると、輸送では **波の干渉** が重要になる。これが **メゾスコピック** 領域である。電子はデバイス全体で位相を保ち、コンダクタンスは試料固有だが再現性のある値となり、量子雑音が透過の統計を明らかにする。中心となるのは、 **ランダウアー–ビューティカー** 輸送、 **アハラノフ–ボーム** 干渉、 **弱局在・弱反局在**、 **普遍的コンダクタンス揺らぎ** である。QPC、リング、ナノワイヤの実験と、実際に使える式を結びつける。
+
+---
+
+### 10.12.1 ランダウアー：透過としてのコンダクタンス
+
+低温・微小バイアスの位相コヒーレントな2端子導体では、透過率 $\{T_{n}\}$ をもつ独立な量子チャネルが電流を運ぶ。
+
+$$
+G = \frac{2e^{2}}{h}\sum_{n} T_{n}
+$$
+
+係数2はスピン縮退による（ゼーマン効果や SOC で解ける）。弾道的な **量子ポイントコンタクト**（QPC）では、横方向モードが一つずつ開き、$T_{n}\approx 1$ となるので、
+
+$$
+G \approx N\,\frac{2e^{2}}{h}
+$$
+
+ゲート電圧に対して **量子化コンダクタンスのステップ** が現れる。
+
+**多端子（ビューティカー）の描像。** 接点 $\alpha,\beta$ と透過確率 $T_{\alpha\beta}$ を用いると、線形応答は、
+
+$$
+I_{\alpha} = \frac{2e^{2}}{h}\sum_{\beta}\left( T_{\beta\alpha} V_{\alpha} - T_{\alpha\beta} V_{\beta} \right)
+$$
+
+この式は電流保存を満たし、接点の幾何を自動的に含む。
+
+---
+
+### 10.12.2 アハラノフ–ボーム（AB）効果と位相記憶
+
+リングの二つの経路が磁束 $\Phi$ を囲むと、波動関数は相対位相 $2\pi \Phi/\Phi_{0}$ を得る。ここで $\Phi_{0}=h/e$ である。その結果、
+
+- コンダクタンスに $h/e$ 周期の **AB 振動** が現れる。  
+- 時間反転した閉路対から、 **$h/2e$** 周期の **アルトシュラー–アロノフ–スピヴァク（AAS）** 振動が生じる。
+
+可視度は、電子間・電子–フォノン散乱や外部雑音による位相緩和で決まる **位相コヒーレンス長** $L_{\phi}$ に従って減衰する。長さ $L$ の干渉閉路では、信号はおよそ $\exp(-L/L_{\phi})$ に比例する。
+
+---
+
+### 10.12.3 ショット雑音：電荷計数の統計
+
+$T\to 0$ でも、電荷が離散的なので電流は揺らぐ。位相コヒーレントな導体では、
+
+$$
+S_{I}(0) = 2 e V \frac{2e^{2}}{h}\sum_{n} T_{n}(1-T_{n})
+$$
+
+$S_{I}(0)$ はゼロ周波数の雑音スペクトル密度、$V$ はバイアスである。 **ファノ因子** を定義する。
+
+$$
+F \equiv \frac{S_{I}(0)}{2 e I} = \frac{\sum_{n} T_{n}(1-T_{n})}{\sum_{n} T_{n}}
+$$
+
+代表例：弾道的プラトー $T_{n}\approx 1$ ⇒ $F\approx 0$（雑音抑制）、 **拡散ワイヤ** ⇒ $F=1/3$、トンネル接合 $T_{n}\ll 1$ ⇒ ポアソン型の $F\approx 1$。
+
+---
+
+### 10.12.4 弱局在（WL）と弱反局在（WAL）
+
+時間反転した拡散経路間の量子干渉は、後方散乱を強める。
+
+- 時間反転対称性が保たれ、スピン–軌道結合が弱い場合は **WL** が生じ、$B=0$ に **負の磁気コンダクタンスのくぼみ** が現れる（量子補正によりコンダクタンスが低下）。
+- 強い SOC（または $\pi$ ベリー位相）があると、 **WAL** による **正の** カスプが現れる（反局在）。
+
+2次元の $B=0$ 付近の磁気コンダクタンスは、概略的にヒカミ–ラーキン–ナガオカ型の補正に従う。
+
+$$
+\Delta \sigma(B) \sim \frac{e^{2}}{2\pi^{2}\hbar} \left[ f\!\left(\frac{B_{\phi}}{B}\right) - f\!\left(\frac{B_{\phi}+B_{\mathrm{so}}}{B}\right) - \cdots \right]
+$$
+
+ここで $B_{\phi}\propto 1/L_{\phi}^{2}$、$B_{\mathrm{so}}$ は SOC を表す。SOC のない2次元では、$B=0$ の補正は、
+
+$$
+\Delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+となる。$\ell$ は平均自由行程である（WAL では符号が反転する）。
+
+---
+
+### 10.12.5 普遍的コンダクタンス揺らぎ（UCF）
+
+メゾスコピックな $G(B)$ や $G(V_{g})$ には、試料固有の干渉による **非周期的だが再現性のある** 揺らぎが現れる。その **分散** は物質の詳細によらず **普遍的** で、次の程度となる。
+
+$$
+\mathrm{var}(G) \sim \left(\frac{e^{2}}{h}\right)^{2} \times \frac{1}{\beta}
+$$
+
+$\beta=1,2,4$ は、それぞれ直交（TRS）、ユニタリ（TRS の破れ）、シンプレクティック（強い SOC）の対称性クラスを表す。正確な係数は次元や縦横比に依存するが、桁は一定であるため「普遍的」と呼ばれる。
+
+---
+
+### 10.12.6 位相緩和とエネルギー緩和
+
+非弾性過程は位相コヒーレンスを失わせる。
+
+- **電子–電子** 散乱（低 $T$ で支配的）：しばしば $1/\tau_{\phi}\propto T^{p}$。$p$ は次元に依存し、1次元では1未満、2次元拡散系ではほぼ1となる。  
+- より高い $T$ での **電子–フォノン** 散乱：典型的には $1/\tau_{\phi}\propto T^{q}$、$q>2$。  
+- **磁性不純物**：スピン反転がコヒーレンスを壊し、$T$ 依存性に近藤効果が現れることもある。
+
+WL・WAL の磁気コンダクタンス、または周長に対する AB 振幅の減衰を当てはめ、$L_{\phi}=\sqrt{D\tau_{\phi}}$ を求める。
+
+---
+
+### 10.12.7 接触抵抗と四端子測定
+
+ランダウアーの描像では、 **完全な** 1次元ワイヤでも接触による抵抗がある。
+
+$$
+R_{\mathrm{Q}} = \frac{h}{2e^{2}} \approx 12.9\ \mathrm{k}\Omega
+$$
+
+これは占有されたスピン縮退チャネルあたりの値である。ホールバーや四端子などの多端子配置は、接触・界面効果をデバイス内部の透過から分離する。
+
+---
+
+### 10.12.8 ランダム行列の普遍性
+
+完全にカオス的、または強く無秩序だが位相コヒーレントな空洞（量子ドット）では、透過固有値の統計が **ウィグナー–ダイソン集団** に従う。
+
+- **GOE（β=1）**：TRS あり、SOC なし。  
+- **GUE（β=2）**：TRS が破れている。  
+- **GSE（β=4）**：強い SOC、TRS は保たれる。
+
+これは $G$ の分布、 **ショット雑音**（例：カオス空洞の $F=1/4$）、準位間隔（ウィグナー予想）を支配する。磁場と SOC の強さによって対称性クラス間のクロスオーバーを調整できる。
+
+---
+
+### 10.12.9 メゾスコピック超伝導：ナノスケールのアンドレーエフ反射
+
+清浄な常伝導–超伝導（NS）界面では、ギャップ以下の輸送は **アンドレーエフ反射** で進む。電子が正孔として逆向きに反射し、凝縮体にクーパー対を加える。その結果、
+
+- 完全透過の NS 点接触では、低バイアスのコンダクタンスが **2倍** になる（BTK 極限）。  
+- 短い SNS 接合では **多重アンドレーエフ反射**（MAR）により、$eV=2\Delta/n$ にサブハーモニックなギャップ構造が現れる。  
+- SOC とゼーマン場をもつ近接超伝導ナノワイヤでは、パラメータを調整するとアンドレーエフ束縛状態が **マヨラナ型** ゼロモードへ変わりうる（トポロジカル超伝導の一例）。
+
+---
+
+### 10.12.10 メゾスコピックからアンダーソンへ：スケーリングの橋渡し
+
+無秩序が増すか次元が下がると、WL・WAL や UCF の干渉補正が強まる。低次元では、
+
+- **1・2次元**：直交クラス（SOC なし、磁場なし）では、$T=0$ の非相互作用電子は任意に弱い無秩序でも局在する。  
+- **3次元**：臨界の無秩序強度で真の **金属–絶縁体転移** が起こりうる。
+
+**無次元コンダクタンス** $g \equiv G/(e^{2}/h)$ は、スケーリング流 $d\ln g/d\ln L = \beta(g)$ に従う。$\beta(g)$ の **符号** が金属か絶縁体かを決める。§10.13で **アンダーソン局在** とスケーリング理論を詳しく扱う。
+
+---
+
+### 10.12.11 短い計算例
+
+**(a) ランダウアーの基礎**  
+QPC のゲートを開くと $G=(2,4,6)\times e^{2}/h$ にプラトーが現れる。占有モード数と、プラトー間の傾斜部分での平均 $T_{n}$ を見積もろう。
+
+**(b) ショット雑音の三例**  
+(i) $T\ll 1$ のトンネル接合、(ii) プラトー上の弾道的 QPC、(iii) 拡散ワイヤの $F$ を求めよう。$G$ が似ていても $F$ で区別できる理由を説明しよう。
+
+**(c) AB と AAS**  
+周長 $L$ のリングが、振幅 $A_{1}\propto e^{-L/L_{\phi}}$ の $h/e$ 振動と、より弱い $h/2e$ 高調波 $A_{2}$ を示す。$A_{2}$ が $e^{-2L/L_{\phi}}$ と減衰する理由を論じよう。
+
+**(d) WL の当てはめ**  
+2次元の磁気コンダクタンス曲線が $B=0$ に鋭いカスプをもち、トップゲートの追加（SOC の増大）で曲率が反転する。$L_{\phi}$ と $L_{\mathrm{so}}$ の傾向を定性的に当てはめよう。
+
+**(e) UCF のスケーリング**  
+$k_{B}T$ がサウレスエネルギー $E_{T}=\hbar D/L^{2}$ を超えると、幅 $k_{B}T$ のエネルギー窓での熱平均が分散 $\mathrm{var}(G)$ をどう減らすか示そう。
+
+**(f) 接触抵抗**  
+長さ $L\ll \ell$ の弾道的単一モード・ナノワイヤで $R\approx R_{\mathrm{Q}}$ が測られる。四端子測定用の **電圧** プローブ対を加えると内部抵抗がほぼゼロになる一方、二端子では依然として $\sim R_{\mathrm{Q}}$ となる理由を説明しよう。
+
+---
+
+### 10.12.12 よくある落とし穴
+
+- **接点の見落とし**：ランダウアーコンダクタンスは接触抵抗を含む。有限の二端子 $R$ を「完全なワイヤ」自体の抵抗と考えないこと。  
+- **集団の揺らぎと時間雑音の混同**：UCF は $B$ や $V_{g}$ に対する **再現可能な** 指紋であり、ランダムなちらつきではない。 $B$ の窓で平均すると WL を分離できる。  
+- **WL の符号の混同**：WAL には強い SOC または $\pi$ ベリー位相（例：トポロジカル表面）が必要。それ以外では WL が期待される。  
+- **ファノ因子は常に $=1$ という仮定**：ポアソン型ショット雑音はトンネル極限に現れる。弾道的・拡散デバイスでは予測可能な抑制がある。  
+- **位相緩和とエネルギー緩和の混同**：位相緩和は必ずしもエネルギーを平衡化せずに干渉を壊す。$\tau_{\phi}$ をエネルギー緩和時間と同一視しないこと。  
+- **HLN の過剰適合**：2次元 WL・WAL 公式にはパラメータ間の相関がある。$L_{\phi}$、$L_{\mathrm{so}}$ の傾向を慎重に報告し、過剰な精度を主張しないこと。
+
+---
+
+## 10.13 アンダーソン局在とスケーリング理論
+
+無秩序を強めると、干渉によって波動関数が **局在** し、直流輸送が失われ、コンダクタンスは指数関数的に小さくなる。これが **アンダーソン局在** であり、無秩序と干渉が固有状態を閉じ込める一粒子の量子現象である。本節では、アンダーソン模型、スケーリング理論と $\beta$ 関数、3次元の移動度端と臨界性、対称性クラス（直交・ユニタリ・シンプレクティック）の違い、有限サイズとマルチフラクタル、実験的特徴（VRH、クーロンギャップ、WL・WAL の磁気応答）、計算法（転送行列、サウレス数、非線形シグマ模型の概略）を扱う。最後に多体系局在に触れる。
+
+---
+
+### 10.13.1 最小模型
+
+格子上の強束縛 **アンダーソンハミルトニアン** は、
+
+$$
+H = \sum_{i} \epsilon_{i}\,|i\rangle\langle i| + \sum_{\langle ij\rangle} t_{ij}\,|i\rangle\langle j|
+$$
+
+オンサイトエネルギー $\epsilon_{i}$ は幅 $W$ の分布（例：一様分布 $[-W/2,W/2]$）からランダムに選び、短距離ホッピングを $t_{ij}=t$ とする。$W$ とバンド幅 $W_{\mathrm{band}}\sim zt$ が競合する。
+
+**直観。** 弾性平均自由行程 $\ell$ が **イオッフェ–リーゲル** 境界 $k_{F}\ell \sim 1$ まで短くなると、波は平均自由行程ほど進む間にも大きく乱され、干渉が支配的になる。
+
+---
+
+### 10.13.2 拡散から局在へ：スケーリング仮説
+
+大きさ $L$ の超立方体試料の **無次元コンダクタンス** $g$ を定義する。
+
+$$
+g(L) \equiv \frac{G(L)}{e^{2}/h} \sim h\,\nu(E_{F})\, D\, L^{d-2} \sim \frac{E_{T}}{\Delta}
+$$
+
+ここで状態密度は $\nu$、拡散定数は $D$、サウレスエネルギーは $E_{T}=\hbar D/L^{2}$、準位間隔は $\Delta\sim [\nu L^{d}]^{-1}$ である。アブラハムズ–アンダーソン–リッチャルデロ–ラマクリシュナンの **一パラメータスケーリング** 仮説は、
+
+$$
+\beta(g) \equiv \frac{d\ln g}{d\ln L}
+$$
+
+が $g$ と対称性クラスだけに依存するとする。その帰結は、
+
+- **$d=1$ と2（直交クラス）**：すべての $g$ で $\beta(g)<0$ ⇒ $T=0$ に真の金属固定点はなく、任意に弱い無秩序でも局在する（2次元では対数的にゆっくり進む）。  
+- **$d=3$**：$\beta(g)$ が $g^{\ast}$ でゼロを横切る ⇒ **金属–絶縁体転移**（MIT）。相関長・局在長は、
+
+$$
+\xi \sim |W-W_{c}|^{-\nu}
+$$
+
+臨界無秩序 $W_{c}$ で発散する。金属側では $g(L\!\gg\!\ell)\sim (L/\ell)^{d-2}$。
+
+ユニタリ・シンプレクティックなど対称性の違いは $\beta$ を変え、2次元の結論を変えることがある（§10.13.6参照）。
+
+---
+
+### 10.13.3 移動度端と3次元の臨界性
+
+3次元では、固有状態はバンド中心付近で **広がり**、裾では **局在** しうる。両者を分けるエネルギーが **移動度端** $E_{c}(W)$ である。無秩序を変えると $E_{c}$ が動き、$W=W_{c}$ で $E_{c}$ が $E_{F}$ に達すると直流輸送が消える。
+
+非相互作用・直交クラスの臨界挙動は、
+
+- **局在長** $\xi\sim |W-W_{c}|^{-\nu}$。$\nu$ は普遍的な指数である。  
+- 金属側の **伝導率スケーリング**：
+
+$$
+\sigma \sim \frac{e^{2}}{h}\, \xi^{2-d}\, \mathcal F\!\left(\frac{L}{\xi},\frac{L_{\phi}}{\xi}\right)
+$$
+
+$T=0$、$L\to\infty$ では $\sigma \propto (W_{c}-W)^{\mu}$。指数 $\mu$ はスケーリングによって $\nu$ と結びつく。
+
+---
+
+### 10.13.4 量子補正：WL・WAL と $\ln T$ 依存性
+
+**拡散** 領域（$k_{F}\ell\gg 1$）では、時間反転した経路の干渉が **弱局在**（WL）補正を生む。2次元の直交クラスでは、ゼロ磁場の補正は、
+
+$$
+\delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+垂直磁場は時間反転を破って WL を **抑制** し、$B=0$ 付近に **負の磁気抵抗のカスプ** を生む（ヒカミ–ラーキン–ナガオカ型）。強いスピン–軌道結合（シンプレクティッククラス）では符号が反転し、 **弱反局在**（WAL）になる。
+
+**相互作用** は、$\ln T$ 依存性とトンネル状態密度のゼロバイアス異常をもつアルトシュラー–アロノフ補正を加える。2次元金属で観測される $\sigma(T)=\sigma_{0}+a\ln T$ は、WL と AA の両方に由来することが多い。
+
+---
+
+### 10.13.5 絶縁体側：ホッピングとクーロンギャップ
+
+状態が長さ $\xi$ で局在すると、直流輸送はフォノン補助による **可変範囲ホッピング**（VRH）で進む。
+
+- **モット VRH**（長距離クーロン相互作用によるギャップなし）：
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{0}}{T}\right)^{\frac{1}{d+1}}\right]
+$$
+
+- **エフロス–シュクロフスキー VRH**（クーロン相互作用が状態密度にソフトギャップを作る）：
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{1}}{T}\right)^{1/2}\right]
+$$
+
+VRH の磁気応答は大きく正になりうる（波動関数の収縮とホッピング経路の干渉による）。
+
+---
+
+### 10.13.6 対称性クラスと2次元特有の振る舞い
+
+2次元の結論は一律ではなく、系全体の対称性に依存する。
+
+- **直交（TRS あり、SOC なし）**：$T=0$ ですべての状態が局在し、$\sigma$ は対数的に低下する。  
+- **ユニタリ（$B$ が TRS を破る）**：クーパーオンが抑制される。2次元では最終的に局在するが、$\beta$ の負の値は小さくなる。  
+- **シンプレクティック（強い SOC、TRS は維持）**： **WAL** により大きな $g$ で $\beta(g)>0$ となり、無秩序やキャリア密度で調整できる真の **2次元金属–絶縁体転移** が可能となる。
+
+カイラル、ボゴリューボフ–ド・ジェンヌなどのクラスにはさらに特殊な場合がある。ユニタリクラス A 自体でも、整数 **量子ホール** 系は局在したホールプラトー間のトポロジカル転移を示す。
+
+---
+
+### 10.13.7 有限サイズスケーリングと転送行列法
+
+数値計算では、幅 $M$ の太い棒状試料について、転送行列で **擬1次元局在長** $\lambda_{M}(W)$ を求め、次のスケーリングで曲線を重ねて $\nu$ と $W_{c}$ を抽出する。
+
+$$
+\frac{\lambda_{M}}{M} = \mathcal F\!\left[(W-W_{c})\,M^{1/\nu}\right]
+$$
+
+異なる $M$ の曲線は $W_{c}$ で交差し、傾きから $\nu$ が得られる。非相互作用系の普遍性クラスを調べる標準的な方法である。
+
+---
+
+### 10.13.8 移動度端のマルチフラクタル性
+
+臨界波動関数は平面波でも指数局在でもなく、 **マルチフラクタル** である。振幅のモーメントは次のようにスケールする。
+
+$$
+P_{q} \equiv \sum_{i} |\psi(i)|^{2q} \sim L^{-D_{q}(q-1)}
+$$
+
+一般化次元 $D_{q}$ は、幾何学的次元 $d$ だけでは表せない非自明なスペクトルをもつ。マルチフラクタル性は、参加比、局所状態密度の揺らぎ、臨界コンダクタンスの分布に現れる。
+
+---
+
+### 10.13.9 場の理論の概略：非線形シグマ模型
+
+ダイアグラム法と無秩序平均から、拡散モード（ディフューゾン・クーパーオン）の **非線形シグマ模型** が得られる。結合定数が $g$ に対応し、繰り込みにより $\beta(g)$、WL・WAL の符号、相互作用補正（フィンケルシュタインの拡張）が再現される。これがスケーリングと普遍性を支える解析的基盤である。
+
+---
+
+### 10.13.10 光学・交流輸送
+
+金属側の光学伝導率には、無秩序で幅 $1/\tau$ に広がったドルーデピークがある。臨界点に近づくとドルーデ重みは減少する。非相互作用のアンダーソン絶縁体では、低周波交流伝導率はべき則で増大する（モットの交流ホッピング）。相互作用やクーロンギャップは指数を変える。そのため有限周波数の測定では、直流が測定不能なほど小さくても、$\xi$ やホッピングのスケールを調べられる。
+
+---
+
+### 10.13.11 多体系局在（MBL）：相互作用系への拡張
+
+浴を **加えずに** 相互作用を導入すると、有限エネルギー密度でも局在が残ることがある。
+
+- **創発的な局所保存量**（LIOM）と、高励起固有状態での面積則エンタングルメント。  
+- クエンチ後の **対数的なエンタングルメント成長**。  
+- **直流輸送の欠如** と固有状態熱化の破れ。
+
+MBL には孤立が必要で、フォノンやリードは最終的に局在を壊す。それでも、冷却原子やメゾスコピック回路における「多体系版アンダーソン局在」として注目される相である。
+
+---
+
+### 10.13.12 短い計算例
+
+**(a) サウレス数**  
+ねじれ境界条件に対する準位エネルギーの感度を平均準位間隔と比較し（サウレスの考え方）、$g\simeq E_{T}/\Delta$ を示そう。
+
+**(b) 2次元 WL の傾き**  
+独立なスピンチャネル1個について、クーパーオンの閉路積分から2次元の $\delta \sigma(0)=-(e^{2}/\pi h)\ln(L_{\phi}/\ell)$ を導こう。垂直な $B$ が $L_{B}=\sqrt{\hbar/(2eB)}$ を通じて対数を打ち切る理由を説明しよう。
+
+**(c) VRH の指数**  
+$d$ 次元の一定状態密度から、ホッピング距離とエネルギーを最適化してモット VRH 指数 $1/(d+1)$ を得よう。次にクーロンギャップ $g(E)\propto |E-E_{F}|^{d-1}$ を含め、エフロス–シュクロフスキーの $1/2$ 則を導こう。
+
+**(d) 転送行列の交点**  
+幅 $M=8,12,16$ の $\lambda_{M}/M$ 対 $W$ の概形を描き、$W_{c}$ の一つの交点を示そう。傾きの比から $\nu$ を得る方法を説明しよう。
+
+**(e) マルチフラクタルモーメント**  
+$L^{d}$ 格子上の固有状態振幅から $P_{2}$ を計算し、サイズ間の両対数当てはめで有効フラクタル次元 $D_{2}$ を求めよう。
+
+**(f) 対称性の切り替え**  
+強い SOC を加えるとクーパーオン寄与の符号が反転して WAL になる理由と、小さな $B$ が時間反転を破って干渉補正を抑える理由を定性的に説明しよう。
+
+---
+
+### 10.13.13 よくある落とし穴
+
+- **「2次元なら必ず局在する」**：強い SOC のない直交クラスの結論である。シンプレクティックな2次元系には真の金属–絶縁体転移があり、量子ホール系にはトポロジカル臨界性がある。  
+- **VRH と活性化ギャップの混同。** VRH は **非アレニウス型**。$(\ln \rho)$ 対 $T^{-\alpha}$ の傾きから、次元とクーロンギャップの効果を調べよう。  
+- **$k_{F}\ell\sim 1$ と転移の同一視。** これは拡散的物理の目安となる境界であり、正確な $W_{c}$ ではない。  
+- **2次元での相互作用の無視。** アルトシュラー–アロノフ項は WL と同程度のことが多い。ゲートで SOC を変えて $\ln T$ の傾きが反転するなら、それは WAL であり相互作用の符号反転ではない。  
+- **有限試料の過剰解釈。** $L\ll \xi$ では、$\rho(L)$ の増大だけで絶縁体とは断定できない。有限サイズスケーリングを行おう。  
+- **MBL とアンダーソン局在の混同。** MBL は相互作用する高励起状態の現象。アンダーソン局在は一粒子または非相互作用固有状態の性質であり、$T=0$ に限られない。
+
+---
+
+### 10.13.14 基本演習
+
+- ドルーデ拡散から2次元の $g(L)$ と $\beta$ 関数を量子干渉の最低次まで構成し、大きな $g$ で直交クラスでは負、シンプレクティッククラスでは正になる理由を示そう。  
+- ヒカミ–ラーキン–ナガオカ公式で $B=0$ 付近の磁気コンダクタンス $\Delta \sigma(B)$ を求め、模擬データから $L_{\phi}$ を抽出しよう。  
+- 合成した $\rho(T)$ をモット型とエフロス–シュクロフスキー型の VRH に当てはめ、クーロンギャップの有無を判定しよう。  
+- 3次元アンダーソン模型の転送行列コードを実装し、$\lambda_{M}/M$ の交点を求め、データの重ね合わせから $\nu$ を見積もろう。  
+- $W\approx W_{c}$ で $q=2,3$ の $P_{q}$ を計算し、サイズ間のマルチフラクタルスケーリングを確かめよう。  
+- $D=\sigma/(e^{2}\nu)$ と $\Delta^{-1}=\nu L^{d}$ を代入し、$g\sim E_{T}/\Delta$ が $g\sim \sigma L^{d-2}/(e^{2}/h)$ に帰着することを示そう。
+
+---
+
+## 10.14 モアレ量子物質と2次元材料
+
+原子層結晶をわずかにねじって重ねると、バンド構造は大きく変わる。 **ファンデルワールス（vdW）ヘテロ構造** では、ねじれ角による幾何、二重ゲートによる静電場、配向やひずみによる対称性を細かく調整できる。こうして、チップ上で再構成できる超格子に **平坦バンド**、 **相関絶縁体**、 **非従来型超伝導**、 **量子異常ホール効果**、 **モアレ励起子** が現れる。
+
+---
+
+### 10.14.1 なぜ2次元、なぜモアレか
+
+- **2次元結晶**（グラフェン、hBN、MoS$_2$ や WSe$_2$ などの TMD）は、剥離、積層、回転、配線ができる。
+- 層間の弱い **vdW** 結合により、複雑な界面化学を伴わずに任意のヘテロ構造を作れる。
+- 層間の小さな **ねじれ角** $\theta$ は、次の周期をもつ長波長の **モアレ超格子** を作る。
+
+$$
+L_{m} = \frac{a}{2\sin(\theta/2)}
+$$
+
+$a$ は単層の格子定数である。$\theta \sim 1^{\circ}$ では $L_{m}$ は数十ナノメートルと $a$ よりはるかに大きくなり、運動量空間がミニブリルアンゾーンに折り畳まれて、バンドが平坦になる。
+
+---
+
+### 10.14.2 連続体描像と「魔法角」の平坦バンド
+
+ねじれ二層グラフェン（tBLG）の **ビストリッツァー–マクドナルド** 連続体模型は、層間トンネル $w$ と相対回転 $\theta$ により、二層のディラック円錐を結合する。次を定義する。
+
+$$
+k_{\theta} = 2 k_{D} \sin(\theta/2),\qquad k_{D} = \frac{4\pi}{3a}
+$$
+
+また、無次元結合を、
+
+$$
+\alpha = \frac{w}{\hbar v_{F} k_{\theta}}
+$$
+
+**魔法角**（最初は $\theta \approx 1.1^{\circ}$ 付近）では、$\alpha$ によってディラック速度がほぼゼロとなり、バンド幅 $W$ が数 meV に縮む。同程度の相互作用 $U$ があると、相関が支配的になる。
+
+相互作用スケールの簡単な見積もりは、
+
+$$
+U \sim \frac{e^{2}}{4\pi \varepsilon_{0} \varepsilon_{r} L_{m}}
+$$
+
+小さな $\theta$ では容易に10–50 meV 程度となり、$U/W \gg 1$ に達する。
+
+---
+
+### 10.14.3 モアレ・ハバード模型とウィグナー結晶
+
+モアレポテンシャルは、ワニエ関数の **有効格子** を定める。
+
+- **tBLG**：脆弱なトポロジーのため厳密に局所的な強束縛記述は複雑だが、電荷中性付近の低エネルギー物理は、しばしばバレーごとのチャーンバンドに射影される。
+- **TMD 異種二層**（例：小さくねじった WSe$_2$/WS$_2$）：よく局在したモアレの **三角** または **蜂の巣** 格子を作り、ねじれ角や場で $t$ を調整できる **ハバード模型** が実現する。
+
+低充填かつ大きな $r_{s}$ では運動エネルギーの効果が弱まり、 **ウィグナー結晶** や一般化された電荷秩序が現れうる。モット状態、電荷密度波、スピン・バレー分極などの競合は、ゲートと変位場で調整できる。
+
+---
+
+### 10.14.4 モアレのトポロジー：バレー、ベリー曲率、チャーン数
+
+単層 TMD は **バレー間で符号が逆のベリー曲率** をもつ。積層とモアレ折り畳みによって、正味の磁場なしでも **チャーンバンド** を設計できる。バレー分解したホール応答は、
+
+$$
+\sigma_{xy}^{v} = -\frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K)} + \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K')}
+$$
+
+両バレーが等しく占有されると、時間反転により全チャーン数は $C_{\text{tot}}=0$ となる。しかし **自発的バレー分極** はその釣り合いを破り、ゼロ $B$ で **量子異常ホール効果** を生む。
+
+反転対称性のない積層系の **ベリー曲率双極子** は、$E$ の2次の **非線形ホール** 信号を生む。
+
+---
+
+### 10.14.5 対称性の破れ：相関絶縁体、超伝導、QAHE、ネマティック
+
+二重ゲートでモアレ単位胞あたりのキャリア密度 $\nu$ を調整すると、多様な相図が現れる。
+
+- 整数 $\nu$ の **相関絶縁体**（モット型またはフレーバー分極したバンド絶縁体）。
+- 相関状態への少量ドーピングによる **非従来型超伝導**。 **変位場** と **クーロン遮蔽** への敏感さは、一部の系で電子的機構による対形成を示唆する。
+- 単一バレーのチャーンバンドが交換相互作用で分極したときの **量子異常ホール効果（QAHE）**。
+- **ネマティック性**：輸送や STM に現れる回転対称性の破れ。ひずみ、または相互作用によるポメランチュク型不安定性に関係することが多い。
+
+状態密度 $N(0)$ の平坦バンドでの対形成を、最小限の有効相互作用で見積もると、
+
+$$
+k_{B}T_{c} \sim W\, \exp\!\left(-\frac{1}{\lambda_{\text{eff}}}\right),\qquad \lambda_{\text{eff}} \equiv V_{\text{eff}} N(0)
+$$
+
+狭い $W$ は状態密度を増し、中程度の $V_{\text{eff}}$ でも結合を強めうるが、同時に $T_{c}$ の前置因子を小さくする。弱結合の見積もりだけでは高い転移温度は保証されない。詳細はバレー・スピン構造と形状因子に依存する。
+
+---
+
+### 10.14.6 TMD 励起子、層間励起子、モアレポラリトン
+
+単層 TMD は、弱い遮蔽と2次元運動により、数百 meV の強く束縛された **励起子** をもつ。異なる二つの TMD を積層すると、 **タイプII** バンド配置と、電子・正孔が別々の層にある **層間励起子** ができる。
+
+- 長寿命（ns–$\mu$s）、大きな **電気双極子**、面外電場の空間勾配によるドリフト。
+- ねじれを加えると、モアレポテンシャルが **励起子ミニバンド** と **捕獲配列**（励起子格子）を作る。
+
+局所的な誘電率と $1/r$ クーロンポテンシャルをもつ厳密な2次元励起子では、水素原子型の基底状態束縛エネルギーの見積もりは、
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}} \times 54.4\ \mathrm{eV}
+$$
+
+実際の数値には **ケルディッシュ** 遮蔽模型が必要だが、$\mu^{\ast}$ と $\varepsilon_{r}$ への依存性をつかむ目安となる。
+
+励起子を共振器に結合すると、分散と相互作用を調整できる **モアレ励起子–ポラリトン** が得られる。
+
+---
+
+### 10.14.7 スピン–バレー固定とバレートロニクス
+
+単層 TMD では SOC がスピンをバレーに固定する。 **円偏光** は $K$ と $K'$ を選択的に励起し、 **バレー分極** を可能にする。二層系で反転対称性を破るか変位場を加えると、$B$ なしで $\boldsymbol E$ に横向きの **バレーホール** 電流を制御できる。有限のベリー曲率双極子 $\boldsymbol D$ から **非線形ホール効果** が生じる。
+
+$$
+\boldsymbol J^{(2\omega)} \propto \frac{e^{3}\tau}{\hbar^{2}(1+i\omega\tau)}\, [\hat{\boldsymbol z}\times\boldsymbol E(\omega)]\,[\boldsymbol D\cdot\boldsymbol E(\omega)]
+$$
+
+これはゼロ磁場での第2高調波ホール電圧として測定できる。
+
+---
+
+### 10.14.8 実験の制御パラメータと測定法
+
+- **制御パラメータ**：ねじれ角 $\theta$、二重ゲートの **変位場** $D$、モアレ単位胞あたりのキャリア密度 $\nu$、 **誘電環境**（hBN の厚さ、近傍の金属ゲート）、 **ひずみ**。
+- **輸送**：$\nu$ に対する縦・ホール抵抗率、$B$ 中のランダウファン、モアレのフェルミ面ポケットを読む量子振動。
+- **STM・STS**：状態密度の直接測定、ギャップ分布、モアレ模様と局所秩序の可視化。
+- **光学**：励起子の PL・反射測定、バレーの円二色性、動力学のポンプ–プローブ測定。
+- **容量・圧縮率**：熱力学的状態密度と対称性の破れ（スピン・バレー分極のプラトー）。
+- **磁気測定**：QAHE プラトー、チャーンバンドの軌道磁化、先端 SQUID による端モードの撮像。
+
+---
+
+### 10.14.9 最小限の模型化の方法
+
+- グラフェン系の **連続体ディラック模型と周期トンネル**：少数のパラメータ $(v_{F}, w_{0/1}, \theta)$ で平坦バンドとトポロジーを捉える。
+- 三角・蜂の巣格子上の TMD 二層の **モアレ・ハバード模型**：オンサイト $U$、最近接 $V$、SOC に由来するフント結合やイジング異方性を含みうる。
+- フレーバー対称性の破れには **ハートリー–フォック**、相関と有限 $T$ スペクトルには **DMFT・厳密対角化**、チャーン数の追跡には **ベリー位相とウィルソンループ**（§10.11参照）。
+
+---
+
+### 10.14.10 短い計算例
+
+**(a) モアレの長さスケール**  
+グラフェンで $a=0.246\ \mathrm{nm}$、$\theta=1.1^{\circ}$ とする。$L_{m}=a/[2\sin(\theta/2)]$ を求め、$\varepsilon_{r}=5$ に対して $U \sim e^{2}/(4\pi \varepsilon_{0}\varepsilon_{r} L_{m})$ を見積もろう。
+
+**(b) 魔法角パラメータ**  
+$v_{F}=1.0\times 10^{6}\ \mathrm{m/s}$、$w=110\ \mathrm{meV}$ として、$\theta=1.1^{\circ}$ の $\alpha=w/(\hbar v_{F} k_{\theta})$ を計算し、平坦さを考察しよう。
+
+**(c) 三角格子ハバード模型**  
+TMD モアレで $t=2\ \mathrm{meV}$、$U=20\ \mathrm{meV}$ とする。$W\approx 9|t|$ を用いて $U/W$ を見積もり、半充填でモット絶縁体か金属かを考察しよう。
+
+**(d) バレーホール効果の符号**  
+$C=1$ の単一バレー・チャーンバンドが完全に分極している場合、ゼロ $B$ の $\sigma_{xy}$ は $e^{2}/h$ 単位でいくらか。逆の $C$ をもつ両バレーが占有された場合と比較しよう。
+
+**(e) 層間励起子の双極子**  
+層間距離 $d=0.7\ \mathrm{nm}$ に対し、双極子モーメント $p=ed$ と、$E=0.1\ \mathrm{V/nm}$ でのシュタルクシフト $\Delta E = -pE$ を見積もろう。
+
+**(f) 非線形ホール効果の見積もり**  
+ベリー曲率双極子 $|D|=0.1\ \text{\AA}$、緩和時間 $\tau=0.1\ \mathrm{ps}$ として、$E(\omega)=1\ \mathrm{kV/cm}$ のもとでの第2高調波ホール電流の桁を見積もろう（スケーリングによる答えでよい）。
+
+---
+
+### 10.14.11 よくある落とし穴
+
+- **「平坦バンドは魔法角だけ」**：TMD や hBN 上のグラフェンなど、多くのモアレ系には正確な魔法角調整なしでも狭いバンドがある。変位場や誘電遮蔽もバンド幅を大きく変える。
+- **フレーバーの無視**：スピン、バレー、層は複数のフレーバーを与え、対称性の破れはしばしば一つ、またはその組合せを選ぶ。早い段階でフレーバーを省く模型は、実際の秩序を見落とす。
+- **トポロジーの見落とし**：バレー間で全チャーン数が相殺されても、フレーバーが不均衡なら **バレー** ホール応答や **軌道磁化** が生じる。
+- **ワニエ化の落とし穴**：tBLG の脆弱なトポロジーは、部分空間を広げない限り厳密に局所的なワニエ基底を妨げる。小さすぎる TB 模型を無理に使わないこと。
+- **平均場の過剰適合**：ハートリー–フォックは秩序を作りやすい。熱力学、圧縮率、無秩序への頑健性と照合しよう。
+- **励起子の水素原子型模型の過剰適用**：2次元遮蔽は非局所的（ケルディッシュ型）である。水素原子型の見積もりはスケールの目安であり、最終的な数値ではない。
+
+---

@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { chapters } from '@/lib/chapters';
 import { curiosities } from '@/lib/curiosities';
-import { sidebarLabels, deviceLocale, isLocale, languageNames, localePath, locales, messages, pathLocale, stripLocale, topicTitle } from '@/lib/i18n';
+import { sidebarLabels, deviceLanguageLabel, deviceLocale, isLocale, languageNames, localePath, locales, messages, pathLocale, stripLocale, topicTitle } from '@/lib/i18n';
 
 export default function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -67,8 +67,8 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         </summary>
         <div className="language-options">
           <p>{t.language}</p>
-          {[{code: 'device', label: 'Same as device'}, ...locales.map(code => ({code, label: languageNames[code]}))].map(option => 
-          <button key={option.code} lang={option.code === 'device' ? 'en' : option.code} type="button" aria-pressed={preference === option.code} onClick={() => choose(option.code)}>
+          {[{code: 'device', label: deviceLanguageLabel(locale)}, ...locales.map(code => ({code, label: languageNames[code]}))].map(option => 
+          <button key={option.code} lang={option.code === 'device' ? (['zh-CN', 'ja', 'de', 'pt-BR'].includes(locale) ? locale : 'en') : option.code} type="button" aria-pressed={preference === option.code} onClick={() => choose(option.code)}>
             <span>{option.label}</span>
             <span aria-hidden="true">{preference === option.code ? '✓' : ''}</span>
           </button>)}

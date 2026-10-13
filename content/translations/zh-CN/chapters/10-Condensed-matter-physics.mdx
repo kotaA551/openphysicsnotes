@@ -1,0 +1,3094 @@
+---
+description: 本章从晶格、倒易空间与晶格振动出发，系统介绍自由电子、能带、紧束缚模型、半导体及输运理论，继而讨论磁性、超导、强关联电子、拓扑物态、无序与局域化，以及二维材料和莫尔体系。通过模型推导、实例和习题，连接材料的微观结构与宏观响应，并明确各类近似、单位及符号约定。
+---
+
+## 10.1 晶体与倒易空间
+
+晶体在空间中具有周期性。利用周期性，可以将晶格求和化为选择定则，通过傅里叶变换处理 $k$ 的量子化，并借助衍射识别结构。本节介绍晶格与基元的表述、倒易矢量、布里渊区、米勒指数，以及衍射分析工具（布拉格、劳厄、埃瓦尔德构图和结构因子）。我们将串联面心立方与体心立方的对偶关系、常见晶体的选择定则，以及避免混淆指数的方法。
+
+![正方晶格及其倒易晶格；两者的原始基矢满足倒易基底关系。](/images/diagrams/reciprocal-lattice.svg)
+
+---
+
+### 10.1.1 晶格、基元与晶体结构
+
+ **布拉菲晶格** 是如下点的集合：
+
+$$
+\boldsymbol R = n_{1}\,\boldsymbol a_{1} + n_{2}\,\boldsymbol a_{2} + n_{3}\,\boldsymbol a_{3},\qquad n_{i}\in\mathbb Z
+$$
+
+其中 $\boldsymbol a_{i}$ 是三个线性无关的 **原始基矢** 。 **晶体结构** 等于晶格 **加上** 原胞内位于 $\{\boldsymbol\tau_{j}\}$ 的原子基元；各原子的位置为 $\boldsymbol r = \boldsymbol R + \boldsymbol\tau_{j}$。
+
+-  **维格纳–塞茨原胞** ：到指定格点的距离比到任何其他格点都近的点的集合。  
+-  **惯用晶胞与原胞** ：惯用立方晶胞便于直观展示；原胞具有最小体积，适合理论处理。
+
+ **提示** ：应避免把“金刚石晶格”当作布拉菲晶格名称。金刚石具有 **面心立方晶格** 和双点基元 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$。
+
+---
+
+### 10.1.2 对称性：点群与空间群速览
+
+-  **点群** ：使至少一个点保持不动的旋转、反射和反演操作。  
+-  **空间群** ：点群操作加上 **平移** 、 **螺旋** 旋转和 **滑移** 反射。  
+- 三维空间中有  **14 种布拉菲晶格** 、 **32**  种晶体学点群和  **230**  种空间群。能带理论主要用到晶格及高对称 $k$ 点的小群。
+
+---
+
+### 10.1.3 倒易晶格与布里渊区
+
+用关系 $\boldsymbol a_{i}\cdot \boldsymbol b_{j}=2\pi\delta_{ij}$ 定义 **倒易原始基矢**  $\boldsymbol b_{i}$。其矢量表达式为
+
+$$
+\boldsymbol b_{1} = 2\pi \frac{\boldsymbol a_{2}\times \boldsymbol a_{3}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{2} = 2\pi \frac{\boldsymbol a_{3}\times \boldsymbol a_{1}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{3} = 2\pi \frac{\boldsymbol a_{1}\times \boldsymbol a_{2}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})}
+$$
+
+ **倒易晶格** 由矢量 $\boldsymbol G = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}$ 组成，其中 $(h,k,\ell)$ 为整数。
+
+ **第一布里渊区（BZ）** 是倒易晶格的维格纳–塞茨原胞。它是 $k$ 空间的原胞，也是布洛赫波矢的自然取值区域。
+
+- 对偶关系： **fcc $\leftrightarrow$ bcc** 。面心立方晶格的倒易晶格是体心立方，反之亦然；简单立方晶格自对偶。
+
+---
+
+### 10.1.4 一行式布洛赫定理
+
+在周期势 $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$ 中，单粒子本征态是 **布洛赫波** ：
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R) = u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+波矢 $\boldsymbol k$ 可以选在第一布里渊区内。作平移 $\boldsymbol k\to \boldsymbol k+\boldsymbol G$ 不改变物理性质。
+
+---
+
+### 10.1.5 晶面、晶向与指数：米勒指数入门
+
+-  **晶向** 用方括号 $[u\,v\,w]$ 表示，对应于与 $u\,\boldsymbol a_{1}+v\,\boldsymbol a_{2}+w\,\boldsymbol a_{3}$ 成正比的晶格矢量。等价晶向族记为 $\langle u\,v\,w\rangle$。  
+-  **晶面** 用圆括号 $(h\,k\,\ell)$ 表示，即 **米勒指数** ，由晶面在 $\boldsymbol a_{i}$ 各方向上截距的倒数确定。晶面族记为 $\{h\,k\,\ell\}$。  
+- 晶面族 $(h\,k\,\ell)$ 的 **面间距** 与倒易矢量 $\boldsymbol G_{hkl}$ 的关系为：
+
+$$
+\boldsymbol G_{hkl} = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}
+$$
+
+$$
+d_{hkl} = \frac{2\pi}{|\boldsymbol G_{hkl}|}
+$$
+
+对于 **立方晶格** ，$a_{1}=a\,\hat x$ 等，因而 $d_{hkl}= a/\sqrt{h^{2}+k^{2}+\ell^{2}}$。
+
+ **六方晶格** 常采用米勒–布拉菲指数 $(h\,k\,i\,\ell)$，其中 $i=-(h+k)$，以明确体现基面的对称性。
+
+---
+
+### 10.1.6 衍射：布拉格、劳厄与埃瓦尔德的等价描述
+
+弹性散射满足 $|\boldsymbol k|=|\boldsymbol k'|$，转移的晶体动量对应的波矢 $\Delta\boldsymbol k=\boldsymbol k'-\boldsymbol k$ 等于某个倒易矢量：
+
+$$
+\Delta \boldsymbol k = \boldsymbol G
+$$
+
+实空间中的 **布拉格条件** 为：
+
+$$
+2 d_{hkl}\,\sin\theta = n\,\lambda
+$$
+
+$k$ 空间的 **劳厄条件** 正是 $\boldsymbol k'-\boldsymbol k=\boldsymbol G$。 **埃瓦尔德球** 的作法是：以 $\boldsymbol k$ 的起点为球心，画半径为 $|\boldsymbol k|=2\pi/\lambda$ 的球；球面上的倒易格点给出允许的反射。
+
+ **结构因子** 包含基元的信息：
+
+$$
+F(\boldsymbol G) = \sum_{j=1}^{m} f_{j}\,e^{-i\boldsymbol G\cdot \boldsymbol\tau_{j}}
+$$
+
+其中 $f_{j}$ 为原子形状因子。衍射强度为
+
+$$
+I(\boldsymbol G) \propto |F(\boldsymbol G)|^{2}
+$$
+
+晶格求和要求 $\boldsymbol G$ 属于倒易晶格；$F$ 决定相应反射是否真正出现。
+
+---
+
+### 10.1.7 常见结构的选择定则
+
+-  **简单立方（sc）** ：在 $(0,0,0)$ 处有一个原子：
+
+$$
+F(\mathbf G)=f,\quad \text{no systematic absences}
+$$
+
+-  **体心立方（bcc）** ，基元为 $\{(0,0,0),\,(\tfrac12,\tfrac12,\tfrac12)a\}$：
+
+$$
+F = f\left[1 + e^{-i\pi(h+k+\ell)}\right] = 
+\begin{cases}
+2f & h+k+\ell\ \text{even} \\
+0 & h+k+\ell\ \text{odd}
+\end{cases}
+$$
+
+-  **面心立方（fcc）** ，基元为 $\{(0,0,0),\,(\tfrac12,\tfrac12,0)a,\,(\tfrac12,0,\tfrac12)a,\,(0,\tfrac12,\tfrac12)a\}$：
+
+$$
+F = f\left[1 + e^{-i\pi(h+k)} + e^{-i\pi(h+\ell)} + e^{-i\pi(k+\ell)}\right] =
+\begin{cases}
+4f & h,k,\ell\ \text{all even or all odd} \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+-  **NaCl（岩盐结构）** ：面心立方晶格，双组分基元为 $\{(0,0,0)\ \text{Na},\ (\tfrac12,\tfrac12,\tfrac12)a\ \text{Cl}\}$。于是
+
+$$
+F = f_{\mathrm{Na}} + f_{\mathrm{Cl}}\,e^{-i\pi(h+k+\ell)}
+$$
+
+强度随 $h+k+\ell$ 的奇偶性变化，变化幅度取决于 $f$ 的差异。
+
+-  **金刚石** ：面心立方晶格，基元为 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$。附加相位使其在面心立方消光规则之外还有额外的系统消光。
+
+---
+
+### 10.1.8 fcc–bcc 对偶与高对称 $k$ 点
+
+若 $\{\boldsymbol a_{i}\}$ 是  **fcc**  原始基矢，则倒易基矢 $\{\boldsymbol b_{i}\}$ 在 $k$ 空间生成  **bcc**  晶格，反之亦然。常用标记如下：
+
+-  **fcc 布里渊区** ：$\Gamma$ 为中心，$X$ 位于正方形面中心，$L$ 位于六边形面中心，$W$ 为顶点。  
+-  **bcc 布里渊区** ：$\Gamma$、$H$、$N$、$P$ 点。  
+
+能带极值和简并常出现在这些位置；实验中通过角分辨光电子能谱（ARPES）和量子振荡研究相关电子结构。
+
+---
+
+### 10.1.9 实空间与倒易空间的几何速查
+
+-  **体积关系** ：
+
+$$
+V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast} = (2\pi)^{3}
+$$
+
+-  **晶面法向** ：倒易矢量 $\boldsymbol G_{hkl}$  **垂直** 于 $(hkl)$ 晶面。  
+- 晶面 $(h_{1}k_{1}\ell_{1})$ 与 $(h_{2}k_{2}\ell_{2})$ 的 **夹角** 为：
+
+$$
+\cos\theta = \frac{\boldsymbol G_{1}\cdot \boldsymbol G_{2}}{|\boldsymbol G_{1}|\,|\boldsymbol G_{2}|}
+$$
+
+- 再次列出 **面间距** 关系：$d_{hkl}=2\pi/|\boldsymbol G_{hkl}|$。
+
+---
+
+### 10.1.10 简短例题
+
+ **(a) bcc 的倒易晶格是 fcc**   
+从边长为 $a$ 的 bcc 惯用立方晶胞及原始基矢 $\boldsymbol a_{1}=\tfrac a2(\hat y+\hat z-\hat x)$ 等出发，计算 $\boldsymbol b_{i}$，并证明倒易格点位于边长为 $4\pi/a$ 的立方晶胞的顶点与面心。
+
+ **(b) 立方晶格的 $d_{hkl}$**   
+利用 $\boldsymbol G_{hkl}=(2\pi/a)(h\,\hat x + k\,\hat y + \ell\,\hat z)$ 证明 $d_{hkl}=a/\sqrt{h^{2}+k^{2}+\ell^{2}}$。布拉格条件给出 $2d\sin\theta=n\lambda$；给定 $\lambda/a$，求 $(111)$ 晶面的一级反射角。
+
+ **(c) fcc 的系统消光**   
+计算 $(100)$、$(110)$、$(111)$ 晶面族的 $F$，确认只有指数“全偶”或“全奇”的反射保留。
+
+ **(d) 金刚石的消光**   
+金刚石满足 $F \propto \left[1 + e^{-i\pi(h+k+\ell)/2}\right]\times(\text{fcc factor})$。证明 $(222)$ 消光而 $(111)$ 允许，与 X 射线衍射表一致。
+
+ **(e) 埃瓦尔德构图**   
+对于 $\lambda=1.54\ \text{\AA}$（Cu K$\alpha$），画一个半径为 $2\pi/\lambda$、经过面心立方倒易晶格原点的圆，并在给定晶体取向下标出圆周上对应衍射反射的 $\boldsymbol G$ 矢量。
+
+---
+
+### 10.1.11 常见误区
+
+-  **混淆晶格与结构** ：晶格是周期性的骨架， **基元** 在其上放置原子。  
+-  **倒易空间单位出错** ：晶体学常采用不含 $2\pi$ 的约定；这里采用 $a_{i}\cdot b_{j}=2\pi\delta_{ij}$。选定一种约定并始终保持一致。  
+-  **混淆米勒指数与晶向指数** ：$(hkl)$ 表示晶面，$[uvw]$ 表示晶向。立方晶格中 $(hkl)\perp [hkl]$，但一般晶格不满足此关系。  
+-  **忘记形状因子** ：即使 $F\neq 0$，$f_{j}(\boldsymbol G)$ 也会随 $|\boldsymbol G|$ 增大而衰减，从而改变强度分布。  
+-  **混淆布里渊区表示** ：“简约区”方案把 $k$ 折回第一布里渊区；若能带似乎重复，可能混用了扩展区图与简约区图。
+
+---
+
+### 10.1.12 基础习题
+
+- 从 $\boldsymbol a_{i}$ 推导倒易基矢 $\boldsymbol b_{i}$，并证明 $V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast}=(2\pi)^{3}$  
+- 利用 $\boldsymbol G$ 的几何关系，证明劳厄条件 $\boldsymbol k'-\boldsymbol k=\boldsymbol G$ 与布拉格定律 $2d\sin\theta=n\lambda$ 等价  
+- 计算 NaCl 和 CsCl 的结构因子与选择定则，比较两者哪些 $(hkl)$ 反射消失  
+- 对晶格常数为 $a$ 和 $c$ 的六方晶格，写出 $\boldsymbol b_{i}$，并用 $(h\,k\,i\,\ell)$ 表示 $d_{hkl}$  
+- 给定 $a$，在笛卡尔 $k$ 坐标中确定 fcc 的高对称点 $\Gamma$、$X$、$L$、$W$，并画出第一布里渊区
+
+---
+
+## 10.2 晶格振动与声子
+
+晶体中的原子并非静止不动，而是在不断振动。这些集体振动量子化后就是 **声子** ，即晶格简正模的量子。本节从一维原子链推广到完整的三维动力学矩阵，区分 **声学** 支与 **光学** 支，计算色散、群速度和态密度，然后进行量子化。我们还讨论热输运、非谐性、用格吕奈森参数描述的热膨胀、电子–声子耦合，以及中子、拉曼和红外实验中的典型信号。
+
+---
+
+### 10.2.1 谐性晶格：基本设定
+
+用 $\boldsymbol R$ 标记布拉菲格点，$\kappa$ 标记晶胞内的基元原子。原子 $(\boldsymbol R,\kappa)$ 的位移为 $\boldsymbol u_{\kappa}(\boldsymbol R,t)$。在 **谐近似** 下，势能是位移的二次型：
+
+$$
+U = \tfrac{1}{2}\sum_{\boldsymbol R\kappa\alpha}\sum_{\boldsymbol R'\kappa'\beta}
+\Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa\alpha}(\boldsymbol R)\,u_{\kappa'\beta}(\boldsymbol R')
+$$
+
+其中 $\Phi$ 为 **力常数** ，$\alpha,\beta\in\{x,y,z\}$。牛顿方程为：
+
+$$
+M_{\kappa}\,\ddot u_{\kappa\alpha}(\boldsymbol R,t) = -\sum_{\boldsymbol R'\kappa'\beta} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa'\beta}(\boldsymbol R',t)
+$$
+
+尝试平面波解 $u_{\kappa\alpha}(\boldsymbol R,t)=M_{\kappa}^{-1/2}e_{\kappa\alpha}(\boldsymbol q)\,e^{i(\boldsymbol q\cdot \boldsymbol R - \omega t)}$，得到本征值问题
+
+$$
+\sum_{\kappa'\beta} D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q)\,e_{\kappa'\beta}(\boldsymbol q) = \omega^{2}(\boldsymbol q)\,e_{\kappa\alpha}(\boldsymbol q)
+$$
+
+其中 **动力学矩阵** 为
+
+$$
+D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q) = \frac{1}{\sqrt{M_{\kappa}M_{\kappa'}}}
+\sum_{\boldsymbol R} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R)\,e^{-i\boldsymbol q\cdot \boldsymbol R}
+$$
+
+每个晶胞有 $r$ 个原子时，共有 $3r$ 条分支：3 条声学支在 $\boldsymbol q\to 0$ 时满足 $\omega\to 0$，另有 $3r-3$ 条光学支。
+
+---
+
+### 10.2.2 一维单原子链：最简单的例子
+
+质量为 $m$ 的原子由弹簧常数为 $K$ 的弹簧连接，晶格间距为 $a$。用 $u_{n}$ 表示格点 $n$ 的位移。运动方程为：
+
+$$
+m\,\ddot u_{n} = K\,(u_{n+1} - 2u_{n} + u_{n-1})
+$$
+
+代入试探解 $u_{n}=u_{0}e^{i(nka-\omega t)}$，得到色散关系
+
+$$
+\omega(k) = 2\sqrt{\frac{K}{m}}\;\left|\sin\frac{ka}{2}\right|
+$$
+
+主要结论：
+
+- 只有 **声学** 支，在 $k=0$ 附近呈线性色散，声速为 $v_{s}=a\sqrt{K/m}$  
+-  **布里渊区** 为 $-\pi/a<k\le \pi/a$；$\omega(k)$ 以 $2\pi/a$ 为周期  
+-  **群速度**  $v_{g}(k)=\partial\omega/\partial k$ 决定能量传输
+
+一维单支的 **态密度** 为：
+
+$$
+g(\omega) = \frac{L}{\pi}\,\frac{1}{|d\omega/dk|}
+$$
+
+因此在布里渊区边界 $d\omega/dk\to 0$ 时，$g(\omega)$ 发散，形成范霍夫奇点。
+
+---
+
+### 10.2.3 一维双原子链：声学支与光学支
+
+两种质量 $m_{1},m_{2}$ 交替排列，弹簧常数均为 $K$，包含两个原子的晶胞长度为 $a$。只计最近邻耦合时，两条分支的色散为
+
+$$
+\omega^{2}(k) = K\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)
+\pm \sqrt{K^{2}\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)^{2} - \frac{4K^{2}}{m_{1}m_{2}}\sin^{2}\!\frac{ka}{2}}
+$$
+
+-  **负** 号对应 **声学** 支，在 $k\to 0$ 时 $\omega\to 0$  
+-  **正** 号对应 **光学** 支，满足 $\omega(k=0)=\sqrt{2K(1/m_{1}+1/m_{2})}$
+
+在 $k=0$ 处，声学模中两个原子 **同相** 运动，光学模中则 **反相** 运动。两种质量不等时，区边界处出现 **频隙** 。
+
+---
+
+### 10.2.4 三维晶体：偏振与声速
+
+对于 $r=1$（单原子布拉菲晶格），共有 3 条声学支：一条 **纵向** 支（LA）和两条 **横向** 支（TA）。在 $\boldsymbol q=0$ 附近，它们是具有线性色散的 **声波** ：
+
+$$
+\omega_{\text{LA}}(\boldsymbol q) \approx v_{L}|\boldsymbol q|,\qquad \omega_{\text{TA}}(\boldsymbol q) \approx v_{T}|\boldsymbol q|
+$$
+
+在立方晶体中沿立方轴传播时，声速与弹性常数及质量密度 $\rho$ 的关系为（连续介质极限）：
+
+$$
+v_{L} = \sqrt{\frac{C_{11}}{\rho}},\qquad v_{T} = \sqrt{\frac{C_{44}}{\rho}}
+$$
+
+更一般地，克里斯托费尔方程给出随方向变化的声速。
+
+当 $r>1$ 时，额外出现 $3r-3$ 条 **光学** 支，其在区中心附近的 $\boldsymbol q$ 色散通常较弱。若基元带有异号电荷，一些光学模具有 **红外活性** （见 §10.14）。
+
+---
+
+### 10.2.5 量子化：声子是玻色子
+
+将每个简正模 $(\boldsymbol q,s)$ 提升为量子谐振子：
+
+$$
+H = \sum_{\boldsymbol q,s} \hbar\omega_{\boldsymbol q s}\left(b^{\dagger}_{\boldsymbol q s} b_{\boldsymbol q s} + \tfrac{1}{2}\right)
+$$
+
+其中 $[b_{\boldsymbol q s},b^{\dagger}_{\boldsymbol q' s'}]=\delta_{\boldsymbol q\boldsymbol q'}\delta_{ss'}$。位移算符为
+
+$$
+\boldsymbol u_{\kappa}(\boldsymbol R) = \sum_{\boldsymbol q,s} \sqrt{\frac{\hbar}{2M_{\kappa} N \omega_{\boldsymbol q s}}}\;
+\left[\boldsymbol e_{\kappa s}(\boldsymbol q)b_{\boldsymbol q s} e^{i\boldsymbol q\cdot \boldsymbol R} + \boldsymbol e_{\kappa s}^{\ast}(\boldsymbol q)b^{\dagger}_{\boldsymbol q s} e^{-i\boldsymbol q\cdot \boldsymbol R}\right]
+$$
+
+平衡时，声子占据数服从化学势为 $\mu=0$ 的玻色统计。
+
+---
+
+### 10.2.6 热容与德拜模型回顾
+
+单位体积的声子总能量为 $U/V=\sum_{s}\int d\omega\,\hbar\omega\,g_{s}(\omega)\,n_{B}(\omega)$，其中 $n_{B}=(e^{\beta\hbar\omega}-1)^{-1}$。低 $T$ 下的声学模 $\Rightarrow$ 导致三维的 **德拜定律**  $C_{V}\propto T^{3}$；高 $T$ 下 $\Rightarrow$ 得到杜隆–珀蒂结果 $3Nk_{B}$（完整德拜积分见 §9.6）。当热能足以激发光学模时，热容会出现类似肖特基异常的隆起。
+
+---
+
+### 10.2.7 热输运：动理学中的 $\kappa$
+
+晶体中的热量主要由声学声子携带。动理学给出
+
+$$
+\kappa = \frac{1}{3}\sum_{s}\int d\omega\; g_s(\omega)\,C_{\omega s}\,v_{g}^{2}(\omega,s)\,\tau(\omega,s)
+$$
+
+其中 g 表示单位体积态密度，$C_{\omega s}=\hbar\omega\,\partial n_{B}/\partial T$ 为各模的热容，$v_{g}=\partial\omega/\partial q$ 为群速度，$\tau$ 为寿命。散射渠道包括：
+
+-  **声子–声子** 非谐散射：分为守恒晶体动量的 **正常（N）** 过程，以及满足 $\boldsymbol q_{1}+\boldsymbol q_{2}=\boldsymbol q_{3}+\boldsymbol G$、使热流衰减的 **倒逆（U）** 过程  
+-  **边界** 散射，在纳米尺度或极低 $T$ 时占主导  
+-  **同位素与无序** 散射  
+- 金属中的 **声子–电子** 和 **声子–缺陷** 散射
+
+实验中，$\kappa(T)$ 常在极低 $T$ 下按 $\sim T^{3}$ 上升（弹道或边界限制），达到峰值后，在高 $T$ 下大致按 $1/T$ 下降（倒逆过程限制）。
+
+---
+
+### 10.2.8 非谐性、频移与寿命
+
+真实晶体并非完全谐性。三次项和四次项会导致：
+
+-  **热膨胀** ，可用准谐效应描述  
+-  **频率重整化**  $\omega(\boldsymbol q,T)$  
+- 三声子和四声子散射导致的 **有限寿命**  $\tau_{\boldsymbol q s}$
+
+一个方便的宏观量是 **格吕奈森参数** ：
+
+$$
+\gamma_{\boldsymbol q s} \equiv -\frac{\partial \ln \omega_{\boldsymbol q s}}{\partial \ln V},\qquad
+\gamma \equiv \frac{\sum_{\boldsymbol q s} \gamma_{\boldsymbol q s} C_{\boldsymbol q s}}{\sum_{\boldsymbol q s} C_{\boldsymbol q s}}
+$$
+
+体积 **热膨胀系数**  $\alpha$ 与 $\gamma$ 和体积模量 $B$ 的关系为：
+
+$$
+\alpha = \frac{\gamma\,C_{V}}{B\,V}
+$$
+
+这是准谐近似的结果，对许多简单固体都相当有效。
+
+---
+
+### 10.2.9 电子–声子耦合：电阻率与配对背后的振动
+
+位移调制电子哈密顿量 $H_{e}$，产生相互作用 $H_{e\text{-}ph}$。两种典型形式是：
+
+-  **形变势** （短程）：$\delta V \sim \Xi\,\nabla\cdot \boldsymbol u$ 与 LA 声子耦合  
+-  **弗勒利希耦合** （长程极性）：离子晶体中的 LO 声子产生宏观电场，与电子强烈耦合
+
+其结果包括：
+
+-  **金属电阻率** ：低 $T\ll \Theta_{D}$ 下满足布洛赫–格吕奈森定律 $\rho \propto T^{5}$；高 $T$ 下大致为 $\rho\propto T$  
+-  **超导电性** ：虚声子交换提供有效吸引，在费米面附近可能克服库仑排斥，形成 BCS 配对
+
+---
+
+### 10.2.10 不稳定性与软模：一维佩尔斯机制
+
+一维金属的电子响应函数在 $q=2k_{F}$ 处出现峰值。电子–声子耦合使该波矢的声子软化；低于临界 $T$ 时，$\omega(2k_{F})\to 0$  **软模** 驱动晶格畸变，在半满情况下使周期加倍（二聚化），并打开能隙：这就是 **佩尔斯转变** 。高维中的电荷密度波和结构转变也遵循类似思路。
+
+---
+
+### 10.2.11 声子的实验特征
+
+-  **非弹性中子散射（INS）** ：测量动态结构因子 $S(\boldsymbol q,\omega)$，绘出完整的 $\omega(\boldsymbol q)$ 及本征矢  
+-  **拉曼光谱** ：探测区中心光学声子，受对称性选择定则约束  
+-  **红外（IR）吸收与反射** ：极性晶体中的红外活性光学声子在 $\Gamma$ 处出现 LO–TO 分裂，满足利丹–萨克斯–特勒关系  
+-  **布里渊光散射** ：探测长波声学声子，频率在 GHz 范围  
+- 随 $T$ 变化的 **比热** 与 **热导率** ：反映态密度和散射的宏观热力学特征
+
+---
+
+### 10.2.12 简短例题
+
+ **(a) 单原子链的群速度**   
+从 $\omega(k)=2\sqrt{K/m}\,\left|\sin(ka/2)\right|$ 出发计算 $v_{g}(k)$，并证明在 $k\to 0^{+}$ 时 $v_{g}\to v_{s}=a\sqrt{K/m}$。
+
+ **(b) 态密度的边缘奇点**   
+利用 $g(\omega)=(L/\pi)/|d\omega/dk|$ 证明一维态密度在 $k=\pi/a$ 处发散。
+
+ **(c) $\Gamma$ 处的双原子链频隙**   
+计算双原子链的 $\omega_{\text{opt}}(0)$ 和 $\omega_{\text{ac}}(0)$，并解释其本征矢。
+
+ **(d) 德拜 $T^{3}$**   
+假设三条声学支在德拜截止波矢 $q_{D}$ 以下具有线性色散，通过积分求出低 $T$ 下的 $C_{V}\propto T^{3}$。
+
+ **(e) 倒逆过程的阈值**   
+证明倒逆过程要求 $\boldsymbol q_{1}+\boldsymbol q_{2}$ 超出第一布里渊区；对德拜波矢为 $q_{D}$ 的简单立方晶格，估计这种 $\boldsymbol q$ 开始获得热占据的最低温度尺度。
+
+ **(f) 由 $\gamma$ 求热膨胀**   
+从 $F(T,V)=U_{\text{el}}(V)+\sum_{\boldsymbol q s}\left[\tfrac{1}{2}\hbar\omega_{\boldsymbol q s} + k_{B}T\ln(1-e^{-\beta\hbar\omega_{\boldsymbol q s}})\right]$ 出发，证明准谐近似中 $\alpha=\gamma C_{V}/(BV)$。
+
+---
+
+### 10.2.13 常见误区
+
+-  **“光学模必须有离子。”**  并非如此：只需每个晶胞有 $r>1$ 个原子。 **红外活性** 需要极性，光学声子本身不需要  
+-  **混淆相速度与群速度** ：能量输运由 $v_{g}=\partial\omega/\partial k$ 决定，而非 $\omega/k$  
+-  **忘记选择定则** ：拉曼只能看到拉曼活性对称模；红外只能看到红外活性模；中子与核位置及磁矩耦合  
+-  **混淆布里渊区表示** ：简约区与扩展区图改变分支的显示位置，但不改变物理  
+-  **过度使用谐近似** ：热输运和膨胀需要非谐性；建立 $\kappa(T)$ 模型时应区分 N 与 U 过程
+
+---
+
+### 10.2.14 基础习题
+
+- 推导一维单原子链和双原子链的色散，并在第一布里渊区内画图  
+- 对双原子立方基元及最近邻中心力建立 $6\times 6$ 动力学矩阵，求出沿高对称线的 $\omega(\boldsymbol q)$  
+- 计算 $d=1,2,3$ 中德拜模型的 $g(\omega)$，并证明相应的低 $T$ 比热标度  
+- 利用马蒂森定则，把边界、同位素及倒逆散射率合并，拟合一条模拟 $\kappa(T)$ 曲线；确定峰值温度随样品尺寸的标度  
+- 对给定 $v_{s}$ 和 $k_{F}$ 的金属，估计布洛赫–格吕奈森温度及 $T^{5}$ 定律的交叉温度
+
+---
+
+## 10.3 德鲁德–索末菲金属理论
+
+金属在原子尺度看似复杂，但电子的运动却相当有规律。 **德鲁德** 在 1900 年提出最初的动理学图像：把经典电子看成偶尔碰撞的带电小球气体。 **索末菲** 在 1928 年用费米–狄拉克统计修正了其中的主要缺陷。两者至今仍支撑着大量金属物理：直流和交流电导率、霍尔效应、磁输运、比热、泡利顺磁性和维德曼–弗兰兹定律。
+
+---
+
+### 10.3.1 德鲁德模型：单一弛豫时间的广泛用途
+
+假设传导电子的有效质量为 $m^{\ast}$、电荷为 $-e$，并以平均时间间隔 $\tau$ 发生使运动随机化的碰撞。
+
+在场 $(\boldsymbol E,\boldsymbol B)$ 中，平均速度 $\boldsymbol v$ 的 **运动方程（持续驱动）** 为：
+
+$$
+m^{\ast}\,\frac{d\boldsymbol v}{dt} = -e\left(\boldsymbol E + \boldsymbol v\times \boldsymbol B\right) - \frac{m^{\ast}\boldsymbol v}{\tau}
+$$
+
+- 在 $B=0$、电流密度为 $\boldsymbol J = -ne\,\boldsymbol v$ 时， **直流电导率** 为：
+
+$$
+\sigma_{0} = \frac{ne^{2}\tau}{m^{\ast}},\qquad \rho_{0} \equiv \frac{1}{\sigma_{0}} = \frac{m^{\ast}}{ne^{2}\tau}
+$$
+
+定义 **迁移率**  $\mu \equiv e\tau/m^{\ast}$，于是 $\sigma_{0}=ne\mu$。
+
+- 对于随时间按 $\propto e^{-i\omega t}$ 变化的场， **交流（德鲁德）电导率** 为：
+
+$$
+\sigma(\omega) = \frac{\sigma_{0}}{1 - i\omega\tau}
+$$
+
+实部是宽度为 $1/\tau$ 的洛伦兹线形；虚部在正频率下为正，并在 $\omega\sim 1/\tau$ 附近达到峰值。
+
+-  **等离子体频率** （自由电子光学响应的特征频率）：
+
+$$
+\omega_{p}^{2} = \frac{ne^{2}}{\varepsilon_{0} m^{\ast}}
+$$
+
+当 $\omega\ll\omega_{p}$ 时，金属反射；当 $\omega>\omega_{p}$ 时，其行为类似可透光的电介质。
+
+- 良导体极限（$\omega\tau\ll 1$）下的 **趋肤深度** 为：
+
+$$
+\delta = \sqrt{\frac{2}{\mu_{0}\,\omega\,\sigma_{0}}}
+$$
+
+---
+
+### 10.3.2 霍尔效应与电导率张量
+
+当 $\boldsymbol B = B\hat z$ 时，德鲁德解给出电导率张量
+
+$$
+\sigma = 
+\begin{pmatrix}
+\dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & -\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & 0 \\
+\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & 0 \\
+0 & 0 & \sigma_{0}
+\end{pmatrix},
+\qquad
+\omega_{c} \equiv \frac{eB}{m^{\ast}}
+$$
+
+求逆得到电阻率张量。两个重要结果如下：
+
+-  **霍尔系数** （弱场）：
+
+$$
+R_{H} \equiv \frac{E_{y}}{J_{x}B} = -\,\frac{1}{ne}
+$$
+
+-  **单带、各向同性** 德鲁德模型的 **磁阻** 为 **零** ：尽管 $\sigma_{xx}$ 随磁场减小，仍有 $\rho_{xx}(B)=\rho_{0}$，因为张量求逆时磁场效应抵消。真实材料由于多能带、各向异性或 $\tau(\boldsymbol k)$ 的变化而具有有限磁阻。
+
+---
+
+### 10.3.3 德鲁德热输运与维德曼–弗兰兹定律预览
+
+引入 $v_{F}$ 后，简单动理学估计给出电子热导率 $\kappa_{e}\sim \tfrac{1}{3} C_{e} v_{F}^{2}\tau$。德鲁德模型朴素地预测 **维德曼–弗兰兹比值** 为
+
+$$
+\frac{\kappa_{e}}{\sigma T} \equiv L \stackrel{?}{=}\text{const}
+$$
+
+但只有采用 **索末菲** 统计，才能得到正确的 **洛伦兹数** ：
+
+$$
+L_{0} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2}
+$$
+
+在对电子气进行量子化之后，我们将严格推导这一结果。
+
+---
+
+### 10.3.4 索末菲自由电子气的修正
+
+电子是 **费米子** 。把 $N$ 个电子放入体积为 $V$ 的盒子中，将动量态依次填满到 **费米球** 边界。
+
+-  **费米波矢与费米能** （自旋简并度 $g=2$）：
+
+$$
+k_{F} = \left(3\pi^{2} n\right)^{1/3},\qquad \epsilon_{F} = \frac{\hbar^{2} k_{F}^{2}}{2 m^{\ast}},\qquad v_{F}=\frac{\hbar k_{F}}{m^{\ast}}
+$$
+
+- 抛物线能带的单位体积 **态密度** ：
+
+$$
+g(\epsilon) = \frac{1}{2\pi^{2}}\left(\frac{2m^{\ast}}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}
+$$
+
+在低温 $T\ll T_{F}$ 下，只有 $\epsilon_{F}$ 附近宽度为 $\sim k_{B}T$ 的薄壳参与热激发。这解释了经典德鲁德热力学的大多数失败。
+
+---
+
+### 10.3.5 电子比热：与 $T$ 成正比
+
+利用索末菲展开，
+
+$$
+C_{e} = \gamma\,T,\qquad \gamma = \frac{\pi^{2}}{3}\,k_{B}^{2}\,g(\epsilon_{F})
+$$
+
+与 $T$ 成正比的结果符合实验；室温下它远小于 $3n_{\mathrm{atom}}k_{B}$（其中 n_atom 为原子数密度），因为只有比例约为 $\sim (T/T_{F})$ 的电子参与热激发。
+
+---
+
+### 10.3.6 维德曼–弗兰兹定律的正确推导
+
+结合费米统计的动理学给出
+
+$$
+\kappa_{e} = \frac{1}{3} v_{F}^{2}\tau\,C_{e}
+$$
+
+结合 $\sigma_{0}=ne^{2}\tau/m^{\ast}$ 与 $n=\int^{\epsilon_{F}} g(\epsilon)\,d\epsilon$，在弹性散射且 $\tau$ 不依赖能量时，得到
+
+$$
+\frac{\kappa_{e}}{\sigma T} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2} \equiv L_{0}
+$$
+
+$L$ 偏离 $L_{0}$，意味着可能存在非弹性散射、$\tau$ 对能量的强依赖，或额外的载热粒子（声子、磁振子）。
+
+---
+
+### 10.3.7 泡利顺磁性与朗道抗磁性概述
+
+- 磁场 $B$ 引起自旋极化，产生 **泡利顺磁性** ：
+
+$$
+\chi_{\text{Pauli}} = \mu_{0}\,\mu_{B}^{2}\,g(\epsilon_{F})
+$$
+
+其值较小，在最低阶近似中与 $T$ 无关。
+
+- 量子化磁场中的轨道运动产生 **朗道抗磁性** ：
+
+$$
+\chi_{\text{Landau}} = -\frac{1}{3}\,\chi_{\text{Pauli}}
+$$
+
+此式适用于自由电子气。真实金属的总 $\chi$ 还包含芯电子抗磁性，以及可能的范弗莱克项。
+
+---
+
+### 10.3.8 热电势与莫特公式
+
+塞贝克系数 $S$ 描述温度梯度产生的电压。简单经典德鲁德模型无法给出正确的低温结果；采用费米统计得到
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+这个 **莫特公式** 使 $S$ 成为探测 $\epsilon_{F}$ 附近粒子–空穴不对称性及散射的灵敏工具。
+
+---
+
+### 10.3.9 德鲁德模型的不足与索末菲修正
+
+-  **热容** ：经典德鲁德模型预测 $C_{e}\sim Nk_{B}$，而实验显示 $C_{e}\propto T\ll Nk_{B}$；索末菲理论修正了这一点。  
+-  **霍尔符号** ：单带德鲁德模型给出电子的 $R_{H}=-1/ne$。许多材料因空穴型费米面或多带补偿而具有 **正** 的 $R_{H}$。  
+-  **磁阻** ：单带德鲁德模型中为零，但真实体系的各向异性、多口袋或 $\tau(\boldsymbol k)$ 可产生有限磁阻。  
+-  **高频光学** ：德鲁德模型遗漏带间吸收和束缚电荷贡献；需加入洛伦兹振子，才能得到更真实的 $\varepsilon(\omega)$。
+
+---
+
+### 10.3.10 与能带结构的联系
+
+将 $m^{\ast}$ 替换为由费米面附近色散 $\epsilon(\boldsymbol k)$ 得到的 **能带有效质量** ：
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{\hbar^{2}}\left.\frac{\partial^{2}\epsilon(\boldsymbol k)}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{F}}
+$$
+
+各向异性的 $m^{\ast}$ 使 $\sigma$ 即使在 $B=0$ 时也是张量。实际输运采用含 $\tau(\boldsymbol k)$、在费米面附近线性化的 **玻尔兹曼** 理论（见 §10.7）。
+
+---
+
+### 10.3.11 光学求和规则与谱权重
+
+在抛物线单带德鲁德模型中，电导率的积分谱权重与载流子密度有关：
+
+$$
+\int_{0}^{\infty} d\omega\;\mathrm{Re}\,\sigma(\omega) = \frac{\pi ne^{2}}{2 m^{\ast}}
+$$
+
+在关联体系中，德鲁德权重可能受到抑制，并转移到中红外的类似带间跃迁特征；这通常被视为准粒子权重减小的信号。
+
+---
+
+### 10.3.12 简短例题
+
+ **(a) 可靠的数值估算**   
+取 $n=8.5\times 10^{28}\ \mathrm{m^{-3}}$、$\tau=3\times 10^{-14}\ \mathrm{s}$、$m^{\ast}=m_{e}$。计算 $\sigma_{0}$、$\rho_{0}$、$\omega_{p}$，以及 $\omega/2\pi=10\ \mathrm{GHz}$ 时的 $\delta$。
+
+ **(b) 霍尔条**   
+样品厚度为 $t$、宽度为 $w$，电流 $I$ 沿 $x$ 方向，磁场为 $B\hat z$。证明德鲁德单带极限下霍尔电压的大小为 $V_{H} = I\,B/(ne\,t)$。用 (a) 中的铜材料参数，将 $V_{H}$ 表示为电流、磁场和厚度的函数。
+
+ **(c) 索末菲 $C_{e}$**   
+利用索末菲展开推导 $C_{e}=\gamma T$，并用 $n$ 和 $m^{\ast}$ 表示 $\gamma$。
+
+ **(d) 从玻尔兹曼方程推导维德曼–弗兰兹定律**   
+在线性化玻尔兹曼方程中考虑弹性杂质散射，证明当 $\tau(\epsilon)$ 在 $\epsilon_{F}$ 附近为常数时有 $L=L_{0}$。
+
+ **(e) 莫特热电势的符号**   
+假设 $\epsilon_{F}$ 附近有 $\sigma(\epsilon)\propto \epsilon^{s}$，证明 $S = -(\pi^{2}/3)(k_{B}^{2}T/e)\,s/\epsilon_{F}$，并解释 $S>0$ 和 $S<0$ 的含义。
+
+---
+
+### 10.3.13 常见误区
+
+-  **忘记有效质量** ：能带输运公式应使用能带结构给出的 $m^{\ast}$，而不能直接使用裸电子质量 $m_{e}$。  
+-  **从 $\sigma_{xx}$ 判断磁阻** ：单带德鲁德模型中，即使 $\sigma_{xx}$ 减小，实测 $\rho_{xx}$ 仍可与 $B$ 无关；必须对张量求逆。  
+-  **认为 $R_{H}=-1/ne$ 普遍成立** ：多带补偿和翘曲费米面可使符号反转或数值减小。  
+-  **过度使用常数 $\tau$** ：能量或角度依赖的散射会改变 $L$、$S$ 和磁阻；离开低 $T$ 的杂质散射主导区后要谨慎。  
+-  **混淆光学质量与输运质量** ：各向异性或相互作用体系中的回旋质量、热力学质量和能带质量可以不同。
+
+---
+
+## 10.4 布洛赫定理与能带结构
+
+周期势把复杂的原子结构化为清晰的动量空间规律。核心是 **布洛赫定理** ：晶体中的电子波函数是平面波乘以具有晶格周期性的包络。由此，布里渊区边界会打开能隙，色散 $E_{n}(\boldsymbol k)$ 决定速度与有效质量，而“近自由电子”和“紧束缚”只是从相反极限描述同一套物理。
+
+![价带与导带示意图，两者之间存在禁带；能量随晶体动量周期性变化。](/images/diagrams/band-gap.svg)
+
+---
+
+### 10.4.1 布洛赫态与中心方程
+
+对于周期势 $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$ 中的单个电子，
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R)=u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+按倒易矢量 $\boldsymbol G$ 展开晶格周期部分：
+
+$$
+u_{n\boldsymbol k}(\boldsymbol r) = \sum_{\boldsymbol G} c_{n}(\boldsymbol k+\boldsymbol G)\,e^{i\boldsymbol G\cdot \boldsymbol r}
+$$
+
+并将势展开为 $V(\boldsymbol r)=\sum_{\boldsymbol G} U_{\boldsymbol G}\,e^{i\boldsymbol G\cdot \boldsymbol r}$。代入薛定谔方程，得到 **中心方程** 
+
+$$
+\left[\frac{\hbar^{2}}{2m}\,|\boldsymbol k+\boldsymbol G|^{2} - E\right] c(\boldsymbol k+\boldsymbol G) + \sum_{\boldsymbol G'} U_{\boldsymbol G-\boldsymbol G'}\,c(\boldsymbol k+\boldsymbol G') = 0
+$$
+
+这是关于平面波系数 $c$ 的无限维线性方程组。合理截断后即可求出能带。
+
+---
+
+### 10.4.2 区折叠：简约区与扩展区
+
+自由电子具有抛物线色散 $E=\hbar^{2}|\boldsymbol k|^{2}/2m$。引入晶格表示后，$\boldsymbol k$ 与 $\boldsymbol k+\boldsymbol G$ 具有相同的简约波矢，但可属于不同的能带。可以采用：
+
+-  **扩展区** ：在 $k$ 空间中展开显示 $E(\boldsymbol k)$，将能带放在相邻布里渊区中  
+-  **简约区** ：将所有动量折回第一布里渊区；各副本成为以 $n$ 标记的不同 **能带** 
+
+当 $V\neq 0$ 时，折叠后原本简并的态发生 **混合** ，在交叉处打开能隙。
+
+---
+
+### 10.4.3 布拉格反射产生能隙：2×2 示例
+
+在自由电子态 $\boldsymbol k$ 与 $\boldsymbol k'=\boldsymbol k-\boldsymbol G$ 简并的区边界，仅保留中心方程中的这两个平面波。本征值问题为
+
+$$
+\begin{pmatrix}
+\epsilon_{\boldsymbol k} & U_{\boldsymbol G} \\
+U_{\boldsymbol G}^{\ast} & \epsilon_{\boldsymbol k'}
+\end{pmatrix}
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+= E
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+$$
+
+其中 $\epsilon_{\boldsymbol q}=\hbar^{2}|\boldsymbol q|^{2}/2m$。在恰好满足 $\epsilon_{\boldsymbol k}=\epsilon_{\boldsymbol k'}$ 的区边界，两条能量分裂为
+
+$$
+E_{\pm} = \epsilon_{0} \pm |U_{\boldsymbol G}|
+$$
+
+因此 **带隙** 为
+
+$$
+E_{g} = 2\,|U_{\boldsymbol G}|
+$$
+
+这说明晶格势在倒易矢量 $\boldsymbol G$ 处的傅里叶分量越强，对应布里渊区平面上打开的能隙越大。
+
+---
+
+### 10.4.4 克罗尼格–彭尼模型：一维直观图像
+
+对于晶格常数为 $a$ 的一维周期性 δ 势垒阵列，色散满足超越方程
+
+$$
+\cos(ka) = \cos(\alpha a) + \frac{P}{\alpha a}\,\sin(\alpha a)
+$$
+
+其中势阱内 $\alpha=\sqrt{2mE}/\hbar$，$P$ 表征势垒强度。右端绝对值 $\le 1$ 的区域是 **允许能带** ，绝对值超过 1 的区域是 **禁带** 。调节 $P$，可以从近自由极限（$P\to 0$）连续过渡到紧束缚极限（$P\gg 1$）。
+
+---
+
+### 10.4.5 群速度、有效质量与态密度
+
+能带色散不仅是图像，其导数直接对应物理量：
+
+-  **群速度** 
+
+$$
+\boldsymbol v_{n}(\boldsymbol k) = \frac{1}{\hbar}\,\nabla_{\boldsymbol k} E_{n}(\boldsymbol k)
+$$
+
+- 极值附近的 **有效质量张量** 
+
+$$
+\left(m_{n}^{\ast}\right)^{-1}_{\alpha\beta} = \frac{1}{\hbar^{2}}\,\left.\frac{\partial^{2}E_{n}}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{0}}
+$$
+
+曲率 $\uparrow$ 意味着质量轻；曲率 $\downarrow$ 意味着质量重。价带顶附近的负曲率意味着可用带正电、质量为正的 **空穴** 描述输运。
+
+- 三维单条自旋简并能带的 **态密度** 
+
+$$
+g(E) = \frac{1}{4\pi^{3}} \int_{E_{n}(\boldsymbol k)=E} \frac{dS_{k}}{|\nabla_{\boldsymbol k} E_{n}|}
+$$
+
+等能面上梯度为零的临界点会产生范霍夫非解析行为；态密度是否发散取决于维数及临界点类型，在三维中通常表现为有限的尖点。
+
+---
+
+### 10.4.6 近自由电子与紧束缚：同一理论的两个极限
+
+-  **近自由电子（NFE）** ：从抛物线出发，以微扰处理交叉处的能隙。在 $|U_{\boldsymbol G}| \ll \epsilon_{F}$ 时适用。  
+-  **紧束缚（TB）** ：从局域轨道出发，引入格点间跃迁 $t$；成键和反键组合形成能带。当轨道紧凑、$t$ 相对于原子能级尺度较小时最适用。
+
+两者都是布洛赫理论的极限。NFE 解释简单金属的能隙形成和轻有效质量；TB 适于描述共价或离子固体的能带形状，是 §10.5 的重点，也与瓦尼尔函数密切相关。
+
+---
+
+### 10.4.7 $k\cdot p$ 方法：带边附近的局部展开
+
+在高对称点 $\boldsymbol k_{0}$ 附近，将哈密顿量展开为 $H(\boldsymbol k)\approx H(\boldsymbol k_{0})+\frac{\hbar}{m}\,(\boldsymbol k-\boldsymbol k_{0})\cdot (\boldsymbol p+\hbar\boldsymbol k_{0}) + \cdots$，其中波矢增量相对于该高对称点定义。二阶微扰给出
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{m}\delta_{\alpha\beta} + \frac{2}{m^{2}} \sum_{m\neq n} \frac{\operatorname{Re}\!\left[\langle n0|p_{\alpha}|m0\rangle \langle m0|p_{\beta}|n0\rangle\right]}{E_{n0}-E_{m0}}
+$$
+
+其中 $\{|m0\rangle\}$ 是 $\boldsymbol k_{0}$ 处的布洛赫态。这将有效质量与带间矩阵元及对称性选择定则联系起来，例如半导体中的重空穴与轻空穴。
+
+---
+
+### 10.4.8 对称性、简并与自旋–轨道耦合
+
+- 晶体对称性可保护高对称 $k$ 点及线上的简并；应变或外场破坏对称性后，简并会分裂。  
+-  **反演** 与 **时间反演** 共同保证带自旋体系的克拉默斯二重简并。  
+-  **自旋–轨道耦合（SOC）** 混合自旋与轨道特征；反演对称性破缺时可出现  **Rashba**  型分裂。这里仅作概述，§10.11 将进一步讨论拓扑。
+
+---
+
+### 10.4.9 费米面与输运线索
+
+ **费米面** 是等能面 $E_{n}(\boldsymbol k)=\epsilon_{F}$。其曲率与连通性决定：
+
+- 回旋质量及量子振荡，包括德哈斯–范阿尔芬效应和舒布尼科夫–德哈斯效应  
+- 各向异性电导率和霍尔效应，由费米面上的速度与寿命控制  
+- 可增强密度波不稳定性的嵌套矢量
+
+布洛赫色散与散射时间共同构成 §10.7 输运理论的基础。
+
+---
+
+### 10.4.10 瓦尼尔函数：能带的实空间表示
+
+对整个布里渊区的布洛赫态作幺正变换，可得到局域在晶胞 $\boldsymbol R$ 附近的 **瓦尼尔函数**  $|n,\boldsymbol R\rangle$。在允许局域化的能带子空间中，平滑规范并进一步最小化展宽可得到最大局域瓦尼尔函数；它们类似紧束缚轨道，适合建模、插值和计算实空间响应。§10.5 将继续讨论。
+
+---
+
+### 10.4.11 ARPES 与能带测绘：如何观察 $E(\boldsymbol k)$
+
+ **角分辨光电子能谱（ARPES）** 直接测量 $E(\boldsymbol k)$ 的已占据部分。在二维材料中这一对应十分直接；三维体系则存在确定 $k_{z}$ 的困难。结合量子振荡和光学电导率，可重建真正决定输运的低能能带结构。
+
+---
+
+### 10.4.12 简短例题
+
+ **(a) 单个傅里叶分量决定的带隙**   
+取一维余弦势 $V(x)=2U_{G}\cos(Gx)$，其中 $G=2\pi/a$。在 $k=G/2$ 处将中心方程截断为 2×2，证明 $E_{g}=2|U_{G}|$。
+
+ **(b) 能带极小值附近的有效质量**   
+对于一维色散 $E(k)\approx E_{0}+\alpha k^{2}+\beta k^{4}$，求出 $m^{\ast}=\hbar^{2}/(2\alpha)$，并讨论 $k^{4}$ 项如何改变态密度，却不改变极小值处的 $m^{\ast}$。
+
+ **(c) 二维态密度奇点**   
+对于正方晶格紧束缚能带 $E(\boldsymbol k)=-2t(\cos k_{x}a+\cos k_{y}a)$，找出鞍点，并证明 $g(E)$ 中存在对数型范霍夫奇点。
+
+ **(d) 区折叠检验**   
+从自由电子抛物线出发，按 $\pm G$ 折回第一布里渊区。画出简并的位置，并标明 $U_{G}\neq 0$ 时哪些简并被解除。
+
+ **(e) 直接带隙半导体的 $k\cdot p$ 方法**   
+在具有反演对称性的直接带隙模型的 $\Gamma$ 点，说明相反宇称的导带态与价带态允许动量矩阵元非零，因而允许线性于 $k$ 的带间耦合；再证明非简并导带的能量和有效质量通过二阶带间耦合获得修正。
+
+---
+
+### 10.4.13 常见误区
+
+-  **混用简约区与扩展区** ：应区分真实交叉与折叠副本形成的交叉。  
+-  **把曲率等同于速度** ：速度是一阶导数，而不是曲率；平带 $\Rightarrow$ 大有效质量和慢载流子。  
+-  **忘记基元** ：选择定则与带隙大小取决于 **傅里叶分量**  $U_{\boldsymbol G}$，其中包含原子基元和成键信息。  
+-  **认为处处都是抛物线** ：有效质量拟合只在极值附近适用；远离极值后，非抛物性和各向异性很重要。  
+-  **忽略强 SOC** ：重元素或反演破缺晶体中的 SOC 会改变能带顺序与分裂，对拓扑性质尤为关键。
+
+---
+
+### 10.4.14 基础习题
+
+- 从布洛赫展开推导中心方程，并对有限组 $\boldsymbol G$ 写成矩阵本征值问题  
+- 在法向为 $\boldsymbol G$ 的一般区平面上进行 2×2 开隙计算，得到 $E_{g}=2|U_{\boldsymbol G}|$  
+- 计算椭球等能面的 $m^{\ast}$ 张量，并将其与任意方向磁场下的回旋质量联系起来  
+- 对含 δ 势垒的一维克罗尼格–彭尼模型，画出多个 $P$ 下的允许能带，指出 NFE 和 TB 极限  
+- 用蜂窝晶格上的简单 TB 模型说明狄拉克锥如何出现，以及交错子晶格势如何打开质量能隙
+
+---
+
+## 10.5 紧束缚与瓦尼尔函数：从局域轨道到能带
+
+当电子倾向于停留在原子附近时， **紧束缚（TB）** 是合适的描述。从局域的类原子轨道出发，允许电子在格点间跃迁，就得到形状和对称性由实空间化学环境决定的能带。 **瓦尼尔函数** 是布洛赫能带的正交归一实空间表示，非常适合建模、计算响应，以及加入外场或无序。本节从基础构建 TB，引入多轨道和斯莱特–科斯特规则，用佩尔斯相位处理磁场，并说明瓦尼尔函数与极化及边缘物理的联系，预览 SSH 模型。
+
+---
+
+### 10.5.1 从轨道到布洛赫求和
+
+选取以晶胞 $\boldsymbol R$ 内基元位置 $\boldsymbol\tau_{\alpha}$ 为中心的轨道 $\{\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})\}$，其中 $\alpha$ 是轨道标记，例如 $s,p_{x},p_{y},p_{z}$。
+
+构造 **布洛赫和** 
+
+$$
+\varphi_{\alpha\boldsymbol k}(\boldsymbol r) = \frac{1}{\sqrt{N}} \sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\alpha})}\,\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})
+$$
+
+将本征态展开为 $\psi_{n\boldsymbol k}=\sum_{\alpha} c_{n\alpha}(\boldsymbol k)\,\varphi_{\alpha\boldsymbol k}$。矩阵元为
+
+$$
+H_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,t_{\alpha\beta}(\boldsymbol R),\qquad
+S_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,s_{\alpha\beta}(\boldsymbol R)
+$$
+
+其中 **跃迁积分** 为 $t_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|H|\phi_{\beta\boldsymbol R}\rangle$， **重叠积分** 为 $s_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|\phi_{\beta\boldsymbol R}\rangle$。求解 **广义** 本征值问题
+
+$$
+H(\boldsymbol k)\,c_{n}(\boldsymbol k)=E_{n}(\boldsymbol k)\,S(\boldsymbol k)\,c_{n}(\boldsymbol k)
+$$
+
+在 **正交 TB**  中采用近似 $S=\mathbb I$。
+
+---
+
+### 10.5.2 一维单原子链：正交紧束缚
+
+每个格点一个轨道，晶格常数为 $a$，在位能为 $\varepsilon_{0}$，最近邻跃迁为 $-t$。
+
+$$
+E(k)=\varepsilon_{0}-2t\cos(ka)
+$$
+
+带宽为 $W=4|t|$。在 $k=0$ 处的极值附近，有效质量为
+
+$$
+\frac{1}{m^{\ast}}=\frac{1}{\hbar^{2}}\frac{\partial^{2}E}{\partial k^{2}}=\frac{2ta^{2}}{\hbar^{2}}
+$$
+
+$t$ 的符号决定能带的 **曲率** ，以及哪一端对应成键或反键态。
+
+---
+
+### 10.5.3 双原子链与 SSH 模型预览
+
+每个晶胞有两个格点：$A$ 位于 $0$，$B$ 位于 $a/2$，跃迁 $t_{1}$ 与 $t_{2}$ 交替出现。在采用晶胞相位规范的 $(A,B)$ 基底中，
+
+$$
+H(k)=
+\begin{pmatrix}
+\varepsilon_{A} & -t_{1}-t_{2}\,e^{-ika} \\
+-t_{1}-t_{2}\,e^{ika} & \varepsilon_{B}
+\end{pmatrix}
+$$
+
+当 $\varepsilon_{A}=\varepsilon_{B}$ 时，色散为
+
+$$
+E_{\pm}(k)=\varepsilon_{0}\pm \sqrt{t_{1}^{2}+t_{2}^{2}+2t_{1}t_{2}\cos(ka)}
+$$
+
+区边界 $k=\pi/a$ 处的带隙为 $2|t_{1}-t_{2}|$。在开放边界和相应终止方式下， **SSH 极限** （$\varepsilon_{A}=\varepsilon_{B}$）在 $|t_{2}|>|t_{1}|$ 时支持拓扑边缘态；§10.11 将再次讨论其拓扑。
+
+---
+
+### 10.5.4 正方晶格与蜂窝晶格的经典例子
+
+ **正方晶格：单轨道、最近邻跃迁** 
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t\big[\cos(k_{x}a)+\cos(k_{y}a)\big]
+$$
+
+ **蜂窝晶格：石墨烯，每个格点一个 $p_{z}$ 轨道，最近邻跃迁** 。双格点基元为 $A,B$，三个最近邻矢量为 $\{\boldsymbol\delta_{i}\}$：
+
+$$
+H(\boldsymbol k)=
+\begin{pmatrix}
+0 & -t\,\sum_{i=1}^{3}e^{i\boldsymbol k\cdot \boldsymbol\delta_{i}} \\
+-t\,\sum_{i=1}^{3}e^{-i\boldsymbol k\cdot \boldsymbol\delta_{i}} & 0
+\end{pmatrix}
+$$
+
+本征值为
+
+$$
+E_{\pm}(\boldsymbol k)=\pm t\,\Big|1+e^{i\boldsymbol k\cdot \boldsymbol a_{1}}+e^{i\boldsymbol k\cdot \boldsymbol a_{2}}\Big|
+$$
+
+能带在 $K,K'$ 的 **狄拉克锥** 处相接，具有线性色散，费米速度为 $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$；这里的晶格常数指三角布拉菲晶格的周期。
+
+---
+
+### 10.5.5 多轨道紧束缚与斯莱特–科斯特规则
+
+跃迁取决于轨道相对于键的取向。 **斯莱特–科斯特** 方法用格点连线的方向余弦 $(l,m,n)$ 参数化双中心积分。
+
+例如：
+
+- $s$–$s$：$t_{ss\sigma}$  
+- $s$–$p$：$t_{sp\sigma}\,(l,m,n)$ 在 $p$ 轴上的投影  
+- $p$–$p$：$\sigma$ 与 $\pi$ 通道
+
+对于沿 $\hat x$ 的键，
+
+$$
+\langle p_{x}|H|p_{x}\rangle = t_{pp\sigma},\qquad
+\langle p_{y}|H|p_{y}\rangle = \langle p_{z}|H|p_{z}\rangle = t_{pp\pi}
+$$
+
+交叉跃迁如 $\langle s|H|p_{x}\rangle\propto t_{sp\sigma}$ 还需乘以适当的方向余弦。这样的对称性整理能快速构造真实晶体的 $H(\boldsymbol k)$，并避免加入不允许的跃迁。
+
+---
+
+### 10.5.6 超越最近邻：移动范霍夫奇点
+
+加入次近邻跃迁 $t'$ 等项会改变曲率及态密度奇点。正方晶格上有
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t[\cos k_{x}a+\cos k_{y}a]-4t'\cos k_{x}a\cos k_{y}a
+$$
+
+调节 $t'$，可使 **范霍夫** 鞍点穿过 $\epsilon_{F}$；这是层状材料产生密度波或超导等不稳定性的常见途径。
+
+---
+
+### 10.5.7 磁场：佩尔斯替换
+
+紧束缚中的最小耦合通过跃迁上的 **佩尔斯相位** 引入：
+
+$$
+t_{ij}\ \longrightarrow\ t_{ij}\,\exp\!\left(\frac{ie}{\hbar}\int_{\boldsymbol r_{i}}^{\boldsymbol r_{j}} \boldsymbol A\cdot d\boldsymbol\ell\right)
+$$
+
+因此，绕一个元胞小回路的相位角之和等于 $2\pi\Phi/\Phi_{0}$。正方晶格上若磁通为有理数 $\Phi/\Phi_{0}=p/q$，平移周期扩大为 **磁性晶胞** ，能谱分裂形成霍夫施塔特蝴蝶。
+
+---
+
+### 10.5.8 无序与实空间格林函数
+
+真实材料含有杂质。可加入格点随机在位能 $\varepsilon_{i}$ 或键随机跃迁 $t_{ij}\to t_{ij}+\delta t_{ij}$。实空间 TB 哈密顿量很适合：
+
+- 研究 **安德森局域化** （见 §10.13）  
+- 用有限宽条带和递归格林函数研究 **表面或边缘** 能谱  
+- 用朗道尔–比蒂克理论研究 **输运** ，其中 $G=(2e^{2}/h)\,T(E_{F})$，透射率 $T$ 由实空间 TB 与电极共同求得
+
+---
+
+### 10.5.9 瓦尼尔函数：能带的局域表示
+
+给定某条能带或一组能带子空间中的完整布洛赫态 $\{|\psi_{n\boldsymbol k}\rangle\}$，定义 **瓦尼尔函数** 
+
+$$
+|\,\boldsymbol R, n\,\rangle = \frac{1}{\sqrt{N}}\sum_{\boldsymbol k\in\mathrm{BZ}} e^{-i\boldsymbol k\cdot \boldsymbol R}\, \sum_{m} U_{mn}(\boldsymbol k)\,|\,\psi_{m\boldsymbol k}\rangle
+$$
+
+其中 N 是晶胞数，布洛赫态在有限晶体中归一化，$U(\boldsymbol k)$ 是子空间内的 **规范** 幺正变换。其性质为：
+
+-  **正交归一** 且 **局域于晶胞附近** ；$U(\boldsymbol k)$ 的选择控制展宽  
+-  **最大局域瓦尼尔函数（MLWF）** 通过选择 $U$ 使总展宽 $\Omega=\sum_{n}\big[\langle r^{2}\rangle_{n}-|\langle \boldsymbol r\rangle_{n}|^{2}\big]$ 最小  
+- 对拓扑平庸的孤立能带，存在指数局域的瓦尼尔函数，并能精确重现能带
+
+ **从瓦尼尔函数得到紧束缚模型。**  跃迁就是瓦尼尔函数之间的矩阵元：
+
+$$
+t_{nm}(\boldsymbol R)=\langle \boldsymbol 0,n|H|\boldsymbol R,m\rangle
+$$
+
+ **插值**  $H(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot \boldsymbol R}\,t(\boldsymbol R)$ 可在紧束缚的计算成本下重现第一性原理子空间的能带。
+
+---
+
+### 10.5.10 极化与瓦尼尔中心：贝里相位的联系
+
+绝缘体的电子极化密度与瓦尼尔 **中心**  $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$ 有关：
+
+$$
+\boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{modulo a quantum}
+$$
+
+等价的 **贝里相位公式** 使用布洛赫规范。实际计算可跟踪绝热变化下瓦尼尔中心的移动，求出极化差和压电响应；§10.11 将再次讨论拓扑。
+
+---
+
+### 10.5.11 紧束缚边缘物理：SSH 模型速览
+
+将跃迁 $t_{1},t_{2}$ 交替排列的有限链截断。在 **拓扑** 相 $|t_{2}|>|t_{1}|$ 中，边缘模按 $\sim (t_{1}/t_{2})^{x}$ 指数局域，其中距离用晶胞数计。半无限链中，手征对称性把孤立边缘模钉扎在 $E=0$；有限链两端的杂化可产生指数小的对称劈裂，而破坏子晶格对称性的扰动也会移动其能量。
+
+---
+
+### 10.5.12 简短例题
+
+ **(a) 一维余弦能带的瓦尼尔函数**   
+对正交单轨道模型 $E(k)=\varepsilon_{0}-2t\cos ka$，证明逆布洛赫变换恢复所选的局域轨道 $w_{0}(x)$。说明仅凭色散不能推出渐近形式 $K_{0}(|x|/\xi)$，也不能确定 $\xi\sim a\sqrt{t/\Delta}$；还必须给定布洛赫本征函数及其与其他能带的关系。
+
+ **(b) 石墨烯的费米速度**   
+从蜂窝晶格最近邻哈密顿量出发，在 $K$ 附近线性化，得到 $H_{\text{Dirac}}=\hbar v_{F}\,\boldsymbol\sigma\cdot \boldsymbol q$，并求出 $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$。
+
+ **(c) 立方键上的斯莱特–科斯特参数**   
+对于每个格点有一个 $s$ 轨道和三个 $p$ 轨道、最近邻键沿坐标轴的立方晶体，用 $t_{ss\sigma},t_{sp\sigma},t_{pp\sigma},t_{pp\pi}$ 写出 $H(\boldsymbol k)$。
+
+ **(d) 佩尔斯相位检验**   
+在正方晶格上采用朗道规范 $\boldsymbol A=(0,Bx,0)$，证明沿 $\hat y$ 的跃迁获得相位 $e^{i 2\pi \phi\, m}$，其中 $\phi\equiv \Phi/\Phi_{0}$，$m$ 为 $x$ 方向的格点指标；沿 $\hat x$ 的跃迁仍为实数。
+
+ **(e) 重叠的重要性**   
+在一维链中加入最近邻重叠 $s$，求解广义本征值问题，证明色散变为 $E(k)=(\varepsilon_{0}-2t\cos ka)/(1+2s\cos ka)$。
+
+ **(f) SSH 边缘态**   
+数值对角化一条有 40 个格点的开放 SSH 紧束缚链，画出两个隙内态的波函数，验证它们在两端的指数局域性及对称、反对称组合关系。
+
+---
+
+### 10.5.13 常见误区
+
+-  **忘记重叠** ：许多入门 TB 模型设 $S=\mathbb I$；轨道不正交时应使用广义本征值问题，或先正交化  
+-  **加入不允许的跃迁** ：若对称性禁止某个矩阵元，就不能擅自加入；应利用斯莱特–科斯特规则或群论将相应项置零  
+-  **瓦尼尔规范不平滑** ：各 $\boldsymbol k$ 点的随机相位会产生离域瓦尼尔函数；MLWF 方法固定规范后，实空间跃迁才可信  
+-  **引入佩尔斯相位却不核对磁通** ：每个小回路上链路相位角之和应为 $2\pi\Phi/\Phi_{0}$，且与规范选择无关  
+-  **过度拟合 TB** ：太多参数会掩盖物理，并使拟合区间外的结果失控；从最简模型开始，仅在数据要求时增加邻居
+
+---
+
+### 10.5.14 基础习题
+
+- 构建一维单原子链和双原子链的 TB 色散，求出带边附近的有效质量  
+- 写出蜂窝晶格最近邻哈密顿量，找到 $K,K'$，线性化得到狄拉克哈密顿量和 $v_{F}$  
+- 用斯莱特–科斯特方法构建石墨烯的 $sp^{2}$ 紧束缚模型，包含 $pp\pi$ 和 $pp\sigma$ 部分，并讨论平面结构中 $p_{z}$ 为什么解耦  
+- 对有理磁通 $p/q$ 的正方晶格 TB 实现佩尔斯相位，画出 $q\le 10$ 的霍夫施塔特谱  
+- 为双带玩具模型生成 MLWF，计算 $t(\boldsymbol R)$，并证明瓦尼尔插值的 $E(\boldsymbol k)$ 在机器精度内符合精确能带  
+- 通过 SSH 模型中滑动二聚化导致的瓦尼尔中心位移计算极化变化，并与贝里相位结果比较
+
+---
+
+## 10.6 半导体与掺杂
+
+半导体中的载流子通常很少，直到调节带隙、加入掺杂或照射光子后才显著增加。本节构建有效质量图像、本征与掺杂统计、含爱因斯坦关系的漂移–扩散理论、复合渠道、光学特征，以及 pn 结的基础工具。讨论以能带结构为基础，同时兼顾器件应用。
+
+---
+
+### 10.6.1 带边、有效质量与态密度
+
+在导带极小值和价带极大值附近，
+
+$$
+E_{c}(\boldsymbol k) \approx E_{c0} + \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{e}^{\ast -1}\,\boldsymbol k,\qquad
+E_{v}(\boldsymbol k) \approx E_{v0} - \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{h}^{\ast -1}\,\boldsymbol k
+$$
+
+定义带隙 $E_{g}=E_{c0}-E_{v0}$。有效质量张量 $m_{e}^{\ast},m_{h}^{\ast}$ 可以各向异性；常用态密度质量 $m_{e}^{\ast,\mathrm{DOS}}, m_{h}^{\ast,\mathrm{DOS}}$ 定义三维态密度
+
+$$
+N_{c}(T) = 2\left(\frac{m_{e}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2},\qquad
+N_{v}(T) = 2\left(\frac{m_{h}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2}
+$$
+
+这些量用于计算载流子统计。
+
+
+---
+
+### 10.6.2 本征载流子与质量作用定律
+
+费米能级为 $E_{F}$ 时，非简并的玻尔兹曼占据数为
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{F})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{F}-E_{v0})/k_{B}T}
+$$
+
+相乘得到 **质量作用定律** 
+
+$$
+np = n_{i}^{2},\qquad
+n_{i}(T) = \sqrt{N_{c}N_{v}}\;e^{-E_{g}/(2k_{B}T)} \propto T^{3/2}\,e^{-E_{g}/(2k_{B}T)}
+$$
+
+在本征晶体中 $n=p=n_{i}$，$E_{F}$ 位于禁带中部附近，其偏移由态密度质量决定。
+
+---
+
+### 10.6.3 掺杂：施主、受主与电中性
+
+替位掺杂原子引入浅氢型能级。有效质量理论给出
+
+$$
+E_{D} \approx \frac{m_{e}^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{D}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{m_{e}^{\ast}}\,a_{0}
+$$
+
+受主也有类似结果，只需使用 $m_{h}^{\ast}$。在室温 $T$ 下，浅杂质通常已电离。
+
+对于施主浓度为 $N_{D}$、受主浓度为 $N_{A}$ 的 n 型晶体，
+
+$$
+n - p + N_{A}^{-} - N_{D}^{+} = 0
+$$
+
+假设在非简并区完全电离，则 $N_{D}^{+}\approx N_{D}$、$N_{A}^{-}\approx N_{A}$。于是
+
+$$
+n \approx \frac{1}{2}\left[(N_{D}-N_{A}) + \sqrt{(N_{D}-N_{A})^{2} + 4 n_{i}^{2}}\right],\qquad
+p = \frac{n_{i}^{2}}{n}
+$$
+
+在 **多数载流子** 极限 $N_{D}-N_{A}\gg n_{i}$ 下，$n\approx N_{D}-N_{A}$ 且 $p\approx n_{i}^{2}/n$。
+
+低 $T$ 下的部分电离导致 **冻结** 区，此时 $n<N_{D}$；需使用杂质能级的费米–狄拉克占据概率。
+
+---
+
+### 10.6.4 迁移率、散射与电导率
+
+各类载流子的迁移率为 $\mu$，漂移速度为 $\boldsymbol v_{d}=\pm \mu \boldsymbol E$。电导率为
+
+$$
+\sigma = q\,(n\mu_{n} + p\mu_{p}),\qquad \rho = \frac{1}{\sigma}
+$$
+
+散射来源包括：
+
+- 晶格声子：三维中通常有 $\mu \propto T^{-3/2}$  
+- 电离杂质：低 $T$ 下有 $\mu \propto T^{+3/2}$  
+- 散射率满足马蒂森定则：$\mu^{-1}\approx \mu_{\mathrm{ph}}^{-1}+\mu_{\mathrm{imp}}^{-1}+\cdots$
+
+弱场下的双载流子霍尔系数反映补偿效应：
+
+$$
+R_{H} = \frac{p\mu_{p}^{2} - n\mu_{n}^{2}}{q\,(n\mu_{n}+p\mu_{p})^{2}}
+$$
+
+其符号反映迁移率加权后的主导载流子类型。
+
+---
+
+### 10.6.5 漂移–扩散与爱因斯坦关系
+
+包含漂移与扩散的载流子电流密度为
+
+$$
+\boldsymbol J_{n} = q\,n\mu_{n}\boldsymbol E + q D_{n}\nabla n,\qquad
+\boldsymbol J_{p} = q\,p\mu_{p}\boldsymbol E - q D_{p}\nabla p
+$$
+
+在非简并统计下，
+
+$$
+D_{n} = \frac{k_{B}T}{q}\,\mu_{n},\qquad
+D_{p} = \frac{k_{B}T}{q}\,\mu_{p}
+$$
+
+这一 **爱因斯坦关系** 是涨落–耗散关系在半导体中的体现。
+
+---
+
+### 10.6.6 复合、寿命与准费米能级
+
+在光照或注入等非平衡条件下，电子和空穴可分别用 **准费米能级**  $E_{Fn},E_{Fp}$ 描述：
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{Fn})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{Fp}-E_{v0})/k_{B}T}
+$$
+
+净复合与产生渠道包括：
+
+-  **辐射复合（带间）** ：$R_{\mathrm{rad}} = B\,(np - n_{i}^{2})$  
+-  **肖克利–里德–霍尔复合（陷阱辅助）** ：近似为 $R_{\mathrm{SRH}} \approx \frac{np - n_{i}^{2}}{\tau_{p}(n+n_{1}) + \tau_{n}(p+p_{1})}$，陷阱参数为 $n_{1},p_{1}$  
+-  **俄歇复合** ：$R_{\mathrm{Auger}} = C_{n} n (np-n_{i}^{2}) + C_{p} p (np-n_{i}^{2})$
+
+通过小信号关系 $R\approx \delta n/\tau$ 定义少数载流子寿命 $\tau$。寿命决定扩散长度 $L=\sqrt{D\tau}$，进而控制光电二极管和太阳能电池的载流子收集。
+
+---
+
+### 10.6.7 直接与间接带隙、吸收及激子
+
+带边附近的光吸收系数为：
+
+-  **直接带隙** ：$\alpha(\hbar\omega)\propto \sqrt{\hbar\omega - E_{g}}$  
+-  **间接带隙** ：需要声子辅助，$\alpha$ 上升较慢，并呈现温度依赖
+
+电子–空穴对的束缚形成具有氢型能级系列的 **激子** 。有效质量理论估计为
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}}\,\frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{X}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{\mu^{\ast}}\,a_{0}
+$$
+
+其中约化质量为 $\mu^{\ast}=(m_{e}^{\ast} m_{h}^{\ast})/(m_{e}^{\ast}+m_{h}^{\ast})$。洁净晶体和二维材料的吸收边附近会出现激子峰。
+
+---
+
+### 10.6.8 pn 结基础：内建电势、耗尽区与二极管定律
+
+将 p 区与 n 区接合，载流子扩散后留下电离杂质，形成具有内建电场的 **耗尽区** 。平衡时，
+
+$$
+V_{\mathrm{bi}} = \frac{k_{B}T}{q}\,\ln\!\left(\frac{N_{A} N_{D}}{n_{i}^{2}}\right)
+$$
+
+忽略耗尽区内自由电荷，对于突变结，外加偏压为 $V$ 时的总耗尽宽度为
+
+$$
+W = \sqrt{\frac{2\varepsilon_{s}}{q}\,\frac{N_{A}+N_{D}}{N_{A}N_{D}}\,(V_{\mathrm{bi}} - V)}
+$$
+
+正向偏压降低势垒；理想的 **肖克利二极管方程** 为：
+
+$$
+I = I_{0}\left(e^{qV/(k_{B}T)} - 1\right)
+$$
+
+其中 $I_{0}\propto n_{i}^{2}$ 的相应分量与扩散长度及掺杂浓度成反比。反向偏压下电流接近 $-I_{0}$，直到齐纳隧穿或雪崩等击穿机制开始起作用。
+
+---
+
+### 10.6.9 金属–半导体接触：欧姆接触与肖特基接触
+
+金属与半导体接触时，可形成：
+
+-  **欧姆接触** ：势垒足够薄或低，可发生隧穿；重掺杂也可使能带弯曲有利于注入  
+- 否则形成具有整流特性的 **肖特基** 势垒；势垒高度由金属功函数、半导体电子亲和势及界面钉扎共同决定
+
+肖特基接触在正向偏压下的输运常服从热电子发射规律，其中 $I\propto T^{2} e^{-q\Phi_{B}/k_{B}T}\,(e^{qV/k_{B}T}-1)$。
+
+---
+
+### 10.6.10 随温度变化的三个区间
+
+掺杂半导体随 $T$ 升高依次经历：
+
+1)  **冻结区** ：杂质部分电离，$n<N_{D}$  
+2)  **杂质区** ：出现 $n\approx N_{D}$（或 $p\approx N_{A}$）的浓度平台，且 $np\approx n_{i}^{2}$  
+3)  **本征区** ：当 $n_{i}$ 指数增长并超过杂质浓度后，$n\approx p\approx n_{i}$
+
+随 $T$ 变化的电阻率和霍尔数据可用于提取激活能及主导散射机制。
+
+---
+
+### 10.6.11 简短例题
+
+ **(a) 本征载流子浓度**   
+给定 $300\ \mathrm{K}$ 时的 $m_{e}^{\ast,\mathrm{DOS}}=0.26\,m_{e}$、$m_{h}^{\ast,\mathrm{DOS}}=0.39\,m_{e}$、$E_{g}=1.12\ \mathrm{eV}$，用 $T^{3/2} e^{-E_{g}/2k_{B}T}$ 形式估计这个具有硅带隙的示例模型的 $n_{i}$；给出的有效质量仅作练习参数，不作为硅的精确态密度质量。
+
+ **(b) 掺杂硅的费米能级**   
+对于 $300\ \mathrm{K}$ 下的 $N_{D}=10^{16}\ \mathrm{cm^{-3}}$ 和 $n_{i}=10^{10}\ \mathrm{cm^{-3}}$，求 $n,p$，并通过 $n=N_{c} e^{-(E_{c0}-E_{F})/k_{B}T}$ 确定 $E_{F}$ 相对于 $E_{c0}$ 的位置。
+
+ **(c) 爱因斯坦关系检验**   
+给定硅在 $300\ \mathrm{K}$ 下测得的 $\mu_{n}=1350\ \mathrm{cm^{2}/Vs}$，计算 $D_{n}$，以及 $\tau_{n}=1\ \mu\mathrm{s}$ 时的扩散长度。
+
+ **(d) 耗尽宽度**   
+对于参数为 $N_{A}=10^{17}$、$N_{D}=10^{16}\ \mathrm{cm^{-3}}$、$\varepsilon_{s}=11.7\,\varepsilon_{0}$ 的硅 pn 结，计算 $V=0$ 和 $V=0.6\ \mathrm{V}$ 时的 $W$。
+
+ **(e) 辐射复合与 SRH 复合**   
+给定 $B=10^{-10}\ \mathrm{cm^{3}/s}$、$n=p=10^{15}\ \mathrm{cm^{-3}}$，估计 $R_{\mathrm{rad}}$，并与 $\tau=1\ \mu\mathrm{s}$ 的 SRH 复合率比较。
+
+---
+
+### 10.6.12 常见误区
+
+-  **忘记质量作用定律** ：平衡时即使掺杂材料也满足 $np=n_{i}^{2}$；偏离这一关系可表明存在注入或光照  
+-  **超出爱因斯坦关系的适用范围** ：标准形式 $D=\mu k_{B}T/q$ 要求非简并统计；简并半导体需要费米–狄拉克修正  
+-  **总是假设完全电离** ：低 $T$ 或深杂质情况下，应自洽求解杂质占据  
+-  **混淆态密度质量与电导质量** ：$N_{c,v}(T)$ 使用态密度质量；输运需要电导有效质量张量及散射信息  
+-  **把理想二极管模型绝对化** ：真实二极管具有串联电阻、耗尽区复合（理想因子 $n_{\mathrm{id}}>1$）及界面态
+
+---
+
+## 10.7 费米面与输运
+
+ **费米面（FS）** 是金属低温物理的核心：电导、霍尔效应、磁阻和量子振荡等输运现象，几乎都由其附近的准粒子决定。$k$ 空间的几何因此转化为实验中可测量的物理。本节建立半经典运动方程、玻尔兹曼与钱伯斯方法，讨论多带和补偿磁输运，以及昂萨格关系与利夫希茨–科塞维奇公式构成的量子振荡工具。我们还说明费米面拓扑，即闭合或开放轨道，如何控制磁响应。
+
+---
+
+### 10.7.1 半经典运动方程：暂不含贝里曲率
+
+对于场 $(\boldsymbol E,\boldsymbol B)$ 中的能带 $\epsilon(\boldsymbol k)$，半经典动力学为
+
+$$
+\hbar\,\dot{\boldsymbol k} = -e\left(\boldsymbol E + \dot{\boldsymbol r}\times \boldsymbol B\right),\qquad
+\dot{\boldsymbol r} = \frac{1}{\hbar}\,\nabla_{\boldsymbol k}\epsilon(\boldsymbol k)
+$$
+
+当 $\boldsymbol E=0$ 时，电子在 $k$ 空间沿垂直于 $\boldsymbol B$ 的等能轮廓作 **回旋运动** ；实空间速度为 $\boldsymbol v=\dot{\boldsymbol r}$。贝里曲率和反常速度留到 §10.11 讨论。
+
+---
+
+### 10.7.2 回旋频率与回旋质量
+
+闭合轨道的频率为
+
+$$
+\omega_{c} = \frac{eB}{m_{c}}
+$$
+
+其中 **回旋质量** 由垂直于 $\boldsymbol B$ 的 $k$ 空间轨道面积 $A(E)$ 决定；量子振荡选出极值截面：
+
+$$
+m_{c}(E) = \frac{\hbar^{2}}{2\pi}\,\frac{\partial A(E)}{\partial E}\Big|_{E=\epsilon_{F}}
+$$
+
+对于各向同性抛物线 $E=\hbar^{2}k^{2}/2m^{\ast}$，有 $m_{c}=m^{\ast}$；对于各向异性椭球，$m_{c}$ 依赖磁场方向。
+
+---
+
+### 10.7.3 玻尔兹曼输运：弛豫时间与钱伯斯公式
+
+对弛豫时间为 $\tau(\boldsymbol k)$、处于稳恒电场中的玻尔兹曼方程线性化，得到电流
+
+$$
+\boldsymbol J = -e \int \frac{d^{3}k}{4\pi^{3}}\,\boldsymbol v(\boldsymbol k)\,\delta f(\boldsymbol k),\qquad
+\delta f = -e\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \boldsymbol E
+$$
+
+在 **钱伯斯公式** 中，矢量平均自由程是沿轨道历史的加权积分：
+
+$$
+\boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; \exp\!\left[-\int_{0}^{t}\frac{dt'}{\tau(\boldsymbol k_{-t'})}\right]\,\boldsymbol v(\boldsymbol k_{-t})
+$$
+
+于是得到电导率张量
+
+$$
+\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\Lambda_{\beta}
+$$
+
+其中积分中的矢量平均自由程由上式定义。对于各向同性且只有单一 $\tau$ 的金属，该式退化为德鲁德结果。
+
+---
+
+### 10.7.4 霍尔角、迁移率张量与平均自由程
+
+定义 **迁移率**  $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$ 和电子单带的 **霍尔角**  $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx -\omega_{c}\tau$。 **平均自由程** 为
+
+$$
+\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{for good quasiparticles}
+$$
+
+接近 **约费–雷格尔** 极限 $k_{F}\ell\sim 1$ 时，金属进入“坏金属”区，半经典输运描述开始失效。
+
+---
+
+### 10.7.5 磁阻：单带德鲁德模型为何给出平坦结果
+
+对于具有常数 $\tau$ 的各向同性单带，即使 $\sigma_{xx}$ 减小，电阻率 $\rho_{xx}$ 仍 **与磁场无关** ，因为张量求逆会使磁场效应抵消。真实材料的磁阻可来自：(i) 多种载流子，(ii) 费米面各向异性或翘曲，(iii) 角度依赖的 $\tau(\boldsymbol k)$，或 (iv) 开放轨道。实用的归纳是 **科勒定则** ：
+
+$$
+\frac{\Delta \rho}{\rho_{0}} \equiv \frac{\rho(B)-\rho_{0}}{\rho_{0}} = F\!\left(\frac{B}{\rho_{0}}\right) \approx F(\omega_{c}\tau)
+$$
+
+若所有过程都由单一散射时间控制，则不同 $T$ 的曲线以 $B/\rho_{0}(T)$ 为横轴绘制时会重合。
+
+---
+
+### 10.7.6 双带模型：电子与空穴
+
+用 $(n_{e},\mu_{e})$ 和 $(n_{h},\mu_{h})$ 表示浓度与迁移率，电荷符号为 $s_{e}=-1$、$s_{h}=+1$。总电导率是两者之和：
+
+$$
+\sigma_{xx} = \sum_{i=e,h} \frac{n_{i} e \mu_{i}}{1+(\mu_{i}B)^{2}},\qquad
+\sigma_{xy} = \sum_{i=e,h} \frac{s_{i} n_{i} e \mu_{i}^{2} B}{1+(\mu_{i}B)^{2}}
+$$
+
+求逆得到 $\rho_{xx},\rho_{xy}$。主要区间为：
+
+-  **补偿**  $n_{e}\approx n_{h}$ 且迁移率很高时，会出现很大的、近乎二次增长的 **不饱和磁阻** ；严格不饱和要求完全补偿  
+-  **主导载流子**  $n_{e}\gg n_{h}$ 时，若迁移率差异不使低场霍尔符号反转，则霍尔符号固定；磁阻较小并趋于饱和
+
+对 $\rho_{xx}(B)$ 和 $\rho_{xy}(B)$ 进行多带拟合，是确定载流子类型及迁移率的常用起点。
+
+---
+
+### 10.7.7 开放轨道、闭合轨道与角度依赖
+
+- 闭合费米面口袋上的 **闭合轨道** 给出通常的 $\omega_{c}$ 和量子振荡。  
+-  **开放轨道** ，例如翘曲的准一维片状费米面，使载流子沿某一方向传播；磁阻因此高度 **各向异性** ，依几何而定，可线性或二次增长而不饱和。  
+- 层状金属中的  **AMRO** （角度依赖磁阻振荡）来自倾斜 $\boldsymbol B$ 时电子在翘曲准二维费米面上的轨道运动；在常见的相干圆柱模型中，层间电阻在由翘曲决定的 **山地角** 处出现极大值。
+
+---
+
+### 10.7.8 量子振荡：昂萨格与利夫希茨–科塞维奇公式
+
+朗道量子化使轨道面积对应于离散能级。 **昂萨格关系** 将关于 $1/B$ 的振荡频率 $F$ 与垂直于 $\boldsymbol B$ 的费米面极值截面面积 $A_{F}$ 联系起来：
+
+$$
+F = \frac{\hbar}{2\pi e}\,A_{F}
+$$
+
+ **利夫希茨–科塞维奇（LK）** 振幅包含三个经典因子：
+
+$$
+\Delta M,\ \Delta \rho \ \propto\ R_{T}\,R_{D}\,R_{S}\,\cos\!\left(2\pi\frac{F}{B} - \gamma\right)
+$$
+
+其中
+
+$$
+R_{T} = \frac{X}{\sinh X},\quad X=\frac{2\pi^{2} k_{B} T}{\hbar \omega_{c}}
+$$
+
+$$
+R_{D} = \exp\!\left(-\frac{\pi}{\omega_{c}\tau}\right) = \exp\!\left(-\frac{2\pi^{2} k_{B} T_{D}}{\hbar \omega_{c}}\right)
+$$
+
+$$
+R_{S} = \cos\!\left(\frac{\pi g m_{c}}{2 m_{e}}\right)
+$$
+
+$R_{T}$ 给出用于提取 $m_{c}$ 的 **质量拟合曲线** ；$R_{D}$ 是描述散射的 **丁格尔因子** ，其中寿命为量子寿命而不一定等于输运寿命；$R_{S}$ 描述自旋分裂调制。相位 $\gamma$ 可以包含狄拉克或外尔体系的贝里相位信息（见 §10.11）。
+
+---
+
+### 10.7.9 回旋共振与光学探测
+
+洁净样品中的交流场可在 $\omega=n\,\omega_{c}$ 处激发允许的回旋共振，从而直接求得 $m_{c}$。 **光学电导率** 分为德鲁德部分和带间贡献； **f 求和规则** 约束总谱权重（见 §10.3）。在层状导体中， **层间电导率** 随倾角的变化揭示费米面翘曲。
+
+---
+
+### 10.7.10 费米面实验测量：ARPES 与量子振荡
+
+-  **ARPES**  直接测绘 $k_{\parallel}$ 中的已占据能带与费米面轮廓，适合二维体系及表面；对体材料的 $k_{z}$ 则较困难。  
+-  **量子振荡** 仅看到 **极值** 截面，但精度很高，且对体态敏感。  
+-  **量子振荡角度扫描** 通过 $F(\theta)$ 重建费米面形状；与 ARPES 结合可消除对口袋和三维翘曲的歧义。
+
+---
+
+### 10.7.11 热电与能斯特效应
+
+在费米面附近， **莫特公式** 将塞贝克系数与 $\epsilon_{F}$ 处电导率对能量的导数联系起来：
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+ **能斯特效应** 是 $B$ 中温度梯度产生的横向电压，对费米面曲率及准粒子寿命的不对称性非常敏感，常能率先揭示小费米口袋。
+
+---
+
+### 10.7.12 强场与量子极限的特殊行为
+
+极大 $B$ 下，载流子只占据少数最低朗道能级。在 **量子极限** （仅占据 $n=0$）中，磁阻和热电响应可能偏离德鲁德行为，有时 **线性依赖 $B$** ，或发生符号反转。狄拉克和外尔材料在 $\boldsymbol E\parallel \boldsymbol B$ 时可能出现手征反常对纵向磁阻的贡献，详见 §10.11。
+
+---
+
+### 10.7.13 简短例题
+
+ **(a) 从频率求昂萨格面积**   
+在 $\mathbf B\parallel \hat z$ 时测得 $F=1.0\ \mathrm{kT}$。计算极值截面积
+
+$$
+A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \text{\AA}^{-2}
+$$
+
+以及等效圆形费米波矢 $k_{F}=\sqrt{A_{F}/\pi}$。
+
+ **(b) LK 质量拟合**   
+给定固定 $B$ 下振荡振幅随 $T$ 的数据，用 $R_{T}=X/\sinh X$ 拟合，通过 $X=(2\pi^{2}k_{B}T m_{c})/(e\hbar B)$ 提取 $m_{c}$。
+
+ **(c) 双带磁阻**   
+取 $n_{e}=n_{h}=5\times 10^{25}\ \mathrm{m^{-3}}$、$\mu_{e}=1.5\ \mathrm{m^{2}/Vs}$、$\mu_{h}=0.8\ \mathrm{m^{2}/Vs}$，计算 $\rho_{xx}(B)$，并证明其直到数特斯拉仍二次增长而不饱和。
+
+ **(d) AMRO 与山地角**   
+对于层间色散为 $-2t_{\perp}\cos k_{z}c$ 的圆柱形准二维费米面，在相干输运和强场轨道平均极限下，证明层间磁阻在 $\tan\theta \approx \pi (\nu-1/4)/(k_{F} c)$ 处出现极大值，其中 $\nu$ 为正整数；由角度周期求出 $k_{F}$。
+
+ **(e) 约费–雷格尔检验**   
+给定单带体系的 $k_{F}=0.8\ \text{\AA}^{-1}$、$v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$ 和 $\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$，估计 $\tau=m^{\ast}/(ne^{2}\rho_{0})$，计算 $\ell=v_{F}\tau$，并讨论 $k_{F}\ell$。
+
+---
+
+### 10.7.14 常见误区
+
+-  **混淆不同质量** ：各向异性或多带体系中的 $m^{\ast}$（能带曲率质量）、$m_{c}$（回旋质量）及光学、热力学质量可以不同  
+-  **忘记张量求逆** ：$\sigma_{xx}$ 的趋势不能直接等同于 $\rho_{xx}$ 的趋势；应始终求完整张量的逆  
+-  **假定单一 $\tau$** ：热点、冷点及各向异性散射会破坏科勒曲线重合，并模拟出多带磁阻  
+-  **误读振荡相位** ：提取贝里相位需要仔细扣除背景并统一指标约定；自旋零点可改变表观相位  
+-  **忽略几何因素** ：高迁移率补偿晶体中，样品偏转和电流喷射可伪造很大的线性磁阻  
+-  **忽视开放轨道** ：看到“饱和磁阻”便归因于杂质，实际上原因可能是费米面拓扑和磁场方向
+
+---
+
+## 10.8 磁性
+
+磁性主要分为两类：**局域**磁矩如同通过交换作用耦合的微小量子自旋；**巡游**磁性则源于费米海自身的极化。本节从居里–外斯定律出发，介绍自旋波与铁磁共振，建立常用理论工具：海森堡模型及交换机制（直接交换、超交换、双交换和 RKKY）、斯托纳铁磁体、铁磁体与反铁磁体中的磁振子、各向异性和磁畴，以及无对称性破缺场时一维、二维系统中的梅尔敏–瓦格纳禁戒结论。我们将兼顾严谨的数学推导与实用的物理结论。
+
+![双分格点上平行排列的自旋与相邻自旋交替排列的对比。](/images/diagrams/magnetic-order.svg)
+
+---
+
+### 10.8.1 磁矩、$g$ 因子与单位
+
+电子具有自旋 $\boldsymbol S$，也可能具有轨道角动量 $\boldsymbol L$ 的贡献。磁矩算符为
+
+$$
+\boldsymbol{\mu} = -g_{S}\mu_{B}\,\boldsymbol S/\hbar - g_{L}\mu_{B}\,\boldsymbol L/\hbar
+$$
+
+其中玻尔磁子为 $\mu_{B}=e\hbar/(2m_{e})$，且 $g_{S}\approx 2$。在固体中，晶体场往往使轨道角动量**淬灭**，留下有效自旋磁矩；有时自旋–轨道耦合的修饰还会产生各向异性。
+
+**磁化强度** $\boldsymbol M$ 是单位体积的磁矩。在线性响应中，通过 $\boldsymbol M=\chi \boldsymbol H$（各向同性情形）定义磁化率 $\chi$，并有 $\boldsymbol B=\mu_{0}(\boldsymbol H+\boldsymbol M)$。
+
+---
+
+### 10.8.2 局域磁矩模型：伊辛、海森堡与 XXZ
+
+对于晶格上的局域自旋 $\{\boldsymbol S_{i}\}$，最简哈密顿量如下。
+
+- **伊辛模型**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,S_{i}^{z} S_{j}^{z} - h\sum_{i} S_{i}^{z}
+$$
+
+- **海森堡模型（SU(2) 对称）**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,\boldsymbol S_{i}\cdot \boldsymbol S_{j} + g\mu_{B} B \sum_{i} S_{i}^{z}
+$$
+
+- **XXZ 各向异性模型**
+
+$$
+H = -\sum_{\langle ij\rangle} \left[J_{\perp}\,(S_{i}^{x} S_{j}^{x}+S_{i}^{y} S_{j}^{y}) + J_{z}\,S_{i}^{z} S_{j}^{z}\right]
+$$
+
+这里的自旋以角动量除以 $\hbar$ 定义，为无量纲量；每条最近邻键只计一次，下式的 $N$ 表示数密度。按照这里的符号约定，$J>0$ 有利于**铁磁性**（FM），$J<0$ 有利于**反铁磁性**（AFM）。
+
+顺磁体的**居里–外斯**唯象关系：在有序温度以上，
+
+$$
+\chi(T) = \frac{C}{T-\Theta_{\mathrm{CW}}},\qquad
+C = \frac{\mu_{0} N g^{2} \mu_{B}^{2} S(S+1)}{3k_{B}}
+$$
+
+$\Theta_{\mathrm{CW}}$ 的符号提示占主导的交换作用是铁磁性的（$>0$）还是反铁磁性的（$<0$）。
+
+---
+
+### 10.8.3 交换机制：$J$ 的来源
+
+- **直接交换**：相邻局域轨道发生重叠，泡利原理与库仑作用共同使自旋平行、反平行排列具有不同的能量。  
+- **超交换**：通过非磁性配体发生虚跃迁，例如过渡金属–氧–过渡金属。对于类似半填充哈伯德模型的情形，
+
+$$
+J \sim -\frac{4t^{2}}{U}
+$$
+
+通常产生**反铁磁**耦合。  
+- **双交换**（混合价锰氧化物）：巡游电子使局域芯自旋趋于平行，以增大跃迁幅度，从而有利于铁磁性和金属性。  
+- **RKKY 作用**（含局域磁矩的金属）：传导电子介导振荡的耦合
+
+$$
+J(r) \propto \frac{\cos(2k_{F} r)}{r^{3}}
+$$
+
+当无序打乱相位时，这种作用可导致复杂磁序或自旋玻璃。
+
+---
+
+### 10.8.4 巡游铁磁性：斯托纳判据
+
+在简单能带中，若自旋极化使能带按 $\pm \Delta/2$ 分裂，交换作用就可能降低能量。**斯托纳**平均场理论给出判据
+
+$$
+I\,N(\epsilon_{F}) > 1
+$$
+
+其中 $I$ 为相互作用参数，$N(\epsilon_{F})$ 为费米能级处每种自旋的态密度。其结果包括：
+
+- 有限的**泡利磁化率**增强为
+
+$$
+\chi = \frac{\chi_{0}}{1 - I N(\epsilon_{F})}
+$$
+
+- 对称性破缺相中出现**自旋波刚度**（见第 10.8.6 节）
+
+巡游磁体的性质由能带结构与相互作用共同决定；角分辨光电子能谱（ARPES）、量子振荡和光学求和规则有助于区分两者的贡献。
+
+---
+
+### 10.8.5 平均场有序温度
+
+在配位数为 $z$、近邻交换为 $J$ 的晶格上，外斯平均场理论预言
+
+- **铁磁海森堡模型**
+
+$$
+k_{B} T_{C}^{\mathrm{MF}} = \frac{1}{3}\,z J S(S+1)
+$$
+
+- **反铁磁模型（双分格点）**
+
+$$
+k_{B} T_{N}^{\mathrm{MF}} = \frac{1}{3}\,z |J| S(S+1)
+$$
+
+涨落会降低实际的 $T_{C/N}$，在低维或 $S$ 较小时尤其明显。
+
+---
+
+### 10.8.6 铁磁体中的自旋波（磁振子）
+
+在铁磁海森堡模型中，微小的横向振荡对应**磁振子**。霍尔斯坦–普里马科夫映射在最低阶给出
+
+$$
+H \approx E_{0} + \sum_{\boldsymbol k} \hbar \omega_{\boldsymbol k}\, b_{\boldsymbol k}^{\dagger} b_{\boldsymbol k}
+$$
+
+在 $\boldsymbol k=0$ 附近，其色散为
+
+$$
+\hbar \omega_{\boldsymbol k} \approx D\,k^{2} + \Delta_{\mathrm{ani}}
+$$
+
+其中 $D$ 为由 $J$ 和晶格几何决定的**自旋波刚度**，$\Delta_{\mathrm{ani}}$ 来自各向异性；若无各向异性，则为无能隙的戈德斯通模。磁振子的热激发使磁化强度减小：
+
+$$
+M(T) \approx M(0)\left[1 - A\,T^{3/2}\right]
+$$
+
+这就是三维铁磁体中的**布洛赫 $T^{3/2}$ 定律**。
+
+三维磁振子的**比热**在低 $T$ 时满足 $C_{\mathrm{mag}}\propto T^{3/2}$（二次色散意味着态密度 $\propto \sqrt{E}$）。
+
+---
+
+### 10.8.7 反铁磁体：双子晶格自旋波
+
+对于双分格点上的共线反铁磁体，线性自旋波理论给出两个分支，在小 $k$ 时具有**线性**色散：
+
+$$
+\hbar \omega_{\boldsymbol k} \approx \hbar c\,|\boldsymbol k|
+$$
+
+速度 $c$ 取决于 $|J|$、$S$ 和晶格间距。各向异性会产生小能隙。均匀磁化率常在 $T_{N}$ 处出现尖点；在其下方，横向和纵向分量不同。
+
+---
+
+### 10.8.8 磁各向异性、退磁场与磁畴
+
+- 自旋–轨道耦合产生的**磁晶各向异性**选择易磁化轴或易磁化面。最简模型
+
+$$
+E_{\mathrm{ani}} = K_{1} \sin^{2}\theta + K_{2} \sin^{4}\theta + \cdots
+$$
+
+会影响矫顽力与磁畴结构。  
+- **退磁场**的产生是因为表面处的 $\nabla\cdot \boldsymbol M$ 表现得像“磁荷”。样品形状决定退磁张量 $\mathsf N$，其场为 $\boldsymbol H_{d}=-\mathsf N \boldsymbol M$。  
+- **磁畴**的形成平衡了畴壁能与静磁能。**畴壁**的宽度为 $\delta \sim \sqrt{A/K}$，能量面密度为 $\sigma \sim \sqrt{A K}$，其中 $A$ 是交换刚度，$K$ 是各向异性常数。
+
+---
+
+### 10.8.9 铁磁共振（FMR）与动力学
+
+磁化动力学遵循**朗道–利夫希茨–吉尔伯特**（LLG）方程
+
+$$
+\frac{d\boldsymbol M}{dt} = -\gamma\mu_{0}\,\boldsymbol M\times \boldsymbol H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\boldsymbol M\times \frac{d\boldsymbol M}{dt}
+$$
+
+其中 $\gamma$ 为正的旋磁比大小，单位为弧度每秒每特斯拉，$\alpha$ 为阻尼参数。对于面内磁化薄膜的均匀模式，简单情形下的基特尔公式为
+
+$$
+\omega^{2} = (\gamma\mu_{0})^{2}\,(H+H_{k})(H+H_{k}+M_{s})
+$$
+
+FMR 可测得各向异性场 $H_{k}$ 与阻尼。
+
+---
+
+### 10.8.10 维度：梅尔敏–瓦格纳与科斯特利茨–索利斯
+
+具有连续对称性和短程交换作用的严格一维、二维磁体，不能在有限 $T$ 下形成长程有序：无能隙的戈德斯通模破坏长程有序。这就是**梅尔敏–瓦格纳定理**。绕开其条件的方法包括：
+
+- 引入**各向异性**（使对称性离散化为类似伊辛的形式）、长程偶极项或层间耦合  
+- 在二维 XY 模型中，可出现伴随涡旋解束缚的**科斯特利茨–索利斯**转变及代数有序，而非通常意义上的 $T_{C}$
+
+---
+
+### 10.8.11 磁输运速览
+
+- 铁磁体中的**反常霍尔效应（AHE）**：$\rho_{xy}=R_{0}B + R_{s} M$，包括内禀贝里曲率机制及外禀的偏斜散射、侧跳机制。  
+- **自旋波与电阻率**：铁磁体中磁振子散射在低 $T$ 下产生额外的 $T^{2}$ 或 $T^{3/2}$ 贡献。  
+- **自旋热电子学**：自旋塞贝克效应与磁振子拖曳信号将磁振子输运同电荷、热输运联系起来。
+
+---
+
+### 10.8.12 简短例题
+
+**(a) 居里–外斯斜率**  
+给定 $S=5/2$、$g=2$ 和数密度 $N$，证明在高 $T$ 下 $1/\chi(T)$ 的斜率为 $1/C$，其中 $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$。拟合数据以提取 $N$ 或 $S$。
+
+**(b) 立方铁磁体的自旋波刚度**  
+对于立方晶格（间距 $a$）上的最近邻海森堡模型，证明
+
+$$
+\hbar \omega_{\mathbf k} = J S z \left(1-\gamma_{\mathbf k}\right)
+$$
+
+其中 $z=6$，$\gamma_{\mathbf k}=\tfrac{1}{3}[\cos(k_{x}a)+\cos(k_{y}a)+\cos(k_{z}a)]$。对小 $k$ 展开，求出 $D$。
+
+**(c) 反铁磁双子晶格色散**  
+对于超立方双分格点上最近邻交换 $J<0$ 的双分格点反铁磁体，推导小 $k$ 极限下的线性磁振子速度 $c=|J|Sa\sqrt{2z}/\hbar$，允许相差晶格几何因子。
+
+**(d) 斯托纳增强**  
+给定 $\chi/\chi_{0}=5$，估计 $I N(\epsilon_{F})$，并讨论其距不稳定性阈值 $=1$ 有多近。
+
+**(e) 畴壁宽度**  
+给定 $A=1\times 10^{-11}\ \mathrm{J/m}$ 和 $K=5\times 10^{4}\ \mathrm{J/m^{3}}$，估计 $\delta=\sqrt{A/K}$ 及 $\sigma\sim\sqrt{A K}$。
+
+**(f) RKKY 耦合的符号变化**  
+对于 $k_{F}=1.2\ \text{\AA}^{-1}$，计算 $\cos(2k_{F} r)$ 的前几个零点与符号变化位置，判断耦合在哪些间距处在铁磁与反铁磁之间切换。
+
+---
+
+### 10.8.13 常见误区
+
+- **$J$ 的符号约定**：检查哈密顿量采用 $-J \boldsymbol S_{i}\cdot \boldsymbol S_{j}$ 还是 $+J$；铁磁与反铁磁所对应的符号随约定改变。  
+- **过度使用居里–外斯定律**：这是**高 $T$** 定律；在 $T_{C/N}$ 附近及其以下，临界涨落会破坏平均场给出的直线关系。  
+- **忽略各向异性**：在二维中，若无各向异性或长程作用，就没有有限 $T$ 下的磁长程有序；极小的 $K$ 也很重要。  
+- **混淆泡利与居里顺磁性**：巡游顺磁体（泡利）的 $\chi$ 与 $T$ 无关；局域磁矩（居里）的响应则正比于 $1/T$。实际化合物可兼有两者。  
+- **混淆退磁效应与内禀性质**：原始磁滞回线依赖样品几何；需作退磁修正才能得到内禀的 $M(H)$。  
+- **忽略磁振子能隙**：铁磁或反铁磁自旋波谱中的有限频率截距提示各向异性或塞曼能隙；不要用完全无隙模型拟合。
+
+---
+
+### 10.8.14 基础习题组
+
+- 对自旋 $S$，从外斯场 $H_{\mathrm{eff}}=\lambda M$ 推导居里–外斯磁化率，并将 $\Theta_{\mathrm{CW}}$ 与 $\lambda$ 及微观交换 $J$ 联系起来  
+- 在平均场近似下计算立方海森堡铁磁体的 $T_{C}^{\mathrm{MF}}$ 与 $M(T)$；同低 $T$ 下的布洛赫 $T^{3/2}$ 定律比较，并讨论适用范围  
+- 对一维铁磁链进行线性自旋波计算（霍尔斯坦–普里马科夫变换），求出 $\omega_{k}$，并利用红外发散说明一维铁磁体为何没有有限 $T$ 下的长程有序  
+- 从 LLG 方程出发，推导具有单轴各向异性的薄膜的基特尔公式，并确定 $H_{k}=2K/\mu_{0} M_{s}$  
+- 对具有斯托纳参数 $I$ 的简单抛物线能带，在平均场下计算磁化强度 $m$ 随 $T$ 的变化，并画出 $(I N(\epsilon_{F}),T)$ 空间中的相图
+
+---
+
+## 10.9 超导性
+
+超导体的行为在凝聚态物理中格外鲜明：在临界温度以下，其直流电阻降至实际上为零，**同时**排斥磁场（迈斯纳效应）。微观上，电子形成**库珀对**，并凝聚为相位相干的量子态。本节介绍唯象理论（伦敦理论、迈斯纳效应）、介观场论（金兹堡–朗道理论）、微观 BCS 结果（能隙、$T_{c}$、态密度），以及实际可观测的特征：第一类与第二类超导体、涡旋、临界磁场与电流、约瑟夫森效应。
+
+---
+
+### 10.9.1 伦敦方程与迈斯纳效应
+
+先从唯象描述开始。在凝聚态相位均匀、没有涡旋的伦敦规范中，超电流 $\boldsymbol J_{s}$ 的**伦敦方程**如下，其中 $n_s$ 是超导电子数密度：
+
+$$
+\frac{\partial \boldsymbol J_{s}}{\partial t} = \frac{n_{s} e^{2}}{m}\,\boldsymbol E
+$$
+
+$$
+\boldsymbol J_{s} = -\frac{1}{\mu_{0}\lambda^{2}}\,\boldsymbol A,\qquad
+\lambda^{2} \equiv \frac{m}{\mu_{0} n_{s} e^{2}}
+$$
+
+结合麦克斯韦方程消去 $\boldsymbol J_{s}$，得到**磁场屏蔽**方程
+
+$$
+\nabla^{2}\boldsymbol B = \frac{\boldsymbol B}{\lambda^{2}}
+$$
+
+因此静磁场在超导体内部按 $B(x)=B_{0} e^{-x/\lambda}$ 衰减。**迈斯纳效应**将超导体与理想的非超导完全导体区分开来；后者只会冻结冷却时已有的 $B$。
+
+---
+
+### 10.9.2 金兹堡–朗道（GL）理论
+
+GL 理论以复序参量 $\psi(\boldsymbol r)$（库珀对波函数）构造朗道自由能，并将其与矢势作最小耦合：
+
+$$
+\mathcal F[\psi,\boldsymbol A] = \alpha |\psi|^{2} + \frac{\beta}{2} |\psi|^{4}
++ \frac{1}{2m^{\ast}} \left| \left(-i\hbar \nabla - 2e\,\boldsymbol A\right)\psi \right|^{2}
++ \frac{|\boldsymbol B|^{2}}{2\mu_{0}}
+$$
+
+极小化得到 **GL 方程**
+
+$$
+\alpha \psi + \beta |\psi|^{2}\psi + \frac{1}{2m^{\ast}}\left(-i\hbar \nabla - 2e\boldsymbol A\right)^{2}\psi = 0
+$$
+
+$$
+\boldsymbol J_{s} = \frac{2e}{m^{\ast}}\,\mathrm{Re}\left\{\psi^{\ast}\left(-i\hbar \nabla - 2e\boldsymbol A\right)\psi\right\}
+$$
+
+GL 理论中的关键长度为：
+
+$$
+\xi = \sqrt{\frac{\hbar^{2}}{2 m^{\ast} |\alpha|}},\qquad
+\lambda = \sqrt{\frac{m^{\ast}}{4 \mu_{0} e^{2} |\psi|^{2}}}
+$$
+
+无量纲 **GL 参数** $\kappa \equiv \lambda/\xi$ 用于区分超导体类型：
+
+- 若 $\kappa < 1/\sqrt{2}$，则为**第一类**（只有一个临界磁场 $H_{c}$，在超导态骤然破坏之前完全处于迈斯纳态）  
+- 若 $\kappa > 1/\sqrt{2}$，则为**第二类**（在 $H_{c1}$ 与 $H_{c2}$ 之间处于含涡旋的混合态）
+
+---
+
+### 10.9.3 BCS 要点：配对、能隙与 $T_{c}$
+
+BCS 理论表明，$\epsilon_{F}$ 附近电子间任意微弱的延迟吸引作用（例如由声子介导）都会引发**库珀不稳定性**，形成具有能隙 $\Delta$ 的配对基态。
+
+零温能隙与临界温度（各向同性 $s$ 波、弱耦合）：
+
+$$
+\Delta(0) = 2\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+$$
+k_{B} T_{c} = 1.14\,\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+普适 BCS 比值为：
+
+$$
+\frac{2\Delta(0)}{k_{B} T_{c}} \approx 3.53
+$$
+
+准粒子的**态密度**（每种自旋）变为
+
+$$
+N_{s}(E) = N(0)\,\mathrm{Re}\,\frac{|E|}{\sqrt{E^{2}-\Delta^{2}}}
+$$
+
+在 $E=\pm \Delta$ 处出现相干峰。比热在转变处的跃变为 $\Delta C/C_{n}|_{T_{c}}=1.43$；对于完全有隙的 $s$ 波，低 $T$ 下呈热激活行为 $C\sim e^{-\Delta/(k_{B}T)}$。
+
+**BCS 相干长度**（洁净极限）：
+
+$$
+\xi_{0} = \frac{\hbar v_{F}}{\pi \Delta(0)}
+$$
+
+---
+
+### 10.9.4 临界磁场、电流与混合态
+
+取 $F_s,F_n$ 为自由能密度，第一类超导体具有满足 $F_{n}(0)-F_{s}(0)=\mu_{0}H_{c}^{2}/2$ 的**热力学临界磁场** $H_{c}(T)$。
+
+第二类超导体涉及以下三个量：
+
+$$
+\mu_{0} H_{c1} \approx \frac{\Phi_{0}}{4\pi \lambda^{2}} \ln \kappa
+$$
+
+$$
+\mu_{0} H_{c2} = \frac{\Phi_{0}}{2\pi \xi^{2}}
+$$
+
+$$
+\Phi_{0} = \frac{h}{2e}
+$$
+
+当 $H_{c1}<H<H_{c2}$ 时，磁场通过每个携带一个磁通量子 $\Phi_{0}$ 的**阿布里科索夫涡旋**进入超导体。涡旋芯的半径为 $\sim \xi$，其中 $|\psi|$ 被压低；环流超电流在 $\lambda$ 尺度上衰减。洁净材料中若不存在钉扎，涡旋会形成三角晶格。
+
+**临界电流密度**（$T_{c}$ 附近 GL 理论给出的破对估计）：
+
+$$
+J_{d} \sim \frac{H_{c}}{\lambda}
+$$
+
+实际中，**涡旋运动**（磁通流动）限制电流；强钉扎可提高应用中的**临界电流** $J_{c}\ll J_{d}$。
+
+---
+
+### 10.9.5 磁通量子化与相位刚度
+
+凝聚态相位 $\varphi$ 绕闭合回路的单值性给出
+
+$$
+\oint \nabla \varphi\cdot d\boldsymbol\ell = 2\pi n
+$$
+
+结合超电流关系可得到磁通子的量子化；若回路位于多连通超导体深处、沿途超电流为零，才进一步得到**磁通量子化** $\Phi=n\Phi_{0}$。相位刚性是持续电流与约瑟夫森效应的根源。
+
+---
+
+### 10.9.6 约瑟夫森效应
+
+两个超导体由薄势垒隔开（SIS 结）时，即使没有电压也可承载**超电流**：
+
+- **直流约瑟夫森效应**：
+
+$$
+I = I_{c}\,\sin\phi
+$$
+
+其中 $\phi$ 为相位差，$I_{c}$ 为临界电流。施加磁场后，宽度为 $W$ 的结中不同路径的干涉产生**夫琅禾费图样** $I_{c}(B)\propto |\sin(\pi \Phi/\Phi_{0})/(\pi \Phi/\Phi_{0})|$。
+
+- **交流约瑟夫森效应**：直流电压 $V$ 使相位按 $\dot\phi = 2eV/\hbar$ 演化，从而产生频率为下式的交流电流
+
+$$
+f = \frac{2e}{h}\,V
+$$
+
+微波辐照会在电压 $V_{n}=n\,h f/(2e)$ 处产生**夏皮罗台阶**。环路中的两个结构成**超导量子干涉仪（SQUID）**，其响应随外加磁通以 $\Phi_{0}$ 为周期变化，可用于超高灵敏度磁测量。
+
+在 SNS 结中，能隙以下的输运通过**安德烈夫反射**发生，形成承载超电流的离散安德烈夫束缚态。
+
+---
+
+### 10.9.7 邻近效应与介观效应
+
+与超导体良好接触的正常金属，会在**邻近效应长度**内获得配对关联（脏极限下 $L_{\phi}\sim \sqrt{\hbar D/k_{B}T}$）。安德烈夫反射增强 NS 界面的亚隙电导；在理想 BTK 极限下，完全透明接触的零偏压电导可增至正常态的两倍。
+
+---
+
+### 10.9.8 非常规与高 $T_{c}$ 超导简介
+
+并非所有超导体都是 $s$ 波。**$d$ 波**配对（铜氧化物）具有线节点，因而表现出幂律热力学行为（三维中 $C\sim T^{2}$）和 V 形隧穿态密度。**$p$ 波**及其他奇异态在拓扑情形下可支持马约拉纳束缚态。在许多非常规情形中，配对的“黏合剂”并非声子，而是电子–电子相互作用（自旋涨落），BCS 比值也偏离 3.53。
+
+---
+
+### 10.9.9 实验特征
+
+- **输运**：$T_{c}$ 以下电阻为零；当电流超过 $J_{c}$ 或涡旋运动时才出现有限电压  
+- **磁化**：迈斯纳排磁；第二类超导体因涡旋钉扎产生不可逆磁滞  
+- **热力学**：$T_{c}$ 处的比热跃变；对 $C/T$ 积分得到熵，再积分熵差以求取凝聚能  
+- **谱学**：隧穿或 STM 在 $\pm \Delta$ 处的相干峰；ARPES 揭示能隙对称性；光学电导中缺失的谱权重转移至零频 δ 峰（费雷尔–格洛弗–廷卡姆求和规则）  
+- **微波与太赫兹**：交流电导包含超流 δ 峰和有限频率的准粒子响应  
+- **缪子与核磁共振**：由弛豫率研究穿透深度、涡旋晶格和能隙对称性
+
+---
+
+### 10.9.10 简短例题
+
+**(a) 由载流子密度估计穿透深度**  
+利用 $\lambda^{2}=m/(\mu_{0} n_{s} e^{2})$，估计 $n_{s}=10^{28}\ \mathrm{m^{-3}}$、$m=m_{e}$ 时的 $\lambda$。
+
+**(b) 估计 $H_{c2}$**  
+某第二类超导体具有 $\xi=4\ \mathrm{nm}$。计算 $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$。
+
+**(c) 由能隙与 $v_{F}$ 估计相干长度**  
+给定 $v_{F}=2.0\times 10^{5}\ \mathrm{m/s}$ 和 $\Delta(0)=1.5\ \mathrm{meV}$，估计 $\xi_{0}=\hbar v_{F}/(\pi \Delta)$，并与 $T_{c}$ 附近的 GL 相干长度 $\xi$ 比较。
+
+**(d) 约瑟夫森频率**  
+在结两端施加 $V=1.00\ \mathrm{mV}$ 会产生多高的微波频率？利用 $f=(2e/h)V$，证明 $f\approx 483.6\ \mathrm{GHz/mV}\times 1.00\ \mathrm{mV}$。
+
+**(e) 环中的磁通量子化**  
+面积为 $A=20\ \mu\mathrm{m}^{2}$ 的超导环出现周期为 $\Delta B$ 的 SQUID 振荡。验证 $\Delta B=\Phi_{0}/A$ 并计算该周期。
+
+**(f) 破对电流的数量级**  
+给定 $\mu_{0}H_{c}=0.2\ \mathrm{T}$ 和 $\lambda=120\ \mathrm{nm}$，估计 $J_{d}\sim H_{c}/\lambda$，并与实测的受钉扎限制的 $J_{c}$ 比较。
+
+---
+
+### 10.9.11 常见误区
+
+- **迈斯纳效应与完全导体**：迈斯纳态中的超导体排斥*已有及新施加的*磁场；完全导体只是冻结冷却时已有的磁场  
+- **忘记 $2e$**：库珀对的电荷量为 $2e$；磁通量子是 $h/2e$，而非 $h/e$  
+- **混淆第一类与第二类**：分类依据为 $\kappa=\lambda/\xi$；关键并非“磁场多强”，而是界面能的符号  
+- **忽略涡旋**：第二类超导体在电流和磁场下出现有限电阻，往往源于涡旋运动，而非能隙消失  
+- **对脏样品使用洁净极限公式**：杂质散射会重整化 $\xi$ 和 $\lambda$；应比较平均自由程 $l$ 与 $\xi_{0}$  
+- **默认 $s$ 波配对**：能隙对称性很重要；$C(T)$、$\lambda(T)$ 的幂律及节点准粒子可揭示非常规配对
+
+---
+
+### 10.9.12 基础习题组
+
+- 从伦敦方程推导 $\nabla^{2}\boldsymbol B=\boldsymbol B/\lambda^{2}$，并证明半空间中 $B(x)$ 呈指数衰减  
+- 从 GL 理论计算正常区与超导区之间的界面能，重现 $\kappa=1/\sqrt{2}$ 处的第一类、第二类分界  
+- 利用 $\psi$ 的单值性与超电流关系推导磁通子量子化；求出 $\Phi_{0}=h/2e$，并在沿途超电流为零的回路上得到磁通量子化  
+- 利用弱耦合 BCS 能隙方程求出 $\Delta(0)$ 及比值 $2\Delta(0)/k_{B}T_{c}$  
+- 在线性化磁场中的 GL 方程后，将其映射为序参量的朗道能级问题，推导 $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$  
+- 计算矩形约瑟夫森结的夫琅禾费 $I_{c}(B)$ 包络，并由周期求出结面积
+
+---
+
+## 10.10 强关联与莫特物理
+
+如果说弱相互作用电子比较平静，强关联电子则会带来一系列剧烈现象：没有普通能带隙也可局域化、巨大的有效质量、坏金属输运，以及掺杂只改变几个百分点便使谱权重在电子伏特尺度间大幅转移。代表性体系是**莫特绝缘体**：按能带理论，半填充能带本应导电，但当在位排斥 $U$ 很大时，电子不愿共占格点，从而阻止导电。本节介绍哈伯德模型族、超交换与 $t$–$J$ 模型、莫特转变（布林克曼–赖斯图像与斯莱特图像的比较）、谱权重转移、多轨道与洪特物理，以及动力学平均场理论（DMFT）入门，并说明容易辨认的实验特征。
+
+---
+
+### 10.10.1 哈伯德模型：最简强关联模型
+
+将电子放在晶格上，令其以幅度 $t$ 跃迁，并以 $U$ 惩罚双占据：
+
+$$
+H = -t \sum_{\langle i j \rangle,\sigma}\!\left(c^{\dagger}_{i\sigma} c_{j\sigma} + \text{h.c.}\right)
++ U \sum_{i} n_{i\uparrow} n_{i\downarrow} - \mu \sum_{i} n_{i}
+$$
+
+- 在**半填充**且 **$U/W \ll 1$**（带宽为 $W$）时，若不存在有序或低维不稳定性引起的能隙，可采用顺磁金属描述。  
+- 当 **$U/W \gg 1$** 时，电荷运动冻结：每个格点倾向于只有一个电子以避免 $U$，从而形成具有局域磁矩的莫特绝缘体。  
+- 掺杂使体系偏离半填充，在强相互作用背景中引入可动载流子，带来奇异输运，并在某些材料中产生高 $T_{c}$ 超导。
+
+---
+
+### 10.10.2 从哈伯德到海森堡：超交换
+
+在半填充且 $U\gg t$ 时，虚跃迁在相邻自旋之间产生有效的**反铁磁**交换：
+
+$$
+H_{\text{eff}} = J \sum_{\langle i j\rangle} \boldsymbol S_{i}\cdot \boldsymbol S_{j},\qquad
+J = \frac{4 t^{2}}{U}
+$$
+
+这就是**超交换**。直观上，平行自旋因泡利原理而阻塞交换；反平行自旋则可经过虚双占据过程返回，从而降低能量。
+
+---
+
+### 10.10.3 $t$–$J$ 模型：掺杂莫特体系的基本工具
+
+在保持 $U$ 很大的同时对莫特绝缘体掺杂，会得到受约束的模型
+
+$$
+H_{tJ} = -t \sum_{\langle i j\rangle,\sigma}\! \left(\tilde c^{\dagger}_{i\sigma} \tilde c_{j\sigma}+\text{h.c.}\right)
++ J \sum_{\langle i j\rangle} \left(\boldsymbol S_{i}\cdot \boldsymbol S_{j} - \frac{1}{4}\,n_{i} n_{j}\right)
+$$
+
+其中 $\tilde c$ 禁止双占据。**无双占据**约束是核心困难，可用平均场、从属玻色子或费米子方法、数值方法处理。在二维中，动能与自旋单态形成之间的竞争可产生 $d$ 波配对倾向。
+
+---
+
+### 10.10.4 斯莱特与莫特：绝缘体为何不同
+
+半填充时形成能隙有两条途径：
+
+- **斯莱特绝缘体**：弱耦合反铁磁体。长程有序使晶胞加倍，折叠能带并打开 $\propto m$ 的平均场能隙；该能隙在奈尔温度 $T_{N}$ 以上闭合。  
+- **莫特绝缘体**：局域物理产生 $\sim U$ 的能隙；即使**没有**长程有序、温度高于 $T_{N}$，材料仍保持绝缘。
+
+**实验上如何区分**：若高 $T$ 相仍绝缘、激活能较大，且 ARPES 显示远离化学势的上、下哈伯德带，则具有莫特型关联物理（例如 NiO）。若能隙恰在 $T_{N}$ 处消失，且谱重排较小，则更接近斯莱特图像。
+
+---
+
+### 10.10.5 谱函数结构：哈伯德带与准粒子
+
+定义单电子谱函数 $A(\boldsymbol k,\omega)$。在接近莫特转变的关联金属中：
+
+- 权重为 $Z$ 的狭窄**准粒子（QP）峰**横跨费米能级。  
+- 非相干的**哈伯德带**位于 $\omega \sim \pm U/2$ 附近，携带权重 $1-Z$。
+
+**准粒子权重**为
+
+$$
+Z = \left[1 - \left.\frac{\partial \mathrm{Re}\,\Sigma(\omega)}{\partial \omega}\right|_{\omega=0}\right]^{-1}
+$$
+
+其中 $\Sigma$ 是自能。关联增强时，$Z \downarrow$，有效质量 $m^{\ast}\propto 1/Z \uparrow$；到莫特点时 $Z\to 0$，准粒子消失，只留下哈伯德带。
+
+---
+
+### 10.10.6 布林克曼–赖斯图像与金属–绝缘体转变
+
+在关联的费米液体平均场描述中，动能被 $Z$ 重整化；**莫特金属–绝缘体转变**（MIT）发生于
+
+$$
+Z \to 0 \quad \text{as} \quad U \to U_{c}^{-}
+$$
+
+$m^{\ast}$ 发散和德鲁德权重塌缩是其标志。在实际三维晶格中，有限 $T$ 下的转变常为带磁滞的**一阶转变**（金属与绝缘体两个解共存），并终止于临界端点；DMFT 能很好地描述这一现象。
+
+---
+
+### 10.10.7 光学与 ARPES 特征：如何辨认莫特关联
+
+- **光学**：德鲁德权重随 $Z$ 减小，而中红外特征和哈伯德带吸收增强。**谱权重转移**使权重跨越低能积分窗口重新分配，同时仍满足完整光学 f 求和规则：掺杂只改变几个百分点，权重就可在电子伏特尺度间转移。  
+- **ARPES**：$E_{F}$ 附近的相干准粒子峰，叠加宽的非相干背景与高能“瀑布”结构。对莫特绝缘体掺杂会从上哈伯德带转移出新的低能态，并重塑色散；若电子–声子作用也重要，还会出现明显的**扭折**结构。  
+- **输运**：电阻率超过莫特–伊奥菲–雷格尔（MIR）极限（“坏金属”），热电势具有很强的不对称性，霍尔系数随 $T$ 和掺杂改变符号。
+
+---
+
+### 10.10.8 电荷转移绝缘体与莫特绝缘体：扎南–索瓦茨基–艾伦分类
+
+在过渡金属氧化物中，最高占据态可能主要是配体 $p$ 态，而非金属 $d$ 的下哈伯德态。比较 $d$ 轨道上的 $U$ 与**电荷转移能** $\Delta$（从氧 $2p$ 转移至过渡金属 $d$）：
+
+- **莫特–哈伯德绝缘体**：$\Delta > U$；能隙主要位于下、上 $d$ 哈伯德带之间。  
+- **电荷转移绝缘体**：$\Delta < U$；能隙由氧 $p$ 带至上方 $d$ 带构成。掺杂空穴主要进入类氧态，铜氧化物就是例子。
+
+这种分类解释了由周期表中相近元素构成的氧化物为何具有很不相同的掺杂响应与光学吸收边。
+
+---
+
+### 10.10.9 洪特金属与多轨道物理
+
+当多个轨道参与低能物理时，**洪特耦合** $J_{H}$ 倾向于使同一原子上的自旋平行，其作用包括：
+
+- 抑制轨道间电荷涨落，使 $Z$ 即使在 $U$ 适中时也减小，从而形成具有重准粒子与强散射的“**洪特金属**”。  
+- 促进轨道选择性：部分轨道发生莫特局域化，其他轨道仍保持巡游性，即**轨道选择性莫特相**。  
+- 与晶体场和自旋–轨道耦合竞争或协同，对钌酸盐、铁基超导体及 4d、5d 氧化物尤为重要。
+
+---
+
+### 10.10.10 一页理解 DMFT：局域自能的整体影响
+
+**动力学平均场理论（DMFT）** 将晶格模型映射为嵌入自洽热浴的**量子杂质**。假定自能是**局域的**，即与动量无关：$\Sigma(\boldsymbol k,\omega)\to \Sigma(\omega)$。该近似在无限配位数极限下精确，在三维中往往也有很好的效果。
+
+对于半带宽为 $D$ 的贝特晶格，自洽条件为
+
+$$
+\Delta(\omega) = t^{2} G_{\text{loc}}(\omega),\qquad
+G_{\text{loc}}(\omega) = \int \frac{d\epsilon\,\rho_{0}(\epsilon)}{\omega+\mu-\Sigma(\omega)-\epsilon}
+$$
+
+其中 $\Delta$ 是杂质杂化函数，$\rho_{0}$ 是无相互作用态密度。迭代流程为：求解杂质问题 → 得到 $\Sigma$ → 重新计算 $G_{\text{loc}}$ → 更新 $\Delta$。
+
+**DMFT 擅长描述的现象**
+
+- 三峰谱（准粒子峰与哈伯德带）、$U_{c}$ 处 $Z$ 的塌缩，以及具有共存区的一阶金属–绝缘体转变。  
+- 电阻率随温度的演化，包括坏金属行为。  
+- 掺杂不对称性与谱权重转移。  
+- 结合局域密度近似能带输入（LDA+DMFT），研究实际材料，例如 V$_2$O$_3$、SrVO$_3$ 和铁基磷族化物。
+
+---
+
+### 10.10.11 一维的特殊性：拉廷格液体与自旋–电荷分离
+
+在严格一维中，费米液体不稳定：关联可产生具有独立自旋、电荷模式的**拉廷格液体**。特征包括幂律隧穿态密度，以及 ARPES 或冷原子类似体系中可观察的自旋、电荷激发速度差异。一维哈伯德模型可通过贝特假设**精确求解**；在半填充时，对任意 $U>0$ 都存在莫特能隙。
+
+---
+
+### 10.10.12 近藤效应、重费米子及其晶格推广
+
+金属中的局域磁矩在**近藤温度** $T_{K}$ 以下被传导电子屏蔽，形成单态，并在 $E_{F}$ 处出现狭窄共振。周期排列的此类磁矩构成近藤晶格，在低 $T$ 下杂化为具有 $m^{\ast}\!\gg m_{e}$ 的重准粒子；取决于填充与对称性，可得到重费米液体、非常规超导体或近藤绝缘体。深入讨论需要独立一节；这里的要点是：关联也能**产生新的相干能带**，而不只是将能带分裂。
+
+---
+
+### 10.10.13 简短例题
+
+**(a) 超交换的符号与尺度**  
+对半填充的两格点哈伯德二聚体，进行 $t/U$ 的二阶微扰计算，证明 $J=4t^{2}/U$，并解释其反铁磁性。
+
+**(b) 布林克曼–赖斯质量发散**  
+假设金属–绝缘体转变附近 $Z=1-(U/U_{c})^{2}$，证明当 $U\to U_{c}^{-}$ 时 $m^{\ast}/m=1/Z$ 发散，且德鲁德权重随 $Z$ 标度变化。
+
+**(c) DMFT 的贝特晶格自洽条件**  
+给定半圆态密度 $\rho_{0}(\epsilon)=\frac{2}{\pi D^{2}}\sqrt{D^{2}-\epsilon^{2}}$ 和 $D=2t$，推导 $\Delta(\omega)=t^{2}G_{\text{loc}}(\omega)$。
+
+**(d) 光学谱权重转移**  
+利用 f 求和规则说明，在固定填充下，积分低能谱权重为何随 $U$ 增大而减小；画出掺杂如何在恢复德鲁德权重的同时产生中红外吸收。
+
+**(e) ZSA 分类**  
+给定 $U=6\ \mathrm{eV}$ 和电荷转移能 $\Delta=3\ \mathrm{eV}$，确定绝缘体类型，并预测空穴掺杂产生的是氧 $p$ 型还是过渡金属 $d$ 型载流子。
+
+**(f) 洪特金属简化模型**  
+在 $U$ 适中而 $J_{H}$ 有限的双轨道哈伯德–洪特模型中，定性解释轨道间电荷涨落为何受抑制，以及与 $J_{H}=0$ 情形相比 $Z$ 为何降低。
+
+---
+
+### 10.10.14 常见误区
+
+- **把所有反铁磁绝缘体都称为“莫特”绝缘体**：如果能隙在 $T_{N}$ 处消失，则很可能属于斯莱特类型；应检查顺磁相。  
+- **认为较大 $U$ 意味着任意填充下都是绝缘体**：偏离半填充时可出现 $Z$ 很小的**关联金属**，未必是绝缘体。  
+- **忘记谱权重转移**：简单能带图像认为掺杂下低能权重守恒；莫特关联体系**并非如此**。  
+- **在关联体系拟合中使用能带有效质量**：输运与热力学测量涉及 $m^{\ast}\sim m/Z$；应使用重整化后的值。  
+- **过度依赖不含动量依赖的 DMFT**：单格点 DMFT 难以准确描述依赖 $k$ 的赝能隙或短程有序；需要团簇 DMFT、动力学团簇近似（DCA）或图解方法。  
+- **混淆莫特与安德森局域化**：相互作用驱动的莫特局域化与无序驱动的安德森局域化不同；两者可共存，形成莫特–安德森情形，但判断方法不同，例如分别调节相互作用或无序。
+
+---
+
+### 10.10.15 基础习题组
+
+- 从半填充、$U\gg t$ 的哈伯德模型出发，通过施里弗–沃尔夫变换推导海森堡交换 $J=4t^{2}/U$  
+- 实现 Hubbard-I 自能，绘制上、下哈伯德带随 $U$ 增大而出现的过程，并与 DMFT 的三峰结构比较  
+- 对半圆态密度，在迭代微扰理论中求解 $T=0$ 下的 DMFT 方程，绘制 $Z(U)$ 并确定 $U_{c}$  
+- 在简化三峰模型（准粒子峰与两个哈伯德带）中计算光学电导随掺杂的演化，验证谱权重转移  
+- 利用表列 $U$ 和 $\Delta$，将给定氧化物归为莫特–哈伯德或电荷转移类型，并预测轻度空穴掺杂后塞贝克系数符号与大小的变化趋势  
+- 构建双轨道哈伯德–洪特平均场理论，绘制轨道选择性莫特相在 $U$、$J_{H}$ 与晶体场劈裂参数空间中的区域
+
+---
+
+## 10.11 拓扑能带理论
+
+有些能带绝缘体只有普通能隙，另一些却隐藏着受保护的边界态、量子化响应和贝里曲率带来的特殊性质。**拓扑能带理论**利用 $k$ 空间中的几何（贝里相位、曲率）与对称性（时间反演、反演、手征）对相进行分类。体不变量预言边缘模式；若要改变不变量，就必须在某处闭合能隙，因此相变常伴随狄拉克或外尔节点。下面建立这套工具。
+
+---
+
+### 10.11.1 贝里相位、联络与曲率
+
+对于随 $\boldsymbol k$ 光滑变化的布洛赫能带 $|u_{n\boldsymbol k}\rangle$：
+
+- **贝里联络**
+
+$$
+\boldsymbol A_{n}(\boldsymbol k) \equiv i \langle u_{n\boldsymbol k} | \nabla_{\boldsymbol k} u_{n\boldsymbol k} \rangle
+$$
+
+- **贝里曲率**
+
+$$
+\boldsymbol\Omega_{n}(\boldsymbol k) \equiv \nabla_{\boldsymbol k} \times \boldsymbol A_{n}(\boldsymbol k)
+$$
+
+- 沿布里渊区（BZ）内闭合回路 $\mathcal C$ 的**贝里相位**
+
+$$
+\gamma_{n}[\mathcal C] = \oint_{\mathcal C} \boldsymbol A_{n}\cdot d\boldsymbol k
+$$
+
+关于规范：$\boldsymbol A$ 依赖于 $|u\rangle$ 的相位选择，而 $\boldsymbol\Omega$ 和模 $2\pi$ 意义下的回路相位不依赖于该选择。在一维中，占据带的贝里相位决定**极化**，这就是现代极化理论：$P$ 对应跨越整个布里渊区的贝里相位（见第 10.5.10 节）。
+
+---
+
+### 10.11.2 陈数与量子霍尔效应
+
+在二维中，能带 $n$ 的**陈数**为
+
+$$
+C_{n} = \frac{1}{2\pi} \int_{\mathrm{BZ}} d^{2}k\; \Omega_{n,z}(\boldsymbol k)
+$$
+
+对于一组完全填满的能带，
+
+$$
+\sigma_{xy} = -\frac{e^{2}}{h} \sum_{n\in \text{occ}} C_{n}
+$$
+
+这就是 TKNN 整数量子霍尔结果：**体**拓扑不变量决定**边界**的手征边缘模式数。改变 $C$，能隙就必须在某处闭合。
+
+---
+
+### 10.11.3 反常霍尔效应：没有 $B$ 的贝里曲率
+
+即使 $B=0$，时间反演对称性（TRS）破缺也可产生**内禀反常霍尔**效应
+
+$$
+\sigma_{xy}^{\mathrm{int}} = -\frac{e^{2}}{\hbar} \sum_{n} \int \frac{d^{3}k}{(2\pi)^{3}} f_{n\boldsymbol k}\,\Omega_{n,z}(\boldsymbol k)
+$$
+
+这里 $f$ 为费米函数。可以将 $\boldsymbol\Omega$ 理解为使波包偏转的“$k$ 空间磁场”；第 10.7 节暂未处理这些贝里项。
+
+---
+
+### 10.11.4 一维绕数与 SSH 模型入门
+
+对于满足 $d_{z}=0$ 的双能带、手征对称一维模型 $H(k)=\boldsymbol d(k)\cdot\boldsymbol\sigma$，定义 $\phi(k)=\arg[d_{x}+id_{y}]$。**绕数**
+
+$$
+\nu = \frac{1}{2\pi} \int_{-\pi/a}^{\pi/a} dk\; \partial_{k}\phi(k)
+$$
+
+表示 $\boldsymbol d$ 绕原点的圈数。体相 $\nu=1$ 对应 SSH 链中的**边缘零模**（第 10.5.3 节）。
+
+---
+
+### 10.11.5 二维狄拉克质量反号与陈绝缘体：霍尔丹图像
+
+考虑一个有质量的狄拉克锥
+
+$$
+H(\boldsymbol k)=v(k_{x}\sigma_{x}+k_{y}\sigma_{y}) + m\,\sigma_{z}
+$$
+
+格点正则化之前，价带的连续狄拉克锥贡献为
+
+$$
+C = +\frac{1}{2}\,\mathrm{sgn}(m)
+$$
+
+两个手征性相反的锥（如蜂窝晶格中的情形）共同贡献；若它们的质量符号**相反**，则总 $C=\pm 1$，形成具有一条手征边缘通道的**陈绝缘体**。
+
+---
+
+### 10.11.6 时间反演对称性与 $\mathbb{Z}_{2}$ 拓扑绝缘体
+
+具有 TRS 时（对电子有 $\mathcal T^{2}=-1$），能带组成**克拉默斯对**。二维与三维绝缘体分别用 **$\mathbb{Z}_{2}$** 指标 $\nu$（二维）或 $(\nu_{0};\nu_{1}\nu_{2}\nu_{3})$（三维）分类。若还具有反演对称性，可使用 **Fu–Kane 宇称判据**：
+
+- 在每个时间反演不变动量（TRIM）$\Gamma_{i}$ 处，将各占据克拉默斯对的反演本征值相乘，得到 $\delta_{i}$
+- 于是
+
+$$
+(-1)^{\nu} = \prod_{i}\delta_{i}
+$$
+
+三维强指标为 $(-1)^{\nu_{0}}=\prod_{i}\delta_{i}$；此处略去弱指标的细节。**强拓扑绝缘体**（$\nu_{0}=1$）的任意表面都具有由 TRS 保护的奇数个狄拉克锥。
+
+没有反演对称性时，可计算贝里联络的**威尔逊环路**，也称瓦尼尔电荷中心流。若混合瓦尼尔中心跨布里渊区发生**绕转**，则该相具有非平庸拓扑。
+
+---
+
+### 10.11.7 体–边对应：一句话把握
+
+非平庸体不变量意味着稳健的边界态；若不闭合体能隙或破坏保护对称性，就无法使这些态打开能隙。  
+- 陈绝缘体（$C$）：$|C|$ 条**手征**边缘模式，单向传播。  
+- 二维 $\mathbb{Z}_{2}$ 拓扑绝缘体：**螺旋**边缘，克拉默斯对反向传播。  
+- 三维强拓扑绝缘体：奇数个**表面狄拉克锥**。  
+- 晶体拓扑相由镜面、旋转等对称性保护，具有依赖边界对称性的边界态。
+
+---
+
+### 10.11.8 狄拉克与外尔半金属：无能隙拓扑
+
+相关的无隙体系包括：
+
+- **外尔节点**是三维贝里曲率的单极子，具有整数**手征电荷** $C=\pm 1$。要使节点在 $\boldsymbol k$ 空间中分离，必须破坏 TRS 或反演对称性。其后果包括表面的**费米弧**和**手征反常**（$\boldsymbol E\parallel \boldsymbol B$ 时的纵向负磁阻）。反常方程为
+
+$$
+\partial_{t}\rho_{5} + \nabla\cdot \boldsymbol j_{5} = \frac{e^{2}}{2\pi^{2}\hbar^{2}}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+- **狄拉克半金属**将手征性相反的外尔节点叠加，并由对称性将其固定在一起；破坏该对称性后可分裂成外尔节点对。
+
+---
+
+### 10.11.9 拉什巴效应、自旋–动量锁定与表面狄拉克锥
+
+自旋–轨道耦合（SOC）与反演对称性破缺共同产生**拉什巴**劈裂
+
+$$
+H_{R} = \alpha (\boldsymbol\sigma \times \boldsymbol k)\cdot \hat{\boldsymbol z}
+$$
+
+拓扑绝缘体的表面态具有**自旋–动量锁定**（螺旋纹理），抑制非磁无序导致的背散射。产生狄拉克质量的磁性扰动（例如最简单表面模型中垂直于表面的交换场）可使表面狄拉克锥打开能隙，从而实现量子化磁电响应，见下文的轴子物理；面内交换场则可能只使狄拉克锥发生位移。
+
+---
+
+### 10.11.10 轴子电动力学与磁电响应
+
+在三维拓扑绝缘体中，有效电磁作用量增加一项
+
+$$
+\mathcal L_{\theta} = \frac{\theta e^{2}}{2\pi h}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+若 TRS 保持，则模 $2\pi$ 意义下 $\theta=0$ 对应平庸相，$\pi$ 对应强拓扑绝缘体。在 $\theta$ 跃变 $\pi$ 的表面，若边界显式破坏 TRS，就会出现**半量子化**表面霍尔电导 $e^{2}/(2h)$。
+
+---
+
+### 10.11.11 威尔逊环路与瓦尼尔中心流：如何计算不变量
+
+沿闭合路径 $\mathcal C$ 离散化 $\boldsymbol k$，构造**威尔逊环路**
+
+$$
+W[\mathcal C] = \mathcal P \exp\!\left(i\int_{\mathcal C}\! \mathsf A(\boldsymbol k)\cdot d\boldsymbol k\right)
+$$
+
+其中 $\mathsf A$ 是占据子空间的非阿贝尔贝里联络。$W$ 的本征相位给出**瓦尼尔中心**；它们随横向 $\boldsymbol k$ 的演化揭示陈拓扑（$\nu$ 在每个布里渊区绕转 $2\pi C$）或 $\mathbb{Z}_{2}$ 拓扑（伴侣交换次数的奇偶性）。
+
+---
+
+### 10.11.12 轨道磁化与现代极化：贝里相位的再应用
+
+贝里相位的两个应用是：
+
+- 绝缘体的**极化**由占据态跨布里渊区的贝里相位给出；只有**变化量**具有直接物理意义，并可在绝热循环中量子化（索利斯泵）。
+- 晶体中的**轨道磁化**可写成包含 $\boldsymbol\Omega$ 和能带能量的布里渊区积分，联系着内禀反常霍尔效应与现代磁电系数。
+
+---
+
+### 10.11.13 对称性分类简表：十重分类的一小部分
+
+| 类别 | 对称性（时间反演、粒子–空穴、手征） | 二维不变量 | 三维不变量 |
+|---|---|---|---|
+| A（无这些对称性） | –、–、– | $\mathbb{Z}$（陈数） | 0 |
+| AII（满足 $\mathcal T^{2}=-1$ 的时间反演） | ✓、–、– | $\mathbb{Z}_{2}$ | $\mathbb{Z}_{2}$（强指标 $\nu_{0}$） |
+| AIII（仅手征对称性） | –、–、✓ | 0 | $\mathbb{Z}$（绕数） |
+
+完整的**十重分类**还涵盖超导体（BdG）及更多不变量；这里着重介绍电子体系中最常用的类别。
+
+---
+
+### 10.11.14 实验特征
+
+- **输运**：整数量子霍尔平台；陈绝缘体的量子化边缘电导；$\pi$ 贝里相位产生的弱反局域化；外尔体系的纵向负磁阻，但应注意几何伪影。  
+- **ARPES**：表面狄拉克锥、费米弧与拉什巴劈裂；自旋分辨 ARPES 可验证自旋纹理。  
+- **STM/STS**：螺旋表面的准粒子干涉（QPI）中缺少 $180^{\circ}$ 背散射；朗道能级序列揭示贝里相位 $\pi$。  
+- **光学**：磁化拓扑绝缘体表面的巨大克尔角、法拉第角；带非平庸相位偏移的回旋共振。  
+- **量子振荡**：与贝里相位相关的相移，即朗道指数图截距，但须考虑自旋劈裂的影响。
+
+---
+
+### 10.11.15 简短例题
+
+**(a) 双能带狄拉克模型的陈数**  
+对于 $H=v(k_{x}\sigma_{x}+k_{y}\sigma_{y})+m\sigma_{z}$，计算 $\Omega_{z}(\boldsymbol k)$ 并积分，证明每个锥贡献 $C=+\tfrac{1}{2}\mathrm{sgn}(m)$；两个手征性相反的不等价锥若具有相反的 $m$，则给出 $C=\pm 1$。
+
+**(b) 宇称检验**  
+给定二维四个 TRIM 处占据克拉默斯对的反演本征值为 $(+,+,+,-)$，计算得到 $(-1)^{\nu}=-1$，因而属于拓扑相。
+
+**(c) 威尔逊环路绕转**  
+对于 $C=1$ 的陈能带，证明当 $k_{y}$ 跨越布里渊区时，瓦尼尔中心角 $\theta(k_{y})$ 前进 $2\pi$，并与平庸能带比较。
+
+**(d) SSH 端态**  
+计算 $H(k)=(t_{1}+t_{2}\cos ka)\sigma_{x}+t_{2}\sin ka\,\sigma_{y}$ 的绕数。证明 $|t_{2}|>|t_{1}|$ 时 $\nu=1$，并绘制开链的边缘态能谱。
+
+**(e) 外尔单极子电荷**  
+计算 $\boldsymbol\Omega$ 穿过包围外尔节点的小球面的通量，证明其为 $\pm 2\pi$，即电荷 $\pm 1$。
+
+**(f) 从轴子项得到表面霍尔电导**  
+设拓扑绝缘体表面被磁化且 $\Delta\theta=\pi$，将 $\mathcal L_{\theta}$ 跨边界积分，得到 $\sigma_{xy}=e^{2}/(2h)$。
+
+---
+
+### 10.11.16 常见误区
+
+- **规范陷阱**：$\boldsymbol A$ 依赖规范；只有 $\boldsymbol\Omega$ 和模 $2\pi$ 的回路相位具有物理意义。数值计算应采用光滑规范或威尔逊环路。  
+- **无反演对称性时使用 Fu–Kane 判据**：宇称捷径要求反演对称性；否则应依靠威尔逊环路或瓦尼尔中心流。  
+- **混淆拉什巴效应与拓扑**：只有拉什巴劈裂并不意味着拓扑绝缘体；还需要体能隙和非平庸 $\mathbb{Z}_{2}$ 指标。  
+- **误读振荡相位**：从朗道扇形图提取贝里相位时，必须考虑塞曼效应、费米面翘曲与三维几何。  
+- **混淆边缘与表面**：保护来自对称性；在边界破坏该对称性可使态有隙，例如磁性无序使拓扑绝缘体表面打开能隙。  
+- **TRS 体系中的陈数**：若时间反演对称性未破缺且没有磁序，占据带的**总**陈数必须为零；$\mathbb{Z}_{2}$ 指标仍可非平庸。
+
+---
+
+### 10.11.17 基础习题组
+
+- 从久保公式推导 TKNN 公式，证明洁净二维绝缘体满足 $\sigma_{xy}=-(e^{2}/h)\sum C_{n}$  
+- 通过链变量实现离散布里渊区中的陈数计算，并在双能带狄拉克模型上验证  
+- 对有反演中心的 SOC 绝缘体，从 TRIM 宇称表计算 Fu–Kane $\mathbb{Z}_{2}$ 指标，再用威尔逊环路流验证  
+- 构建双节点外尔模型，计算平板的表面格林函数并绘制费米弧  
+- 向三维拓扑绝缘体的表面狄拉克锥添加塞曼项，展示能隙打开及半量子化霍尔电导  
+- 模拟一维晶格中的绝热索利斯泵，证明量子化电荷输运等于 $(k,t)$ 环面的陈数
+
+---
+
+## 10.12 介观输运与量子相干
+
+将导体缩小到与相干长度、平均自由程相当的尺度，输运便从类似“车流”的行为转为**波的干涉**。这就是**介观**区域：电子在整个器件中保持相位相干，电导具有样品特有而可重复的结构，量子噪声则揭示透射统计。主要工具包括**朗道尔–比蒂克**输运、**阿哈罗诺夫–玻姆**干涉、**弱局域化与弱反局域化**，以及**普适电导涨落**。我们将结合实验器件（量子点接触、环和纳米线）与实用公式展开。
+
+---
+
+### 10.12.1 朗道尔图像：电导即透射
+
+对于低温、小偏压下的相位相干双端导体，电流由透射率为 $\{T_{n}\}$ 的独立量子通道承载：
+
+$$
+G = \frac{2e^{2}}{h}\sum_{n} T_{n}
+$$
+
+因子 2 来自自旋简并，可由塞曼效应或 SOC 解除。对于弹道极限下的**量子点接触（QPC）**，横向模式依次打开，因此 $T_{n}\approx 1$，且
+
+$$
+G \approx N\,\frac{2e^{2}}{h}
+$$
+
+由此得到随栅压变化的**量子化电导台阶**。
+
+**多端比蒂克图像。** 对接触端 $\alpha,\beta$ 和透射概率 $T_{\alpha\beta}$，线性响应为
+
+$$
+I_{\alpha} = \frac{2e^{2}}{h}\sum_{\beta}\left( T_{\beta\alpha} V_{\alpha} - T_{\alpha\beta} V_{\beta} \right)
+$$
+
+该式满足电流守恒，并自动包含接触几何的影响。
+
+---
+
+### 10.12.2 阿哈罗诺夫–玻姆（AB）效应与相位记忆
+
+在环中，两条路径围住磁通 $\Phi$。波函数获得相对相位 $2\pi \Phi/\Phi_{0}$，其中 $\Phi_{0}=h/e$。结果包括：
+
+- 电导中以 $h/e$ 为周期的 **AB 振荡**  
+- 时间反演回路对产生以 **$h/2e$** 为周期的 **阿尔特舒勒–阿罗诺夫–斯皮瓦克（AAS）振荡**
+
+干涉可见度随**相位相干长度** $L_{\phi}$ 减小而衰减；该长度由退相干过程决定，包括电子–电子、电子–声子散射和外部噪声。粗略地说，长度为 $L$ 的干涉环路中，信号按 $\exp(-L/L_{\phi})$ 衰减。
+
+---
+
+### 10.12.3 散粒噪声：电流背后的计数统计
+
+即使 $T\to 0$，电荷的离散性也会使电流涨落。对于相位相干导体，
+
+$$
+S_{I}(0) = 2 e V \frac{2e^{2}}{h}\sum_{n} T_{n}(1-T_{n})
+$$
+
+其中 $S_{I}(0)$ 是零频噪声谱密度，$V$ 是偏压。定义**法诺因子**
+
+$$
+F \equiv \frac{S_{I}(0)}{2 e I} = \frac{\sum_{n} T_{n}(1-T_{n})}{\sum_{n} T_{n}}
+$$
+
+典型情形包括：弹道平台 $T_{n}\approx 1$ 导致 $F\approx 0$，噪声被抑制；**扩散导线**满足 $F=1/3$；隧穿结 $T_{n}\ll 1$ 导致泊松型噪声 $F\approx 1$。
+
+---
+
+### 10.12.4 弱局域化（WL）与弱反局域化（WAL）
+
+时间反演的扩散路径之间发生量子干涉，可增强背散射：
+
+- 时间反演保持且自旋–轨道作用弱时，出现 **WL**：在 $B=0$ 处出现**电导负修正造成的谷值**，即量子修正降低电导。
+- SOC 强或存在 $\pi$ 贝里相位时，出现 **WAL**：形成**正向**尖峰，即反局域化。
+
+二维中，$B=0$ 附近的磁电导遵循日上–拉金–长冈型修正，其示意形式为
+
+$$
+\Delta \sigma(B) \sim \frac{e^{2}}{2\pi^{2}\hbar} \left[ f\!\left(\frac{B_{\phi}}{B}\right) - f\!\left(\frac{B_{\phi}+B_{\mathrm{so}}}{B}\right) - \cdots \right]
+$$
+
+其中 $B_{\phi}\propto 1/L_{\phi}^{2}$，$B_{\mathrm{so}}$ 描述 SOC。二维无 SOC 时，$B=0$ 的修正按下式标度变化
+
+$$
+\Delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+其中 $\ell$ 是平均自由程；WAL 的符号相反。
+
+---
+
+### 10.12.5 普适电导涨落（UCF）
+
+样品特有的干涉使介观电导 $G(B)$ 或 $G(V_{g})$ 呈现**非周期但可重复**的起伏。其**方差**具有**普适性**，不依赖材料的具体细节，数量级为
+
+$$
+\mathrm{var}(G) \sim \left(\frac{e^{2}}{h}\right)^{2} \times \frac{1}{\beta}
+$$
+
+其中 $\beta=1,2,4$ 分别标记正交（TRS）、酉（TRS 破缺）和辛（强 SOC）对称性类别。精确系数取决于维度和长宽比，但数量级固定，因此称为“普适”。
+
+---
+
+### 10.12.6 退相干与能量弛豫
+
+非弹性过程会破坏相位相干：
+
+- **电子–电子**散射在低 $T$ 时占主导，常满足 $1/\tau_{\phi}\propto T^{p}$；$p$ 依赖维度，一维中通常为次线性，二维扩散体系中近似线性  
+- 较高 $T$ 下的**电子–声子**散射通常满足 $1/\tau_{\phi}\propto T^{q}$，且 $q>2$  
+- **磁性杂质**：自旋翻转可破坏相干，随 $T$ 的变化还可能显示近藤物理
+
+拟合 WL/WAL 磁电导或 AB 振幅随周长的衰减，可以提取 $L_{\phi}=\sqrt{D\tau_{\phi}}$。
+
+---
+
+### 10.12.7 接触电阻与四探针测量
+
+朗道尔理论提醒我们，即使**完美**的一维导线，每条占据的自旋简并通道也具有由接触限制的电阻
+
+$$
+R_{\mathrm{Q}} = \frac{h}{2e^{2}} \approx 12.9\ \mathrm{k}\Omega
+$$
+
+上述值对应一条通道。多端几何（霍尔条、四探针）可将接触或界面效应同器件内禀透射区分开来。
+
+---
+
+### 10.12.8 随机矩阵普适性
+
+完全混沌或强无序、但保持相位相干的腔体（“量子点”），其透射本征值的统计服从**维格纳–戴森系综**：
+
+- **高斯正交系综 GOE（β=1）**：保持 TRS，无 SOC  
+- **高斯酉系综 GUE（β=2）**：TRS 破缺  
+- **高斯辛系综 GSE（β=4）**：强 SOC，保持 TRS
+
+这些系综决定 $G$ 的分布、**散粒噪声**（例如混沌腔中 $F=1/4$）和能级间距（维格纳猜测）。磁场与 SOC 强度可调节不同对称性类别之间的交叉。
+
+---
+
+### 10.12.9 介观超导：纳米尺度的安德烈夫过程
+
+在洁净的正常金属–超导体（NS）界面，亚隙输运通过**安德烈夫反射**发生：电子作为空穴回溯反射，同时向凝聚态加入一个库珀对。其结果包括：
+
+- 完全透明 NS 点接触的低偏压电导**加倍**（BTK 极限）  
+- 短 SNS 结中的**多重安德烈夫反射（MAR）**，在 $eV=2\Delta/n$ 处产生能隙的次谐波特征  
+- 具有 SOC 与塞曼场、并受超导邻近效应影响的纳米线中，调节参数后安德烈夫束缚态可演变为**类马约拉纳**零模，这是拓扑超导的一个例子
+
+---
+
+### 10.12.10 从介观输运到安德森局域化：标度理论的桥梁
+
+无序增强或维度降低时，干涉修正（WL/WAL、UCF）变强。在低维中：
+
+- **一维、二维**：正交类中（无 SOC、无磁场），任意弱的无序都会使 $T=0$ 下的无相互作用电子局域化  
+- **三维**：在临界无序处可发生真正的**金属–绝缘体转变**
+
+**无量纲电导** $g \equiv G/(e^{2}/h)$ 遵循标度流 $d\ln g/d\ln L = \beta(g)$；$\beta(g)$ 的**符号**决定金属性或绝缘性。第 10.13 节将详细介绍**安德森局域化**及其标度理论。
+
+---
+
+### 10.12.11 简短例题
+
+**(a) 朗道尔公式入门**  
+随栅极打开，某 QPC 在 $G=(2,4,6)\times e^{2}/h$ 处出现平台。估计占据模式数，以及平台之间倾斜过渡区中的平均 $T_{n}$。
+
+**(b) 三类散粒噪声**  
+分别计算以下体系的 $F$：① 满足 $T\ll 1$ 的隧穿结；② 位于平台上的弹道 QPC；③ 扩散导线。解释即使 $G$ 相近，$F$ 为何仍能区分它们。
+
+**(c) AB 与 AAS 的比较**  
+周长为 $L$ 的环显示振幅为 $A_{1}\propto e^{-L/L_{\phi}}$ 的 $h/e$ 振荡，以及更弱、振幅为 $A_{2}$ 的 $h/2e$ 谐波。说明 $A_{2}$ 为何按 $e^{-2L/L_{\phi}}$ 衰减。
+
+**(d) WL 拟合**  
+给定一条在 $B=0$ 处有尖锐尖点的二维磁电导曲线，添加顶栅、增强 SOC 后其曲率反转，定性拟合 $L_{\phi}$ 和 $L_{\mathrm{so}}$ 的变化趋势。
+
+**(e) UCF 标度**  
+证明当 $k_{B}T$ 超过索利斯能量 $E_{T}=\hbar D/L^{2}$ 时，在 $k_{B}T$ 能窗内的热平均如何降低方差 $\mathrm{var}(G)$。
+
+**(f) 接触电阻**  
+长度为 $L\ll \ell$ 的弹道单模纳米线显示 $R\approx R_{\mathrm{Q}}$。解释为什么增加一对**电压**探针进行四探针测量后测得的内部电阻近乎零，而两探针测量仍读出 $\sim R_{\mathrm{Q}}$。
+
+---
+
+### 10.12.12 常见误区
+
+- **忘记接触**：朗道尔电导包含接触电阻；不要把有限的双端 $R$ 归因于“完美导线”本身。  
+- **混淆系综涨落与样品噪声**：UCF 是随 $B$ 或 $V_{g}$ 变化的**可重复**特征，而非随机闪烁；在 $B$ 窗口上平均，可显露叠加的 WL 背景。  
+- **混淆 WL 的符号**：WAL 需要强 SOC 或 $\pi$ 贝里相位，例如拓扑表面态；否则通常预期 WL。  
+- **认为法诺因子总满足 $=1$**：泊松散粒噪声出现于隧穿极限；弹道与扩散器件以可预期的方式抑制噪声。  
+- **混淆相位与能量弛豫**：退相干消除干涉，却不一定使能量达到平衡；不要把 $\tau_{\phi}$ 等同于能量弛豫时间。  
+- **过度拟合 HLN 公式**：二维 WL/WAL 公式的参数彼此相关；应谨慎报告 $L_{\phi}$、$L_{\mathrm{so}}$ 的趋势，避免给出精度虚高的数值。
+
+---
+
+## 10.13 安德森局域化与标度理论
+
+增大无序后，干涉效应会变得决定性：波函数**局域化**，直流输运消失，电导呈指数小量。这就是**安德森局域化**，一种由无序与干涉共同束缚本征态的单粒子量子相。本节介绍安德森模型、标度理论与 $\beta$ 函数、三维迁移率边与临界性、对称性类别的差异（正交、酉、辛）、有限尺寸效应与多重分形、实验特征（变程跳跃、库仑隙、WL/WAL 磁响应），以及便捷的计算方法（转移矩阵、索利斯数和非线性 σ 模型简介）。最后简要介绍多体局域化。
+
+---
+
+### 10.13.1 最简模型
+
+晶格上的紧束缚**安德森哈密顿量**为：
+
+$$
+H = \sum_{i} \epsilon_{i}\,|i\rangle\langle i| + \sum_{\langle ij\rangle} t_{ij}\,|i\rangle\langle j|
+$$
+
+其中随机在位能 $\epsilon_{i}$ 取自宽度为 $W$ 的分布，例如 $[-W/2,W/2]$ 上的均匀分布，$t_{ij}=t$ 为短程跃迁。无序 $W$ 与带宽 $W_{\mathrm{band}}\sim zt$ 相竞争。
+
+**启发式判断。** 当弹性平均自由程 $\ell$ 降至**伊奥菲–雷格尔**边界 $k_{F}\ell \sim 1$ 时，波在一个平均自由程内就受到强烈散射，干涉开始主导物理行为。
+
+---
+
+### 10.13.2 从扩散到局域化：标度假设
+
+对边长为 $L$ 的超立方样品，定义**无量纲电导** $g$：
+
+$$
+g(L) \equiv \frac{G(L)}{e^{2}/h} \sim h\,\nu(E_{F})\, D\, L^{d-2} \sim \frac{E_{T}}{\Delta}
+$$
+
+其中 $\nu$ 为态密度，$D$ 为扩散常数，$E_{T}=\hbar D/L^{2}$ 为索利斯能量，$\Delta\sim [\nu L^{d}]^{-1}$ 为能级间距。**单参数标度**假设（阿布拉哈姆斯–安德森–利恰尔代洛–拉马克里希南）认为
+
+$$
+\beta(g) \equiv \frac{d\ln g}{d\ln L}
+$$
+
+只依赖 $g$ 和对称性类别。其推论如下：
+
+- **$d=1$ 和二维（正交类）**：对所有 $g$ 都有 $\beta(g)<0$，因此 $T=0$ 下没有真正的金属固定点；任意弱无序都会局域化，二维中这一过程随尺度呈缓慢的对数变化。  
+- **$d=3$**：$\beta(g)$ 在 $g^{\ast}$ 处穿过零，产生**金属–绝缘体转变**（MIT）。关联长度或局域化长度
+
+$$
+\xi \sim |W-W_{c}|^{-\nu}
+$$
+
+在临界无序 $W_{c}$ 处发散；金属一侧满足 $g(L\!\gg\!\ell)\sim (L/\ell)^{d-2}$。
+
+改变对称性类别为酉类或辛类会改变 $\beta$，也可能改变二维的结论，见第 10.13.6 节。
+
+---
+
+### 10.13.3 迁移率边与三维临界性
+
+在三维中，本征态可在带中心附近为**扩展态**，在带尾为**局域态**；分隔两者的能量称为**迁移率边** $E_{c}(W)$。调节无序会移动 $E_{c}$；当 $W=W_{c}$ 时，$E_{c}$ 到达 $E_{F}$，直流输运消失。
+
+临界行为（无相互作用的正交类）包括：
+
+- **局域化长度** $\xi\sim |W-W_{c}|^{-\nu}$，其中 $\nu$ 是普适指数  
+- 金属一侧的**电导率标度关系**
+
+$$
+\sigma \sim \frac{e^{2}}{h}\, \xi^{2-d}\, \mathcal F\!\left(\frac{L}{\xi},\frac{L_{\phi}}{\xi}\right)
+$$
+
+在 $T=0$、$L\to\infty$ 时，$\sigma \propto (W_{c}-W)^{\mu}$，其中指数 $\mu$ 通过标度关系与 $\nu$ 联系。
+
+---
+
+### 10.13.4 量子修正：WL/WAL 与 $\ln T$ 变化
+
+在**扩散**区域（$k_{F}\ell\gg 1$），时间反演路径间的干涉产生**弱局域化（WL）** 修正。二维正交类中，零场修正具有如下形式
+
+$$
+\delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+垂直磁场破坏时间反演并**抑制** WL，在 $B=0$ 附近产生**负磁阻尖点**，符合日上–拉金–长冈线形。强自旋–轨道耦合下（辛类），修正反号，成为**弱反局域化（WAL）**。
+
+**相互作用**还产生具有 $\ln T$ 趋势的阿尔特舒勒–阿罗诺夫（AA）修正，并在隧穿态密度中产生零偏压异常。WL 与 AA 共同作用，常导致二维金属中观察到的 $\sigma(T)=\sigma_{0}+a\ln T$。
+
+---
+
+### 10.13.5 绝缘一侧：跳跃与库仑隙
+
+当态以长度 $\xi$ 局域化时，直流输运通过声子辅助的**变程跳跃（VRH）** 进行。
+
+- **莫特变程跳跃**，不存在长程库仑作用导致的软隙：
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{0}}{T}\right)^{\frac{1}{d+1}}\right]
+$$
+
+- **埃弗罗斯–什克洛夫斯基变程跳跃**，库仑相互作用在态密度中形成软隙：
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{1}}{T}\right)^{1/2}\right]
+$$
+
+变程跳跃中，磁响应可能很大且为正，涉及波函数收缩与跳跃路径干涉。
+
+---
+
+### 10.13.6 对称性类别与二维的特殊性
+
+二维体系的结局并不统一，而是取决于整体对称性：
+
+- **正交类（TRS、无 SOC）**：$T=0$ 下所有态局域化；$\sigma$ 对数下降。  
+- **酉类（$B$ 破坏 TRS）**：库珀子被抑制；二维中最终仍出现局域化，但 $\beta$ 的负值较小。  
+- **辛类（强 SOC、TRS 保持）**：**WAL** 使大 $g$ 时 $\beta(g)>0$，并允许通过无序或载流子密度调节真正的**二维金属–绝缘体转变**。
+
+其他类别，如手征类和博戈柳博夫–德热纳类，还带来特殊情形。在酉类 A 本身中，整数**量子霍尔**平台之间也存在连接局域化霍尔平台的拓扑转变。
+
+---
+
+### 10.13.7 有限尺寸标度与转移矩阵方法
+
+数值上可用转移矩阵计算宽度为 $M$ 的长条的**准一维局域化长度** $\lambda_{M}(W)$，再通过下式的数据塌缩提取 $\nu$ 和 $W_{c}$：
+
+$$
+\frac{\lambda_{M}}{M} = \mathcal F\!\left[(W-W_{c})\,M^{1/\nu}\right]
+$$
+
+不同 $M$ 的曲线在 $W_{c}$ 处相交；斜率可给出 $\nu$。这是研究无相互作用普适类的主要方法。
+
+---
+
+### 10.13.8 迁移率边处的多重分形
+
+临界波函数既不是平面波，也不是指数局域态，而是**多重分形**。振幅矩满足标度关系
+
+$$
+P_{q} \equiv \sum_{i} |\psi(i)|^{2q} \sim L^{-D_{q}(q-1)}
+$$
+
+其中广义维数 $D_{q}$ 构成非平庸的谱，而非只有几何维数 $d$。多重分形可见于参与率、局域态密度（LDOS）涨落与临界电导分布。
+
+---
+
+### 10.13.9 场论简介：非线性 σ 模型
+
+图解方法和无序平均会导出描述扩散模式（扩散子、库珀子）的**非线性 σ 模型**。耦合常数反映 $g$；重整化可重现 $\beta(g)$、WL/WAL 的符号，以及芬克尔斯坦推广中的相互作用修正。这是标度与普适性的解析理论基础。
+
+---
+
+### 10.13.10 光学与交流输运
+
+在金属一侧，光学电导具有宽度由无序展宽至 $1/\tau$ 的德鲁德峰。接近临界点时，德鲁德权重塌缩。在无相互作用安德森绝缘体中，低频交流电导按幂律上升，对应莫特交流跳跃；相互作用和库仑隙会改变指数。因此，即使直流信号小到无法测量，有限频率探针仍可探测 $\xi$ 与跳跃尺度。
+
+---
+
+### 10.13.11 多体局域化（MBL）：相互作用体系中的延续
+
+在**没有**热浴时加入相互作用，局域化可能在有限能量密度下保持，其特征包括：
+
+- **涌现的局域运动积分（LIOM）**，以及高激发本征态中满足面积律的纠缠  
+- 猝灭后**纠缠随时间对数增长**  
+- **不存在直流输运**，本征态热化失效
+
+MBL 要求体系隔离；声子或引线最终会使其退局域化。尽管如此，它仍是冷原子与介观电路中引人关注的“多体版本的安德森局域化”相。
+
+---
+
+### 10.13.12 简短例题
+
+**(a) 索利斯数**  
+将能级对扭曲边界条件的能量敏感度（索利斯能量）与平均能级间距比较，证明 $g\simeq E_{T}/\Delta$。
+
+**(b) 二维 WL 斜率**  
+对一条独立自旋通道，从库珀子回路积分出发，推导二维中的 $\delta \sigma(0)=-(e^{2}/\pi h)\ln(L_{\phi}/\ell)$，并解释垂直 $B$ 为何通过 $L_{B}=\sqrt{\hbar/(2eB)}$ 截断对数。
+
+**(c) 变程跳跃指数**  
+从 $d$ 维常数态密度出发，优化跳跃距离与能量，得到莫特变程跳跃指数 $1/(d+1)$。再加入库仑隙 $g(E)\propto |E-E_{F}|^{d-1}$，得到埃弗罗斯–什克洛夫斯基 $1/2$ 定律。
+
+**(d) 转移矩阵曲线交点**  
+对宽度 $M=8,12,16$，画出 $\lambda_{M}/M$ 随 $W$ 的变化，标出 $W_{c}$ 处的唯一交点。说明如何由斜率之比得到 $\nu$。
+
+**(e) 多重分形矩**  
+给定 $L^{d}$ 晶格上的本征态振幅，计算 $P_{2}$，并对不同尺寸作双对数拟合，提取有效分形维数 $D_{2}$。
+
+**(f) 对称性改变**  
+定性说明加入强 SOC 如何使库珀子贡献反号并产生 WAL，以及微小 $B$ 为何通过破坏时间反演而抑制干涉修正。
+
+---
+
+### 10.13.13 常见误区
+
+- **“所有二维体系都会局域化，没有例外。”** 这一说法只适用于没有强 SOC 的正交类。二维辛类可有真正的金属–绝缘体转变，量子霍尔效应还会带来拓扑临界性。  
+- **混淆变程跳跃与有隙热激活。** 变程跳跃的指数是**非阿伦尼乌斯型**；应检查 $(\ln \rho)$ 对 $T^{-\alpha}$ 的斜率，以辨别维度和库仑隙影响。  
+- **将 $k_{F}\ell\sim 1$ 等同于转变点。** 它只是扩散物理的启发式边界，并非精确的 $W_{c}$。  
+- **忽略二维相互作用。** 阿尔特舒勒–阿罗诺夫项常与 WL 一样大。若 $\ln T$ 斜率随栅极调节 SOC 而反号，则是 WAL，而非相互作用修正反号。  
+- **过度解读有限样品。** 若 $L\ll \xi$，仅凭 $\rho(L)$ 增大不能证明绝缘性；应作有限尺寸标度分析。  
+- **MBL 不等于安德森局域化。** MBL 是相互作用体系的高激发态现象；安德森局域化是单粒子或无相互作用的本征态性质，并不限于 $T=0$。
+
+---
+
+### 10.13.14 基础习题组
+
+- 从德鲁德扩散出发，构造二维中包含最低阶量子干涉的 $g(L)$ 与 $\beta$ 函数；证明大 $g$ 时正交类为负、辛类为正  
+- 用日上–拉金–长冈公式计算 $B=0$ 附近的磁电导 $\Delta \sigma(B)$，并从模拟数据中提取 $L_{\phi}$  
+- 分别用莫特和埃弗罗斯–什克洛夫斯基变程跳跃拟合模拟 $\rho(T)$，判断是否存在库仑隙  
+- 实现三维安德森模型的转移矩阵程序，得到 $\lambda_{M}/M$ 的交点，并通过数据塌缩估计 $\nu$  
+- 在 $W\approx W_{c}$ 附近对 $q=2,3$ 计算 $P_{q}$，验证不同尺寸间的多重分形标度  
+- 代入 $D=\sigma/(e^{2}\nu)$ 和 $\Delta^{-1}=\nu L^{d}$，证明 $g\sim E_{T}/\Delta$ 可化为 $g\sim \sigma L^{d-2}/(e^{2}/h)$
+
+---
+
+## 10.14 莫尔量子物质与二维材料
+
+将原子级薄晶体以微小转角堆叠，能带结构就会发生丰富变化。**范德瓦耳斯（vdW）异质结构**让我们能够精细调节几何（扭转）、静电环境（双栅极）与对称性（对齐、应变）。由此产生**平带**、**关联绝缘体**、**非常规超导**、**量子反常霍尔效应**和**莫尔激子**，都存在于可在芯片上重新调控的人工超晶格中。
+
+---
+
+### 10.14.1 为什么研究二维与莫尔结构
+
+- **二维晶体**，包括石墨烯、六方氮化硼（hBN）及 MoS$_2$、WSe$_2$ 等过渡金属二硫属化物（TMD），可被剥离、堆叠、旋转并连接电极。
+- 层间较弱的**范德瓦耳斯**键允许自由组合异质结构，避免复杂的界面化学限制。
+- 层间小**转角** $\theta$ 产生长波长的**莫尔超晶格**，其周期为
+
+$$
+L_{m} = \frac{a}{2\sin(\theta/2)}
+$$
+
+其中 $a$ 是单层晶格常数。当 $\theta \sim 1^{\circ}$ 时，$L_{m}$ 达到十几至几十纳米，远大于 $a$，因此动量空间折叠成微型布里渊区，能带变平。
+
+---
+
+### 10.14.2 连续模型与“魔角”平带
+
+对于扭转双层石墨烯（tBLG），**比斯特里策–麦克唐纳**连续模型通过层间隧穿 $w$ 和相对转角 $\theta$ 耦合两层的狄拉克锥。定义
+
+$$
+k_{\theta} = 2 k_{D} \sin(\theta/2),\qquad k_{D} = \frac{4\pi}{3a}
+$$
+
+以及无量纲耦合
+
+$$
+\alpha = \frac{w}{\hbar v_{F} k_{\theta}}
+$$
+
+在**魔角**处，第一个魔角约为 $\theta \approx 1.1^{\circ}$，$\alpha$ 使狄拉克速度降至接近零，带宽 $W$ 缩小到数毫电子伏特。当相互作用 $U$ 具有相近尺度时，关联效应主导物理行为。
+
+相互作用尺度的粗略估计为：
+
+$$
+U \sim \frac{e^{2}}{4\pi \varepsilon_{0} \varepsilon_{r} L_{m}}
+$$
+
+在小 $\theta$ 下，该值很容易落在 10–50 meV 的范围，即 $U/W \gg 1$。
+
+---
+
+### 10.14.3 莫尔哈伯德模型与维格纳物理
+
+莫尔势为瓦尼尔函数定义了**有效晶格**：
+
+- **tBLG**：脆弱拓扑使严格局域的紧束缚描述复杂化，但电荷中性点附近的低能物理常可投影到分谷的陈能带。
+- **TMD 异质双层**，例如小转角的 WSe$_2$/WS$_2$：形成良好局域化的莫尔**三角**或**蜂窝**晶格，可实现真正的**哈伯德模型**，并通过转角或电场调节 $t$。
+
+在低填充且 $r_{s}$ 较大时，动能不再占优，可出现**维格纳晶体**或广义电荷有序。栅极与位移场可调节竞争序，包括莫特态、电荷密度波及自旋、谷极化。
+
+---
+
+### 10.14.4 莫尔体系中的拓扑：谷、贝里曲率与陈数
+
+单层 TMD 具有**不同谷符号相反的贝里曲率**；即使没有净磁场，堆叠与莫尔折叠也能设计出**陈能带**。分谷霍尔响应为：
+
+$$
+\sigma_{xy}^{v} = -\frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K)} + \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K')}
+$$
+
+若两个谷等量填充，时间反演要求总陈数 $C_{\text{tot}}=0$；但**自发谷极化**打破这一平衡，可在零 $B$ 下产生**量子反常霍尔效应**。
+
+无反演中心的堆叠结构中，**贝里曲率偶极矩**可在 $E$ 的二阶产生**非线性霍尔**信号。
+
+---
+
+### 10.14.5 对称性破缺：关联绝缘体、超导、量子反常霍尔效应与向列性
+
+通过双栅极调节每个莫尔晶胞的载流子密度 $\nu$，可探索丰富相图：
+
+- 整数 $\nu$ 处的**关联绝缘体**，可为类莫特态或内部自由度极化的能带绝缘体。
+- 对关联态轻微掺杂后出现的**非常规超导**；其对**位移场**和**库仑屏蔽**的敏感性提示，某些平台中配对可能源于电子机制。
+- 单谷陈能带发生交换极化时产生的**量子反常霍尔效应（QAHE）**。
+- **向列性**：输运与 STM 中可见的旋转对称性破缺，常与应变或相互作用驱动的类波梅兰丘克不稳定性有关。
+
+对于态密度为 $N(0)$ 的平带，可用最简有效配对关系估计：
+
+$$
+k_{B}T_{c} \sim W\, \exp\!\left(-\frac{1}{\lambda_{\text{eff}}}\right),\qquad \lambda_{\text{eff}} \equiv V_{\text{eff}} N(0)
+$$
+
+较小的 $W$ 可增强态密度，使不大的 $V_{\text{eff}}$ 也产生较强耦合，但同时降低 $T_{c}$ 的前因子；仅凭这一弱耦合估计，不能保证较高转变温度。细节取决于谷、自旋结构及形状因子。
+
+---
+
+### 10.14.6 TMD 激子、层间激子与莫尔极化激元
+
+由于屏蔽减弱和二维运动学，单层 TMD 支持束缚很强的**激子**，束缚能可达数百毫电子伏特。堆叠两种不同 TMD 可形成**第二类**能带排列，以及电子、空穴分处不同层的**层间激子**：
+
+- 寿命长，可达纳秒至 $\mu$ 秒，具有较大的**电偶极矩**，可在面外电场的空间梯度下漂移。
+- 存在扭转时，莫尔势产生**激子微带**与**俘获阵列**，即“激子晶格”。
+
+对于采用局域介电常数和 $1/r$ 库仑势的严格二维激子，类氢模型的基态束缚能估计为：
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}} \times 54.4\ \mathrm{eV}
+$$
+
+实际数值需要**凯尔迪什**屏蔽模型，但对 $\mu^{\ast}$ 和 $\varepsilon_{r}$ 的标度依赖仍提供直观指引。
+
+将激子耦合到微腔，可得到具有可调色散与相互作用的**莫尔激子–极化激元**。
+
+---
+
+### 10.14.7 自旋–谷锁定与谷电子学
+
+在单层 TMD 中，SOC 将自旋与谷锁定。**圆偏振光**可以分别选择性激发 $K$ 或 $K'$，实现**谷极化**。在反演对称性破缺的双层中，或施加位移场后，无需 $B$ 就能调控横向于 $\boldsymbol E$ 的**谷霍尔**电流。有限的贝里曲率偶极矩 $\boldsymbol D$ 产生**非线性霍尔效应**：
+
+$$
+\boldsymbol J^{(2\omega)} \propto \frac{e^{3}\tau}{\hbar^{2}(1+i\omega\tau)}\, [\hat{\boldsymbol z}\times\boldsymbol E(\omega)]\,[\boldsymbol D\cdot\boldsymbol E(\omega)]
+$$
+
+可在零磁场下测得二次谐波霍尔电压。
+
+---
+
+### 10.14.8 实验调控参数与探针
+
+- **调控参数**：转角 $\theta$、双栅极产生的**位移场** $D$、每个莫尔晶胞的载流子密度 $\nu$、**介电环境**（hBN 厚度、附近金属栅极）以及**应变**。
+- **输运**：纵向与霍尔电阻率随 $\nu$ 的变化、$B$ 下的朗道扇形图，以及反映莫尔费米面口袋的量子振荡。
+- **STM/STS**：直接探测态密度、能隙分布、莫尔图样及局域有序。
+- **光学**：用光致发光与反射探测激子，用圆二色性探测谷，用泵浦–探测研究动力学。
+- **电容与压缩率**：探测热力学态密度和对称性破缺，如自旋、谷极化平台。
+- **磁测量**：QAHE 平台、陈能带产生的轨道磁化，以及利用探针尖端 SQUID 成像边缘模式。
+
+---
+
+### 10.14.9 基础建模途径
+
+- 对石墨烯体系采用**连续狄拉克模型与周期隧穿**，用少量参数 $(v_{F}, w_{0/1}, \theta)$ 描述平带和拓扑。
+- 对三角或蜂窝晶格上的 TMD 双层采用**莫尔哈伯德模型**，包含在位 $U$、近邻 $V$，以及 SOC 可能产生的洪特或伊辛各向异性。
+- 用**哈特里–福克**方法研究内部自由度的对称性破缺；用 **DMFT 或精确对角化（ED）** 研究关联及有限 $T$ 的谱；用**贝里几何与威尔逊环路**追踪陈数，见第 10.11 节。
+
+---
+
+### 10.14.10 简短例题
+
+**(a) 莫尔长度尺度**  
+给定石墨烯的 $a=0.246\ \mathrm{nm}$ 和 $\theta=1.1^{\circ}$，计算 $L_{m}=a/[2\sin(\theta/2)]$，并在 $\varepsilon_{r}=5$ 时估计 $U \sim e^{2}/(4\pi \varepsilon_{0}\varepsilon_{r} L_{m})$。
+
+**(b) 魔角参数**  
+给定 $v_{F}=1.0\times 10^{6}\ \mathrm{m/s}$ 和 $w=110\ \mathrm{meV}$，计算 $\theta=1.1^{\circ}$ 时的 $\alpha=w/(\hbar v_{F} k_{\theta})$，并讨论能带平坦程度。
+
+**(c) 三角晶格哈伯德模型**  
+假设某 TMD 莫尔体系具有 $t=2\ \mathrm{meV}$、$U=20\ \mathrm{meV}$，利用 $W\approx 9|t|$ 估计 $U/W$，并讨论半填充时是莫特绝缘体还是金属。
+
+**(d) 谷霍尔符号**  
+若 $C=1$ 的单谷陈能带完全极化，在零 $B$ 下，以 $e^{2}/h$ 为单位的 $\sigma_{xy}$ 是多少？与陈数 $C$ 相反的两个谷均填满的情形比较。
+
+**(e) 层间激子偶极矩**  
+对于层间距 $d=0.7\ \mathrm{nm}$，估计偶极矩 $p=ed$，以及 $E=0.1\ \mathrm{V/nm}$ 时的斯塔克位移 $\Delta E = -pE$。
+
+**(f) 非线性霍尔估计**  
+给定贝里曲率偶极矩 $|D|=0.1\ \text{\AA}$ 和弛豫时间 $\tau=0.1\ \mathrm{ps}$，估计在 $E(\omega)=1\ \mathrm{kV/cm}$ 下二次谐波霍尔电流的数量级，给出标度关系即可。
+
+---
+
+### 10.14.11 常见误区
+
+- **“平带只能来自魔角。”** 许多莫尔平台，如 TMD 和 hBN 上的石墨烯，无需精确魔角调节也有窄带；位移场与介电屏蔽可显著改变带宽。
+- **忽略内部自由度**：自旋、谷、层构成多种“味”自由度；对称性破缺常选择其中一种或其组合。过早压缩这些自由度的模型会遗漏真实有序态。
+- **忽略谷分辨拓扑**：不同谷的总陈数可以抵消；内部自由度占据不平衡时，仍可出现**谷**霍尔响应与**轨道磁化**。
+- **瓦尼尔化陷阱**：tBLG 的脆弱拓扑阻碍严格局域的瓦尼尔基，除非扩展所选子空间；不要强行采用过度简化的紧束缚模型。
+- **过度依赖平均场拟合**：哈特里–福克方法容易预言有序；应结合热力学、压缩率及对无序的稳健性进行交叉检验。
+- **过度使用类氢激子模型**：二维屏蔽是非局域的，需要凯尔迪什描述；类氢估计提供尺度指引，而非最终数值。
+
+---

@@ -1,0 +1,226 @@
+---
+description: "Navier–Stokes von Erhaltungssätzen bis Turbulenz: Viskosität, Wirbel, Energiebilanz, Regularität, Randbedingungen und numerische Verfahren im Überblick."
+---
+## 1. Warum das wichtig ist: ein Millennium-Problem
+Fluide sind überall: in Sternen, Ozeanen, der Luft und Plasmen.  
+Für die **dreidimensionalen inkompressiblen Navier–Stokes-Gleichungen** fehlt jedoch weiterhin ein Beweis der **globalen Existenz und Eindeutigkeit glatter Lösungen** bei glatten Anfangsdaten: eines der Millennium-Probleme des Clay Mathematics Institute.  
+Das Verständnis der Regularität bildet auch eine Grundlage der **Turbulenz**, die man als das letzte große Problem der klassischen Physik ansehen kann.
+
+---
+
+## 2. Kontinuumsfelder und Erhaltungssätze
+
+Es seien $\rho(\boldsymbol x,t)$ die Massendichte, $\boldsymbol v(\boldsymbol x,t)$ die Geschwindigkeit, $p(\boldsymbol x,t)$ der Druck und $\boldsymbol{\sigma}$ der Cauchy-Spannungstensor. Die Volumenkraft pro Masseneinheit sei $\boldsymbol f$, etwa die Schwerkraft.
+
+### 2.1 Massenerhaltung
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+### 2.2 Impulserhaltung (Cauchy)
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+Man zerlegt die Spannung in isotropen Druck und einen viskosen Anteil:
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+---
+
+## 3. Materialgesetz für ein Newtonsches Fluid
+
+Für ein isotropes Newtonsches Fluid gilt
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+mit der dynamischen Viskosität $\mu$ und dem zweiten Viskositätskoeffizienten $\lambda$; die Volumenviskosität ist $\zeta=\lambda+2\mu/3$.
+
+![Zwischen einer ruhenden unteren und einer bewegten oberen Platte steigt die Geschwindigkeit der stationären laminaren Strömung linear mit der Höhe. Dies veranschaulicht viskose Scherung und die Haftbedingung.](/images/diagrams/couette-flow.svg)
+
+Bei räumlich konstanten Viskositätskoeffizienten liefert das Einsetzen in die Impulsbilanz die **kompressiblen Navier–Stokes-Gleichungen**:
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+Für konstantes $\rho$ definiert man die kinematische Viskosität $\nu \equiv \mu/\rho$.
+
+---
+
+## 4. Inkompressible Form
+
+Für konstante Dichte $\rho=\rho_0$ und
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+erhalten wir
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+Die Divergenz der Impulsgleichung ergibt eine **Poisson-Gleichung für den Druck**, ergänzt um geeignete Randbedingungen:
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. Wirbelstärke und Helizität
+
+Wir definieren die Wirbelstärke $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.  
+Für inkompressible Strömung ($\nabla\!\cdot\!\boldsymbol v=0$) gilt:
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+In Komponenten:
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+Der Term $\omega_j \partial_j v_i$ beschreibt die **Wirbelstreckung**, die nur in drei Dimensionen auftritt.  
+Die Helizität $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ gibt Aufschluss über die Topologie der Wirbellinien.
+
+![Bei einer Zirkulation gegen den Uhrzeigersinn in der Ebene weist die Wirbelstärke aus der Zeichenebene heraus, dargestellt durch einen eingekreisten Punkt.](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. Energiebilanz für inkompressible Strömung
+
+Man bildet das Skalarprodukt der Impulsgleichung mit $\boldsymbol v$ und integriert über ein Gebiet $\Omega$ mit Haftbedingung am Rand $\partial\Omega$:
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+Für $\boldsymbol f=\boldsymbol 0$ nimmt die kinetische Energie monoton ab; die viskose Dissipation beträgt $\nu\|\nabla \boldsymbol v\|_2^2$.
+
+---
+
+## 7. Entdimensionierung und Kontrollparameter
+
+Wähle die charakteristischen Skalen $L$ für die Länge und $U$ für die Geschwindigkeit und definiere
+$\boldsymbol x'=\boldsymbol x/L$, $t' = tU/L$, $\boldsymbol v'=\boldsymbol v/U$, $p'=p/(\rho U^2)$.
+
+Die inkompressiblen Gleichungen werden damit zu
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+mit der **Reynolds-Zahl**
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+Weitere dimensionslose Kennzahlen, je nach Anwendung:
+- **Mach-Zahl** $\mathrm{Ma}=U/c_s$ (Kompressibilität),
+- **Froude-Zahl** $\mathrm{Fr}=U/\sqrt{gL}$ (Schwerkraft),
+- **Prandtl-Zahl** $\mathrm{Pr}=\nu/\kappa$ (Impulsdiffusion im Verhältnis zur Wärmediffusion).
+
+---
+
+## 8. Kompressible Navier–Stokes–Fourier-Gleichungen im Überblick
+
+Man ergänzt die innere Energie $e$ oder die Temperatur $T$ mit dem Fourierschen Wärmestrom $\boldsymbol q=-k_{\rm th} \nabla T$. Die Wärmeleitfähigkeit $k_{\rm th}$ ist von der oben verwendeten Temperaturleitfähigkeit $\kappa$ zu unterscheiden:
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+Eine Zustandsgleichung, etwa die eines idealen Gases, schließt das System: $p=(\gamma-1)\rho e$.
+
+---
+
+## 9. Mathematische Theorie: Existenz und Eindeutigkeit
+
+### 9.1 Schwache Lösungen nach Leray–Hopf
+Für die dreidimensionalen inkompressiblen Navier–Stokes-Gleichungen mit $L^2$-Daten existieren **zeitlich globale schwache Lösungen**, die die **Energieungleichung** erfüllen.  
+**Eindeutigkeit** hängt von Lösungsklasse, Daten und äußeren Kräften ab. Für bestimmte Volumenkräfte ist Nichteindeutigkeit nachgewiesen ([Albritton, Brué und Colombo](https://arxiv.org/abs/2112.03116)). Ein Preprint von [Hou, Wang und Yang aus 2025–2026](https://arxiv.org/abs/2509.25116) berichtet über einen computergestützten Nachweis der Nichteindeutigkeit ohne äußere Kraft bei singulären Anfangsdaten; das löst nicht das Problem globaler Regularität für glatte Daten.
+
+### 9.2 Regularitätskriterien in 3D
+- **Beale–Kato–Majda**: Ein Aufblähen der Lösung zur Zeit $T$ erfordert
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+- **Prodi–Serrin-Bedingungen**: Gilt $\boldsymbol v \in L^p(0,T;L^q)$ mit
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+so ist die Lösung auf $(0,T]$ glatt.
+- **Caffarelli–Kohn–Nirenberg**: Bei geeigneten schwachen Lösungen hat die singuläre Menge in der Raumzeit eine parabolische Hausdorff-Dimension $\le 1$ (partielle Regularität).
+
+### 9.3 Globale Regularität in 2D
+Für glatte Daten gelten in zwei Dimensionen **globale Existenz und Eindeutigkeit**.  
+Die Enstrophie $\int |\boldsymbol{\omega}|^2 dV$ bleibt beschränkt; Wirbelstreckung tritt nicht auf.
+
+### 9.4 Kompressible Strömungen
+Globale **schwache Lösungen mit endlicher Energie** existieren unter bestimmten Voraussetzungen für Gase mit $\gamma$-Gesetz. Regularität und Eindeutigkeit sind jedoch weitgehend offen.
+
+> **Millennium-Problem:** Beweise, dass glatte, divergenzfreie Anfangsdaten in drei Dimensionen eine **eindeutige glatte globale Lösung** liefern, oder widerlege dies durch ein Gegenbeispiel mit einer Singularität in endlicher Zeit.
+
+---
+
+## 10. Turbulenz und Spektren
+
+Bei homogener isotroper Turbulenz mit hoher $\mathrm{Re}$-Zahl (K41) lautet das Energiespektrum im Trägheitsbereich
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+mit der mittleren Dissipationsrate $\varepsilon$ und der Kolmogorov-Konstante $C_K\!\sim\! \mathcal O(1)$.
+
+**Kolmogorov-Mikroskala:**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+Der Aufwand direkter numerischer Simulationen (DNS) wächst stark: Die Zahl der Gitterpunkte skaliert in 3D wie $\sim \mathrm{Re}^{9/4}$. Dies motiviert **LES-** und **RANS-Schließungsmodelle**. Das **Schließungsproblem**, insbesondere die Modellierung nicht aufgelöster Spannungen, bleibt zentral.
+
+---
+
+## 11. Randbedingungen und Geometrie
+
+- **Wand mit Haftbedingung:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
+- **Freies Gleiten:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
+- **Periodischer Kasten (Torus)** für Theorie und DNS  
+- **Ein- und Ausströmung** mit geeigneten Vorgaben für Spannung oder Druck
+
+Die Wahl beeinflusst die Wohlgestelltheit, die Energiebilanz und die numerische Stabilität.
+
+---
+
+## 12. Numerik: ein kompakter Leitfaden
+
+- **Projektionsverfahren:** Berechne zunächst $\boldsymbol v^\ast$, löse die Poisson-Gleichung für $p$ und projiziere auf $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.  
+- **Energiestabile Verfahren:** Eine schiefsymmetrische Form des Konvektionsterms erhält die diskrete Energie.  
+- **CFL-Bedingung für explizite Advektions-/Diffusionsverfahren:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
+- **Kontrolle der Divergenz:** divergenzfreie Spektralbasen oder gemischte finite Elemente mit inf–sup-stabilen Geschwindigkeits-Druck-Paaren. Exakte Divergenzfreiheit erfordert geeignete Räume; inf–sup-Stabilität allein garantiert sie nicht.
+
+---
+
+## 13. Verbindungen und Erweiterungen
+
+- **Euler-Grenzfall:** $\nu\to 0$ führt zu den inkompressiblen Euler-Gleichungen; mögliche Singularitäten in endlicher Zeit bilden eine verwandte große Herausforderung.  
+- **Relativistische Hydrodynamik:** Die naive Navier–Stokes-Theorie ist akausal; **Israel–Stewart-Theorien** zweiter Ordnung können unter geeigneten Bedingungen an Transportkoeffizienten und Fluidzustände Kausalität herstellen ([ein strenges Beispiel mit Volumenviskosität](https://arxiv.org/abs/1901.06701)).  
+- **Quantenfluide:** superfluide Entsprechungen der Navier–Stokes-Gleichungen mit Zweiflüssigkeitsmodellen und quantisierten Wirbeln.
+
+---
+
+## 14. Stand der Forschung
+
+- 2D: Die Theorie ist gut entwickelt; globale Glattheit ist bekannt.  
+- 3D: **Globale Existenz glatter Lösungen** oder **Singularitäten in endlicher Zeit** bleiben **offene Fragen**.  
+- Die Turbulenzphänomenologie (K41) ist weithin erfolgreich. **Intermittenz** und Schließungsmodelle sind jedoch weiterhin Gegenstand aktiver Forschung.  
+
+**Kurz gesagt:** Wir können erstaunlich gut simulieren und messen; in der **tieferen Mathematik** von Regularität und Turbulenz wartet jedoch noch der Endgegner.
+
+---

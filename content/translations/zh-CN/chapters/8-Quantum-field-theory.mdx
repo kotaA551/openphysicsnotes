@@ -23,6 +23,8 @@ QFT将场提升为算符。自由场及散射的粒子态可组织在允许粒�
 
 将自由经典玻色场按动量 $\boldsymbol k$ 作傅里叶展开，每个简正模式都相当于谐振子。量子化就是把第7章的方法应用到每个 $\boldsymbol k$，即量子化全部简正模式。
 
+![空间各点的场与模式分解](/images/diagrams/field-modes.svg)
+
 ---
 
 ### 8.1.3 经典准备：克莱因—戈尔登场
@@ -75,7 +77,7 @@ $$
 先取体积 $V$ 的大盒子，最后令 $V\to\infty$，展开为
 
 $$
-\hat\phi(x) = \frac{1}{\sqrt{V}}\sum_{\boldsymbol k} \frac{1}{\sqrt{2\omega_{\boldsymbol k}}}\left(\hat a_{\boldsymbol k}\,e^{-i\omega_{\boldsymbol k} t + i\boldsymbol k\cdot\boldsymbol x} + \hat a_{\boldsymbol k}^{\dagger}\,e^{i\omega_{\boldsymbol k} t - i\boldsymbol k\cdot\boldsymbol x}\right)
+\hat\phi(x) = \frac{1}{\sqrt{V}}\sum_{\boldsymbol k} \sqrt{\frac{\hbar c}{2\omega_{\boldsymbol k}}}\left(\hat a_{\boldsymbol k}\,e^{-i\omega_{\boldsymbol k} t + i\boldsymbol k\cdot\boldsymbol x} + \hat a_{\boldsymbol k}^{\dagger}\,e^{i\omega_{\boldsymbol k} t - i\boldsymbol k\cdot\boldsymbol x}\right)
 $$
 
 其中
@@ -149,13 +151,13 @@ $$
 关联函数编码场的物理信息。时间序二点函数，即费曼传播子，为
 
 $$
-i\Delta_{F}(x-y) \equiv \langle 0|\,T\{\hat\phi(x)\hat\phi(y)\}\,|0\rangle
+\hbar\,\Delta_{F}(x-y) \equiv \langle 0|\,T\{\hat\phi(x)\hat\phi(y)\}\,|0\rangle
 $$
 
 它是KG算符的格林函数：
 
 $$
-\left(\Box + \frac{m^{2}c^{2}}{\hbar^{2}}\right)\Delta_{F}(x-y) = -\,\delta^{(4)}(x-y)
+\left(\Box + \frac{m^{2}c^{2}}{\hbar^{2}}\right)\Delta_{F}(x-y) = -\,i\,\delta^{(4)}(x-y)
 $$
 
 在动量空间中，
@@ -233,7 +235,7 @@ $$
 - 从 $\mathcal L=\tfrac12(\partial\phi)^{2}-\tfrac12 m^{2}\phi^{2}$ 推导共轭动量 $\pi$，并建立能恢复模式代数的等时对易关系。
 - 量子化复标量场，找出守恒 $U(1)$ 荷，证明其计数粒子减去反粒子。
 - 计算推迟格林函数 $\Delta_{R}(x)$，比较它与 $\Delta_{F}(x)$ 的支撑区域。
-- 分析正规序如何从 $\hat H$ 中减去自由真空常数，并讨论 $T^{\mu\nu}$ 及其迹的复合算符定义、正规序与反项之间的关系。
+- 对平直时空中的自由标量场，将 $\hat H$ 与 $T^{\mu\nu}$ 都正规序，检验其真空期望值为零。区分这一真空减除与相互作用或弯曲时空中的迹反常。
 - 对周期边界盒中的标量场，在 $V\to\infty$ 极限把求和换为积分，恢复连续δ函数。
 
 ---
@@ -400,7 +402,6 @@ $$
 
 费曼图中的自由狄拉克线携带此因子，相互作用插入顶点，例如QED中的 $-ie\gamma^{\mu}$。
 
-  ![费曼图中的自由狄拉克线](/images/free-dirac-line-in-a-feynman-diagram.png)
 
 ---
 
@@ -625,7 +626,7 @@ $$
 - $S$：偶。
 - $P$：奇。
 - $V^{0}$：偶；$V^{i}$：奇。
-- $A^{0}$：偶；$A^{i}$：奇。译注：原文将轴矢量在时间反演下的这两个符号写反；空间自旋分量应随时间反演变号。
+- $A^{0}$：偶；$A^{i}$：奇。
 - $T^{0i}$：偶；$T^{ij}$：奇。
 
 > 检验：$CP$ 使赝标量 $P$ 变号，这用于轴子和 $\theta$ 项的分类；在局域性、洛伦兹不变性及标准量子场论条件下，$CPT$ 保持理论不变。
@@ -634,7 +635,7 @@ $$
 
 ### 8.2B.3 快速应用
 
-- 构造模型时，若要求费米子项在 $CP$ 下为偶，可用 $S$、$V^{\mu}$ 并作适当缩并；$P$ 和 $A^{\mu}$ 可引入 $CP$ 奇结构。
+- 构造模型时，应检验包含所有伴随场的完整缩并算符在 $CP$ 下的变换；仅凭出现 $S$、$V^{\mu}$、$P$ 或 $A^{\mu}$，不能判定整个算符的奇偶性。
 - 光谱学中，可用双线性插值算符按 $J^{PC}$ 分类态与跃迁。
 - 电偶极矩检验：电子电偶极矩算符 $\bar\psi i\sigma^{\mu\nu}\gamma^{5}\psi\,F_{\mu\nu}$ 在 $P$ 与 $T$ 下为奇，结合 $CPT$ 可探测 $CP$ 破坏。
 
@@ -656,6 +657,8 @@ $$
 ## 8.2C QED顶点与沃德恒等式：规范不变性
 
 最小耦合给出QED的相互作用，而 **沃德恒等式** 则用代数表达规范对称性如何消除非物理偏振的贡献。
+
+![电子与光子的QED相互作用顶点](/images/diagrams/qed-vertex.svg)
 
 ---
 
@@ -691,7 +694,7 @@ $$
 q_{\mu}\,\mathcal M^{\mu} = \bar u(p')\,(/\!\!{p'}-/\!\!p)\,u(p)
 $$
 
-代入 $(/\!\!p-m)u(p)=0$ 与 $\bar u(p/\!\!{p'}-m)=0$，得到
+代入 $(/\!\!p-m)u(p)=0$ 与 $\bar u(p')(/\!\!{p'}-m)=0$，得到
 
 $$
 q_{\mu}\,\mathcal M^{\mu} = 0
@@ -766,7 +769,7 @@ $$
 实KG场的作用量为
 
 $$
-S_{0}[\phi] = \int d^{4}x\;\frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,m^{2}\phi^{2}
+S_{0}[\phi] = \int d^{4}x\;\left[\frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,m^{2}\phi^{2}\right]
 $$
 
 引入源 $J(x)$，定义
@@ -784,7 +787,7 @@ $$
 高斯积分给出
 
 $$
-Z_{0}[J] = Z_{0}[0]\;\exp\!\left[-\,\frac{i}{2}\int d^{4}x\,d^{4}y\;J(x)\,\Delta_{F}(x-y)\,J(y)\right]
+Z_{0}[J] = Z_{0}[0]\;\exp\!\left[-\,\frac{1}{2}\int d^{4}x\,d^{4}y\;J(x)\,\Delta_{F}(x-y)\,J(y)\right]
 $$
 
 对 $J$ 求泛函导数即可得到全部自由场关联函数。
@@ -808,7 +811,7 @@ $$
 则 **连通** 关联函数由 $W$ 生成：
 
 $$
-G^{(n)}_{\text{conn}}(x_{1},\dots,x_{n}) = \left.\frac{\delta^{n} W[J]}{\delta J(x_{1})\cdots \delta J(x_{n})}\right|_{J=0}
+G^{(n)}_{\text{conn}}(x_{1},\dots,x_{n}) = \left.i^{1-n}\frac{\delta^{n} W[J]}{\delta J(x_{1})\cdots \delta J(x_{n})}\right|_{J=0}
 $$
 
 自由高斯理论的威克定理指出，$n$ 点函数是二点函数 $\Delta_{F}$ 乘积对所有配对的求和，正对应二次型指数的导数结构。
@@ -844,7 +847,6 @@ $$
 
 这些规则把微扰展开转化为有组织的图形计算。
 
-  ![费曼图](/images/feynman-diagram.png)
 
 > **说明。** 在费曼图中：
 > - **带箭头的直线** 表示费米子，例如电子和正电子。
@@ -891,10 +893,10 @@ $$
 对标量理论选择 $\mathcal F=\phi(y)$，得到
 
 $$
-\left\langle \left(\Box_{x} + m^{2}\right)\phi(x) + \frac{\lambda}{3!}\phi^{3}(x)\right\rangle = -\,i\,\delta^{(4)}(x-y)
+\left\langle T\!\left\{\left[\left(\Box_{x} + m^{2}\right)\phi(x) + \frac{\lambda}{3!}\phi^{3}(x)\right]\phi(y)\right\}\right\rangle = -\,i\,\delta^{(4)}(x-y)
 $$
 
-更一般地，它形成联系 $n$ 点与 $(n\!+\!1)$ 点函数的方程层级，在动量空间中成为完整传播子和顶点的精确积分方程。
+更一般地，它形成联系 $n$ 点函数与更高点函数的方程层级，具体阶数由相互作用决定；在动量空间中成为完整传播子和顶点的精确积分方程。
 
 ---
 
@@ -982,7 +984,7 @@ $$
 由算符展开 $\exp[-i(\lambda/4!)\int (\delta/i\delta J)^{4}]$，$G^{(2)}$ 的 $O(\lambda)$ 修正包含
 
 $$
-\frac{-i\lambda}{2}\,\Delta_{F}(x-y)\,\Delta_{F}(0)
+\frac{-i\lambda}{2}\int d^{4}z\;\Delta_{F}(x-z)\,\Delta_{F}(0)\,\Delta_{F}(z-y)
 $$
 
 在 $\Delta_{F}(0)$ 中出现紫外发散，需要质量重整化。
@@ -994,7 +996,7 @@ $$
 对于整体对称性 $\phi\to \phi + \epsilon\,\delta\phi$，若测度与作用量不变，则
 
 $$
-\int d^{4}x\;\left\langle \partial_{\mu}J^{\mu}(x)\;\mathcal O[\phi]\right\rangle = i\sum_{j}\delta(x-x_{j})\left\langle \frac{\delta \mathcal O}{\delta \phi(x_{j})}\right\rangle
+\partial_{\mu}\left\langle T\!\left\{J^{\mu}(x)\,\mathcal O[\phi]\right\}\right\rangle = -\,i\left\langle T\!\left\{\delta\phi(x)\,\frac{\delta\mathcal O[\phi]}{\delta\phi(x)}\right\}\right\rangle
 $$
 
 这是关联函数内部流守恒的泛函表达。
@@ -1005,7 +1007,7 @@ $$
 
 - 通过配方推导 $Z_{0}[J]$，用 $Z_{0}[0]=1$ 固定归一化。
 - 从 $\phi^{4}$ 理论的 $Z[J]$ 出发，导出动量空间费曼规则，确定四点函数单圈鱼图的对称因子。
-- 用 $\delta^{2}W/\delta J \delta J$ 计算连通二点函数，验证 $W=-i\ln Z$ 移除了非连通部分。
+- 用 $-i\,\delta^{2}W/\delta J \delta J$ 计算连通二点函数，验证 $W=-i\ln Z$ 移除了非连通部分。
 - 对 $\phi^{4}$ 仔细作威克转动，说明 $iS\to -S_{E}$、$Z\to Z_{E}$，并追踪传播子的变化。
 - 写出 $\phi^{4}$ 理论中完整传播子 $G(x,y)$ 的施温格—戴森方程，用图表示。
 - 对 $U(1)$ 规范理论，概述法捷耶夫—波波夫程序如何在协变规范中产生鬼场，并写出BRST变换。
@@ -1424,7 +1426,6 @@ $$
 
 电磁学是阿贝尔 $U(1)$ 规范理论，经典光子场没有直接的规范自耦合。标准模型还包含 **非阿贝尔** 规范对称性，规范玻色子自身带有规范荷并 **自相互作用**。本节建立杨—米尔斯理论，耦合物质，引入规范固定和鬼场，并介绍BRST、威尔逊线与渐近自由背后的单圈 $\beta$ 函数。
 
-  ![标准模型](/images/standard-model.svg)
 
 ---
 
@@ -1579,7 +1580,7 @@ $$
 若基本表示中有 $n_{f}$ 个狄拉克费米子和 $n_{s}$ 个复标量，单圈贝塔函数为
 
 $$
-\beta(g) \equiv \mu\,\frac{dg}{d\mu} = -\,\frac{g^{3}}{16\pi^{2}}\left(\frac{11}{3}C_{A} - \frac{4}{3}T_{R} n_{f} - \frac{1}{6} T_{R} n_{s}\right)
+\beta(g) \equiv \mu\,\frac{dg}{d\mu} = -\,\frac{g^{3}}{16\pi^{2}}\left(\frac{11}{3}C_{A} - \frac{4}{3}T_{R} n_{f} - \frac{1}{3} T_{R} n_{s}\right)
 $$
 
 对于QCD（$SU(3)$、$T_{R}=\tfrac12$、$n_{s}=0$），
@@ -1600,7 +1601,7 @@ $$
 \mathcal L_{\theta} = \theta\,\frac{g^{2}}{32\pi^{2}}\,F_{\mu\nu}^{a}\,\tilde F^{a\,\mu\nu},\qquad \tilde F^{\mu\nu} \equiv \frac{1}{2}\,\epsilon^{\mu\nu\rho\sigma} F_{\rho\sigma}
 $$
 
-它在经典局部表达中是全导数，却可通过非平凡拓扑影响量子物理。它在 $CP$、$T$ 下为奇；关于 $C$、$P$ 的分类需按前述双线性与场强变换检验。反常与拓扑将在第8.10节进一步讨论。
+它在经典局部表达中是全导数，却可通过非平凡拓扑影响量子物理。对阿贝尔与非阿贝尔规范场，缩并后的拓扑密度在 $C$ 下为偶，在 $P$、$T$ 和 $CP$ 下为奇。反常与拓扑将在第8.10节进一步讨论。
 
 ---
 
@@ -1619,7 +1620,7 @@ $$
 用 $s A_{\mu}^{a}=(D_{\mu}c)^{a}$、$s c^{a}=-\tfrac{g}{2} f^{abc} c^{b}c^{c}$ 及雅可比恒等式证明 $s^{2}A_{\mu}^{a}=0$。
 
 **（e）单圈 $\beta$ 的符号。**
-整理胶子二点函数中的胶子圈 $\propto +\tfrac{11}{3}C_{A}$、费米子圈 $\propto -\tfrac{4}{3}T_{R} n_{f}$、标量圈 $\propto -\tfrac{1}{6}T_{R} n_{s}$ 及相关鬼贡献，组合得到结果。
+整理胶子二点函数中的胶子圈 $\propto +\tfrac{11}{3}C_{A}$、费米子圈 $\propto -\tfrac{4}{3}T_{R} n_{f}$、标量圈 $\propto -\tfrac{1}{3}T_{R} n_{s}$ 及相关鬼贡献，组合得到结果。
 
 ---
 
@@ -1759,7 +1760,7 @@ $$
 **电子自能** $\Sigma(/\!\! p)$ 修正质量和波函数。在 $\overline{\mathrm{MS}}$ 中，单圈有
 
 $$
-\Sigma(\/\!\! p) = \frac{\alpha}{4\pi}\left[\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi\right)(-/\!\! p + 4m) + \cdots\right]
+\Sigma(/\!\! p) = \frac{\alpha}{4\pi}\left[\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi\right)(-/\!\! p + 4m) + \cdots\right]
 $$
 
 **真空极化**，即光子自能，具有张量结构
@@ -1879,6 +1880,8 @@ $$
 \mathcal L = \partial_{\mu}\phi^{\ast}\partial^{\mu}\phi - V(\phi),\qquad
 V(\phi) = -\,\mu^{2}\,|\phi|^{2} + \frac{\lambda}{2}\,|\phi|^{4},\quad \mu^{2}>0,\ \lambda>0
 $$
+
+![The minima of a complex scalar potential form a circle in field space. Radial and angular perturbations are distinct; the angular direction is flat for the global symmetry.](/images/diagrams/vacuum-circle.svg)
 
 最低点满足 $|\phi|^{2}=v^{2}/2$，其中
 
@@ -2057,7 +2060,7 @@ $$
 
 **(c) 真空期望值产生的汤川质量**
 
-给定复标量的相互作用 $-y\bar\psi_{L}\phi \psi_{R}+\text{h.c.}$，其中 $\langle\phi\rangle=v/\sqrt{2}$，证明费米子质量为 $m=yv/\sqrt{2}$，物理希格斯耦合为 $y=\sqrt{2}m/v$。
+给定复标量的相互作用 $-y\bar\psi_{L}\phi \psi_{R}+\text{h.c.}$，其中 $\langle\phi\rangle=v/\sqrt{2}$，证明费米子质量为 $m=yv/\sqrt{2}$，汤川参数为 $y=\sqrt{2}m/v$，而物理希格斯耦合的系数为 $y/\sqrt{2}=m/v$。
 
 **(d) 非阿贝尔质量矩阵**
 
@@ -2246,7 +2249,7 @@ $$
 假设散射对象是自由的自旋 $\tfrac12$ 部分子，推导 $F_{2}=2xF_{1}$，并讨论胶子辐射如何通过 DGLAP 演化破坏精确标度。
 
 **(c) $q q \to q q$ 中的色因子。**
-计算 $t$ 道胶子交换的色代数，证明平均后的 $|\mathcal M|^{2}$ 中出现整体 $C_{F}^{2}$ 结构。
+计算 $t$ 道胶子交换的色代数，证明对末态颜色求和并对初态颜色平均后，该道在 $|\mathcal M|^{2}$ 中的色因子为 $T_{R}^{2}(N_{c}^{2}-1)/N_{c}^{2}$；相同味还需加入另一道及其干涉。
 
 **(d) 软与共线劈裂。**
 从夸克 $\to$ 夸克加胶子的劈裂概率出发，得到领头阶核
@@ -2295,7 +2298,7 @@ $$
 对 QED 中的无质量狄拉克费米子，经典轴矢流 $J_{5}^{\mu}=\bar\psi\gamma^{\mu}\gamma^{5}\psi$ 守恒，但单圈三角图给出
 
 $$
-\partial_{\mu}J_{5}^{\mu} = \frac{e^{2}}{16\pi^{2}}\,F_{\mu\nu}\,\tilde F^{\mu\nu}
+\partial_{\mu}J_{5}^{\mu} = \frac{e^{2}}{8\pi^{2}}\,F_{\mu\nu}\,\tilde F^{\mu\nu}
 $$
 
 其中对偶场强为
@@ -2313,7 +2316,7 @@ $$
 考虑手征旋转 $\psi\to e^{i\alpha\gamma^{5}}\psi$、$\bar\psi\to \bar\psi e^{i\alpha\gamma^{5}}$。相应的作用量变分给出经典流关系，而**泛函积分测度**还会获得雅可比因子：
 
 $$
-\mathcal D\bar\psi\,\mathcal D\psi \;\to\; \mathcal D\bar\psi\,\mathcal D\psi\;\exp\!\left[i\int d^{4}x\;\alpha(x)\,\frac{e^{2}}{16\pi^{2}}\,F_{\mu\nu}\tilde F^{\mu\nu}\right]
+\mathcal D\bar\psi\,\mathcal D\psi \;\to\; \mathcal D\bar\psi\,\mathcal D\psi\;\exp\!\left[i\int d^{4}x\;\alpha(x)\,\frac{e^{2}}{8\pi^{2}}\,F_{\mu\nu}\tilde F^{\mu\nu}\right]
 $$
 
 这里对 $\mathrm{Tr}\,\gamma^{5}\exp(-/\!\! D^{2}/\Lambda^{2})$ 作了正则化。这一结果再现 ABJ 反常，并可推广到非阿贝尔理论。
@@ -2322,13 +2325,13 @@ $$
 
 ### 8.10.4 非阿贝尔手征反常与相容性
 
-若 $\psi$ 属于规范群的表示 $R$，含三个流的三角图产生
+对于规范群表示 $R$ 中的一个无质量狄拉克场 $\psi$，单态轴流反常为
 
 $$
-\partial_{\mu}J_{5}^{\mu} \supset \frac{g^{2}}{16\pi^{2}}\,\mathrm{tr}_{R}\!\left(F_{\mu\nu}\tilde F^{\mu\nu}\right)
+\partial_{\mu}J_{5}^{\mu} \supset \frac{g^{2}}{8\pi^{2}}\,\mathrm{tr}_{R}\!\left(F_{\mu\nu}\tilde F^{\mu\nu}\right)
 $$
 
-群论因子是表示 $R$ 的**三次指标**。Wess–Zumino 相容性条件约束不同流的反常如何彼此相容。若该反常流被规范化，则对所有费米子求和后，其反常必须消失。
+这里 $F_{\mu\nu}=F_{\mu\nu}^{a}T^{a}$，因此系数通过 $\mathrm{tr}_{R}(T^{a}T^{b})=T_{R}\delta^{ab}$ 依赖于 **二次指标**。相比之下，手征规范反常涉及 **三次迹** $\mathrm{tr}_{R}(T^{a}\{T^{b},T^{c}\})$，对手征费米子带符号求和后的贡献必须为零。Wess–Zumino 相容性条件约束不同规范流反常之间的相容性。
 
 ---
 
@@ -2382,10 +2385,10 @@ $$
 在有限温度电弱理论中，借助 **鞍点子（sphaleron）** 越过势垒的跃迁会改变陈–西蒙斯数，破坏重子数和轻子数，但保持 $B-L$ 守恒。每单位拓扑跃迁引起的净变化为
 
 $$
-\Delta B = \Delta L = 3\,N_{g}
+\Delta B = \Delta L = N_{g}
 $$
 
-其中 $N_{g}$ 是费米子的代数。这把反常与早期宇宙中的重子生成情景联系起来。
+其中 $N_{g}$ 是费米子的世代数，这里取陈–西蒙斯数正向改变一个单位。每代有三个颜色的夸克，各自的重子数为三分之一，以及一个轻子，其轻子数为一。因此三代时重子数与轻子数各改变三；反向跃迁使两者的符号同时反转。这把反常与早期宇宙中的重子生成情景联系起来。
 
 ---
 
@@ -2440,7 +2443,7 @@ $$
 ### 8.10.12 简短例题
 
 **(a) ABJ 三角图与圈动量的选取**
-对存在歧义的线性发散积分进行正则化，证明保持矢量流的 Ward 恒等式会固定轴矢反常系数 $e^{2}/16\pi^{2}$。
+对存在歧义的线性发散积分进行正则化，证明保持矢量流的 Ward 恒等式会固定轴矢反常系数 $e^{2}/8\pi^{2}$。
 
 **(b) 藤川迹的计算**
 按 $1/\Lambda$ 展开，计算 $\mathrm{Tr}\,\gamma^{5}\exp(-\not D^{2}/\Lambda^{2})$ 的领头贡献，并提取 $F\tilde F$。
@@ -2458,7 +2461,7 @@ $$
 
 ### 8.10.13 基础习题
 
-- 推导表示 $R$ 中费米子的非阿贝尔轴矢反常系数，并用 $\mathrm{tr}_{R}(T^{a}\{T^{b},T^{c}\})$ 表示。
+- 推导表示 $R$ 中狄拉克费米子的单态轴流反常系数，用 $\mathrm{tr}_{R}(T^{a}T^{b})$ 表示其群论因子，并将它与手征规范反常区分开来  
 - 对具有 $N_{f}$ 种味的简化 $SU(N)$ 规范理论，利用手征整体对称性的 ’t Hooft 反常匹配约束其红外行为。
 - 证明电弱理论中 $B+L$ 流的散度正比于 $\mathrm{tr}\,W_{\mu\nu}\tilde W^{\mu\nu}$，并计算 $\Delta(B+L)$ 的选择定则。
 - 对体内的 $\theta\int \mathrm{tr}\,F\wedge F$ 作变分，与边界流的不守恒相匹配，展示反常流入。

@@ -26,7 +26,7 @@ async function collect(directory, locale, kind) {
 }
 for (const kind of ['chapters', 'curiosities']) {
   await collect(`content/${kind}`, 'en', kind);
-  for (const locale of ['fr', 'de', 'it', 'es', 'zh-CN', 'zh-TW', 'ja', 'ko']) {
+  for (const locale of ['fr', 'de', 'it', 'es', 'pt-BR', 'zh-CN', 'zh-TW', 'ja', 'ko']) {
     await collect(`content/translations/${locale}/${kind}`, locale, kind);
   }
 }

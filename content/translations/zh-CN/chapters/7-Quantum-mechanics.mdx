@@ -319,7 +319,7 @@ $$
 \int \phi_m^{\ast}(x)\,\phi_n(x)\,dx=0\quad (m\ne n)
 $$
 
-实的束缚势产生离散束缚谱；在通常的一维问题中，节点数随 $n$ 增加。后面将区分束缚态与散射态。
+实的束缚势产生离散束缚谱；在通常的一维问题中，节点数随 $n$ 增加。束缚态与散射态的例子见7.2.6–7.2.7节。
 
 ---
 
@@ -358,7 +358,7 @@ $$
 \psi(x) = \left(\frac{1}{\pi d^{2}}\right)^{1/4}\exp\!\left(-\frac{x^{2}}{2d^{2}}\right)
 $$
 
-则 $\Delta x=d/\sqrt{2}$、$\Delta p=\hbar/(\sqrt{2}d)$，因而 $\Delta x\,\Delta p=\hbar/2$。自由演化会使 $d(t)$ 展宽。译注：原文称不确定度乘积始终不变并不准确；自由高斯波包的动量展宽不变，位置展宽增大，通常的位置—动量标准差乘积随之增大。
+则 $\Delta x=d/\sqrt{2}$、$\Delta p=\hbar/(\sqrt{2}d)$，因而 $\Delta x\,\Delta p=\hbar/2$。自由演化会使 $d(t)$ 展宽，而动量展宽保持不变，因此离开初始时刻后，位置—动量标准差乘积增大。
 
 **（b）一维自由粒子传播核**
 
@@ -368,7 +368,7 @@ $$
 K(x,t;x',0)=\sqrt{\frac{m}{2\pi i\hbar t}}\;\exp\!\left(\frac{i m (x-x')^{2}}{2\hbar t}\right)
 $$
 
-并有 $\psi(x,t)=\int K(x,t;x',0)\,\psi_0(x')\,dx'$。后面会继续使用传播核。
+并有 $\psi(x,t)=\int K(x,t;x',0)\,\psi_0(x')\,dx'$。该传播核给出任意自由粒子初始波包的时间演化。
 
 **（c）对易代数练习**
 
@@ -505,6 +505,9 @@ $$
 ---
 
 ### 7.2.6 典型一维例子
+
+![无限深势阱的前三个波函数](/images/diagrams/quantum-well.svg)
+
 
 **（a）自由粒子。** $V=0$ 给出平面波：
 
@@ -803,7 +806,7 @@ $$
 \langle x^{2}\rangle = \frac{L^{2}}{3} - \frac{L^{2}}{2\pi^{2}n^{2}}
 $$
 
-由此可见，空间展宽随 $n$ 增大而趋近经典均匀分布的极限；原文所说“逐渐缩小”与该式不符。
+由此可见，空间展宽随 $n$ 增大而增大，并趋近经典均匀分布的极限。
 
 **（c）δ势的导数跃变**
 
@@ -820,6 +823,8 @@ $$
 ## 7.3 量子谐振子：代数、波与相干运动
 
 谐振子是量子理论的基本模型，描述振动、声子、分子伸缩、电磁场简正模式和零点涨落。同一个势可以通过 **微分方程** 与厄米多项式求解，也可通过 **升降算符代数** 求解，两种方式各有优势。
+
+![量子谐振子的等间隔能级](/images/diagrams/quantum-oscillator.svg)
 
 ---
 
@@ -1316,6 +1321,8 @@ $$
 E_n = -\,\frac{\mu e^{4}}{2 (4\pi\varepsilon_0)^{2} \hbar^{2}}\,\frac{Z^{2}}{n^{2}} = -\,\frac{\mu c^{2}\alpha^{2}}{2}\,\frac{Z^{2}}{n^{2}}
 $$
 
+![氢原子能级与光子发射](/images/diagrams/atomic-levels.svg)
+
 以及由 $(n,\ell,m)$ 标记的显式波函数。额外对称性使每个 $n$ 具有 $n^{2}$ 重简并，这里忽略自旋。
 
 ---
@@ -1489,7 +1496,7 @@ $$
 库仑问题具有守恒的 **龙格—楞次矢量**，量子形式需作对称化：
 
 $$
-\boldsymbol A = \frac{1}{2\mu}\,(\boldsymbol p \times \boldsymbol L - \boldsymbol L \times \boldsymbol p) - \frac{k}{r}\,\hat{\boldsymbol r}
+\boldsymbol A = \frac{1}{2\mu}\,(\boldsymbol p \times \boldsymbol L - \boldsymbol L \times \boldsymbol p) - k\,\hat{\boldsymbol r}
 $$
 
 $\boldsymbol L$ 与 $\boldsymbol A$ 共同生成束缚态的 $SO(4)$ 对称性，解释 $E_n$ 为什么只依赖 $n$，而不依赖 $\ell$ 或 $m$。外场、相对论修正等破坏额外对称性后，简并会分裂。
@@ -1683,10 +1690,10 @@ $$
 用氢原子本征态与角动量代数计算各项期望值。总结果依赖 $n$ 和 **总角动量** $j=\ell\pm \tfrac12$，而不显式依赖 $m$，得到精细结构修正：
 
 $$
-\Delta E_{n,j}^{(\mathrm{fs})} = \frac{\mu c^{2}\,(Z\alpha)^{4}}{2 n^{3}}\left(\frac{1}{j+\tfrac12} - \frac{3}{4n}\right)
+\Delta E_{n,j}^{(\mathrm{fs})} = -\,\frac{\mu c^{2}\,(Z\alpha)^{4}}{2 n^{3}}\left(\frac{1}{j+\tfrac12} - \frac{3}{4n}\right)
 $$
 
-其中 $\mu$ 为约化质量，$\alpha\equiv e^{2}/4\pi\varepsilon_{0}\hbar c$。精细结构解除原来的部分 $n^{2}$ 简并，各个角动量多重态仍有 $2n$ 重磁简并，由 $j$、$m$ 等量子数标记；未计兰姆位移时还存在额外简并。
+其中 $\mu$ 为约化质量，$\alpha\equiv e^{2}/4\pi\varepsilon_{0}\hbar c$。精细结构使计入自旋的 $2n^{2}$ 重简并按 $j$ 分裂。每个允许的角动量多重态保留由 $m$ 标记的 $2j+1$ 个磁态；主量子数及总角动量相同、轨道角动量不同的态，在这一阶仍简并。
 
 ---
 
@@ -1695,7 +1702,7 @@ $$
 加入均匀磁场 $\boldsymbol B = B\,\hat{\boldsymbol z}$，主要耦合为
 
 $$
-H'_{\mathrm{Z}} = \mu_{B}\,(L_{z} + g_{s} S_{z})\,B
+H'_{\mathrm{Z}} = \frac{\mu_{B}}{\hbar}\,(L_{z} + g_{s} S_{z})\,B
 $$
 
 其中 $g_{s}\approx 2$、$\mu_{B}=e\hbar/2m_{e}$。在LS耦合下，能级由 $\ket{n\ell s j m_{j}}$ 标记，位移可写为
@@ -1733,7 +1740,7 @@ $$
 对氢的 $1s$，得到二次斯塔克位移：
 
 $$
-\Delta E_{1s} = -\,\frac{1}{2}\,\alpha_{1s}\,E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,a_{0}^{3}
+\Delta E_{1s} = -\,\frac{1}{2}\,\alpha_{1s}\,E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,(4\pi\varepsilon_0)\,a_{0}^{3}
 $$
 
 其中 $\alpha$ 是 **极化率**，$a_{0}$ 是玻尔半径。
@@ -1761,10 +1768,10 @@ $$
 
 **（a）氢基态的二次斯塔克效应**
 
-对 $np$ 态使用完备性，证明
+使用$np$束缚态与连续谱p波态合在一起构成的完备态集合，证明
 
 $$
-\Delta E_{1s}^{(2)} = -\,\frac{1}{2} \alpha_{1s} E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,a_{0}^{3}
+\Delta E_{1s}^{(2)} = -\,\frac{1}{2} \alpha_{1s} E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,(4\pi\varepsilon_0)\,a_{0}^{3}
 $$
 
 思路：只有 $\ell=1$ 中间态贡献，因为 $z\propto Y_{1}^{0}$ 使 $\ell$ 改变 $\pm 1$。可计算径向求和，或使用已知的类氢极化率。
@@ -1812,7 +1819,7 @@ $$
 - 采用中间归一化，从级数展开推导 $E_{n}^{(1)}$、$\ket{n^{(1)}}$ 与 $E_{n}^{(2)}$。
 - 对三重简并能级 $\{\ket{\phi_{1}},\ket{\phi_{2}},\ket{\phi_{3}}\}$ 与微扰 $H'$，构造 $W$，解久期方程 $\det(W-\lambda I)=0$，建立混合本征态。
 - 用角动量耦合从 $H'_{\mathrm{Z}}$ 推导朗德 $g_{J}$ 公式，检验 $S$（$\ell=0$）及纯 $L$（$s=0$）极限。
-- 显式对 $np$ 态求和或使用完备性关系，计算 $1s$ 的二次斯塔克位移。
+- 对$np$束缚态求和并对连续谱p波态积分，或采用等价的完整预解算符方法，计算$1s$的二次斯塔克位移。
 - 从 $H_{\mathrm{rel}}, H_{\mathrm{SO}}, H_{\mathrm{D}}$ 证明总精细结构修正只依赖 $n$、$j$，并恢复上面的 $\Delta E_{n,j}^{(\mathrm{fs})}$。
 
 ---

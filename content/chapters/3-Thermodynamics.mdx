@@ -58,6 +58,8 @@ In summary: The quest to understand heat was born from industry, shaped by darin
 
 The history of thermodynamics pivots on a young French engineer named **Nicolas Léonard Sadi Carnot** (1796–1832). Born into a family steeped in the politics and science of Revolutionary France, Sadi inherited both an engineer’s rigor and a philosopher’s curiosity. His father, Lazare Carnot, had been called the “Organizer of Victory” for his role in the Revolutionary Wars, a strategist who combined mathematics with military art. Sadi, however, was destined to fight a different battle: the war to understand heat.
 
+![Heat Qh enters from a hot reservoir, work W leaves the engine, and heat Qc reaches a cold reservoir.](/images/diagrams/heat-engine.svg)
+
 ---
 
 ### A Life Brief but Profound
@@ -74,30 +76,31 @@ It was a breathtakingly abstract question for its time. Carnot did not know the 
 
 Carnot imagined an idealized engine performing a cycle composed of four reversible processes:
 
-  ![Carnot Cycle](/images/carnot-cycle.png)
+![Two isotherms and two adiabats form a clockwise heat engine cycle. Enclosed area is net work.](/images/diagrams/carnot-cycle.svg)
 
-1. **Isothermal expansion at \(T_h\).**  
-   The working substance (say, an ideal gas) is placed in contact with a hot reservoir at temperature \(T_h\). It expands while absorbing heat \(Q_h\). Because the process is isothermal, the internal energy \(U\) of the gas remains constant; all heat absorbed is converted into work.  
+
+1. **Isothermal expansion at $T_h$.**  
+   The working substance (say, an ideal gas) is placed in contact with a hot reservoir at temperature $T_h$. It expands while absorbing heat $Q_h$. Because the process is isothermal, the internal energy $U$ of the gas remains constant; all heat absorbed is converted into work.  
    $$
    Q_h = W_{\text{exp}} = nRT_h \ln\!\left(\frac{V_b}{V_a}\right).
    $$
 
 2. **Adiabatic expansion.**  
-   The system is thermally isolated. It continues to expand, doing work on the surroundings, but now cooling from \(T_h\) to \(T_c\). No heat flows: \(\delta Q = 0\). For an ideal gas, this follows the relation:
+   The system is thermally isolated. It continues to expand, doing work on the surroundings, but now cooling from $T_h$ to $T_c$. No heat flows: $\delta Q = 0$. For an ideal gas, this follows the relation:
    $$
    T V^{\gamma-1} = \text{constant}, \qquad PV^\gamma = \text{constant}.
    $$
 
-3. **Isothermal compression at \(T_c\).**  
-   The system is placed in contact with the cold reservoir. The surroundings compress the gas, and the gas rejects heat \(Q_c\) to the reservoir. Internal energy again remains constant.
+3. **Isothermal compression at $T_c$.**  
+   The system is placed in contact with the cold reservoir. The surroundings compress the gas, and the gas rejects heat $Q_c$ to the reservoir. Internal energy again remains constant.
    $$
-   Q_c = nRT_c \ln\!\left(\frac{V_d}{V_c}\right).
+   Q_c = nRT_c \ln\!\left(\frac{V_c}{V_d}\right).
    $$
 
 4. **Adiabatic compression.**  
-   Finally, the system is isolated again. Compression raises its temperature from \(T_c\) back to \(T_h\), restoring the initial state.
+   Finally, the system is isolated again. Compression raises its temperature from $T_c$ back to $T_h$, restoring the initial state.
 
-At the end of the cycle, the system has returned to its starting point. By definition of a cycle, internal energy change is zero (\(\Delta U = 0\)). Therefore the work performed by the system equals the net heat absorbed:
+At the end of the cycle, the system has returned to its starting point. By definition of a cycle, internal energy change is zero ($\Delta U = 0$). Therefore the work performed by the system equals the net heat absorbed:
 $$
 W = Q_h - Q_c.
 $$
@@ -124,7 +127,7 @@ $$
 \eta = 1 - \frac{Q_c}{Q_h} = 1 - \frac{T_c}{T_h}.
 $$
 
-This is the Carnot efficiency—the absolute upper bound for any heat engine operating between two temperatures. The remarkable fact is that it depends only on \(T_h\) and \(T_c\), not on the working substance or the details of the engine. Steam, air, helium, or even a hypothetical perfect fluid—all obey the same constraint.
+This is the Carnot efficiency—the absolute upper bound for any heat engine operating between two temperatures. The remarkable fact is that it depends only on $T_h$ and $T_c$, not on the working substance or the details of the engine. Steam, air, helium, or even a hypothetical perfect fluid—all obey the same constraint.
 
 ---
 
@@ -199,14 +202,14 @@ $$
 $$
 This is why tables of “heats of reaction” are tabulated as $\Delta H$ at $P=\text{const}$.
 
-Define the heat capacities
+Define the total heat capacities for a fixed amount of substance. In ideal-gas formulas below, molar heat capacities are explicitly denoted $C_{V,m}=C_V/n$ and $C_{P,m}=C_P/n$:
 $$
 C_V \equiv \left(\frac{\partial U}{\partial T}\right)_V, \qquad
 C_P \equiv \left(\frac{\partial H}{\partial T}\right)_P .
 $$
 For an ideal gas ($U=U(T)$, $H=H(T)$) one finds Mayer’s relation
 $$
-C_P - C_V = R,
+C_P - C_V = nR,
 $$
 and the **adiabatic index** $\gamma \equiv C_P/C_V$ controls a host of phenomena, from the speed of sound to the slope of adiabats.
 
@@ -216,13 +219,13 @@ and the **adiabatic index** $\gamma \equiv C_P/C_V$ controls a host of phenomena
 
 ### 3.3.3 Ideal-Gas Adiabats and Work
 
-Consider a **quasi-static adiabatic** change of an ideal gas ($\delta Q=0$). Combine the first law with the ideal-gas equation $PV=nRT$ and $U=nC_VT$:
+Consider a **quasi-static adiabatic** change of an ideal gas ($\delta Q=0$). Combine the first law with the ideal-gas equation $PV=nRT$ and $U=nC_{V,m}T$: Assume temperature-independent molar heat capacities over this interval, so $\gamma$ is constant.
 $$
-\mathrm dU = -P\,\mathrm dV \;\;\Rightarrow\;\; nC_V\,\mathrm dT = -P\,\mathrm dV = -\frac{nRT}{V}\,\mathrm dV .
+\mathrm dU = -P\,\mathrm dV \;\;\Rightarrow\;\; nC_{V,m}\,\mathrm dT = -P\,\mathrm dV = -\frac{nRT}{V}\,\mathrm dV .
 $$
 Divide by $nT$ and rearrange:
 $$
-\frac{\mathrm dT}{T} = -\frac{R}{C_V}\frac{\mathrm dV}{V} = -( \gamma-1)\frac{\mathrm dV}{V} .
+\frac{\mathrm dT}{T} = -\frac{R}{C_{V,m}}\frac{\mathrm dV}{V} = -( \gamma-1)\frac{\mathrm dV}{V} .
 $$
 Integrating,
 $$
@@ -264,9 +267,9 @@ Pressure–volume work is just one channel. With a generalized force $X$ and dis
 $$
 \delta W = X\,\mathrm dx
 \quad\Rightarrow\quad
-\delta W = P\,\mathrm dV + \sigma\,\mathrm dA + \mathcal{E}\,\mathrm dQ + \cdots ,
+\delta W = P\,\mathrm dV - \sigma\,\mathrm dA - \Phi\,\mathrm dq + \cdots ,
 $$
-where $\sigma$ is surface tension, $A$ area, $\mathcal{E}$ electromotive force, $Q$ electric charge. The crucial distinction is state vs. path:
+Here $\sigma$ is surface tension, $A$ is surface area, $\Phi$ is electric potential, and $q$ is charge added to the system (distinct from heat $Q$). We keep work done by the system positive: increasing area or charging stores energy, so these contributions to $\delta W$ are negative. The crucial distinction is state versus path:
 - $U(T,V,\ldots)$, $H$, $F=U-TS$, $G=H-TS$ are state functions (exact differentials).
 - $Q$ and $W$ are path-dependent (inexact).
 
@@ -287,11 +290,11 @@ Most real devices are open systems with mass flow—turbines, compressors, nozzl
 $$
 \dot Q - \dot W_s = \dot m\left(h_2 - h_1 + \frac{v_2^2 - v_1^2}{2} + g(z_2 - z_1)\right) .
 $$
-Here $\dot W_s$ is shaft work (excluding flow work $P v$), $h= u+P v$ is specific enthalpy, $v$ is speed, and $z$ is elevation. Special cases:
+Here $\dot W_s$ is shaft work output (excluding flow work $P v_{\mathrm{sp}}$), $h=u+P v_{\mathrm{sp}}$ is specific enthalpy, $v_{\mathrm{sp}}$ is specific volume, $v$ is speed, and $z$ is elevation. Special cases:
 
 - **Nozzle / diffuser**: $\dot Q \approx 0$, $\dot W_s=0$, negligible height change $\Rightarrow h + v^2/2 = \text{const}$.
 - **Adiabatic turbine**: $\dot Q \approx 0$, negligible kinetic/potential changes $\Rightarrow \dot W_s \approx \dot m(h_1 - h_2)$ (work **out**).
-- **Adiabatic compressor**: $\dot W_s \approx \dot m(h_2 - h_1)$ (work **in**).
+- **Adiabatic compressor**: $\dot W_{\mathrm{in}}=-\dot W_s \approx \dot m(h_2 - h_1)$ (work **in**).
 - **Throttling valve**: $\dot W_s=0$, $\dot Q=0$, negligible kinetic terms $\Rightarrow h_2 \approx h_1$ (JT process).
 
 These forms are the day-to-day workhorses of power plants, refrigeration cycles, and propulsion.
@@ -317,11 +320,11 @@ with sign depending on direction (melting/evaporation absorb, freezing/condensat
 
 **Scenario.** Start with $n$ moles of an ideal monatomic gas at $(T_1,V_1)$. Step 1: heat at constant volume to $T_2$. Step 2: reversible isothermal expansion to volume $V_2$ at $T_2$. Find $Q$, $W$, and $\Delta U$ for each step and the net efficiency as a heat-to-work converter.
 
-- **Step 1 (isochoric).** $W_1=0$; $Q_1 = \Delta U_1 = n C_V (T_2 - T_1)$, with $C_V=\tfrac{3}{2}R$ (monatomic ideal gas).
+- **Step 1 (isochoric).** $W_1=0$; $Q_1 = \Delta U_1 = n C_{V,m} (T_2 - T_1)$, with $C_{V,m}=\tfrac{3}{2}R$ (monatomic ideal gas).
 - **Step 2 (isothermal at $T_2$).** $\Delta U_2=0$; $Q_2 = W_2 = nRT_2 \ln\!\big(V_2/V_1\big)$.
 - **Totals.** $W = W_1+W_2 = nRT_2 \ln(V_2/V_1)$,
   $Q_{\text{in}} = Q_1+Q_2$.
-  An “efficiency” $\eta=W/Q_{\text{in}}$ is well-defined for the pair of steps but is not bounded by Carnot because the composite is not a reversible engine between two fixed reservoirs; instead, it samples a range of temperatures during the isochoric heat addition. Lesson: **the first law tracks amounts; the second law judges architectures.**
+  A ratio $\eta=W/Q_{\text{in}}$ can be defined for these two steps, but it is not a heat-engine cycle efficiency: the final state differs from the initial state. A Carnot comparison requires a complete cycle and specified heat reservoirs; heat addition here also spans a range of temperatures. Lesson: **the first law tracks amounts; the second law judges architectures.**
 
 ---
 
@@ -339,7 +342,7 @@ Despite this complexity, the first law itself does not care what $U$ is—only t
 
 From kinetic theory (ideal gas),
 $$
-U = \frac{f}{2} n R T, \qquad C_V = \frac{f}{2} R,\qquad C_P = \left(\frac{f}{2}+1\right)R,
+U = \frac{f}{2} n R T, \qquad C_{V,m} = \frac{f}{2} R,\qquad C_{P,m} = \left(\frac{f}{2}+1\right)R,
 $$
 with $f$ the number of active quadratic degrees of freedom (3 for translations, +2 for rotations in linear molecules at moderate $T$, +vibrations at higher $T$). The **equipartition theorem** explains why heat capacities step upward as more modes “turn on” with temperature—until quantum freezing suppresses high-energy modes at low $T$.
 
@@ -354,7 +357,7 @@ This microscopic anchor does **not** replace the first law; it explains its para
   \mathrm dU = \delta Q - \delta W,\quad \delta W=P\,\mathrm dV \text{ (for simple compressible)}.
   $$
 - **Enthalpy** makes constant-pressure heating transparent: $\delta Q|_P=\mathrm dH$.
-- **Heat capacities** connect temperature changes to $U$ and $H$; in ideal gases, $C_P-C_V=R$ and adiabats obey $PV^\gamma=\text{const}$.
+- **Heat capacities** connect temperature changes to $U$ and $H$; in ideal gases, $C_P-C_V=nR$ and adiabats obey $PV^\gamma=\text{const}$.
 - **Open-system forms** (steady-flow energy equation) power turbine/compressor/nozzle analyses.
 - The first law **counts possibilities**; the **second law** (next section) will **rank** them by directionality via entropy and free energies.
 
@@ -363,6 +366,8 @@ This microscopic anchor does **not** replace the first law; it explains its para
 ## 3.4 The Second Law: Entropy and Irreversibility
 
 The first law of thermodynamics proclaims that energy is conserved: it can be transformed from one form to another but never created or destroyed. Yet experience tells us that something deeper is missing. A hot coffee left on the table cools; it never spontaneously warms itself by sucking heat from the cooler air. Milk spills, but never unspills. Engines can convert heat to work, but not perfectly. Energy conservation alone cannot explain these one-way tendencies. That missing ingredient is the second law of thermodynamics.
+
+![A gas initially confined to half a container expands into the whole isolated container. More accessible microstates correspond to larger entropy.](/images/diagrams/entropy.svg)
 
 ---
 
@@ -565,7 +570,6 @@ The second law of thermodynamics seems absolute: entropy in an isolated system c
 
 Picture a gas-filled container divided into two chambers by a wall with a tiny door. The demon, an intelligent gatekeeper, observes molecules. Whenever a fast (high-energy) molecule approaches from the left, it opens the door to the right; whenever a slow molecule approaches from the right, it opens the door to the left. Over time, the left side becomes colder, the right side hotter—without any expenditure of work. The demon has, in effect, decreased entropy, seemingly violating the second law.
 
-  ![Maxwell`s Demon](/images/maxwell-demon.png)
 
 Maxwell did not propose building such a demon; he wanted to probe the foundations of irreversibility. Was the second law truly absolute, or statistical? His thought experiment foreshadowed the probabilistic interpretation later championed by Boltzmann.
 
@@ -773,7 +777,7 @@ $$
 \frac{dP_{\mathrm{sat}}}{dT} = \frac{L}{T \Delta v},
 $$
 
-where $L$ is the latent heat of transformation and $\Delta v = v_\beta - v_\alpha$ is the specific volume difference between phases. For liquid–vapor transitions, $v_\beta \gg v_\alpha$, so
+where $L$ is the molar latent heat of transformation and $\Delta v = v_\beta - v_\alpha$ is the molar volume difference between phases. For liquid–vapor transitions, $v_\beta \gg v_\alpha$, so
 
 $$
 \frac{dP}{dT} \approx \frac{L}{T v_\beta}.
@@ -884,7 +888,7 @@ Thermodynamics also dictates stability through response functions:
   \alpha = \frac{1}{V} \left(\frac{\partial V}{\partial T}\right)_P .
   $$
 
-Stability requires $C_P > 0$, $\kappa_T > 0$. Near critical points (e.g., liquid–gas critical point), these quantities diverge, fluctuations become macroscopic, and universality classes emerge. Critical opalescence—milky scattering in near-critical fluids—is entropy fluctuations made visible.
+Stability requires $C_P > 0$, $\kappa_T > 0$. Near critical points (e.g., a liquid–gas critical point), some response functions diverge, fluctuations extend to macroscopic scales, and universality classes emerge. Critical opalescence—the milky scattering of near-critical fluids—is primarily caused by enhanced density fluctuations, which produce refractive-index fluctuations and scatter light.
 
 ---
 
@@ -912,7 +916,7 @@ Thermodynamics, born of steam engines, has expanded its reach to the frontiers o
 
 In the 1970s, physicists realized that black holes—once thought to be the ultimate entropy sinks—obey laws strikingly similar to thermodynamics.
 
-- **Area theorem (Hawking).** The surface area $A$ of a black hole’s event horizon never decreases, paralleling the second law.  
+- **Area theorem (Hawking).** In classical general relativity, under the null energy condition and the usual global regularity assumptions, the surface area $A$ of a black hole’s event horizon never decreases, paralleling the second law.  
 - **Bekenstein entropy.** Jacob Bekenstein proposed that a black hole carries entropy proportional to horizon area:  
   $$
   S_{\text{BH}} = \frac{k_B c^3}{4 G \hbar} A .
@@ -927,7 +931,7 @@ In the 1970s, physicists realized that black holes—once thought to be the ulti
 The four laws of black-hole mechanics mirror thermodynamics:
 
 1. **Zeroth law.** Surface gravity $\kappa$ is constant over the horizon (analogous to uniform temperature).  
-2. **First law.** $\mathrm dM = ( \kappa / 8\pi G ) \mathrm dA + \Omega \mathrm dJ + \Phi \mathrm dQ$, linking changes in mass $M$, area $A$, angular momentum $J$, and charge $Q$.  
+2. **First law.** $c^2\mathrm dM = ( \kappa c^2 / 8\pi G ) \mathrm dA + \Omega \mathrm dJ + \Phi \mathrm dQ$, linking changes in mass $M$, area $A$, angular momentum $J$, and charge $Q$.  
 3. **Second law.** Horizon area never decreases (unless Hawking radiation is included, in which case the *generalized* entropy $S_{\text{BH}}+S_{\text{outside}}$ never decreases).  
 4. **Third law.** It is impossible to reach $\kappa=0$ (absolute zero surface gravity) by finite steps.
 
@@ -940,7 +944,7 @@ Thus, thermodynamics reaches into gravity itself, suggesting spacetime may be em
 At microscopic scales, thermal fluctuations rival averages. The second law still holds on average, but transient violations can occur. These are captured by fluctuation theorems.
 
 - **Jarzynski equality (1997).**  
-  For a system driven out of equilibrium by work $W$,  
+  For a system initially in thermal equilibrium and then driven by work $W$ done **on** the system (the opposite sign to work output in §3.3),  
   $$
   \langle e^{-\beta W} \rangle = e^{-\beta \Delta F},
   $$
@@ -977,7 +981,7 @@ Quantum mechanics reshapes thermodynamics when coherence and entanglement matter
 - **Resource theories.** Quantum thermodynamics treats states and operations under constraints (thermal contacts, unitaries). Free energies generalize to whole families indexed by Rényi entropies.  
 - **Quantum engines.** Three-level masers and qubits can serve as working media. Efficiency is still bounded by Carnot, but coherence and correlations act as new resources.  
 - **Entanglement entropy.** In quantum many-body systems, entanglement provides a statistical measure akin to thermodynamic entropy. Black-hole entropy may reflect entanglement between inside and outside degrees of freedom.  
-- **Quantum information.** Landauer’s principle persists: erasing a qubit’s state costs $k_B T \ln 2$. Quantum error correction thus carries a thermodynamic price tag.
+- **Quantum information.** Landauer’s principle persists: in the standard isothermal setting, resetting a degenerate, maximally mixed qubit with no useful correlations requires at least $k_B T \ln 2$ of heat to be released to the reservoir. The cost is state-dependent; the bound is not universal for an arbitrary known qubit. Memory resetting in quantum error correction therefore has a thermodynamic cost.
 
 Experiments. Superconducting qubits, trapped ions, and NV centers in diamond realize quantum heat engines, testing the interplay of coherence and dissipation.
 

@@ -1,9 +1,13 @@
 import type { MetadataRoute } from 'next';
 import { locales, localePath } from '@/lib/i18n';
-import { articleList, hasTranslation } from '@/lib/articles';
-import { siteUrl } from '@/lib/seo';
+import { articleList, translatedArticleLocales } from '@/lib/articles';
+import { absoluteUrl, languageAlternates } from '@/lib/seo';
 export default function sitemap(): MetadataRoute.Sitemap {
- const entries: MetadataRoute.Sitemap = locales.flatMap(locale => ['/', '/about', '/privacy'].map(path => ({ url: siteUrl + localePath(locale, path), alternates: { languages: Object.fromEntries(locales.map(language => [language, siteUrl + localePath(language, path)])) } })));
- for (const kind of ['chapters', 'curiosities'] as const) for (const article of articleList(kind)) for (const locale of locales) if (hasTranslation(kind, article.slug, locale)) entries.push({ url: siteUrl + localePath(locale, `/${kind}/${article.slug}`) });
+ const entries: MetadataRoute.Sitemap = locales.flatMap(locale => ['/', '/about', '/privacy'].map(path => ({ url: absoluteUrl(localePath(locale, path)), alternates: { languages: languageAlternates(path) } })));
+ for (const kind of ['chapters', 'curiosities'] as const) for (const article of articleList(kind)) {
+  const availableLocales = translatedArticleLocales(kind, article.slug);
+  const path = `/${kind}/${article.slug}`;
+  for (const locale of availableLocales) entries.push({ url: absoluteUrl(localePath(locale, path)), alternates: { languages: languageAlternates(path, availableLocales) } });
+ }
  return entries;
 }

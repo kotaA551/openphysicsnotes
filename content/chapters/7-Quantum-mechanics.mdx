@@ -91,13 +91,13 @@ $$
 \frac{\Pi_a\ket{\psi}}{\sqrt{P(a)}}
 $$
 
-For degenerate $a$, $\Pi_a$ projects to the full eigenspace. More general measurements (POVMs) appear in §7.12; for most of this chapter, projective measurements suffice.
+For degenerate $a$, $\Pi_a$ projects to the full eigenspace. More general measurements (POVMs) go beyond the projective version; for most of this chapter, projective measurements suffice.
 
 ---
 
 ### 7.1.4 Time evolution (unitary dynamics)
 
-A closed system evolves **unitarily**. There exists a one-parameter family of unitaries $U(t)$ with
+A closed system evolves **unitarily**. For a time-independent Hamiltonian, there exists a strongly continuous one-parameter unitary group $U(t)$ with
 
 $$
 \ket{\psi(t)} = U(t)\,\ket{\psi(0)},\qquad U(t_1)U(t_2)=U(t_1+t_2),\quad U(0)=\mathbb I
@@ -315,7 +315,7 @@ $$
 \int \phi_m^{\ast}(x)\,\phi_n(x)\,dx=0\quad (m\ne n)
 $$
 
-Real, confining potentials produce discrete spectra with increasing node counts as $n$ rises. Bound vs scattering states will be treated carefully in §7.10.
+Real, confining potentials produce discrete spectra with increasing node counts as $n$ rises. Examples of bound and scattering states appear in §7.2.6–7.2.7.
 
 ---
 
@@ -354,7 +354,7 @@ $$
 \psi(x) = \left(\frac{1}{\pi d^{2}}\right)^{1/4}\exp\!\left(-\frac{x^{2}}{2d^{2}}\right)
 $$
 
-Then $\Delta x=d/\sqrt{2}$ and $\Delta p=\hbar/(\sqrt{2}d)$, hence $\Delta x\,\Delta p=\hbar/2$. Time-evolving under a free Hamiltonian broadens $d(t)$ while keeping the product fixed.
+Then $\Delta x=d/\sqrt{2}$ and $\Delta p=\hbar/(\sqrt{2}d)$, hence $\Delta x\,\Delta p=\hbar/2$. Time evolution under a free Hamiltonian broadens $d(t)$ while keeping the momentum spread fixed, so the position–momentum standard-deviation product increases away from the initial time.
 
 **(b) Free-particle propagator in 1D (form)**
 
@@ -364,7 +364,7 @@ $$
 K(x,t;x',0)=\sqrt{\frac{m}{2\pi i\hbar t}}\;\exp\!\left(\frac{i m (x-x')^{2}}{2\hbar t}\right)
 $$
 
-and $\psi(x,t)=\int K(x,t;x',0)\,\psi_0(x')\,dx'$. We will use this in §7.9.
+and $\psi(x,t)=\int K(x,t;x',0)\,\psi_0(x')\,dx'$. This kernel evolves any initial free-particle wave packet.
 
 **(c) Commutator algebra warmup**
 
@@ -501,6 +501,9 @@ These conditions kill boundary terms so that $\int \phi^{\ast}(\hat H\psi)=\int 
 ---
 
 ### 7.2.6 Canonical 1D examples (fast but useful)
+
+![The first three stationary wavefunctions vanish at both walls. Higher states have additional interior nodes.](/images/diagrams/quantum-well.svg)
+
 
 **(a) Free particle.** $V=0$ gives plane waves
 
@@ -799,7 +802,7 @@ $$
 \langle x^{2}\rangle = \frac{L^{2}}{3} - \frac{L^{2}}{2\pi^{2}n^{2}}
 $$
 
-so the spatial spread shrinks slowly with $n$.
+so the spatial spread increases with $n$ toward the classical uniform-distribution limit.
 
 **(c) Jump across a delta spike**
 
@@ -816,6 +819,8 @@ lead to one bound state at $E=-m\lambda^{2}/(2\hbar^{2})$ for $\lambda<0$.
 ## 7.3 The Quantum Harmonic Oscillator: Algebra, Waves, and Coherent Motion
 
 The harmonic oscillator is quantum’s Swiss Army knife. It models vibrations, phonons, molecular stretches, the EM field’s normal modes, even the “zero-point jitter” of everything. It is also where the math becomes elegant: one potential, two complementary solutions—**differential** (Hermite polynomials) and **algebraic** (ladder operators)—and a gallery of physical insights.
+
+![Equally spaced oscillator energy levels start above the minimum of the quadratic potential by half hbar omega.](/images/diagrams/quantum-oscillator.svg)
 
 ---
 
@@ -1012,7 +1017,7 @@ $$
 \frac{d H_{n}}{d\xi} = 2n\,H_{n-1}(\xi)
 $$
 
-Zeros of $H_{n}$ are real and bracket the classical turning points $\xi \approx \pm\sqrt{2n+1}$, foreshadowing the WKB picture where oscillatory regions live inside the turning points and exponential tails outside.
+Zeros of $H_{n}$ are real and lie inside the classical turning points $\xi \approx \pm\sqrt{2n+1}$, foreshadowing the WKB picture where oscillatory regions live inside the turning points and exponential tails outside.
 
 ---
 
@@ -1312,6 +1317,8 @@ $$
 E_n = -\,\frac{\mu e^{4}}{2 (4\pi\varepsilon_0)^{2} \hbar^{2}}\,\frac{Z^{2}}{n^{2}} = -\,\frac{\mu c^{2}\alpha^{2}}{2}\,\frac{Z^{2}}{n^{2}}
 $$
 
+![Hydrogen bound energy levels converge toward zero. A downward transition from n equals two to n equals one emits a photon.](/images/diagrams/atomic-levels.svg)
+
 and explicit wavefunctions labeled by $(n,\ell,m)$. Hydrogen wins because the math secretly has extra symmetry; the degeneracy is $n^{2}$ per $n$ (ignoring spin).
 
 ---
@@ -1485,7 +1492,7 @@ which factor into angular pieces (Clebsch–Gordan algebra) and radial integrals
 The Coulomb problem has a conserved **Runge–Lenz vector** (quantum-symmetrized)
 
 $$
-\boldsymbol A = \frac{1}{2\mu}\,(\boldsymbol p \times \boldsymbol L - \boldsymbol L \times \boldsymbol p) - \frac{k}{r}\,\hat{\boldsymbol r}
+\boldsymbol A = \frac{1}{2\mu}\,(\boldsymbol p \times \boldsymbol L - \boldsymbol L \times \boldsymbol p) - k\,\hat{\boldsymbol r}
 $$
 
 Together, $\boldsymbol L$ and $\boldsymbol A$ generate an $SO(4)$ symmetry for bound states, explaining why $E_n$ depends on $n$ only, not on $\ell$ or $m$. Break that symmetry (e.g., by fields or relativity) and the degeneracy splits.
@@ -1679,10 +1686,10 @@ $$
 Combine expectation values using hydrogen eigenstates and angular momentum algebra. The sum depends on $n$ and the **total** $j=\ell\pm \tfrac12$ but not on $m$, giving the textbook fine-structure shift
 
 $$
-\Delta E_{n,j}^{(\mathrm{fs})} = \frac{\mu c^{2}\,(Z\alpha)^{4}}{2 n^{3}}\left(\frac{1}{j+\tfrac12} - \frac{3}{4n}\right)
+\Delta E_{n,j}^{(\mathrm{fs})} = -\,\frac{\mu c^{2}\,(Z\alpha)^{4}}{2 n^{3}}\left(\frac{1}{j+\tfrac12} - \frac{3}{4n}\right)
 $$
 
-Here $\mu$ is the reduced mass and $\alpha\equiv e^{2}/4\pi\varepsilon_{0}\hbar c$. Fine structure lifts the $n^{2}$ degeneracy down to the $2n$ degeneracy labeled by $j$ and $m$.
+Here $\mu$ is the reduced mass and $\alpha\equiv e^{2}/4\pi\varepsilon_{0}\hbar c$. Fine structure splits the spin-inclusive $2n^{2}$ degeneracy according to $j$. Each allowed angular-momentum multiplet retains $2j+1$ magnetic states labeled by $m$; states with the same principal and total angular-momentum quantum numbers but different orbital angular momentum remain degenerate at this order.
 
 ---
 
@@ -1691,7 +1698,7 @@ Here $\mu$ is the reduced mass and $\alpha\equiv e^{2}/4\pi\varepsilon_{0}\hbar 
 Add a uniform magnetic field $\boldsymbol B = B\,\hat{\boldsymbol z}$. The leading coupling is
 
 $$
-H'_{\mathrm{Z}} = \mu_{B}\,(L_{z} + g_{s} S_{z})\,B
+H'_{\mathrm{Z}} = \frac{\mu_{B}}{\hbar}\,(L_{z} + g_{s} S_{z})\,B
 $$
 
 with $g_{s}\approx 2$ and $\mu_{B}=e\hbar/2m_{e}$. In LS coupling, levels are labeled by $\ket{n\ell s j m_{j}}$ and the shift is packaged as
@@ -1729,7 +1736,7 @@ $$
 For hydrogen $1s$ this yields a quadratic Stark shift
 
 $$
-\Delta E_{1s} = -\,\frac{1}{2}\,\alpha_{1s}\,E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,a_{0}^{3}
+\Delta E_{1s} = -\,\frac{1}{2}\,\alpha_{1s}\,E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,(4\pi\varepsilon_0)\,a_{0}^{3}
 $$
 
 where $\alpha$ is the **polarizability** and $a_{0}$ the Bohr radius.
@@ -1757,10 +1764,10 @@ with $k=n_{1}-n_{2}$ the parabolic quantum number satisfying $n_{1}+n_{2}+|m|+1=
 
 **(a) Quadratic Stark for hydrogen ground state**
 
-Use closure over $np$ states to show
+Use the complete set of $np$ bound states together with the continuum p-wave states to show
 
 $$
-\Delta E_{1s}^{(2)} = -\,\frac{1}{2} \alpha_{1s} E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,a_{0}^{3}
+\Delta E_{1s}^{(2)} = -\,\frac{1}{2} \alpha_{1s} E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,(4\pi\varepsilon_0)\,a_{0}^{3}
 $$
 
 Sketch: only $\ell=1$ intermediate states contribute because $z\propto Y_{1}^{0}$ changes $\ell$ by $\pm 1$. Evaluate the radial sum or use known hydrogenic polarizability.
@@ -1808,7 +1815,7 @@ to get exact $E_{\pm} = \tfrac{1}{2}(E_{1}^{(0)}+E_{2}^{(0)}) \pm \tfrac{1}{2}\s
 - Derive $E_{n}^{(1)}$, $\ket{n^{(1)}}$, and $E_{n}^{(2)}$ from the series ansatz with intermediate normalization  
 - For a 3-fold degenerate level $\{\ket{\phi_{1}},\ket{\phi_{2}},\ket{\phi_{3}}\}$ and perturbation $H'$, build $W$, solve the secular equation $\det(W-\lambda I)=0$, and construct the mixed eigenkets  
 - Compute the Landé $g_{J}$ formula from $H'_{\mathrm{Z}}$ using vector coupling and verify special cases $S$ ($\ell=0$) and $L$-only ($s=0$) limits  
-- Evaluate the quadratic Stark shift for $1s$ by explicit summation over $np$ states or by using known closure relations  
+- Evaluate the quadratic Stark shift for $1s$ by explicit summation over $np$ bound states and integration over continuum p-wave states, or by an equivalent complete-resolvent method.  
 - Starting from $H_{\mathrm{rel}}, H_{\mathrm{SO}}, H_{\mathrm{D}}$, show that the combined fine-structure correction depends only on $n$ and $j$ and reproduce $\Delta E_{n,j}^{(\mathrm{fs})}$ above
 
 ---

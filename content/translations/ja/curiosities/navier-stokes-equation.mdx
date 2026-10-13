@@ -1,0 +1,226 @@
+---
+description: ナビエ–ストークス方程式を、質量・運動量・エネルギーの保存則から組み立てる。粘性応力、非圧縮流れ、渦度、無次元化とレイノルズ数を学び、弱解と正則性、三次元のミレニアム問題、乱流のエネルギースペクトルへ進む。境界条件や数値解法にも触れ、計算できることと数学的に証明できることの違いを考える。
+---
+## 1. なぜ重要なのか：ミレニアム問題
+恒星、海、大気、プラズマなど、流体はいたるところに存在する。  
+それでも、**三次元非圧縮ナビエ–ストークス方程式**について、滑らかな初期データから出発する**滑らかな解の大域的存在と一意性**は、まだ証明されていない。これがクレイ数学研究所のミレニアム問題である。  
+解の正則性を理解することは、古典物理学に残された最大級の難問である**乱流**の理解にもつながる。
+
+---
+
+## 2. 連続体の場と保存則
+
+質量密度を $\rho(\boldsymbol x,t)$、速度を $\boldsymbol v(\boldsymbol x,t)$、圧力を $p(\boldsymbol x,t)$、コーシー応力を $\boldsymbol{\sigma}$ とする。単位質量当たりの体積力（例えば重力）を $\boldsymbol f$ とする。
+
+### 2.1 質量保存
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+### 2.2 運動量保存（コーシーの式）
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+応力を、等方的な圧力と粘性による部分に分ける。
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+---
+
+## 3. 構成則：ニュートン流体
+
+等方的なニュートン流体では、
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+ここで $\mu$ は粘性係数、$\lambda$ は第二粘性係数であり、体積粘性係数は $\zeta=\lambda+2\mu/3$ となる。
+
+![静止した下側の板と動く上側の板の間では、定常層流の速度は高さとともに直線的に増える。粘性によるせん断と滑りなし条件を示している。](/images/diagrams/couette-flow.svg)
+
+粘性係数が空間的に一定ならば、これを運動量のつり合いに代入して、**圧縮性ナビエ–ストークス方程式**を得る。
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+$\rho$ が一定のとき、動粘性係数を $\nu \equiv \mu/\rho$ と定義する。
+
+---
+
+## 4. 非圧縮流れの形
+
+密度 $\rho=\rho_0$ が一定で、
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+このとき、次式を得る。
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+運動量方程式の発散を取ると、適切な境界条件のもとで**圧力のポアソン方程式**が得られる。
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. 渦度とヘリシティ
+
+渦度を $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$ と定義する。  
+非圧縮流れ（$\nabla\!\cdot\!\boldsymbol v=0$）では、
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+成分で表すと、
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+$\omega_j \partial_j v_i$ の項は**渦の伸長**を表す。これは三次元でのみ現れる。  
+ヘリシティ $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ は、渦線のトポロジーを調べる指標となる。
+
+![平面内の反時計回りの循環に対応する渦度は、紙面の手前を向く。丸の中の点でその向きを示している。](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. エネルギー収支：非圧縮流れ
+
+運動量方程式と $\boldsymbol v$ の内積を取り、境界 $\partial\Omega$ で滑りなし条件を課した領域 $\Omega$ 上で積分する。
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+$\boldsymbol f=\boldsymbol 0$ の場合、運動エネルギーは単調に減少し、粘性による散逸は $\nu\|\nabla \boldsymbol v\|_2^2$ で与えられる。
+
+---
+
+## 7. 無次元化と支配パラメータ
+
+代表的な長さ $L$ と速さ $U$ を選び、次のように定義する。
+$\boldsymbol x'=\boldsymbol x/L$、$t' = tU/L$、$\boldsymbol v'=\boldsymbol v/U$、$p'=p/(\rho U^2)$。
+
+非圧縮流れの方程式は、次の形になる。
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+ここで**レイノルズ数**は、
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+必要に応じて、ほかの無次元数も用いる。
+- **マッハ数** $\mathrm{Ma}=U/c_s$（圧縮性）。
+- **フルード数** $\mathrm{Fr}=U/\sqrt{gL}$（重力の影響）。
+- **プラントル数** $\mathrm{Pr}=\nu/\kappa$（運動量拡散と熱拡散の比）。
+
+---
+
+## 8. 圧縮性ナビエ–ストークス–フーリエ系の概観
+
+内部エネルギー $e$ または温度 $T$ と、フーリエの熱流束 $\boldsymbol q=-k_{\rm th} \nabla T$ を含める。ここで $k_{\rm th}$ は熱伝導率であり、上で用いた熱拡散率 $\kappa$ とは異なる。
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+状態方程式（例えば理想気体の式）$p=(\gamma-1)\rho e$ を加えることで、方程式系が閉じる。
+
+---
+
+## 9. 数学的理論：存在と一意性
+
+### 9.1 弱解（ルレイ–ホップ）
+三次元非圧縮ナビエ–ストークス方程式では、$L^2$ 初期データに対して、**エネルギー不等式**を満たす**時間大域的な弱解**が存在する。  
+**一意性**は解のクラス、データ、外力に依存する。特定の体積力に対しては非一意性が示されている（[Albritton・Brué・Colombo](https://arxiv.org/abs/2112.03116)）。[Hou・Wang・Yangの2025–2026年のプレプリント](https://arxiv.org/abs/2509.25116)は、特異な初期データから出発する外力なしの非一意性を計算機援用で示したと報告している。これは滑らかな初期データに対する大域的正則性の解決ではない。
+
+### 9.2 三次元の正則性条件
+- **ビール–加藤–マイダ条件**：時刻 $T$ で爆発が起こるならば、
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+- **プロディ–セリン条件**：$\boldsymbol v \in L^p(0,T;L^q)$ であって、
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+を満たすならば、解は $(0,T]$ 上で滑らかである。
+- **カファレッリ–コーン–ニーレンバーグの定理**：適切な弱解の時空内の特異点集合は、放物型ハウスドルフ次元が $\le 1$ となる（部分正則性）。
+
+### 9.3 二次元での大域的正則性
+二次元では、滑らかな初期データに対して**大域的な存在と一意性**が成り立つ。  
+エンストロフィー $\int |\boldsymbol{\omega}|^2 dV$ は有界に保たれ、渦の伸長は起こらない。
+
+### 9.4 圧縮性流れ
+一定の条件のもとで、$\gamma$ 則に従う気体には**有限エネルギーの大域的弱解**が存在する。しかし、正則性と一意性の多くは未解決である。
+
+> **ミレニアム問題：** 三次元で、滑らかで発散ゼロの初期データから**一意な滑らかな大域解**が得られることを証明せよ。あるいは、有限時間で特異点が生じる反例を示せ。
+
+---
+
+## 10. 乱流とスペクトル
+
+高 $\mathrm{Re}$ の一様・等方乱流を扱うコルモゴロフの1941年理論（K41）では、慣性領域のエネルギースペクトルは、
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+ここで $\varepsilon$ は平均散逸率、$C_K\!\sim\! \mathcal O(1)$ はコルモゴロフ定数である。
+
+**コルモゴロフの微小スケール：**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+直接数値シミュレーション（DNS）の計算量は急増する。三次元では格子点数が $\sim \mathrm{Re}^{9/4}$ と増えることが、**LES**や**RANS**の閉鎖モデルを用いる動機となる。未解像スケールの応力をモデル化する**閉鎖問題**は、依然として中心的な課題である。
+
+---
+
+## 11. 境界条件と領域の形状
+
+- **滑りなしの壁：** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$。  
+- **自由滑り：** $\boldsymbol n\!\cdot\!\boldsymbol v=0$、$\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$。  
+- 理論解析やDNSで用いる**周期箱（トーラス）**。  
+- 適切な応力・圧力条件を指定した**流入・流出境界**。
+
+境界条件の選択は、問題の適切性、エネルギー収支、数値安定性に影響する。
+
+---
+
+## 12. 数値計算の要点
+
+- **射影法：** $\boldsymbol v^\ast$ を時間発展させ、$p$ のポアソン方程式を解き、$\nabla\!\cdot\!\boldsymbol v^{n+1}=0$ を満たす空間へ射影する。  
+- **エネルギー安定な計算法：** 対流項を歪対称形にすると、離散系のエネルギーを保存できる。  
+- **移流・拡散を陽的に扱う計算法のCFL条件：** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$。  
+- **発散の制御：** 発散ゼロのスペクトル基底、またはinf–sup条件を満たす速度・圧力空間の組を用いた混合有限要素法。厳密に発散ゼロとするには適切な空間が必要であり、inf–sup安定性だけでは保証されない。
+
+---
+
+## 13. 関連する理論と拡張
+
+- **オイラー極限：** $\nu\to 0$ で非圧縮オイラー方程式へ移る。有限時間特異点が生じうるかどうかも、同様に大きな難問である。  
+- **相対論的流体力学：** 素朴なナビエ–ストークス理論は因果律に反する。2次の**イスラエル–スチュワート理論**は、輸送係数と流体の状態に適切な条件を課すことで因果性を回復できる（[体積粘性を含む厳密な例](https://arxiv.org/abs/1901.06701)）。  
+- **量子流体：** 二流体模型と量子渦を用いた、超流動におけるナビエ–ストークス方程式の類似系。
+
+---
+
+## 14. 研究の状況
+
+- 二次元：理論は成熟しており、大域的な滑らかさが知られている。  
+- 三次元：**滑らかな大域解の存在**と**有限時間での爆発**のどちらが起こるかは、**未解決**である。  
+- 乱流の現象論（K41）は広く成功しているが、**間欠性**と閉鎖問題は今も盛んに研究されている。  
+
+**要点：** シミュレーションも測定も驚くほど精密にできる。それでも、正則性と乱流を支配する**数学の深部**には、なお最大の難関が潜んでいる。
+
+---

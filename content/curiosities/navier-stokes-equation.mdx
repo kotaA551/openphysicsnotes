@@ -20,7 +20,7 @@ $$
 = \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
 $$
 
-Decompose stress into isotropic pressure and deviatoric part:
+Decompose stress into isotropic pressure and viscous part:
 $$
 \boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
 $$
@@ -35,9 +35,11 @@ $$
 \qquad
 \boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
 $$
-with dynamic viscosity $\mu$, bulk viscosity $\lambda$.
+with dynamic viscosity $\mu$ and second viscosity coefficient $\lambda$; the bulk viscosity is $\zeta=\lambda+2\mu/3$.
 
-Plugging into momentum balance gives the **compressible Navier–Stokes**:
+![Between a stationary lower plate and a moving upper plate, steady laminar velocity grows linearly with height. This illustrates viscous shear and no slip.](/images/diagrams/couette-flow.svg)
+
+For spatially constant viscosity coefficients, plugging into momentum balance gives the **compressible Navier–Stokes**:
 $$
 \rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
 = -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
@@ -85,6 +87,8 @@ $$
 The term $\omega_j \partial_j v_i$ is **vortex stretching** (3D only).  
 Helicity $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ diagnoses topology of vortex lines.
 
+![Counterclockwise circulation in the plane has vorticity pointing out of the page, represented by a circled dot.](/images/diagrams/vorticity.svg)
+
 ---
 
 ## 6. Energy Balance (Incompressible)
@@ -125,7 +129,7 @@ Other dimensionless groups (as needed):
 
 ## 8. Compressible Navier–Stokes–Fourier (Sketch)
 
-Include internal energy $e$ or temperature $T$, with Fourier heat flux $\boldsymbol q=-\kappa \nabla T$:
+Include internal energy $e$ or temperature $T$, with Fourier heat flux $\boldsymbol q=-k_{\rm th} \nabla T$ (thermal conductivity $k_{\rm th}$, distinct from the thermal diffusivity $\kappa$ above):
 $$
 \partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
 = -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
@@ -138,7 +142,7 @@ Equation of state (e.g., ideal gas) closes the system: $p=(\gamma-1)\rho e$.
 
 ### 9.1 Weak solutions (Leray–Hopf)
 For 3D incompressible NS with $L^2$ data, **global-in-time weak solutions** exist that satisfy the **energy inequality**.  
-**Uniqueness** of such weak solutions is open.
+**Uniqueness** depends on the solution class, data and forcing. Nonuniqueness is established for certain body forces ([Albritton, Brué and Colombo](https://arxiv.org/abs/2112.03116)). A 2025–2026 preprint by [Hou, Wang and Yang](https://arxiv.org/abs/2509.25116) reports computer-assisted nonuniqueness without forcing for singular initial data; this does not resolve global regularity for smooth data.
 
 ### 9.2 Regularity criteria (3D)
 - **Beale–Kato–Majda**: blow-up at $T$ implies
@@ -195,15 +199,15 @@ Choice affects well-posedness, energy budget, and numerical stability.
 
 - **Projection methods:** advance $\boldsymbol v^\ast$, solve Poisson for $p$, project to $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.  
 - **Energy-stable schemes:** skew-symmetric convective form preserves discrete energy.  
-- **CFL constraint:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
-- **Divergence-free bases:** spectral/finite-element methods with inf–sup stable pairs.
+- **CFL constraint for explicit advection/diffusion schemes:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
+- **Divergence control:** divergence-free spectral bases, or mixed finite elements with inf–sup-stable velocity–pressure pairs. Exact divergence freedom requires suitable spaces; inf–sup stability alone does not guarantee it.
 
 ---
 
 ## 13. Connections and Extensions
 
 - **Euler limit:** $\nu\to 0$ → incompressible Euler; possible finite-time singularities are a parallel grand challenge.  
-- **Relativistic hydrodynamics:** naive Navier–Stokes is acausal; **Israel–Stewart** (second-order) fixes causality.  
+- **Relativistic hydrodynamics:** naive Navier–Stokes is acausal; second-order **Israel–Stewart** theories can restore causality under suitable conditions on transport coefficients and fluid states ([a rigorous bulk-viscous example](https://arxiv.org/abs/1901.06701)).  
 - **Quantum fluids:** superfluid N-S analogues with two-fluid models and quantized vortices.
 
 ---

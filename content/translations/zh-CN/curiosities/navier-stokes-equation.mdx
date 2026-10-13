@@ -1,0 +1,226 @@
+---
+description: 从质量与动量守恒推导牛顿流体的纳维—斯托克斯方程，介绍不可压缩流动、压力泊松方程、涡量、螺度与能量耗散。通过雷诺数等无量纲参数连接流动尺度，概述可压缩热流体、弱解与正则性判据、三维千禧年难题、湍流能谱及数值方法，并讨论边界条件、相对论流体和量子流体中的延伸与尚未解决的数学问题。
+---
+## 1. 为什么重要（千禧年难题）
+流体无处不在——恒星、海洋、空气、等离子体。  
+然而，对于光滑初始数据， **三维不可压缩纳维—斯托克斯方程** 的 **全局光滑解存在性与唯一性** 仍未得到证明（克雷千禧年难题）。  
+理解正则性也是研究 **湍流** 的基础；湍流或许是经典物理学最后一个重大难题。
+
+---
+
+## 2. 连续介质场与守恒定律
+
+令 $\rho(\boldsymbol x,t)$ 为质量密度，$\boldsymbol v(\boldsymbol x,t)$ 为速度，$p(\boldsymbol x,t)$ 为压力，$\boldsymbol{\sigma}$ 为柯西应力。单位质量所受的体力为 $\boldsymbol f$（例如重力）。
+
+### 2.1 质量守恒
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+### 2.2 动量守恒（柯西方程）
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+将应力分解为各向同性压力与黏性部分：
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+---
+
+## 3. 本构关系（牛顿流体）
+
+对于各向同性牛顿流体，
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+其中 $\mu$ 为动力黏度，$\lambda$ 为第二黏性系数；体积黏度为 $\zeta=\lambda+2\mu/3$。
+
+![在静止的下板与运动的上板之间，稳态层流速度随高度线性增加。这展示了黏性剪切与无滑移条件。](/images/diagrams/couette-flow.svg)
+
+当黏性系数在空间中为常数时，代入动量平衡方程得到 **可压缩纳维—斯托克斯方程** ：
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+当 $\rho$ 为常数时，定义运动黏度 $\nu \equiv \mu/\rho$。
+
+---
+
+## 4. 不可压缩形式
+
+对于恒定密度 $\rho=\rho_0$ 且满足
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+可得
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+对动量方程取散度，得到 **压力泊松方程** （配以适当的边界条件）：
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. 涡量与螺度
+
+定义涡量 $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$。  
+对于不可压缩流动（$\nabla\!\cdot\!\boldsymbol v=0$）：
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+分量形式为：
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+其中 $\omega_j \partial_j v_i$ 项为 **涡旋拉伸** （仅存在于三维）。  
+螺度 $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ 可用于判断涡线的拓扑性质。
+
+![平面内逆时针环流对应指向纸面外的涡量，用圆圈中的点表示。](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. 能量平衡（不可压缩情形）
+
+将动量方程与 $\boldsymbol v$ 作点积，并在区域 $\Omega$ 上积分；边界 $\partial\Omega$ 处采用无滑移条件：
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+当 $\boldsymbol f=\boldsymbol 0$ 时，动能单调衰减；黏性耗散率为 $\nu\|\nabla \boldsymbol v\|_2^2$。
+
+---
+
+## 7. 无量纲化与控制参数
+
+选择特征尺度 $L$（长度）和 $U$（速度），定义
+$\boldsymbol x'=\boldsymbol x/L$，$t' = tU/L$，$\boldsymbol v'=\boldsymbol v/U$，$p'=p/(\rho U^2)$。
+
+不可压缩方程变为
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+其中 **雷诺数** 为
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+其他无量纲参数（按需使用）：
+- **马赫数**  $\mathrm{Ma}=U/c_s$（可压缩性），
+- **弗劳德数**  $\mathrm{Fr}=U/\sqrt{gL}$（重力），
+- **普朗特数**  $\mathrm{Pr}=\nu/\kappa$（动量扩散与热扩散之比）。
+
+---
+
+## 8. 可压缩纳维—斯托克斯—傅里叶方程概述
+
+加入内能 $e$ 或温度 $T$，以及傅里叶热流 $\boldsymbol q=-k_{\rm th} \nabla T$（$k_{\rm th}$ 为热导率，不同于上文的热扩散率 $\kappa$）：
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+状态方程（例如理想气体）使方程组闭合：$p=(\gamma-1)\rho e$。
+
+---
+
+## 9. 数学理论（存在性与唯一性）
+
+### 9.1 弱解（勒雷—霍普夫）
+对于具有 $L^2$ 初始数据的三维不可压缩纳维—斯托克斯方程，存在满足 **能量不等式** 的 **时间全局弱解** 。  
+**唯一性**取决于解的类别、数据及外力。对于某些体积力，非唯一性已获证明（[Albritton、Brué 和 Colombo](https://arxiv.org/abs/2112.03116)）。[Hou、Wang 和 Yang的2025–2026年预印本](https://arxiv.org/abs/2509.25116)报告了针对奇异初始数据、无外力情形的计算机辅助非唯一性证明；这并未解决光滑数据的全局正则性问题。
+
+### 9.2 正则性判据（三维）
+- **比尔—加藤—马伊达判据** ：在 $T$ 时发生爆破意味着
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+- **普罗迪—塞林条件** ：若 $\boldsymbol v \in L^p(0,T;L^q)$，且满足
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+则解在 $(0,T]$ 上光滑。
+- **卡法雷利—科恩—尼伦伯格定理** ：适当弱解的时空奇异集具有 $\le 1$ 的抛物型豪斯多夫维数（部分正则性）。
+
+### 9.3 二维全局正则性
+对于光滑数据，二维情形下的 **全局存在性与唯一性** 成立。  
+拟涡能 $\int |\boldsymbol{\omega}|^2 dV$ 保持有界；不存在涡旋拉伸。
+
+### 9.4 可压缩流动
+存在全局的 **有限能量弱解** （对于满足一定条件的 $\gamma$ 律气体），但正则性和唯一性大多仍未解决。
+
+>  **千禧年难题：** 证明三维中光滑、无散的初始数据会产生 **唯一的全局光滑解** ，或给出反例（展示有限时间奇点）。
+
+---
+
+## 10. 湍流与能谱
+
+在高 $\mathrm{Re}$ 的均匀各向同性湍流（K41 理论）中，惯性区能谱为
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+其中 $\varepsilon$ 为平均耗散率，$C_K\!\sim\! \mathcal O(1)$ 为柯尔莫哥洛夫常数。
+
+ **柯尔莫哥洛夫微尺度：**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+直接数值模拟（DNS）的成本增长很快（三维网格点数 $\sim \mathrm{Re}^{9/4}$），因而需要 **大涡模拟（LES）** 与 **雷诺平均纳维—斯托克斯（RANS）** 闭合模型； **闭合问题** （对子网格应力建模）仍是核心问题。
+
+---
+
+## 11. 边界条件与几何
+
+- **无滑移壁面：** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
+- **自由滑移：** $\boldsymbol n\!\cdot\!\boldsymbol v=0$，$\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
+- 用于理论研究或直接数值模拟的 **周期盒（环面）**  
+- **流入与流出** 边界，配以适当的应力或压力条件
+
+不同选择会影响适定性、能量收支与数值稳定性。
+
+---
+
+## 12. 数值方法（一页指南）
+
+- **投影法：** 推进 $\boldsymbol v^\ast$，求解关于 $p$ 的泊松方程，再投影至 $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$。  
+- **能量稳定格式：** 反对称形式的对流项保持离散能量。  
+- **显式对流—扩散格式的CFL约束：** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$。  
+- **散度控制：** 采用无散谱基函数，或使用满足inf–sup稳定条件的速度—压力空间对的混合有限元。严格无散需要适当的空间；仅有inf–sup稳定性并不能保证这一点。
+
+---
+
+## 13. 联系与推广
+
+- **欧拉极限：** $\nu\to 0$ → 不可压缩欧拉方程；可能的有限时间奇点是与之并列的重大挑战。  
+- **相对论流体力学：** 朴素的纳维—斯托克斯理论不满足因果性；二阶**伊斯雷尔—斯图尔特理论**在输运系数与流体状态满足适当条件时可恢复因果性（[含体积黏性的严格实例](https://arxiv.org/abs/1901.06701)）。  
+- **量子流体：** 采用双流体模型和量子化涡旋的超流体纳维—斯托克斯类比理论。
+
+---
+
+## 14. 研究现状
+
+- 二维：理论已较成熟；全局光滑性已知。  
+- 三维： **全局光滑解的存在性** 或 **有限时间爆破** 仍是 **开放问题** 。  
+- 湍流唯象理论（K41）总体成功，但 **间歇性** 与闭合模型仍是活跃的研究领域。  
+
+ **简而言之：** 我们已能进行精度惊人的模拟与测量，但 **深层数学问题** ——正则性与湍流——仍是有待攻克的最终难关。
+
+---
