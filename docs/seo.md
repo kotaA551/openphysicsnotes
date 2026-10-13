@@ -1,6 +1,6 @@
 # International SEO checks
 
-English URLs remain at the root. Static pages have ten translated variants; articles advertise only editions with their own translated MDX. The current article set has English, German, Brazilian Portuguese, Simplified Chinese and Japanese editions.
+English URLs remain at the root. Static pages have ten translated variants; articles advertise only editions with their own translated MDX. All 19 articles have English, German, Brazilian Portuguese, Simplified Chinese and Japanese editions. The Navier–Stokes article additionally has French, Italian, Spanish, Traditional Chinese and Korean editions, covering all ten site languages. That gives 100 real article editions and 90 English fallback pages.
 
 `translatedArticleLocales` supplies article availability. `languageAlternates` supplies the same absolute, reciprocal hreflang cluster (including itself and English `x-default`) to page metadata and the sitemap. Translated articles are self-canonical. English fallback articles keep `noindex, follow`, remain crawlable, point to the English canonical, and are excluded from alternate-language clusters and the sitemap.
 
@@ -17,7 +17,7 @@ node --test tests/seo/metadata.test.mjs
 npx tsc --noEmit --incremental false
 ```
 
-After a coordinated production build, verify all 220 generated HTML pages, 125 sitemap URLs, reciprocal alternates, robots directives, descriptions, Open Graph/Twitter fields and structured data:
+After a coordinated production build, verify all 220 generated HTML pages, 130 sitemap URLs, reciprocal alternates, robots directives, descriptions, Open Graph/Twitter fields and structured data. The checker also verifies all ten Navier–Stokes bodies have the requested content language, no fallback notice, rendered KaTeX/MathML without KaTeX errors, and the complete reciprocal language cluster:
 
 ```sh
 node tests/seo/generated-seo-check.mjs --dist .next-de-pt-apply-check --output ../evidence/seo/generated-seo.json

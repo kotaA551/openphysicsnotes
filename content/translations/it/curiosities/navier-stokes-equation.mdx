@@ -1,0 +1,328 @@
+---
+description: "Le equazioni di Navier–Stokes, la viscosità, lo stiramento dei vortici e le singolarità a energia finita: una guida aggiornata all’annuncio di OpenAI del 2026 con forzante liscia, all’esame della formalizzazione in Lean e al problema senza forzante ancora aperto."
+---
+## 1. Perché è importante (problema del millennio)
+
+L’acqua che scorre attorno a una barca e l’aria che scorre attorno a un’ala obbediscono allo stesso bilancio locale: la massa si conserva e le forze modificano la quantità di moto. Le equazioni di Navier–Stokes traducono questa idea in un modello di mezzo continuo. Scrivere le equazioni è molto più facile che dimostrare che cosa può fare ogni loro soluzione.
+
+**Stato della ricerca verificato il 13 ottobre 2026.** L’8 settembre OpenAI ha annunciato una costruzione di esplosione in tempo finito per le equazioni di Navier–Stokes incomprimibili tridimensionali con **una forza esterna liscia**, accompagnata da un articolo e da codice Lean. La costruzione riguarda le alternative **C e D** del problema del millennio del Clay Mathematics Institute. È un importante progresso dichiarato, ma **non** stabilisce l’esplosione per le equazioni di Navier–Stokes **senza forzante**. Il risultato distinto sulle equazioni di Eulero senza forzante riguarda una viscosità nulla e non va confuso con questo. [Annuncio di OpenAI, aggiornato il 10 settembre](https://openai.com/index/navier-stokes-solution/).
+
+Qui conta distinguere tra un risultato annunciato, un enunciato formale verificato, una dimostrazione leggibile e l’accettazione da parte della comunità. La sezione 14 riporta lo stato della valutazione alla data indicata, comprese le analisi critiche di ottobre. La fisica illustrata di seguito spiega perché un’energia limitata può coesistere con un moto locale sempre più intenso.
+
+---
+
+## 2. Campi continui e leggi di conservazione
+
+Indichiamo con $\rho(\boldsymbol x,t)$ la densità di massa, con $\boldsymbol v(\boldsymbol x,t)$ la velocità, con $p(\boldsymbol x,t)$ la pressione e con $\boldsymbol{\sigma}$ il tensore degli sforzi di Cauchy. La forza di volume per unità di massa è $\boldsymbol f$, per esempio la gravità.
+
+Un campo assegna un valore a ogni posizione e istante; rappresenta una media su molte molecole. Il modello presuppone che le scale di lunghezza rilevanti siano abbastanza grandi da rendere sensate questa media e una legge locale degli sforzi. Una singolarità matematica riguarda le equazioni del continuo; non prevede che una molecola reale raggiunga una velocità infinita.
+
+### 2.1 Conservazione della massa
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+Il primo termine misura l’accumulo locale di massa; la divergenza misura il flusso netto di massa uscente. A densità costante, la conservazione della massa si riduce all’annullamento della divergenza della velocità. Una particella fluida può allungarsi e cambiare forma mantenendo il proprio volume.
+
+### 2.2 Conservazione della quantità di moto (Cauchy)
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+Scomponiamo gli sforzi in una pressione isotropa e una parte viscosa:
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+La derivata materiale $D_t=\partial_t+\boldsymbol v\cdot\nabla$ segue una particella fluida in movimento. Anche un campo di velocità stazionario può accelerarla: l’acqua che entra in un passaggio più stretto raggiunge una regione con velocità diversa. Questo è il significato del termine di trasporto non lineare $(\boldsymbol v\cdot\nabla)\boldsymbol v$.
+
+---
+
+## 3. Legge costitutiva (fluido newtoniano)
+
+Per un fluido newtoniano isotropo,
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+dove $\mu$ è la viscosità dinamica e $\lambda$ il secondo coefficiente di viscosità; la viscosità di volume è $\zeta=\lambda+2\mu/3$.
+
+![Tra una piastra inferiore ferma e una piastra superiore in movimento, la velocità laminare stazionaria cresce linearmente con l’altezza. Il diagramma illustra lo sforzo di taglio viscoso e la condizione di non scorrimento.](/images/diagrams/couette-flow.svg)
+
+Per coefficienti di viscosità costanti nello spazio, la sostituzione nel bilancio della quantità di moto dà le **equazioni di Navier–Stokes comprimibili**:
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+Definiamo la viscosità cinematica $\nu \equiv \mu/\rho$ quando $\rho$ è costante.
+
+La viscosità risponde alla deformazione, non alla traslazione uniforme. Le sue dimensioni sono $[\mu]=\mathrm{Pa\,s}$ e $[\nu]=\mathrm{m^2/s}$. Nel diagramma del flusso tra piastre, una distanza $h$ e una velocità $U$ della piastra superiore danno $v_x(y)=Uy/h$ e uno sforzo di taglio $\tau_{xy}=\mu U/h$. Questa semplice soluzione esatta è liscia; l’annuncio di una singolarità riguarda l’esistenza di dati particolari, non il comportamento di tutti i flussi.
+
+---
+
+## 4. Forma incomprimibile
+
+Per densità costante $\rho=\rho_0$ e
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+si ottiene
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+L’equazione dice che l’accelerazione è la somma dei contributi della pressione, della diffusione viscosa e dell’accelerazione applicata:
+
+| Termine | Significato |
+| --- | --- |
+| $\partial_t\boldsymbol v$ | Variazione misurata in una posizione fissa |
+| $(\boldsymbol v\cdot\nabla)\boldsymbol v$ | Variazione dovuta al moto di una particella fluida attraverso il campo di velocità |
+| $-\nabla p/\rho_0$ | Le forze di pressione ridistribuiscono la quantità di moto |
+| $\nu\nabla^2\boldsymbol v$ | La viscosità attenua le variazioni spaziali |
+| $\boldsymbol f$ | Forza esterna applicata per unità di massa |
+
+L’incomprimibilità non richiede velocità nulla o accelerazione nulla. La pressione agisce come un vincolo che mantiene nulla la divergenza della velocità; in questo modello a densità costante non costituisce un’equazione di stato indipendente.
+
+Prendendo la divergenza dell’equazione della quantità di moto si ottiene un’**equazione di Poisson per la pressione**, con opportune condizioni al contorno:
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. Vorticità ed elicità
+
+Definiamo la vorticità $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.  
+Per un flusso incomprimibile ($\nabla\!\cdot\!\boldsymbol v=0$):
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+In componenti:
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+Il termine $\omega_j \partial_j v_i$ rappresenta lo **stiramento dei vortici** (solo in 3D).  
+L’elicità $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ fornisce informazioni sulla topologia delle linee di vorticità.
+
+Un tubo vorticoso allungato lungo il proprio asse può diventare più sottile e più intenso. Nell’equazione della vorticità, lo stiramento può amplificare la rotazione mentre la viscosità la diffonde. Nessuno dei due effetti, considerato da solo, determina se la dinamica completa e accoppiata rimane liscia.
+
+Per un flusso realmente planare $\boldsymbol v=(v_x(x,y),v_y(x,y),0)$, la vorticità è perpendicolare al piano e i campi non variano in quella direzione. Quindi $(\boldsymbol\omega\cdot\nabla)\boldsymbol v=0$. Questo elimina un importante meccanismo di amplificazione in due dimensioni; non significa che ogni vortice tridimensionale debba esplodere.
+
+![Una circolazione antioraria nel piano ha vorticità diretta verso l’esterno della pagina, rappresentata da un punto cerchiato.](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. Bilancio energetico (caso incomprimibile)
+
+Per una soluzione liscia, moltiplichiamo l’equazione della quantità di moto per $\boldsymbol v$ e integriamo su un dominio $\Omega$ con contorno fermo e condizione di non scorrimento. La stessa identità vale in una scatola periodica o nell’intero spazio con decadimento sufficiente:
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+Per $\boldsymbol f=\boldsymbol 0$, l’energia cinetica decresce monotonamente; la dissipazione viscosa è $\nu\|\nabla \boldsymbol v\|_2^2$.
+
+Questa energia è normalizzata rispetto alla densità costante: l’energia cinetica fisica è $\rho_0/2$ moltiplicato per l’integrale del quadrato della velocità. Trasporto e pressione contribuiscono soltanto attraverso flussi al contorno che si annullano sotto queste ipotesi; l’integrazione per parti produce il termine viscoso non negativo. Una parete mobile o un contorno aperto aggiungono termini di lavoro o di flusso.
+
+### 6.1 Perché l’energia finita non garantisce la regolarità
+
+Una stima integrale controlla il moto totale, non il suo massimo valore locale. Per illustrare il cambiamento di scala, scegliamo un campo fisso $\boldsymbol\phi$, liscio, a supporto compatto e a divergenza nulla, e poniamo
+
+$$
+\boldsymbol v_\ell(\boldsymbol x)=\ell^{-1}\boldsymbol\phi(\boldsymbol x/\ell).
+$$
+
+Allora $\|\boldsymbol v_\ell\|_\infty=\ell^{-1}\|\boldsymbol\phi\|_\infty$ cresce per $\ell\to0$, mentre $\|\boldsymbol v_\ell\|_2^2=\ell\|\boldsymbol\phi\|_2^2$ diminuisce. Queste sono istantanee riscalate, **non una soluzione né una dimostrazione di esplosione**. Mostrano perché velocità sempre maggiori in un volume sempre più piccolo possono rispettare un limite sull’energia. Controllare le derivate e la concentrazione è l’ulteriore difficoltà del problema di regolarità.
+
+---
+
+## 7. Adimensionalizzazione e parametri di controllo
+
+Scegliamo le scale caratteristiche $L$ (lunghezza) e $U$ (velocità) e definiamo
+$\boldsymbol x'=\boldsymbol x/L$, $t' = tU/L$, $\boldsymbol v'=\boldsymbol v/U$, $p'=p/(\rho U^2)$.
+
+Le equazioni incomprimibili diventano
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+con il **numero di Reynolds**
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+Qui $\boldsymbol f'=L\boldsymbol f/U^2$. Il tempo di diffusione è $L^2/\nu$ e il tempo di avvezione è $L/U$; il loro rapporto è $\mathrm{Re}$. Un numero di Reynolds elevato indica che l’avvezione è rapida rispetto all’azione regolarizzante della viscosità alla scala scelta. Non è una soglia universale della turbolenza né un criterio di singolarità: contano anche la geometria, le perturbazioni e la scala a cui si misura. Per esempio, $U=0.1\,\mathrm{m/s}$, $L=0.01\,\mathrm m$ e $\nu=10^{-6}\,\mathrm{m^2/s}$ danno $\mathrm{Re}=1000$.
+
+Altri gruppi adimensionali, quando servono:
+
+- **Mach** $\mathrm{Ma}=U/c_s$ (comprimibilità),
+- **Froude** $\mathrm{Fr}=U/\sqrt{gL}$ (gravità),
+- **Prandtl** $\mathrm{Pr}=\nu/\kappa$ (diffusione della quantità di moto rispetto a quella termica).
+
+---
+
+## 8. Navier–Stokes–Fourier comprimibile (cenni)
+
+Si aggiungono l’energia interna $e$ o la temperatura $T$, con il flusso termico di Fourier $\boldsymbol q=-k_{\rm th} \nabla T$ (la conducibilità termica $k_{\rm th}$ è distinta dalla diffusività termica $\kappa$ introdotta sopra):
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+Un’equazione di stato, per esempio quella del gas ideale, chiude il sistema: $p=(\gamma-1)\rho e$.
+
+Il lavoro di compressione e la conversione dell’energia cinetica in energia interna entrano ora esplicitamente nel bilancio. Il problema del millennio incomprimibile non risolve la formazione di onde d’urto, il trasporto di calore o la teoria della regolarità di questo diverso sistema.
+
+---
+
+## 9. Teoria matematica (esistenza e unicità)
+
+L’esistenza **locale** significa che una soluzione esiste per un certo intervallo dopo l’istante iniziale; l’esistenza **globale** significa che esiste per tutti i tempi futuri. Una soluzione **classica** ha abbastanza derivate da soddisfare le equazioni punto per punto; **liscia** significa qui differenziabile a ogni ordine. Una soluzione **debole** soddisfa una versione integrata, trasferendo le derivate su funzioni test lisce. Sono nozioni di esistenza con requisiti diversi.
+
+### 9.1 Soluzioni deboli (Leray–Hopf)
+Per dati iniziali a divergenza nulla e a energia finita nel consueto contesto dell’intero spazio o periodico, con forzante ammissibile, la teoria di Leray–Hopf fornisce **soluzioni deboli globali che soddisfano una disuguaglianza energetica**. Una soluzione liscia è unica nella corrispondente classe di energia finché rimane liscia: è l’unicità debole–forte. Una possibile perdita di regolarità non significa quindi che tutte le soluzioni generalizzate cessino di esistere. [Descrizione ufficiale del problema di Fefferman](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+L’unicità dipende dalla classe di soluzioni, dai dati iniziali e dalla forza. [Albritton, Brué e Colombo](https://arxiv.org/abs/2112.03116) dimostrano la non unicità per determinate forze. [Hou, Wang e Yang](https://arxiv.org/abs/2509.25116) riportano un risultato di non unicità assistito dal computer, senza forzante ma con dati iniziali singolari. Questi risultati non vanno presentati come esplosione a partire da dati iniziali lisci senza forzante.
+
+### 9.2 Criteri di regolarità (3D)
+
+- **Criterio di continuazione tramite la vorticità, di tipo Beale–Kato–Majda:** per una soluzione classica nel consueto contesto sufficientemente regolare dell’intero spazio o periodico, con forzante sufficientemente regolare fino all’istante $T$ incluso, una perdita di regolarità a $T$ richiede
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+[La discussione di Luo sui criteri di continuazione per Navier–Stokes](https://arxiv.org/html/1803.05569) enuncia il criterio senza forzante; la condizione sulla forzante riportata sopra esclude una perdita di regolarità imposta da un apporto esterno singolare.
+- **Prodi–Serrin:** una soluzione debole nella classe di energia, con forzante appropriata, è regolare se $\boldsymbol v \in L^p(0,T;L^q)$ con
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+e in tal caso la soluzione è liscia su $(0,T]$.
+- **Caffarelli–Kohn–Nirenberg:** le soluzioni deboli adatte (*suitable*), sotto le ipotesi del teorema sulla forzante, hanno un insieme singolare di misura di Hausdorff parabolica unidimensionale nulla. È un risultato di regolarità parziale; non dimostra che l’insieme singolare sia vuoto. [Contesto e riferimenti nella descrizione ufficiale del problema](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+Sono enunciati condizionali. Specificano quale controllo impedirebbe una perdita di regolarità, senza fornire tale controllo per ogni flusso tridimensionale. Gli esponenti sopra riflettono il riscalamento naturale $\boldsymbol v_a(\boldsymbol x,t)=a\boldsymbol v(a\boldsymbol x,a^2t)$; in tre dimensioni la sola norma dell’energia non ha la scala critica.
+
+### 9.3 Regolarità globale in 2D
+Per dati lisci compatibili nel consueto contesto dell’intero spazio o periodico, con forzante sufficientemente regolare, il flusso incomprimibile bidimensionale rimane liscio per ogni tempo finito. Senza forzante, l’enstrofia $\int|\boldsymbol\omega|^2\,dV$ è non crescente; la forzante aggiunge un termine sorgente. L’assenza di stiramento dei vortici consente un controllo molto più forte che in 3D.
+
+### 9.4 Flussi comprimibili
+Esistono **soluzioni deboli globali a energia finita** per gas con legge in $\gamma$, sotto opportune condizioni, ma regolarità e unicità rimangono in gran parte aperte.
+
+### 9.5 Che cosa chiedono davvero le quattro alternative di Clay
+
+La [formulazione ufficiale](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf) accetta la dimostrazione di uno qualunque di quattro enunciati, con viscosità positiva:
+
+| Alternativa | Dominio | Forza e domanda |
+| --- | --- | --- |
+| A | $\mathbb R^3$ | Forza nulla; soluzioni lisce globali a energia finita per tutti i dati iniziali lisci ammessi |
+| B | Dominio periodico $\mathbb R^3/\mathbb Z^3$ | Forza nulla; soluzioni lisce globali per tutti i dati iniziali periodici lisci ammessi |
+| C | $\mathbb R^3$ | Alcuni dati lisci ammessi e una forza liscia rapidamente decrescente non ammettono alcuna soluzione liscia globale con energia uniformemente limitata |
+| D | Dominio periodico $\mathbb R^3/\mathbb Z^3$ | Alcuni dati periodici lisci ammessi e una forza periodica liscia non ammettono alcuna soluzione liscia globale |
+
+Nell’intero spazio, dati iniziali e forzante rispettano le condizioni di decadimento specificate; anche la forza periodica rispetta condizioni di decadimento nel tempo. C e D ammettono una forza non nulla, quindi dimostrarne una non confuterebbe logicamente gli enunciati senza forzante A o B. «Risolvere un’alternativa di Clay» e «risolvere ogni versione del problema di regolarità» sono affermazioni diverse.
+
+---
+
+## 10. Turbolenza e spettri
+
+Nella turbolenza omogenea e isotropa ad alto $\mathrm{Re}$, la teoria K41 dà lo spettro energetico nell’intervallo inerziale
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+con tasso medio di dissipazione $\varepsilon$ e costante di Kolmogorov $C_K\!\sim\! \mathcal O(1)$.
+
+**Microscala di Kolmogorov:**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+La stima K41 $\varepsilon\sim U^3/L$ dà $L/\eta\sim\mathrm{Re}^{3/4}$. Risolvere questa scala in tre dimensioni suggerisce un numero di punti di griglia dell’ordine di $\mathrm{Re}^{9/4}$, prima ancora dei costi dell’integrazione temporale. Questa stima euristica motiva la **simulazione numerica diretta (DNS)**, la **simulazione dei grandi vortici (LES)** e le **equazioni di Navier–Stokes mediate alla Reynolds (RANS)**, con diverse scelte di risoluzione e modellazione. LES e RANS richiedono ipotesi di chiusura per le correlazioni non risolte.
+
+Lo spettro con esponente $-5/3$ descrive un modello statistico nell’intervallo inerziale, non ogni flusso o ogni scala. Intermittenza e contorni complicano questo quadro. Una soluzione singolare costruita appositamente non fornirebbe un modello universale della turbolenza né eliminerebbe la necessità di stimare gli errori numerici.
+
+---
+
+## 11. Condizioni al contorno e geometria
+
+- **Parete con non scorrimento:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
+- **Scorrimento libero:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
+- **Scatola periodica (toro)** per la teoria e la DNS  
+- **Ingresso e uscita** con opportune prescrizioni di sforzo o pressione
+
+La scelta influisce sulla buona posizione del problema, sul bilancio energetico e sulla stabilità numerica.
+
+Una scatola periodica identifica le facce opposte; non ha pareti fisiche. Nell’intero spazio, il decadimento all’infinito sostituisce una condizione di parete. Un risultato in queste geometrie non si trasferisce automaticamente alla superficie di un aereo o a un tubo: le condizioni al contorno fanno parte del problema matematico.
+
+---
+
+## 12. Metodi numerici (guida sintetica)
+
+- **Metodi di proiezione:** calcolare $\boldsymbol v^\ast$, risolvere l’equazione di Poisson per $p$, quindi proiettare per ottenere $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.  
+- **Schemi stabili in energia:** la forma antisimmetrica del termine convettivo preserva l’energia discreta.  
+- **Vincolo CFL per schemi espliciti di avvezione e diffusione:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
+- **Controllo della divergenza:** basi spettrali a divergenza nulla, oppure elementi finiti misti con coppie velocità–pressione stabili rispetto alla condizione inf–sup. Una divergenza esattamente nulla richiede spazi appropriati; la sola stabilità inf–sup non la garantisce.
+
+Una simulazione può rivelare un picco crescente, ma una griglia finita non può, da sola, stabilire un limite infinito. Servono studi di raffinamento, controllo degli errori di discretizzazione e un argomento analitico per distinguere una concentrazione reale dall’instabilità numerica. Le dimostrazioni assistite dal computer forniscono stime rigorose; gli assistenti di dimostrazione formale verificano deduzioni a partire da definizioni e ipotesi codificate. Nessuno dei due approcci è semplicemente un’animazione ad alta risoluzione.
+
+---
+
+## 13. Collegamenti ed estensioni
+
+- **Equazioni di Eulero:** porre $\nu=0$ elimina la diffusione viscosa. Il passaggio al limite $\nu\to0$ può essere a sua volta delicato, soprattutto vicino alle pareti. Il risultato senza forzante annunciato separatamente da OpenAI per Eulero riguarda questa equazione non viscosa, non il problema senza forzante a viscosità positiva. [Annuncio e articolo separato su Eulero](https://openai.com/index/navier-stokes-solution/).
+- **Idrodinamica relativistica:** una trasposizione ingenua di Navier–Stokes è acausale; le teorie del secondo ordine di **Israel–Stewart** possono ripristinare la causalità sotto opportune condizioni sui coefficienti di trasporto e sugli stati del fluido ([un esempio rigoroso con viscosità di volume](https://arxiv.org/abs/1901.06701)).  
+- **Fluidi quantistici:** analoghi superfluidi di Navier–Stokes con modelli a due fluidi e vortici quantizzati.
+
+---
+
+## 14. Stato delle conoscenze
+
+**Al 13 ottobre 2026:** la costruzione tridimensionale con forza esterna liscia è stata annunciata ed è in fase di esame; la regolarità di Navier–Stokes in 3D senza forzante rimane un problema aperto. La regolarità bidimensionale e l’utilità quotidiana delle soluzioni di flusso lisce non vengono meno.
+
+### 14.1 L’affermazione precisa e il suo meccanismo
+
+Il teorema 1.1 dell’[articolo di OpenAI](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf) afferma che, per **ogni $\nu>0$**, esistono una forza liscia a supporto compatto nello spazio e nel tempo e un flusso incomprimibile liscio su $\mathbb R^3\times[0,1)$, inizialmente a riposo, tali che
+
+$$
+\boldsymbol v(\cdot,0)=0,\qquad
+\sup_{0\le t<1}\|\boldsymbol v(t)\|_{L^2}<\infty,
+\qquad
+\limsup_{t\uparrow1}\|\boldsymbol v(t)\|_{L^\infty}=\infty.
+$$
+
+Velocità e pressione hanno supporto spaziale compatto fisso prima dell’istante 1; la forza si estende in modo liscio oltre quell’istante. L’articolo rivendica l’alternativa C e, mediante la costruzione periodica del corollario 10.6, la D. La convenzione usata per la pressione assorbe la densità costante.
+
+Il meccanismo proposto concentra un vortice che spiraleggia verso l’interno e si allunga lungo il proprio asse. Correzioni oscillanti e il relativo trasporto di quantità di moto cancellano forze residue che sarebbero altrimenti singolari. Non basta scegliere una velocità che esplode e definire una forza dall’equazione: la forza e **tutte le sue derivate** devono rimanere lisce attraverso l’istante singolare. Questa è una descrizione concettuale della costruzione dichiarata, non una dimostrazione indipendente.
+
+«Per ogni viscosità esiste una forza» consente alla forza di dipendere dalla viscosità. Non significa che una sola forza fissa prevalga su qualsiasi viscosità, che basti una forzante arbitrariamente piccola o che un fluido inizialmente a riposo esploda senza apporto di energia.
+
+### 14.2 Lean, esame matematico e premio
+
+Il [repository Lean pubblicato](https://github.com/openai/NavierStokesAndEuler) contiene gli enunciati da verificare per l’intero spazio e per il caso periodico, con istruzioni per controlli indipendenti mediante Comparator. Un verificatore formale controlla le deduzioni per l’esatto enunciato e le ipotesi codificate. Stabilire se tali definizioni esprimano il problema voluto, e come l’argomento chiarisca la dimostrazione scritta, richiede ulteriori verifiche. Queste note non affermano di aver ricompilato o verificato indipendentemente il progetto Lean.
+
+Il **6 ottobre**, [Bastounis, Circelli e Hansen](https://arxiv.org/abs/2610.08144) hanno pubblicato una critica della corrispondenza tra l’esposizione in linguaggio naturale e Lean: tra gli esempi compaiono requisiti diversi sulle derivate nel lemma 8.6 e un argomento diverso per la stima della pressione nel lemma 10.5. Questo mette in discussione l’idea che la formalizzazione certifichi automaticamente ogni passaggio della dimostrazione scritta. Da solo, **non** confuta il teorema finale di esplosione con forzante e non dimostra che l’enunciato formale finale sia errato.
+
+L’**11 settembre**, [la risposta del Clay Mathematics Institute](https://www.claymath.org/news/navier-stokes-announcement/) ha accolto con favore l’apparente svolta, sottolineando però i tempi deliberatamente non affrettati della propria valutazione. Il [regolamento del premio](https://www.claymath.org/millennium-problems/rules/) richiede una pubblicazione idonea, almeno due anni da tale pubblicazione e l’accettazione generale della comunità matematica prima della valutazione per il premio. La sola data dell’annuncio non stabilisce l’inizio di questo periodo. Qui non si afferma che il premio sia stato assegnato; OpenAI dichiara di non volerlo richiedere.
+
+### 14.3 Che cosa stabiliscono, e non stabiliscono, i lavori successivi
+
+Anche i lavori di settembre successivi all’annuncio vanno letti rispettandone la portata precisa. [Petrillo e Glimm](https://arxiv.org/abs/2609.23868) separano esplicitamente il risultato con forzante dal problema senza forzante ancora aperto. [L’esposizione di Lei e Ren](https://arxiv.org/abs/2609.35406v2) studia la costruzione del profilo, rinviando ulteriori cancellazioni oscillanti; non è una verifica indipendente completa. [Constantin, Ignatova e Vicol](https://arxiv.org/abs/2609.20803v2) ottengono un risultato di regolarità che esclude una singolarità sotto specifiche ipotesi geometriche, di crescita e sulla forzante. Il risultato è rilevante per i tentativi di eliminare la forza da questo meccanismo, non è un teorema di regolarità globale per tutti i flussi con forzante analitica.
+
+Le domande utili sono ora precise: le ipotesi e le conclusioni dichiarate sono verificate, il meccanismo può essere spiegato con trasparenza e che cosa rimane quando si elimina la forzante? La previsione della turbolenza, l’unicità delle soluzioni deboli in ogni classe e il flusso comprimibile restano problemi distinti.
+
+## 15. Verifica la comprensione
+
+1. **Traslazione uniforme:** per velocità costante, pressione costante e forza nulla, quali termini dell’equazione incomprimibile si annullano? Tutte le derivate spaziali e temporali si annullano, quindi qualsiasi viscosità positiva è compatibile con questo moto.
+2. **Energia e velocità massima:** nella sezione 6.1, esegui il cambio di variabili $\boldsymbol y=\boldsymbol x/\ell$. Perché l’energia scala come $\ell$? Il quadrato dell’ampiezza contribuisce con $\ell^{-2}$ e il volume tridimensionale con $\ell^3$.
+3. **Cambio di scala:** mantenendo fissi $U$ e $\nu$, che cosa accade al numero di Reynolds se $L$ si dimezza? Si dimezza; l’importanza relativa della viscosità aumenta alla scala più piccola.
+4. **Leggere un teorema:** perché l’alternativa C può valere mentre A rimane indecisa? C ammette una forza liscia non nulla scelta opportunamente, mentre A riguarda soltanto la forza nulla.
+5. **Un verificatore di dimostrazioni:** che cosa occorre ancora controllare dopo che Lean ha accettato una dimostrazione? Che le definizioni codificate, le ipotesi e la conclusione finale corrispondano alla domanda matematica voluta; va inoltre esaminata la corrispondenza con un’esposizione separata.
+
+---

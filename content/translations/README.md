@@ -22,7 +22,7 @@ Language preferences are local to the browser. Same as device follows the browse
 
 - Shared UI, homepage, About, Privacy, discussion labels and all 19 topic titles: all 10 supported languages.
 - Full article editions: English, Japanese, Simplified Chinese, German and Brazilian Portuguese, each containing all 12 chapters and 7 curiosities.
-- French, Italian, Spanish, Traditional Chinese and Korean article URLs continue to show explicit English fallbacks.
+- The Navier–Stokes curiosity has complete editions in all 10 languages, including the research status checked on 13 October 2026. The other 18 articles continue to show explicit English fallbacks in French, Italian, Spanish, Traditional Chinese and Korean.
 - German and Portuguese prose, metadata, headings, tables and image alternatives received complete source-target semantic review; all seven curiosities also received independent bilingual review. Other chapters received translator review, with additional independent review of chapter 10 sections 11–13. This does not certify independent derivation of every scientific statement.
 - Confirmed source corrections were synchronized across affected EN/JA/zh-CN/de/pt-BR articles. Remaining convention and historical-attribution issues are recorded in the local edition review; those internal review artifacts are not part of the public source release.
 - The redundant first Black Hole Information Paradox self-link was removed from the MDX source. The page title, real section headings and their anchors remain.

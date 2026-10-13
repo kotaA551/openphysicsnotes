@@ -11,7 +11,10 @@ const { articleList, loadArticle, translatedArticleLocales } = load('lib/article
 const { articleMetadata, articleStructuredData, pageMetadata, siteUrl, socialImage } = load('lib/seo.ts');
 const sitemap = load('app/sitemap.ts').default;
 const robots = load('app/robots.ts').default;
-const actualLocales = ['en', 'de', 'pt-BR', 'zh-CN', 'ja'];
+const completeSiteLocales = ['en', 'de', 'pt-BR', 'zh-CN', 'ja'];
+const navierStokesLocales = ['en', 'fr', 'de', 'it', 'es', 'pt-BR', 'zh-CN', 'zh-TW', 'ja', 'ko'];
+const expectedArticleLocales = (kind, slug) => kind === 'curiosities' && slug === 'navier-stokes-equation'
+  ? navierStokesLocales : completeSiteLocales;
 
 test('Next serializes root and article alternate URLs exactly as the sitemap uses them', async () => {
   for (const path of ['/', '/about', '/chapters/8-Quantum-field-theory']) {
@@ -22,9 +25,10 @@ test('Next serializes root and article alternate URLs exactly as the sitemap use
   }
 });
 
-test('all 19 article clusters have exactly the five complete editions and reciprocal absolute hreflang', () => {
+test('19 article clusters have 100 real editions, including all ten Navier–Stokes locales, with reciprocal absolute hreflang', () => {
   let count = 0;
   for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) {
+    const actualLocales = expectedArticleLocales(kind, slug);
     assert.deepEqual(translatedArticleLocales(kind, slug), actualLocales);
     const path = `/${kind}/${slug}`;
     const expected = Object.fromEntries(actualLocales.map(locale => [locale, siteUrl + localePath(locale, path)]));
@@ -40,14 +44,29 @@ test('all 19 article clusters have exactly the five complete editions and recipr
       count++;
     }
   }
-  assert.equal(count, 95);
+  assert.equal(count, 100);
 });
 
-test('95 fallback pages remain noindex, follow and identify the English canonical content consistently', () => {
+test('all ten Navier–Stokes editions load their own content and descriptions', () => {
+  assert.deepEqual(locales, navierStokesLocales, 'cover every configured site language explicitly');
+  const contents = new Set();
+  const descriptions = new Set();
+  for (const locale of navierStokesLocales) {
+    const article = loadArticle('curiosities', 'navier-stokes-equation', locale);
+    assert.equal(article.translated, true, `${locale} must not use fallback content`);
+    assert.equal(article.contentLocale, locale);
+    contents.add(article.content);
+    descriptions.add(article.description);
+  }
+  assert.equal(contents.size, 10, 'every edition must contain distinct localized content');
+  assert.equal(descriptions.size, 10, 'every edition must have a localized search description');
+});
+
+test('90 fallback pages remain noindex, follow and identify the English canonical content consistently', () => {
   let count = 0;
   for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) {
     const original = articleMetadata(kind, slug, 'en');
-    for (const locale of locales.filter(locale => !actualLocales.includes(locale))) {
+    for (const locale of locales.filter(locale => !expectedArticleLocales(kind, slug).includes(locale))) {
       const article = loadArticle(kind, slug, locale);
       const meta = articleMetadata(kind, slug, locale);
       assert.deepEqual(meta.robots, { index: false, follow: true });
@@ -61,12 +80,12 @@ test('95 fallback pages remain noindex, follow and identify the English canonica
       count++;
     }
   }
-  assert.equal(count, 95);
+  assert.equal(count, 90);
 });
 
-test('the sitemap contains only 125 canonical pages and matches every HTML alternate cluster', () => {
+test('the sitemap contains only 130 canonical pages and matches every HTML alternate cluster', () => {
   const entries = sitemap();
-  assert.equal(entries.length, 125);
+  assert.equal(entries.length, 130);
   const byUrl = new Map(entries.map(entry => [entry.url, entry]));
   assert.equal(byUrl.size, entries.length);
   for (const entry of entries) {
@@ -79,7 +98,7 @@ test('the sitemap contains only 125 canonical pages and matches every HTML alter
       assert.deepEqual(byUrl.get(url).alternates.languages, languages);
     }
   }
-  for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) for (const locale of actualLocales) {
+  for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) for (const locale of expectedArticleLocales(kind, slug)) {
     const meta = articleMetadata(kind, slug, locale);
     assert.deepEqual(byUrl.get(meta.alternates.canonical).alternates.languages, meta.alternates.languages);
   }
@@ -97,7 +116,7 @@ test('localized descriptions remain whole; English descriptions are useful prose
     assert.ok(!/[$\\{}<>]/.test(en.description));
     assert.ok(en.description.length > 70);
     descriptions.add(en.description);
-    for (const locale of actualLocales.filter(locale => locale !== 'en')) {
+    for (const locale of expectedArticleLocales(kind, slug).filter(locale => locale !== 'en')) {
       const { data } = matter(fs.readFileSync(`content/translations/${locale}/${kind}/${slug}.mdx`, 'utf8'));
       assert.equal(loadArticle(kind, slug, locale).description, data.description.replace(/\s+/g, ' ').trim());
     }
@@ -107,7 +126,7 @@ test('localized descriptions remain whole; English descriptions are useful prose
 });
 
 test('LearningResource JSON-LD describes actual visible content without invented authors or dates', () => {
-  for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) for (const locale of actualLocales) {
+  for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) for (const locale of expectedArticleLocales(kind, slug)) {
     const article = loadArticle(kind, slug, locale);
     const schema = articleStructuredData(kind, slug, article);
     assert.equal(schema['@type'], 'LearningResource');

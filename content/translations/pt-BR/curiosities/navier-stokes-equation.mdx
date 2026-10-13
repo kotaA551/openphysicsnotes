@@ -1,10 +1,13 @@
 ---
-description: "Navier–Stokes das leis de conservação à turbulência: viscosidade, vorticidade, energia, regularidade, condições de contorno e métodos numéricos."
+description: "Entenda Navier–Stokes, viscosidade, estiramento de vórtices e singularidades com energia finita, além do anúncio da OpenAI em 2026 com força externa, da análise de Lean e do problema sem força ainda aberto."
 ---
 ## 1. Por que isso importa: um Problema do Milênio
-Fluidos estão por toda parte: nas estrelas, nos oceanos, no ar e nos plasmas.  
-Apesar disso, ainda não há uma prova de **existência e unicidade global de soluções suaves** das **equações de Navier–Stokes incompressíveis em 3D** para dados suaves: um dos Problemas do Milênio do Clay Mathematics Institute.  
-Entender a regularidade também é fundamental para a **turbulência**, possivelmente o último grande problema da física clássica.
+
+A água que contorna um barco e o ar que contorna uma asa obedecem ao mesmo balanço local: a massa se conserva, e as forças alteram o momento. As equações de Navier–Stokes transformam essa ideia em um modelo contínuo. Escrever as equações é muito mais fácil do que provar tudo o que cada solução pode fazer.
+
+**Situação da pesquisa verificada em 13 de outubro de 2026.** Em 8 de setembro, a OpenAI anunciou uma construção de singularidade em tempo finito para Navier–Stokes incompressível em três dimensões com **uma força externa suave**, acompanhada de um artigo e de código Lean. Ela visa às alternativas **C e D** do Problema do Milênio do Clay. Trata-se de um importante avanço anunciado, mas ele **não** estabelece uma singularidade para as equações de Navier–Stokes **sem força externa**. O resultado separado para Euler sem força externa tem viscosidade nula e não deve ser confundido com ele. [Anúncio da OpenAI, atualizado em 10 de setembro](https://openai.com/index/navier-stokes-solution/).
+
+Aqui importa distinguir um resultado anunciado, uma proposição formal verificada, uma demonstração legível e a aceitação pela comunidade. A seção 14 apresenta a situação da avaliação com datas, incluindo o exame crítico de outubro. A física a seguir explica por que energia limitada pode coexistir com movimento local cada vez mais extremo.
 
 ---
 
@@ -12,10 +15,14 @@ Entender a regularidade também é fundamental para a **turbulência**, possivel
 
 Sejam $\rho(\boldsymbol x,t)$ a densidade de massa, $\boldsymbol v(\boldsymbol x,t)$ a velocidade, $p(\boldsymbol x,t)$ a pressão e $\boldsymbol{\sigma}$ o tensor de tensões de Cauchy. A força de volume por unidade de massa é $\boldsymbol f$, como a gravidade.
 
+Um campo atribui um valor a cada posição e instante; ele representa uma média sobre muitas moléculas. O modelo pressupõe que as escalas de comprimento relevantes sejam grandes o suficiente para que essa média e uma lei local de tensões façam sentido. Uma singularidade matemática diz respeito às equações do contínuo; ela não prevê que uma molécula real alcance velocidade infinita.
+
 ### 2.1 Conservação da massa
 $$
 \partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
 $$
+
+O primeiro termo mede o acúmulo local de massa; a divergência mede o fluxo líquido de massa para fora. Para densidade constante, a conservação da massa se reduz à divergência nula da velocidade. Uma parcela de fluido pode se esticar e mudar de forma mantendo seu volume.
 
 ### 2.2 Conservação do momento (Cauchy)
 $$
@@ -27,6 +34,8 @@ Decompõe-se a tensão em pressão isotrópica e parte viscosa:
 $$
 \boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
 $$
+
+A derivada material $D_t=\partial_t+\boldsymbol v\cdot\nabla$ acompanha uma parcela em movimento. Mesmo um campo de velocidades estacionário pode acelerar uma parcela: a água que entra em uma passagem mais estreita alcança uma região com outra velocidade. Esse é o termo de transporte não linear $(\boldsymbol v\cdot\nabla)\boldsymbol v$.
 
 ---
 
@@ -50,6 +59,8 @@ $$
 
 Define-se a viscosidade cinemática $\nu \equiv \mu/\rho$ quando $\rho$ é constante.
 
+A viscosidade responde à deformação, não à translação uniforme. Suas dimensões são $[\mu]=\mathrm{Pa\,s}$ e $[\nu]=\mathrm{m^2/s}$. No diagrama do escoamento entre placas, uma distância $h$ e uma velocidade $U$ da placa superior fornecem $v_x(y)=Uy/h$ e a tensão de cisalhamento $\tau_{xy}=\mu U/h$. Essa solução exata simples é suave; a afirmação de uma singularidade é uma afirmação de existência para dados específicos, não uma afirmação sobre todo escoamento.
+
 ---
 
 ## 4. Forma incompressível
@@ -66,6 +77,18 @@ $$
 \nabla\!\cdot\!\boldsymbol v = 0.
 $$
 
+Leia a equação como: a aceleração é igual à soma da aceleração devida à pressão, da difusão viscosa e da aceleração aplicada.
+
+| Termo | Significado |
+| --- | --- |
+| $\partial_t\boldsymbol v$ | Variação medida em uma posição fixa |
+| $(\boldsymbol v\cdot\nabla)\boldsymbol v$ | Variação causada pelo deslocamento de uma parcela através do campo de velocidades |
+| $-\nabla p/\rho_0$ | As forças de pressão redistribuem o momento |
+| $\nu\nabla^2\boldsymbol v$ | A viscosidade suaviza as variações espaciais |
+| $\boldsymbol f$ | Força aplicada externamente por unidade de massa |
+
+A incompressibilidade não exige velocidade nula nem aceleração nula. A pressão atua como uma restrição que mantém a divergência da velocidade igual a zero; ela não é uma equação de estado independente nesse modelo de densidade constante.
+
 Tomar a divergência da equação de momento fornece uma **equação de Poisson para a pressão**, com condições de contorno adequadas:
 $$
 \nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
@@ -75,7 +98,7 @@ $$
 
 ## 5. Vorticidade e helicidade
 
-Define-se a vorticidade $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.  
+Define-se a vorticidade $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.
 Para um escoamento incompressível ($\nabla\!\cdot\!\boldsymbol v=0$):
 $$
 \partial_t \boldsymbol{\omega}
@@ -87,8 +110,12 @@ $$
 \partial_t \omega_i + v_j\partial_j \omega_i
 = \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
 $$
-O termo $\omega_j \partial_j v_i$ é o **estiramento de vórtices**, presente apenas em 3D.  
+O termo $\omega_j \partial_j v_i$ é o **estiramento de vórtices**, presente apenas em 3D.
 A helicidade $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ caracteriza a topologia das linhas de vorticidade.
+
+Um tubo de vórtice esticado ao longo de seu eixo pode ficar mais fino e intenso. Na equação da vorticidade, o estiramento pode amplificar a rotação, enquanto a viscosidade a difunde. Nenhum desses efeitos, isoladamente, determina se a dinâmica acoplada completa permanece suave.
+
+Para um escoamento realmente planar $\boldsymbol v=(v_x(x,y),v_y(x,y),0)$, a vorticidade aponta perpendicularmente ao plano, e os campos não variam nessa direção. Assim, $(\boldsymbol\omega\cdot\nabla)\boldsymbol v=0$. Isso elimina um importante mecanismo de amplificação em duas dimensões; não significa que todo vórtice tridimensional deva desenvolver uma singularidade.
 
 ![Uma circulação no sentido anti-horário no plano tem vorticidade apontando para fora da página, representada por um ponto dentro de um círculo.](/images/diagrams/vorticity.svg)
 
@@ -96,7 +123,7 @@ A helicidade $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ caracte
 
 ## 6. Balanço de energia no caso incompressível
 
-Multiplica-se escalarmente a equação de momento por $\boldsymbol v$ e integra-se sobre um domínio $\Omega$ com condição de não deslizamento em $\partial\Omega$:
+Para uma solução suave, multiplica-se escalarmente a equação de momento por $\boldsymbol v$ e integra-se sobre um domínio $\Omega$ com fronteira estacionária e condição de não deslizamento. A mesma identidade vale em uma caixa periódica ou em todo o espaço com decaimento suficiente:
 $$
 \tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
 + \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
@@ -104,6 +131,18 @@ $$
 $$
 
 Para $\boldsymbol f=\boldsymbol 0$, a energia cinética decai monotonicamente; a dissipação viscosa é dada por $\nu\|\nabla \boldsymbol v\|_2^2$.
+
+Essa energia está normalizada pela densidade constante: a energia cinética física é $\rho_0/2$ vezes a integral do quadrado da velocidade. O transporte e a pressão contribuem apenas com fluxos de fronteira que se anulam nessas condições; a integração por partes fornece o termo viscoso não negativo. Uma parede em movimento ou uma fronteira aberta introduz termos adicionais de trabalho ou de fluxo.
+
+### 6.1 Por que energia finita não garante suavidade
+
+Uma estimativa integral controla o movimento total, não seu maior valor local. Para ilustrar a mudança de escala, escolha um campo fixo $\boldsymbol\phi$, suave, de suporte compacto e divergência nula, e defina
+
+$$
+\boldsymbol v_\ell(\boldsymbol x)=\ell^{-1}\boldsymbol\phi(\boldsymbol x/\ell).
+$$
+
+Então $\|\boldsymbol v_\ell\|_\infty=\ell^{-1}\|\boldsymbol\phi\|_\infty$ cresce quando $\ell\to0$, enquanto $\|\boldsymbol v_\ell\|_2^2=\ell\|\boldsymbol\phi\|_2^2$ diminui. Esses campos são retratos instantâneos reescalados, **não uma solução nem uma prova de singularidade**. Eles mostram por que velocidades cada vez maiores em um volume cada vez menor podem respeitar uma limitação de energia. Controlar as derivadas e a concentração é o desafio adicional da regularidade.
 
 ---
 
@@ -123,6 +162,8 @@ $$
 \mathrm{Re} = \frac{U L}{\nu}.
 $$
 
+Aqui, $\boldsymbol f'=L\boldsymbol f/U^2$. O tempo de difusão é $L^2/\nu$, e o tempo de advecção é $L/U$; a razão entre eles é $\mathrm{Re}$. Um número de Reynolds alto significa que a advecção é rápida em comparação com a suavização viscosa na escala escolhida. Ele não é um limiar universal de turbulência nem um critério de singularidade: a geometria, as perturbações e a escala observada também importam. Por exemplo, $U=0.1\,\mathrm{m/s}$, $L=0.01\,\mathrm m$ e $\nu=10^{-6}\,\mathrm{m^2/s}$ fornecem $\mathrm{Re}=1000$.
+
 Outros grupos adimensionais, conforme necessário:
 - **Mach** $\mathrm{Ma}=U/c_s$ (compressibilidade),
 - **Froude** $\mathrm{Fr}=U/\sqrt{gL}$ (gravidade),
@@ -139,34 +180,52 @@ $$
 $$
 Uma equação de estado, por exemplo a de um gás ideal, fecha o sistema: $p=(\gamma-1)\rho e$.
 
+O trabalho de compressão e a conversão de energia cinética em energia interna passam a importar explicitamente. O Problema do Milênio incompressível não resolve a formação de choques, o transporte de calor nem a teoria de regularidade desse sistema diferente.
+
 ---
 
 ## 9. Teoria matemática: existência e unicidade
 
+Existência **local** significa que uma solução existe em algum intervalo após o instante inicial; existência **global** significa que ela existe para todos os tempos futuros. Uma solução **clássica** tem derivadas suficientes para satisfazer as equações ponto a ponto; **suave**, aqui, significa diferenciável em todas as ordens. Uma solução **fraca** satisfaz uma versão integrada, transferindo as derivadas para funções de teste suaves. Esses são requisitos diferentes de existência.
+
 ### 9.1 Soluções fracas de Leray–Hopf
-Para as equações de Navier–Stokes incompressíveis em 3D com dados em $L^2$, existem **soluções fracas globais no tempo** que satisfazem a **desigualdade de energia**.  
-A **unicidade** depende da classe de soluções, dos dados e da força. A não unicidade está demonstrada para certas forças de volume ([Albritton, Brué e Colombo](https://arxiv.org/abs/2112.03116)). Um preprint de [Hou, Wang e Yang de 2025–2026](https://arxiv.org/abs/2509.25116) relata uma prova assistida por computador de não unicidade sem força para dados iniciais singulares; isso não resolve a regularidade global para dados suaves.
+Para dados iniciais de divergência nula e energia finita no contexto usual de todo o espaço ou de um domínio periódico, e forças admissíveis, a teoria de Leray–Hopf fornece **soluções fracas globais que satisfazem uma desigualdade de energia**. Uma solução suave é única na classe de energia correspondente enquanto permanecer suave (unicidade fraca-forte). Portanto, uma eventual perda de suavidade não significa que todas as soluções generalizadas deixem de existir. [Descrição oficial do problema por Fefferman](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+A unicidade depende da classe de soluções, dos dados iniciais e da força. [Albritton, Brué e Colombo](https://arxiv.org/abs/2112.03116) estabelecem a não unicidade para certas forças. [Hou, Wang e Yang](https://arxiv.org/abs/2509.25116) relatam não unicidade assistida por computador, sem força externa, para dados iniciais singulares. Esses resultados não devem ser apresentados como formação de singularidade a partir de dados iniciais suaves sem força externa.
 
 ### 9.2 Critérios de regularidade em 3D
-- **Beale–Kato–Majda**: uma explosão da solução no instante $T$ implica
+- **Critério de continuação pela vorticidade, do tipo Beale–Kato–Majda:** para uma solução clássica no contexto usual suficientemente regular de todo o espaço ou de um domínio periódico, com força suficientemente regular até e incluindo $T$, uma perda de regularidade em $T$ exige
 $$
 \int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
 $$
-- **Condições de Prodi–Serrin**: se $\boldsymbol v \in L^p(0,T;L^q)$ com
+[A discussão de Luo sobre critérios de continuação para Navier–Stokes](https://arxiv.org/html/1803.05569) apresenta o critério sem força externa; a condição acima sobre a força exclui a perda de regularidade imposta por uma ação externa singular.
+- **Prodi–Serrin:** uma solução fraca na classe de energia, com força adequada, é regular se $\boldsymbol v \in L^p(0,T;L^q)$ com
 $$
 \frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
 $$
-então a solução é suave em $(0,T]$.
-- **Caffarelli–Kohn–Nirenberg**: soluções fracas adequadas têm um conjunto singular no espaço-tempo com dimensão de Hausdorff parabólica $\le 1$ (regularidade parcial).
+e, nesse caso, a solução é suave em $(0,T]$.
+- **Caffarelli–Kohn–Nirenberg:** soluções fracas adequadas, sob as hipóteses do teorema para a força, têm um conjunto singular com medida de Hausdorff parabólica unidimensional igual a zero. Isso é regularidade parcial; não prova que o conjunto singular seja vazio. [Contexto e referências na descrição oficial do problema](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+Essas são afirmações condicionais. Elas especificam qual controle evitaria a perda de regularidade, sem fornecer esse controle para todo escoamento tridimensional. Os expoentes acima refletem a mudança de escala natural $\boldsymbol v_a(\boldsymbol x,t)=a\boldsymbol v(a\boldsymbol x,a^2t)$; em três dimensões, a norma de energia, sozinha, não tem a escala crítica.
 
 ### 9.3 Regularidade global em 2D
-Para dados suaves, valem a **existência e a unicidade global** em 2D.  
-A enstrofia $\int |\boldsymbol{\omega}|^2 dV$ permanece limitada; não há estiramento de vórtices.
+Para dados suaves e compatíveis no contexto usual de todo o espaço ou de um domínio periódico, com força suficientemente regular, o escoamento incompressível bidimensional permanece suave para todo tempo finito. Sem força externa, a enstrofia $\int|\boldsymbol\omega|^2\,dV$ não aumenta; a força acrescenta um termo fonte. A ausência de estiramento de vórtices permite um controle muito mais forte do que em 3D.
 
 ### 9.4 Escoamentos compressíveis
 Existem **soluções fracas globais de energia finita**, sob certas condições para gases com lei $\gamma$, mas regularidade e unicidade permanecem, em grande parte, em aberto.
 
-> **Problema do Milênio:** provar que, em 3D, dados iniciais suaves e de divergência nula produzem uma **solução global suave e única**, ou apresentar um contraexemplo com singularidade em tempo finito.
+### 9.5 O que as quatro alternativas do Clay realmente pedem
+
+A [formulação oficial](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf) aceita uma prova de qualquer uma de quatro afirmações, com viscosidade positiva:
+
+| Alternativa | Domínio | Força e questão |
+| --- | --- | --- |
+| A | $\mathbb R^3$ | Força nula; soluções globais suaves de energia finita para todos os dados iniciais suaves permitidos |
+| B | $\mathbb R^3/\mathbb Z^3$ periódico | Força nula; soluções globais suaves para todos os dados iniciais suaves e periódicos permitidos |
+| C | $\mathbb R^3$ | Alguns dados suaves permitidos e uma força suave de decaimento rápido não admitem solução global suave com energia uniformemente limitada |
+| D | $\mathbb R^3/\mathbb Z^3$ periódico | Alguns dados suaves e periódicos permitidos e uma força suave e periódica permitida não admitem solução global suave |
+
+Em todo o espaço, os dados iniciais e a força obedecem às condições de decaimento especificadas; a força periódica também obedece a condições de decaimento no tempo. C e D permitem uma força não nula, portanto provar uma delas não refutaria logicamente as afirmações A ou B sem força externa. “Resolver uma alternativa do Clay” e “resolver todas as versões da regularidade” são afirmações diferentes.
 
 ---
 
@@ -183,44 +242,85 @@ $$
 \eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
 $$
 
-O custo da simulação numérica direta (DNS) cresce rapidamente: o número de pontos da malha escala como $\sim \mathrm{Re}^{9/4}$ em 3D. Isso motiva os fechamentos **LES** e **RANS**; o **problema de fechamento**, incluindo a modelagem das tensões não resolvidas, continua central.
+Usando a estimativa de K41 $\varepsilon\sim U^3/L$, obtém-se $L/\eta\sim\mathrm{Re}^{3/4}$. Resolver essa escala em três dimensões sugere um número de pontos de malha da ordem de $\mathrm{Re}^{9/4}$, antes mesmo do custo dos passos no tempo. Essa heurística motiva a **simulação numérica direta (DNS)**, a **simulação de grandes escalas (LES)** e as **equações de Navier–Stokes com média de Reynolds (RANS)**, com diferentes escolhas de resolução e modelagem. LES e RANS exigem hipóteses de fechamento para as correlações não resolvidas.
+
+O espectro $-5/3$ descreve um modelo estatístico da faixa inercial, não todo escoamento nem toda escala. A intermitência e as fronteiras complicam esse quadro. Uma solução singular construída especialmente não forneceria um modelo universal de turbulência nem eliminaria a necessidade de estimativas de erro numérico.
 
 ---
 
 ## 11. Condições de contorno e geometria
 
-- **Parede sem deslizamento:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
-- **Deslizamento livre:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
-- **Caixa periódica (toro)** para teoria e DNS  
+- **Parede sem deslizamento:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$
+- **Deslizamento livre:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$
+- **Caixa periódica (toro)** para teoria e DNS
 - **Entrada e saída** com especificações adequadas de tensão ou pressão
 
 A escolha afeta a boa colocação do problema, o balanço de energia e a estabilidade numérica.
+
+Uma caixa periódica identifica as faces opostas; ela não tem paredes físicas. O decaimento em todo o espaço substitui uma condição de parede no infinito. Um resultado nessas geometrias não pode ser transferido automaticamente para a superfície de uma aeronave ou para um tubo: as condições de contorno fazem parte do problema matemático.
 
 ---
 
 ## 12. Métodos numéricos: um guia compacto
 
-- **Métodos de projeção:** avance $\boldsymbol v^\ast$, resolva a equação de Poisson para $p$ e projete para obter $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.  
-- **Esquemas estáveis em energia:** a forma antissimétrica do termo convectivo preserva a energia discreta.  
-- **Restrição CFL para esquemas explícitos de advecção/difusão:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
+- **Métodos de projeção:** avance $\boldsymbol v^\ast$, resolva a equação de Poisson para $p$ e projete para obter $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.
+- **Esquemas estáveis em energia:** a forma antissimétrica do termo convectivo preserva a energia discreta.
+- **Restrição CFL para esquemas explícitos de advecção/difusão:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.
 - **Controle da divergência:** bases espectrais de divergência nula ou elementos finitos mistos com pares velocidade–pressão estáveis na condição inf–sup. A divergência exatamente nula exige espaços adequados; a estabilidade inf–sup, sozinha, não a garante.
+
+Uma simulação pode revelar um pico crescente, mas uma malha finita, por si só, não estabelece um limite infinito. Estudos de refinamento, controle dos erros de discretização e um argumento analítico são necessários para distinguir uma concentração real de uma instabilidade numérica. Provas assistidas por computador fornecem estimativas rigorosas; assistentes de prova formal verificam deduções a partir de definições e hipóteses codificadas. Nenhum deles é simplesmente uma animação de alta resolução.
 
 ---
 
 ## 13. Conexões e extensões
 
-- **Limite de Euler:** $\nu\to 0$ leva às equações de Euler incompressíveis; possíveis singularidades em tempo finito constituem um grande desafio paralelo.  
-- **Hidrodinâmica relativística:** a formulação ingênua de Navier–Stokes é acausal; teorias de **Israel–Stewart** de segunda ordem podem restaurar a causalidade sob condições adequadas para os coeficientes de transporte e os estados do fluido ([um exemplo rigoroso com viscosidade volumétrica](https://arxiv.org/abs/1901.06701)).  
+- **Equações de Euler:** definir $\nu=0$ elimina a difusão viscosa. A própria passagem ao limite $\nu\to0$ pode ser delicada, sobretudo perto de paredes. O resultado de Euler sem força externa anunciado separadamente pela OpenAI diz respeito a essa equação não viscosa, não ao problema sem força externa com viscosidade positiva. [Anúncio e artigo separado sobre Euler](https://openai.com/index/navier-stokes-solution/).
+- **Hidrodinâmica relativística:** a formulação ingênua de Navier–Stokes é acausal; teorias de **Israel–Stewart** de segunda ordem podem restaurar a causalidade sob condições adequadas para os coeficientes de transporte e os estados do fluido ([um exemplo rigoroso com viscosidade volumétrica](https://arxiv.org/abs/1901.06701)).
 - **Fluidos quânticos:** análogos superfluidos das equações de Navier–Stokes com modelos de dois fluidos e vórtices quantizados.
 
 ---
 
 ## 14. Situação atual
 
-- 2D: a teoria está bem estabelecida; a suavidade global é conhecida.  
-- 3D: a **existência de soluções globais suaves** ou a **explosão em tempo finito** permanece **em aberto**.  
-- A fenomenologia da turbulência (K41) é amplamente bem-sucedida, mas a **intermitência** e os fechamentos continuam sendo temas de pesquisa ativa.  
+**Em 13 de outubro de 2026:** a construção tridimensional com força suave foi anunciada e está sob análise; a regularidade de Navier–Stokes em 3D sem força externa permanece em aberto. Isso não invalida a regularidade bidimensional nem a utilidade cotidiana das soluções de escoamento suave.
 
-**Em poucas palavras:** conseguimos simular e medir com precisão impressionante, mas a **matemática profunda** da regularidade e da turbulência ainda esconde o desafio final.
+### 14.1 A afirmação precisa e seu mecanismo
+
+O Teorema 1.1 do [artigo da OpenAI](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf) afirma: para **todo $\nu>0$**, existe uma força suave de suporte compacto no espaço e no tempo e um escoamento incompressível suave em $\mathbb R^3\times[0,1)$, partindo do repouso, para o qual
+
+$$
+\boldsymbol v(\cdot,0)=0,\qquad
+\sup_{0\le t<1}\|\boldsymbol v(t)\|_{L^2}<\infty,
+\qquad
+\limsup_{t\uparrow1}\|\boldsymbol v(t)\|_{L^\infty}=\infty.
+$$
+
+A velocidade e a pressão têm suporte espacial compacto fixo antes do instante 1; a força se estende suavemente através desse instante. O artigo afirma demonstrar a alternativa C e, por sua construção periódica no Corolário 10.6, a D. Sua convenção para a pressão incorpora a densidade constante.
+
+O mecanismo proposto concentra um vórtice que espirala para dentro e se estica axialmente. Correções oscilatórias e seu transporte de momento cancelam forças residuais que, de outra forma, seriam singulares. Escolher uma velocidade qualquer que desenvolva uma singularidade e definir uma força pela equação não basta: a força e **todas as suas derivadas** devem permanecer suaves através do instante singular. Isso é um esboço conceitual da construção anunciada, não uma demonstração independente.
+
+“Para cada viscosidade existe uma força” permite que a força dependa da viscosidade. Isso não significa que uma mesma força fixa vença toda viscosidade, que forças arbitrariamente pequenas sejam suficientes ou que um fluido inicialmente em repouso desenvolva uma singularidade sem entrada de energia.
+
+### 14.2 Lean, exame matemático e o prêmio
+
+O [repositório Lean publicado](https://github.com/openai/NavierStokesAndEuler) contém enunciados-alvo para todo o espaço e para o caso periódico, além de instruções de verificação independente com Comparator. Um verificador formal confere deduções para o enunciado e as hipóteses exatamente como foram codificados. Saber se essas definições expressam o problema pretendido e como o argumento explica a demonstração escrita são questões adicionais. Estas notas não afirmam ter recompilado nem verificado de forma independente o projeto Lean.
+
+Em **6 de outubro**, [Bastounis, Circelli e Hansen](https://arxiv.org/abs/2610.08144) publicaram uma crítica à correspondência entre a exposição em linguagem natural e Lean: os exemplos incluem diferentes requisitos de derivadas no Lema 8.6 e um argumento diferente para a estimativa de pressão no Lema 10.5. Isso questiona tratar a formalização como certificação automática de cada passo da prova escrita. Por si só, isso **não** refuta o teorema final de singularidade com força externa nem mostra que o enunciado formal final esteja errado.
+
+Em **11 de setembro**, a [resposta do Clay](https://www.claymath.org/news/navier-stokes-announcement/) acolheu o aparente avanço, enfatizando seu processo de avaliação deliberadamente sem pressa. As [regras do prêmio](https://www.claymath.org/millennium-problems/rules/) exigem uma publicação qualificada, pelo menos dois anos desde essa publicação e aceitação matemática geral antes da consideração. A data do anúncio, sozinha, não inicia uma contagem estabelecida para o prêmio. Não se afirma aqui que o prêmio tenha sido concedido; a OpenAI diz que não pretende reivindicá-lo.
+
+### 14.3 O que os trabalhos posteriores estabelecem e o que não estabelecem
+
+Os trabalhos posteriores de setembro também exigem atenção ao escopo. [Petrillo e Glimm](https://arxiv.org/abs/2609.23868) separam explicitamente o resultado com força externa do problema sem força ainda em aberto. [A exposição de Lei e Ren](https://arxiv.org/abs/2609.35406v2) estuda a construção do perfil, deixando cancelamentos oscilatórios adicionais para depois; ela não é uma verificação independente completa. [Constantin, Ignatova e Vicol](https://arxiv.org/abs/2609.20803v2) obtêm uma obstrução à singularidade por regularidade sob hipóteses específicas de geometria, crescimento e força. Isso é relevante para tentativas de remover a força desse mecanismo, não um teorema de regularidade global para todos os escoamentos com força analítica.
+
+As perguntas produtivas agora são precisas: as hipóteses e conclusões anunciadas estão verificadas, o mecanismo pode ser explicado com transparência e o que permanece quando a força é removida? A previsão da turbulência, a unicidade de soluções fracas em todas as classes e o escoamento compressível continuam sendo problemas separados.
+
+## 15. Teste sua compreensão
+
+1. **Translação uniforme:** para velocidade constante, pressão constante e força nula, quais termos da equação incompressível se anulam? Todas as derivadas espaciais e temporais se anulam, portanto qualquer viscosidade positiva é compatível com esse movimento.
+2. **Energia e velocidade máxima:** na seção 6.1, faça a mudança de variáveis $\boldsymbol y=\boldsymbol x/\ell$. Por que a energia escala como $\ell$? O quadrado da amplitude contribui com $\ell^{-2}$, e o volume tridimensional contribui com $\ell^3$.
+3. **Mudança de escala:** mantendo $U$ e $\nu$ fixos, o que acontece com o número de Reynolds se $L$ for reduzido à metade? Ele cai pela metade; a importância relativa da viscosidade aumenta na escala menor.
+4. **Lendo um teorema:** por que a alternativa C pode valer enquanto A permanece sem decisão? C permite uma força suave não nula escolhida, enquanto A trata apenas de força nula.
+5. **Um verificador de provas:** o que mais deve ser conferido depois que Lean aceita uma prova? Se as definições, hipóteses e a conclusão final codificadas correspondem à questão matemática pretendida; a correspondência com uma exposição separada também precisa ser examinada.
 
 ---
