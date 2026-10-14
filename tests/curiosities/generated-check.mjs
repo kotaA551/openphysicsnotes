@@ -66,9 +66,11 @@ for(const locale of locales) {
 check('generated CSS scope and typography',()=>{
   const files = fs.readdirSync(path.join(dist,'static/css'),{recursive:true}).filter(f=>String(f).endsWith('.css'));
   const css = files.map(f=>fs.readFileSync(path.join(dist,'static/css',f),'utf8')).join('\n');
-  assert.match(css,/\.prose\s+\.differential-geometry-body\s+h1\s*\{[^}]*font-size:25px/);
-  assert.match(css,/\.prose\s+\.differential-geometry-body\s+h1\s*\{[^}]*color:light-dark\(#111,\s*#e5e7eb\)/);
-  assert.match(css,/\.prose\s+\.differential-geometry-body\s+h1\s+a\s*\{[^}]*text-decoration:none/);
+  // Differential Geometry now shares the explicitly annotated reading layout
+  // with the main chapters. The legacy wrapper remains for scope compatibility.
+  assert.match(css,/\.prose\s+\.article-reading\s*>\s*\[data-article-heading=["']?division["']?\][^{]*\{[^}]*font-size:25px/);
+  assert.match(css,/\.prose\s+\.article-reading\s*>\s*\[data-article-heading\]\s*\{[^}]*color:var\(--tw-prose-headings\)/);
+  assert.match(css,/\.prose\s+\.article-reading\s*>\s*\[data-article-heading\]\s*>\s*a\s*\{[^}]*text-decoration:none/);
   assert.match(css,/a:focus-visible[^}]*outline/,'global focus indicator retained');
 });
 console.log(JSON.stringify({result:errors.length?'fail':'pass',pages:reports.length,preservedLegacyAnchors:preservedIds,visualBrowser:'not assessed by this static-output check',reports,errors},null,2));

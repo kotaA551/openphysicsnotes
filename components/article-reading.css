@@ -1,0 +1,50 @@
+/* Only MDX root headings annotated by article-layout.mjs participate. Quoted
+   headings, callouts, figures, reading lists and discussion UI keep their CSS.
+   Section/subsection metrics match the Groups, Lie Algebras & Gauge Theory
+   article; legacy body h1s and proof-step h2s retain their tags and permalinks. */
+.prose .article-reading > [data-article-heading] {
+  color: var(--tw-prose-headings);
+  border: 0;
+}
+.prose .article-reading > [data-article-heading="division"],
+.prose .article-reading > [data-article-heading="section"] {
+  font-size: 25px;
+  line-height: 1.33333;
+  font-weight: 700;
+  letter-spacing: -.025em;
+  margin-top: 2.5em;
+  margin-bottom: 1em;
+  padding-top: .4em;
+}
+.prose .article-reading > [data-article-heading="subsection"] {
+  font-size: 19px;
+  line-height: 1.6;
+  font-weight: 600;
+  letter-spacing: normal;
+  margin-top: 1.6em;
+  margin-bottom: .6em;
+  padding-top: 0;
+}
+.prose .article-reading > [data-article-heading="detail"] {
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 600;
+  letter-spacing: normal;
+  margin-top: 1.5em;
+  margin-bottom: .5em;
+  padding-top: 0;
+}
+.prose .article-reading > [data-article-heading] > a {
+  color: inherit;
+  text-decoration: none;
+}
+.prose .article-reading > [data-article-heading] + p {
+  margin-top: 0;
+}
+/* Retain every authored separator, using the same quiet line as the reference
+   discussion boundaries. Never add rules to math, tables or nested blocks. */
+.prose .article-reading > [data-article-separator] {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin-block: 2em;
+}
