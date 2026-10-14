@@ -6,4 +6,5 @@ export const curiosities = [
   { slug: "dark-energy",                     title: "5.Dark Energy" },
   { slug: "navier-stokes-equation",          title: "6.Navier Stokes Equation" },
   { slug: "differential-geometry",           title: "7.Differential Geometry" },
+  { slug: "groups-lie-algebras-gauge-theory", title: "8.Groups, Lie algebras and gauge theory" },
 ];

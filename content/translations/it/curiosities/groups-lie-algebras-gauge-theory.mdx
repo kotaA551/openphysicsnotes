@@ -1,0 +1,924 @@
+---
+title: "Dai gruppi alla teoria di gauge: la matematica del Modello Standard"
+order: 8
+description: "Costruiamo il linguaggio delle simmetrie del Modello Standard, dagli assiomi dei gruppi e dalle rotazioni matriciali alle algebre di Lie, rappresentazioni, connessioni e curvatura, con esempi svolti, diagrammi originali ed esercizi risolti."
+---
+
+## 8.1 La meta e il percorso
+
+L'espressione $SU(3)_c\times SU(2)_L\times U(1)_Y$ diventa utile solo quando sappiamo che cosa fa. Specifica trasformazioni interne continue, indica come possono trasformarsi i campi e fornisce l'algebra che organizza le loro interazioni. Da sola non specifica ogni particella, ogni accoppiamento o la dinamica del vuoto. Il nostro obiettivo è leggere questa espressione come un insieme compatto di istruzioni matematiche.
+
+Costruiremo queste istruzioni in cinque tappe: le operazioni reversibili formano **gruppi**; le matrici ne realizzano le azioni sui vettori; differenziando i gruppi continui si ottengono **algebre di Lie**; le **rappresentazioni** specificano quali vettori si trasformano; confrontare le trasformazioni in punti vicini dello spaziotempo introduce infine una **connessione di gauge**. La sua curvatura è il tensore di campo di gauge.
+
+I prerequisiti sono la moltiplicazione tra matrici, i numeri complessi, le derivate e le basi della meccanica quantistica. La familiarità con i campi e la relatività ristretta aiuta nell'ultimo terzo. Non si presuppongono conoscenze di teoria dei gruppi o geometria differenziale. Le sezioni 8.2–8.6 stabiliscono il vocabolario; 8.7–8.11 sviluppano gli strumenti matematici; 8.12–8.15 costruiscono la teoria di gauge; 8.16–8.18 assemblano il Modello Standard. Gli esempi svolti sono parte del ragionamento. Gli esercizi della sezione 8.19 ripercorrono le idee principali.
+
+La [Curiosità sulla geometria differenziale](/it/curiosities/differential-geometry) offre una trattazione più ampia di varietà, connessioni e curvatura. Il [capitolo principale di teoria quantistica dei campi](/it/chapters/8-Quantum-field-theory) approfondisce quantizzazione, interazioni, anomalie e meccanismo di Higgs oltre questa introduzione. Questa è l'ottava **Curiosità**, un articolo distinto da quel capitolo principale di fisica.
+
+### Convenzioni da tenere accanto ai calcoli
+
+I vettori sono colonne; in un prodotto $gh$ agisce prima $h$. Il simbolo $I$ indica una matrice identità; $e$ indica l'identità di un gruppo, salvo quando viene esplicitamente identificato con l'accoppiamento elettromagnetico. Il simbolo dagger indica la trasposta coniugata. È sottintesa la somma sugli indici ripetuti dell'algebra di Lie. Gli indici di spaziotempo sono $\mu,\nu=0,1,2,3$.
+
+Per i campi quantistici usiamo unità naturali $\hbar=c=1$ e segnatura di Minkowski $(+,-,-,-)$. I generatori interni $t_a$ sono hermitiani, con
+
+$$
+[t_a,t_b]=i f_{ab}{}^c t_c,\qquad
+\operatorname{tr}(t_at_b)=\frac12\delta_{ab}
+$$
+
+nella rappresentazione definente di $SU(N)$. La normalizzazione della traccia è una scelta, non un assioma valido per ogni rappresentazione. Le nostre convenzioni di gauge sono
+
+$$
+\psi'=U\psi,\qquad D_\mu=\partial_\mu-igA_\mu,\qquad
+[D_\mu,D_\nu]=-igF_{\mu\nu}.
+$$
+
+Ne ricaveremo le conseguenze mantenendo gli stessi segni lungo tutto il percorso. L'ipercarica è definita da $Q=T_3+Y$; una fonte che usa $Q=T_3+Y/2$ chiama ipercarica il doppio del nostro $Y$. Quando si confrontano le equazioni, queste convenzioni devono essere considerate insieme.
+
+## 8.2 Che cos'è un gruppo?
+
+Un **gruppo** è un insieme $G$ dotato di un'operazione binaria: una regola che assegna un elemento $gh$ di $G$ a ogni coppia $g,h$ in $G$. Quattro requisiti esprimono ciò che serve alla composizione reversibile.
+
+1. **Chiusura:** componendo due operazioni ammesse si ottiene un'altra operazione ammessa.
+2. **Associatività:** $(gh)k=g(hk)$. Le parentesi possono spostarsi senza cambiare il risultato; l'ordine no.
+3. **Identità:** esiste un elemento $e$ tale che $eg=ge=g$.
+4. **Inverso:** ogni $g$ possiede un elemento $g^{-1}$ che soddisfa $g^{-1}g=gg^{-1}=e$.
+
+L'operazione non deve necessariamente essere la moltiplicazione di numeri. Per gli interi con l'addizione, l'identità è $0$ e l'inverso di $n$ è $-n$. Quindi $(\mathbb Z,+)$ è un gruppo. Gli interi non negativi con l'addizione non lo sono, perché un intero positivo non ha un inverso additivo nell'insieme. I numeri reali non nulli con la moltiplicazione formano un gruppo; tutti i reali con la moltiplicazione no, perché $0$ non ha inverso moltiplicativo.
+
+Un gruppo è **abeliano** quando $gh=hg$ per ogni coppia. L'addizione degli interi è abeliana. Le composizioni di rotazioni spaziali in genere non lo sono. La non commutatività significa che l'operazione intermedia cambia la situazione sulla quale agisce l'operazione successiva; non significa che la composizione sia incoerente.
+
+### Esempio svolto 1: un orologio con cinque posizioni
+
+Sia $\mathbb Z_5$ l'insieme delle classi di resto $0,1,2,3,4$, con addizione modulo $5$. Allora
+
+$$
+3+4=2\pmod 5,\qquad -3=2\pmod 5.
+$$
+
+L'elemento $1$ genera l'intero gruppo: l'addizione ripetuta visita tutte e cinque le posizioni. Equivalentemente, scriviamo il **gruppo ciclico** come $C_5=\{e,r,r^2,r^3,r^4\}$ con $r^5=e$. Il suo ordine, cioè il numero di elementi, è cinque. In un gruppo continuo il numero di parametri reali si chiama invece dimensione; sono concetti differenti.
+
+L'associatività permette di risolvere equazioni senza assumere la commutatività. Da $gx=h$, moltiplichiamo a sinistra per $g^{-1}$ per ottenere $x=g^{-1}h$. Moltiplicare dal lato sbagliato in genere non funzionerebbe. Analogamente,
+
+$$
+(gh)^{-1}=h^{-1}g^{-1},
+$$
+
+perché annullare una sequenza richiede di annullare per primo il suo ultimo passo. Questa semplice identità ricomparirà nell'algebra matriciale e nelle trasformazioni di gauge.
+
+Un **sottogruppo** è un sottoinsieme che è a sua volta un gruppo rispetto alla stessa operazione. Per esempio, i multipli di cinque formano un sottogruppo di $(\mathbb Z,+)$. Un **omomorfismo** è un'applicazione che preserva la moltiplicazione, $\rho(gh)=\rho(g)\rho(h)$. Preserva automaticamente identità e inversi. Quando tale applicazione è biiettiva è un isomorfismo: due presentazioni hanno la stessa struttura astratta di gruppo.
+
+**Punto di controllo.** L'associatività non afferma che $gh=hg$. Dice soltanto che eseguire tre operazioni non dipende da dove mettiamo le parentesi che organizzano il calcolo.
+
+## 8.3 Le simmetrie agiscono: il triangolo come laboratorio
+
+Un gruppo astratto non è necessariamente accompagnato da un oggetto particolare da trasformare. Un'**azione di gruppo** fornisce tale oggetto: per un insieme $X$, assegna $g\cdot x$ in modo che $e\cdot x=x$ e $(gh)\cdot x=g\cdot(h\cdot x)$. Lo stesso gruppo può agire su posizioni, funzioni, stati quantistici o componenti interne dei campi.
+
+Etichettiamo i vertici di un triangolo equilatero con $1,2,3$. Sia $r=(123)$ la permutazione ciclica, e sia $s=(23)$ quella che fissa il vertice $1$ scambiando i vertici $2$ e $3$. Nella notazione per cicli, $(123)$ significa $1\mapsto2$, $2\mapsto3$, $3\mapsto1$. Le sei simmetrie del triangolo formano il gruppo diedrale $D_3$, isomorfo al gruppo delle permutazioni $S_3$:
+
+$$
+D_3=\{e,r,r^2,s,sr,sr^2\},\qquad
+r^3=e,\quad s^2=e,\quad srs=r^{-1}.
+$$
+
+Le prime due relazioni esprimono che tre rotazioni successive e due riflessioni successive riportano all'inizio. La terza dice che una riflessione inverte il verso di rotazione.
+
+![Due sequenze di una rotazione e una riflessione del triangolo producono permutazioni diverse dei vertici; la composizione agisce da destra a sinistra.](/images/diagrams/groups-triangle-composition.svg)
+
+*I vertici colorati consentono di seguire l'azione. Le due sequenze usano le stesse operazioni, ma $sr$ e $rs$ scambiano coppie diverse di vertici.*
+
+### Esempio svolto 2: calcolare il difetto di commutatività
+
+Per $sr$, seguiamo il vertice $1$: $r$ lo manda in $2$, poi $s$ manda $2$ in $3$. Il vertice $3$ va prima in $1$, poi vi rimane. Il vertice $2$ torna su se stesso. Dunque $sr=(13)$. Viceversa, $rs$ manda $1$ in $2$, $2$ in $1$ e fissa $3$, quindi $rs=(12)$. Pertanto $sr\ne rs$.
+
+L'**orbita** di un punto è l'insieme delle posizioni in cui il gruppo può mandarlo. L'orbita del vertice $1$ contiene tutti e tre i vertici. Il suo **stabilizzatore** consiste nelle operazioni che lo lasciano fisso: $\{e,s\}$. Qui è visibile la relazione orbita-stabilizzatore per i gruppi finiti:
+
+$$
+|D_3|=|\operatorname{Orb}(1)|\,|\operatorname{Stab}(1)|=3\times2.
+$$
+
+Il **nucleo** di un'azione contiene gli elementi che agiscono banalmente su ogni punto. Questa azione sul triangolo ha soltanto l'identità nel nucleo ed è detta **fedele**. Un'azione non fedele può nascondere una parte del gruppo. Più avanti, i normali vettori tridimensionali non riusciranno a distinguere due elementi diversi di $SU(2)$.
+
+È utile anche distinguere una trasformazione attiva da un cambiamento passivo della descrizione. Ruotiamo attivamente un vettore mediante una matrice $R$, tenendo fissi gli assi: $v'=Rv$. Ruotiamo invece passivamente gli assi lasciando fisso il vettore geometrico: le sue componenti si trasformano mediante $R^{-1}$. Entrambe le convenzioni funzionano. Confonderle produce apparenti discrepanze di segno, soprattutto per le rotazioni e i riferimenti di gauge.
+
+**Punto di controllo.** Una simmetria è specificata sia da un elemento del gruppo sia da ciò su cui agisce. Un elemento invisibile in un'azione può essere visibile in un'altra.
+
+## 8.4 Matrici, numeri complessi e quantità preservate
+
+Una trasformazione lineare manda somme in somme e multipli scalari in multipli scalari. Scegliendo una base la si rappresenta con una matrice. La composizione diventa moltiplicazione matriciale; una matrice invertibile descrive una trasformazione lineare reversibile. Le matrici invertibili $n\times n$ su un campo $\mathbb F$ formano $GL(n,\mathbb F)$, il gruppo lineare generale.
+
+Perché selezionare un gruppo più piccolo? Di solito occorre preservare una quantità fisica. Per vettori reali con lunghezza euclidea al quadrato $v^Tv$, una matrice $R$ preserva tutte le lunghezze precisamente quando
+
+$$
+(Rv)^T(Rv)=v^TR^TRv=v^Tv,\qquad R^TR=I.
+$$
+
+Queste sono matrici **ortogonali** e formano $O(n)$. I loro determinanti soddisfano $(\det R)^2=1$, quindi $\det R=\pm1$. Richiedere $+1$ seleziona $SO(n)$, il gruppo ortogonale speciale. Le riflessioni hanno determinante $-1$ e sono escluse; le rotazioni appartengono a $SO(n)$.
+
+Per i vettori complessi, la norma al quadrato, non negativa, è $z^\dagger z$, non $z^Tz$. Una matrice che la preserva soddisfa $U^\dagger U=I$ ed è **unitaria**. Tali matrici formano $U(n)$; aggiungendo $\det U=1$ si ottiene $SU(n)$. Qui «speciale» significa determinante uno e «unitario» significa che preserva un prodotto interno hermitiano. Nessuna delle due parole richiede che gli elementi della matrice siano reali.
+
+### Esempio svolto 3: una fase complessa è una rotazione reale
+
+Scriviamo $z=x+iy$. Moltiplicando per $e^{i\theta}=\cos\theta+i\sin\theta$ otteniamo
+
+$$
+e^{i\theta}z=(x\cos\theta-y\sin\theta)
++i(x\sin\theta+y\cos\theta).
+$$
+
+Una componente complessa si trasforma dunque esattamente come due componenti reali:
+
+$$
+\begin{pmatrix}x'\\y'\end{pmatrix}
+=\begin{pmatrix}\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}.
+$$
+
+Il modulo $|z|$ rimane invariato. L'insieme delle fasi $e^{i\theta}$ forma $U(1)$, e questa corrispondenza è un isomorfismo di gruppi $U(1)\cong SO(2)$. Ciò non identifica tutti gli usi fisici dei gruppi: una fase che agisce su un campo elettronico è una trasformazione interna, mentre la rotazione di un piano del laboratorio agisce sulle posizioni spaziali.
+
+La meccanica quantistica rende particolarmente importanti i prodotti interni complessi. Le trasformazioni unitarie preservano le probabilità di transizione perché $\langle U\phi,U\psi\rangle=\langle\phi,\psi\rangle$. Una matrice **hermitiana** soddisfa $H^\dagger=H$ e può rappresentare un'osservabile. In genere non è essa stessa una trasformazione del gruppo. Invece, $e^{i\alpha H}$ è unitaria per $\alpha$ reale: questo è il ponte tra osservabili o generatori e trasformazioni finite.
+
+Per esempio, $\operatorname{diag}(1,-1)$ è sia hermitiana sia unitaria, ma $\operatorname{diag}(2,3)$ è hermitiana senza essere unitaria. Hermiticità e unitarietà sono condizioni diverse con ruoli diversi.
+
+## 8.5 Rotazioni continue e cerchio delle fasi
+
+Indichiamo con $R(\theta)$ la matrice della sezione precedente. La moltiplicazione diretta, usando le formule di addizione degli angoli, dà
+
+$$
+R(\alpha)R(\beta)=R(\alpha+\beta),\qquad
+R(\theta)^{-1}=R(-\theta).
+$$
+
+Un parametro identifica le rotazioni piane, ma è periodico: $\theta$ e $\theta+2\pi$ descrivono lo stesso elemento. Il gruppo è un cerchio anziché una retta infinita. Localmente basta un piccolo intervallo di angoli; globalmente questi intervalli devono raccordarsi intorno al cerchio.
+
+![Un vettore ruota in senso antiorario in un piano reale, mentre la fase complessa equivalente si muove lungo il cerchio unitario.](/images/diagrams/groups-rotation-phase.svg)
+
+*La matrice reale $R(\theta)$ e il numero complesso $e^{i\theta}$ realizzano la stessa legge di composizione a un parametro.*
+
+### Esempio svolto 4: la rotazione infinitesima
+
+Per un piccolo angolo $\epsilon$,
+
+$$
+R(\epsilon)=I+\epsilon J+O(\epsilon^2),\qquad
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad J^2=-I.
+$$
+
+Separiamo le potenze pari e dispari nella serie esponenziale:
+
+$$
+e^{\theta J}=I\left(1-\frac{\theta^2}{2!}+\cdots\right)
++J\left(\theta-\frac{\theta^3}{3!}+\cdots\right)
+=I\cos\theta+J\sin\theta=R(\theta).
+$$
+
+Questa è già teoria di Lie: una direzione infinitesima $J$ genera un'intera famiglia continua.
+
+Le rotazioni tridimensionali hanno tre direzioni infinitesime indipendenti. Non commutano. Per vederlo senza notazione astratta, partiamo da $v=(1,0,0)^T$. Una rotazione positiva secondo la regola della mano destra $R_y(\pi/2)$ manda $v$ in $(0,0,-1)^T$, e poi $R_z(\pi/2)$ lascia fisso quel vettore. Invertendo l'ordine si ottiene prima $(0,1,0)^T$, che $R_y(\pi/2)$ lascia fisso. Quindi
+
+$$
+R_z(\pi/2)R_y(\pi/2)v\ne R_y(\pi/2)R_z(\pi/2)v.
+$$
+
+Un angolo e un asse possono descrivere una rotazione tridimensionale, ma ciò non significa quattro parametri indipendenti: un asse unitario ha due parametri e l'angolo ne aggiunge uno. Ad angolo zero tutti gli assi descrivono la stessa identità, quindi questa parametrizzazione ci avverte anche che le coordinate su un gruppo possono avere ridondanze o singolarità.
+
+**Punto di controllo.** L'angolo periodico di $U(1)$ e il parametro infinitesimo reale che descrive il moto vicino all'identità non costituiscono lo stesso spazio globale.
+
+## 8.6 Gruppi di Lie: un gruppo che è anche una varietà
+
+Un **gruppo di Lie** è una varietà liscia dotata di moltiplicazione e inversione di gruppo che sono applicazioni lisce. Una varietà è uno spazio descrivibile localmente con un numero fisso di coordinate reali, anche quando nessun singolo sistema di coordinate copre tutto lo spazio. La struttura liscia rende significativa la differenziazione.
+
+Ci sono dunque due strutture indipendenti da ricordare: la legge di gruppo dice come si compongono le trasformazioni, mentre la varietà dice come variano con continuità. Il cerchio $U(1)$ possiede entrambe. Anche la retta additiva $(\mathbb R,+)$ le possiede, ma è globalmente diversa da un cerchio.
+
+Per un gruppo matriciale possiamo contare i parametri indipendenti vicino all'identità sviluppando i vincoli che lo definiscono. Questo ci porterà allo spazio tangente, ma prima fornisce un conteggio pratico della dimensione.
+
+### Esempio svolto 5: contare i generatori prima di sceglierli
+
+Sia $U=I+i\epsilon H+O(\epsilon^2)$. Allora
+
+$$
+U^\dagger U=I+i\epsilon(H-H^\dagger)+O(\epsilon^2),
+$$
+
+quindi l'unitarietà richiede $H=H^\dagger$. Una matrice hermitiana $n\times n$ ha $n$ elementi diagonali reali e $n(n-1)/2$ elementi complessi indipendenti fuori diagonale. Il numero di parametri reali è
+
+$$
+n+2\frac{n(n-1)}2=n^2.
+$$
+
+La condizione di determinante uno impone $\operatorname{tr}H=0$, eliminando un parametro reale. Quindi $\dim U(n)=n^2$ e $\dim SU(n)=n^2-1$. Analogamente, sviluppando $R=I+\epsilon X$ in $R^TR=I$ si ottiene $X^T=-X$, con $n(n-1)/2$ elementi indipendenti.
+
+| Gruppo | Matrici definenti | Dimensione reale del gruppo | Dimensione dello spazio vettoriale indicato |
+| --- | --- | --- | --- |
+| $U(1)$ | una fase complessa | $1$ | $1$ complessa |
+| $SO(2)$ | reali ortogonali $2\times2$, determinante $1$ | $1$ | $2$ reali |
+| $SO(3)$ | reali ortogonali $3\times3$, determinante $1$ | $3$ | $3$ reali |
+| $SU(2)$ | unitarie $2\times2$, determinante $1$ | $3$ | $2$ complesse |
+| $SU(3)$ | unitarie $3\times3$, determinante $1$ | $8$ | $3$ complesse |
+
+Le ultime due colonne rispondono a domande diverse. La dimensione di $SU(3)$ conta otto parametri indipendenti di trasformazione. La sua rappresentazione definente agisce su un vettore complesso a tre componenti. Nessuno dei due numeri conta le generazioni di quark.
+
+Il **rango** è un altro numero: per questi gruppi compatti conta i generatori indipendenti che commutano in un toro massimale. $SU(2)$ ha rango uno; $SU(3)$ ha rango due. Il rango non è né la dimensione del gruppo né quella della rappresentazione.
+
+Per una trattazione matematica precisa di varietà, operazioni di gruppo lisce e gruppi matriciali classici, si vedano le [note del MIT sui gruppi di Lie di Etingof, lezioni 1–5](https://math.mit.edu/~etingof/lnlg.pdf). Qui i calcoli richiedono soltanto le loro versioni matriciali.
+
+## 8.7 Vettori tangenti, generatori e applicazione esponenziale
+
+Scegliamo una curva differenziabile $g(t)$ in un gruppo matriciale con $g(0)=I$. La sua velocità iniziale $X=g'(0)$ è un vettore tangente all'identità. Tutte queste velocità formano uno spazio vettoriale reale $\mathfrak g=T_eG$, lo spazio vettoriale sottostante all'algebra di Lie.
+
+Per $U(n)$, differenziando $g(t)^\dagger g(t)=I$ in $t=0$ si ottiene $X^\dagger=-X$. I matematici realizzano quindi $\mathfrak u(n)$ come matrici antihermitiane e $\mathfrak{su}(n)$ come matrici antihermitiane a traccia nulla. I fisici scrivono spesso
+
+$$
+X=i\alpha^a t_a,\qquad t_a^\dagger=t_a,
+$$
+
+con coefficienti reali $\alpha^a$. I $t_a$ hermitiani sono una comoda base di generatori; il fattore $i$ li converte nelle effettive matrici tangenti. Mantenere questa distinzione evita l'affermazione falsa che il normale commutatore di due matrici hermitiane sia hermitiano.
+
+![Una direzione tangente all'identità viene mandata su una curva della varietà del gruppo tramite l'applicazione esponenziale, illustrata da una retta che si avvolge intorno a un cerchio.](/images/diagrams/groups-tangent-exponential.svg)
+
+*Lo spazio tangente registra le direzioni locali. Esponenziare muove lungo il gruppo; punti diversi dello spazio tangente possono condurre allo stesso elemento del gruppo.*
+
+L'esponenziale matriciale
+
+$$
+\exp X=I+X+\frac{X^2}{2!}+\cdots
+$$
+
+converte un generatore infinitesimo in una trasformazione finita. La curva $g(t)=e^{tX}$ risolve $g'(t)=Xg(t)$ con $g(0)=I$ e soddisfa $g(t+s)=g(t)g(s)$. Una curva simile è un **sottogruppo a un parametro**.
+
+### Esempio svolto 6: perché l'esponenziale rimane in $SU(n)$
+
+Per $H$ hermitiana a traccia nulla,
+
+$$
+(e^{iH})^\dagger e^{iH}=e^{-iH}e^{iH}=I,\qquad
+\det(e^{iH})=e^{i\operatorname{tr}H}=1.
+$$
+
+Dunque $e^{iH}$ è speciale unitaria. Viceversa, una matrice speciale unitaria si può diagonalizzare con un cambiamento di base unitario. I suoi autovalori sono fasi i cui angoli sommano a un multiplo intero di $2\pi$; modificare un angolo di quel multiplo produce un logaritmo hermitiano a traccia nulla. Quindi ogni elemento di $SU(n)$ è un esponenziale, sebbene il logaritmo non sia unico.
+
+Quest'ultima affermazione è particolare di questo contesto. Per un gruppo di Lie arbitrario, l'esponenziale fornisce una carta locale vicino all'identità, ma non deve necessariamente coprire l'intero gruppo. Anche quando è suriettivo, in genere non è iniettivo. Per $U(1)$, $e^{i(\theta+2\pi k)}=e^{i\theta}$ mostra direttamente l'ambiguità.
+
+La traslazione mediante la moltiplicazione del gruppo sposta i vettori tangenti all'identità negli spazi tangenti in altri punti. Per questo un solo spazio tangente contiene abbastanza informazioni per ricostruire la moltiplicazione locale in tutta la componente connessa dell'identità. Tuttavia non codifica tutte le identificazioni globali o le componenti disconnesse. Un'algebra di Lie fornisce la struttura locale, non una descrizione globale completa del gruppo.
+
+## 8.8 La parentesi di Lie misura l'ordine delle operazioni infinitesime
+
+Lo spazio vettoriale tangente diventa un'**algebra di Lie** quando è dotato di una parentesi. Per i gruppi matriciali è il commutatore,
+
+$$
+[X,Y]=XY-YX.
+$$
+
+È bilineare, antisimmetrico e soddisfa l'identità di Jacobi,
+
+$$
+[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0.
+$$
+
+Queste proprietà bastano a definire astrattamente un'algebra di Lie, anche senza matrici. La parentesi deve inoltre rimanere nell'algebra. Per matrici antihermitiane, $[X,Y]^\dagger=-[X,Y]$; per matrici a traccia nulla, $\operatorname{tr}[X,Y]=0$. I vincoli matriciali vengono quindi preservati.
+
+### Esempio svolto 7: percorrere un piccolo ciclo di commutatore
+
+Sviluppiamo ogni esponenziale al secondo ordine e moltiplichiamo:
+
+$$
+e^{\epsilon X}e^{\epsilon Y}e^{-\epsilon X}e^{-\epsilon Y}
+=I+\epsilon^2[X,Y]+O(\epsilon^3).
+$$
+
+Tutti gli spostamenti del primo ordine si cancellano. Ciò che rimane misura il disallineamento causato dallo scambio dell'ordine di due trasformazioni infinitesime. Un gruppo abeliano dà una parentesi nulla. Una parentesi non nulla è il residuo locale della non commutatività.
+
+In una base di generatori hermitiani, scriviamo $[t_a,t_b]=if_{ab}{}^ct_c$. I numeri $f_{ab}{}^c$ sono le **costanti di struttura** in quella base. Dipendono dalla base e dalla normalizzazione, mentre l'algebra di Lie non ne dipende. Per il gruppo compatto $SU(N)$ con la nostra convenzione sulla traccia, possiamo usare $\delta_{ab}$ per identificare gli indici algebrici superiori e inferiori e scrivere $f^{abc}$ come un tensore totalmente antisimmetrico.
+
+La **formula di Baker–Campbell–Hausdorff** organizza la stessa questione per trasformazioni finite abbastanza vicine all'identità da consentire lo sviluppo del logaritmo:
+
+$$
+\log(e^Xe^Y)=X+Y+\frac12[X,Y]
++\frac1{12}\bigl([X,[X,Y]]+[Y,[Y,X]]\bigr)+\cdots.
+$$
+
+Quindi $e^Xe^Y=e^{X+Y}$ vale quando $X$ e $Y$ commutano, ma non è un'identità matriciale generale. Le parentesi annidate specificano le correzioni. La formula è uno sviluppo locale; non va usata per affermare l'esistenza di un logaritmo globalmente unico. [Etingof, lezione 7](https://math.mit.edu/~etingof/lnlg.pdf), presenta l'enunciato preciso nella teoria di Lie.
+
+**Punto di controllo.** «Linearizzare il gruppo» non significa scartare ogni effetto non lineare. L'algebra di Lie è uno spazio vettoriale dotato di una parentesi che conserva la prima informazione non banale sull'ordine delle operazioni.
+
+## 8.9 Matrici di Pauli, $SU(2)$ e rivestimento doppio delle rotazioni
+
+Le matrici di Pauli forniscono una base hermitiana concreta:
+
+$$
+\sigma_1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+\sigma_2=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\qquad
+\sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+$$
+
+Poniamo $t_a=\sigma_a/2$. La loro legge di moltiplicazione è
+
+$$
+\sigma_a\sigma_b=\delta_{ab}I+i\epsilon_{abc}\sigma_c,
+\qquad [t_a,t_b]=i\epsilon_{abc}t_c,
+\qquad \operatorname{tr}(t_at_b)=\frac12\delta_{ab}.
+$$
+
+Per esempio, $\sigma_1\sigma_2=i\sigma_3$ mentre $\sigma_2\sigma_1=-i\sigma_3$, quindi $[t_1,t_2]=i t_3$. Qui $\epsilon_{123}=+1$.
+
+Ogni matrice di $SU(2)$ si può scrivere come $U=a_0I+i\boldsymbol a\cdot\boldsymbol\sigma$, con coefficienti reali che soddisfano $a_0^2+|\boldsymbol a|^2=1$. Come varietà, $SU(2)$ è dunque una sfera tridimensionale $S^3$, non la normale sfera bidimensionale delle direzioni nello spazio.
+
+### Esempio svolto 8: una rotazione di spinore e una rotazione di vettore
+
+Per descrivere una rotazione spaziale attiva di angolo $\theta$ intorno a un asse unitario $\boldsymbol n$, usiamo
+
+$$
+U(\boldsymbol n,\theta)=e^{-i\theta\boldsymbol n\cdot\boldsymbol\sigma/2}
+=I\cos\frac\theta2-i\boldsymbol n\cdot\boldsymbol\sigma\sin\frac\theta2.
+$$
+
+Il segno meno è la convenzione usuale per le rotazioni quantistiche attive; corrisponde a scegliere parametri negativi nell'esponenziale generale $e^{i\alpha^at_a}$. Non cambia l'algebra di Lie o la convenzione di gauge.
+
+Associamo a un vettore reale $\boldsymbol v$ la matrice hermitiana a traccia nulla $V=\boldsymbol v\cdot\boldsymbol\sigma$. La trasformazione $V'=UVU^\dagger$ preserva hermiticità, traccia e $\det V=-|\boldsymbol v|^2$, quindi definisce una trasformazione ortogonale di $\boldsymbol v$. Il suo determinante è $+1$: l'azione varia con continuità, $SU(2)$ è connesso e l'identità agisce con determinante $+1$. È dunque una rotazione. Per l'asse $z$,
+
+$$
+U\sigma_1U^\dagger=\cos\theta\,\sigma_1+\sin\theta\,\sigma_2,
+$$
+
+che manda la direzione $x$ verso la direzione $y$, come previsto.
+
+Sia $U$ sia $-U$ danno lo stesso $V'$. L'applicazione $SU(2)\to SO(3)$ è suriettiva, con nucleo $\{I,-I\}$:
+
+$$
+SO(3)\cong SU(2)/\mathbb Z_2.
+$$
+
+![Una rotazione continua di spinore raggiunge meno l'identità a due pi e ritorna all'identità a quattro pi, mentre la corrispondente rotazione spaziale si chiude già a due pi.](/images/diagrams/groups-su2-cover.svg)
+
+*Ogni rotazione spaziale ha due sollevamenti in $SU(2)$. Il diagramma segue un percorso di rotazioni intorno a un solo asse e non rappresenta l'intera sfera tridimensionale.*
+
+Uno **spinore** a due componenti si trasforma secondo $\chi'=U\chi$. A $\theta=2\pi$, $U=-I$ e $\chi'=-\chi$; a $4\pi$, $U=I$. Uno stato isolato e il suo opposto danno le stesse probabilità, ma un segno relativo tra due percorsi confrontati coerentemente può influenzare l'interferenza. Il rivestimento doppio è dunque più di un artificio grafico, senza però significare che una freccia classica richieda $4\pi$ per tornare alla posizione iniziale.
+
+$SU(2)$ e $SO(3)$ hanno algebre di Lie isomorfe ma ammettono possibilità globali diverse per le rappresentazioni. Le rappresentazioni di spin semintero sono rappresentazioni di $SU(2)$ e non discendono a rappresentazioni ordinarie univoche di $SO(3)$. Si veda [Etingof, esempio 2.13 e discussione dei rivestimenti](https://math.mit.edu/~etingof/lnlg.pdf).
+
+## 8.10 Rappresentazioni: lo stesso gruppo, tipi diversi di oggetti
+
+Una **rappresentazione** su uno spazio vettoriale $V$ è un omomorfismo $\rho:G\to GL(V)$. La sua regola definente,
+
+$$
+\rho(gh)=\rho(g)\rho(h),
+$$
+
+garantisce che le matrici rispettino la legge astratta di composizione. La dimensione della rappresentazione è $\dim V$. Differenziando una rappresentazione liscia si ottengono matrici generatrici $T_a$ definite da $d\rho(i t_a)=iT_a$, quindi il differenziale agisce sull'effettiva matrice tangente antihermitiana. Esse soddisfano le stesse relazioni di commutazione, $[T_a,T_b]=if_{ab}{}^cT_c$.
+
+La rappresentazione **definente**, spesso chiamata fondamentale, di $SU(n)$ agisce su $\mathbb C^n$ usando le matrici che definiscono il gruppo. Nella terminologia matematica più generale un gruppo semplice può avere più rappresentazioni fondamentali; qui «la fondamentale di $SU(n)$» indica questa rappresentazione definente di dimensione $n$. La **rappresentazione banale**, o singoletto, manda ogni elemento in $1$.
+
+Una rappresentazione è **irriducibile** se non ha alcun sottospazio invariante proprio non nullo. «Fondamentale» e «irriducibile» non sono sinonimi: molte rappresentazioni irriducibili non sono quella definente. Per gruppi compatti, le rappresentazioni unitarie di dimensione finita si decompongono in somme dirette di irriducibili.
+
+Una **somma diretta** agisce indipendentemente su due spazi:
+
+$$
+(\rho_1\oplus\rho_2)(g)=
+\begin{pmatrix}\rho_1(g)&0\\0&\rho_2(g)\end{pmatrix},
+\qquad \dim(V\oplus W)=\dim V+\dim W.
+$$
+
+Un **prodotto tensoriale** agisce su componenti accoppiate:
+
+$$
+(\rho_1\otimes\rho_2)(g)(v\otimes w)
+=\rho_1(g)v\otimes\rho_2(g)w,
+\qquad \dim(V\otimes W)=\dim V\,\dim W.
+$$
+
+Differenziando si ottengono i generatori totali $T_a^{\rm total}=T_a^{(1)}\otimes I+I\otimes T_a^{(2)}$. Questa è l'origine dell'addizione dei momenti angolari.
+
+### Esempio svolto 9: due doppietti contengono un tripletto e un singoletto
+
+Prendiamo due doppietti di $SU(2)$ con base $|\uparrow\rangle,|\downarrow\rangle$. Il loro prodotto tensoriale quadridimensionale si separa negli stati simmetrici
+
+$$
+|\uparrow\uparrow\rangle,\qquad
+\frac{|\uparrow\downarrow\rangle+|\downarrow\uparrow\rangle}{\sqrt2},\qquad
+|\downarrow\downarrow\rangle
+$$
+
+e nello stato antisimmetrico
+
+$$
+|s\rangle=\frac{|\uparrow\downarrow\rangle-|\downarrow\uparrow\rangle}{\sqrt2}.
+$$
+
+Il $T_3$ totale ha autovalori $1,0,-1$ sugli stati simmetrici. Tutti e tre i generatori totali annullano $|s\rangle$. Quindi $\mathbf2\otimes\mathbf2=\mathbf3\oplus\mathbf1$, oppure $\tfrac12\otimes\tfrac12=1\oplus0$ nella notazione di spin. Le dimensioni tornano: $2\times2=3+1$.
+
+![Una somma diretta affianca due spazi vettoriali, un prodotto tensoriale combina le loro componenti e due doppietti di SU2 si decompongono in un tripletto e un singoletto.](/images/diagrams/groups-representations.svg)
+
+*Le rappresentazioni indicano quali oggetti matematici si trasformano. Combinare gli oggetti mediante un prodotto tensoriale può rivelare parti invarianti.*
+
+La **rappresentazione aggiunta** agisce sull'algebra di Lie stessa per coniugazione: $X\mapsto gXg^{-1}$. La sua dimensione è uguale a quella del gruppo. Quindi $SU(2)$ ha una rappresentazione definente bidimensionale e un'aggiunta tridimensionale; $SU(3)$ ha una definente tridimensionale e un'aggiunta di dimensione otto. La curvatura di gauge si trasforma nell'aggiunta. Una connessione di gauge ha un termine derivativo aggiuntivo, quindi la sua trasformazione locale completa non è semplicemente un'azione aggiunta.
+
+Per $U(1)$, le rappresentazioni unitarie irriducibili continue e univoche sono $\rho_n(e^{i\theta})=e^{in\theta}$ con $n$ intero. La periodicità impone $e^{2\pi in}=1$. Le convenzioni sulle cariche fisiche possono riscalare questi interi insieme all'accoppiamento; spiegheremo esplicitamente come le ipercariche frazionarie del Modello Standard siano compatibili con questo enunciato.
+
+## 8.11 $SU(3)$: tre componenti, otto generatori
+
+Un vettore fondamentale di $SU(3)$ ha tre componenti complesse,
+
+$$
+q=\begin{pmatrix}q_r\\q_g\\q_b\end{pmatrix},\qquad q'=Uq.
+$$
+
+Le etichette di colore rosso, verde e blu nominano una base interna; non sono collegate ai colori ottici o alle direzioni spaziali. Cambiare quella base mescola le componenti preservando $q^\dagger q$. Un quark di sapore fissato è un tripletto di colore. Up, down e strange sono etichette di sapore e non vanno confuse con le tre componenti di questa rappresentazione di colore.
+
+Una matrice hermitiana generale $3\times3$ a traccia nulla ha la forma
+
+$$
+H=\begin{pmatrix}
+a&z_1&z_2\\
+z_1^*&b&z_3\\
+z_2^*&z_3^*&-a-b
+\end{pmatrix}.
+$$
+
+I due numeri reali $a,b$ e i tre numeri complessi $z_1,z_2,z_3$ danno otto parametri reali. Questo rende concreti gli otto generatori senza richiedere di memorizzare tutte e otto le matrici di Gell-Mann.
+
+La base convenzionale è $t_a=\lambda_a/2$. Due generatori diagonali sono
+
+$$
+t_3=\frac12\begin{pmatrix}1&0&0\\0&-1&0\\0&0&0\end{pmatrix},\qquad
+t_8=\frac1{2\sqrt3}\begin{pmatrix}1&0&0\\0&1&0\\0&0&-2\end{pmatrix}.
+$$
+
+Commutano, dando una sottoalgebra di Cartan di rango due. Gli altri sei mescolano coppie di componenti di colore. Il blocco di Pauli $2\times2$ in alto a sinistra, completato da una terza riga e colonna nulle, fornisce una sottoalgebra $\mathfrak{su}(2)$: $[t_1,t_2]=it_3$. Un sottogruppo dentro $SU(3)$ non deve necessariamente essere lo specifico $SU(2)_L$ debole del Modello Standard; lì sono fattori indipendenti che agiscono su indici diversi.
+
+### Esempio svolto 10: un singoletto e un ottetto di colore
+
+Un antiquark si trasforma nella rappresentazione complessa coniugata $\overline{\mathbf3}$, usando le matrici $U^*$. Un tensore quark-antiquark può essere organizzato come una matrice $M$ che si trasforma secondo $M\mapsto UMU^\dagger$. Separiamolo in
+
+$$
+M=\frac{\operatorname{tr}M}{3}I+
+\left(M-\frac{\operatorname{tr}M}{3}I\right).
+$$
+
+La parte proporzionale alla traccia rimane invariata per coniugazione. La parte a traccia nulla ha otto componenti complesse e si trasforma nella rappresentazione aggiunta complessificata. Pertanto
+
+$$
+\mathbf3\otimes\overline{\mathbf3}=\mathbf1\oplus\mathbf8.
+$$
+
+L'algebra di Lie aggiunta stessa ha otto direzioni tangenti **reali**; gli spazi delle rappresentazioni quantistiche sono di solito complessi. Questi due usi della dimensione concordano numericamente in questo caso, ma si riferiscono a spazi vettoriali diversi.
+
+Questa decomposizione aiuta a organizzare le funzioni d'onda di colore dei mesoni e spiega perché un'etichetta di colore nell'aggiunta abbia otto valori. Nella descrizione del Modello Standard i gluoni sono eccitazioni elementari dei campi di gauge, non veri e propri stati legati quark-antiquark. La loro etichetta algebrica a otto valori non implica nove gluoni colore-anticolore indipendenti: il singoletto della traccia è assente da $\mathfrak{su}(3)$.
+
+## 8.12 Dalla simmetria globale alla scelta locale di un riferimento
+
+Consideriamo un campo complesso $\psi(x)$ con un indice vettoriale interno. Una trasformazione interna **globale** usa la stessa matrice ovunque: $\psi(x)\mapsto U\psi(x)$ con $U$ costante. Il punto di spaziotempo $x$ rimane fisso. Se $U$ è unitaria, un termine come $\psi^\dagger\psi$ rimane invariato, e
+
+$$
+\partial_\mu(U\psi)=U\partial_\mu\psi.
+$$
+
+Una lagrangiana costruita con le corrispondenti combinazioni invarianti può avere una simmetria globale. Sotto le ipotesi usuali, una simmetria fisica globale continua dà una corrente di Noether conservata. Ma la sola esistenza di una simmetria globale non obbliga la natura a introdurre un campo di gauge; costruire una teoria di gauge è una scelta fisica aggiuntiva.
+
+Consentiamo ora una matrice $U(x)$ che varia da punto a punto. La derivata diventa
+
+$$
+\partial_\mu(U\psi)=U\partial_\mu\psi+(\partial_\mu U)\psi.
+$$
+
+Il termine aggiuntivo è l'intero problema. Due elenchi vicini di componenti usano riferimenti interni diversi, quindi sottrarli direttamente confonde un cambiamento del campo con un cambiamento di riferimento.
+
+Immaginiamo di assegnare un piccolo spazio vettoriale a ogni punto dello spaziotempo. Questa famiglia è un **fibrato vettoriale**; ogni spazio vettoriale è una **fibra**. Scegliere una base in ogni fibra significa scegliere un riferimento locale. Una **connessione** specifica come confrontare vettori in fibre vicine. Sebbene la geometria assomigli al trasporto parallelo dei vettori tangenti su una superficie curva, le fibre interne non devono necessariamente essere spazi tangenti allo spaziotempo. Un vettore di colore vive nello spazio interno di colore, non nello spazio fisico degli spostamenti.
+
+### Esempio svolto 11: un gradiente di fase artificiale
+
+Sia $\psi(x)=\psi_0$ costante in una descrizione e scegliamo $U(x)=e^{ikx}$ lungo una direzione spaziale. La nuova descrizione è $\psi'(x)=e^{ikx}\psi_0$, con
+
+$$
+\partial_x\psi'=ik\psi'.
+$$
+
+Se queste descrizioni devono rappresentare la stessa configurazione, il gradiente apparente non può essere di per sé un'eccitazione fisica. Una connessione compensatrice deve cancellare il gradiente causato soltanto dal cambiamento della convenzione di fase. Verificheremo esplicitamente questa cancellazione nella prossima sezione.
+
+La **ridondanza di gauge** significa che configurazioni collegate da una trasformazione di gauge ammessa rappresentano lo stesso stato fisico, anziché stati diversi del sistema. Le quantità invarianti di gauge forniscono la descrizione fisica. Un potenziale di gauge può comunque codificare una dinamica non banale: eliminare coordinate ridondanti non elimina il tensore del campo fisico.
+
+Occorre una precisazione sui bordi. Le trasformazioni di gauge alle quali si richiede di tendere all'identità sul bordo sono ridondanze, mentre le trasformazioni che agiscono non banalmente sui dati asintotici o al bordo possono portare cariche fisiche. Pertanto «ogni trasformazione di gauge costante è automaticamente fisicamente banale» è un'affermazione troppo generale. Distinguere le simmetrie fisiche globali dai cambiamenti di descrizione richiede di specificare le condizioni al contorno. La [discussione di Tong sull'invarianza di gauge](https://davidtong.org/pdfs/teaching/standard-model/standardmodel1.pdf) presenta il contesto della teoria dei campi.
+
+## 8.13 Ricavare la derivata covariante e la legge della connessione
+
+Scriviamo il potenziale di gauge come $A_\mu=A_\mu^at_a$ e definiamo
+
+$$
+D_\mu\psi=(\partial_\mu-igA_\mu)\psi.
+$$
+
+Il coefficiente $g$ è l'accoppiamento. Per un campo in un'altra rappresentazione, sostituiamo $t_a$ con le matrici $T_a$ di quella rappresentazione; le componenti del campo di gauge $A_\mu^a$ sono le stesse. Un singoletto neutro ha generatori nulli e una derivata ordinaria.
+
+Richiediamo che la derivata covariante si trasformi come il campo stesso:
+
+$$
+D'_\mu\psi'=U D_\mu\psi.
+$$
+
+Sviluppiamo il membro sinistro e cancelliamo $U\partial_\mu\psi$:
+
+$$
+(\partial_\mu U)\psi-igA'_\mu U\psi=-igUA_\mu\psi.
+$$
+
+Poiché questo vale per ogni $\psi$, moltiplichiamo a destra per $U^{-1}$ per ottenere
+
+$$
+\boxed{A'_\mu=UA_\mu U^{-1}-\frac{i}{g}(\partial_\mu U)U^{-1}.}
+$$
+
+Il primo termine ruota le componenti interne. Il secondo corregge il riferimento che dipende dalla posizione. Ometterlo farebbe fallire il requisito di covarianza. Equivalentemente, $D'_\mu=UD_\mu U^{-1}$ come operatori differenziali; la derivata in questa identità tra operatori agisce su tutto ciò che si trova alla sua destra.
+
+### Esempio svolto 12: una cancellazione abeliana, compreso il segno
+
+Per un campo $U(1)$ di carica unitaria, prendiamo $U=e^{ig\alpha(x)}$. Allora $(\partial_\mu U)U^{-1}=ig\partial_\mu\alpha$, quindi
+
+$$
+A'_\mu=A_\mu+\partial_\mu\alpha.
+$$
+
+La sostituzione diretta dà
+
+$$
+(\partial_\mu-igA_\mu-ig\partial_\mu\alpha)
+(e^{ig\alpha}\psi)
+=e^{ig\alpha}(\partial_\mu-igA_\mu)\psi.
+$$
+
+La derivata della fase cancella lo spostamento del potenziale. Per il precedente esempio del campo costante, poniamo $A_x=0$ e $\alpha=kx/g$. Il potenziale trasformato è $A'_x=k/g$ e $D'_x\psi'=0$ anche se $\partial_x\psi'\ne0$.
+
+L'aggettivo **covariante** significa «si trasforma nel modo prescritto», non «rimane invariato». Il vettore $D_\mu\psi$ si trasforma mediante $U$, mentre lo scalare $(D_\mu\psi)^\dagger D^\mu\psi$ è invariante. Questa distinzione tra covarianza e invarianza è essenziale per interpretare i tensori di campo non abeliani.
+
+L'analisi dimensionale fornisce un controllo utile. In quattro dimensioni di spaziotempo, $\partial_\mu$ ha dimensione di massa uno e $g$ è adimensionale, quindi $A_\mu$ ha dimensione uno. Un campo di materia scalare ha dimensione uno, un campo fermionico ha dimensione $3/2$ e una densità lagrangiana ha dimensione quattro. Queste sono dimensioni in unità di massa, non dimensioni di gruppi o rappresentazioni.
+
+## 8.14 Curvatura, derivate non commutanti e trasporto lungo un circuito
+
+Una normale derivata parziale misura il cambiamento lungo una direzione coordinata. Una derivata covariante confronta anche i riferimenti interni. Confrontare due derivate covarianti successive significa quindi chiedere se il trasporto dipenda dall'ordine delle direzioni.
+
+### Esempio svolto 13: ricavare il tensore di campo
+
+Applichiamo $D_\mu D_\nu-D_\nu D_\mu$ a un campo di prova. I termini contenenti derivate seconde si cancellano perché le derivate parziali commutano nella carta di coordinate; i termini con una derivata che agisce sul campo di prova si cancellano a coppie. Il risultato è
+
+$$
+[D_\mu,D_\nu]\psi=
+\left[-ig(\partial_\mu A_\nu-\partial_\nu A_\mu)
+-g^2[A_\mu,A_\nu]\right]\psi.
+$$
+
+Definiamo
+
+$$
+\boxed{F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu
+-ig[A_\mu,A_\nu],\qquad [D_\mu,D_\nu]=-igF_{\mu\nu}.}
+$$
+
+La matrice $F_{\mu\nu}$ è hermitiana: $[A_\mu,A_\nu]$ è antihermitiano e la moltiplicazione per $-i$ lo rende hermitiano. In componenti,
+
+$$
+F_{\mu\nu}^a=\partial_\mu A_\nu^a-\partial_\nu A_\mu^a
++g f^{abc}A_\mu^bA_\nu^c.
+$$
+
+Questa è la **curvatura** della connessione di gauge. Il termine non abeliano deriva dal commutatore matriciale e sarebbe assente per generatori commutanti.
+
+Poiché $D'_\mu=UD_\mu U^{-1}$, il loro commutatore si trasforma per coniugazione, quindi
+
+$$
+F'_{\mu\nu}=UF_{\mu\nu}U^{-1}.
+$$
+
+Per $U(1)$ questo si riduce a $F'=F$. Per un gruppo non abeliano, il tensore di campo matriciale è in genere covariante, non invariante; quantità come $\operatorname{tr}(F_{\mu\nu}F^{\mu\nu})$ sono invarianti per la ciclicità della traccia.
+
+Il trasporto parallelo lungo un percorso $x(s)$ impone $\dot x^\mu D_\mu\psi=0$, dando
+
+$$
+\frac{d\psi}{ds}=ig\dot x^\mu A_\mu\psi,\qquad
+\psi(y)=W(y,x)\psi(x),\qquad
+W(y,x)=\mathcal P\exp\left(ig\int_x^y A_\mu\,dx^\mu\right).
+$$
+
+Il simbolo di ordinamento lungo il percorso $\mathcal P$ pone a sinistra le matrici di trasporto successive. È necessario perché matrici in punti diversi possono non commutare.
+
+![Una connessione confronta riferimenti interni vicini; il trasporto lungo un piccolo circuito orientato può non riportare un vettore alla sua direzione interna iniziale.](/images/diagrams/groups-connection-curvature.svg)
+
+*Per l'orientazione mostrata, il trasporto avviene prima nella direzione positiva $\mu$ e poi nella direzione positiva $\nu$. La curvatura misura il disallineamento dominante per unità di area.*
+
+Per un piccolo rettangolo percorso secondo $+\mu,+\nu,-\mu,-\nu$, con direzioni fissate, distinte e non sommate,
+
+$$
+W_\square=I+igF_{\mu\nu}\,\delta x^\mu\delta x^\nu
++O(\delta x^3).
+$$
+
+Invertire l'orientazione cambia il segno del termine dominante in area. Il segno qui è coerente con $D=\partial-igA$ e con l'equazione di trasporto precedente; non si ottiene identificando senza cautela gli operatori di trasporto con il commutatore delle derivate.
+
+Un trasportatore aperto cambia come $W'(y,x)=U(y)W(y,x)U(x)^{-1}$. Per un circuito chiuso basato in $x$, la sua traccia è invariante di gauge: questo dà un **loop di Wilson**. Una connessione piatta ha $F=0$ ed è eliminabile localmente su aperti semplicemente connessi abbastanza piccoli. Può tuttavia avere olonomia globale non banale intorno a circuiti non contraibili. La geometria di Aharonov–Bohm fornisce un esempio abeliano: i percorsi accessibili possono racchiudere un flusso anche quando il tensore di campo si annulla lungo di essi.
+
+## 8.15 Elettromagnetismo e dinamica di Yang–Mills
+
+Finora abbiamo ricavato regole di trasformazione e curvatura. Una teoria fisica richiede anche una dinamica. Nello spaziotempo di Minkowski quadridimensionale, il consueto termine cinetico di gauge per un fattore non abeliano è
+
+$$
+\mathcal L_{\rm gauge}=-\frac12\operatorname{tr}(F_{\mu\nu}F^{\mu\nu})
+=-\frac14 F_{\mu\nu}^aF^{a\mu\nu},
+$$
+
+dove la seconda uguaglianza usa la nostra normalizzazione della traccia nella rappresentazione definente. La sua azione è invariante perché $F$ si trasforma per coniugazione. L'antisimmetria in $\mu,\nu$ e la contrazione con la metrica dello spaziotempo assicurano l'invarianza di Lorentz. Questo è il termine cinetico fondamentale di **Yang–Mills**.
+
+Per l'elettromagnetismo, scegliamo un accoppiamento elettromagnetico $e$ e una carica adimensionale con segno $q$, così che la carica fisica sia $eq$. Allora
+
+$$
+D_\mu=\partial_\mu-ieqA_\mu,\qquad
+\psi'=e^{ieq\alpha}\psi,\qquad A'_\mu=A_\mu+\partial_\mu\alpha,
+$$
+
+e
+
+$$
+F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu,\qquad
+\mathcal L_{\rm EM}=-\frac14F_{\mu\nu}F^{\mu\nu}.
+$$
+
+Per un elettrone, $q=-1$, quindi questa convenzione dà $D_\mu=\partial_\mu+ieA_\mu$. Una fonte che usa il segno opposto in $D$ deve cambiare di conseguenza le convenzioni di trasformazione associate. Le previsioni osservabili non dipendono dalla convenzione, purché venga usata coerentemente.
+
+### Esempio svolto 14: curvatura non nulla da potenziali costanti
+
+Prendiamo un campo di gauge $SU(2)$ su un aperto con $A_x=a t_1$ e $A_y=b t_2$ costanti. Tutti i termini derivativi si annullano, ma
+
+$$
+F_{xy}=-igab[t_1,t_2]=gabt_3.
+$$
+
+Una connessione non abeliana spazialmente costante non è necessariamente piatta. Il tensore di campo nasce interamente dal trasporto interno non commutante. Nel caso abeliano, potenziali costanti su un aperto locale darebbero curvatura nulla.
+
+Sviluppando il termine cinetico di Yang–Mills si capisce perché i campi di gauge non abeliani interagiscano tra loro: $F$ contiene sia un termine derivativo lineare in $A$ sia un termine quadratico in $A$. Elevandolo al quadrato si producono termini cubici e quartici nel potenziale di gauge. Nella teoria abeliana pura di Maxwell il commutatore si annulla, quindi nel termine cinetico di gauge classico non compare un'analoga autointerazione del fotone. La materia carica può comunque generare interazioni efficaci tra fotoni attraverso loop quantistici.
+
+La dinamica della materia usa la stessa derivata covariante. Per esempio, un multipletto scalare ha
+
+$$
+\mathcal L_\phi=(D_\mu\phi)^\dagger D^\mu\phi-V(\phi^\dagger\phi).
+$$
+
+La rappresentazione determina quali generatori compaiono e quindi come si accoppia il campo. Il gruppo di gauge da solo non sceglie il potenziale scalare, le rappresentazioni della materia o tutti i coefficienti di interazione permessi.
+
+Il [capitolo principale di teoria quantistica dei campi](/it/chapters/8-Quantum-field-theory) affronta i passi successivi: fissaggio di gauge, quantizzazione, propagatori, evoluzione degli accoppiamenti con la scala e scattering. Le [note di Tong su Yang–Mills](https://davidtong.org/pdfs/teaching/gauge-theory/gauge2.pdf) discutono questa costruzione più in dettaglio; quella fonte a volte assorbe l'accoppiamento nella connessione, quindi occorre confrontare le definizioni prima delle formule.
+
+## 8.16 Leggere il gruppo del Modello Standard e la tabella della materia
+
+La consueta struttura locale di gauge è
+
+$$
+G_{\rm SM}=SU(3)_c\times SU(2)_L\times U(1)_Y,
+\qquad
+\mathfrak g_{\rm SM}=\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1).
+$$
+
+Il pedice $c$ significa colore. Il pedice $L$ indica che i fermioni di chiralità sinistra del Modello Standard partecipano a doppietti deboli, mentre i fermioni carichi di chiralità destra sono singoletti deboli. Il pedice $Y$ denota l'ipercarica. Il gruppo debole $SU(2)$ è interno: i suoi doppietti non sono spinori spaziali soltanto perché anche lo spin spaziale usa la matematica di $SU(2)$.
+
+Per uno spinore di Dirac, la chiralità è selezionata da $P_L=(1-\gamma^5)/2$ e $P_R=(1+\gamma^5)/2$. L'**elicità** è la proiezione dello spin lungo la quantità di moto. I due concetti si corrispondono in modi specifici per le particelle prive di massa, ma non sono intercambiabili per le particelle massive. Le etichette della tabella seguente si riferiscono alla chiralità.
+
+Scriviamo una rappresentazione interna come $(R_c,R_L)_Y$, in quest'ordine, e usiamo $Q=T_3+Y$. Le voci $u_R,d_R,e_R$ qui sotto sono effettivi campi di chiralità destra, non i loro coniugati di carica di chiralità sinistra. Per una generazione:
+
+| Campo | Componenti | $(SU(3)_c,SU(2)_L)_Y$ | Cariche elettriche $Q$ |
+| --- | --- | --- | --- |
+| $Q_L$ | $(u_L,d_L)^T$, ciascuno con tre colori | $(\mathbf3,\mathbf2)_{1/6}$ | $2/3,-1/3$ |
+| $u_R$ | quark up di chiralità destra, tre colori | $(\mathbf3,\mathbf1)_{2/3}$ | $2/3$ |
+| $d_R$ | quark down di chiralità destra, tre colori | $(\mathbf3,\mathbf1)_{-1/3}$ | $-1/3$ |
+| $L_L$ | $(\nu_L,e_L)^T$ | $(\mathbf1,\mathbf2)_{-1/2}$ | $0,-1$ |
+| $e_R$ | leptone carico di chiralità destra | $(\mathbf1,\mathbf1)_{-1}$ | $-1$ |
+| $H$ | doppietto scalare complesso $(H^+,H^0)^T$ | $(\mathbf1,\mathbf2)_{1/2}$ | $1,0$ |
+
+Le assegnazioni dei fermioni si ripetono per tre generazioni. Il doppietto di Higgs è un singolo multipletto scalare, non una quarta generazione di fermioni. Il Modello Standard minimo rinormalizzabile non contiene $\nu_R$ e dà neutrini privi di massa; le masse osservate dei neutrini richiedono ingredienti aggiuntivi, come operatori di dimensione superiore o nuovi campi. Le assegnazioni standard e la convenzione della tabella si possono verificare in [Tong, sezione 5.1](https://davidtong.org/pdfs/teaching/standard-model/standardmodel5.pdf).
+
+### Esempio svolto 15: leggere una rappresentazione prodotto
+
+Il doppietto di quark sinistri porta un indice di colore $a=1,2,3$ e un indice debole $i=1,2$. Una trasformazione ha la forma
+
+$$
+Q_L^{ai}\longmapsto
+(U_c)^a{}_b(U_L)^i{}_j e^{i\beta/6}Q_L^{bj}.
+$$
+
+Lo spazio interno è $\mathbb C^3\otimes\mathbb C^2$, con sei componenti per generazione. È un prodotto tensoriale perché i due fattori agiscono sullo stesso campo attraverso indici separati. Fattori diversi del gruppo commutano su quello spazio: $U_c\otimes I_2$ commuta con $I_3\otimes U_L$. All'interno di ciascun fattore non abeliano, le trasformazioni in genere non commutano.
+
+Il parametro $\beta$ è qui un parametro locale di ipercarica. Per rappresentare un cerchio compatto con angolo di periodo $2\pi$, usiamo la carica a normalizzazione intera $n=6Y$ e scriviamo $e^{in\theta}$, con $\beta=6\theta$. Un $Y$ frazionario è quindi una convenzione di normalizzazione, non una violazione della regola delle rappresentazioni intere di $U(1)$.
+
+La derivata covariante su qualunque multipletto del Modello Standard è
+
+$$
+D_\mu=\partial_\mu-ig_sG_\mu^aT_c^a-igW_\mu^iT_L^i-ig'B_\mu Y.
+$$
+
+I generatori si annullano quando il campo è un singoletto del fattore corrispondente. Ci sono otto campi di gauge gluonici $G_\mu^a$, tre campi di gauge deboli $W_\mu^i$ e un campo di gauge dell'ipercarica $B_\mu$: $8+3+1=12$ direzioni dell'algebra prima della rottura della simmetria elettrodebole. Sono etichette di specie, non un conteggio degli stati fisici di polarizzazione. I fermioni carichi di chiralità destra restano accoppiati all'ipercarica e, dopo il mescolamento, al fotone e allo $Z$; singoletto debole non significa privo di interazioni.
+
+## 8.17 Come il fotone emerge dal mescolamento elettrodebole
+
+L'ipercarica non è l'elettromagnetismo. Per capire perché, supponiamo che il campo di Higgs abbia un potenziale con un minimo in $H^\dagger H=v^2/2$. In una gauge conveniente scegliamo il rappresentante del vuoto
+
+$$
+\langle H\rangle=\frac1{\sqrt2}\begin{pmatrix}0\\v\end{pmatrix}.
+$$
+
+La componente inferiore ha $T_3=-1/2$ e $Y=+1/2$, quindi
+
+$$
+(T_3+Y)\langle H\rangle=0.
+$$
+
+La combinazione $Q=T_3+Y$ lascia dunque fisso il rappresentante. Questo identifica il generatore elettromagnetico non rotto. L'espressione usuale «rottura della simmetria elettrodebole» descrive questo meccanismo di Higgs; una ridondanza locale di gauge non è una simmetria fisica che si possa rompere nello stesso senso di una simmetria globale. Il linguaggio del vuoto a gauge fissata è un modo utile per calcolare lo spettro fisico.
+
+### Esempio svolto 16: ottenere la matrice di mescolamento neutro
+
+Inseriamo il rappresentante costante di Higgs in $(D_\mu H)^\dagger D^\mu H$. Con $T_i=\sigma_i/2$ e $Y=1/2$, i termini quadratici nei campi di gauge sono
+
+$$
+\frac{v^2}{8}\left[g^2\left((W_\mu^1)^2+(W_\mu^2)^2\right)
++(gW_\mu^3-g'B_\mu)^2\right],
+$$
+
+dove ogni quadrato indica una contrazione di Lorentz. Nel termine di massa compare una sola combinazione neutra. Definiamo
+
+$$
+\tan\theta_W=\frac{g'}g,\qquad
+A_\mu=\sin\theta_W W_\mu^3+\cos\theta_W B_\mu,
+$$
+
+$$
+Z_\mu=\cos\theta_W W_\mu^3-\sin\theta_W B_\mu,\qquad
+W_\mu^\pm=\frac{W_\mu^1\mp iW_\mu^2}{\sqrt2}.
+$$
+
+Allora $gW^3-g'B=\sqrt{g^2+g'^2}\,Z$. La combinazione ortogonale $A$ non riceve una massa dal meccanismo di Higgs ed è il campo del fotone. A livello albero,
+
+$$
+m_W=\frac{gv}{2},\qquad m_Z=\frac{v\sqrt{g^2+g'^2}}2,\qquad m_A=0.
+$$
+
+Sostituiamo il mescolamento inverso nella parte neutra della derivata covariante. Il coefficiente di $A_\mu$ è
+
+$$
+g\sin\theta_W T_3+g'\cos\theta_W Y=e(T_3+Y)=eQ,
+\qquad e=g\sin\theta_W=g'\cos\theta_W.
+$$
+
+Questo ricava sia l'operatore di carica elettrica sia la relazione dell'accoppiamento elettromagnetico. Il fotone è un mescolamento di due campi di gauge originari, non semplicemente il campo dell'ipercarica rinominato. Le formule sono relazioni a livello albero; un'analisi elettrodebole di precisione richiede la rinormalizzazione e uno schema specificato.
+
+![I fattori di colore, debole e di ipercarica contribuiscono con otto, tre e un generatore; i campi neutri debole e di ipercarica si mescolano nel fotone e nello Z dopo il meccanismo di Higgs.](/images/diagrams/groups-standard-model.svg)
+
+*Il gruppo prodotto agisce sugli indici interni. Il mescolamento elettrodebole combina $W^3$ e $B$, mentre il colore rimane un fattore di gauge separato.*
+
+### Esempio svolto 17: ritrovare le cariche elettriche familiari
+
+Per $Q_L$, $T_3$ ha autovalori $+1/2,-1/2$, mentre $Y=1/6$ moltiplica entrambe le componenti. Quindi $Q(u_L)=1/2+1/6=2/3$ e $Q(d_L)=-1/2+1/6=-1/3$. Per $L_L$, $Y=-1/2$, dando $Q(\nu_L)=0$ e $Q(e_L)=-1$. Un singoletto debole ha $T_3=0$, quindi la sua carica elettrica è uguale al $Y$ indicato.
+
+Prima del meccanismo di Higgs, la descrizione elettrodebole ha quattro campi di gauge privi di massa con due polarizzazioni fisiche ciascuno e quattro componenti reali di Higgs: $8+4=12$ gradi di libertà fisici. Dopo ci sono tre bosoni vettoriali massivi con tre polarizzazioni ciascuno, un fotone con due e uno scalare di Higgs: $9+2+1=12$. Questo conteggio perturbativo spiega come emergano i modi vettoriali longitudinali senza creare gradi di libertà aggiuntivi. Gli otto gluoni restano privi di massa nella lagrangiana; il confinamento riguarda la loro realizzazione fisica a grande distanza, non un termine di massa di Higgs.
+
+## 8.18 Struttura globale e ciò che la simmetria non determina
+
+Il confronto precedente tra $SU(2)$ e $SO(3)$ ci prepara a una sottigliezza della notazione del Modello Standard. Specificare un'algebra di Lie e i suoi accoppiamenti locali non fissa in modo unico la forma globale del gruppo di gauge.
+
+Normalizziamo il cerchio dell'ipercarica con $n=6Y$ e poniamo $\omega=e^{2\pi i/3}$. Consideriamo l'elemento centrale
+
+$$
+z=\left(\omega I_3,-I_2,e^{i\pi/3}\right)
+\in SU(3)\times SU(2)\times U(1).
+$$
+
+La sua azione su un campo include la fase $(e^{i\pi/3})^{6Y}$. Su $Q_L$ il fattore totale è $\omega(-1)e^{i\pi/3}=1$. Su $L_L$ è $(-1)e^{-i\pi}=1$; su $H$, $(-1)e^{i\pi}=1$. Per $u_R,d_R,e_R$ è rispettivamente $\omega e^{4\pi i/3}=1$, $\omega e^{-2\pi i/3}=1$ ed $e^{-2\pi i}=1$.
+
+Di conseguenza, i campi di materia mostrati non possono distinguere il sottogruppo generato da $z$, che è $\mathbb Z_6$. Le loro rappresentazioni locali sono compatibili con forme globali
+
+$$
+\frac{SU(3)\times SU(2)\times U(1)}{\Gamma},
+\qquad \Gamma\subseteq\mathbb Z_6,
+$$
+
+che includono il sottogruppo banale, $\mathbb Z_2$, $\mathbb Z_3$ o $\mathbb Z_6$. Affermare che il quoziente massimo sia stabilito univocamente dalla familiare tabella delle particelle sarebbe eccessivo. Queste scelte possono differire per gli operatori di linea, i fibrati e i settori magnetici ammessi, pur condividendo i dati perturbativi locali qui discussi. [Tong, sezione 5.1.6](https://davidtong.org/pdfs/teaching/standard-model/standardmodel5.pdf), spiega questa precisazione.
+
+Restano altri compiti da svolgere. L'invarianza di gauge restringe le interazioni, ma la coerenza quantistica richiede anche la cancellazione delle anomalie di gauge. Come rapida illustrazione, l'anomalia mista $SU(2)^2U(1)$ riceve contributi dai doppietti proporzionali a
+
+$$
+3\left(\frac16\right)+\left(-\frac12\right)=0.
+$$
+
+Il fattore tre conta i colori dei quark; l'indice comune dei doppietti $1/2$ è stato omesso. Questa è una cancellazione, non una dimostrazione che ogni anomalia si annulli. Un calcolo completo comprende anomalie cubiche, miste e globali, usando convenzioni coerenti sulla chiralità. In una tabella con soli campi di chiralità sinistra, coniugare i campi di chiralità destra coniuga anche la loro rappresentazione di colore e inverte l'ipercarica.
+
+L'invarianza di gauge permette interazioni di Yukawa come $\overline L_LHe_R$: le loro ipercariche sommano a $+1/2+1/2-1=0$. Non predice il valore numerico dell'accoppiamento di Yukawa. Il nome del gruppo non ricava neppure il potenziale di Higgs, il confinamento, le tre generazioni, le masse dei neutrini, la materia oscura o la gravità. Servono ulteriore dinamica, evidenza sperimentale o estensioni.
+
+Abbiamo ottenuto una struttura leggibile: la composizione del gruppo dice come si combinano le trasformazioni; l'algebra di Lie descrive la loro non commutatività locale; le rappresentazioni indicano quali campi portano quali cariche; una connessione confronta i riferimenti interni; curvatura e azioni invarianti determinano la dinamica di gauge. Il [capitolo sulle frontiere della fisica](/it/chapters/12-Frontiers-of-physics) colloca questa struttura nella mappa più ampia della fisica consolidata e delle domande aperte.
+
+## 8.19 Esercizi con risposte
+
+Provate ogni calcolo prima di leggere la risposta. Lo scopo è riprodurre il ragionamento, non memorizzare un elenco di nomi di gruppi.
+
+### Esercizio 1: un sottogruppo e un controesempio
+
+Gli interi pari sono un sottogruppo di $(\mathbb Z,+)$? I numeri reali positivi sono un sottogruppo dei reali non nulli rispetto alla moltiplicazione?
+
+**Risposta.** Sono entrambi sottogruppi. Gli interi pari includono $0$, sono chiusi rispetto all'addizione e contengono gli inversi additivi. I reali positivi includono $1$, sono chiusi rispetto alla moltiplicazione e hanno reciproci positivi. I numeri positivi non formano un gruppo rispetto all'addizione, perché mancano $0$ e gli inversi additivi. Occorre sempre specificare l'operazione.
+
+### Esercizio 2: inversi e triangolo
+
+Usando $r^3=s^2=e$ e $srs=r^{-1}$, trovate $(sr)^{-1}$ e mostrate che $(sr)^2=e$.
+
+**Risposta.** La regola dell'ordine inverso dà $(sr)^{-1}=r^{-1}s$. Moltiplicando $srs=r^{-1}$ a sinistra per $s$ si ottiene $rs=sr^{-1}$ ed equivalentemente $sr=r^{-1}s$. Quindi $(sr)^{-1}=sr$. Direttamente, $srsr=r^{-1}r=e$. Il prodotto $sr$ è una riflessione, in accordo con la sua permutazione $(13)$.
+
+### Esercizio 3: un determinante e una dimensione
+
+La matrice $\operatorname{diag}(e^{i\alpha},e^{i\beta})$ appartiene a $SU(2)$? Quanti parametri reali indipendenti ha $SU(4)$?
+
+**Risposta.** La matrice diagonale è sempre unitaria, ma è speciale unitaria solo se $\alpha+\beta$ è un multiplo intero di $2\pi$. La formula della dimensione dà $4^2-1=15$. La rappresentazione definente ha dimensione complessa quattro, un numero diverso.
+
+### Esercizio 4: calcolare un commutatore di generatori
+
+Con $t_a=\sigma_a/2$, calcolate $[t_2,t_3]$ e $\operatorname{tr}(t_3^2)$.
+
+**Risposta.** Poiché $\sigma_2\sigma_3=i\sigma_1$ e $\sigma_3\sigma_2=-i\sigma_1$, il commutatore è $it_1$. Inoltre $t_3^2=I/4$, la cui traccia è $2/4=1/2$. Omettere i fattori due cambierebbe le costanti di struttura o la normalizzazione dell'accoppiamento.
+
+### Esercizio 5: quali rappresentazioni discendono a $SO(3)$?
+
+Una rappresentazione irriducibile di $SU(2)$ ha spin $j$ e dimensione $2j+1$. Una rotazione di $2\pi$ agisce come $(-1)^{2j}I$. Quali valori di $j$ danno rappresentazioni di $SO(3)$?
+
+**Risposta.** Una rappresentazione discende attraverso il quoziente per $\{I,-I\}$ solo se $-I$ agisce banalmente. Ciò accade per $j=0,1,2,\ldots$ intero. Un $j$ semintero dà un segno non banale e non discende. Questa è una restrizione globale invisibile nella sola algebra locale dei commutatori.
+
+### Esercizio 6: sommare due cariche $U(1)$
+
+Due campi si trasformano come $\phi\mapsto e^{in\theta}\phi$ e $\chi\mapsto e^{im\theta}\chi$. Quali sono le cariche di $\phi\chi$ e $\phi^*\chi$?
+
+**Risposta.** Moltiplicando le fasi si ottengono le cariche $n+m$ e $m-n$. La coniugazione complessa inverte una carica $U(1)$. Questa è la versione abeliana dei prodotti tensoriali e delle rappresentazioni coniugate, ed è il modo di verificare rapidamente la neutralità dell'ipercarica dei termini di interazione.
+
+### Esercizio 7: un potenziale di puro gauge
+
+Partendo da $A_\mu=0$, trasformate mediante una matrice liscia $U(x)$. Quanto vale $A'_\mu$ e qual è la sua curvatura?
+
+**Risposta.** Il potenziale è $A'_\mu=-(i/g)(\partial_\mu U)U^{-1}$. La sua curvatura si annulla perché $F'=UFU^{-1}=0$. Un potenziale può essere non nullo mentre il suo tensore di campo è nullo. Questo è un enunciato locale per una trasformazione di gauge liscia sull'aperto considerato; la topologia globale può impedire che una sola scelta di gauge copra un'intera configurazione.
+
+### Esercizio 8: un piccolo circuito non abeliano
+
+Per $A_x=at_1$, $A_y=bt_2$ costanti, trovate il trasporto lungo un piccolo rettangolo $xy$ di area $S$ orientato positivamente, all'ordine dominante.
+
+**Risposta.** La sezione 8.15 dà $F_{xy}=gabt_3$, quindi $W_\square=I+ig^2abS\,t_3+\cdots$. Il primo effetto non nullo è proporzionale all'area, non al perimetro. Invertire l'orientazione del circuito inverte questo termine dominante.
+
+### Esercizio 9: contare una generazione di fermioni
+
+Contate le componenti interne di $Q_L,u_R,d_R,L_L,e_R$, senza contare una seconda volta le componenti degli spinori di Lorentz. Che cosa cambia aggiungendo un $\nu_R$ sterile?
+
+**Risposta.** Il conteggio è $3\times2+3+3+2+1=15$ campi di Weyl per generazione. Un $\nu_R$ singoletto di gauge ne aggiunge uno, portando il totale a sedici, con assegnazione $(\mathbf1,\mathbf1)_0$. Questo conteggio non è né il numero di generatori di gauge né il numero di sapori di particelle dotati di un nome.
+
+### Esercizio 10: verificare un accoppiamento di Yukawa
+
+Verificate la neutralità dell'ipercarica di $\overline Q_LH d_R$ e $\overline Q_L\widetilde H u_R$, dove $\widetilde H=i\sigma_2H^*$.
+
+**Risposta.** Coniugare $Q_L$ dà ipercarica $-1/6$. La prima somma è $-1/6+1/2-1/3=0$. Poiché $\widetilde H$ ha $Y=-1/2$, la seconda è $-1/6-1/2+2/3=0$. Gli indici di colore si contraggono tra $\overline{\mathbf3}$ e $\mathbf3$; anche gli indici di doppietto debole si contraggono in un singoletto. La neutralità dell'ipercarica è necessaria, ma occorre verificare tutti i fattori del gruppo.
+
+### Esercizio 11: identificare il generatore elettromagnetico
+
+Per un doppietto con ipercarica $y$, trovate le due cariche elettriche. Per quale $y$ la componente inferiore è neutra?
+
+**Risposta.** Le cariche sono $y+1/2$ e $y-1/2$. La componente inferiore è neutra per $y=1/2$, l'assegnazione di Higgs. Una componente neutra del vuoto permette alla combinazione $T_3+Y$ di rimanere non rotta nella descrizione di Higgs.
+
+### Esercizio 12: leggere ciò che l'etichetta del gruppo non specifica
+
+Due teorie hanno la stessa algebra di gauge $\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)$. Devono avere le stesse particelle, gli stessi accoppiamenti, lo stesso gruppo globale e le stesse previsioni?
+
+**Risposta.** No. Possono avere rappresentazioni della materia, valori degli accoppiamenti, potenziali scalari o quozienti globali diversi, purché rispettino condizioni di coerenza come la cancellazione delle anomalie. Anche un contenuto locale di campi identico può ammettere scelte globali diverse. L'algebra vincola una teoria; non è l'intera teoria.
+
+## 8.20 Glossario, percorso di lettura e fonti
+
+| Termine | Significato in questo capitolo |
+| --- | --- |
+| Gruppo | Un insieme con composizione associativa, identità e inversi. |
+| Abeliano | Ogni coppia di elementi del gruppo commuta. |
+| Azione | Una regola coerente secondo cui un gruppo trasforma un insieme. |
+| Omomorfismo | Un'applicazione che preserva la legge di composizione. |
+| Nucleo | Gli elementi mandati nella trasformazione identità. |
+| Fedele | Con nucleo banale, così che elementi distinti del gruppo restano distinguibili. |
+| Gruppo di Lie | Una varietà liscia con operazioni di gruppo lisce. |
+| Algebra di Lie | Lo spazio tangente all'identità con la sua parentesi di Lie. |
+| Generatore | Una trasformazione infinitesima, spesso scritta in una base hermitiana usata in fisica. |
+| Costanti di struttura | Coefficienti che esprimono i commutatori dei generatori in una base scelta. |
+| Rappresentazione | Un'azione di gruppo mediante applicazioni lineari invertibili su uno spazio vettoriale. |
+| Irriducibile | Privo di sottospazi invarianti propri non nulli. |
+| Rappresentazione definente | L'azione matriciale standard usata per definire un gruppo matriciale classico. |
+| Rappresentazione aggiunta | L'azione sull'algebra di Lie per coniugazione. |
+| Singoletto | La rappresentazione banale unidimensionale del gruppo specificato. |
+| Connessione | Una regola per confrontare vettori interni in punti vicini. |
+| Curvatura | Il mancato commutare di derivate covarianti o trasporti infinitesimi. |
+| Olonomia | La trasformazione complessiva prodotta dal trasporto lungo un percorso chiuso. |
+| Invariante di gauge | Immutato dalle trasformazioni di gauge ammesse. |
+| Covariante di gauge | Che si trasforma secondo una legge di rappresentazione specificata. |
+| Ipercarica | Il generatore di $U(1)_Y$, normalizzato qui con $Q=T_3+Y$. |
+| Chiralità | Il settore sinistro o destro di uno spinore di Lorentz selezionato da $\gamma^5$, distinto dall'elicità per particelle massive. |
+
+Se un calcolo si blocca, tornate al più piccolo esempio concreto. Verificate una composizione su un vertice del triangolo. Verificate un'identità matriciale sulle matrici di Pauli. Verificate il segno di una trasformazione di gauge su una fase che moltiplica un campo costante. Verificate una carica del Modello Standard sulla componente inferiore del doppietto di Higgs. Questi controlli collegano la notazione astratta a operazioni che possiamo eseguire esplicitamente.
+
+Le fonti matematiche qui sotto stabiliscono le definizioni e i teoremi sottostanti; le fonti fisiche forniscono le convenzioni della teoria dei campi e il contesto del Modello Standard. Il testo, gli esempi svolti e i diagrammi di questo articolo sono originali, con una notazione mantenuta internamente coerente anziché copiata indiscriminatamente da riferimenti diversi.
+
+1. [Pavel Etingof, *Lie Groups and Lie Algebras I*, MIT 18.745](https://math.mit.edu/~etingof/lnlg.pdf). Le lezioni 2–7 sviluppano gruppi di Lie, rivestimenti, applicazioni esponenziali e parentesi; la lezione 9 introduce le rappresentazioni. È il proseguimento matematico delle sezioni 8.6–8.10.
+2. [Eckhard Meinrenken, *Lie Groups and Lie Algebras*, Università di Toronto](https://www.math.toronto.edu/mein/teaching/LectureNotes/lie.pdf). Una trattazione complementare di gruppi matriciali, applicazioni esponenziali e struttura globale rispetto a quella locale. Utile quando la distinzione tra $SU(2)$ e $SO(3)$ richiede una seconda lettura geometrica.
+3. [Peter Woit, *Lie Groups and Representations*, note sulle algebre di Lie, Columbia University](https://www.math.columbia.edu/~woit/notes2.pdf), e [generalità sulle rappresentazioni](https://www.math.columbia.edu/~woit/LieGroups-2012/repgeneralities.pdf). Sviluppano le convenzioni degli spazi tangenti e il linguaggio di sottospazi invarianti, somme dirette e prodotti tensoriali.
+4. [Hugh Osborn, *Symmetries and Groups*, Università di Cambridge](https://www.damtp.cam.ac.uk/user/ho10/GNotes.pdf). Ulteriore teoria dei gruppi e delle rappresentazioni per chi passa tra notazione matematica e fisica.
+5. [David Tong, *The Standard Model*, capitolo 1: simmetrie, Università di Cambridge](https://davidtong.org/pdfs/teaching/standard-model/standardmodel1.pdf). La sezione 1.3 collega teoria di Maxwell, algebre di Lie e teoria di Yang–Mills. Sostiene il quadro della teoria di gauge usato nelle sezioni 8.12–8.15.
+6. [David Tong, *Gauge Theory*, capitolo 2: teoria di Yang–Mills](https://davidtong.org/pdfs/teaching/gauge-theory/gauge2.pdf). Un percorso verso linee di Wilson, dinamica non abeliana e teoria quantistica di gauge. Occorre seguire dove l'accoppiamento viene incluso nella definizione della connessione.
+7. [David Tong, *The Standard Model*, capitolo 5: interazioni elettrodeboli](https://davidtong.org/pdfs/teaching/standard-model/standardmodel5.pdf). Le sezioni 5.1–5.2 trattano le assegnazioni dei campi, i vincoli delle anomalie, le scelte del gruppo di gauge globale e il mescolamento elettrodebole. Il nostro ordine $(R_c,R_L)_Y$ mette il colore per primo; la fonte usa il proprio ordine, quindi occorre confrontare le etichette anziché le posizioni delle colonne.
+
+Per la tappa successiva in Open Physics Notes, proseguite con la [geometria differenziale](/it/curiosities/differential-geometry) per il linguaggio geometrico, la [teoria quantistica dei campi](/it/chapters/8-Quantum-field-theory) per dinamica e quantizzazione, e le [frontiere della fisica](/it/chapters/12-Frontiers-of-physics) per il contesto più ampio e i limiti del Modello Standard.

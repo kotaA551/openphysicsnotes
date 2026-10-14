@@ -22,7 +22,7 @@ for (const locale of locales) {
   assert.ok(manifest.routes[`/search/${locale}`], 'locale index must be static');
   const index = JSON.parse(raw);
   const prepared = prepareIndex(index);
-  assert.equal(index.articles.length, 19);
+  assert.equal(index.articles.length, 20);
   const headings = index.articles.map(article => {
     assert.ok(article.href.startsWith(locale === 'en' ? '/' : `/${locale}/`));
     const [kind, slug] = article.href.split('/').slice(-2);

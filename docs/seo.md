@@ -1,10 +1,10 @@
 # International SEO checks
 
-English URLs remain at the root. Static pages have ten translated variants; articles advertise only editions with their own translated MDX. All 19 articles have English, German, Brazilian Portuguese, Simplified Chinese and Japanese editions. Navier–Stokes and the five expanded curiosities (black-hole information, dark energy, dark matter, loop quantum gravity, and string theory) additionally have French, Italian, Spanish, Traditional Chinese and Korean editions, covering all ten site languages. That gives 125 real article editions and 65 English fallback pages.
+English URLs remain at the root. Static pages have ten translated variants; articles advertise only editions with their own translated MDX. All 20 articles have English, German, Brazilian Portuguese, Simplified Chinese and Japanese editions. Navier–Stokes, the five expanded curiosities (black-hole information, dark energy, dark matter, loop quantum gravity, and string theory), and the new Groups, Lie algebras and gauge theory curiosity additionally have French, Italian, Spanish, Traditional Chinese and Korean editions, covering all ten site languages. That gives 135 real article editions and 65 English fallback pages.
 
 `translatedArticleLocales` supplies article availability. `languageAlternates` supplies the same absolute, reciprocal hreflang cluster (including itself and English `x-default`) to page metadata and the sitemap. Translated articles are self-canonical. English fallback articles keep `noindex, follow`, remain crawlable, point to the English canonical, and are excluded from alternate-language clusters and the sitemap.
 
-Article social metadata uses the content language and canonical URL. Open Graph requires `language_TERRITORY`; its locale mapping does not change the generic language targeting in hreflang. Explicit localized frontmatter descriptions are preserved in full. The 19 English summaries in `lib/article-descriptions.ts` replace automatically cut introduction excerpts; a future English frontmatter description takes precedence.
+Article social metadata uses the content language and canonical URL. Open Graph requires `language_TERRITORY`; its locale mapping does not change the generic language targeting in hreflang. Explicit localized frontmatter descriptions are preserved in full. The 19 English summaries in `lib/article-descriptions.ts` replace automatically cut introduction excerpts; the new Groups, Lie algebras and gauge theory article uses an explicit English frontmatter description, which takes precedence.
 
 Actual article editions expose `LearningResource` structured data describing the displayed content. Fallback duplicates have no separate learning-resource entity. No author, publication date, review score or rich-result eligibility is invented. JSON-LD remains escaped before insertion into HTML.
 
@@ -17,7 +17,7 @@ node --test tests/seo/metadata.test.mjs
 npx tsc --noEmit --incremental false
 ```
 
-After a coordinated production build, verify all 220 generated HTML pages, 155 sitemap URLs, reciprocal alternates, robots directives, descriptions, Open Graph/Twitter fields and structured data. The checker also verifies all ten Navier–Stokes bodies have the requested content language, no fallback notice, rendered KaTeX/MathML without KaTeX errors, and the complete reciprocal language cluster:
+After a coordinated production build, verify all 230 generated HTML pages, 165 sitemap URLs, reciprocal alternates, robots directives, descriptions, Open Graph/Twitter fields and structured data. The checker also verifies all ten Navier–Stokes bodies have the requested content language, no fallback notice, rendered KaTeX/MathML without KaTeX errors, and the complete reciprocal language cluster:
 
 ```sh
 node tests/seo/generated-seo-check.mjs --dist .next-de-pt-apply-check --output ../evidence/seo/generated-seo.json

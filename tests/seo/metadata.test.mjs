@@ -13,7 +13,7 @@ const sitemap = load('app/sitemap.ts').default;
 const robots = load('app/robots.ts').default;
 const completeSiteLocales = ['en', 'de', 'pt-BR', 'zh-CN', 'ja'];
 const navierStokesLocales = ['en', 'fr', 'de', 'it', 'es', 'pt-BR', 'zh-CN', 'zh-TW', 'ja', 'ko'];
-const fullCuriosityLocales = new Set(['navier-stokes-equation', 'black-hole-information-paradox', 'dark-energy', 'dark-matter', 'loop-quantum-gravity', 'string-theory']);
+const fullCuriosityLocales = new Set(['navier-stokes-equation', 'black-hole-information-paradox', 'dark-energy', 'dark-matter', 'loop-quantum-gravity', 'string-theory', 'groups-lie-algebras-gauge-theory']);
 const expectedArticleLocales = (kind, slug) => kind === 'curiosities' && fullCuriosityLocales.has(slug)
   ? navierStokesLocales : completeSiteLocales;
 
@@ -26,7 +26,7 @@ test('Next serializes root and article alternate URLs exactly as the sitemap use
   }
 });
 
-test('19 article clusters have 125 real editions, including all ten Navier–Stokes locales, with reciprocal absolute hreflang', () => {
+test('20 article clusters have 135 real editions, including all ten Navier–Stokes locales, with reciprocal absolute hreflang', () => {
   let count = 0;
   for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) {
     const actualLocales = expectedArticleLocales(kind, slug);
@@ -45,7 +45,7 @@ test('19 article clusters have 125 real editions, including all ten Navier–Sto
       count++;
     }
   }
-  assert.equal(count, 125);
+  assert.equal(count, 135);
 });
 
 test('all ten Navier–Stokes editions load their own content and descriptions', () => {
@@ -84,9 +84,9 @@ test('65 fallback pages remain noindex, follow and identify the English canonica
   assert.equal(count, 65);
 });
 
-test('the sitemap contains only 155 canonical pages and matches every HTML alternate cluster', () => {
+test('the sitemap contains only 165 canonical pages and matches every HTML alternate cluster', () => {
   const entries = sitemap();
-  assert.equal(entries.length, 155);
+  assert.equal(entries.length, 165);
   const byUrl = new Map(entries.map(entry => [entry.url, entry]));
   assert.equal(byUrl.size, entries.length);
   for (const entry of entries) {
@@ -122,7 +122,7 @@ test('localized descriptions remain whole; English descriptions are useful prose
       assert.equal(loadArticle(kind, slug, locale).description, data.description.replace(/\s+/g, ' ').trim());
     }
   }
-  assert.equal(descriptions.size, 19);
+  assert.equal(descriptions.size, 20);
   const longDescription = 'A complete, reviewed description. '.repeat(8);
   assert.equal(pageMetadata('Example', longDescription, '/about', 'de').description, longDescription, 'reviewed descriptions must not be truncated');
 });

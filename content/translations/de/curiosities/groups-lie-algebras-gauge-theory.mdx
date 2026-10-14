@@ -1,0 +1,924 @@
+---
+title: "Von Gruppen zur Eichtheorie: die Mathematik des Standardmodells"
+order: 8
+description: "Die Symmetriesprache des Standardmodells, aufgebaut von Gruppenaxiomen und Matrixrotationen über Lie-Algebren und Darstellungen bis zu Zusammenhängen und Krümmung, mit durchgerechneten Beispielen, eigenen Diagrammen und Aufgaben mit Lösungen."
+---
+
+## 8.1 Das Ziel und der Weg dorthin
+
+Der Ausdruck $SU(3)_c\times SU(2)_L\times U(1)_Y$ wird erst dann nützlich, wenn wir wissen, was er bewirkt. Er beschreibt kontinuierliche innere Transformationen, legt fest, wie Felder transformieren können, und liefert die Algebra, die ihre Wechselwirkungen ordnet. Für sich allein legt er weder jedes Teilchen noch jede Kopplung oder die Dynamik des Vakuums fest. Unser Ziel ist es, diesen Ausdruck als kompakten Satz mathematischer Anweisungen zu lesen.
+
+Wir bauen diese Anweisungen in fünf Schritten auf: Umkehrbare Operationen bilden **Gruppen**; Matrizen verwirklichen deren Wirkungen auf Vektoren; das Differenzieren kontinuierlicher Gruppen führt zu **Lie-Algebren**; **Darstellungen** legen fest, welche Vektoren transformieren; und der Vergleich von Transformationen an benachbarten Raumzeitpunkten führt einen **Eichzusammenhang** ein. Seine Krümmung ist die Eichfeldstärke.
+
+Vorausgesetzt werden Matrixmultiplikation, komplexe Zahlen, Ableitungen und Grundkenntnisse der Quantenmechanik. Vertrautheit mit Feldern und spezieller Relativitätstheorie hilft im letzten Drittel. Vorkenntnisse in Gruppentheorie oder Differentialgeometrie sind nicht erforderlich. Die Abschnitte 8.2–8.6 führen die Begriffe ein; 8.7–8.11 entwickeln das mathematische Werkzeug; 8.12–8.15 bauen die Eichtheorie auf; 8.16–8.18 setzen das Standardmodell zusammen. Die durchgerechneten Beispiele sind Teil der Argumentation. Die Aufgaben in 8.19 führen ein zweites Mal durch die zentralen Gedanken.
+
+Die [Curiosity zur Differentialgeometrie](/de/curiosities/differential-geometry) bietet einen breiteren Zugang zu Mannigfaltigkeiten, Zusammenhängen und Krümmung. Das [Hauptkapitel zur Quantenfeldtheorie](/de/chapters/8-Quantum-field-theory) behandelt Quantisierung, Wechselwirkungen, Anomalien und den Higgs-Mechanismus über diese Einführung hinaus. Dies ist die achte **Curiosity**, ein eigenständiger Artikel neben jenem physikalischen Hauptkapitel.
+
+### Konventionen für die Rechnungen
+
+Vektoren sind Spaltenvektoren; in einem Produkt $gh$ wirkt $h$ zuerst. Das Symbol $I$ bezeichnet eine Einheitsmatrix; $e$ ist das neutrale Element einer Gruppe, sofern es nicht ausdrücklich als elektromagnetische Kopplung bezeichnet wird. Ein Dagger bedeutet komplex konjugiertes Transponieren. Über wiederholte Lie-Algebra-Indizes wird summiert. Raumzeitindizes sind $\mu,\nu=0,1,2,3$.
+
+Für Quantenfelder verwenden wir natürliche Einheiten $\hbar=c=1$ und die Minkowski-Signatur $(+,-,-,-)$. Die inneren Generatoren $t_a$ sind hermitesch, mit
+
+$$
+[t_a,t_b]=i f_{ab}{}^c t_c,\qquad
+\operatorname{tr}(t_at_b)=\frac12\delta_{ab}
+$$
+
+in der definierenden Darstellung von $SU(N)$. Die Spurnormierung ist eine Wahl, kein Axiom für jede Darstellung. Unsere Eichkonventionen lauten
+
+$$
+\psi'=U\psi,\qquad D_\mu=\partial_\mu-igA_\mu,\qquad
+[D_\mu,D_\nu]=-igF_{\mu\nu}.
+$$
+
+Wir leiten ihre Konsequenzen her, statt unterwegs die Vorzeichen zu wechseln. Die Hyperladung ist durch $Q=T_3+Y$ definiert; eine Quelle mit $Q=T_3+Y/2$ bezeichnet das Doppelte unseres $Y$ als Hyperladung. Beim Vergleich von Gleichungen müssen diese Konventionen zusammen beibehalten werden.
+
+## 8.2 Was ist eine Gruppe?
+
+Eine **Gruppe** ist eine Menge $G$ mit einer binären Verknüpfung: einer Regel, die jedem Paar $g,h$ aus $G$ ein Element $gh$ von $G$ zuordnet. Vier Bedingungen erfassen, was eine umkehrbare Hintereinanderausführung benötigt.
+
+1. **Abgeschlossenheit:** Die Verknüpfung zweier erlaubter Operationen ergibt wieder eine erlaubte Operation.
+2. **Assoziativität:** $(gh)k=g(hk)$. Klammern dürfen verschoben werden, ohne das Ergebnis zu ändern; die Reihenfolge der Faktoren darf dabei nicht geändert werden.
+3. **Neutrales Element:** Es gibt ein Element $e$ mit $eg=ge=g$.
+4. **Inverses Element:** Zu jedem $g$ gibt es ein Element $g^{-1}$ mit $g^{-1}g=gg^{-1}=e$.
+
+Die Verknüpfung muss keine Multiplikation von Zahlen sein. Bei den ganzen Zahlen mit Addition ist das neutrale Element $0$, und das Inverse von $n$ ist $-n$. Also ist $(\mathbb Z,+)$ eine Gruppe. Die nichtnegativen ganzen Zahlen mit Addition scheitern daran, dass eine positive ganze Zahl innerhalb der Menge kein additives Inverses besitzt. Die von null verschiedenen reellen Zahlen bilden mit Multiplikation eine Gruppe; alle reellen Zahlen mit Multiplikation tun dies nicht, weil $0$ kein multiplikatives Inverses hat.
+
+Eine Gruppe heißt **abelsch**, wenn $gh=hg$ für jedes Paar gilt. Die Addition ganzer Zahlen ist abelsch. Hintereinanderausgeführte räumliche Drehungen sind es im Allgemeinen nicht. Nichtkommutativität bedeutet, dass die zwischengeschaltete Operation die Situation verändert, auf die die nächste Operation wirkt; sie bedeutet nicht, dass die Verknüpfung widersprüchlich wäre.
+
+### Durchgerechnetes Beispiel 1: eine Uhr mit fünf Positionen
+
+Die Menge $\mathbb Z_5$ bestehe aus den Restklassen $0,1,2,3,4$, mit Addition modulo $5$. Dann gilt
+
+$$
+3+4=2\pmod 5,\qquad -3=2\pmod 5.
+$$
+
+Das Element $1$ erzeugt die ganze Gruppe: Wiederholte Addition erreicht alle fünf Positionen. Gleichwertig schreiben wir die **zyklische Gruppe** als $C_5=\{e,r,r^2,r^3,r^4\}$ mit $r^5=e$. Ihre Ordnung, also die Anzahl ihrer Elemente, ist fünf. Bei einer kontinuierlichen Gruppe heißt die Anzahl reeller Parameter dagegen Dimension; das sind verschiedene Begriffe.
+
+Assoziativität erlaubt es, Gleichungen zu lösen, ohne Kommutativität anzunehmen. Aus $gx=h$ folgt durch Multiplikation von links mit $g^{-1}$ die Lösung $x=g^{-1}h$. Die Multiplikation von der falschen Seite würde im Allgemeinen scheitern. Ebenso gilt
+
+$$
+(gh)^{-1}=h^{-1}g^{-1},
+$$
+
+denn um eine Folge von Schritten rückgängig zu machen, muss man ihren letzten Schritt zuerst umkehren. Diese einfache Identität begegnet uns in der Matrixalgebra und bei Eichtransformationen wieder.
+
+Eine **Untergruppe** ist eine Teilmenge, die unter derselben Verknüpfung selbst eine Gruppe ist. Beispielsweise bilden die Vielfachen von fünf eine Untergruppe von $(\mathbb Z,+)$. Ein **Homomorphismus** ist eine Abbildung, die die Multiplikation erhält: $\rho(gh)=\rho(g)\rho(h)$. Sie erhält automatisch das neutrale Element und die Inversen. Ist eine solche Abbildung bijektiv, heißt sie Isomorphismus: Zwei Beschreibungen besitzen dieselbe abstrakte Gruppenstruktur.
+
+**Verständniskontrolle.** Assoziativität behauptet nicht $gh=hg$. Sie besagt nur, dass die Ausführung dreier Operationen nicht davon abhängt, wo wir die Klammern zur Buchführung setzen.
+
+## 8.3 Symmetrien wirken: das Dreieck als Labor
+
+Eine abstrakte Gruppe muss noch kein bestimmtes Objekt mitbringen, das sie transformiert. Eine **Gruppenwirkung** liefert dieses Objekt: Für eine Menge $X$ ordnet sie $g\cdot x$ so zu, dass $e\cdot x=x$ und $(gh)\cdot x=g\cdot(h\cdot x)$ gelten. Dieselbe Gruppe kann auf Positionen, Funktionen, Quantenzustände oder innere Feldkomponenten wirken.
+
+Bezeichnen wir die Ecken eines gleichseitigen Dreiecks mit $1,2,3$. Es sei $r=(123)$ die zyklische Vertauschung, und $s=(23)$ lasse Ecke $1$ fest, während es die Ecken $2$ und $3$ vertauscht. In Zyklenschreibweise bedeutet $(123)$ die Zuordnung $1\mapsto2$, $2\mapsto3$, $3\mapsto1$. Die sechs Dreieckssymmetrien bilden die Diedergruppe $D_3$, die zur Permutationsgruppe $S_3$ isomorph ist:
+
+$$
+D_3=\{e,r,r^2,s,sr,sr^2\},\qquad
+r^3=e,\quad s^2=e,\quad srs=r^{-1}.
+$$
+
+Die ersten beiden Relationen drücken aus, dass drei Drehungen beziehungsweise zwei Spiegelungen zum Ausgangspunkt zurückführen. Die dritte besagt, dass Spiegelung den Drehsinn umkehrt.
+
+![Zwei Folgen aus Drehung und Spiegelung eines Dreiecks ergeben unterschiedliche Permutationen der Ecken; die Verknüpfung wirkt von rechts nach links.](/images/diagrams/groups-triangle-composition.svg)
+
+*Die farbigen Ecken machen die Wirkung nachvollziehbar. Beide Folgen verwenden dieselben zwei Operationen, doch $sr$ und $rs$ vertauschen unterschiedliche Eckenpaare.*
+
+### Durchgerechnetes Beispiel 2: die fehlende Kommutativität berechnen
+
+Verfolgen wir für $sr$ die Ecke $1$: $r$ schickt sie nach $2$, danach schickt $s$ die $2$ nach $3$. Ecke $3$ geht zunächst nach $1$ und bleibt anschließend dort. Ecke $2$ kehrt zu sich selbst zurück. Also ist $sr=(13)$. Umgekehrt schickt $rs$ die $1$ nach $2$, die $2$ nach $1$ und lässt $3$ fest; somit ist $rs=(12)$. Daher gilt $sr\ne rs$.
+
+Die **Bahn** eines Punktes ist die Menge der Orte, an die die Gruppe ihn schicken kann. Die Bahn der Ecke $1$ enthält alle drei Ecken. Ihr **Stabilisator** besteht aus den Operationen, die sie festlassen: $\{e,s\}$. Der Bahn-Stabilisator-Satz für endliche Gruppen ist hier unmittelbar sichtbar:
+
+$$
+|D_3|=|\operatorname{Orb}(1)|\,|\operatorname{Stab}(1)|=3\times2.
+$$
+
+Der **Kern** einer Wirkung enthält die Elemente, die auf jeden Punkt trivial wirken. Bei dieser Dreieckswirkung enthält er nur das neutrale Element; die Wirkung heißt **treu**. Eine nicht treue Wirkung kann einen Teil der Gruppe verbergen. Später werden gewöhnliche dreidimensionale Vektoren zwei verschiedene Elemente von $SU(2)$ nicht unterscheiden können.
+
+Nützlich ist auch die Unterscheidung zwischen einer aktiven Transformation und einem passiven Beschreibungswechsel. Wird ein Vektor aktiv mit einer Matrix $R$ gedreht und bleiben die Achsen fest, gilt $v'=Rv$. Werden dagegen die Achsen passiv gedreht und bleibt der geometrische Vektor fest, transformieren seine Komponenten mit $R^{-1}$. Beide Konventionen funktionieren. Wer sie vermischt, erhält scheinbare Vorzeichenwidersprüche, insbesondere bei Drehungen und Eichrahmen.
+
+**Verständniskontrolle.** Eine Symmetrie wird sowohl durch ein Gruppenelement als auch durch das Objekt bestimmt, auf das es wirkt. Ein Gruppenelement, das in einer Wirkung unsichtbar ist, kann in einer anderen sichtbar sein.
+
+## 8.4 Matrizen, komplexe Zahlen und erhaltene Größen
+
+Eine lineare Abbildung bildet Summen auf Summen und skalare Vielfache auf skalare Vielfache ab. Nach Wahl einer Basis wird sie durch eine Matrix dargestellt. Hintereinanderausführung wird zur Matrixmultiplikation; eine invertierbare Matrix beschreibt eine umkehrbare lineare Abbildung. Die invertierbaren $n\times n$-Matrizen über einem Körper $\mathbb F$ bilden $GL(n,\mathbb F)$, die allgemeine lineare Gruppe.
+
+Warum eine kleinere Gruppe auswählen? Meist soll eine physikalische Größe erhalten bleiben. Für reelle Vektoren mit quadrierter euklidischer Länge $v^Tv$ erhält eine Matrix $R$ genau dann jede Länge, wenn
+
+$$
+(Rv)^T(Rv)=v^TR^TRv=v^Tv,\qquad R^TR=I.
+$$
+
+Solche Matrizen heißen **orthogonal** und bilden $O(n)$. Ihre Determinanten erfüllen $(\det R)^2=1$, also $\det R=\pm1$. Die Forderung $+1$ wählt $SO(n)$ aus, die spezielle orthogonale Gruppe. Spiegelungen haben die Determinante $-1$ und sind ausgeschlossen; Drehungen gehören zu $SO(n)$.
+
+Für komplexe Vektoren ist das nichtnegative Normquadrat $z^\dagger z$, nicht $z^Tz$. Eine Matrix, die es erhält, erfüllt $U^\dagger U=I$ und heißt **unitär**. Solche Matrizen bilden $U(n)$; die zusätzliche Bedingung $\det U=1$ ergibt $SU(n)$. „Speziell“ bedeutet hier Determinante eins, und „unitär“ bedeutet Erhaltung eines hermiteschen Skalarprodukts. Keines der Wörter besagt, dass die Matrixeinträge reell sind.
+
+### Durchgerechnetes Beispiel 3: eine komplexe Phase ist eine reelle Drehung
+
+Schreiben wir $z=x+iy$. Multiplikation mit $e^{i\theta}=\cos\theta+i\sin\theta$ ergibt
+
+$$
+e^{i\theta}z=(x\cos\theta-y\sin\theta)
++i(x\sin\theta+y\cos\theta).
+$$
+
+Damit transformiert eine komplexe Komponente genau wie zwei reelle Komponenten:
+
+$$
+\begin{pmatrix}x'\\y'\end{pmatrix}
+=\begin{pmatrix}\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta\end{pmatrix}
+\begin{pmatrix}x\\y\end{pmatrix}.
+$$
+
+Der Betrag $|z|$ bleibt unverändert. Die Phasen $e^{i\theta}$ bilden $U(1)$, und diese Entsprechung ist ein Gruppenisomorphismus $U(1)\cong SO(2)$. Sie setzt nicht alle physikalischen Verwendungen beider Gruppen gleich: Eine Phase, die auf ein Elektronenfeld wirkt, ist eine innere Transformation, während die Drehung einer Laborebene auf räumliche Positionen wirkt.
+
+In der Quantenmechanik sind komplexe Skalarprodukte besonders wichtig. Unitäre Transformationen erhalten Übergangswahrscheinlichkeiten, denn $\langle U\phi,U\psi\rangle=\langle\phi,\psi\rangle$. Eine **hermitesche** Matrix erfüllt $H^\dagger=H$ und kann eine Observable darstellen. Im Allgemeinen ist sie selbst keine Gruppentransformation. Dagegen ist $e^{i\alpha H}$ für reelles $\alpha$ unitär: Hier liegt die Brücke zwischen Observablen beziehungsweise Generatoren und endlichen Transformationen.
+
+Beispielsweise ist $\operatorname{diag}(1,-1)$ sowohl hermitesch als auch unitär, während $\operatorname{diag}(2,3)$ hermitesch, aber nicht unitär ist. Hermitesch und unitär sind unterschiedliche Bedingungen mit unterschiedlichen Aufgaben.
+
+## 8.5 Kontinuierliche Drehungen und der Phasenkreis
+
+Die Matrix aus dem vorigen Abschnitt bezeichnen wir mit $R(\theta)$. Direkte Multiplikation mit den Additionstheoremen für Winkel ergibt
+
+$$
+R(\alpha)R(\beta)=R(\alpha+\beta),\qquad
+R(\theta)^{-1}=R(-\theta).
+$$
+
+Ein Parameter kennzeichnet Drehungen in der Ebene, doch dieser Parameter ist periodisch: $\theta$ und $\theta+2\pi$ beschreiben dasselbe Element. Die Gruppe ist ein Kreis statt einer unendlichen Geraden. Lokal genügt ein kleines Winkelintervall; global müssen diese Intervalle um den ganzen Kreis zusammenpassen.
+
+![Ein Vektor dreht sich in einer reellen Ebene gegen den Uhrzeigersinn, während sich die entsprechende komplexe Phase auf dem Einheitskreis bewegt.](/images/diagrams/groups-rotation-phase.svg)
+
+*Die reelle Matrix $R(\theta)$ und die komplexe Zahl $e^{i\theta}$ verwirklichen dasselbe einparametrige Verknüpfungsgesetz.*
+
+### Durchgerechnetes Beispiel 4: die infinitesimale Drehung
+
+Für einen kleinen Winkel $\epsilon$ gilt
+
+$$
+R(\epsilon)=I+\epsilon J+O(\epsilon^2),\qquad
+J=\begin{pmatrix}0&-1\\1&0\end{pmatrix},\qquad J^2=-I.
+$$
+
+Trennen wir die geraden und ungeraden Potenzen der Exponentialreihe:
+
+$$
+e^{\theta J}=I\left(1-\frac{\theta^2}{2!}+\cdots\right)
++J\left(\theta-\frac{\theta^3}{3!}+\cdots\right)
+=I\cos\theta+J\sin\theta=R(\theta).
+$$
+
+Das ist bereits Lie-Theorie: Eine infinitesimale Richtung $J$ erzeugt eine ganze kontinuierliche Familie.
+
+Dreidimensionale Drehungen besitzen drei unabhängige infinitesimale Richtungen. Sie kommutieren nicht. Um dies ohne abstrakte Notation zu sehen, beginnen wir mit $v=(1,0,0)^T$. Eine positive Drehung nach der Rechte-Hand-Regel $R_y(\pi/2)$ schickt $v$ nach $(0,0,-1)^T$, und das anschließende $R_z(\pi/2)$ lässt diesen Vektor fest. Die umgekehrte Reihenfolge ergibt zunächst $(0,1,0)^T$, das von $R_y(\pi/2)$ festgelassen wird. Daher gilt
+
+$$
+R_z(\pi/2)R_y(\pi/2)v\ne R_y(\pi/2)R_z(\pi/2)v.
+$$
+
+Ein Winkel und eine Achse können eine dreidimensionale Drehung beschreiben, doch dies bedeutet nicht vier unabhängige Parameter: Eine Einheitsachse hat zwei Parameter, und der Winkel liefert einen weiteren. Beim Winkel null beschreiben alle Achsen dieselbe Identität; diese Parametrisierung warnt uns also auch davor, dass Koordinaten auf einer Gruppe Redundanzen oder Singularitäten aufweisen können.
+
+**Verständniskontrolle.** Der periodische Winkel von $U(1)$ und der reelle infinitesimale Parameter, der die Bewegung nahe dem neutralen Element beschreibt, sind global nicht derselbe Raum.
+
+## 8.6 Lie-Gruppen: eine Gruppe, die zugleich eine Mannigfaltigkeit ist
+
+Eine **Lie-Gruppe** ist eine glatte Mannigfaltigkeit, deren Gruppenmultiplikation und Inversenbildung glatte Abbildungen sind. Eine Mannigfaltigkeit ist ein Raum, der sich lokal durch eine feste Anzahl reeller Koordinaten beschreiben lässt, auch wenn kein einzelnes Koordinatensystem den ganzen Raum überdeckt. Glattheit macht Differenzieren sinnvoll.
+
+Wir müssen uns also zwei eigenständige Strukturen merken: Das Gruppengesetz sagt, wie Transformationen zusammengesetzt werden, während die Mannigfaltigkeit sagt, wie sie sich kontinuierlich verändern. Der Kreis $U(1)$ besitzt beides. Die additive Gerade $(\mathbb R,+)$ ebenfalls, doch sie unterscheidet sich global von einem Kreis.
+
+Für eine Matrixgruppe können wir die unabhängigen Parameter in einer Umgebung zählen, indem wir ihre definierenden Bedingungen entwickeln. Dies führt zum Tangentialraum, liefert aber zunächst eine praktische Dimensionszählung.
+
+### Durchgerechnetes Beispiel 5: die Generatoren zählen, bevor wir sie wählen
+
+Es sei $U=I+i\epsilon H+O(\epsilon^2)$. Dann gilt
+
+$$
+U^\dagger U=I+i\epsilon(H-H^\dagger)+O(\epsilon^2),
+$$
+
+also verlangt Unitarität $H=H^\dagger$. Eine hermitesche $n\times n$-Matrix hat $n$ reelle Diagonaleinträge und $n(n-1)/2$ unabhängige komplexe Einträge außerhalb der Diagonalen. Die Anzahl ihrer reellen Parameter ist
+
+$$
+n+2\frac{n(n-1)}2=n^2.
+$$
+
+Die Bedingung Determinante eins verlangt $\operatorname{tr}H=0$ und entfernt einen reellen Parameter. Daher sind $\dim U(n)=n^2$ und $\dim SU(n)=n^2-1$. Ebenso ergibt die Entwicklung $R=I+\epsilon X$ in $R^TR=I$ die Bedingung $X^T=-X$, mit $n(n-1)/2$ unabhängigen Einträgen.
+
+| Gruppe | Definierende Matrizen | Reelle Gruppendimension | Dimension des angegebenen Vektorraums |
+| --- | --- | --- | --- |
+| $U(1)$ | eine komplexe Phase | $1$ | $1$ komplex |
+| $SO(2)$ | reell orthogonal, $2\times2$, Determinante $1$ | $1$ | $2$ reell |
+| $SO(3)$ | reell orthogonal, $3\times3$, Determinante $1$ | $3$ | $3$ reell |
+| $SU(2)$ | unitär, $2\times2$, Determinante $1$ | $3$ | $2$ komplex |
+| $SU(3)$ | unitär, $3\times3$, Determinante $1$ | $8$ | $3$ komplex |
+
+Die letzten beiden Spalten beantworten unterschiedliche Fragen. Die Dimension von $SU(3)$ zählt acht unabhängige Transformationsparameter. Ihre definierende Darstellung wirkt auf einen komplexen Vektor mit drei Komponenten. Keine dieser Zahlen zählt Quarkgenerationen.
+
+Der **Rang** ist eine weitere Zahl: Für diese kompakten Gruppen zählt er unabhängige kommutierende Generatoren in einem maximalen Torus. $SU(2)$ hat Rang eins, $SU(3)$ Rang zwei. Der Rang ist weder Gruppendimension noch Darstellungsdimension.
+
+Eine präzise mathematische Behandlung von Mannigfaltigkeiten, glatten Gruppenoperationen und klassischen Matrixgruppen bieten [Etingofs MIT-Vorlesungsnotizen zu Lie-Gruppen, Vorlesungen 1–5](https://math.mit.edu/~etingof/lnlg.pdf). Für unsere Rechnungen genügen ihre Matrixversionen.
+
+## 8.7 Tangentialvektoren, Generatoren und die Exponentialabbildung
+
+Wählen wir eine differenzierbare Kurve $g(t)$ in einer Matrixgruppe mit $g(0)=I$. Ihre Anfangsgeschwindigkeit $X=g'(0)$ ist ein Tangentialvektor am neutralen Element. Alle solchen Geschwindigkeiten bilden einen reellen Vektorraum $\mathfrak g=T_eG$, den zugrunde liegenden Vektorraum der Lie-Algebra.
+
+Für $U(n)$ ergibt das Differenzieren von $g(t)^\dagger g(t)=I$ bei $t=0$ die Bedingung $X^\dagger=-X$. In der Mathematik wird $\mathfrak u(n)$ daher durch antihermitesche Matrizen und $\mathfrak{su}(n)$ durch spurlose antihermitesche Matrizen realisiert. In der Physik schreibt man üblicherweise
+
+$$
+X=i\alpha^a t_a,\qquad t_a^\dagger=t_a,
+$$
+
+mit reellen Koeffizienten $\alpha^a$. Die hermiteschen $t_a$ sind eine praktische Generatorbasis; der Faktor $i$ macht daraus tatsächliche Tangentialmatrizen. Diese Unterscheidung verhindert die falsche Behauptung, der gewöhnliche Kommutator zweier hermitescher Matrizen sei hermitesch.
+
+![Eine Tangentialrichtung am neutralen Element wird durch die Exponentialabbildung zu einer Kurve auf der Gruppenmannigfaltigkeit, veranschaulicht durch eine Gerade, die sich um einen Kreis wickelt.](/images/diagrams/groups-tangent-exponential.svg)
+
+*Der Tangentialraum erfasst lokale Richtungen. Exponenzieren führt entlang der Gruppe; verschiedene Punkte des Tangentialraums können zum selben Gruppenelement führen.*
+
+Die Matrixexponentialfunktion
+
+$$
+\exp X=I+X+\frac{X^2}{2!}+\cdots
+$$
+
+verwandelt einen infinitesimalen Generator in eine endliche Transformation. Die Kurve $g(t)=e^{tX}$ löst $g'(t)=Xg(t)$ mit $g(0)=I$ und erfüllt $g(t+s)=g(t)g(s)$. Eine solche Kurve heißt **Einparameteruntergruppe**.
+
+### Durchgerechnetes Beispiel 6: warum das Exponential in $SU(n)$ bleibt
+
+Für hermitesches, spurloses $H$ gilt
+
+$$
+(e^{iH})^\dagger e^{iH}=e^{-iH}e^{iH}=I,\qquad
+\det(e^{iH})=e^{i\operatorname{tr}H}=1.
+$$
+
+Damit ist $e^{iH}$ speziell unitär. Umgekehrt lässt sich eine speziell unitäre Matrix durch einen unitären Basiswechsel diagonalisieren. Ihre Eigenwerte sind Phasen, deren Winkel sich zu einem ganzzahligen Vielfachen von $2\pi$ addieren; ändert man einen Winkel um dieses Vielfache, erhält man einen spurlosen hermiteschen Logarithmus. Also ist jedes Element von $SU(n)$ ein Exponential, obwohl der Logarithmus nicht eindeutig ist.
+
+Diese letzte Aussage ist eine Besonderheit dieses Falls. Für eine beliebige Lie-Gruppe liefert die Exponentialabbildung lokale Koordinaten nahe dem neutralen Element, muss aber nicht die ganze Gruppe erfassen. Selbst wenn sie surjektiv ist, ist sie im Allgemeinen nicht injektiv. Für $U(1)$ zeigt $e^{i(\theta+2\pi k)}=e^{i\theta}$ die Mehrdeutigkeit unmittelbar.
+
+Translation durch Gruppenmultiplikation verschiebt Tangentialvektoren am neutralen Element zu Tangentialvektoren an anderen Punkten. Deshalb enthält ein einziger Tangentialraum genug Information, um die lokale Multiplikation überall in der Zusammenhangskomponente des neutralen Elements zu rekonstruieren. Trotzdem kodiert er nicht alle globalen Identifikationen oder unzusammenhängenden Komponenten. Eine Lie-Algebra liefert lokale Struktur, aber keine vollständige globale Beschreibung einer Gruppe.
+
+## 8.8 Die Lie-Klammer misst die Reihenfolge infinitesimaler Operationen
+
+Der Tangentialvektorraum wird mit einer Klammer zu einer **Lie-Algebra**. Für Matrixgruppen ist sie der Kommutator,
+
+$$
+[X,Y]=XY-YX.
+$$
+
+Er ist bilinear und antisymmetrisch und erfüllt die Jacobi-Identität,
+
+$$
+[X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0.
+$$
+
+Diese Eigenschaften genügen, um eine Lie-Algebra abstrakt zu definieren, auch ohne Matrizen. Die Klammer muss außerdem in der Algebra bleiben. Für antihermitesche Matrizen gilt $[X,Y]^\dagger=-[X,Y]$; für spurlose Matrizen gilt $\operatorname{tr}[X,Y]=0$. Die Matrixbedingungen bleiben also erhalten.
+
+### Durchgerechnetes Beispiel 7: einen kleinen Kommutatorumlauf durchlaufen
+
+Entwickeln wir jedes Exponential bis zur zweiten Ordnung und multiplizieren:
+
+$$
+e^{\epsilon X}e^{\epsilon Y}e^{-\epsilon X}e^{-\epsilon Y}
+=I+\epsilon^2[X,Y]+O(\epsilon^3).
+$$
+
+Alle Verschiebungen erster Ordnung heben sich auf. Der verbleibende Beitrag misst die Abweichung, die durch das Vertauschen zweier infinitesimaler Transformationen entsteht. Eine abelsche Gruppe liefert eine verschwindende Klammer. Eine nichtverschwindende Klammer ist der lokale Rest der Nichtkommutativität.
+
+In einer hermiteschen Generatorbasis schreiben wir $[t_a,t_b]=if_{ab}{}^ct_c$. Die Zahlen $f_{ab}{}^c$ heißen **Strukturkonstanten** in dieser Basis. Sie hängen von Basis und Normierung ab, die Lie-Algebra selbst dagegen nicht. Für kompaktes $SU(N)$ können wir mit unserer Spurkonvention $\delta_{ab}$ verwenden, um obere und untere Algebraindizes zu identifizieren, und $f^{abc}$ als vollständig antisymmetrischen Tensor schreiben.
+
+Die **Baker-Campbell-Hausdorff-Formel** ordnet dasselbe Problem für endliche Transformationen, die nahe genug am neutralen Element liegen, damit die Logarithmusentwicklung gilt:
+
+$$
+\log(e^Xe^Y)=X+Y+\frac12[X,Y]
++\frac1{12}\bigl([X,[X,Y]]+[Y,[Y,X]]\bigr)+\cdots.
+$$
+
+Somit gilt $e^Xe^Y=e^{X+Y}$, wenn $X$ und $Y$ kommutieren; es ist aber keine allgemeine Matrixidentität. Die verschachtelten Klammern geben die Korrekturen an. Die Formel ist eine lokale Entwicklung und rechtfertigt keinen global eindeutigen Logarithmus. [Etingof, Vorlesung 7](https://math.mit.edu/~etingof/lnlg.pdf) formuliert die präzise Aussage der Lie-Theorie.
+
+**Verständniskontrolle.** „Die Gruppe linearisieren“ bedeutet nicht, jeden nichtlinearen Effekt zu verwerfen. Die Lie-Algebra ist ein Vektorraum mit einer Klammer, die die erste nichttriviale Information über die Reihenfolge bewahrt.
+
+## 8.9 Pauli-Matrizen, $SU(2)$ und die zweifache Überlagerung der Drehungen
+
+Die Pauli-Matrizen liefern eine konkrete hermitesche Basis:
+
+$$
+\sigma_1=\begin{pmatrix}0&1\\1&0\end{pmatrix},\qquad
+\sigma_2=\begin{pmatrix}0&-i\\i&0\end{pmatrix},\qquad
+\sigma_3=\begin{pmatrix}1&0\\0&-1\end{pmatrix}.
+$$
+
+Setzen wir $t_a=\sigma_a/2$. Ihr Multiplikationsgesetz lautet
+
+$$
+\sigma_a\sigma_b=\delta_{ab}I+i\epsilon_{abc}\sigma_c,
+\qquad [t_a,t_b]=i\epsilon_{abc}t_c,
+\qquad \operatorname{tr}(t_at_b)=\frac12\delta_{ab}.
+$$
+
+Beispielsweise ist $\sigma_1\sigma_2=i\sigma_3$, während $\sigma_2\sigma_1=-i\sigma_3$ gilt; also ist $[t_1,t_2]=i t_3$. Dabei gilt $\epsilon_{123}=+1$.
+
+Jede $SU(2)$-Matrix lässt sich als $U=a_0I+i\boldsymbol a\cdot\boldsymbol\sigma$ schreiben, mit reellen Koeffizienten, die $a_0^2+|\boldsymbol a|^2=1$ erfüllen. Als Mannigfaltigkeit ist $SU(2)$ daher eine dreidimensionale Sphäre $S^3$, nicht die gewöhnliche zweidimensionale Sphäre der Richtungen im Raum.
+
+### Durchgerechnetes Beispiel 8: eine Spinordrehung und eine Vektordrehung
+
+Für eine aktive räumliche Drehung um den Winkel $\theta$ um die Einheitsachse $\boldsymbol n$ verwenden wir
+
+$$
+U(\boldsymbol n,\theta)=e^{-i\theta\boldsymbol n\cdot\boldsymbol\sigma/2}
+=I\cos\frac\theta2-i\boldsymbol n\cdot\boldsymbol\sigma\sin\frac\theta2.
+$$
+
+Das Minuszeichen entspricht der üblichen Konvention aktiver quantenmechanischer Drehungen; es bedeutet die Wahl negativer Parameter im allgemeinen Exponential $e^{i\alpha^at_a}$. Es ändert weder die Lie-Algebra noch die Eichkonvention.
+
+Ordnen wir einem reellen Vektor $\boldsymbol v$ die spurlose hermitesche Matrix $V=\boldsymbol v\cdot\boldsymbol\sigma$ zu. Die Transformation $V'=UVU^\dagger$ erhält Hermitizität, Spur und $\det V=-|\boldsymbol v|^2$ und definiert daher eine orthogonale Transformation von $\boldsymbol v$. Ihre Determinante ist $+1$: Die Wirkung variiert kontinuierlich, $SU(2)$ ist zusammenhängend, und das neutrale Element wirkt mit Determinante $+1$. Es handelt sich also um eine Drehung. Für die $z$-Achse gilt
+
+$$
+U\sigma_1U^\dagger=\cos\theta\,\sigma_1+\sin\theta\,\sigma_2,
+$$
+
+wodurch die $x$-Richtung wie erwartet zur $y$-Richtung gedreht wird.
+
+Sowohl $U$ als auch $-U$ ergeben dasselbe $V'$. Die Abbildung $SU(2)\to SO(3)$ ist surjektiv und hat den Kern $\{I,-I\}$:
+
+$$
+SO(3)\cong SU(2)/\mathbb Z_2.
+$$
+
+![Eine kontinuierliche Spinordrehung erreicht bei zwei Pi minus die Einheitsmatrix und kehrt bei vier Pi zur Einheitsmatrix zurück; die entsprechende räumliche Drehung schließt sich bereits bei zwei Pi.](/images/diagrams/groups-su2-cover.svg)
+
+*Jede räumliche Drehung besitzt zwei Urbilder in $SU(2)$. Das Diagramm verfolgt einen Weg entlang einer einzelnen Drehachse und stellt nicht die gesamte dreidimensionale Sphäre dar.*
+
+Ein zweikomponentiger **Spinor** transformiert gemäß $\chi'=U\chi$. Bei $\theta=2\pi$ gilt $U=-I$ und $\chi'=-\chi$; bei $4\pi$ gilt $U=I$. Ein isolierter Zustand und sein Negatives ergeben dieselben Wahrscheinlichkeiten, doch ein relatives Vorzeichen zwischen zwei kohärent verglichenen Wegen kann die Interferenz beeinflussen. Die zweifache Überlagerung ist daher mehr als ein zeichnerischer Trick, bedeutet aber nicht, dass ein klassischer Pfeil $4\pi$ zur Rückkehr benötigt.
+
+$SU(2)$ und $SO(3)$ besitzen isomorphe Lie-Algebren, aber global unterschiedliche Darstellungsmöglichkeiten. Darstellungen mit halbzahligem Spin sind Darstellungen von $SU(2)$ und ergeben keine gewöhnlichen einwertigen Darstellungen von $SO(3)$. Siehe [Etingof, Beispiel 2.13 und die Diskussion der Überlagerungen](https://math.mit.edu/~etingof/lnlg.pdf).
+
+## 8.10 Darstellungen: dieselbe Gruppe, verschiedene Arten von Objekten
+
+Eine **Darstellung** auf einem Vektorraum $V$ ist ein Homomorphismus $\rho:G\to GL(V)$. Ihre definierende Regel,
+
+$$
+\rho(gh)=\rho(g)\rho(h),
+$$
+
+stellt sicher, dass die Matrizen das abstrakte Verknüpfungsgesetz respektieren. Die Dimension der Darstellung ist $\dim V$. Das Differenzieren einer glatten Darstellung liefert Generatormatrizen $T_a$, definiert durch $d\rho(i t_a)=iT_a$, sodass das Differential auf die tatsächliche antihermitesche Tangentialmatrix wirkt. Diese Matrizen erfüllen dieselben Vertauschungsrelationen, $[T_a,T_b]=if_{ab}{}^cT_c$.
+
+Die **definierende**, oft fundamental genannte Darstellung von $SU(n)$ wirkt mit ihren definierenden Matrizen auf $\mathbb C^n$. In der allgemeineren mathematischen Terminologie kann eine einfache Gruppe mehrere fundamentale Darstellungen besitzen; hier meint „die fundamentale Darstellung von $SU(n)$“ diese definierende $n$-dimensionale Darstellung. Die **triviale Darstellung**, auch Singulett, bildet jedes Element auf $1$ ab.
+
+Eine Darstellung heißt **irreduzibel**, wenn sie keinen von null verschiedenen echten invarianten Unterraum besitzt. „Fundamental“ und „irreduzibel“ sind keine Synonyme: Viele irreduzible Darstellungen sind nicht die definierende. Für kompakte Gruppen zerfallen endlichdimensionale unitäre Darstellungen in direkte Summen irreduzibler Darstellungen.
+
+Eine **direkte Summe** wirkt unabhängig auf zwei Räumen:
+
+$$
+(\rho_1\oplus\rho_2)(g)=
+\begin{pmatrix}\rho_1(g)&0\\0&\rho_2(g)\end{pmatrix},
+\qquad \dim(V\oplus W)=\dim V+\dim W.
+$$
+
+Ein **Tensorprodukt** wirkt auf gepaarten Komponenten:
+
+$$
+(\rho_1\otimes\rho_2)(g)(v\otimes w)
+=\rho_1(g)v\otimes\rho_2(g)w,
+\qquad \dim(V\otimes W)=\dim V\,\dim W.
+$$
+
+Differenzieren liefert die Gesamtgeneratoren $T_a^{\rm total}=T_a^{(1)}\otimes I+I\otimes T_a^{(2)}$. Hier liegt der Ursprung der Drehimpulsaddition.
+
+### Durchgerechnetes Beispiel 9: zwei Dubletts enthalten ein Triplett und ein Singulett
+
+Nehmen wir zwei $SU(2)$-Dubletts mit der Basis $|\uparrow\rangle,|\downarrow\rangle$. Ihr vierdimensionales Tensorprodukt zerfällt in die symmetrischen Zustände
+
+$$
+|\uparrow\uparrow\rangle,\qquad
+\frac{|\uparrow\downarrow\rangle+|\downarrow\uparrow\rangle}{\sqrt2},\qquad
+|\downarrow\downarrow\rangle
+$$
+
+und den antisymmetrischen Zustand
+
+$$
+|s\rangle=\frac{|\uparrow\downarrow\rangle-|\downarrow\uparrow\rangle}{\sqrt2}.
+$$
+
+Der gesamte Operator $T_3$ hat auf den symmetrischen Zuständen die Eigenwerte $1,0,-1$. Alle drei Gesamtgeneratoren vernichten $|s\rangle$. Damit gilt $\mathbf2\otimes\mathbf2=\mathbf3\oplus\mathbf1$ oder $\tfrac12\otimes\tfrac12=1\oplus0$ in Spinschreibweise. Die Dimensionen stimmen überein: $2\times2=3+1$.
+
+![Eine direkte Summe stellt zwei Vektorräume nebeneinander, ein Tensorprodukt kombiniert ihre Komponenten, und zwei SU2-Dubletts zerfallen in ein Triplett und ein Singulett.](/images/diagrams/groups-representations.svg)
+
+*Darstellungen sagen uns, welche mathematischen Objekte transformieren. Die Kombination von Objekten durch ein Tensorprodukt kann invariante Teile sichtbar machen.*
+
+Die **adjungierte Darstellung** wirkt durch Konjugation auf der Lie-Algebra selbst: $X\mapsto gXg^{-1}$. Ihre Dimension ist gleich der Gruppendimension. Daher besitzt $SU(2)$ eine zweidimensionale definierende und eine dreidimensionale adjungierte Darstellung; $SU(3)$ besitzt eine dreidimensionale definierende und eine achtdimensionale adjungierte Darstellung. Die Eichkrümmung transformiert in der adjungierten Darstellung. Ein Eichzusammenhang enthält einen zusätzlichen Ableitungsterm, sodass seine vollständige lokale Transformation nicht bloß eine adjungierte Wirkung ist.
+
+Für $U(1)$ lauten die kontinuierlichen einwertigen irreduziblen unitären Darstellungen $\rho_n(e^{i\theta})=e^{in\theta}$ mit ganzzahligem $n$. Periodizität erzwingt $e^{2\pi in}=1$. Physikalische Ladungskonventionen können diese ganzen Zahlen zusammen mit der Kopplung reskalieren; wir werden ausdrücklich erläutern, wie die gebrochenen Hyperladungen des Standardmodells dazu passen.
+
+## 8.11 $SU(3)$: drei Komponenten, acht Generatoren
+
+Ein Vektor der fundamentalen Darstellung von $SU(3)$ hat drei komplexe Komponenten,
+
+$$
+q=\begin{pmatrix}q_r\\q_g\\q_b\end{pmatrix},\qquad q'=Uq.
+$$
+
+Die Farbbezeichnungen Rot, Grün und Blau benennen eine innere Basis; sie haben nichts mit optischen Farben oder räumlichen Richtungen zu tun. Ein Wechsel dieser Basis mischt die Komponenten und erhält dabei $q^\dagger q$. Ein Quark eines bestimmten Flavors ist ein Farbtriplett. Up, Down und Strange sind Flavorbezeichnungen und dürfen nicht mit den drei Komponenten dieser Farbdarstellung verwechselt werden.
+
+Eine allgemeine spurlose hermitesche $3\times3$-Matrix hat die Form
+
+$$
+H=\begin{pmatrix}
+a&z_1&z_2\\
+z_1^*&b&z_3\\
+z_2^*&z_3^*&-a-b
+\end{pmatrix}.
+$$
+
+Die beiden reellen Zahlen $a,b$ und die drei komplexen Zahlen $z_1,z_2,z_3$ ergeben acht reelle Parameter. So werden die acht Generatoren konkret, ohne dass wir alle acht Gell-Mann-Matrizen auswendig lernen müssen.
+
+Die übliche Basis ist $t_a=\lambda_a/2$. Zwei diagonale Generatoren sind
+
+$$
+t_3=\frac12\begin{pmatrix}1&0&0\\0&-1&0\\0&0&0\end{pmatrix},\qquad
+t_8=\frac1{2\sqrt3}\begin{pmatrix}1&0&0\\0&1&0\\0&0&-2\end{pmatrix}.
+$$
+
+Sie kommutieren und bilden eine Cartan-Unteralgebra von Rang zwei. Die übrigen sechs mischen Paare von Farbkomponenten. Der obere linke $2\times2$-Pauli-Block, ergänzt um eine dritte Nullzeile und Nullspalte, liefert eine $\mathfrak{su}(2)$-Unteralgebra: $[t_1,t_2]=it_3$. Eine Untergruppe innerhalb von $SU(3)$ muss nicht die spezielle schwache Gruppe $SU(2)_L$ des Standardmodells sein; dort sind es unabhängige Faktoren, die auf unterschiedliche Indizes wirken.
+
+### Durchgerechnetes Beispiel 10: ein Farbsingulett und ein Farboktett
+
+Ein Antiquark transformiert in der komplex konjugierten Darstellung $\overline{\mathbf3}$ mit Matrizen $U^*$. Ein Quark-Antiquark-Tensor lässt sich als Matrix $M$ anordnen, die gemäß $M\mapsto UMU^\dagger$ transformiert. Zerlegen wir sie in
+
+$$
+M=\frac{\operatorname{tr}M}{3}I+
+\left(M-\frac{\operatorname{tr}M}{3}I\right).
+$$
+
+Der Spuranteil bleibt bei Konjugation unverändert. Der spurlose Anteil hat acht komplexe Komponenten und transformiert in der komplexifizierten adjungierten Darstellung. Daher gilt
+
+$$
+\mathbf3\otimes\overline{\mathbf3}=\mathbf1\oplus\mathbf8.
+$$
+
+Die adjungierte Lie-Algebra selbst besitzt acht **reelle** Tangentialrichtungen; quantenmechanische Darstellungsräume sind üblicherweise komplex. Diese beiden Verwendungen von Dimension stimmen hier zahlenmäßig überein, beziehen sich aber auf unterschiedliche Vektorräume.
+
+Diese Zerlegung hilft, die Farbwellenfunktionen von Mesonen zu ordnen, und erklärt, warum ein adjungierter Farbindex acht Werte hat. Gluonen sind in der Beschreibung des Standardmodells elementare Eichfeldanregungen, keine tatsächlichen gebundenen Quark-Antiquark-Zustände. Ihr achtfacher algebraischer Index bedeutet nicht neun unabhängige Farbe-Antifarbe-Gluonen: Das Spursingulett fehlt in $\mathfrak{su}(3)$.
+
+## 8.12 Von globaler Symmetrie zur lokalen Rahmenwahl
+
+Betrachten wir ein komplexes Feld $\psi(x)$ mit einem inneren Vektorindex. Eine **globale** innere Transformation verwendet überall dieselbe Matrix: $\psi(x)\mapsto U\psi(x)$ mit konstantem $U$. Der Raumzeitpunkt $x$ bleibt fest. Ist $U$ unitär, bleibt ein Term wie $\psi^\dagger\psi$ unverändert, und
+
+$$
+\partial_\mu(U\psi)=U\partial_\mu\psi.
+$$
+
+Eine aus den entsprechenden invarianten Kombinationen aufgebaute Lagrange-Dichte kann eine globale Symmetrie besitzen. Unter den üblichen Voraussetzungen liefert eine kontinuierliche physikalische globale Symmetrie einen erhaltenen Noether-Strom. Doch das bloße Vorhandensein einer globalen Symmetrie zwingt die Natur nicht, ein Eichfeld einzuführen; die Konstruktion einer Eichtheorie ist eine zusätzliche physikalische Entscheidung.
+
+Lassen wir nun eine Matrix $U(x)$ zu, die von Punkt zu Punkt variiert. Die Ableitung wird zu
+
+$$
+\partial_\mu(U\psi)=U\partial_\mu\psi+(\partial_\mu U)\psi.
+$$
+
+Der zusätzliche Term ist das ganze Problem. Zwei benachbarte Komponentenlisten verwenden unterschiedliche innere Rahmen; sie einfach voneinander abzuziehen verwechselt daher eine Feldänderung mit einem Rahmenwechsel.
+
+Stellen wir uns vor, jedem Raumzeitpunkt einen kleinen Vektorraum zuzuordnen. Diese Familie heißt **Vektorbündel**; jeder Vektorraum ist eine **Faser**. Eine Basis in jeder Faser zu wählen heißt, einen lokalen Rahmen zu wählen. Ein **Zusammenhang** legt fest, wie Vektoren in benachbarten Fasern verglichen werden. Obwohl die Geometrie dem Paralleltransport von Tangentialvektoren auf einer gekrümmten Fläche ähnelt, müssen die inneren Fasern keine Tangentialräume der Raumzeit sein. Ein Farbvektor liegt im inneren Farbraum, nicht im physikalischen Raum der Verschiebungen.
+
+### Durchgerechnetes Beispiel 11: ein künstlicher Phasengradient
+
+Es sei $\psi(x)=\psi_0$ in einer Beschreibung konstant, und wir wählen $U(x)=e^{ikx}$ in einer Raumrichtung. Die neue Beschreibung ist $\psi'(x)=e^{ikx}\psi_0$, mit
+
+$$
+\partial_x\psi'=ik\psi'.
+$$
+
+Sollen beide Beschreibungen dieselbe Konfiguration darstellen, darf der scheinbare Gradient allein keine physikalische Anregung sein. Ein kompensierender Zusammenhang muss den Gradienten aufheben, der ausschließlich durch die veränderte Phasenkonvention entsteht. Im nächsten Abschnitt überprüfen wir diese Aufhebung ausdrücklich.
+
+**Eichredundanz** bedeutet, dass Konfigurationen, die durch eine zulässige Eichtransformation zusammenhängen, denselben physikalischen Zustand darstellen und keine verschiedenen Systemzustände. Eichinvariante Größen liefern die physikalische Beschreibung. Ein Eichpotential kann trotzdem nichttriviale Dynamik enthalten: Redundante Koordinaten zu entfernen beseitigt nicht die physikalische Feldstärke.
+
+Dabei ist eine Einschränkung am Rand nötig. Eichtransformationen, die sich am Rand dem neutralen Element annähern müssen, sind Redundanzen; Transformationen, die auf asymptotische Daten oder Randdaten nichttrivial wirken, können dagegen physikalische Ladungen tragen. Die Aussage „Jede konstante Eichtransformation ist automatisch physikalisch trivial“ wäre daher zu pauschal. Die Unterscheidung physikalischer globaler Symmetrien von Beschreibungswechseln erfordert die Angabe von Randbedingungen. [Tongs Diskussion der Eichinvarianz](https://davidtong.org/pdfs/teaching/standard-model/standardmodel1.pdf) liefert den feldtheoretischen Rahmen.
+
+## 8.13 Herleitung der kovarianten Ableitung und des Transformationsgesetzes des Zusammenhangs
+
+Schreiben wir das Eichpotential als $A_\mu=A_\mu^at_a$ und definieren
+
+$$
+D_\mu\psi=(\partial_\mu-igA_\mu)\psi.
+$$
+
+Der Koeffizient $g$ ist die Kopplung. Für ein Feld in einer anderen Darstellung ersetzen wir $t_a$ durch deren Matrizen $T_a$; die Eichfeldkomponenten $A_\mu^a$ bleiben dieselben. Ein neutrales Singulett hat verschwindende Generatoren und eine gewöhnliche Ableitung.
+
+Wir verlangen, dass die kovariante Ableitung wie das Feld selbst transformiert:
+
+$$
+D'_\mu\psi'=U D_\mu\psi.
+$$
+
+Entwickeln wir die linke Seite und kürzen $U\partial_\mu\psi$:
+
+$$
+(\partial_\mu U)\psi-igA'_\mu U\psi=-igUA_\mu\psi.
+$$
+
+Da dies für jedes $\psi$ gilt, multiplizieren wir von rechts mit $U^{-1}$ und erhalten
+
+$$
+\boxed{A'_\mu=UA_\mu U^{-1}-\frac{i}{g}(\partial_\mu U)U^{-1}.}
+$$
+
+Der erste Term dreht die inneren Komponenten. Der zweite korrigiert den ortsabhängigen Rahmen. Ohne ihn wäre die Kovarianzforderung verletzt. Gleichwertig gilt $D'_\mu=UD_\mu U^{-1}$ als Identität von Differentialoperatoren; die Ableitung in dieser Operatoridentität wirkt auf alles rechts von ihr.
+
+### Durchgerechnetes Beispiel 12: eine abelsche Aufhebung einschließlich des Vorzeichens
+
+Für ein $U(1)$-Feld mit Einheitsladung wählen wir $U=e^{ig\alpha(x)}$. Dann ist $(\partial_\mu U)U^{-1}=ig\partial_\mu\alpha$, also
+
+$$
+A'_\mu=A_\mu+\partial_\mu\alpha.
+$$
+
+Direktes Einsetzen ergibt
+
+$$
+(\partial_\mu-igA_\mu-ig\partial_\mu\alpha)
+(e^{ig\alpha}\psi)
+=e^{ig\alpha}(\partial_\mu-igA_\mu)\psi.
+$$
+
+Die Ableitung der Phase hebt die Verschiebung des Potentials auf. Für das vorangegangene Beispiel des konstanten Feldes setzen wir $A_x=0$ und $\alpha=kx/g$. Das transformierte Potential ist $A'_x=k/g$, und $D'_x\psi'=0$, obwohl $\partial_x\psi'\ne0$.
+
+Das Adjektiv **kovariant** bedeutet „transformiert auf die vorgeschriebene Weise“, nicht „unverändert“. Der Vektor $D_\mu\psi$ transformiert mit $U$, während der Skalar $(D_\mu\psi)^\dagger D^\mu\psi$ invariant ist. Diese Unterscheidung zwischen Kovarianz und Invarianz ist für das Verständnis nichtabelscher Feldstärken wesentlich.
+
+Die Dimensionsanalyse liefert eine nützliche Kontrolle. In vier Raumzeitdimensionen hat $\partial_\mu$ die Massendimension eins, und $g$ ist dimensionslos; folglich hat $A_\mu$ die Dimension eins. Ein skalares Materiefeld hat die Dimension eins, ein Fermionfeld die Dimension $3/2$, und eine Lagrange-Dichte die Dimension vier. Dies sind Dimensionen in Einheiten der Masse, nicht Dimensionen von Gruppen oder Darstellungen.
+
+## 8.14 Krümmung, nichtkommutierende Ableitungen und Transport um eine Schleife
+
+Eine gewöhnliche partielle Ableitung misst die Änderung entlang einer Koordinatenrichtung. Eine kovariante Ableitung vergleicht zusätzlich innere Rahmen. Beim Vergleich zweier aufeinanderfolgender kovarianter Ableitungen fragen wir daher, ob der Transport von der Reihenfolge der Richtungen abhängt.
+
+### Durchgerechnetes Beispiel 13: die Feldstärke herleiten
+
+Wenden wir $D_\mu D_\nu-D_\nu D_\mu$ auf ein Testfeld an. Terme mit zweiten Ableitungen heben sich auf, weil partielle Ableitungen im Koordinatengebiet kommutieren; Terme mit einer Ableitung auf dem Testfeld heben sich paarweise auf. Das Ergebnis lautet
+
+$$
+[D_\mu,D_\nu]\psi=
+\left[-ig(\partial_\mu A_\nu-\partial_\nu A_\mu)
+-g^2[A_\mu,A_\nu]\right]\psi.
+$$
+
+Wir definieren
+
+$$
+\boxed{F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu
+-ig[A_\mu,A_\nu],\qquad [D_\mu,D_\nu]=-igF_{\mu\nu}.}
+$$
+
+Die Matrix $F_{\mu\nu}$ ist hermitesch: $[A_\mu,A_\nu]$ ist antihermitesch, und Multiplikation mit $-i$ macht sie hermitesch. In Komponenten gilt
+
+$$
+F_{\mu\nu}^a=\partial_\mu A_\nu^a-\partial_\nu A_\mu^a
++g f^{abc}A_\mu^bA_\nu^c.
+$$
+
+Dies ist die **Krümmung** des Eichzusammenhangs. Ihr nichtabelscher Term folgt aus dem Matrixkommutator und würde für kommutierende Generatoren fehlen.
+
+Wegen $D'_\mu=UD_\mu U^{-1}$ transformiert ihr Kommutator durch Konjugation, also
+
+$$
+F'_{\mu\nu}=UF_{\mu\nu}U^{-1}.
+$$
+
+Für $U(1)$ reduziert sich das auf $F'=F$. Für eine nichtabelsche Gruppe ist die Matrixfeldstärke im Allgemeinen kovariant, nicht invariant; Größen wie $\operatorname{tr}(F_{\mu\nu}F^{\mu\nu})$ sind wegen der Zyklizität der Spur invariant.
+
+Paralleltransport entlang eines Weges $x(s)$ setzt $\dot x^\mu D_\mu\psi=0$ und ergibt
+
+$$
+\frac{d\psi}{ds}=ig\dot x^\mu A_\mu\psi,\qquad
+\psi(y)=W(y,x)\psi(x),\qquad
+W(y,x)=\mathcal P\exp\left(ig\int_x^y A_\mu\,dx^\mu\right).
+$$
+
+Das Wegordnungssymbol $\mathcal P$ stellt spätere Transportmatrizen nach links. Es ist nötig, weil Matrizen an unterschiedlichen Punkten nicht kommutieren müssen.
+
+![Benachbarte innere Rahmen werden durch einen Zusammenhang verglichen; Transport um eine kleine orientierte Schleife kann einen Vektor mit veränderter innerer Richtung zurückbringen.](/images/diagrams/groups-connection-curvature.svg)
+
+*Bei der dargestellten Orientierung erfolgt der Transport zuerst in positiver $\mu$-Richtung und danach in positiver $\nu$-Richtung. Die Krümmung misst die führende Abweichung pro Fläche.*
+
+Für ein kleines Rechteck, das in der Reihenfolge $+\mu,+\nu,-\mu,-\nu$ durchlaufen wird, mit festen verschiedenen Richtungen und ohne Summation über sie, gilt
+
+$$
+W_\square=I+igF_{\mu\nu}\,\delta x^\mu\delta x^\nu
++O(\delta x^3).
+$$
+
+Die Umkehr der Orientierung ändert das Vorzeichen des führenden Flächenterms. Das Vorzeichen hier stimmt mit $D=\partial-igA$ und der obigen Transportgleichung überein; es folgt nicht daraus, Transportoperatoren beiläufig mit dem Ableitungskommutator gleichzusetzen.
+
+Ein offener Transportoperator transformiert gemäß $W'(y,x)=U(y)W(y,x)U(x)^{-1}$. Für eine geschlossene Schleife mit Basispunkt $x$ ist seine Spur eichinvariant: Dies ergibt eine **Wilson-Schleife**. Ein flacher Zusammenhang hat $F=0$ und lässt sich auf hinreichend kleinen einfach zusammenhängenden Gebieten lokal entfernen. Dennoch kann er eine nichttriviale globale Holonomie um nicht zusammenziehbare Schleifen besitzen. Die Aharonov-Bohm-Geometrie liefert ein abelsches Beispiel: Zugängliche Wege können Fluss einschließen, auch wenn die Feldstärke entlang dieser Wege verschwindet.
+
+## 8.15 Elektromagnetismus und Yang-Mills-Dynamik
+
+Bisher haben wir Transformationsregeln und Krümmung hergeleitet. Eine physikalische Theorie benötigt außerdem Dynamik. In vierdimensionaler Minkowski-Raumzeit lautet der übliche kinetische Eichterm für einen nichtabelschen Faktor
+
+$$
+\mathcal L_{\rm gauge}=-\frac12\operatorname{tr}(F_{\mu\nu}F^{\mu\nu})
+=-\frac14 F_{\mu\nu}^aF^{a\mu\nu},
+$$
+
+wobei die zweite Gleichheit unsere Spurnormierung in der definierenden Darstellung verwendet. Seine Wirkung ist invariant, weil $F$ durch Konjugation transformiert. Die Antisymmetrie in $\mu,\nu$ und die Kontraktion mit der Raumzeitmetrik liefern Lorentz-Invarianz. Dies ist der grundlegende kinetische **Yang-Mills**-Term.
+
+Für den Elektromagnetismus wählen wir eine elektromagnetische Kopplung $e$ und eine vorzeichenbehaftete dimensionslose Ladung $q$, sodass die physikalische Ladung $eq$ ist. Dann gilt
+
+$$
+D_\mu=\partial_\mu-ieqA_\mu,\qquad
+\psi'=e^{ieq\alpha}\psi,\qquad A'_\mu=A_\mu+\partial_\mu\alpha,
+$$
+
+und
+
+$$
+F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu,\qquad
+\mathcal L_{\rm EM}=-\frac14F_{\mu\nu}F^{\mu\nu}.
+$$
+
+Für ein Elektron ist $q=-1$, sodass diese Konvention $D_\mu=\partial_\mu+ieA_\mu$ ergibt. Eine Quelle, die in $D$ das entgegengesetzte Vorzeichen verwendet, muss die zugehörigen Transformationskonventionen entsprechend ändern. Beobachtbare Vorhersagen hängen nicht davon ab, welche Konvention konsistent gewählt wird.
+
+### Durchgerechnetes Beispiel 14: nichtverschwindende Krümmung aus konstanten Potentialen
+
+Betrachten wir ein $SU(2)$-Eichfeld auf einem Gebiet mit konstantem $A_x=a t_1$ und $A_y=b t_2$. Alle Ableitungsterme verschwinden, aber
+
+$$
+F_{xy}=-igab[t_1,t_2]=gabt_3.
+$$
+
+Ein räumlich konstanter nichtabelscher Zusammenhang muss nicht flach sein. Die Feldstärke entsteht vollständig aus nichtkommutierendem innerem Transport. Im abelschen Fall würden konstante Potentiale auf einem lokalen Gebiet verschwindende Krümmung ergeben.
+
+Die Entwicklung des kinetischen Yang-Mills-Terms zeigt, warum nichtabelsche Eichfelder miteinander wechselwirken: $F$ enthält sowohl einen Ableitungsterm, der linear in $A$ ist, als auch einen in $A$ quadratischen Term. Beim Quadrieren entstehen kubische und quartische Terme im Eichpotential. In der reinen abelschen Maxwell-Theorie verschwindet der Kommutator, sodass im klassischen kinetischen Eichterm keine entsprechende Photonenselbstwechselwirkung vorkommt. Geladene Materie kann durch Quantenschleifen dennoch effektive Photonwechselwirkungen erzeugen.
+
+Die Materiedynamik verwendet dieselbe kovariante Ableitung. Ein skalares Multiplett hat beispielsweise
+
+$$
+\mathcal L_\phi=(D_\mu\phi)^\dagger D^\mu\phi-V(\phi^\dagger\phi).
+$$
+
+Die Darstellung bestimmt, welche Generatoren auftreten und somit, wie das Feld koppelt. Die Eichgruppe allein legt weder das skalare Potential noch die Materiedarstellungen oder alle zulässigen Wechselwirkungskoeffizienten fest.
+
+Das [Hauptkapitel zur Quantenfeldtheorie](/de/chapters/8-Quantum-field-theory) behandelt die nächsten Schritte: Eichfixierung, Quantisierung, Propagatoren, laufende Kopplungen und Streuung. [Tongs Notizen zur Yang-Mills-Theorie](https://davidtong.org/pdfs/teaching/gauge-theory/gauge2.pdf) erläutern diesen Aufbau ausführlicher; dort wird die Kopplung teilweise in den Zusammenhang aufgenommen, weshalb vor dem Vergleich von Formeln ihre Definitionen zu vergleichen sind.
+
+## 8.16 Die Gruppe des Standardmodells und seine Materietabelle lesen
+
+Die vertraute lokale Eichstruktur lautet
+
+$$
+G_{\rm SM}=SU(3)_c\times SU(2)_L\times U(1)_Y,
+\qquad
+\mathfrak g_{\rm SM}=\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1).
+$$
+
+Der Index $c$ bedeutet Farbe. Der Index $L$ besagt, dass linkschirale Fermionen des Standardmodells in schwachen Dubletts auftreten, während rechtschirale geladene Fermionen schwache Singuletts sind. Der Index $Y$ bezeichnet die Hyperladung. Das schwache $SU(2)$ ist eine innere Gruppe: Seine Dubletts sind nicht schon deshalb räumliche Spinoren, weil auch der räumliche Spin die Mathematik von $SU(2)$ verwendet.
+
+Für einen Dirac-Spinor wird die Chiralität durch $P_L=(1-\gamma^5)/2$ und $P_R=(1+\gamma^5)/2$ ausgewählt. **Helizität** ist die Projektion des Spins auf die Impulsrichtung. Für masselose Teilchen stimmen die beiden Begriffe auf bestimmte Weise überein, für massive Teilchen sind sie jedoch nicht austauschbar. Die Bezeichnungen in der folgenden Tabelle beziehen sich auf Chiralität.
+
+Wir schreiben eine innere Darstellung als $(R_c,R_L)_Y$, in dieser Reihenfolge, und verwenden $Q=T_3+Y$. Die Einträge $u_R,d_R,e_R$ unten sind tatsächliche rechtschirale Felder, nicht ihre linkschiralen ladungskonjugierten Felder. Für eine Generation gilt:
+
+| Feld | Komponenten | $(SU(3)_c,SU(2)_L)_Y$ | Elektrische Ladungen $Q$ |
+| --- | --- | --- | --- |
+| $Q_L$ | $(u_L,d_L)^T$, jeweils mit drei Farben | $(\mathbf3,\mathbf2)_{1/6}$ | $2/3,-1/3$ |
+| $u_R$ | rechtschirales Up-Quark, drei Farben | $(\mathbf3,\mathbf1)_{2/3}$ | $2/3$ |
+| $d_R$ | rechtschirales Down-Quark, drei Farben | $(\mathbf3,\mathbf1)_{-1/3}$ | $-1/3$ |
+| $L_L$ | $(\nu_L,e_L)^T$ | $(\mathbf1,\mathbf2)_{-1/2}$ | $0,-1$ |
+| $e_R$ | rechtschirales geladenes Lepton | $(\mathbf1,\mathbf1)_{-1}$ | $-1$ |
+| $H$ | komplexes skalares Dublett $(H^+,H^0)^T$ | $(\mathbf1,\mathbf2)_{1/2}$ | $1,0$ |
+
+Die Fermionzuordnungen wiederholen sich für drei Generationen. Das Higgs-Dublett ist ein einzelnes skalares Multiplett, keine vierte Fermiongeneration. Das minimale renormierbare Standardmodell enthält kein $\nu_R$ und liefert masselose Neutrinos; die beobachteten Neutrinomassen erfordern zusätzliche Bestandteile wie höherdimensionale Operatoren oder neue Felder. Die üblichen Zuordnungen und die Konvention der Tabelle lassen sich anhand von [Tong, Abschnitt 5.1](https://davidtong.org/pdfs/teaching/standard-model/standardmodel5.pdf) überprüfen.
+
+### Durchgerechnetes Beispiel 15: eine Produktdarstellung lesen
+
+Das linke Quarkdublett trägt einen Farbindex $a=1,2,3$ und einen schwachen Index $i=1,2$. Eine Transformation hat die Form
+
+$$
+Q_L^{ai}\longmapsto
+(U_c)^a{}_b(U_L)^i{}_j e^{i\beta/6}Q_L^{bj}.
+$$
+
+Der innere Raum ist $\mathbb C^3\otimes\mathbb C^2$ mit sechs Komponenten pro Generation. Dies ist ein Tensorprodukt, weil die beiden Faktoren durch getrennte Indizes auf dasselbe Feld wirken. Verschiedene Gruppenfaktoren kommutieren auf diesem Raum: $U_c\otimes I_2$ kommutiert mit $I_3\otimes U_L$. Innerhalb eines der beiden nichtabelschen Faktoren kommutieren Transformationen im Allgemeinen nicht.
+
+Der Parameter $\beta$ ist hier ein lokaler Hyperladungsparameter. Um einen kompakten Kreis mit Winkelperiode $2\pi$ darzustellen, verwenden wir die ganzzahlig normierte Ladung $n=6Y$ und schreiben $e^{in\theta}$ mit $\beta=6\theta$. Gebrochenes $Y$ ist somit eine Normierungskonvention und kein Verstoß gegen die Ganzzahligkeitsregel der Darstellungen von $U(1)$.
+
+Die kovariante Ableitung auf einem beliebigen Multiplett des Standardmodells lautet
+
+$$
+D_\mu=\partial_\mu-ig_sG_\mu^aT_c^a-igW_\mu^iT_L^i-ig'B_\mu Y.
+$$
+
+Generatoren verschwinden, wenn das Feld ein Singulett des entsprechenden Faktors ist. Es gibt acht Gluon-Eichfelder $G_\mu^a$, drei schwache Eichfelder $W_\mu^i$ und ein Hyperladungs-Eichfeld $B_\mu$: also $8+3+1=12$ Algebrarichtungen vor der elektroschwachen Symmetriebrechung. Dies sind Bezeichnungen der Arten, keine Zählung physikalischer Polarisationszustände. Rechtschirale geladene Fermionen koppeln weiterhin an Hyperladung und nach der Mischung an das Photon und das $Z$; ein schwaches Singulett zu sein bedeutet nicht, wechselwirkungsfrei zu sein.
+
+## 8.17 Wie das Photon aus der elektroschwachen Mischung entsteht
+
+Hyperladung ist nicht Elektromagnetismus. Um dies zu sehen, besitze das Higgs-Feld ein Potential mit einem Minimum bei $H^\dagger H=v^2/2$. In einer geeigneten Eichung wählen wir den Vakuumrepräsentanten
+
+$$
+\langle H\rangle=\frac1{\sqrt2}\begin{pmatrix}0\\v\end{pmatrix}.
+$$
+
+Die untere Komponente hat $T_3=-1/2$ und $Y=+1/2$, also
+
+$$
+(T_3+Y)\langle H\rangle=0.
+$$
+
+Damit lässt die Kombination $Q=T_3+Y$ den Repräsentanten fest. Dies identifiziert den ungebrochenen elektromagnetischen Generator. Die übliche Formulierung „elektroschwache Symmetriebrechung“ beschreibt diesen Higgs-Mechanismus; eine lokale Eichredundanz ist keine physikalische Symmetrie, die im selben Sinn wie eine globale Symmetrie gebrochen werden könnte. Die Beschreibung durch ein Vakuum in fester Eichung ist ein nützliches Verfahren, um das physikalische Spektrum zu berechnen.
+
+### Durchgerechnetes Beispiel 16: die neutrale Mischungsmatrix erhalten
+
+Setzen wir den konstanten Higgs-Repräsentanten in $(D_\mu H)^\dagger D^\mu H$ ein. Mit $T_i=\sigma_i/2$ und $Y=1/2$ lauten die quadratischen Eichfeldterme
+
+$$
+\frac{v^2}{8}\left[g^2\left((W_\mu^1)^2+(W_\mu^2)^2\right)
++(gW_\mu^3-g'B_\mu)^2\right],
+$$
+
+wobei jedes Quadrat eine Lorentz-Kontraktion bezeichnet. Nur eine neutrale Kombination tritt im Massenterm auf. Wir definieren
+
+$$
+\tan\theta_W=\frac{g'}g,\qquad
+A_\mu=\sin\theta_W W_\mu^3+\cos\theta_W B_\mu,
+$$
+
+$$
+Z_\mu=\cos\theta_W W_\mu^3-\sin\theta_W B_\mu,\qquad
+W_\mu^\pm=\frac{W_\mu^1\mp iW_\mu^2}{\sqrt2}.
+$$
+
+Dann gilt $gW^3-g'B=\sqrt{g^2+g'^2}\,Z$. Die dazu orthogonale Kombination $A$ erhält durch das Higgs-Feld keine Masse und ist das Photonenfeld. Auf Baumgraphenniveau gilt
+
+$$
+m_W=\frac{gv}{2},\qquad m_Z=\frac{v\sqrt{g^2+g'^2}}2,\qquad m_A=0.
+$$
+
+Setzen wir die inverse Mischung in den neutralen Teil der kovarianten Ableitung ein. Der Koeffizient von $A_\mu$ ist
+
+$$
+g\sin\theta_W T_3+g'\cos\theta_W Y=e(T_3+Y)=eQ,
+\qquad e=g\sin\theta_W=g'\cos\theta_W.
+$$
+
+Damit sind sowohl der Operator der elektrischen Ladung als auch die Beziehung für die elektromagnetische Kopplung hergeleitet. Das Photon ist eine Mischung zweier ursprünglicher Eichfelder und nicht einfach das umbenannte Hyperladungsfeld. Die Formeln gelten auf Baumgraphenniveau; eine elektroschwache Präzisionsanalyse erfordert Renormierung und ein festgelegtes Schema.
+
+![Farbe, schwache Wechselwirkung und Hyperladung tragen acht, drei und einen Generator bei; die neutralen schwachen und Hyperladungsfelder mischen sich nach dem Higgs-Mechanismus zum Photon und Z.](/images/diagrams/groups-standard-model.svg)
+
+*Die Produktgruppe wirkt auf innere Indizes. Die elektroschwache Mischung kombiniert $W^3$ und $B$, während Farbe ein eigener Eichfaktor bleibt.*
+
+### Durchgerechnetes Beispiel 17: die vertrauten elektrischen Ladungen zurückgewinnen
+
+Für $Q_L$ hat $T_3$ die Eigenwerte $+1/2,-1/2$, während $Y=1/6$ beide Komponenten multipliziert. Somit gilt $Q(u_L)=1/2+1/6=2/3$ und $Q(d_L)=-1/2+1/6=-1/3$. Für $L_L$ ist $Y=-1/2$, also $Q(\nu_L)=0$ und $Q(e_L)=-1$. Ein schwaches Singulett hat $T_3=0$, sodass seine elektrische Ladung dem angegebenen $Y$ entspricht.
+
+Vor dem Higgs-Mechanismus enthält die elektroschwache Beschreibung vier masselose Eichfelder mit jeweils zwei physikalischen Polarisationen und vier reelle Higgs-Komponenten: $8+4=12$ physikalische Freiheitsgrade. Danach gibt es drei massive Vektorbosonen mit jeweils drei Polarisationen, ein Photon mit zwei und ein Higgs-Skalar: $9+2+1=12$. Diese störungstheoretische Zählung erklärt, wie die longitudinalen Vektormoden entstehen, ohne zusätzliche Freiheitsgrade zu erzeugen. Die acht Gluonen bleiben in der Lagrange-Dichte masselos; Confinement betrifft ihre physikalische Realisierung bei großen Abständen, keinen Higgs-Massenterm.
+
+## 8.18 Globale Struktur und was Symmetrie nicht abschließend bestimmt
+
+Unser früherer Vergleich von $SU(2)$ und $SO(3)$ bereitet uns auf eine Feinheit der Standardmodellnotation vor. Die Angabe einer Lie-Algebra und ihrer lokalen Kopplungen legt die globale Form der Eichgruppe nicht eindeutig fest.
+
+Normieren wir den Hyperladungskreis durch $n=6Y$ und setzen $\omega=e^{2\pi i/3}$. Betrachten wir das zentrale Element
+
+$$
+z=\left(\omega I_3,-I_2,e^{i\pi/3}\right)
+\in SU(3)\times SU(2)\times U(1).
+$$
+
+Seine Wirkung auf ein Feld enthält die Phase $(e^{i\pi/3})^{6Y}$. Für $Q_L$ beträgt der gesamte Faktor $\omega(-1)e^{i\pi/3}=1$. Für $L_L$ ist er $(-1)e^{-i\pi}=1$, für $H$ dagegen $(-1)e^{i\pi}=1$. Für $u_R,d_R,e_R$ ist er entsprechend $\omega e^{4\pi i/3}=1$, $\omega e^{-2\pi i/3}=1$ und $e^{-2\pi i}=1$.
+
+Folglich können die aufgeführten Materiefelder die von $z$ erzeugte Untergruppe $\mathbb Z_6$ nicht unterscheiden. Ihre lokalen Darstellungen sind mit den globalen Formen
+
+$$
+\frac{SU(3)\times SU(2)\times U(1)}{\Gamma},
+\qquad \Gamma\subseteq\mathbb Z_6,
+$$
+
+verträglich, einschließlich der trivialen Untergruppe, $\mathbb Z_2$, $\mathbb Z_3$ oder $\mathbb Z_6$. Es wäre zu stark zu behaupten, die vertraute Teilchentabelle lege den maximalen Quotienten eindeutig fest. Diese Möglichkeiten können sich in den zulässigen Linienoperatoren, Bündeln und magnetischen Sektoren unterscheiden, obwohl sie die hier diskutierten lokalen störungstheoretischen Daten teilen. [Tong, Abschnitt 5.1.6](https://davidtong.org/pdfs/teaching/standard-model/standardmodel5.pdf) erläutert diese Einschränkung.
+
+Weitere Aufgaben bleiben offen. Eichinvarianz schränkt Wechselwirkungen ein, doch Quantenkonsistenz verlangt zusätzlich die Aufhebung von Eichanomalien. Als kurzes Beispiel erhält die gemischte Anomalie $SU(2)^2U(1)$ Dublettbeiträge proportional zu
+
+$$
+3\left(\frac16\right)+\left(-\frac12\right)=0.
+$$
+
+Der Faktor drei zählt die Quarkfarben; der gemeinsame Dublettindex $1/2$ wurde weggelassen. Dies ist eine einzelne Aufhebung, kein Beweis für das Verschwinden aller Anomalien. Eine vollständige Rechnung umfasst kubische, gemischte und globale Anomalien und verwendet konsistente Chiralitätskonventionen. In einer Tabelle ausschließlich linkschiraler Felder konjugiert die Konjugation rechtschiraler Felder zugleich deren Farbdarstellung und kehrt die Hyperladung um.
+
+Eichinvarianz erlaubt Yukawa-Wechselwirkungen wie $\overline L_LHe_R$: Ihre Hyperladungen addieren sich zu $+1/2+1/2-1=0$. Sie sagt jedoch den Zahlenwert der Yukawa-Kopplung nicht voraus. Ebenso wenig leitet der Gruppenname das Higgs-Potential, Confinement, drei Generationen, Neutrinomassen, dunkle Materie oder Gravitation her. Dafür sind weitere Dynamik, experimentelle Befunde oder Erweiterungen nötig.
+
+Erreicht haben wir eine lesbare Struktur: Die Gruppenverknüpfung sagt, wie Transformationen kombiniert werden; die Lie-Algebra beschreibt ihre lokale Nichtkommutativität; Darstellungen bestimmen, welche Felder welche Ladungen tragen; ein Zusammenhang vergleicht innere Rahmen; Krümmung und invariante Wirkungen bestimmen die Eichdynamik. Das [Kapitel zu den Grenzen der Physik](/de/chapters/12-Frontiers-of-physics) ordnet diese Struktur in das größere Bild etablierter Physik und offener Fragen ein.
+
+## 8.19 Aufgaben mit Lösungen
+
+Versuchen Sie jede Rechnung, bevor Sie ihre Lösung lesen. Ziel ist, die Argumentation nachzuvollziehen, nicht eine Liste von Gruppennamen auswendig zu lernen.
+
+### Aufgabe 1: eine Untergruppe und ein Gegenbeispiel
+
+Sind die geraden ganzen Zahlen eine Untergruppe von $(\mathbb Z,+)$? Sind die positiven reellen Zahlen eine Untergruppe der von null verschiedenen reellen Zahlen mit Multiplikation?
+
+**Lösung.** Beide sind Untergruppen. Gerade ganze Zahlen enthalten $0$, sind unter Addition abgeschlossen und besitzen additive Inverse. Positive reelle Zahlen enthalten $1$, sind unter Multiplikation abgeschlossen und besitzen positive Kehrwerte. Unter Addition bilden positive Zahlen keine Gruppe, weil $0$ und additive Inverse fehlen. Geben Sie stets die Verknüpfung an.
+
+### Aufgabe 2: Inverse und das Dreieck
+
+Bestimmen Sie mithilfe von $r^3=s^2=e$ und $srs=r^{-1}$ das Inverse $(sr)^{-1}$ und zeigen Sie $(sr)^2=e$.
+
+**Lösung.** Die Regel der umgekehrten Reihenfolge ergibt $(sr)^{-1}=r^{-1}s$. Multipliziert man $srs=r^{-1}$ von links mit $s$, erhält man $rs=sr^{-1}$ und gleichwertig $sr=r^{-1}s$. Daher gilt $(sr)^{-1}=sr$. Direkt folgt $srsr=r^{-1}r=e$. Das Produkt $sr$ ist eine Spiegelung, passend zu seiner Permutation $(13)$.
+
+### Aufgabe 3: eine Determinante und eine Dimension
+
+Liegt $\operatorname{diag}(e^{i\alpha},e^{i\beta})$ in $SU(2)$? Wie viele unabhängige reelle Parameter hat $SU(4)$?
+
+**Lösung.** Die Diagonalmatrix ist immer unitär, aber nur dann speziell unitär, wenn $\alpha+\beta$ ein ganzzahliges Vielfaches von $2\pi$ ist. Die Dimensionsformel ergibt $4^2-1=15$. Die definierende Darstellung hat die komplexe Dimension vier, also eine andere Zahl.
+
+### Aufgabe 4: einen Generatorkommutator berechnen
+
+Berechnen Sie mit $t_a=\sigma_a/2$ die Ausdrücke $[t_2,t_3]$ und $\operatorname{tr}(t_3^2)$.
+
+**Lösung.** Wegen $\sigma_2\sigma_3=i\sigma_1$ und $\sigma_3\sigma_2=-i\sigma_1$ ist der Kommutator $it_1$. Außerdem ist $t_3^2=I/4$ mit der Spur $2/4=1/2$. Das Weglassen der Zweierfaktoren würde die Strukturkonstanten oder die Kopplungsnormierung ändern.
+
+### Aufgabe 5: welche Darstellungen ergeben Darstellungen von $SO(3)$?
+
+Eine irreduzible Darstellung von $SU(2)$ hat Spin $j$ und Dimension $2j+1$. Eine Drehung um $2\pi$ wirkt als $(-1)^{2j}I$. Welche Werte von $j$ liefern Darstellungen von $SO(3)$?
+
+**Lösung.** Eine Darstellung ist nur dann über den Quotienten nach $\{I,-I\}$ definiert, wenn $-I$ trivial wirkt. Dies gilt für ganzzahliges $j=0,1,2,\ldots$. Halbzahliges $j$ ergibt ein nichttriviales Vorzeichen und liefert keine solche Darstellung des Quotienten. Diese globale Einschränkung bleibt in der lokalen Kommutatoralgebra allein unsichtbar.
+
+### Aufgabe 6: zwei $U(1)$-Ladungen addieren
+
+Zwei Felder transformieren gemäß $\phi\mapsto e^{in\theta}\phi$ und $\chi\mapsto e^{im\theta}\chi$. Welche Ladungen haben $\phi\chi$ und $\phi^*\chi$?
+
+**Lösung.** Multiplikation der Phasen ergibt die Ladungen $n+m$ und $m-n$. Komplexe Konjugation kehrt eine $U(1)$-Ladung um. Dies ist die abelsche Version von Tensorprodukten und konjugierten Darstellungen; so überprüft man rasch die Hyperladungsneutralität von Wechselwirkungstermen.
+
+### Aufgabe 7: ein reines Eichpotential
+
+Transformieren Sie ausgehend von $A_\mu=0$ mit einem glatten $U(x)$. Wie lautet $A'_\mu$, und welche Krümmung besitzt es?
+
+**Lösung.** Das Potential ist $A'_\mu=-(i/g)(\partial_\mu U)U^{-1}$. Seine Krümmung verschwindet, weil $F'=UFU^{-1}=0$. Ein Potential kann ungleich null sein, obwohl seine Feldstärke null ist. Dies ist eine lokale Aussage für eine glatte Eichtransformation auf dem Gebiet; globale Topologie kann verhindern, dass eine einzelne Eichwahl die gesamte Konfiguration überdeckt.
+
+### Aufgabe 8: eine kleine nichtabelsche Schleife
+
+Bestimmen Sie für konstantes $A_x=at_1$, $A_y=bt_2$ den Transport um ein kleines positiv orientiertes $xy$-Rechteck mit Fläche $S$ in führender Ordnung.
+
+**Lösung.** Abschnitt 8.15 liefert $F_{xy}=gabt_3$, also $W_\square=I+ig^2abS\,t_3+\cdots$. Der erste nichtverschwindende Effekt ist proportional zur Fläche, nicht zum Umfang. Die Umkehr der Schleifenorientierung kehrt diesen führenden Term um.
+
+### Aufgabe 9: eine Fermiongeneration zählen
+
+Zählen Sie die inneren Komponenten von $Q_L,u_R,d_R,L_L,e_R$, ohne die Lorentz-Spinorkomponenten ein zweites Mal zu zählen. Was ändert sich, wenn ein steriles $\nu_R$ hinzukommt?
+
+**Lösung.** Die Zählung ergibt $3\times2+3+3+2+1=15$ Weyl-Felder pro Generation. Ein Eichsingulett $\nu_R$ fügt eines hinzu, sodass sechzehn entstehen, mit Zuordnung $(\mathbf1,\mathbf1)_0$. Diese Zählung entspricht weder der Anzahl der Eichgeneratoren noch der Anzahl benannter Teilchenflavors.
+
+### Aufgabe 10: eine Yukawa-Kopplung prüfen
+
+Prüfen Sie die Hyperladungsneutralität von $\overline Q_LH d_R$ und $\overline Q_L\widetilde H u_R$, wobei $\widetilde H=i\sigma_2H^*$.
+
+**Lösung.** Konjugation von $Q_L$ ergibt die Hyperladung $-1/6$. Die erste Summe ist $-1/6+1/2-1/3=0$. Da $\widetilde H$ die Hyperladung $Y=-1/2$ hat, ist die zweite Summe $-1/6-1/2+2/3=0$. Die Farbindizes werden zwischen $\overline{\mathbf3}$ und $\mathbf3$ kontrahiert; auch die schwachen Dublettindizes werden zu einem Singulett kontrahiert. Hyperladungsneutralität ist notwendig, doch alle Gruppenfaktoren müssen geprüft werden.
+
+### Aufgabe 11: den elektromagnetischen Generator identifizieren
+
+Bestimmen Sie für ein Dublett mit Hyperladung $y$ die beiden elektrischen Ladungen. Für welches $y$ ist die untere Komponente neutral?
+
+**Lösung.** Die Ladungen sind $y+1/2$ und $y-1/2$. Die untere Komponente ist für $y=1/2$ neutral, entsprechend der Higgs-Zuordnung. Eine neutrale Vakuumkomponente erlaubt, dass die Kombination $T_3+Y$ in der Higgs-Beschreibung ungebrochen bleibt.
+
+### Aufgabe 12: erkennen, was die Gruppenbezeichnung offenlässt
+
+Zwei Theorien besitzen dieselbe Eichalgebra $\mathfrak{su}(3)\oplus\mathfrak{su}(2)\oplus\mathfrak u(1)$. Müssen sie dieselben Teilchen, Kopplungen, globale Gruppe und Vorhersagen besitzen?
+
+**Lösung.** Nein. Sie können unterschiedliche Materiedarstellungen, Kopplungswerte, skalare Potentiale oder globale Quotienten besitzen, sofern Konsistenzbedingungen wie die Anomalieaufhebung erfüllt sind. Selbst ein identischer lokaler Feldinhalt kann unterschiedliche globale Entscheidungen zulassen. Die Algebra schränkt eine Theorie ein; sie ist nicht die gesamte Theorie.
+
+## 8.20 Glossar, Leseweg und Quellen
+
+| Begriff | Bedeutung in diesem Kapitel |
+| --- | --- |
+| Gruppe | Eine Menge mit assoziativer Verknüpfung, neutralem Element und Inversen. |
+| Abelsch | Jedes Paar von Gruppenelementen kommutiert. |
+| Wirkung | Eine konsistente Regel, nach der eine Gruppe eine Menge transformiert. |
+| Homomorphismus | Eine Abbildung, die das Verknüpfungsgesetz erhält. |
+| Kern | Elemente, die auf die Identitätstransformation abgebildet werden. |
+| Treu | Mit trivialem Kern, sodass verschiedene Gruppenelemente unterscheidbar bleiben. |
+| Lie-Gruppe | Eine glatte Mannigfaltigkeit mit glatten Gruppenoperationen. |
+| Lie-Algebra | Tangentialraum am neutralen Element mit seiner Lie-Klammer. |
+| Generator | Eine infinitesimale Transformation, in der Physik häufig in einer hermiteschen Basis geschrieben. |
+| Strukturkonstanten | Koeffizienten, die Generatorkommutatoren in einer gewählten Basis ausdrücken. |
+| Darstellung | Eine Gruppenwirkung durch invertierbare lineare Abbildungen auf einem Vektorraum. |
+| Irreduzibel | Ohne von null verschiedenen echten invarianten Unterraum. |
+| Definierende Darstellung | Die übliche Matrixwirkung, mit der eine klassische Matrixgruppe definiert wird. |
+| Adjungierte Darstellung | Die Wirkung auf der Lie-Algebra durch Konjugation. |
+| Singulett | Die triviale eindimensionale Darstellung der angegebenen Gruppe. |
+| Zusammenhang | Eine Regel zum Vergleich innerer Vektoren an benachbarten Punkten. |
+| Krümmung | Das Nichtkommutieren kovarianter Ableitungen oder infinitesimaler Transporte. |
+| Holonomie | Die Gesamttransformation durch Transport entlang eines geschlossenen Weges. |
+| Eichinvariant | Unter den zulässigen Eichtransformationen unverändert. |
+| Eichkovariant | Gemäß einem festgelegten Darstellungsgesetz transformierend. |
+| Hyperladung | Der Generator von $U(1)_Y$, hier durch $Q=T_3+Y$ normiert. |
+| Chiralität | Der durch $\gamma^5$ ausgewählte linke oder rechte Lorentz-Spinorsektor, bei massiven Teilchen von der Helizität verschieden. |
+
+Wenn eine Rechnung stockt, kehren Sie zum kleinsten konkreten Beispiel zurück. Prüfen Sie eine Verknüpfung an einer Dreiecksecke. Prüfen Sie eine Matrixidentität an den Pauli-Matrizen. Prüfen Sie das Vorzeichen einer Eichtransformation an einer Phase, die ein konstantes Feld multipliziert. Prüfen Sie eine Standardmodellladung an der unteren Komponente des Higgs-Dubletts. Diese Kontrollen verbinden abstrakte Notation mit Operationen, die wir ausdrücklich ausführen können.
+
+Die folgenden mathematischen Quellen begründen die zugrunde liegenden Definitionen und Sätze; die physikalischen Quellen liefern feldtheoretische Konventionen und den Rahmen des Standardmodells. Text, durchgerechnete Beispiele und Diagramme dieses Artikels sind eigenständig ausgearbeitet; die Notation bleibt intern konsistent, statt ungeprüft zwischen Quellen übernommen zu werden.
+
+1. [Pavel Etingof, *Lie Groups and Lie Algebras I*, MIT 18.745](https://math.mit.edu/~etingof/lnlg.pdf). Die Vorlesungen 2–7 entwickeln Lie-Gruppen, Überlagerungen, Exponentialabbildungen und Klammern; Vorlesung 9 führt Darstellungen ein. Dies ist die mathematische Fortsetzung der Abschnitte 8.6–8.10.
+2. [Eckhard Meinrenken, *Lie Groups and Lie Algebras*, University of Toronto](https://www.math.toronto.edu/mein/teaching/LectureNotes/lie.pdf). Eine ergänzende Darstellung von Matrixgruppen, Exponentialabbildungen sowie globaler und lokaler Struktur. Hilfreich für eine zweite, geometrische Lektüre des Unterschieds zwischen $SU(2)$ und $SO(3)$.
+3. [Peter Woit, *Lie Groups and Representations*, Notizen zu Lie-Algebren, Columbia University](https://www.math.columbia.edu/~woit/notes2.pdf), und [Grundlagen der Darstellungstheorie](https://www.math.columbia.edu/~woit/LieGroups-2012/repgeneralities.pdf). Sie entwickeln Tangentialraumkonventionen und die Sprache invarianter Unterräume, direkter Summen und Tensorprodukte.
+4. [Hugh Osborn, *Symmetries and Groups*, University of Cambridge](https://www.damtp.cam.ac.uk/user/ho10/GNotes.pdf). Weiterführende Gruppen- und Darstellungstheorie für Leserinnen und Leser, die zwischen mathematischer und physikalischer Notation wechseln.
+5. [David Tong, *The Standard Model*, Kapitel 1: Symmetrien, University of Cambridge](https://davidtong.org/pdfs/teaching/standard-model/standardmodel1.pdf). Abschnitt 1.3 verbindet Maxwell-Theorie, Lie-Algebren und Yang-Mills-Theorie. Er stützt den eichtheoretischen Rahmen der Abschnitte 8.12–8.15.
+6. [David Tong, *Gauge Theory*, Kapitel 2: Yang-Mills-Theorie](https://davidtong.org/pdfs/teaching/gauge-theory/gauge2.pdf). Ein weiterführender Weg zu Wilson-Linien, nichtabelscher Dynamik und Quanteneichtheorie. Achten Sie darauf, wo die Kopplung in die Definition des Zusammenhangs aufgenommen wird.
+7. [David Tong, *The Standard Model*, Kapitel 5: Elektroschwache Wechselwirkungen](https://davidtong.org/pdfs/teaching/standard-model/standardmodel5.pdf). Die Abschnitte 5.1–5.2 behandeln Feldzuordnungen, Anomaliebedingungen, globale Formen der Eichgruppe und elektroschwache Mischung. Unsere Reihenfolge $(R_c,R_L)_Y$ nennt Farbe zuerst; die Quelle verwendet eine eigene Reihenfolge, weshalb die Bezeichnungen statt der Spaltenpositionen zu vergleichen sind.
+
+Für den nächsten Schritt innerhalb von Open Physics Notes lesen Sie [Differentialgeometrie](/de/curiosities/differential-geometry) für die geometrische Sprache, [Quantenfeldtheorie](/de/chapters/8-Quantum-field-theory) für Dynamik und Quantisierung und [Grenzen der Physik](/de/chapters/12-Frontiers-of-physics) für den weiteren Zusammenhang und die Grenzen des Standardmodells.

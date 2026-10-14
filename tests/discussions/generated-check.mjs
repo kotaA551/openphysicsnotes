@@ -30,7 +30,7 @@ function inspectPage(locale,kind,item) {
   assert.equal(new Set(ids).size,ids.length,`${route}: duplicate DOM id`);
   assert.ok(!/class="[^"]*\bkatex-error\b/.test(body),`${route}: invalid formula`);
   const key=`${kind}/${slug}/${article.contentLocale}`;
-  for(const id of before[key])assert.ok(headings.some(h=>attr(h,'id')===id),`${route}: changed old anchor ${id}`);
+  for(const id of (before[key] || []))assert.ok(headings.some(h=>attr(h,'id')===id),`${route}: changed old anchor ${id}`);
   if(slug==='2-Oscillations-and-waves') {
     const figures=elements(body,/<figure\b[^>]*>[\s\S]*?<\/figure>/g).filter(n=>hasClass(n,'cycloidal-pendulum-figure'));assert.equal(figures.length,1,route);
     const images=descendants(figures[0]).filter(n=>n.tagName==='img');
@@ -38,7 +38,7 @@ function inspectPage(locale,kind,item) {
     // CJK descriptions convey the same content with fewer characters.
     assert.ok(images.every(img=>attr(img,'alt')?.trim().length>=25),`${route}: descriptive localized alt text`);
   }
-  reports.push({route,contentLocale:article.contentLocale,before:before[key].length,after:panels.length,panels:panels.map(p=>attr(p,'data-discussion-section'))});
+  reports.push({route,contentLocale:article.contentLocale,before:(before[key] || []).length,after:panels.length,panels:panels.map(p=>attr(p,'data-discussion-section'))});
 }
 for(const locale of locales)for(const kind of ['chapters','curiosities'])for(const item of articleList(kind)) {
   inspectPage(locale,kind,item);
