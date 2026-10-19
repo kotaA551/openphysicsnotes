@@ -23,6 +23,12 @@
 .prose img{max-width:100%;height:auto;border-radius:12px}
 .prose table{display:block;overflow-x:auto}
 .prose pre,.katex-display{overflow-x:auto;overflow-y:hidden;max-width:100%}
+/* Long inline expressions, including formulas inside indented lists, stay
+   readable without widening the mobile page. Padding retains italic overhang. */
+.prose :not(.katex-display) > .katex{
+  display:inline-block;max-width:100%;overflow-x:auto;overflow-y:hidden;
+  vertical-align:middle;padding:.1em .15em;
+}
 .prose blockquote{border-color:#b49d8a;background:var(--wash);padding:2px 20px;border-radius:0 10px 10px 0}
 .prose hr{border-color:var(--line)}
 .document-page{max-width:760px}

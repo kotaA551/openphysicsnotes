@@ -18,8 +18,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(dist, 'prerender-manifest.
 const reports = [];
 const errors = [];
 const navierStokesLocales = ['en', 'fr', 'de', 'it', 'es', 'pt-BR', 'zh-CN', 'zh-TW', 'ja', 'ko'];
-const navierStokesPath = '/curiosities/navier-stokes-equation';
-const navierStokesReports = [];
+const articleContentReports = [];
 
 function decode(value = '') {
   return value.replace(/&#(x[\da-f]+|\d+);|&(amp|lt|gt|quot|apos);/gi, (_, numeric, named) => numeric
@@ -75,8 +74,9 @@ function compareMetadata(route, locale, expected, schema = null) {
   });
 }
 
-function checkNavierStokesContent(locale) {
-  const route = locale === 'en' ? navierStokesPath : `/${locale}${navierStokesPath}`;
+function checkArticleContent(kind, slug, locale) {
+  const articlePath = `/${kind}/${slug}`;
+  const route = locale === 'en' ? articlePath : `/${locale}${articlePath}`;
   check(`${route}: localized article and mathematics`, () => {
     const html = fs.readFileSync(path.join(dist, 'server/app', `${route.slice(1)}.html`), 'utf8');
     const article = html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1];
@@ -94,7 +94,7 @@ function checkNavierStokesContent(locale) {
     assert.ok(metadata && !metadata.noindex, 'all ten editions must pass metadata checks and be indexable');
     assert.deepEqual(new Set(metadata.hreflang), new Set([...navierStokesLocales, 'x-default']), 'each edition must advertise the complete ten-language cluster');
     assert.equal(metadata.canonical, siteUrl + route, 'each edition must be self-canonical');
-    navierStokesReports.push({ route, contentLanguage: locale, fallback: false, renderedMath: true, result: 'pass' });
+    articleContentReports.push({ route, contentLanguage: locale, fallback: false, renderedMath: true, result: 'pass' });
   });
 }
 
@@ -108,16 +108,16 @@ for (const locale of locales) {
   }
 }
 
-for (const locale of navierStokesLocales) checkNavierStokesContent(locale);
+for (const locale of locales) for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) checkArticleContent(kind, slug, locale);
 check('complete generated page coverage', () => {
   assert.equal(reports.length, 230, 'all 30 static pages and 200 article routes must pass');
   assert.equal(new Set(reports.map(report => report.route)).size, 230, 'every route must be checked exactly once');
-  assert.equal(reports.filter(report => report.noindex).length, 65, 'only the 65 remaining fallback articles are noindex');
-  assert.equal(reports.filter(report => report.schema === 'LearningResource').length, 135, 'all 135 actual article editions expose their learning resource');
+  assert.equal(reports.filter(report => report.noindex).length, 0, 'all article translations are complete');
+  assert.equal(reports.filter(report => report.schema === 'LearningResource').length, 200, 'all 200 actual article editions expose their learning resource');
 });
-check('Navier–Stokes language coverage', () => {
+check('all article language coverage', () => {
   assert.deepEqual(locales, navierStokesLocales);
-  assert.equal(navierStokesReports.length, 10, 'all ten localized bodies must pass');
+  assert.equal(articleContentReports.length, 200, 'all 200 localized bodies must pass');
 });
 
 let sitemapCount = 0;
@@ -131,7 +131,7 @@ check('sitemap.xml', () => {
   sitemapCount = actual.length;
   const expected = sitemap();
   assert.equal(actual.length, expected.length);
-  assert.equal(actual.length, 165, '30 translated static pages + 135 article editions');
+  assert.equal(actual.length, 230, '30 translated static pages + 200 article editions');
   const byUrl = new Map(actual.map(item => [item.url, item]));
   assert.equal(byUrl.size, actual.length, 'no duplicate sitemap URLs');
   for (const entry of expected) {
@@ -157,7 +157,7 @@ check('robots.txt', () => {
   assert.ok(!/^Disallow:\s*\/\s*$/im.test(text), 'must not block crawlers from canonical or noindex directives');
 });
 
-const result = { buildDirectory: dist, checkedAt: new Date().toISOString(), expectedHtmlPages: 230, passedHtmlPages: reports.length, canonicalSitemapUrls: sitemapCount, navierStokesEditions: navierStokesReports, result: errors.length ? 'fail' : 'pass', errors, pages: reports };
+const result = { buildDirectory: dist, checkedAt: new Date().toISOString(), expectedHtmlPages: 230, passedHtmlPages: reports.length, canonicalSitemapUrls: sitemapCount, articleEditions: articleContentReports, result: errors.length ? 'fail' : 'pass', errors, pages: reports };
 if (output) {
   fs.mkdirSync(path.dirname(path.resolve(output)), { recursive: true });
   fs.writeFileSync(output, JSON.stringify(result, null, 2) + '\n');

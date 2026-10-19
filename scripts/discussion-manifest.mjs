@@ -10,6 +10,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import { discussionSections, discussionGroups } from '../lib/discussions/sections.mjs';
+import rehypeArticleAnchors, { articleHeadingIds } from '../lib/article-anchors.mjs';
 
 const processor = unified().use(remarkParse).use(remarkMdx).use(remarkGfm).use(remarkMath)
   .use(remarkRehype, { passThrough: ['mdxJsxFlowElement', 'mdxJsxTextElement', 'mdxFlowExpression', 'mdxTextExpression', 'mdxjsEsm'] })
@@ -20,7 +21,8 @@ async function collect(directory, locale, kind) {
   try { files = await fs.readdir(directory); } catch (error) { if (error.code === 'ENOENT') return; throw error; }
   for (const file of files.sort().filter(file => file.endsWith('.mdx'))) {
     const source = matter(await fs.readFile(path.join(directory, file), 'utf8')).content;
-    const tree = await processor.run(processor.parse(source));
+    const configured = processor().use(rehypeArticleAnchors, { ids: articleHeadingIds(kind, file.slice(0, -4), locale) });
+    const tree = await configured.run(configured.parse(source));
     // Keep every legacy post/read scope, plus new group targets with no direct body.
     manifest[`${kind}/${file.slice(0, -4)}/${locale}`] = [...new Set([
       ...discussionSections(tree).map(section => section.id), ...discussionGroups(tree).map(group => group.id),

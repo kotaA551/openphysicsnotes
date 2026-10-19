@@ -122,7 +122,7 @@ $$
 -  **简单立方（sc）** ：在 $(0,0,0)$ 处有一个原子：
 
 $$
-F(\mathbf G)=f,\quad \text{no systematic absences}
+F(\mathbf G)=f,\quad \text{无系统消光}
 $$
 
 -  **体心立方（bcc）** ，基元为 $\{(0,0,0),\,(\tfrac12,\tfrac12,\tfrac12)a\}$：
@@ -130,8 +130,8 @@ $$
 $$
 F = f\left[1 + e^{-i\pi(h+k+\ell)}\right] = 
 \begin{cases}
-2f & h+k+\ell\ \text{even} \\
-0 & h+k+\ell\ \text{odd}
+2f & h+k+\ell\ \text{偶数} \\
+0 & h+k+\ell\ \text{奇数}
 \end{cases}
 $$
 
@@ -140,8 +140,8 @@ $$
 $$
 F = f\left[1 + e^{-i\pi(h+k)} + e^{-i\pi(h+\ell)} + e^{-i\pi(k+\ell)}\right] =
 \begin{cases}
-4f & h,k,\ell\ \text{all even or all odd} \\
-0 & \text{otherwise}
+4f & h,k,\ell\ \text{全为偶数或全为奇数} \\
+0 & \text{其他情况}
 \end{cases}
 $$
 
@@ -199,7 +199,7 @@ $$
 计算 $(100)$、$(110)$、$(111)$ 晶面族的 $F$，确认只有指数“全偶”或“全奇”的反射保留。
 
  **(d) 金刚石的消光**   
-金刚石满足 $F \propto \left[1 + e^{-i\pi(h+k+\ell)/2}\right]\times(\text{fcc factor})$。证明 $(222)$ 消光而 $(111)$ 允许，与 X 射线衍射表一致。
+金刚石满足 $F \propto \left[1 + e^{-i\pi(h+k+\ell)/2}\right]\times(\text{面心立方因子})$。证明 $(222)$ 消光而 $(111)$ 允许，与 X 射线衍射表一致。
 
  **(e) 埃瓦尔德构图**   
 对于 $\lambda=1.54\ \text{\AA}$（Cu K$\alpha$），画一个半径为 $2\pi/\lambda$、经过面心立方倒易晶格原点的圆，并在给定晶体取向下标出圆周上对应衍射反射的 $\boldsymbol G$ 矢量。
@@ -415,7 +415,7 @@ $$
 
 ### 10.2.10 不稳定性与软模：一维佩尔斯机制
 
-一维金属的电子响应函数在 $q=2k_{F}$ 处出现峰值。电子–声子耦合使该波矢的声子软化；低于临界 $T$ 时，$\omega(2k_{F})\to 0$  **软模** 驱动晶格畸变，在半满情况下使周期加倍（二聚化），并打开能隙：这就是 **佩尔斯转变** 。高维中的电荷密度波和结构转变也遵循类似思路。
+一维金属的电子响应函数在 $q=2k_{F}$ 处出现峰值。电子–声子耦合使该波矢的声子软化；低于临界 $T$ 时，$\omega(2k_{F})\to 0$  **软模** 驱动波矢为 2kF 的晶格畸变，在半满情况下使周期加倍（二聚化），并打开能隙：这就是 **佩尔斯转变** 。高维中的电荷密度波和结构转变也遵循类似思路。
 
 ---
 
@@ -821,7 +821,7 @@ $$
 g(E) = \frac{1}{4\pi^{3}} \int_{E_{n}(\boldsymbol k)=E} \frac{dS_{k}}{|\nabla_{\boldsymbol k} E_{n}|}
 $$
 
-等能面上梯度为零的临界点会产生范霍夫非解析行为；态密度是否发散取决于维数及临界点类型，在三维中通常表现为有限的尖点。
+能量梯度为零的临界点会产生范霍夫非解析行为；态密度是否发散取决于维数及临界点类型，一般的三维极值点或鞍点会产生有限的尖点。
 
 ---
 
@@ -1102,7 +1102,7 @@ $$
 绝缘体的电子极化密度与瓦尼尔 **中心**  $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$ 有关：
 
 $$
-\boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{modulo a quantum}
+\boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{模一个极化量子}
 $$
 
 等价的 **贝里相位公式** 使用布洛赫规范。实际计算可跟踪绝热变化下瓦尼尔中心的移动，求出极化差和压电响应；§10.11 将再次讨论拓扑。
@@ -1444,7 +1444,7 @@ $$
 \boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; \exp\!\left[-\int_{0}^{t}\frac{dt'}{\tau(\boldsymbol k_{-t'})}\right]\,\boldsymbol v(\boldsymbol k_{-t})
 $$
 
-于是得到电导率张量
+于是得到电导率张量（示意形式）
 
 $$
 \sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\Lambda_{\beta}
@@ -1459,7 +1459,7 @@ $$
 定义 **迁移率**  $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$ 和电子单带的 **霍尔角**  $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx -\omega_{c}\tau$。 **平均自由程** 为
 
 $$
-\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{for good quasiparticles}
+\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{对于良好定义的准粒子}
 $$
 
 接近 **约费–雷格尔** 极限 $k_{F}\ell\sim 1$ 时，金属进入“坏金属”区，半经典输运描述开始失效。
@@ -1489,7 +1489,7 @@ $$
 
 求逆得到 $\rho_{xx},\rho_{xy}$。主要区间为：
 
--  **补偿**  $n_{e}\approx n_{h}$ 且迁移率很高时，会出现很大的、近乎二次增长的 **不饱和磁阻** ；严格不饱和要求完全补偿  
+-  **补偿**  $n_{e}\approx n_{h}$ 且迁移率很高时，在补偿区间内会出现很大的、近乎二次增长的 **不饱和磁阻** ；渐近不饱和要求完全补偿  
 -  **主导载流子**  $n_{e}\gg n_{h}$ 时，若迁移率差异不使低场霍尔符号反转，则霍尔符号固定；磁阻较小并趋于饱和
 
 对 $\rho_{xx}(B)$ 和 $\rho_{xy}(B)$ 进行多带拟合，是确定载流子类型及迁移率的常用起点。
@@ -2172,10 +2172,10 @@ $$
 在关联的费米液体平均场描述中，动能被 $Z$ 重整化；**莫特金属–绝缘体转变**（MIT）发生于
 
 $$
-Z \to 0 \quad \text{as} \quad U \to U_{c}^{-}
+Z \to 0 \quad \text{当} \quad U \to U_{c}^{-}
 $$
 
-$m^{\ast}$ 发散和德鲁德权重塌缩是其标志。在实际三维晶格中，有限 $T$ 下的转变常为带磁滞的**一阶转变**（金属与绝缘体两个解共存），并终止于临界端点；DMFT 能很好地描述这一现象。
+$m^{\ast}$ 发散和德鲁德权重塌缩是其标志。在实际三维晶格中，有限 $T$ 下的转变常为带滞后的**一阶转变**（金属与绝缘体两个解共存），并终止于临界端点；DMFT 能很好地描述这一现象。
 
 ---
 

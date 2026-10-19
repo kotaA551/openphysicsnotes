@@ -28,6 +28,7 @@ for (const locale of locales) {
     const [kind, slug] = article.href.split('/').slice(-2);
     const expected = loadArticle(kind, slug, locale);
     assert.equal(article.contentLocale, expected.contentLocale);
+    assert.equal(article.contentLocale, locale, 'every article now has a complete local edition');
     assert.equal(article.title, expected.title);
     const html = fs.readFileSync(path.join(dist, 'server/app', `${article.href.slice(1)}.html`), 'utf8');
     assert.ok(html.includes('id="main-content"'));
@@ -36,6 +37,12 @@ for (const locale of locales) {
   for (const section of index.sections) {
     assert.ok(headings[section.article].has(section.id || 'main-content'), `${locale}: missing rendered anchor ${section.id}`);
     assert.doesNotMatch(section.text, /<Callout|<RelatedBooks|\\begin\{|\\frac\{|mdxJsx|className=/);
+  }
+  for (const [number, article] of index.articles.entries()) {
+    assert.ok(search(prepared, article.title).some(result => result.href.startsWith(article.href + '#')), `${locale}: title query must find ${article.href}`);
+    const paragraph = index.sections.find(section => section.article === number && section.text.length > 80);
+    assert.ok(paragraph, `${locale}: searchable body prose is required`);
+    assert.ok(search(prepared, paragraph.text.slice(0, 45)).some(result => result.href.startsWith(article.href + '#')), `${locale}: body query must find ${article.href}`);
   }
   const navier = index.articles.findIndex(article => article.href.endsWith('/navier-stokes-equation'));
   // Full translated topic titles work even when an article explicitly falls back.

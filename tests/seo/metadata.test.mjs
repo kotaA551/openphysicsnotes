@@ -11,11 +11,8 @@ const { articleList, loadArticle, translatedArticleLocales } = load('lib/article
 const { articleMetadata, articleStructuredData, pageMetadata, siteUrl, socialImage } = load('lib/seo.ts');
 const sitemap = load('app/sitemap.ts').default;
 const robots = load('app/robots.ts').default;
-const completeSiteLocales = ['en', 'de', 'pt-BR', 'zh-CN', 'ja'];
 const navierStokesLocales = ['en', 'fr', 'de', 'it', 'es', 'pt-BR', 'zh-CN', 'zh-TW', 'ja', 'ko'];
-const fullCuriosityLocales = new Set(['navier-stokes-equation', 'black-hole-information-paradox', 'dark-energy', 'dark-matter', 'loop-quantum-gravity', 'string-theory', 'groups-lie-algebras-gauge-theory']);
-const expectedArticleLocales = (kind, slug) => kind === 'curiosities' && fullCuriosityLocales.has(slug)
-  ? navierStokesLocales : completeSiteLocales;
+const expectedArticleLocales = () => navierStokesLocales;
 
 test('Next serializes root and article alternate URLs exactly as the sitemap uses them', async () => {
   for (const path of ['/', '/about', '/chapters/8-Quantum-field-theory']) {
@@ -26,7 +23,7 @@ test('Next serializes root and article alternate URLs exactly as the sitemap use
   }
 });
 
-test('20 article clusters have 135 real editions, including all ten Navier–Stokes locales, with reciprocal absolute hreflang', () => {
+test('20 article clusters have 200 real editions with reciprocal absolute hreflang', () => {
   let count = 0;
   for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) {
     const actualLocales = expectedArticleLocales(kind, slug);
@@ -45,7 +42,7 @@ test('20 article clusters have 135 real editions, including all ten Navier–Sto
       count++;
     }
   }
-  assert.equal(count, 135);
+  assert.equal(count, 200);
 });
 
 test('all ten Navier–Stokes editions load their own content and descriptions', () => {
@@ -63,30 +60,19 @@ test('all ten Navier–Stokes editions load their own content and descriptions',
   assert.equal(descriptions.size, 10, 'every edition must have a localized search description');
 });
 
-test('65 fallback pages remain noindex, follow and identify the English canonical content consistently', () => {
-  let count = 0;
-  for (const kind of ['chapters', 'curiosities']) for (const { slug } of articleList(kind)) {
-    const original = articleMetadata(kind, slug, 'en');
-    for (const locale of locales.filter(locale => !expectedArticleLocales(kind, slug).includes(locale))) {
-      const article = loadArticle(kind, slug, locale);
-      const meta = articleMetadata(kind, slug, locale);
-      assert.deepEqual(meta.robots, { index: false, follow: true });
-      assert.equal(meta.alternates.canonical, siteUrl + `/${kind}/${slug}`);
-      assert.equal(meta.alternates.languages, undefined);
-      assert.equal(meta.openGraph.url, meta.alternates.canonical);
-      assert.equal(meta.openGraph.locale, 'en_US');
-      assert.equal(meta.title, original.title);
-      assert.equal(meta.description, original.description);
-      assert.equal(articleStructuredData(kind, slug, article), null);
-      count++;
-    }
-  }
-  assert.equal(count, 65);
+test('a future missing translation stays noindex with the English canonical and no separate entity', () => {
+  const meta = pageMetadata('English source title', 'English source description', '/chapters/future-article', 'fr', { availableLocales: ['en'] });
+  assert.deepEqual(meta.robots, { index: false, follow: true });
+  assert.equal(meta.alternates.canonical, siteUrl + '/chapters/future-article');
+  assert.equal(meta.alternates.languages, undefined);
+  assert.equal(meta.openGraph.url, meta.alternates.canonical);
+  assert.equal(meta.openGraph.locale, 'en_US');
+  assert.equal(articleStructuredData('chapters', 'future-article', { translated: false }), null);
 });
 
-test('the sitemap contains only 165 canonical pages and matches every HTML alternate cluster', () => {
+test('the sitemap contains 230 canonical pages and matches every HTML alternate cluster', () => {
   const entries = sitemap();
-  assert.equal(entries.length, 165);
+  assert.equal(entries.length, 230);
   const byUrl = new Map(entries.map(entry => [entry.url, entry]));
   assert.equal(byUrl.size, entries.length);
   for (const entry of entries) {

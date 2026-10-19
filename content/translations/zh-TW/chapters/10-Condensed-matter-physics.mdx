@@ -1,0 +1,3094 @@
+---
+description: 本章從晶格、倒空間與晶格振動出發，系統介紹自由電子、能帶、緊束縛模型、半導體及輸運理論，繼而討論磁性、超導、強關聯電子、拓撲物態、無序與局域化，以及二維材料和莫爾體系。透過模型推導、實例和習題，連接材料的微觀結構與宏觀響應，並明確各類近似、單位及符號約定。
+---
+
+## 10.1 晶體與倒空間
+
+晶體在空間中具有週期性。利用週期性，可以將晶格求和化為選擇定則，透過傅立葉變換處理 $k$ 的量子化，並藉助衍射識別結構。本節介紹晶格與基元的表述、倒易向量、布里淵區、米勒指數，以及衍射分析工具（布拉格、勞厄、埃瓦爾德構圖和結構因子）。我們將串聯面心立方與體心立方的對偶關係、常見晶體的選擇定則，以及避免混淆指數的方法。
+
+![正方晶格及其倒晶格；兩者的原始基底向量滿足倒易基底關係。](/images/diagrams/reciprocal-lattice.svg)
+
+---
+
+### 10.1.1 晶格、基元與晶體結構
+
+ **布拉菲晶格** 是如下點的集合：
+
+$$
+\boldsymbol R = n_{1}\,\boldsymbol a_{1} + n_{2}\,\boldsymbol a_{2} + n_{3}\,\boldsymbol a_{3},\qquad n_{i}\in\mathbb Z
+$$
+
+其中 $\boldsymbol a_{i}$ 是三個線性無關的 **原始基底向量** 。 **晶體結構** 等於晶格 **加上** 原胞內位於 $\{\boldsymbol\tau_{j}\}$ 的原子基元；各原子的位置為 $\boldsymbol r = \boldsymbol R + \boldsymbol\tau_{j}$。
+
+-  **維格納–塞茨原胞** ：到指定格點的距離比到任何其他格點都近的點的集合。  
+-  **慣用晶胞與原胞** ：慣用立方晶胞便於直觀展示；原胞具有最小體積，適合理論處理。
+
+ **提示** ：應避免把「鑽石晶格」當作布拉菲晶格名稱。鑽石具有 **面心立方晶格** 和雙點基元 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$。
+
+---
+
+### 10.1.2 對稱性：點群與空間群速覽
+
+-  **點群** ：使至少一個點保持不動的旋轉、反射和反演操作。  
+-  **空間群** ：點群操作加上 **平移** 、 **螺旋** 旋轉和 **滑移** 反射。  
+- 三維空間中有  **14 種布拉菲晶格** 、 **32**  種晶體學點群和  **230**  種空間群。能帶理論主要用到晶格及高對稱 $k$ 點的小群。
+
+---
+
+### 10.1.3 倒晶格與布里淵區
+
+用關係 $\boldsymbol a_{i}\cdot \boldsymbol b_{j}=2\pi\delta_{ij}$ 定義 **倒易原始基底向量**  $\boldsymbol b_{i}$。其向量表達式為
+
+$$
+\boldsymbol b_{1} = 2\pi \frac{\boldsymbol a_{2}\times \boldsymbol a_{3}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{2} = 2\pi \frac{\boldsymbol a_{3}\times \boldsymbol a_{1}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{3} = 2\pi \frac{\boldsymbol a_{1}\times \boldsymbol a_{2}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})}
+$$
+
+ **倒晶格** 由向量 $\boldsymbol G = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}$ 組成，其中 $(h,k,\ell)$ 為整數。
+
+ **第一布里淵區（BZ）** 是倒晶格的維格納–塞茨原胞。它是 $k$ 空間的原胞，也是布洛赫波向量的自然取值區域。
+
+- 對偶關係： **fcc $\leftrightarrow$ bcc** 。面心立方晶格的倒晶格是體心立方，反之亦然；簡單立方晶格自對偶。
+
+---
+
+### 10.1.4 一行式布洛赫定理
+
+在週期勢 $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$ 中，單粒子本徵態是 **布洛赫波** ：
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R) = u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+波向量 $\boldsymbol k$ 可以選在第一布里淵區內。作平移 $\boldsymbol k\to \boldsymbol k+\boldsymbol G$ 不改變物理性質。
+
+---
+
+### 10.1.5 晶面、晶向與指數：米勒指數入門
+
+-  **晶向** 用方括號 $[u\,v\,w]$ 表示，對應於與 $u\,\boldsymbol a_{1}+v\,\boldsymbol a_{2}+w\,\boldsymbol a_{3}$ 成正比的晶格向量。等價晶向族記為 $\langle u\,v\,w\rangle$。  
+-  **晶面** 用圓括號 $(h\,k\,\ell)$ 表示，即 **米勒指數** ，由晶面在 $\boldsymbol a_{i}$ 各方向上截距的倒數確定。晶面族記為 $\{h\,k\,\ell\}$。  
+- 晶面族 $(h\,k\,\ell)$ 的 **面間距** 與倒易向量 $\boldsymbol G_{hkl}$ 的關係為：
+
+$$
+\boldsymbol G_{hkl} = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}
+$$
+
+$$
+d_{hkl} = \frac{2\pi}{|\boldsymbol G_{hkl}|}
+$$
+
+對於 **立方晶格** ，$a_{1}=a\,\hat x$ 等，因而 $d_{hkl}= a/\sqrt{h^{2}+k^{2}+\ell^{2}}$。
+
+ **六方晶格** 常採用米勒–布拉菲指數 $(h\,k\,i\,\ell)$，其中 $i=-(h+k)$，以明確體現基面的對稱性。
+
+---
+
+### 10.1.6 衍射：布拉格、勞厄與埃瓦爾德的等價描述
+
+彈性散射滿足 $|\boldsymbol k|=|\boldsymbol k'|$，轉移的晶體動量對應的波向量 $\Delta\boldsymbol k=\boldsymbol k'-\boldsymbol k$ 等於某個倒易向量：
+
+$$
+\Delta \boldsymbol k = \boldsymbol G
+$$
+
+實空間中的 **布拉格條件** 為：
+
+$$
+2 d_{hkl}\,\sin\theta = n\,\lambda
+$$
+
+$k$ 空間的 **勞厄條件** 正是 $\boldsymbol k'-\boldsymbol k=\boldsymbol G$。 **埃瓦爾德球** 的作法是：以 $\boldsymbol k$ 的起點為球心，畫半徑為 $|\boldsymbol k|=2\pi/\lambda$ 的球；球面上的倒易格點給出允許的反射。
+
+ **結構因子** 包含基元的資訊：
+
+$$
+F(\boldsymbol G) = \sum_{j=1}^{m} f_{j}\,e^{-i\boldsymbol G\cdot \boldsymbol\tau_{j}}
+$$
+
+其中 $f_{j}$ 為原子形狀因子。衍射強度為
+
+$$
+I(\boldsymbol G) \propto |F(\boldsymbol G)|^{2}
+$$
+
+晶格求和要求 $\boldsymbol G$ 屬於倒晶格；$F$ 決定相應反射是否真正出現。
+
+---
+
+### 10.1.7 常見結構的選擇定則
+
+-  **簡單立方（sc）** ：在 $(0,0,0)$ 處有一個原子：
+
+$$
+F(\mathbf G)=f,\quad \text{無系統消光}
+$$
+
+-  **體心立方（bcc）** ，基元為 $\{(0,0,0),\,(\tfrac12,\tfrac12,\tfrac12)a\}$：
+
+$$
+F = f\left[1 + e^{-i\pi(h+k+\ell)}\right] = 
+\begin{cases}
+2f & h+k+\ell\ \text{偶數} \\
+0 & h+k+\ell\ \text{奇數}
+\end{cases}
+$$
+
+-  **面心立方（fcc）** ，基元為 $\{(0,0,0),\,(\tfrac12,\tfrac12,0)a,\,(\tfrac12,0,\tfrac12)a,\,(0,\tfrac12,\tfrac12)a\}$：
+
+$$
+F = f\left[1 + e^{-i\pi(h+k)} + e^{-i\pi(h+\ell)} + e^{-i\pi(k+\ell)}\right] =
+\begin{cases}
+4f & h,k,\ell\ \text{全為偶數或全為奇數} \\
+0 & \text{其他情況}
+\end{cases}
+$$
+
+-  **NaCl（岩鹽結構）** ：面心立方晶格，雙組分基元為 $\{(0,0,0)\ \text{Na},\ (\tfrac12,\tfrac12,\tfrac12)a\ \text{Cl}\}$。於是
+
+$$
+F = f_{\mathrm{Na}} + f_{\mathrm{Cl}}\,e^{-i\pi(h+k+\ell)}
+$$
+
+強度隨 $h+k+\ell$ 的奇偶性變化，變化幅度取決於 $f$ 的差異。
+
+-  **鑽石** ：面心立方晶格，基元為 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$。附加相位使其在面心立方消光規則之外還有額外的系統消光。
+
+---
+
+### 10.1.8 fcc–bcc 對偶與高對稱 $k$ 點
+
+若 $\{\boldsymbol a_{i}\}$ 是  **fcc**  原始基底向量，則倒易基底向量 $\{\boldsymbol b_{i}\}$ 在 $k$ 空間生成  **bcc**  晶格，反之亦然。常用標記如下：
+
+-  **fcc 布里淵區** ：$\Gamma$ 為中心，$X$ 位於正方形面中心，$L$ 位於六邊形面中心，$W$ 為頂點。  
+-  **bcc 布里淵區** ：$\Gamma$、$H$、$N$、$P$ 點。  
+
+能帶極值和簡併常出現在這些位置；實驗中透過角分辨光電子能譜（ARPES）和量子振盪研究相關電子結構。
+
+---
+
+### 10.1.9 實空間與倒空間的幾何速查
+
+-  **體積關係** ：
+
+$$
+V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast} = (2\pi)^{3}
+$$
+
+-  **晶面法向** ：倒易向量 $\boldsymbol G_{hkl}$  **垂直** 於 $(hkl)$ 晶面。  
+- 晶面 $(h_{1}k_{1}\ell_{1})$ 與 $(h_{2}k_{2}\ell_{2})$ 的 **夾角** 為：
+
+$$
+\cos\theta = \frac{\boldsymbol G_{1}\cdot \boldsymbol G_{2}}{|\boldsymbol G_{1}|\,|\boldsymbol G_{2}|}
+$$
+
+- 再次列出 **面間距** 關係：$d_{hkl}=2\pi/|\boldsymbol G_{hkl}|$。
+
+---
+
+### 10.1.10 簡短例題
+
+ **(a) bcc 的倒晶格是 fcc**   
+從邊長為 $a$ 的 bcc 慣用立方晶胞及原始基底向量 $\boldsymbol a_{1}=\tfrac a2(\hat y+\hat z-\hat x)$ 等出發，計算 $\boldsymbol b_{i}$，並證明倒易格點位於邊長為 $4\pi/a$ 的立方晶胞的頂點與面心。
+
+ **(b) 立方晶格的 $d_{hkl}$**   
+利用 $\boldsymbol G_{hkl}=(2\pi/a)(h\,\hat x + k\,\hat y + \ell\,\hat z)$ 證明 $d_{hkl}=a/\sqrt{h^{2}+k^{2}+\ell^{2}}$。布拉格條件給出 $2d\sin\theta=n\lambda$；給定 $\lambda/a$，求 $(111)$ 晶面的一級反射角。
+
+ **(c) fcc 的系統消光**   
+計算 $(100)$、$(110)$、$(111)$ 晶面族的 $F$，確認只有指數「全偶」或「全奇」的反射保留。
+
+ **(d) 鑽石的消光**   
+鑽石滿足 $F \propto \left[1 + e^{-i\pi(h+k+\ell)/2}\right]\times(\text{面心立方因子})$。證明 $(222)$ 消光而 $(111)$ 允許，與 X 射線衍射表一致。
+
+ **(e) 埃瓦爾德構圖**   
+對於 $\lambda=1.54\ \text{\AA}$（Cu K$\alpha$），畫一個半徑為 $2\pi/\lambda$、經過面心立方倒晶格原點的圓，並在給定晶體取向下標出圓周上對應衍射反射的 $\boldsymbol G$ 向量。
+
+---
+
+### 10.1.11 常見誤區
+
+-  **混淆晶格與結構** ：晶格是週期性的骨架， **基元** 在其上放置原子。  
+-  **倒空間單位出錯** ：晶體學常採用不含 $2\pi$ 的約定；這裡採用 $a_{i}\cdot b_{j}=2\pi\delta_{ij}$。選定一種約定並始終保持一致。  
+-  **混淆米勒指數與晶向指數** ：$(hkl)$ 表示晶面，$[uvw]$ 表示晶向。立方晶格中 $(hkl)\perp [hkl]$，但一般晶格不滿足此關係。  
+-  **忘記形狀因子** ：即使 $F\neq 0$，$f_{j}(\boldsymbol G)$ 也會隨 $|\boldsymbol G|$ 增大而衰減，從而改變強度分佈。  
+-  **混淆布里淵區表示** ：「簡約區」方案把 $k$ 折回第一布里淵區；若能帶似乎重複，可能混用了擴展區圖與簡約區圖。
+
+---
+
+### 10.1.12 基礎習題
+
+- 從 $\boldsymbol a_{i}$ 推導倒易基底向量 $\boldsymbol b_{i}$，並證明 $V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast}=(2\pi)^{3}$  
+- 利用 $\boldsymbol G$ 的幾何關係，證明勞厄條件 $\boldsymbol k'-\boldsymbol k=\boldsymbol G$ 與布拉格定律 $2d\sin\theta=n\lambda$ 等價  
+- 計算 NaCl 和 CsCl 的結構因子與選擇定則，比較兩者哪些 $(hkl)$ 反射消失  
+- 對晶格常數為 $a$ 和 $c$ 的六方晶格，寫出 $\boldsymbol b_{i}$，並用 $(h\,k\,i\,\ell)$ 表示 $d_{hkl}$  
+- 給定 $a$，在笛卡爾 $k$ 座標中確定 fcc 的高對稱點 $\Gamma$、$X$、$L$、$W$，並畫出第一布里淵區
+
+---
+
+## 10.2 晶格振動與聲子
+
+晶體中的原子並非靜止不動，而是在不斷振動。這些集體振動量子化後就是 **聲子** ，即晶格簡正模的量子。本節從一維原子鏈推廣到完整的三維動力學矩陣，區分 **聲學** 支與 **光學** 支，計算色散、群速度和態密度，然後進行量子化。我們還討論熱輸運、非諧性、用格呂奈森參數描述的熱膨脹、電子–聲子耦合，以及中子、拉曼和紅外實驗中的典型訊號。
+
+---
+
+### 10.2.1 諧性晶格：基本設定
+
+用 $\boldsymbol R$ 標記布拉菲格點，$\kappa$ 標記晶胞內的基元原子。原子 $(\boldsymbol R,\kappa)$ 的位移為 $\boldsymbol u_{\kappa}(\boldsymbol R,t)$。在 **諧近似** 下，位能是位移的二次型：
+
+$$
+U = \tfrac{1}{2}\sum_{\boldsymbol R\kappa\alpha}\sum_{\boldsymbol R'\kappa'\beta}
+\Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa\alpha}(\boldsymbol R)\,u_{\kappa'\beta}(\boldsymbol R')
+$$
+
+其中 $\Phi$ 為 **力常數** ，$\alpha,\beta\in\{x,y,z\}$。牛頓方程為：
+
+$$
+M_{\kappa}\,\ddot u_{\kappa\alpha}(\boldsymbol R,t) = -\sum_{\boldsymbol R'\kappa'\beta} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa'\beta}(\boldsymbol R',t)
+$$
+
+嘗試平面波解 $u_{\kappa\alpha}(\boldsymbol R,t)=M_{\kappa}^{-1/2}e_{\kappa\alpha}(\boldsymbol q)\,e^{i(\boldsymbol q\cdot \boldsymbol R - \omega t)}$，得到本徵值問題
+
+$$
+\sum_{\kappa'\beta} D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q)\,e_{\kappa'\beta}(\boldsymbol q) = \omega^{2}(\boldsymbol q)\,e_{\kappa\alpha}(\boldsymbol q)
+$$
+
+其中 **動力學矩陣** 為
+
+$$
+D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q) = \frac{1}{\sqrt{M_{\kappa}M_{\kappa'}}}
+\sum_{\boldsymbol R} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R)\,e^{-i\boldsymbol q\cdot \boldsymbol R}
+$$
+
+每個晶胞有 $r$ 個原子時，共有 $3r$ 條分支：3 條聲學支在 $\boldsymbol q\to 0$ 時滿足 $\omega\to 0$，另有 $3r-3$ 條光學支。
+
+---
+
+### 10.2.2 一維單原子鏈：最簡單的例子
+
+質量為 $m$ 的原子由彈簧常數為 $K$ 的彈簧連接，晶格間距為 $a$。用 $u_{n}$ 表示格點 $n$ 的位移。運動方程為：
+
+$$
+m\,\ddot u_{n} = K\,(u_{n+1} - 2u_{n} + u_{n-1})
+$$
+
+代入試探解 $u_{n}=u_{0}e^{i(nka-\omega t)}$，得到色散關係
+
+$$
+\omega(k) = 2\sqrt{\frac{K}{m}}\;\left|\sin\frac{ka}{2}\right|
+$$
+
+主要結論：
+
+- 只有 **聲學** 支，在 $k=0$ 附近呈線性色散，聲速為 $v_{s}=a\sqrt{K/m}$  
+-  **布里淵區** 為 $-\pi/a<k\le \pi/a$；$\omega(k)$ 以 $2\pi/a$ 為週期  
+-  **群速度**  $v_{g}(k)=\partial\omega/\partial k$ 決定能量傳輸
+
+一維單支的 **態密度** 為：
+
+$$
+g(\omega) = \frac{L}{\pi}\,\frac{1}{|d\omega/dk|}
+$$
+
+因此在布里淵區邊界 $d\omega/dk\to 0$ 時，$g(\omega)$ 發散，形成范霍夫奇點。
+
+---
+
+### 10.2.3 一維雙原子鏈：聲學支與光學支
+
+兩種質量 $m_{1},m_{2}$ 交替排列，彈簧常數均為 $K$，包含兩個原子的晶胞長度為 $a$。只計最近鄰耦合時，兩條分支的色散為
+
+$$
+\omega^{2}(k) = K\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)
+\pm \sqrt{K^{2}\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)^{2} - \frac{4K^{2}}{m_{1}m_{2}}\sin^{2}\!\frac{ka}{2}}
+$$
+
+-  **負** 號對應 **聲學** 支，在 $k\to 0$ 時 $\omega\to 0$  
+-  **正** 號對應 **光學** 支，滿足 $\omega(k=0)=\sqrt{2K(1/m_{1}+1/m_{2})}$
+
+在 $k=0$ 處，聲學模中兩個原子 **同相** 運動，光學模中則 **反相** 運動。兩種質量不等時，區邊界處出現 **頻隙** 。
+
+---
+
+### 10.2.4 三維晶體：偏振與聲速
+
+對於 $r=1$（單原子布拉菲晶格），共有 3 條聲學支：一條 **縱向** 支（LA）和兩條 **橫向** 支（TA）。在 $\boldsymbol q=0$ 附近，它們是具有線性色散的 **聲波** ：
+
+$$
+\omega_{\text{LA}}(\boldsymbol q) \approx v_{L}|\boldsymbol q|,\qquad \omega_{\text{TA}}(\boldsymbol q) \approx v_{T}|\boldsymbol q|
+$$
+
+在立方晶體中沿立方軸傳播時，聲速與彈性常數及質量密度 $\rho$ 的關係為（連續介質極限）：
+
+$$
+v_{L} = \sqrt{\frac{C_{11}}{\rho}},\qquad v_{T} = \sqrt{\frac{C_{44}}{\rho}}
+$$
+
+更一般地，克里斯托費爾方程給出隨方向變化的聲速。
+
+當 $r>1$ 時，額外出現 $3r-3$ 條 **光學** 支，其在區中心附近的 $\boldsymbol q$ 色散通常較弱。若基元帶有異號電荷，一些光學模具有 **紅外活性** （見 §10.14）。
+
+---
+
+### 10.2.5 量子化：聲子是玻色子
+
+將每個簡正模 $(\boldsymbol q,s)$ 提升為量子諧振子：
+
+$$
+H = \sum_{\boldsymbol q,s} \hbar\omega_{\boldsymbol q s}\left(b^{\dagger}_{\boldsymbol q s} b_{\boldsymbol q s} + \tfrac{1}{2}\right)
+$$
+
+其中 $[b_{\boldsymbol q s},b^{\dagger}_{\boldsymbol q' s'}]=\delta_{\boldsymbol q\boldsymbol q'}\delta_{ss'}$。位移算符為
+
+$$
+\boldsymbol u_{\kappa}(\boldsymbol R) = \sum_{\boldsymbol q,s} \sqrt{\frac{\hbar}{2M_{\kappa} N \omega_{\boldsymbol q s}}}\;
+\left[\boldsymbol e_{\kappa s}(\boldsymbol q)b_{\boldsymbol q s} e^{i\boldsymbol q\cdot \boldsymbol R} + \boldsymbol e_{\kappa s}^{\ast}(\boldsymbol q)b^{\dagger}_{\boldsymbol q s} e^{-i\boldsymbol q\cdot \boldsymbol R}\right]
+$$
+
+平衡時，聲子佔據數服從化學勢為 $\mu=0$ 的玻色統計。
+
+---
+
+### 10.2.6 熱容與德拜模型回顧
+
+單位體積的聲子總能量為 $U/V=\sum_{s}\int d\omega\,\hbar\omega\,g_{s}(\omega)\,n_{B}(\omega)$，其中 $n_{B}=(e^{\beta\hbar\omega}-1)^{-1}$。低 $T$ 下的聲學模 $\Rightarrow$ 導致三維的 **德拜定律**  $C_{V}\propto T^{3}$；高 $T$ 下 $\Rightarrow$ 得到杜隆–珀蒂結果 $3Nk_{B}$（完整德拜積分見 §9.6）。當熱能足以激發光學模時，熱容會出現類似肖特基異常的隆起。
+
+---
+
+### 10.2.7 熱輸運：動理學中的 $\kappa$
+
+晶體中的熱量主要由聲學聲子攜帶。動理學給出
+
+$$
+\kappa = \frac{1}{3}\sum_{s}\int d\omega\; g_s(\omega)\,C_{\omega s}\,v_{g}^{2}(\omega,s)\,\tau(\omega,s)
+$$
+
+其中 g 表示單位體積態密度，$C_{\omega s}=\hbar\omega\,\partial n_{B}/\partial T$ 為各模的熱容，$v_{g}=\partial\omega/\partial q$ 為群速度，$\tau$ 為壽命。散射渠道包括：
+
+-  **聲子–聲子** 非諧散射：分為守恆晶體動量的 **正常（N）** 過程，以及滿足 $\boldsymbol q_{1}+\boldsymbol q_{2}=\boldsymbol q_{3}+\boldsymbol G$、使熱流衰減的 **倒逆（U）** 過程  
+-  **邊界** 散射，在奈米尺度或極低 $T$ 時佔主導  
+-  **同位素與無序** 散射  
+- 金屬中的 **聲子–電子** 和 **聲子–缺陷** 散射
+
+實驗中，$\kappa(T)$ 常在極低 $T$ 下按 $\sim T^{3}$ 上升（彈道或邊界限制），達到峰值後，在高 $T$ 下大致按 $1/T$ 下降（倒逆過程限制）。
+
+---
+
+### 10.2.8 非諧性、頻移與壽命
+
+真實晶體並非完全諧性。三次項和四次項會導致：
+
+-  **熱膨脹** ，可用準諧效應描述  
+-  **頻率重整化**  $\omega(\boldsymbol q,T)$  
+- 三聲子和四聲子散射導致的 **有限壽命**  $\tau_{\boldsymbol q s}$
+
+一個方便的宏觀量是 **格呂奈森參數** ：
+
+$$
+\gamma_{\boldsymbol q s} \equiv -\frac{\partial \ln \omega_{\boldsymbol q s}}{\partial \ln V},\qquad
+\gamma \equiv \frac{\sum_{\boldsymbol q s} \gamma_{\boldsymbol q s} C_{\boldsymbol q s}}{\sum_{\boldsymbol q s} C_{\boldsymbol q s}}
+$$
+
+體積 **熱膨脹係數**  $\alpha$ 與 $\gamma$ 和體積模數 $B$ 的關係為：
+
+$$
+\alpha = \frac{\gamma\,C_{V}}{B\,V}
+$$
+
+這是準諧近似的結果，對許多簡單固體都相當有效。
+
+---
+
+### 10.2.9 電子–聲子耦合：電阻率與配對背後的振動
+
+位移調製電子漢彌爾頓量 $H_{e}$，產生交互作用 $H_{e\text{-}ph}$。兩種典型形式是：
+
+-  **形變勢** （短程）：$\delta V \sim \Xi\,\nabla\cdot \boldsymbol u$ 與 LA 聲子耦合  
+-  **弗勒利希耦合** （長程極性）：離子晶體中的 LO 聲子產生宏觀電場，與電子強烈耦合
+
+其結果包括：
+
+-  **金屬電阻率** ：低 $T\ll \Theta_{D}$ 下滿足布洛赫–格呂奈森定律 $\rho \propto T^{5}$；高 $T$ 下大致為 $\rho\propto T$  
+-  **超導電性** ：虛聲子交換提供有效吸引，在費米面附近可能克服庫侖排斥，形成 BCS 配對
+
+---
+
+### 10.2.10 不穩定性與軟模：一維佩爾斯機制
+
+一維金屬的電子響應函數在 $q=2k_{F}$ 處出現峰值。電子–聲子耦合使該波向量的聲子軟化；低於臨界 $T$ 時，$\omega(2k_{F})\to 0$  **軟模** 驅動波向量為 2kF 的晶格畸變，在半滿情況下使週期加倍（二聚化），並打開能隙：這就是 **佩爾斯轉變** 。高維中的電荷密度波和結構轉變也遵循類似思路。
+
+---
+
+### 10.2.11 聲子的實驗特徵
+
+-  **非彈性中子散射（INS）** ：測量動態結構因子 $S(\boldsymbol q,\omega)$，繪出完整的 $\omega(\boldsymbol q)$ 及本徵向量  
+-  **拉曼光譜** ：探測區中心光學聲子，受對稱性選擇定則約束  
+-  **紅外（IR）吸收與反射** ：極性晶體中的紅外活性光學聲子在 $\Gamma$ 處出現 LO–TO 分裂，滿足利丹–薩克斯–特勒關係  
+-  **布里淵光散射** ：探測長波聲學聲子，頻率在 GHz 範圍  
+- 隨 $T$ 變化的 **比熱** 與 **熱導率** ：反映態密度和散射的宏觀熱力學特徵
+
+---
+
+### 10.2.12 簡短例題
+
+ **(a) 單原子鏈的群速度**   
+從 $\omega(k)=2\sqrt{K/m}\,\left|\sin(ka/2)\right|$ 出發計算 $v_{g}(k)$，並證明在 $k\to 0^{+}$ 時 $v_{g}\to v_{s}=a\sqrt{K/m}$。
+
+ **(b) 態密度的邊緣奇點**   
+利用 $g(\omega)=(L/\pi)/|d\omega/dk|$ 證明一維態密度在 $k=\pi/a$ 處發散。
+
+ **(c) $\Gamma$ 處的雙原子鏈頻隙**   
+計算雙原子鏈的 $\omega_{\text{opt}}(0)$ 和 $\omega_{\text{ac}}(0)$，並解釋其本徵向量。
+
+ **(d) 德拜 $T^{3}$**   
+假設三條聲學支在德拜截止波向量 $q_{D}$ 以下具有線性色散，透過積分求出低 $T$ 下的 $C_{V}\propto T^{3}$。
+
+ **(e) 倒逆過程的閾值**   
+證明倒逆過程要求 $\boldsymbol q_{1}+\boldsymbol q_{2}$ 超出第一布里淵區；對德拜波向量為 $q_{D}$ 的簡單立方晶格，估計這種 $\boldsymbol q$ 開始獲得熱佔據的最低溫度尺度。
+
+ **(f) 由 $\gamma$ 求熱膨脹**   
+從 $F(T,V)=U_{\text{el}}(V)+\sum_{\boldsymbol q s}\left[\tfrac{1}{2}\hbar\omega_{\boldsymbol q s} + k_{B}T\ln(1-e^{-\beta\hbar\omega_{\boldsymbol q s}})\right]$ 出發，證明準諧近似中 $\alpha=\gamma C_{V}/(BV)$。
+
+---
+
+### 10.2.13 常見誤區
+
+-  **「光學模必須有離子。」**  並非如此：只需每個晶胞有 $r>1$ 個原子。 **紅外活性** 需要極性，光學聲子本身不需要  
+-  **混淆相速度與群速度** ：能量輸運由 $v_{g}=\partial\omega/\partial k$ 決定，而非 $\omega/k$  
+-  **忘記選擇定則** ：拉曼只能看到拉曼活性對稱模；紅外只能看到紅外活性模；中子與核位置及磁矩耦合  
+-  **混淆布里淵區表示** ：簡約區與擴展區圖改變分支的顯示位置，但不改變物理  
+-  **過度使用諧近似** ：熱輸運和膨脹需要非諧性；建立 $\kappa(T)$ 模型時應區分 N 與 U 過程
+
+---
+
+### 10.2.14 基礎習題
+
+- 推導一維單原子鏈和雙原子鏈的色散，並在第一布里淵區內畫圖  
+- 對雙原子立方基元及最近鄰中心力建立 $6\times 6$ 動力學矩陣，求出沿高對稱線的 $\omega(\boldsymbol q)$  
+- 計算 $d=1,2,3$ 中德拜模型的 $g(\omega)$，並證明相應的低 $T$ 比熱標度  
+- 利用馬蒂森定則，把邊界、同位素及倒逆散射率合併，擬合一條模擬 $\kappa(T)$ 曲線；確定峰值溫度隨樣品尺寸的標度  
+- 對給定 $v_{s}$ 和 $k_{F}$ 的金屬，估計布洛赫–格呂奈森溫度及 $T^{5}$ 定律的交叉溫度
+
+---
+
+## 10.3 德魯德–索末菲金屬理論
+
+金屬在原子尺度看似複雜，但電子的運動卻相當有規律。 **德魯德** 在 1900 年提出最初的動理學圖像：把古典電子看成偶爾碰撞的帶電小球氣體。 **索末菲** 在 1928 年用費米–狄拉克統計修正了其中的主要缺陷。兩者至今仍支撐著大量金屬物理：直流和交流電導率、霍爾效應、磁輸運、比熱、包立順磁性和維德曼–弗蘭茲定律。
+
+---
+
+### 10.3.1 德魯德模型：單一弛豫時間的廣泛用途
+
+假設傳導電子的有效質量為 $m^{\ast}$、電荷為 $-e$，並以平均時間間隔 $\tau$ 發生使運動隨機化的碰撞。
+
+在場 $(\boldsymbol E,\boldsymbol B)$ 中，平均速度 $\boldsymbol v$ 的 **運動方程（持續驅動）** 為：
+
+$$
+m^{\ast}\,\frac{d\boldsymbol v}{dt} = -e\left(\boldsymbol E + \boldsymbol v\times \boldsymbol B\right) - \frac{m^{\ast}\boldsymbol v}{\tau}
+$$
+
+- 在 $B=0$、電流密度為 $\boldsymbol J = -ne\,\boldsymbol v$ 時， **直流電導率** 為：
+
+$$
+\sigma_{0} = \frac{ne^{2}\tau}{m^{\ast}},\qquad \rho_{0} \equiv \frac{1}{\sigma_{0}} = \frac{m^{\ast}}{ne^{2}\tau}
+$$
+
+定義 **遷移率**  $\mu \equiv e\tau/m^{\ast}$，於是 $\sigma_{0}=ne\mu$。
+
+- 對於隨時間按 $\propto e^{-i\omega t}$ 變化的場， **交流（德魯德）電導率** 為：
+
+$$
+\sigma(\omega) = \frac{\sigma_{0}}{1 - i\omega\tau}
+$$
+
+實部是寬度為 $1/\tau$ 的勞侖茲線形；虛部在正頻率下為正，並在 $\omega\sim 1/\tau$ 附近達到峰值。
+
+-  **電漿頻率** （自由電子光學響應的特徵頻率）：
+
+$$
+\omega_{p}^{2} = \frac{ne^{2}}{\varepsilon_{0} m^{\ast}}
+$$
+
+當 $\omega\ll\omega_{p}$ 時，金屬反射；當 $\omega>\omega_{p}$ 時，其行為類似可透光的介電質。
+
+- 良導體極限（$\omega\tau\ll 1$）下的 **趨膚深度** 為：
+
+$$
+\delta = \sqrt{\frac{2}{\mu_{0}\,\omega\,\sigma_{0}}}
+$$
+
+---
+
+### 10.3.2 霍爾效應與電導率張量
+
+當 $\boldsymbol B = B\hat z$ 時，德魯德解給出電導率張量
+
+$$
+\sigma = 
+\begin{pmatrix}
+\dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & -\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & 0 \\
+\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & 0 \\
+0 & 0 & \sigma_{0}
+\end{pmatrix},
+\qquad
+\omega_{c} \equiv \frac{eB}{m^{\ast}}
+$$
+
+求逆得到電阻率張量。兩個重要結果如下：
+
+-  **霍爾係數** （弱場）：
+
+$$
+R_{H} \equiv \frac{E_{y}}{J_{x}B} = -\,\frac{1}{ne}
+$$
+
+-  **單帶、各向同性** 德魯德模型的 **磁阻** 為 **零** ：儘管 $\sigma_{xx}$ 隨磁場減小，仍有 $\rho_{xx}(B)=\rho_{0}$，因為張量求逆時磁場效應抵消。真實材料由於多能帶、各向異性或 $\tau(\boldsymbol k)$ 的變化而具有有限磁阻。
+
+---
+
+### 10.3.3 德魯德熱輸運與維德曼–弗蘭茲定律預覽
+
+引入 $v_{F}$ 後，簡單動理學估計給出電子熱導率 $\kappa_{e}\sim \tfrac{1}{3} C_{e} v_{F}^{2}\tau$。德魯德模型樸素地預測 **維德曼–弗蘭茲比值** 為
+
+$$
+\frac{\kappa_{e}}{\sigma T} \equiv L \stackrel{?}{=}\text{const}
+$$
+
+但只有採用 **索末菲** 統計，才能得到正確的 **勞侖茲數** ：
+
+$$
+L_{0} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2}
+$$
+
+在對電子氣進行量子化之後，我們將嚴格推導這一結果。
+
+---
+
+### 10.3.4 索末菲自由電子氣的修正
+
+電子是 **費米子** 。把 $N$ 個電子放入體積為 $V$ 的盒子中，將動量態依次填滿到 **費米球** 邊界。
+
+-  **費米波向量與費米能** （自旋簡併度 $g=2$）：
+
+$$
+k_{F} = \left(3\pi^{2} n\right)^{1/3},\qquad \epsilon_{F} = \frac{\hbar^{2} k_{F}^{2}}{2 m^{\ast}},\qquad v_{F}=\frac{\hbar k_{F}}{m^{\ast}}
+$$
+
+- 拋物線能帶的單位體積 **態密度** ：
+
+$$
+g(\epsilon) = \frac{1}{2\pi^{2}}\left(\frac{2m^{\ast}}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}
+$$
+
+在低溫 $T\ll T_{F}$ 下，只有 $\epsilon_{F}$ 附近寬度為 $\sim k_{B}T$ 的薄殼參與熱激發。這解釋了古典德魯德熱力學的大多數失敗。
+
+---
+
+### 10.3.5 電子比熱：與 $T$ 成正比
+
+利用索末菲展開，
+
+$$
+C_{e} = \gamma\,T,\qquad \gamma = \frac{\pi^{2}}{3}\,k_{B}^{2}\,g(\epsilon_{F})
+$$
+
+與 $T$ 成正比的結果符合實驗；室溫下它遠小於 $3n_{\mathrm{atom}}k_{B}$（其中 n_atom 為原子數密度），因為只有比例約為 $\sim (T/T_{F})$ 的電子參與熱激發。
+
+---
+
+### 10.3.6 維德曼–弗蘭茲定律的正確推導
+
+結合費米統計的動理學給出
+
+$$
+\kappa_{e} = \frac{1}{3} v_{F}^{2}\tau\,C_{e}
+$$
+
+結合 $\sigma_{0}=ne^{2}\tau/m^{\ast}$ 與 $n=\int^{\epsilon_{F}} g(\epsilon)\,d\epsilon$，在彈性散射且 $\tau$ 不依賴能量時，得到
+
+$$
+\frac{\kappa_{e}}{\sigma T} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2} \equiv L_{0}
+$$
+
+$L$ 偏離 $L_{0}$，意味著可能存在非彈性散射、$\tau$ 對能量的強依賴，或額外的載熱粒子（聲子、磁振子）。
+
+---
+
+### 10.3.7 包立順磁性與朗道抗磁性概述
+
+- 磁場 $B$ 引起自旋極化，產生 **包立順磁性** ：
+
+$$
+\chi_{\text{Pauli}} = \mu_{0}\,\mu_{B}^{2}\,g(\epsilon_{F})
+$$
+
+其值較小，在最低階近似中與 $T$ 無關。
+
+- 量子化磁場中的軌道運動產生 **朗道抗磁性** ：
+
+$$
+\chi_{\text{Landau}} = -\frac{1}{3}\,\chi_{\text{Pauli}}
+$$
+
+此式適用於自由電子氣。真實金屬的總 $\chi$ 還包含芯電子抗磁性，以及可能的范弗萊克項。
+
+---
+
+### 10.3.8 熱電位與莫特公式
+
+塞貝克係數 $S$ 描述溫度梯度產生的電壓。簡單古典德魯德模型無法給出正確的低溫結果；採用費米統計得到
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+這個 **莫特公式** 使 $S$ 成為探測 $\epsilon_{F}$ 附近粒子–電洞不對稱性及散射的靈敏工具。
+
+---
+
+### 10.3.9 德魯德模型的不足與索末菲修正
+
+-  **熱容** ：古典德魯德模型預測 $C_{e}\sim Nk_{B}$，而實驗顯示 $C_{e}\propto T\ll Nk_{B}$；索末菲理論修正了這一點。  
+-  **霍爾符號** ：單帶德魯德模型給出電子的 $R_{H}=-1/ne$。許多材料因電洞型費米面或多帶補償而具有 **正** 的 $R_{H}$。  
+-  **磁阻** ：單帶德魯德模型中為零，但真實體系的各向異性、多口袋或 $\tau(\boldsymbol k)$ 可產生有限磁阻。  
+-  **高頻光學** ：德魯德模型遺漏帶間吸收和束縛電荷貢獻；需加入勞侖茲振子，才能得到更真實的 $\varepsilon(\omega)$。
+
+---
+
+### 10.3.10 與能帶結構的聯繫
+
+將 $m^{\ast}$ 替換為由費米面附近色散 $\epsilon(\boldsymbol k)$ 得到的 **能帶有效質量** ：
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{\hbar^{2}}\left.\frac{\partial^{2}\epsilon(\boldsymbol k)}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{F}}
+$$
+
+各向異性的 $m^{\ast}$ 使 $\sigma$ 即使在 $B=0$ 時也是張量。實際輸運採用含 $\tau(\boldsymbol k)$、在費米面附近線性化的 **波茲曼** 理論（見 §10.7）。
+
+---
+
+### 10.3.11 光學求和規則與譜權重
+
+在拋物線單帶德魯德模型中，電導率的積分譜權重與載流子密度有關：
+
+$$
+\int_{0}^{\infty} d\omega\;\mathrm{Re}\,\sigma(\omega) = \frac{\pi ne^{2}}{2 m^{\ast}}
+$$
+
+在關聯體系中，德魯德權重可能受到抑制，並轉移到中紅外的類似帶間躍遷特徵；這通常被視為準粒子權重減小的訊號。
+
+---
+
+### 10.3.12 簡短例題
+
+ **(a) 可靠的數值估算**   
+取 $n=8.5\times 10^{28}\ \mathrm{m^{-3}}$、$\tau=3\times 10^{-14}\ \mathrm{s}$、$m^{\ast}=m_{e}$。計算 $\sigma_{0}$、$\rho_{0}$、$\omega_{p}$，以及 $\omega/2\pi=10\ \mathrm{GHz}$ 時的 $\delta$。
+
+ **(b) 霍爾條**   
+樣品厚度為 $t$、寬度為 $w$，電流 $I$ 沿 $x$ 方向，磁場為 $B\hat z$。證明德魯德單帶極限下霍爾電壓的大小為 $V_{H} = I\,B/(ne\,t)$。用 (a) 中的銅材料參數，將 $V_{H}$ 表示為電流、磁場和厚度的函數。
+
+ **(c) 索末菲 $C_{e}$**   
+利用索末菲展開推導 $C_{e}=\gamma T$，並用 $n$ 和 $m^{\ast}$ 表示 $\gamma$。
+
+ **(d) 從波茲曼方程推導維德曼–弗蘭茲定律**   
+在線性化波茲曼方程中考慮彈性雜質散射，證明當 $\tau(\epsilon)$ 在 $\epsilon_{F}$ 附近為常數時有 $L=L_{0}$。
+
+ **(e) 莫特熱電位的符號**   
+假設 $\epsilon_{F}$ 附近有 $\sigma(\epsilon)\propto \epsilon^{s}$，證明 $S = -(\pi^{2}/3)(k_{B}^{2}T/e)\,s/\epsilon_{F}$，並解釋 $S>0$ 和 $S<0$ 的含義。
+
+---
+
+### 10.3.13 常見誤區
+
+-  **忘記有效質量** ：能帶輸運公式應使用能帶結構給出的 $m^{\ast}$，而不能直接使用裸電子質量 $m_{e}$。  
+-  **從 $\sigma_{xx}$ 判斷磁阻** ：單帶德魯德模型中，即使 $\sigma_{xx}$ 減小，實測 $\rho_{xx}$ 仍可與 $B$ 無關；必須對張量求逆。  
+-  **認為 $R_{H}=-1/ne$ 普遍成立** ：多帶補償和翹曲費米面可使符號反轉或數值減小。  
+-  **過度使用常數 $\tau$** ：能量或角度依賴的散射會改變 $L$、$S$ 和磁阻；離開低 $T$ 的雜質散射主導區後要謹慎。  
+-  **混淆光學質量與輸運質量** ：各向異性或交互作用體系中的迴旋質量、熱力學質量和能帶質量可以不同。
+
+---
+
+## 10.4 布洛赫定理與能帶結構
+
+週期勢把複雜的原子結構化為清晰的動量空間規律。核心是 **布洛赫定理** ：晶體中的電子波函數是平面波乘以具有晶格週期性的包絡。由此，布里淵區邊界會打開能隙，色散 $E_{n}(\boldsymbol k)$ 決定速度與有效質量，而「近自由電子」和「緊束縛」只是從相反極限描述同一套物理。
+
+![價帶與導帶的示意圖，兩者由一段禁止的能量區間隔開。能量隨晶體動量週期性變化。](/images/diagrams/band-gap.svg)
+
+---
+
+### 10.4.1 布洛赫態與中心方程
+
+對於週期勢 $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$ 中的單個電子，
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R)=u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+按倒易向量 $\boldsymbol G$ 展開晶格週期部分：
+
+$$
+u_{n\boldsymbol k}(\boldsymbol r) = \sum_{\boldsymbol G} c_{n}(\boldsymbol k+\boldsymbol G)\,e^{i\boldsymbol G\cdot \boldsymbol r}
+$$
+
+並將勢展開為 $V(\boldsymbol r)=\sum_{\boldsymbol G} U_{\boldsymbol G}\,e^{i\boldsymbol G\cdot \boldsymbol r}$。代入薛丁格方程，得到 **中心方程** 
+
+$$
+\left[\frac{\hbar^{2}}{2m}\,|\boldsymbol k+\boldsymbol G|^{2} - E\right] c(\boldsymbol k+\boldsymbol G) + \sum_{\boldsymbol G'} U_{\boldsymbol G-\boldsymbol G'}\,c(\boldsymbol k+\boldsymbol G') = 0
+$$
+
+這是關於平面波係數 $c$ 的無限維線性方程組。合理截斷後即可求出能帶。
+
+---
+
+### 10.4.2 區摺疊：簡約區與擴展區
+
+自由電子具有拋物線色散 $E=\hbar^{2}|\boldsymbol k|^{2}/2m$。引入晶格表示後，$\boldsymbol k$ 與 $\boldsymbol k+\boldsymbol G$ 具有相同的簡約波向量，但可屬於不同的能帶。可以採用：
+
+-  **擴展區** ：在 $k$ 空間中展開顯示 $E(\boldsymbol k)$，將能帶放在相鄰布里淵區中  
+-  **簡約區** ：將所有動量折回第一布里淵區；各副本成為以 $n$ 標記的不同 **能帶** 
+
+當 $V\neq 0$ 時，摺疊後原本簡併的態發生 **混合** ，在交叉處打開能隙。
+
+---
+
+### 10.4.3 布拉格反射產生能隙：2×2 示例
+
+在自由電子態 $\boldsymbol k$ 與 $\boldsymbol k'=\boldsymbol k-\boldsymbol G$ 簡併的區邊界，僅保留中心方程中的這兩個平面波。本徵值問題為
+
+$$
+\begin{pmatrix}
+\epsilon_{\boldsymbol k} & U_{\boldsymbol G} \\
+U_{\boldsymbol G}^{\ast} & \epsilon_{\boldsymbol k'}
+\end{pmatrix}
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+= E
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+$$
+
+其中 $\epsilon_{\boldsymbol q}=\hbar^{2}|\boldsymbol q|^{2}/2m$。在恰好滿足 $\epsilon_{\boldsymbol k}=\epsilon_{\boldsymbol k'}$ 的區邊界，兩條能量分裂為
+
+$$
+E_{\pm} = \epsilon_{0} \pm |U_{\boldsymbol G}|
+$$
+
+因此 **帶隙** 為
+
+$$
+E_{g} = 2\,|U_{\boldsymbol G}|
+$$
+
+這說明晶格勢在倒易向量 $\boldsymbol G$ 處的傅立葉分量越強，對應布里淵區平面上打開的能隙越大。
+
+---
+
+### 10.4.4 克羅尼格–彭尼模型：一維直觀圖像
+
+對於晶格常數為 $a$ 的一維週期性 δ 位能障陣列，色散滿足超越方程
+
+$$
+\cos(ka) = \cos(\alpha a) + \frac{P}{\alpha a}\,\sin(\alpha a)
+$$
+
+其中位能井內 $\alpha=\sqrt{2mE}/\hbar$，$P$ 表徵位能障強度。右端絕對值 $\le 1$ 的區域是 **允許能帶** ，絕對值超過 1 的區域是 **禁帶** 。調節 $P$，可以從近自由極限（$P\to 0$）連續過渡到緊束縛極限（$P\gg 1$）。
+
+---
+
+### 10.4.5 群速度、有效質量與態密度
+
+能帶色散不僅是圖像，其導數直接對應物理量：
+
+-  **群速度** 
+
+$$
+\boldsymbol v_{n}(\boldsymbol k) = \frac{1}{\hbar}\,\nabla_{\boldsymbol k} E_{n}(\boldsymbol k)
+$$
+
+- 極值附近的 **有效質量張量** 
+
+$$
+\left(m_{n}^{\ast}\right)^{-1}_{\alpha\beta} = \frac{1}{\hbar^{2}}\,\left.\frac{\partial^{2}E_{n}}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{0}}
+$$
+
+曲率 $\uparrow$ 意味著質量輕；曲率 $\downarrow$ 意味著質量重。價帶頂附近的負曲率意味著可用帶正電、質量為正的 **電洞** 描述輸運。
+
+- 三維單條自旋簡併能帶的 **態密度** 
+
+$$
+g(E) = \frac{1}{4\pi^{3}} \int_{E_{n}(\boldsymbol k)=E} \frac{dS_{k}}{|\nabla_{\boldsymbol k} E_{n}|}
+$$
+
+能量梯度為零的臨界點會產生范霍夫非解析行為；態密度是否發散取決於維數及臨界點類型，一般的三維極值點或鞍點會產生有限的尖點。
+
+---
+
+### 10.4.6 近自由電子與緊束縛：同一理論的兩個極限
+
+-  **近自由電子（NFE）** ：從拋物線出發，以微擾處理交叉處的能隙。在 $|U_{\boldsymbol G}| \ll \epsilon_{F}$ 時適用。  
+-  **緊束縛（TB）** ：從局域軌道出發，引入格點間躍遷 $t$；成鍵和反鍵組合形成能帶。當軌道緊湊、$t$ 相對於原子能級尺度較小時最適用。
+
+兩者都是布洛赫理論的極限。NFE 解釋簡單金屬的能隙形成和輕有效質量；TB 適於描述共價或離子固體的能帶形狀，是 §10.5 的重點，也與瓦尼爾函數密切相關。
+
+---
+
+### 10.4.7 $k\cdot p$ 方法：帶邊附近的局部展開
+
+在高對稱點 $\boldsymbol k_{0}$ 附近，將漢彌爾頓量展開為 $H(\boldsymbol k)\approx H(\boldsymbol k_{0})+\frac{\hbar}{m}\,(\boldsymbol k-\boldsymbol k_{0})\cdot (\boldsymbol p+\hbar\boldsymbol k_{0}) + \cdots$，其中波向量增量相對於該高對稱點定義。二階微擾給出
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{m}\delta_{\alpha\beta} + \frac{2}{m^{2}} \sum_{m\neq n} \frac{\operatorname{Re}\!\left[\langle n0|p_{\alpha}|m0\rangle \langle m0|p_{\beta}|n0\rangle\right]}{E_{n0}-E_{m0}}
+$$
+
+其中 $\{|m0\rangle\}$ 是 $\boldsymbol k_{0}$ 處的布洛赫態。這將有效質量與帶間矩陣元及對稱性選擇定則聯繫起來，例如半導體中的重電洞與輕電洞。
+
+---
+
+### 10.4.8 對稱性、簡併與自旋–軌道耦合
+
+- 晶體對稱性可保護高對稱 $k$ 點及線上的簡併；應變或外場破壞對稱性後，簡併會分裂。  
+-  **反演** 與 **時間反演** 共同保證帶自旋體系的克拉默斯二重簡併。  
+-  **自旋–軌道耦合（SOC）** 混合自旋與軌道特徵；反演對稱性破缺時可出現  **Rashba**  型分裂。這裡僅作概述，§10.11 將進一步討論拓撲。
+
+---
+
+### 10.4.9 費米面與輸運線索
+
+ **費米面** 是等能面 $E_{n}(\boldsymbol k)=\epsilon_{F}$。其曲率與連通性決定：
+
+- 迴旋質量及量子振盪，包括德哈斯–范阿爾芬效應和舒布尼科夫–德哈斯效應  
+- 各向異性電導率和霍爾效應，由費米面上的速度與壽命控制  
+- 可增強密度波不穩定性的嵌套向量
+
+布洛赫色散與散射時間共同構成 §10.7 輸運理論的基礎。
+
+---
+
+### 10.4.10 瓦尼爾函數：能帶的實空間表示
+
+對整個布里淵區的布洛赫態作么正變換，可得到局域在晶胞 $\boldsymbol R$ 附近的 **瓦尼爾函數**  $|n,\boldsymbol R\rangle$。在允許局域化的能帶子空間中，平滑規範並進一步最小化展寬可得到最大局域瓦尼爾函數；它們類似緊束縛軌道，適合建模、插值和計算實空間響應。§10.5 將繼續討論。
+
+---
+
+### 10.4.11 ARPES 與能帶測繪：如何觀察 $E(\boldsymbol k)$
+
+ **角分辨光電子能譜（ARPES）** 直接測量 $E(\boldsymbol k)$ 的已佔據部分。在二維材料中這一對應十分直接；三維體系則存在確定 $k_{z}$ 的困難。結合量子振盪和光學電導率，可重建真正決定輸運的低能能帶結構。
+
+---
+
+### 10.4.12 簡短例題
+
+ **(a) 單個傅立葉分量決定的帶隙**   
+取一維餘弦勢 $V(x)=2U_{G}\cos(Gx)$，其中 $G=2\pi/a$。在 $k=G/2$ 處將中心方程截斷為 2×2，證明 $E_{g}=2|U_{G}|$。
+
+ **(b) 能帶極小值附近的有效質量**   
+對於一維色散 $E(k)\approx E_{0}+\alpha k^{2}+\beta k^{4}$，求出 $m^{\ast}=\hbar^{2}/(2\alpha)$，並討論 $k^{4}$ 項如何改變態密度，卻不改變極小值處的 $m^{\ast}$。
+
+ **(c) 二維態密度奇點**   
+對於正方晶格緊束縛能帶 $E(\boldsymbol k)=-2t(\cos k_{x}a+\cos k_{y}a)$，找出鞍點，並證明 $g(E)$ 中存在對數型范霍夫奇點。
+
+ **(d) 區摺疊檢驗**   
+從自由電子拋物線出發，按 $\pm G$ 折回第一布里淵區。畫出簡併的位置，並標明 $U_{G}\neq 0$ 時哪些簡併被解除。
+
+ **(e) 直接帶隙半導體的 $k\cdot p$ 方法**   
+在具有反演對稱性的直接帶隙模型的 $\Gamma$ 點，說明相反宇稱的導帶態與價帶態允許動量矩陣元非零，因而允許線性於 $k$ 的帶間耦合；再證明非簡併導帶的能量和有效質量透過二階帶間耦合獲得修正。
+
+---
+
+### 10.4.13 常見誤區
+
+-  **混用簡約區與擴展區** ：應區分真實交叉與摺疊副本形成的交叉。  
+-  **把曲率等同於速度** ：速度是一階導數，而不是曲率；平帶 $\Rightarrow$ 大有效質量和慢載流子。  
+-  **忘記基元** ：選擇定則與帶隙大小取決於 **傅立葉分量**  $U_{\boldsymbol G}$，其中包含原子基元和成鍵資訊。  
+-  **認為處處都是拋物線** ：有效質量擬合只在極值附近適用；遠離極值後，非拋物性和各向異性很重要。  
+-  **忽略強 SOC** ：重元素或反演破缺晶體中的 SOC 會改變能帶順序與分裂，對拓撲性質尤為關鍵。
+
+---
+
+### 10.4.14 基礎習題
+
+- 從布洛赫展開推導中心方程，並對有限組 $\boldsymbol G$ 寫成矩陣本徵值問題  
+- 在法向為 $\boldsymbol G$ 的一般區平面上進行 2×2 開隙計算，得到 $E_{g}=2|U_{\boldsymbol G}|$  
+- 計算橢球等能面的 $m^{\ast}$ 張量，並將其與任意方向磁場下的迴旋質量聯繫起來  
+- 對含 δ 位能障的一維克羅尼格–彭尼模型，畫出多個 $P$ 下的允許能帶，指出 NFE 和 TB 極限  
+- 用蜂窩晶格上的簡單 TB 模型說明狄拉克錐如何出現，以及交錯子晶格勢如何打開質量能隙
+
+---
+
+## 10.5 緊束縛與瓦尼爾函數：從局域軌道到能帶
+
+當電子傾向於停留在原子附近時， **緊束縛（TB）** 是合適的描述。從局域的類原子軌道出發，允許電子在格點間躍遷，就得到形狀和對稱性由實空間化學環境決定的能帶。 **瓦尼爾函數** 是布洛赫能帶的正交正規實空間表示，非常適合建模、計算響應，以及加入外場或無序。本節從基礎構建 TB，引入多軌道和斯萊特–科斯特規則，用佩爾斯相位處理磁場，並說明瓦尼爾函數與極化及邊緣物理的聯繫，預覽 SSH 模型。
+
+---
+
+### 10.5.1 從軌道到布洛赫求和
+
+選取以晶胞 $\boldsymbol R$ 內基元位置 $\boldsymbol\tau_{\alpha}$ 為中心的軌道 $\{\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})\}$，其中 $\alpha$ 是軌道標記，例如 $s,p_{x},p_{y},p_{z}$。
+
+構造 **布洛赫和** 
+
+$$
+\varphi_{\alpha\boldsymbol k}(\boldsymbol r) = \frac{1}{\sqrt{N}} \sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\alpha})}\,\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})
+$$
+
+將本徵態展開為 $\psi_{n\boldsymbol k}=\sum_{\alpha} c_{n\alpha}(\boldsymbol k)\,\varphi_{\alpha\boldsymbol k}$。矩陣元為
+
+$$
+H_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,t_{\alpha\beta}(\boldsymbol R),\qquad
+S_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,s_{\alpha\beta}(\boldsymbol R)
+$$
+
+其中 **躍遷積分** 為 $t_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|H|\phi_{\beta\boldsymbol R}\rangle$， **重疊積分** 為 $s_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|\phi_{\beta\boldsymbol R}\rangle$。求解 **廣義** 本徵值問題
+
+$$
+H(\boldsymbol k)\,c_{n}(\boldsymbol k)=E_{n}(\boldsymbol k)\,S(\boldsymbol k)\,c_{n}(\boldsymbol k)
+$$
+
+在 **正交 TB**  中採用近似 $S=\mathbb I$。
+
+---
+
+### 10.5.2 一維單原子鏈：正交緊束縛
+
+每個格點一個軌道，晶格常數為 $a$，在位能為 $\varepsilon_{0}$，最近鄰躍遷為 $-t$。
+
+$$
+E(k)=\varepsilon_{0}-2t\cos(ka)
+$$
+
+帶寬為 $W=4|t|$。在 $k=0$ 處的極值附近，有效質量為
+
+$$
+\frac{1}{m^{\ast}}=\frac{1}{\hbar^{2}}\frac{\partial^{2}E}{\partial k^{2}}=\frac{2ta^{2}}{\hbar^{2}}
+$$
+
+$t$ 的符號決定能帶的 **曲率** ，以及哪一端對應成鍵或反鍵態。
+
+---
+
+### 10.5.3 雙原子鏈與 SSH 模型預覽
+
+每個晶胞有兩個格點：$A$ 位於 $0$，$B$ 位於 $a/2$，躍遷 $t_{1}$ 與 $t_{2}$ 交替出現。在採用晶胞相位規範的 $(A,B)$ 基底中，
+
+$$
+H(k)=
+\begin{pmatrix}
+\varepsilon_{A} & -t_{1}-t_{2}\,e^{-ika} \\
+-t_{1}-t_{2}\,e^{ika} & \varepsilon_{B}
+\end{pmatrix}
+$$
+
+當 $\varepsilon_{A}=\varepsilon_{B}$ 時，色散為
+
+$$
+E_{\pm}(k)=\varepsilon_{0}\pm \sqrt{t_{1}^{2}+t_{2}^{2}+2t_{1}t_{2}\cos(ka)}
+$$
+
+區邊界 $k=\pi/a$ 處的帶隙為 $2|t_{1}-t_{2}|$。在開放邊界和相應終止方式下， **SSH 極限** （$\varepsilon_{A}=\varepsilon_{B}$）在 $|t_{2}|>|t_{1}|$ 時支持拓撲邊緣態；§10.11 將再次討論其拓撲。
+
+---
+
+### 10.5.4 正方晶格與蜂窩晶格的經典例子
+
+ **正方晶格：單軌道、最近鄰躍遷** 
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t\big[\cos(k_{x}a)+\cos(k_{y}a)\big]
+$$
+
+ **蜂窩晶格：石墨烯，每個格點一個 $p_{z}$ 軌道，最近鄰躍遷** 。雙格點基元為 $A,B$，三個最近鄰向量為 $\{\boldsymbol\delta_{i}\}$：
+
+$$
+H(\boldsymbol k)=
+\begin{pmatrix}
+0 & -t\,\sum_{i=1}^{3}e^{i\boldsymbol k\cdot \boldsymbol\delta_{i}} \\
+-t\,\sum_{i=1}^{3}e^{-i\boldsymbol k\cdot \boldsymbol\delta_{i}} & 0
+\end{pmatrix}
+$$
+
+本徵值為
+
+$$
+E_{\pm}(\boldsymbol k)=\pm t\,\Big|1+e^{i\boldsymbol k\cdot \boldsymbol a_{1}}+e^{i\boldsymbol k\cdot \boldsymbol a_{2}}\Big|
+$$
+
+能帶在 $K,K'$ 的 **狄拉克錐** 處相接，具有線性色散，費米速度為 $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$；這裡的晶格常數指三角布拉菲晶格的週期。
+
+---
+
+### 10.5.5 多軌道緊束縛與斯萊特–科斯特規則
+
+躍遷取決於軌道相對於鍵的取向。 **斯萊特–科斯特** 方法用格點連線的方向餘弦 $(l,m,n)$ 參數化雙中心積分。
+
+例如：
+
+- $s$–$s$：$t_{ss\sigma}$  
+- $s$–$p$：$t_{sp\sigma}\,(l,m,n)$ 在 $p$ 軸上的投影  
+- $p$–$p$：$\sigma$ 與 $\pi$ 通道
+
+對於沿 $\hat x$ 的鍵，
+
+$$
+\langle p_{x}|H|p_{x}\rangle = t_{pp\sigma},\qquad
+\langle p_{y}|H|p_{y}\rangle = \langle p_{z}|H|p_{z}\rangle = t_{pp\pi}
+$$
+
+交叉躍遷如 $\langle s|H|p_{x}\rangle\propto t_{sp\sigma}$ 還需乘以適當的方向餘弦。這樣的對稱性整理能快速構造真實晶體的 $H(\boldsymbol k)$，並避免加入不允許的躍遷。
+
+---
+
+### 10.5.6 超越最近鄰：移動范霍夫奇點
+
+加入次近鄰躍遷 $t'$ 等項會改變曲率及態密度奇點。正方晶格上有
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t[\cos k_{x}a+\cos k_{y}a]-4t'\cos k_{x}a\cos k_{y}a
+$$
+
+調節 $t'$，可使 **范霍夫** 鞍點穿過 $\epsilon_{F}$；這是層狀材料產生密度波或超導等不穩定性的常見途徑。
+
+---
+
+### 10.5.7 磁場：佩爾斯替換
+
+緊束縛中的最小耦合透過躍遷上的 **佩爾斯相位** 引入：
+
+$$
+t_{ij}\ \longrightarrow\ t_{ij}\,\exp\!\left(\frac{ie}{\hbar}\int_{\boldsymbol r_{i}}^{\boldsymbol r_{j}} \boldsymbol A\cdot d\boldsymbol\ell\right)
+$$
+
+因此，繞一個元胞小回路的相位角之和等於 $2\pi\Phi/\Phi_{0}$。正方晶格上若磁通為有理數 $\Phi/\Phi_{0}=p/q$，平移週期擴大為 **磁性晶胞** ，能譜分裂形成霍夫施塔特蝴蝶。
+
+---
+
+### 10.5.8 無序與實空間格林函數
+
+真實材料含有雜質。可加入格點隨機在位能 $\varepsilon_{i}$ 或鍵隨機躍遷 $t_{ij}\to t_{ij}+\delta t_{ij}$。實空間 TB 漢彌爾頓量很適合：
+
+- 研究 **安德森局域化** （見 §10.13）  
+- 用有限寬條帶和遞歸格林函數研究 **表面或邊緣** 能譜  
+- 用朗道爾–比蒂克理論研究 **輸運** ，其中 $G=(2e^{2}/h)\,T(E_{F})$，透射率 $T$ 由實空間 TB 與電極共同求得
+
+---
+
+### 10.5.9 瓦尼爾函數：能帶的局域表示
+
+給定某條能帶或一組能帶子空間中的完整布洛赫態 $\{|\psi_{n\boldsymbol k}\rangle\}$，定義 **瓦尼爾函數** 
+
+$$
+|\,\boldsymbol R, n\,\rangle = \frac{1}{\sqrt{N}}\sum_{\boldsymbol k\in\mathrm{BZ}} e^{-i\boldsymbol k\cdot \boldsymbol R}\, \sum_{m} U_{mn}(\boldsymbol k)\,|\,\psi_{m\boldsymbol k}\rangle
+$$
+
+其中 N 是晶胞數，布洛赫態在有限晶體中正規化，$U(\boldsymbol k)$ 是子空間內的 **規範** 么正變換。其性質為：
+
+-  **正交正規** 且 **局域於晶胞附近** ；$U(\boldsymbol k)$ 的選擇控制展寬  
+-  **最大局域瓦尼爾函數（MLWF）** 透過選擇 $U$ 使總展寬 $\Omega=\sum_{n}\big[\langle r^{2}\rangle_{n}-|\langle \boldsymbol r\rangle_{n}|^{2}\big]$ 最小  
+- 對拓撲平庸的孤立能帶，存在指數局域的瓦尼爾函數，並能精確重現能帶
+
+ **從瓦尼爾函數得到緊束縛模型。**  躍遷就是瓦尼爾函數之間的矩陣元：
+
+$$
+t_{nm}(\boldsymbol R)=\langle \boldsymbol 0,n|H|\boldsymbol R,m\rangle
+$$
+
+ **插值**  $H(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot \boldsymbol R}\,t(\boldsymbol R)$ 可在緊束縛的計算成本下重現第一性原理子空間的能帶。
+
+---
+
+### 10.5.10 極化與瓦尼爾中心：貝里相位的聯繫
+
+絕緣體的電子極化密度與瓦尼爾 **中心**  $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$ 有關：
+
+$$
+\boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{模一個極化量子}
+$$
+
+等價的 **貝里相位公式** 使用布洛赫規範。實際計算可跟蹤絕熱變化下瓦尼爾中心的移動，求出極化差和壓電響應；§10.11 將再次討論拓撲。
+
+---
+
+### 10.5.11 緊束縛邊緣物理：SSH 模型速覽
+
+將躍遷 $t_{1},t_{2}$ 交替排列的有限鏈截斷。在 **拓撲** 相 $|t_{2}|>|t_{1}|$ 中，邊緣模按 $\sim (t_{1}/t_{2})^{x}$ 指數局域，其中距離用晶胞數計。半無限鏈中，手徵對稱性把孤立邊緣模釘紮在 $E=0$；有限鏈兩端的雜化可產生指數小的對稱劈裂，而破壞子晶格對稱性的擾動也會移動其能量。
+
+---
+
+### 10.5.12 簡短例題
+
+ **(a) 一維餘弦能帶的瓦尼爾函數**   
+對正交單軌道模型 $E(k)=\varepsilon_{0}-2t\cos ka$，證明逆布洛赫變換恢復所選的局域軌道 $w_{0}(x)$。說明僅憑色散不能推出漸近形式 $K_{0}(|x|/\xi)$，也不能確定 $\xi\sim a\sqrt{t/\Delta}$；還必須給定布洛赫本徵函數及其與其他能帶的關係。
+
+ **(b) 石墨烯的費米速度**   
+從蜂窩晶格最近鄰漢彌爾頓量出發，在 $K$ 附近線性化，得到 $H_{\text{Dirac}}=\hbar v_{F}\,\boldsymbol\sigma\cdot \boldsymbol q$，並求出 $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$。
+
+ **(c) 立方鍵上的斯萊特–科斯特參數**   
+對於每個格點有一個 $s$ 軌道和三個 $p$ 軌道、最近鄰鍵沿座標軸的立方晶體，用 $t_{ss\sigma},t_{sp\sigma},t_{pp\sigma},t_{pp\pi}$ 寫出 $H(\boldsymbol k)$。
+
+ **(d) 佩爾斯相位檢驗**   
+在正方晶格上採用朗道規範 $\boldsymbol A=(0,Bx,0)$，證明沿 $\hat y$ 的躍遷獲得相位 $e^{i 2\pi \phi\, m}$，其中 $\phi\equiv \Phi/\Phi_{0}$，$m$ 為 $x$ 方向的格點指標；沿 $\hat x$ 的躍遷仍為實數。
+
+ **(e) 重疊的重要性**   
+在一維鏈中加入最近鄰重疊 $s$，求解廣義本徵值問題，證明色散變為 $E(k)=(\varepsilon_{0}-2t\cos ka)/(1+2s\cos ka)$。
+
+ **(f) SSH 邊緣態**   
+數值對角化一條有 40 個格點的開放 SSH 緊束縛鏈，畫出兩個隙內態的波函數，驗證它們在兩端的指數局域性及對稱、反對稱組合關係。
+
+---
+
+### 10.5.13 常見誤區
+
+-  **忘記重疊** ：許多入門 TB 模型設 $S=\mathbb I$；軌道不正交時應使用廣義本徵值問題，或先正交化  
+-  **加入不允許的躍遷** ：若對稱性禁止某個矩陣元，就不能擅自加入；應利用斯萊特–科斯特規則或群論將相應項置零  
+-  **瓦尼爾規範不平滑** ：各 $\boldsymbol k$ 點的隨機相位會產生離域瓦尼爾函數；MLWF 方法固定規範後，實空間躍遷才可信  
+-  **引入佩爾斯相位卻不核對磁通** ：每個小回路上鏈路相位角之和應為 $2\pi\Phi/\Phi_{0}$，且與規範選擇無關  
+-  **過度擬合 TB** ：太多參數會掩蓋物理，並使擬合區間外的結果失控；從最簡模型開始，僅在資料要求時增加鄰居
+
+---
+
+### 10.5.14 基礎習題
+
+- 構建一維單原子鏈和雙原子鏈的 TB 色散，求出帶邊附近的有效質量  
+- 寫出蜂窩晶格最近鄰漢彌爾頓量，找到 $K,K'$，線性化得到狄拉克漢彌爾頓量和 $v_{F}$  
+- 用斯萊特–科斯特方法構建石墨烯的 $sp^{2}$ 緊束縛模型，包含 $pp\pi$ 和 $pp\sigma$ 部分，並討論平面結構中 $p_{z}$ 為什麼解耦  
+- 對有理磁通 $p/q$ 的正方晶格 TB 實現佩爾斯相位，畫出 $q\le 10$ 的霍夫施塔特譜  
+- 為雙帶玩具模型生成 MLWF，計算 $t(\boldsymbol R)$，並證明瓦尼爾插值的 $E(\boldsymbol k)$ 在機器精度內符合精確能帶  
+- 透過 SSH 模型中滑動二聚化導致的瓦尼爾中心位移計算極化變化，並與貝里相位結果比較
+
+---
+
+## 10.6 半導體與摻雜
+
+半導體中的載流子通常很少，直到調節帶隙、加入摻雜或照射光子後才顯著增加。本節構建有效質量圖像、本徵與摻雜統計、含愛因斯坦關係的漂移–擴散理論、複合渠道、光學特徵，以及 pn 結的基礎工具。討論以能帶結構為基礎，同時兼顧器件應用。
+
+---
+
+### 10.6.1 帶邊、有效質量與態密度
+
+在導帶極小值和價帶極大值附近，
+
+$$
+E_{c}(\boldsymbol k) \approx E_{c0} + \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{e}^{\ast -1}\,\boldsymbol k,\qquad
+E_{v}(\boldsymbol k) \approx E_{v0} - \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{h}^{\ast -1}\,\boldsymbol k
+$$
+
+定義帶隙 $E_{g}=E_{c0}-E_{v0}$。有效質量張量 $m_{e}^{\ast},m_{h}^{\ast}$ 可以各向異性；常用態密度質量 $m_{e}^{\ast,\mathrm{DOS}}, m_{h}^{\ast,\mathrm{DOS}}$ 定義三維態密度
+
+$$
+N_{c}(T) = 2\left(\frac{m_{e}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2},\qquad
+N_{v}(T) = 2\left(\frac{m_{h}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2}
+$$
+
+這些量用於計算載流子統計。
+
+
+---
+
+### 10.6.2 本徵載流子與質量作用定律
+
+費米能級為 $E_{F}$ 時，非簡併的波茲曼佔據數為
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{F})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{F}-E_{v0})/k_{B}T}
+$$
+
+相乘得到 **質量作用定律** 
+
+$$
+np = n_{i}^{2},\qquad
+n_{i}(T) = \sqrt{N_{c}N_{v}}\;e^{-E_{g}/(2k_{B}T)} \propto T^{3/2}\,e^{-E_{g}/(2k_{B}T)}
+$$
+
+在本徵晶體中 $n=p=n_{i}$，$E_{F}$ 位於禁帶中部附近，其偏移由態密度質量決定。
+
+---
+
+### 10.6.3 摻雜：施主、受主與電中性
+
+替位摻雜原子引入淺氫型能級。有效質量理論給出
+
+$$
+E_{D} \approx \frac{m_{e}^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{D}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{m_{e}^{\ast}}\,a_{0}
+$$
+
+受主也有類似結果，只需使用 $m_{h}^{\ast}$。在室溫 $T$ 下，淺雜質通常已電離。
+
+對於施主濃度為 $N_{D}$、受主濃度為 $N_{A}$ 的 n 型晶體，
+
+$$
+n - p + N_{A}^{-} - N_{D}^{+} = 0
+$$
+
+假設在非簡併區完全電離，則 $N_{D}^{+}\approx N_{D}$、$N_{A}^{-}\approx N_{A}$。於是
+
+$$
+n \approx \frac{1}{2}\left[(N_{D}-N_{A}) + \sqrt{(N_{D}-N_{A})^{2} + 4 n_{i}^{2}}\right],\qquad
+p = \frac{n_{i}^{2}}{n}
+$$
+
+在 **多數載流子** 極限 $N_{D}-N_{A}\gg n_{i}$ 下，$n\approx N_{D}-N_{A}$ 且 $p\approx n_{i}^{2}/n$。
+
+低 $T$ 下的部分電離導致 **凍結** 區，此時 $n<N_{D}$；需使用雜質能級的費米–狄拉克佔據機率。
+
+---
+
+### 10.6.4 遷移率、散射與電導率
+
+各類載流子的遷移率為 $\mu$，漂移速度為 $\boldsymbol v_{d}=\pm \mu \boldsymbol E$。電導率為
+
+$$
+\sigma = q\,(n\mu_{n} + p\mu_{p}),\qquad \rho = \frac{1}{\sigma}
+$$
+
+散射來源包括：
+
+- 晶格聲子：三維中通常有 $\mu \propto T^{-3/2}$  
+- 電離雜質：低 $T$ 下有 $\mu \propto T^{+3/2}$  
+- 散射率滿足馬蒂森定則：$\mu^{-1}\approx \mu_{\mathrm{ph}}^{-1}+\mu_{\mathrm{imp}}^{-1}+\cdots$
+
+弱場下的雙載流子霍爾係數反映補償效應：
+
+$$
+R_{H} = \frac{p\mu_{p}^{2} - n\mu_{n}^{2}}{q\,(n\mu_{n}+p\mu_{p})^{2}}
+$$
+
+其符號反映遷移率加權後的主導載流子類型。
+
+---
+
+### 10.6.5 漂移–擴散與愛因斯坦關係
+
+包含漂移與擴散的載流子電流密度為
+
+$$
+\boldsymbol J_{n} = q\,n\mu_{n}\boldsymbol E + q D_{n}\nabla n,\qquad
+\boldsymbol J_{p} = q\,p\mu_{p}\boldsymbol E - q D_{p}\nabla p
+$$
+
+在非簡併統計下，
+
+$$
+D_{n} = \frac{k_{B}T}{q}\,\mu_{n},\qquad
+D_{p} = \frac{k_{B}T}{q}\,\mu_{p}
+$$
+
+這一 **愛因斯坦關係** 是漲落–耗散關係在半導體中的體現。
+
+---
+
+### 10.6.6 複合、壽命與準費米能級
+
+在光照或注入等非平衡條件下，電子和電洞可分別用 **準費米能級**  $E_{Fn},E_{Fp}$ 描述：
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{Fn})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{Fp}-E_{v0})/k_{B}T}
+$$
+
+淨複合與產生渠道包括：
+
+-  **輻射複合（帶間）** ：$R_{\mathrm{rad}} = B\,(np - n_{i}^{2})$  
+-  **肖克利–里德–霍爾複合（陷阱輔助）** ：近似為 $R_{\mathrm{SRH}} \approx \frac{np - n_{i}^{2}}{\tau_{p}(n+n_{1}) + \tau_{n}(p+p_{1})}$，陷阱參數為 $n_{1},p_{1}$  
+-  **俄歇複合** ：$R_{\mathrm{Auger}} = C_{n} n (np-n_{i}^{2}) + C_{p} p (np-n_{i}^{2})$
+
+透過小訊號關係 $R\approx \delta n/\tau$ 定義少數載流子壽命 $\tau$。壽命決定擴散長度 $L=\sqrt{D\tau}$，進而控制光電二極管和太陽能電池的載流子收集。
+
+---
+
+### 10.6.7 直接與間接帶隙、吸收及激子
+
+帶邊附近的光吸收係數為：
+
+-  **直接帶隙** ：$\alpha(\hbar\omega)\propto \sqrt{\hbar\omega - E_{g}}$  
+-  **間接帶隙** ：需要聲子輔助，$\alpha$ 上升較慢，並呈現溫度依賴
+
+電子–電洞對的束縛形成具有氫型能級系列的 **激子** 。有效質量理論估計為
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}}\,\frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{X}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{\mu^{\ast}}\,a_{0}
+$$
+
+其中約化質量為 $\mu^{\ast}=(m_{e}^{\ast} m_{h}^{\ast})/(m_{e}^{\ast}+m_{h}^{\ast})$。潔淨晶體和二維材料的吸收邊附近會出現激子峰。
+
+---
+
+### 10.6.8 pn 結基礎：內建電位、耗盡區與二極管定律
+
+將 p 區與 n 區接合，載流子擴散後留下電離雜質，形成具有內建電場的 **耗盡區** 。平衡時，
+
+$$
+V_{\mathrm{bi}} = \frac{k_{B}T}{q}\,\ln\!\left(\frac{N_{A} N_{D}}{n_{i}^{2}}\right)
+$$
+
+忽略耗盡區內自由電荷，對於突變結，外加偏壓為 $V$ 時的總耗盡寬度為
+
+$$
+W = \sqrt{\frac{2\varepsilon_{s}}{q}\,\frac{N_{A}+N_{D}}{N_{A}N_{D}}\,(V_{\mathrm{bi}} - V)}
+$$
+
+正向偏壓降低位能障；理想的 **肖克利二極管方程** 為：
+
+$$
+I = I_{0}\left(e^{qV/(k_{B}T)} - 1\right)
+$$
+
+其中 $I_{0}\propto n_{i}^{2}$ 的相應分量與擴散長度及摻雜濃度成反比。反向偏壓下電流接近 $-I_{0}$，直到齊納隧穿或雪崩等擊穿機制開始起作用。
+
+---
+
+### 10.6.9 金屬–半導體接觸：歐姆接觸與肖特基接觸
+
+金屬與半導體接觸時，可形成：
+
+-  **歐姆接觸** ：位能障足夠薄或低，可發生隧穿；重摻雜也可使能帶彎曲有利於注入  
+- 否則形成具有整流特性的 **肖特基** 位能障；位能障高度由金屬功函數、半導體電子親和勢及界面釘扎共同決定
+
+肖特基接觸在正向偏壓下的輸運常服從熱電子發射規律，其中 $I\propto T^{2} e^{-q\Phi_{B}/k_{B}T}\,(e^{qV/k_{B}T}-1)$。
+
+---
+
+### 10.6.10 隨溫度變化的三個區間
+
+摻雜半導體隨 $T$ 升高依次經歷：
+
+1)  **凍結區** ：雜質部分電離，$n<N_{D}$  
+2)  **雜質區** ：出現 $n\approx N_{D}$（或 $p\approx N_{A}$）的濃度平臺，且 $np\approx n_{i}^{2}$  
+3)  **本徵區** ：當 $n_{i}$ 指數增長並超過雜質濃度後，$n\approx p\approx n_{i}$
+
+隨 $T$ 變化的電阻率和霍爾資料可用於提取激活能及主導散射機制。
+
+---
+
+### 10.6.11 簡短例題
+
+ **(a) 本徵載流子濃度**   
+給定 $300\ \mathrm{K}$ 時的 $m_{e}^{\ast,\mathrm{DOS}}=0.26\,m_{e}$、$m_{h}^{\ast,\mathrm{DOS}}=0.39\,m_{e}$、$E_{g}=1.12\ \mathrm{eV}$，用 $T^{3/2} e^{-E_{g}/2k_{B}T}$ 形式估計這個具有矽帶隙的示例模型的 $n_{i}$；給出的有效質量僅作練習參數，不作為矽的精確態密度質量。
+
+ **(b) 摻雜矽的費米能級**   
+對於 $300\ \mathrm{K}$ 下的 $N_{D}=10^{16}\ \mathrm{cm^{-3}}$ 和 $n_{i}=10^{10}\ \mathrm{cm^{-3}}$，求 $n,p$，並透過 $n=N_{c} e^{-(E_{c0}-E_{F})/k_{B}T}$ 確定 $E_{F}$ 相對於 $E_{c0}$ 的位置。
+
+ **(c) 愛因斯坦關係檢驗**   
+給定矽在 $300\ \mathrm{K}$ 下測得的 $\mu_{n}=1350\ \mathrm{cm^{2}/Vs}$，計算 $D_{n}$，以及 $\tau_{n}=1\ \mu\mathrm{s}$ 時的擴散長度。
+
+ **(d) 耗盡寬度**   
+對於參數為 $N_{A}=10^{17}$、$N_{D}=10^{16}\ \mathrm{cm^{-3}}$、$\varepsilon_{s}=11.7\,\varepsilon_{0}$ 的矽 pn 結，計算 $V=0$ 和 $V=0.6\ \mathrm{V}$ 時的 $W$。
+
+ **(e) 輻射複合與 SRH 複合**   
+給定 $B=10^{-10}\ \mathrm{cm^{3}/s}$、$n=p=10^{15}\ \mathrm{cm^{-3}}$，估計 $R_{\mathrm{rad}}$，並與 $\tau=1\ \mu\mathrm{s}$ 的 SRH 複合率比較。
+
+---
+
+### 10.6.12 常見誤區
+
+-  **忘記質量作用定律** ：平衡時即使摻雜材料也滿足 $np=n_{i}^{2}$；偏離這一關係可表明存在注入或光照  
+-  **超出愛因斯坦關係的適用範圍** ：標準形式 $D=\mu k_{B}T/q$ 要求非簡併統計；簡併半導體需要費米–狄拉克修正  
+-  **總是假設完全電離** ：低 $T$ 或深雜質情況下，應自洽求解雜質佔據  
+-  **混淆態密度質量與電導質量** ：$N_{c,v}(T)$ 使用態密度質量；輸運需要電導有效質量張量及散射資訊  
+-  **把理想二極管模型絕對化** ：真實二極管具有串聯電阻、耗盡區複合（理想因子 $n_{\mathrm{id}}>1$）及界面態
+
+---
+
+## 10.7 費米面與輸運
+
+ **費米面（FS）** 是金屬低溫物理的核心：電導、霍爾效應、磁阻和量子振盪等輸運現象，幾乎都由其附近的準粒子決定。$k$ 空間的幾何因此轉化為實驗中可測量的物理。本節建立半古典運動方程、波茲曼與錢伯斯方法，討論多帶和補償磁輸運，以及昂薩格關係與利夫希茨–科塞維奇公式構成的量子振盪工具。我們還說明費米面拓撲，即閉合或開放軌道，如何控制磁響應。
+
+---
+
+### 10.7.1 半古典運動方程：暫不含貝里曲率
+
+對於場 $(\boldsymbol E,\boldsymbol B)$ 中的能帶 $\epsilon(\boldsymbol k)$，半古典動力學為
+
+$$
+\hbar\,\dot{\boldsymbol k} = -e\left(\boldsymbol E + \dot{\boldsymbol r}\times \boldsymbol B\right),\qquad
+\dot{\boldsymbol r} = \frac{1}{\hbar}\,\nabla_{\boldsymbol k}\epsilon(\boldsymbol k)
+$$
+
+當 $\boldsymbol E=0$ 時，電子在 $k$ 空間沿垂直於 $\boldsymbol B$ 的等能輪廓作 **迴旋運動** ；實空間速度為 $\boldsymbol v=\dot{\boldsymbol r}$。貝里曲率和反常速度留到 §10.11 討論。
+
+---
+
+### 10.7.2 迴旋頻率與迴旋質量
+
+閉合軌道的頻率為
+
+$$
+\omega_{c} = \frac{eB}{m_{c}}
+$$
+
+其中 **迴旋質量** 由垂直於 $\boldsymbol B$ 的 $k$ 空間軌道面積 $A(E)$ 決定；量子振盪選出極值截面：
+
+$$
+m_{c}(E) = \frac{\hbar^{2}}{2\pi}\,\frac{\partial A(E)}{\partial E}\Big|_{E=\epsilon_{F}}
+$$
+
+對於各向同性拋物線 $E=\hbar^{2}k^{2}/2m^{\ast}$，有 $m_{c}=m^{\ast}$；對於各向異性橢球，$m_{c}$ 依賴磁場方向。
+
+---
+
+### 10.7.3 波茲曼輸運：弛豫時間與錢伯斯公式
+
+對弛豫時間為 $\tau(\boldsymbol k)$、處於穩恆電場中的波茲曼方程線性化，得到電流
+
+$$
+\boldsymbol J = -e \int \frac{d^{3}k}{4\pi^{3}}\,\boldsymbol v(\boldsymbol k)\,\delta f(\boldsymbol k),\qquad
+\delta f = -e\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \boldsymbol E
+$$
+
+在 **錢伯斯公式** 中，向量平均自由程是沿軌道歷史的加權積分：
+
+$$
+\boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; \exp\!\left[-\int_{0}^{t}\frac{dt'}{\tau(\boldsymbol k_{-t'})}\right]\,\boldsymbol v(\boldsymbol k_{-t})
+$$
+
+於是得到電導率張量（示意形式）
+
+$$
+\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\Lambda_{\beta}
+$$
+
+其中積分中的向量平均自由程由上式定義。對於各向同性且只有單一 $\tau$ 的金屬，該式退化為德魯德結果。
+
+---
+
+### 10.7.4 霍爾角、遷移率張量與平均自由程
+
+定義 **遷移率**  $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$ 和電子單帶的 **霍爾角**  $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx -\omega_{c}\tau$。 **平均自由程** 為
+
+$$
+\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{對於良好定義的準粒子}
+$$
+
+接近 **約費–雷格爾** 極限 $k_{F}\ell\sim 1$ 時，金屬進入「壞金屬」區，半古典輸運描述開始失效。
+
+---
+
+### 10.7.5 磁阻：單帶德魯德模型為何給出平坦結果
+
+對於具有常數 $\tau$ 的各向同性單帶，即使 $\sigma_{xx}$ 減小，電阻率 $\rho_{xx}$ 仍 **與磁場無關** ，因為張量求逆會使磁場效應抵消。真實材料的磁阻可來自：(i) 多種載流子，(ii) 費米面各向異性或翹曲，(iii) 角度依賴的 $\tau(\boldsymbol k)$，或 (iv) 開放軌道。實用的歸納是 **科勒定則** ：
+
+$$
+\frac{\Delta \rho}{\rho_{0}} \equiv \frac{\rho(B)-\rho_{0}}{\rho_{0}} = F\!\left(\frac{B}{\rho_{0}}\right) \approx F(\omega_{c}\tau)
+$$
+
+若所有過程都由單一散射時間控制，則不同 $T$ 的曲線以 $B/\rho_{0}(T)$ 為橫軸繪製時會重合。
+
+---
+
+### 10.7.6 雙帶模型：電子與電洞
+
+用 $(n_{e},\mu_{e})$ 和 $(n_{h},\mu_{h})$ 表示濃度與遷移率，電荷符號為 $s_{e}=-1$、$s_{h}=+1$。總電導率是兩者之和：
+
+$$
+\sigma_{xx} = \sum_{i=e,h} \frac{n_{i} e \mu_{i}}{1+(\mu_{i}B)^{2}},\qquad
+\sigma_{xy} = \sum_{i=e,h} \frac{s_{i} n_{i} e \mu_{i}^{2} B}{1+(\mu_{i}B)^{2}}
+$$
+
+求逆得到 $\rho_{xx},\rho_{xy}$。主要區間為：
+
+-  **補償**  $n_{e}\approx n_{h}$ 且遷移率很高時，在補償區間內會出現很大的、近乎二次增長的 **不飽和磁阻** ；漸近不飽和要求完全補償  
+-  **主導載流子**  $n_{e}\gg n_{h}$ 時，若遷移率差異不使低場霍爾符號反轉，則霍爾符號固定；磁阻較小並趨於飽和
+
+對 $\rho_{xx}(B)$ 和 $\rho_{xy}(B)$ 進行多帶擬合，是確定載流子類型及遷移率的常用起點。
+
+---
+
+### 10.7.7 開放軌道、閉合軌道與角度依賴
+
+- 閉合費米面口袋上的 **閉合軌道** 給出通常的 $\omega_{c}$ 和量子振盪。  
+-  **開放軌道** ，例如翹曲的準一維片狀費米面，使載流子沿某一方向傳播；磁阻因此高度 **各向異性** ，依幾何而定，可線性或二次增長而不飽和。  
+- 層狀金屬中的  **AMRO** （角度依賴磁阻振盪）來自傾斜 $\boldsymbol B$ 時電子在翹曲準二維費米面上的軌道運動；在常見的相干圓柱模型中，層間電阻在由翹曲決定的 **山地角** 處出現極大值。
+
+---
+
+### 10.7.8 量子振盪：昂薩格與利夫希茨–科塞維奇公式
+
+朗道量子化使軌道面積對應於離散能級。 **昂薩格關係** 將關於 $1/B$ 的振盪頻率 $F$ 與垂直於 $\boldsymbol B$ 的費米面極值截面面積 $A_{F}$ 聯繫起來：
+
+$$
+F = \frac{\hbar}{2\pi e}\,A_{F}
+$$
+
+ **利夫希茨–科塞維奇（LK）** 振幅包含三個經典因子：
+
+$$
+\Delta M,\ \Delta \rho \ \propto\ R_{T}\,R_{D}\,R_{S}\,\cos\!\left(2\pi\frac{F}{B} - \gamma\right)
+$$
+
+其中
+
+$$
+R_{T} = \frac{X}{\sinh X},\quad X=\frac{2\pi^{2} k_{B} T}{\hbar \omega_{c}}
+$$
+
+$$
+R_{D} = \exp\!\left(-\frac{\pi}{\omega_{c}\tau}\right) = \exp\!\left(-\frac{2\pi^{2} k_{B} T_{D}}{\hbar \omega_{c}}\right)
+$$
+
+$$
+R_{S} = \cos\!\left(\frac{\pi g m_{c}}{2 m_{e}}\right)
+$$
+
+$R_{T}$ 給出用於提取 $m_{c}$ 的 **質量擬合曲線** ；$R_{D}$ 是描述散射的 **丁格爾因子** ，其中壽命為量子壽命而不一定等於輸運壽命；$R_{S}$ 描述自旋分裂調製。相位 $\gamma$ 可以包含狄拉克或外爾體系的貝里相位資訊（見 §10.11）。
+
+---
+
+### 10.7.9 迴旋共振與光學探測
+
+潔淨樣品中的交流場可在 $\omega=n\,\omega_{c}$ 處激發允許的迴旋共振，從而直接求得 $m_{c}$。 **光學電導率** 分為德魯德部分和帶間貢獻； **f 求和規則** 約束總譜權重（見 §10.3）。在層狀導體中， **層間電導率** 隨傾角的變化揭示費米面翹曲。
+
+---
+
+### 10.7.10 費米面實驗測量：ARPES 與量子振盪
+
+-  **ARPES**  直接測繪 $k_{\parallel}$ 中的已佔據能帶與費米面輪廓，適合二維體系及表面；對體材料的 $k_{z}$ 則較困難。  
+-  **量子振盪** 僅看到 **極值** 截面，但精度很高，且對體態敏感。  
+-  **量子振盪角度掃描** 透過 $F(\theta)$ 重建費米面形狀；與 ARPES 結合可消除對口袋和三維翹曲的歧義。
+
+---
+
+### 10.7.11 熱電與能斯特效應
+
+在費米面附近， **莫特公式** 將塞貝克係數與 $\epsilon_{F}$ 處電導率對能量的導數聯繫起來：
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+ **能斯特效應** 是 $B$ 中溫度梯度產生的橫向電壓，對費米面曲率及準粒子壽命的不對稱性非常敏感，常能率先揭示小費米口袋。
+
+---
+
+### 10.7.12 強場與量子極限的特殊行為
+
+極大 $B$ 下，載流子只佔據少數最低朗道能級。在 **量子極限** （僅佔據 $n=0$）中，磁阻和熱電響應可能偏離德魯德行為，有時 **線性依賴 $B$** ，或發生符號反轉。狄拉克和外爾材料在 $\boldsymbol E\parallel \boldsymbol B$ 時可能出現手徵反常對縱向磁阻的貢獻，詳見 §10.11。
+
+---
+
+### 10.7.13 簡短例題
+
+ **(a) 從頻率求昂薩格面積**   
+在 $\mathbf B\parallel \hat z$ 時測得 $F=1.0\ \mathrm{kT}$。計算極值截面積
+
+$$
+A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \text{\AA}^{-2}
+$$
+
+以及等效圓形費米波向量 $k_{F}=\sqrt{A_{F}/\pi}$。
+
+ **(b) LK 質量擬合**   
+給定固定 $B$ 下振盪振幅隨 $T$ 的資料，用 $R_{T}=X/\sinh X$ 擬合，透過 $X=(2\pi^{2}k_{B}T m_{c})/(e\hbar B)$ 提取 $m_{c}$。
+
+ **(c) 雙帶磁阻**   
+取 $n_{e}=n_{h}=5\times 10^{25}\ \mathrm{m^{-3}}$、$\mu_{e}=1.5\ \mathrm{m^{2}/Vs}$、$\mu_{h}=0.8\ \mathrm{m^{2}/Vs}$，計算 $\rho_{xx}(B)$，並證明其直到數特斯拉仍二次增長而不飽和。
+
+ **(d) AMRO 與山地角**   
+對於層間色散為 $-2t_{\perp}\cos k_{z}c$ 的圓柱形準二維費米面，在相干輸運和強場軌道平均極限下，證明層間磁阻在 $\tan\theta \approx \pi (\nu-1/4)/(k_{F} c)$ 處出現極大值，其中 $\nu$ 為正整數；由角度週期求出 $k_{F}$。
+
+ **(e) 約費–雷格爾檢驗**   
+給定單帶體系的 $k_{F}=0.8\ \text{\AA}^{-1}$、$v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$ 和 $\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$，估計 $\tau=m^{\ast}/(ne^{2}\rho_{0})$，計算 $\ell=v_{F}\tau$，並討論 $k_{F}\ell$。
+
+---
+
+### 10.7.14 常見誤區
+
+-  **混淆不同質量** ：各向異性或多帶體系中的 $m^{\ast}$（能帶曲率質量）、$m_{c}$（迴旋質量）及光學、熱力學質量可以不同  
+-  **忘記張量求逆** ：$\sigma_{xx}$ 的趨勢不能直接等同於 $\rho_{xx}$ 的趨勢；應始終求完整張量的逆  
+-  **假定單一 $\tau$** ：熱點、冷點及各向異性散射會破壞科勒曲線重合，並模擬出多帶磁阻  
+-  **誤讀振盪相位** ：提取貝里相位需要仔細扣除背景並統一指標約定；自旋零點可改變表觀相位  
+-  **忽略幾何因素** ：高遷移率補償晶體中，樣品偏轉和電流噴射可偽造很大的線性磁阻  
+-  **忽視開放軌道** ：看到「飽和磁阻」便歸因於雜質，實際上原因可能是費米面拓撲和磁場方向
+
+---
+
+## 10.8 磁性
+
+磁性主要分為兩類：**局域**磁矩如同透過交換作用耦合的微小量子自旋；**巡遊**磁性則源於費米海自身的極化。本節從居里–外斯定律出發，介紹自旋波與鐵磁共振，建立常用理論工具：海森堡模型及交換機制（直接交換、超交換、雙交換和 RKKY）、斯托納鐵磁體、鐵磁體與反鐵磁體中的磁振子、各向異性和磁疇，以及無對稱性破缺場時一維、二維系統中的梅爾敏–瓦格納禁戒結論。我們將兼顧嚴謹的數學推導與實用的物理結論。
+
+![比較雙分格晶格上平行排列的自旋與相鄰自旋交替排列的情況。](/images/diagrams/magnetic-order.svg)
+
+---
+
+### 10.8.1 磁矩、$g$ 因子與單位
+
+電子具有自旋 $\boldsymbol S$，也可能具有軌道角動量 $\boldsymbol L$ 的貢獻。磁矩算符為
+
+$$
+\boldsymbol{\mu} = -g_{S}\mu_{B}\,\boldsymbol S/\hbar - g_{L}\mu_{B}\,\boldsymbol L/\hbar
+$$
+
+其中波耳磁子為 $\mu_{B}=e\hbar/(2m_{e})$，且 $g_{S}\approx 2$。在固體中，晶體場往往使軌道角動量**淬滅**，留下有效自旋磁矩；有時自旋–軌道耦合的修飾還會產生各向異性。
+
+**磁化強度** $\boldsymbol M$ 是單位體積的磁矩。在線性響應中，透過 $\boldsymbol M=\chi \boldsymbol H$（各向同性情形）定義磁化率 $\chi$，並有 $\boldsymbol B=\mu_{0}(\boldsymbol H+\boldsymbol M)$。
+
+---
+
+### 10.8.2 局域磁矩模型：伊辛、海森堡與 XXZ
+
+對於晶格上的局域自旋 $\{\boldsymbol S_{i}\}$，最簡漢彌爾頓量如下。
+
+- **伊辛模型**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,S_{i}^{z} S_{j}^{z} - h\sum_{i} S_{i}^{z}
+$$
+
+- **海森堡模型（SU(2) 對稱）**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,\boldsymbol S_{i}\cdot \boldsymbol S_{j} + g\mu_{B} B \sum_{i} S_{i}^{z}
+$$
+
+- **XXZ 各向異性模型**
+
+$$
+H = -\sum_{\langle ij\rangle} \left[J_{\perp}\,(S_{i}^{x} S_{j}^{x}+S_{i}^{y} S_{j}^{y}) + J_{z}\,S_{i}^{z} S_{j}^{z}\right]
+$$
+
+這裡的自旋以角動量除以 $\hbar$ 定義，為無因次量；每條最近鄰鍵只計一次，下式的 $N$ 表示數密度。按照這裡的符號約定，$J>0$ 有利於**鐵磁性**（FM），$J<0$ 有利於**反鐵磁性**（AFM）。
+
+順磁體的**居里–外斯**唯象關係：在有序溫度以上，
+
+$$
+\chi(T) = \frac{C}{T-\Theta_{\mathrm{CW}}},\qquad
+C = \frac{\mu_{0} N g^{2} \mu_{B}^{2} S(S+1)}{3k_{B}}
+$$
+
+$\Theta_{\mathrm{CW}}$ 的符號提示佔主導的交換作用是鐵磁性的（$>0$）還是反鐵磁性的（$<0$）。
+
+---
+
+### 10.8.3 交換機制：$J$ 的來源
+
+- **直接交換**：相鄰局域軌道發生重疊，包立原理與庫侖作用共同使自旋平行、反平行排列具有不同的能量。  
+- **超交換**：透過非磁性配體發生虛躍遷，例如過渡金屬–氧–過渡金屬。對於類似半填充哈伯德模型的情形，
+
+$$
+J \sim -\frac{4t^{2}}{U}
+$$
+
+通常產生**反鐵磁**耦合。  
+- **雙交換**（混合價錳氧化物）：巡遊電子使局域芯自旋趨於平行，以增大躍遷幅度，從而有利於鐵磁性和金屬性。  
+- **RKKY 作用**（含局域磁矩的金屬）：傳導電子介導振盪的耦合
+
+$$
+J(r) \propto \frac{\cos(2k_{F} r)}{r^{3}}
+$$
+
+當無序打亂相位時，這種作用可導致複雜磁序或自旋玻璃。
+
+---
+
+### 10.8.4 巡遊鐵磁性：斯托納判據
+
+在簡單能帶中，若自旋極化使能帶按 $\pm \Delta/2$ 分裂，交換作用就可能降低能量。**斯托納**平均場理論給出判據
+
+$$
+I\,N(\epsilon_{F}) > 1
+$$
+
+其中 $I$ 為交互作用參數，$N(\epsilon_{F})$ 為費米能級處每種自旋的態密度。其結果包括：
+
+- 有限的**包立磁化率**增強為
+
+$$
+\chi = \frac{\chi_{0}}{1 - I N(\epsilon_{F})}
+$$
+
+- 對稱性破缺相中出現**自旋波剛度**（見第 10.8.6 節）
+
+巡遊磁體的性質由能帶結構與交互作用共同決定；角分辨光電子能譜（ARPES）、量子振盪和光學求和規則有助於區分兩者的貢獻。
+
+---
+
+### 10.8.5 平均場有序溫度
+
+在配位數為 $z$、近鄰交換為 $J$ 的晶格上，外斯平均場理論預言
+
+- **鐵磁海森堡模型**
+
+$$
+k_{B} T_{C}^{\mathrm{MF}} = \frac{1}{3}\,z J S(S+1)
+$$
+
+- **反鐵磁模型（雙分格點）**
+
+$$
+k_{B} T_{N}^{\mathrm{MF}} = \frac{1}{3}\,z |J| S(S+1)
+$$
+
+漲落會降低實際的 $T_{C/N}$，在低維或 $S$ 較小時尤其明顯。
+
+---
+
+### 10.8.6 鐵磁體中的自旋波（磁振子）
+
+在鐵磁海森堡模型中，微小的橫向振盪對應**磁振子**。霍爾斯坦–普里馬科夫映射在最低階給出
+
+$$
+H \approx E_{0} + \sum_{\boldsymbol k} \hbar \omega_{\boldsymbol k}\, b_{\boldsymbol k}^{\dagger} b_{\boldsymbol k}
+$$
+
+在 $\boldsymbol k=0$ 附近，其色散為
+
+$$
+\hbar \omega_{\boldsymbol k} \approx D\,k^{2} + \Delta_{\mathrm{ani}}
+$$
+
+其中 $D$ 為由 $J$ 和晶格幾何決定的**自旋波剛度**，$\Delta_{\mathrm{ani}}$ 來自各向異性；若無各向異性，則為無能隙的戈德斯通模。磁振子的熱激發使磁化強度減小：
+
+$$
+M(T) \approx M(0)\left[1 - A\,T^{3/2}\right]
+$$
+
+這就是三維鐵磁體中的**布洛赫 $T^{3/2}$ 定律**。
+
+三維磁振子的**比熱**在低 $T$ 時滿足 $C_{\mathrm{mag}}\propto T^{3/2}$（二次色散意味著態密度 $\propto \sqrt{E}$）。
+
+---
+
+### 10.8.7 反鐵磁體：雙子晶格自旋波
+
+對於雙分格點上的共線反鐵磁體，線性自旋波理論給出兩個分支，在小 $k$ 時具有**線性**色散：
+
+$$
+\hbar \omega_{\boldsymbol k} \approx \hbar c\,|\boldsymbol k|
+$$
+
+速度 $c$ 取決於 $|J|$、$S$ 和晶格間距。各向異性會產生小能隙。均勻磁化率常在 $T_{N}$ 處出現尖點；在其下方，橫向和縱向分量不同。
+
+---
+
+### 10.8.8 磁各向異性、退磁場與磁疇
+
+- 自旋–軌道耦合產生的**磁晶各向異性**選擇易磁化軸或易磁化面。最簡模型
+
+$$
+E_{\mathrm{ani}} = K_{1} \sin^{2}\theta + K_{2} \sin^{4}\theta + \cdots
+$$
+
+會影響矯頑力與磁疇結構。  
+- **退磁場**的產生是因為表面處的 $\nabla\cdot \boldsymbol M$ 表現得像「磁荷」。樣品形狀決定退磁張量 $\mathsf N$，其場為 $\boldsymbol H_{d}=-\mathsf N \boldsymbol M$。  
+- **磁疇**的形成平衡了疇壁能與靜磁能。**疇壁**的寬度為 $\delta \sim \sqrt{A/K}$，能量面密度為 $\sigma \sim \sqrt{A K}$，其中 $A$ 是交換剛度，$K$ 是各向異性常數。
+
+---
+
+### 10.8.9 鐵磁共振（FMR）與動力學
+
+磁化動力學遵循**朗道–利夫希茨–吉爾伯特**（LLG）方程
+
+$$
+\frac{d\boldsymbol M}{dt} = -\gamma\mu_{0}\,\boldsymbol M\times \boldsymbol H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\boldsymbol M\times \frac{d\boldsymbol M}{dt}
+$$
+
+其中 $\gamma$ 為正的旋磁比大小，單位為弧度每秒每特斯拉，$\alpha$ 為阻尼參數。對於面內磁化薄膜的均勻模式，簡單情形下的基特爾公式為
+
+$$
+\omega^{2} = (\gamma\mu_{0})^{2}\,(H+H_{k})(H+H_{k}+M_{s})
+$$
+
+FMR 可測得各向異性場 $H_{k}$ 與阻尼。
+
+---
+
+### 10.8.10 維度：梅爾敏–瓦格納與科斯特利茨–索利斯
+
+具有連續對稱性和短程交換作用的嚴格一維、二維磁體，不能在有限 $T$ 下形成長程有序：無能隙的戈德斯通模破壞長程有序。這就是**梅爾敏–瓦格納定理**。繞開其條件的方法包括：
+
+- 引入**各向異性**（使對稱性離散化為類似伊辛的形式）、長程偶極項或層間耦合  
+- 在二維 XY 模型中，可出現伴隨渦旋解束縛的**科斯特利茨–索利斯**轉變及代數有序，而非通常意義上的 $T_{C}$
+
+---
+
+### 10.8.11 磁輸運速覽
+
+- 鐵磁體中的**反常霍爾效應（AHE）**：$\rho_{xy}=R_{0}B + R_{s} M$，包括內稟貝里曲率機制及外稟的偏斜散射、側跳機制。  
+- **自旋波與電阻率**：鐵磁體中磁振子散射在低 $T$ 下產生額外的 $T^{2}$ 或 $T^{3/2}$ 貢獻。  
+- **自旋熱電子學**：自旋塞貝克效應與磁振子拖曳訊號將磁振子輸運同電荷、熱輸運聯繫起來。
+
+---
+
+### 10.8.12 簡短例題
+
+**(a) 居里–外斯斜率**  
+給定 $S=5/2$、$g=2$ 和數密度 $N$，證明在高 $T$ 下 $1/\chi(T)$ 的斜率為 $1/C$，其中 $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$。擬合資料以提取 $N$ 或 $S$。
+
+**(b) 立方鐵磁體的自旋波剛度**  
+對於立方晶格（間距 $a$）上的最近鄰海森堡模型，證明
+
+$$
+\hbar \omega_{\mathbf k} = J S z \left(1-\gamma_{\mathbf k}\right)
+$$
+
+其中 $z=6$，$\gamma_{\mathbf k}=\tfrac{1}{3}[\cos(k_{x}a)+\cos(k_{y}a)+\cos(k_{z}a)]$。對小 $k$ 展開，求出 $D$。
+
+**(c) 反鐵磁雙子晶格色散**  
+對於超立方雙分格點上最近鄰交換 $J<0$ 的雙分格點反鐵磁體，推導小 $k$ 極限下的線性磁振子速度 $c=|J|Sa\sqrt{2z}/\hbar$，允許相差晶格幾何因子。
+
+**(d) 斯托納增強**  
+給定 $\chi/\chi_{0}=5$，估計 $I N(\epsilon_{F})$，並討論其距不穩定性閾值 $=1$ 有多近。
+
+**(e) 疇壁寬度**  
+給定 $A=1\times 10^{-11}\ \mathrm{J/m}$ 和 $K=5\times 10^{4}\ \mathrm{J/m^{3}}$，估計 $\delta=\sqrt{A/K}$ 及 $\sigma\sim\sqrt{A K}$。
+
+**(f) RKKY 耦合的符號變化**  
+對於 $k_{F}=1.2\ \text{\AA}^{-1}$，計算 $\cos(2k_{F} r)$ 的前幾個零點與符號變化位置，判斷耦合在哪些間距處在鐵磁與反鐵磁之間切換。
+
+---
+
+### 10.8.13 常見誤區
+
+- **$J$ 的符號約定**：檢查漢彌爾頓量採用 $-J \boldsymbol S_{i}\cdot \boldsymbol S_{j}$ 還是 $+J$；鐵磁與反鐵磁所對應的符號隨約定改變。  
+- **過度使用居里–外斯定律**：這是**高 $T$** 定律；在 $T_{C/N}$ 附近及其以下，臨界漲落會破壞平均場給出的直線關係。  
+- **忽略各向異性**：在二維中，若無各向異性或長程作用，就沒有有限 $T$ 下的磁長程有序；極小的 $K$ 也很重要。  
+- **混淆包立與居里順磁性**：巡遊順磁體（包立）的 $\chi$ 與 $T$ 無關；局域磁矩（居里）的響應則正比於 $1/T$。實際化合物可兼有兩者。  
+- **混淆退磁效應與內稟性質**：原始磁滯回線依賴樣品幾何；需作退磁修正才能得到內稟的 $M(H)$。  
+- **忽略磁振子能隙**：鐵磁或反鐵磁自旋波譜中的有限頻率截距提示各向異性或塞曼能隙；不要用完全無隙模型擬合。
+
+---
+
+### 10.8.14 基礎習題組
+
+- 對自旋 $S$，從外斯場 $H_{\mathrm{eff}}=\lambda M$ 推導居里–外斯磁化率，並將 $\Theta_{\mathrm{CW}}$ 與 $\lambda$ 及微觀交換 $J$ 聯繫起來  
+- 在平均場近似下計算立方海森堡鐵磁體的 $T_{C}^{\mathrm{MF}}$ 與 $M(T)$；同低 $T$ 下的布洛赫 $T^{3/2}$ 定律比較，並討論適用範圍  
+- 對一維鐵磁鏈進行線性自旋波計算（霍爾斯坦–普里馬科夫變換），求出 $\omega_{k}$，並利用紅外發散說明一維鐵磁體為何沒有有限 $T$ 下的長程有序  
+- 從 LLG 方程出發，推導具有單軸各向異性的薄膜的基特爾公式，並確定 $H_{k}=2K/\mu_{0} M_{s}$  
+- 對具有斯托納參數 $I$ 的簡單拋物線能帶，在平均場下計算磁化強度 $m$ 隨 $T$ 的變化，並畫出 $(I N(\epsilon_{F}),T)$ 空間中的相圖
+
+---
+
+## 10.9 超導性
+
+超導體的行為在凝態物理中格外鮮明：在臨界溫度以下，其直流電阻降至實際上為零，**同時**排斥磁場（邁斯納效應）。微觀上，電子形成**庫珀對**，並凝聚為相位相干的量子態。本節介紹唯象理論（倫敦理論、邁斯納效應）、介觀場論（金茲堡–朗道理論）、微觀 BCS 結果（能隙、$T_{c}$、態密度），以及實際可觀測的特徵：第一類與第二類超導體、渦旋、臨界磁場與電流、約瑟夫森效應。
+
+---
+
+### 10.9.1 倫敦方程與邁斯納效應
+
+先從唯象描述開始。在凝聚態相位均勻、沒有渦旋的倫敦規範中，超電流 $\boldsymbol J_{s}$ 的**倫敦方程**如下，其中 $n_s$ 是超導電子數密度：
+
+$$
+\frac{\partial \boldsymbol J_{s}}{\partial t} = \frac{n_{s} e^{2}}{m}\,\boldsymbol E
+$$
+
+$$
+\boldsymbol J_{s} = -\frac{1}{\mu_{0}\lambda^{2}}\,\boldsymbol A,\qquad
+\lambda^{2} \equiv \frac{m}{\mu_{0} n_{s} e^{2}}
+$$
+
+結合馬克士威方程消去 $\boldsymbol J_{s}$，得到**磁場屏蔽**方程
+
+$$
+\nabla^{2}\boldsymbol B = \frac{\boldsymbol B}{\lambda^{2}}
+$$
+
+因此靜磁場在超導體內部按 $B(x)=B_{0} e^{-x/\lambda}$ 衰減。**邁斯納效應**將超導體與理想的非超導完全導體區分開來；後者只會凍結冷卻時已有的 $B$。
+
+---
+
+### 10.9.2 金茲堡–朗道（GL）理論
+
+GL 理論以複數秩序參數 $\psi(\boldsymbol r)$（庫珀對波函數）構造朗道自由能，並將其與向量位勢作最小耦合：
+
+$$
+\mathcal F[\psi,\boldsymbol A] = \alpha |\psi|^{2} + \frac{\beta}{2} |\psi|^{4}
++ \frac{1}{2m^{\ast}} \left| \left(-i\hbar \nabla - 2e\,\boldsymbol A\right)\psi \right|^{2}
++ \frac{|\boldsymbol B|^{2}}{2\mu_{0}}
+$$
+
+極小化得到 **GL 方程**
+
+$$
+\alpha \psi + \beta |\psi|^{2}\psi + \frac{1}{2m^{\ast}}\left(-i\hbar \nabla - 2e\boldsymbol A\right)^{2}\psi = 0
+$$
+
+$$
+\boldsymbol J_{s} = \frac{2e}{m^{\ast}}\,\mathrm{Re}\left\{\psi^{\ast}\left(-i\hbar \nabla - 2e\boldsymbol A\right)\psi\right\}
+$$
+
+GL 理論中的關鍵長度為：
+
+$$
+\xi = \sqrt{\frac{\hbar^{2}}{2 m^{\ast} |\alpha|}},\qquad
+\lambda = \sqrt{\frac{m^{\ast}}{4 \mu_{0} e^{2} |\psi|^{2}}}
+$$
+
+無因次 **GL 參數** $\kappa \equiv \lambda/\xi$ 用於區分超導體類型：
+
+- 若 $\kappa < 1/\sqrt{2}$，則為**第一類**（只有一個臨界磁場 $H_{c}$，在超導態驟然破壞之前完全處於邁斯納態）  
+- 若 $\kappa > 1/\sqrt{2}$，則為**第二類**（在 $H_{c1}$ 與 $H_{c2}$ 之間處於含渦旋的混合態）
+
+---
+
+### 10.9.3 BCS 要點：配對、能隙與 $T_{c}$
+
+BCS 理論表明，$\epsilon_{F}$ 附近電子間任意微弱的延遲吸引作用（例如由聲子介導）都會引發**庫珀不穩定性**，形成具有能隙 $\Delta$ 的配對基態。
+
+零溫能隙與臨界溫度（各向同性 $s$ 波、弱耦合）：
+
+$$
+\Delta(0) = 2\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+$$
+k_{B} T_{c} = 1.14\,\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+普適 BCS 比值為：
+
+$$
+\frac{2\Delta(0)}{k_{B} T_{c}} \approx 3.53
+$$
+
+準粒子的**態密度**（每種自旋）變為
+
+$$
+N_{s}(E) = N(0)\,\mathrm{Re}\,\frac{|E|}{\sqrt{E^{2}-\Delta^{2}}}
+$$
+
+在 $E=\pm \Delta$ 處出現相干峰。比熱在轉變處的躍變為 $\Delta C/C_{n}|_{T_{c}}=1.43$；對於完全有隙的 $s$ 波，低 $T$ 下呈熱激活行為 $C\sim e^{-\Delta/(k_{B}T)}$。
+
+**BCS 相干長度**（潔淨極限）：
+
+$$
+\xi_{0} = \frac{\hbar v_{F}}{\pi \Delta(0)}
+$$
+
+---
+
+### 10.9.4 臨界磁場、電流與混合態
+
+取 $F_s,F_n$ 為自由能密度，第一類超導體具有滿足 $F_{n}(0)-F_{s}(0)=\mu_{0}H_{c}^{2}/2$ 的**熱力學臨界磁場** $H_{c}(T)$。
+
+第二類超導體涉及以下三個量：
+
+$$
+\mu_{0} H_{c1} \approx \frac{\Phi_{0}}{4\pi \lambda^{2}} \ln \kappa
+$$
+
+$$
+\mu_{0} H_{c2} = \frac{\Phi_{0}}{2\pi \xi^{2}}
+$$
+
+$$
+\Phi_{0} = \frac{h}{2e}
+$$
+
+當 $H_{c1}<H<H_{c2}$ 時，磁場透過每個攜帶一個磁通量子 $\Phi_{0}$ 的**阿布里科索夫渦旋**進入超導體。渦旋芯的半徑為 $\sim \xi$，其中 $|\psi|$ 被壓低；環流超電流在 $\lambda$ 尺度上衰減。潔淨材料中若不存在釘扎，渦旋會形成三角晶格。
+
+**臨界電流密度**（$T_{c}$ 附近 GL 理論給出的破對估計）：
+
+$$
+J_{d} \sim \frac{H_{c}}{\lambda}
+$$
+
+實際中，**渦旋運動**（磁通流動）限制電流；強釘扎可提高應用中的**臨界電流** $J_{c}\ll J_{d}$。
+
+---
+
+### 10.9.5 磁通量子化與相位剛度
+
+凝聚態相位 $\varphi$ 繞閉合迴路的單值性給出
+
+$$
+\oint \nabla \varphi\cdot d\boldsymbol\ell = 2\pi n
+$$
+
+結合超電流關係可得到磁通子的量子化；若迴路位於多連通超導體深處、沿途超電流為零，才進一步得到**磁通量子化** $\Phi=n\Phi_{0}$。相位剛性是持續電流與約瑟夫森效應的根源。
+
+---
+
+### 10.9.6 約瑟夫森效應
+
+兩個超導體由薄位能障隔開（SIS 結）時，即使沒有電壓也可承載**超電流**：
+
+- **直流約瑟夫森效應**：
+
+$$
+I = I_{c}\,\sin\phi
+$$
+
+其中 $\phi$ 為相位差，$I_{c}$ 為臨界電流。施加磁場後，寬度為 $W$ 的結中不同路徑的干涉產生**夫琅禾費圖樣** $I_{c}(B)\propto |\sin(\pi \Phi/\Phi_{0})/(\pi \Phi/\Phi_{0})|$。
+
+- **交流約瑟夫森效應**：直流電壓 $V$ 使相位按 $\dot\phi = 2eV/\hbar$ 演化，從而產生頻率為下式的交流電流
+
+$$
+f = \frac{2e}{h}\,V
+$$
+
+微波輻照會在電壓 $V_{n}=n\,h f/(2e)$ 處產生**夏皮羅臺階**。環路中的兩個結構成**超導量子干涉儀（SQUID）**，其響應隨外加磁通以 $\Phi_{0}$ 為週期變化，可用於超高靈敏度磁測量。
+
+在 SNS 結中，能隙以下的輸運透過**安德烈夫反射**發生，形成承載超電流的離散安德烈夫束縛態。
+
+---
+
+### 10.9.7 鄰近效應與介觀效應
+
+與超導體良好接觸的正常金屬，會在**鄰近效應長度**內獲得配對關聯（髒極限下 $L_{\phi}\sim \sqrt{\hbar D/k_{B}T}$）。安德烈夫反射增強 NS 界面的亞隙電導；在理想 BTK 極限下，完全透明接觸的零偏壓電導可增至正常態的兩倍。
+
+---
+
+### 10.9.8 非常規與高 $T_{c}$ 超導簡介
+
+並非所有超導體都是 $s$ 波。**$d$ 波**配對（銅氧化物）具有線節點，因而表現出冪律熱力學行為（三維中 $C\sim T^{2}$）和 V 形隧穿態密度。**$p$ 波**及其他奇異態在拓撲情形下可支持馬約拉納束縛態。在許多非常規情形中，配對的「黏合劑」並非聲子，而是電子–電子交互作用（自旋漲落），BCS 比值也偏離 3.53。
+
+---
+
+### 10.9.9 實驗特徵
+
+- **輸運**：$T_{c}$ 以下電阻為零；當電流超過 $J_{c}$ 或渦旋運動時才出現有限電壓  
+- **磁化**：邁斯納排磁；第二類超導體因渦旋釘扎產生不可逆磁滯  
+- **熱力學**：$T_{c}$ 處的比熱躍變；對 $C/T$ 積分得到熵，再積分熵差以求取凝聚能  
+- **譜學**：隧穿或 STM 在 $\pm \Delta$ 處的相干峰；ARPES 揭示能隙對稱性；光學電導中缺失的譜權重轉移至零頻 δ 峰（費雷爾–格洛弗–廷卡姆求和規則）  
+- **微波與太赫茲**：交流電導包含超流 δ 峰和有限頻率的準粒子響應  
+- **繆子與核磁共振**：由弛豫率研究穿透深度、渦旋晶格和能隙對稱性
+
+---
+
+### 10.9.10 簡短例題
+
+**(a) 由載流子密度估計穿透深度**  
+利用 $\lambda^{2}=m/(\mu_{0} n_{s} e^{2})$，估計 $n_{s}=10^{28}\ \mathrm{m^{-3}}$、$m=m_{e}$ 時的 $\lambda$。
+
+**(b) 估計 $H_{c2}$**  
+某第二類超導體具有 $\xi=4\ \mathrm{nm}$。計算 $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$。
+
+**(c) 由能隙與 $v_{F}$ 估計相干長度**  
+給定 $v_{F}=2.0\times 10^{5}\ \mathrm{m/s}$ 和 $\Delta(0)=1.5\ \mathrm{meV}$，估計 $\xi_{0}=\hbar v_{F}/(\pi \Delta)$，並與 $T_{c}$ 附近的 GL 相干長度 $\xi$ 比較。
+
+**(d) 約瑟夫森頻率**  
+在結兩端施加 $V=1.00\ \mathrm{mV}$ 會產生多高的微波頻率？利用 $f=(2e/h)V$，證明 $f\approx 483.6\ \mathrm{GHz/mV}\times 1.00\ \mathrm{mV}$。
+
+**(e) 環中的磁通量子化**  
+面積為 $A=20\ \mu\mathrm{m}^{2}$ 的超導環出現週期為 $\Delta B$ 的 SQUID 振盪。驗證 $\Delta B=\Phi_{0}/A$ 並計算該週期。
+
+**(f) 破對電流的數量級**  
+給定 $\mu_{0}H_{c}=0.2\ \mathrm{T}$ 和 $\lambda=120\ \mathrm{nm}$，估計 $J_{d}\sim H_{c}/\lambda$，並與實測的受釘扎限制的 $J_{c}$ 比較。
+
+---
+
+### 10.9.11 常見誤區
+
+- **邁斯納效應與完全導體**：邁斯納態中的超導體排斥*已有及新施加的*磁場；完全導體只是凍結冷卻時已有的磁場  
+- **忘記 $2e$**：庫珀對的電荷量為 $2e$；磁通量子是 $h/2e$，而非 $h/e$  
+- **混淆第一類與第二類**：分類依據為 $\kappa=\lambda/\xi$；關鍵並非「磁場多強」，而是界面能的符號  
+- **忽略渦旋**：第二類超導體在電流和磁場下出現有限電阻，往往源於渦旋運動，而非能隙消失  
+- **對髒樣品使用潔淨極限公式**：雜質散射會重整化 $\xi$ 和 $\lambda$；應比較平均自由程 $l$ 與 $\xi_{0}$  
+- **默認 $s$ 波配對**：能隙對稱性很重要；$C(T)$、$\lambda(T)$ 的冪律及節點準粒子可揭示非常規配對
+
+---
+
+### 10.9.12 基礎習題組
+
+- 從倫敦方程推導 $\nabla^{2}\boldsymbol B=\boldsymbol B/\lambda^{2}$，並證明半空間中 $B(x)$ 呈指數衰減  
+- 從 GL 理論計算正常區與超導區之間的界面能，重現 $\kappa=1/\sqrt{2}$ 處的第一類、第二類分界  
+- 利用 $\psi$ 的單值性與超電流關係推導磁通子量子化；求出 $\Phi_{0}=h/2e$，並在沿途超電流為零的迴路上得到磁通量子化  
+- 利用弱耦合 BCS 能隙方程求出 $\Delta(0)$ 及比值 $2\Delta(0)/k_{B}T_{c}$  
+- 在線性化磁場中的 GL 方程後，將其映射為秩序參數的朗道能級問題，推導 $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$  
+- 計算矩形約瑟夫森結的夫琅禾費 $I_{c}(B)$ 包絡，並由週期求出結面積
+
+---
+
+## 10.10 強關聯與莫特物理
+
+如果說弱交互作用電子比較平靜，強關聯電子則會帶來一系列劇烈現象：沒有普通能帶隙也可局域化、巨大的有效質量、壞金屬輸運，以及摻雜只改變幾個百分點便使譜權重在電子伏特尺度間大幅轉移。代表性體系是**莫特絕緣體**：按能帶理論，半填充能帶本應導電，但當在位排斥 $U$ 很大時，電子不願共佔格點，從而阻止導電。本節介紹哈伯德模型族、超交換與 $t$–$J$ 模型、莫特轉變（布林克曼–賴斯圖像與斯萊特圖像的比較）、譜權重轉移、多軌道與洪特物理，以及動力學平均場理論（DMFT）入門，並說明容易辨認的實驗特徵。
+
+---
+
+### 10.10.1 哈伯德模型：最簡強關聯模型
+
+將電子放在晶格上，令其以幅度 $t$ 躍遷，並以 $U$ 懲罰雙佔據：
+
+$$
+H = -t \sum_{\langle i j \rangle,\sigma}\!\left(c^{\dagger}_{i\sigma} c_{j\sigma} + \text{h.c.}\right)
++ U \sum_{i} n_{i\uparrow} n_{i\downarrow} - \mu \sum_{i} n_{i}
+$$
+
+- 在**半填充**且 **$U/W \ll 1$**（帶寬為 $W$）時，若不存在有序或低維不穩定性引起的能隙，可採用順磁金屬描述。  
+- 當 **$U/W \gg 1$** 時，電荷運動凍結：每個格點傾向於只有一個電子以避免 $U$，從而形成具有局域磁矩的莫特絕緣體。  
+- 摻雜使體系偏離半填充，在強交互作用背景中引入可動載流子，帶來奇異輸運，並在某些材料中產生高 $T_{c}$ 超導。
+
+---
+
+### 10.10.2 從哈伯德到海森堡：超交換
+
+在半填充且 $U\gg t$ 時，虛躍遷在相鄰自旋之間產生有效的**反鐵磁**交換：
+
+$$
+H_{\text{eff}} = J \sum_{\langle i j\rangle} \boldsymbol S_{i}\cdot \boldsymbol S_{j},\qquad
+J = \frac{4 t^{2}}{U}
+$$
+
+這就是**超交換**。直觀上，平行自旋因包立原理而阻塞交換；反平行自旋則可經過虛雙佔據過程返回，從而降低能量。
+
+---
+
+### 10.10.3 $t$–$J$ 模型：摻雜莫特體系的基本工具
+
+在保持 $U$ 很大的同時對莫特絕緣體摻雜，會得到受約束的模型
+
+$$
+H_{tJ} = -t \sum_{\langle i j\rangle,\sigma}\! \left(\tilde c^{\dagger}_{i\sigma} \tilde c_{j\sigma}+\text{h.c.}\right)
++ J \sum_{\langle i j\rangle} \left(\boldsymbol S_{i}\cdot \boldsymbol S_{j} - \frac{1}{4}\,n_{i} n_{j}\right)
+$$
+
+其中 $\tilde c$ 禁止雙佔據。**無雙佔據**約束是核心困難，可用平均場、從屬玻色子或費米子方法、數值方法處理。在二維中，動能與自旋單態形成之間的競爭可產生 $d$ 波配對傾向。
+
+---
+
+### 10.10.4 斯萊特與莫特：絕緣體為何不同
+
+半填充時形成能隙有兩條途徑：
+
+- **斯萊特絕緣體**：弱耦合反鐵磁體。長程有序使晶胞加倍，摺疊能帶並打開 $\propto m$ 的平均場能隙；該能隙在奈爾溫度 $T_{N}$ 以上閉合。  
+- **莫特絕緣體**：局域物理產生 $\sim U$ 的能隙；即使**沒有**長程有序、溫度高於 $T_{N}$，材料仍保持絕緣。
+
+**實驗上如何區分**：若高 $T$ 相仍絕緣、激活能較大，且 ARPES 顯示遠離化學勢的上、下哈伯德帶，則具有莫特型關聯物理（例如 NiO）。若能隙恰在 $T_{N}$ 處消失，且譜重排較小，則更接近斯萊特圖像。
+
+---
+
+### 10.10.5 譜函數結構：哈伯德帶與準粒子
+
+定義單電子譜函數 $A(\boldsymbol k,\omega)$。在接近莫特轉變的關聯金屬中：
+
+- 權重為 $Z$ 的狹窄**準粒子（QP）峰**橫跨費米能級。  
+- 非相干的**哈伯德帶**位於 $\omega \sim \pm U/2$ 附近，攜帶權重 $1-Z$。
+
+**準粒子權重**為
+
+$$
+Z = \left[1 - \left.\frac{\partial \mathrm{Re}\,\Sigma(\omega)}{\partial \omega}\right|_{\omega=0}\right]^{-1}
+$$
+
+其中 $\Sigma$ 是自能。關聯增強時，$Z \downarrow$，有效質量 $m^{\ast}\propto 1/Z \uparrow$；到莫特點時 $Z\to 0$，準粒子消失，只留下哈伯德帶。
+
+---
+
+### 10.10.6 布林克曼–賴斯圖像與金屬–絕緣體轉變
+
+在關聯的費米液體平均場描述中，動能被 $Z$ 重整化；**莫特金屬–絕緣體轉變**（MIT）發生於
+
+$$
+Z \to 0 \quad \text{當} \quad U \to U_{c}^{-}
+$$
+
+$m^{\ast}$ 發散和德魯德權重塌縮是其標誌。在實際三維晶格中，有限 $T$ 下的轉變常為帶遲滯的**一階轉變**（金屬與絕緣體兩個解共存），並終止於臨界端點；DMFT 能很好地描述這一現象。
+
+---
+
+### 10.10.7 光學與 ARPES 特徵：如何辨認莫特關聯
+
+- **光學**：德魯德權重隨 $Z$ 減小，而中紅外特徵和哈伯德帶吸收增強。**譜權重轉移**使權重跨越低能積分窗口重新分配，同時仍滿足完整光學 f 求和規則：摻雜只改變幾個百分點，權重就可在電子伏特尺度間轉移。  
+- **ARPES**：$E_{F}$ 附近的相干準粒子峰，疊加寬的非相干背景與高能「瀑布」結構。對莫特絕緣體摻雜會從上哈伯德帶轉移出新的低能態，並重塑色散；若電子–聲子作用也重要，還會出現明顯的**扭折**結構。  
+- **輸運**：電阻率超過莫特–伊奧菲–雷格爾（MIR）極限（「壞金屬」），熱電位具有很強的不對稱性，霍爾係數隨 $T$ 和摻雜改變符號。
+
+---
+
+### 10.10.8 電荷轉移絕緣體與莫特絕緣體：扎南–索瓦茨基–艾倫分類
+
+在過渡金屬氧化物中，最高佔據態可能主要是配體 $p$ 態，而非金屬 $d$ 的下哈伯德態。比較 $d$ 軌道上的 $U$ 與**電荷轉移能** $\Delta$（從氧 $2p$ 轉移至過渡金屬 $d$）：
+
+- **莫特–哈伯德絕緣體**：$\Delta > U$；能隙主要位於下、上 $d$ 哈伯德帶之間。  
+- **電荷轉移絕緣體**：$\Delta < U$；能隙由氧 $p$ 帶至上方 $d$ 帶構成。摻雜電洞主要進入類氧態，銅氧化物就是例子。
+
+這種分類解釋了由週期表中相近元素構成的氧化物為何具有很不相同的摻雜響應與光學吸收邊。
+
+---
+
+### 10.10.9 洪特金屬與多軌道物理
+
+當多個軌道參與低能物理時，**洪特耦合** $J_{H}$ 傾向於使同一原子上的自旋平行，其作用包括：
+
+- 抑制軌道間電荷漲落，使 $Z$ 即使在 $U$ 適中時也減小，從而形成具有重準粒子與強散射的「**洪特金屬**」。  
+- 促進軌道選擇性：部分軌道發生莫特局域化，其他軌道仍保持巡遊性，即**軌道選擇性莫特相**。  
+- 與晶體場和自旋–軌道耦合競爭或協同，對釕酸鹽、鐵基超導體及 4d、5d 氧化物尤為重要。
+
+---
+
+### 10.10.10 一頁理解 DMFT：局域自能的整體影響
+
+**動力學平均場理論（DMFT）** 將晶格模型映射為嵌入自洽熱庫的**量子雜質**。假定自能是**局域的**，即與動量無關：$\Sigma(\boldsymbol k,\omega)\to \Sigma(\omega)$。該近似在無限配位數極限下精確，在三維中往往也有很好的效果。
+
+對於半帶寬為 $D$ 的貝特晶格，自洽條件為
+
+$$
+\Delta(\omega) = t^{2} G_{\text{loc}}(\omega),\qquad
+G_{\text{loc}}(\omega) = \int \frac{d\epsilon\,\rho_{0}(\epsilon)}{\omega+\mu-\Sigma(\omega)-\epsilon}
+$$
+
+其中 $\Delta$ 是雜質雜化函數，$\rho_{0}$ 是無交互作用態密度。迭代流程為：求解雜質問題 → 得到 $\Sigma$ → 重新計算 $G_{\text{loc}}$ → 更新 $\Delta$。
+
+**DMFT 擅長描述的現象**
+
+- 三峰譜（準粒子峰與哈伯德帶）、$U_{c}$ 處 $Z$ 的塌縮，以及具有共存區的一階金屬–絕緣體轉變。  
+- 電阻率隨溫度的演化，包括壞金屬行為。  
+- 摻雜不對稱性與譜權重轉移。  
+- 結合局域密度近似能帶輸入（LDA+DMFT），研究實際材料，例如 V$_2$O$_3$、SrVO$_3$ 和鐵基磷族化物。
+
+---
+
+### 10.10.11 一維的特殊性：拉廷格液體與自旋–電荷分離
+
+在嚴格一維中，費米液體不穩定：關聯可產生具有獨立自旋、電荷模式的**拉廷格液體**。特徵包括冪律隧穿態密度，以及 ARPES 或冷原子類似體系中可觀察的自旋、電荷激發速度差異。一維哈伯德模型可透過貝特假設**精確求解**；在半填充時，對任意 $U>0$ 都存在莫特能隙。
+
+---
+
+### 10.10.12 近藤效應、重費米子及其晶格推廣
+
+金屬中的局域磁矩在**近藤溫度** $T_{K}$ 以下被傳導電子屏蔽，形成單態，並在 $E_{F}$ 處出現狹窄共振。週期排列的此類磁矩構成近藤晶格，在低 $T$ 下雜化為具有 $m^{\ast}\!\gg m_{e}$ 的重準粒子；取決於填充與對稱性，可得到重費米液體、非常規超導體或近藤絕緣體。深入討論需要獨立一節；這裡的要點是：關聯也能**產生新的相干能帶**，而不只是將能帶分裂。
+
+---
+
+### 10.10.13 簡短例題
+
+**(a) 超交換的符號與尺度**  
+對半填充的兩格點哈伯德二聚體，進行 $t/U$ 的二階微擾計算，證明 $J=4t^{2}/U$，並解釋其反鐵磁性。
+
+**(b) 布林克曼–賴斯質量發散**  
+假設金屬–絕緣體轉變附近 $Z=1-(U/U_{c})^{2}$，證明當 $U\to U_{c}^{-}$ 時 $m^{\ast}/m=1/Z$ 發散，且德魯德權重隨 $Z$ 標度變化。
+
+**(c) DMFT 的貝特晶格自洽條件**  
+給定半圓態密度 $\rho_{0}(\epsilon)=\frac{2}{\pi D^{2}}\sqrt{D^{2}-\epsilon^{2}}$ 和 $D=2t$，推導 $\Delta(\omega)=t^{2}G_{\text{loc}}(\omega)$。
+
+**(d) 光學譜權重轉移**  
+利用 f 求和規則說明，在固定填充下，積分低能譜權重為何隨 $U$ 增大而減小；畫出摻雜如何在恢復德魯德權重的同時產生中紅外吸收。
+
+**(e) ZSA 分類**  
+給定 $U=6\ \mathrm{eV}$ 和電荷轉移能 $\Delta=3\ \mathrm{eV}$，確定絕緣體類型，並預測電洞摻雜產生的是氧 $p$ 型還是過渡金屬 $d$ 型載流子。
+
+**(f) 洪特金屬簡化模型**  
+在 $U$ 適中而 $J_{H}$ 有限的雙軌道哈伯德–洪特模型中，定性解釋軌道間電荷漲落為何受抑制，以及與 $J_{H}=0$ 情形相比 $Z$ 為何降低。
+
+---
+
+### 10.10.14 常見誤區
+
+- **把所有反鐵磁絕緣體都稱為「莫特」絕緣體**：如果能隙在 $T_{N}$ 處消失，則很可能屬於斯萊特類型；應檢查順磁相。  
+- **認為較大 $U$ 意味著任意填充下都是絕緣體**：偏離半填充時可出現 $Z$ 很小的**關聯金屬**，未必是絕緣體。  
+- **忘記譜權重轉移**：簡單能帶圖像認為摻雜下低能權重守恆；莫特關聯體系**並非如此**。  
+- **在關聯體系擬合中使用能帶有效質量**：輸運與熱力學測量涉及 $m^{\ast}\sim m/Z$；應使用重整化後的值。  
+- **過度依賴不含動量依賴的 DMFT**：單格點 DMFT 難以準確描述依賴 $k$ 的贗能隙或短程有序；需要團簇 DMFT、動力學團簇近似（DCA）或圖解方法。  
+- **混淆莫特與安德森局域化**：交互作用驅動的莫特局域化與無序驅動的安德森局域化不同；兩者可共存，形成莫特–安德森情形，但判斷方法不同，例如分別調節交互作用或無序。
+
+---
+
+### 10.10.15 基礎習題組
+
+- 從半填充、$U\gg t$ 的哈伯德模型出發，透過施里弗–沃爾夫變換推導海森堡交換 $J=4t^{2}/U$  
+- 實現 Hubbard-I 自能，繪製上、下哈伯德帶隨 $U$ 增大而出現的過程，並與 DMFT 的三峰結構比較  
+- 對半圓態密度，在迭代微擾理論中求解 $T=0$ 下的 DMFT 方程，繪製 $Z(U)$ 並確定 $U_{c}$  
+- 在簡化三峰模型（準粒子峰與兩個哈伯德帶）中計算光學電導隨摻雜的演化，驗證譜權重轉移  
+- 利用表列 $U$ 和 $\Delta$，將給定氧化物歸為莫特–哈伯德或電荷轉移類型，並預測輕度電洞摻雜後塞貝克係數符號與大小的變化趨勢  
+- 構建雙軌道哈伯德–洪特平均場理論，繪製軌道選擇性莫特相在 $U$、$J_{H}$ 與晶體場劈裂參數空間中的區域
+
+---
+
+## 10.11 拓撲能帶理論
+
+有些能帶絕緣體只有普通能隙，另一些卻隱藏著受保護的邊界態、量子化響應和貝里曲率帶來的特殊性質。**拓撲能帶理論**利用 $k$ 空間中的幾何（貝里相位、曲率）與對稱性（時間反演、反演、手徵）對相進行分類。體不變量預言邊緣模式；若要改變不變量，就必須在某處閉合能隙，因此相變常伴隨狄拉克或外爾節點。下面建立這套工具。
+
+---
+
+### 10.11.1 貝里相位、聯絡與曲率
+
+對於隨 $\boldsymbol k$ 光滑變化的布洛赫能帶 $|u_{n\boldsymbol k}\rangle$：
+
+- **貝里聯絡**
+
+$$
+\boldsymbol A_{n}(\boldsymbol k) \equiv i \langle u_{n\boldsymbol k} | \nabla_{\boldsymbol k} u_{n\boldsymbol k} \rangle
+$$
+
+- **貝里曲率**
+
+$$
+\boldsymbol\Omega_{n}(\boldsymbol k) \equiv \nabla_{\boldsymbol k} \times \boldsymbol A_{n}(\boldsymbol k)
+$$
+
+- 沿布里淵區（BZ）內閉合迴路 $\mathcal C$ 的**貝里相位**
+
+$$
+\gamma_{n}[\mathcal C] = \oint_{\mathcal C} \boldsymbol A_{n}\cdot d\boldsymbol k
+$$
+
+關於規範：$\boldsymbol A$ 依賴於 $|u\rangle$ 的相位選擇，而 $\boldsymbol\Omega$ 和模 $2\pi$ 意義下的迴路相位不依賴於該選擇。在一維中，佔據帶的貝里相位決定**極化**，這就是現代極化理論：$P$ 對應跨越整個布里淵區的貝里相位（見第 10.5.10 節）。
+
+---
+
+### 10.11.2 陳數與量子霍爾效應
+
+在二維中，能帶 $n$ 的**陳數**為
+
+$$
+C_{n} = \frac{1}{2\pi} \int_{\mathrm{BZ}} d^{2}k\; \Omega_{n,z}(\boldsymbol k)
+$$
+
+對於一組完全填滿的能帶，
+
+$$
+\sigma_{xy} = -\frac{e^{2}}{h} \sum_{n\in \text{occ}} C_{n}
+$$
+
+這就是 TKNN 整數量子霍爾結果：**體**拓撲不變量決定**邊界**的手徵邊緣模式數。改變 $C$，能隙就必須在某處閉合。
+
+---
+
+### 10.11.3 反常霍爾效應：沒有 $B$ 的貝里曲率
+
+即使 $B=0$，時間反演對稱性（TRS）破缺也可產生**內稟反常霍爾**效應
+
+$$
+\sigma_{xy}^{\mathrm{int}} = -\frac{e^{2}}{\hbar} \sum_{n} \int \frac{d^{3}k}{(2\pi)^{3}} f_{n\boldsymbol k}\,\Omega_{n,z}(\boldsymbol k)
+$$
+
+這裡 $f$ 為費米函數。可以將 $\boldsymbol\Omega$ 理解為使波包偏轉的「$k$ 空間磁場」；第 10.7 節暫未處理這些貝里項。
+
+---
+
+### 10.11.4 一維繞數與 SSH 模型入門
+
+對於滿足 $d_{z}=0$ 的雙能帶、手徵對稱一維模型 $H(k)=\boldsymbol d(k)\cdot\boldsymbol\sigma$，定義 $\phi(k)=\arg[d_{x}+id_{y}]$。**繞數**
+
+$$
+\nu = \frac{1}{2\pi} \int_{-\pi/a}^{\pi/a} dk\; \partial_{k}\phi(k)
+$$
+
+表示 $\boldsymbol d$ 繞原點的圈數。體相 $\nu=1$ 對應 SSH 鏈中的**邊緣零模**（第 10.5.3 節）。
+
+---
+
+### 10.11.5 二維狄拉克質量反號與陳絕緣體：霍爾丹圖像
+
+考慮一個有質量的狄拉克錐
+
+$$
+H(\boldsymbol k)=v(k_{x}\sigma_{x}+k_{y}\sigma_{y}) + m\,\sigma_{z}
+$$
+
+格點正則化之前，價帶的連續狄拉克錐貢獻為
+
+$$
+C = +\frac{1}{2}\,\mathrm{sgn}(m)
+$$
+
+兩個手徵性相反的錐（如蜂窩晶格中的情形）共同貢獻；若它們的質量符號**相反**，則總 $C=\pm 1$，形成具有一條手徵邊緣通道的**陳絕緣體**。
+
+---
+
+### 10.11.6 時間反演對稱性與 $\mathbb{Z}_{2}$ 拓撲絕緣體
+
+具有 TRS 時（對電子有 $\mathcal T^{2}=-1$），能帶組成**克拉默斯對**。二維與三維絕緣體分別用 **$\mathbb{Z}_{2}$** 指標 $\nu$（二維）或 $(\nu_{0};\nu_{1}\nu_{2}\nu_{3})$（三維）分類。若還具有反演對稱性，可使用 **Fu–Kane 宇稱判據**：
+
+- 在每個時間反演不變動量（TRIM）$\Gamma_{i}$ 處，將各佔據克拉默斯對的反演本徵值相乘，得到 $\delta_{i}$
+- 於是
+
+$$
+(-1)^{\nu} = \prod_{i}\delta_{i}
+$$
+
+三維強指標為 $(-1)^{\nu_{0}}=\prod_{i}\delta_{i}$；此處略去弱指標的細節。**強拓撲絕緣體**（$\nu_{0}=1$）的任意表面都具有由 TRS 保護的奇數個狄拉克錐。
+
+沒有反演對稱性時，可計算貝里聯絡的**威爾遜環路**，也稱瓦尼爾電荷中心流。若混合瓦尼爾中心跨布里淵區發生**繞轉**，則該相具有非平庸拓撲。
+
+---
+
+### 10.11.7 體–邊對應：一句話把握
+
+非平庸體不變量意味著穩健的邊界態；若不閉合體能隙或破壞保護對稱性，就無法使這些態打開能隙。  
+- 陳絕緣體（$C$）：$|C|$ 條**手徵**邊緣模式，單向傳播。  
+- 二維 $\mathbb{Z}_{2}$ 拓撲絕緣體：**螺旋**邊緣，克拉默斯對反向傳播。  
+- 三維強拓撲絕緣體：奇數個**表面狄拉克錐**。  
+- 晶體拓撲相由鏡面、旋轉等對稱性保護，具有依賴邊界對稱性的邊界態。
+
+---
+
+### 10.11.8 狄拉克與外爾半金屬：無能隙拓撲
+
+相關的無隙體系包括：
+
+- **外爾節點**是三維貝里曲率的單極子，具有整數**手徵電荷** $C=\pm 1$。要使節點在 $\boldsymbol k$ 空間中分離，必須破壞 TRS 或反演對稱性。其後果包括表面的**費米弧**和**手徵反常**（$\boldsymbol E\parallel \boldsymbol B$ 時的縱向負磁阻）。反常方程為
+
+$$
+\partial_{t}\rho_{5} + \nabla\cdot \boldsymbol j_{5} = \frac{e^{2}}{2\pi^{2}\hbar^{2}}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+- **狄拉克半金屬**將手徵性相反的外爾節點疊加，並由對稱性將其固定在一起；破壞該對稱性後可分裂成外爾節點對。
+
+---
+
+### 10.11.9 拉什巴效應、自旋–動量鎖定與表面狄拉克錐
+
+自旋–軌道耦合（SOC）與反演對稱性破缺共同產生**拉什巴**劈裂
+
+$$
+H_{R} = \alpha (\boldsymbol\sigma \times \boldsymbol k)\cdot \hat{\boldsymbol z}
+$$
+
+拓撲絕緣體的表面態具有**自旋–動量鎖定**（螺旋紋理），抑制非磁無序導致的背散射。產生狄拉克質量的磁性擾動（例如最簡單表面模型中垂直於表面的交換場）可使表面狄拉克錐打開能隙，從而實現量子化磁電響應，見下文的軸子物理；面內交換場則可能只使狄拉克錐發生位移。
+
+---
+
+### 10.11.10 軸子電動力學與磁電響應
+
+在三維拓撲絕緣體中，有效電磁作用量增加一項
+
+$$
+\mathcal L_{\theta} = \frac{\theta e^{2}}{2\pi h}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+若 TRS 保持，則模 $2\pi$ 意義下 $\theta=0$ 對應平庸相，$\pi$ 對應強拓撲絕緣體。在 $\theta$ 躍變 $\pi$ 的表面，若邊界顯式破壞 TRS，就會出現**半量子化**表面霍爾電導 $e^{2}/(2h)$。
+
+---
+
+### 10.11.11 威爾遜環路與瓦尼爾中心流：如何計算不變量
+
+沿閉合路徑 $\mathcal C$ 離散化 $\boldsymbol k$，構造**威爾遜環路**
+
+$$
+W[\mathcal C] = \mathcal P \exp\!\left(i\int_{\mathcal C}\! \mathsf A(\boldsymbol k)\cdot d\boldsymbol k\right)
+$$
+
+其中 $\mathsf A$ 是佔據子空間的非阿貝爾貝里聯絡。$W$ 的本徵相位給出**瓦尼爾中心**；它們隨橫向 $\boldsymbol k$ 的演化揭示陳拓撲（$\nu$ 在每個布里淵區繞轉 $2\pi C$）或 $\mathbb{Z}_{2}$ 拓撲（伴侶交換次數的奇偶性）。
+
+---
+
+### 10.11.12 軌道磁化與現代極化：貝里相位的再應用
+
+貝里相位的兩個應用是：
+
+- 絕緣體的**極化**由佔據態跨布里淵區的貝里相位給出；只有**變化量**具有直接物理意義，並可在絕熱循環中量子化（索利斯泵）。
+- 晶體中的**軌道磁化**可寫成包含 $\boldsymbol\Omega$ 和能帶能量的布里淵區積分，聯繫著內稟反常霍爾效應與現代磁電係數。
+
+---
+
+### 10.11.13 對稱性分類簡表：十重分類的一小部分
+
+| 類別 | 對稱性（時間反演、粒子–電洞、手徵） | 二維不變量 | 三維不變量 |
+|---|---|---|---|
+| A（無這些對稱性） | –、–、– | $\mathbb{Z}$（陳數） | 0 |
+| AII（滿足 $\mathcal T^{2}=-1$ 的時間反演） | ✓、–、– | $\mathbb{Z}_{2}$ | $\mathbb{Z}_{2}$（強指標 $\nu_{0}$） |
+| AIII（僅手徵對稱性） | –、–、✓ | 0 | $\mathbb{Z}$（繞數） |
+
+完整的**十重分類**還涵蓋超導體（BdG）及更多不變量；這裡著重介紹電子體系中最常用的類別。
+
+---
+
+### 10.11.14 實驗特徵
+
+- **輸運**：整數量子霍爾平臺；陳絕緣體的量子化邊緣電導；$\pi$ 貝里相位產生的弱反局域化；外爾體系的縱向負磁阻，但應注意幾何偽影。  
+- **ARPES**：表面狄拉克錐、費米弧與拉什巴劈裂；自旋分辨 ARPES 可驗證自旋紋理。  
+- **STM/STS**：螺旋表面的準粒子干涉（QPI）中缺少 $180^{\circ}$ 背散射；朗道能級序列揭示貝里相位 $\pi$。  
+- **光學**：磁化拓撲絕緣體表面的巨大克爾角、法拉第角；帶非平庸相位偏移的迴旋共振。  
+- **量子振盪**：與貝里相位相關的相移，即朗道指數圖截距，但須考慮自旋劈裂的影響。
+
+---
+
+### 10.11.15 簡短例題
+
+**(a) 雙能帶狄拉克模型的陳數**  
+對於 $H=v(k_{x}\sigma_{x}+k_{y}\sigma_{y})+m\sigma_{z}$，計算 $\Omega_{z}(\boldsymbol k)$ 並積分，證明每個錐貢獻 $C=+\tfrac{1}{2}\mathrm{sgn}(m)$；兩個手徵性相反的不等價錐若具有相反的 $m$，則給出 $C=\pm 1$。
+
+**(b) 宇稱檢驗**  
+給定二維四個 TRIM 處佔據克拉默斯對的反演本徵值為 $(+,+,+,-)$，計算得到 $(-1)^{\nu}=-1$，因而屬於拓撲相。
+
+**(c) 威爾遜環路繞轉**  
+對於 $C=1$ 的陳能帶，證明當 $k_{y}$ 跨越布里淵區時，瓦尼爾中心角 $\theta(k_{y})$ 前進 $2\pi$，並與平庸能帶比較。
+
+**(d) SSH 端態**  
+計算 $H(k)=(t_{1}+t_{2}\cos ka)\sigma_{x}+t_{2}\sin ka\,\sigma_{y}$ 的繞數。證明 $|t_{2}|>|t_{1}|$ 時 $\nu=1$，並繪製開鏈的邊緣態能譜。
+
+**(e) 外爾單極子電荷**  
+計算 $\boldsymbol\Omega$ 穿過包圍外爾節點的小球面的通量，證明其為 $\pm 2\pi$，即電荷 $\pm 1$。
+
+**(f) 從軸子項得到表面霍爾電導**  
+設拓撲絕緣體表面被磁化且 $\Delta\theta=\pi$，將 $\mathcal L_{\theta}$ 跨邊界積分，得到 $\sigma_{xy}=e^{2}/(2h)$。
+
+---
+
+### 10.11.16 常見誤區
+
+- **規範陷阱**：$\boldsymbol A$ 依賴規範；只有 $\boldsymbol\Omega$ 和模 $2\pi$ 的迴路相位具有物理意義。數值計算應採用光滑規範或威爾遜環路。  
+- **無反演對稱性時使用 Fu–Kane 判據**：宇稱捷徑要求反演對稱性；否則應依靠威爾遜環路或瓦尼爾中心流。  
+- **混淆拉什巴效應與拓撲**：只有拉什巴劈裂並不意味著拓撲絕緣體；還需要體能隙和非平庸 $\mathbb{Z}_{2}$ 指標。  
+- **誤讀振盪相位**：從朗道扇形圖提取貝里相位時，必須考慮塞曼效應、費米面翹曲與三維幾何。  
+- **混淆邊緣與表面**：保護來自對稱性；在邊界破壞該對稱性可使態有隙，例如磁性無序使拓撲絕緣體表面打開能隙。  
+- **TRS 體系中的陳數**：若時間反演對稱性未破缺且沒有磁序，佔據帶的**總**陳數必須為零；$\mathbb{Z}_{2}$ 指標仍可非平庸。
+
+---
+
+### 10.11.17 基礎習題組
+
+- 從久保公式推導 TKNN 公式，證明潔淨二維絕緣體滿足 $\sigma_{xy}=-(e^{2}/h)\sum C_{n}$  
+- 透過鏈變量實現離散布里淵區中的陳數計算，並在雙能帶狄拉克模型上驗證  
+- 對有反演中心的 SOC 絕緣體，從 TRIM 宇稱表計算 Fu–Kane $\mathbb{Z}_{2}$ 指標，再用威爾遜環路流驗證  
+- 構建雙節點外爾模型，計算平板的表面格林函數並繪製費米弧  
+- 向三維拓撲絕緣體的表面狄拉克錐添加塞曼項，展示能隙打開及半量子化霍爾電導  
+- 模擬一維晶格中的絕熱索利斯泵，證明量子化電荷輸運等於 $(k,t)$ 環面的陳數
+
+---
+
+## 10.12 介觀輸運與量子相干
+
+將導體縮小到與相干長度、平均自由程相當的尺度，輸運便從類似「車流」的行為轉為**波的干涉**。這就是**介觀**區域：電子在整個器件中保持相位相干，電導具有樣品特有而可重複的結構，量子噪聲則揭示透射統計。主要工具包括**朗道爾–比蒂克**輸運、**阿哈羅諾夫–玻姆**干涉、**弱局域化與弱反局域化**，以及**普適電導漲落**。我們將結合實驗器件（量子點接觸、環和奈米線）與實用公式展開。
+
+---
+
+### 10.12.1 朗道爾圖像：電導即透射
+
+對於低溫、小偏壓下的相位相干雙端導體，電流由透射率為 $\{T_{n}\}$ 的獨立量子通道承載：
+
+$$
+G = \frac{2e^{2}}{h}\sum_{n} T_{n}
+$$
+
+因子 2 來自自旋簡併，可由塞曼效應或 SOC 解除。對於彈道極限下的**量子點接觸（QPC）**，橫向模式依次打開，因此 $T_{n}\approx 1$，且
+
+$$
+G \approx N\,\frac{2e^{2}}{h}
+$$
+
+由此得到隨柵壓變化的**量子化電導臺階**。
+
+**多端比蒂克圖像。** 對接觸端 $\alpha,\beta$ 和透射機率 $T_{\alpha\beta}$，線性響應為
+
+$$
+I_{\alpha} = \frac{2e^{2}}{h}\sum_{\beta}\left( T_{\beta\alpha} V_{\alpha} - T_{\alpha\beta} V_{\beta} \right)
+$$
+
+該式滿足電流守恆，並自動包含接觸幾何的影響。
+
+---
+
+### 10.12.2 阿哈羅諾夫–玻姆（AB）效應與相位記憶
+
+在環中，兩條路徑圍住磁通 $\Phi$。波函數獲得相對相位 $2\pi \Phi/\Phi_{0}$，其中 $\Phi_{0}=h/e$。結果包括：
+
+- 電導中以 $h/e$ 為週期的 **AB 振盪**  
+- 時間反演迴路對產生以 **$h/2e$** 為週期的 **阿爾特舒勒–阿羅諾夫–斯皮瓦克（AAS）振盪**
+
+干涉可見度隨**相位相干長度** $L_{\phi}$ 減小而衰減；該長度由退相干過程決定，包括電子–電子、電子–聲子散射和外部噪聲。粗略地說，長度為 $L$ 的干涉環路中，訊號按 $\exp(-L/L_{\phi})$ 衰減。
+
+---
+
+### 10.12.3 散粒噪聲：電流背後的計數統計
+
+即使 $T\to 0$，電荷的離散性也會使電流漲落。對於相位相干導體，
+
+$$
+S_{I}(0) = 2 e V \frac{2e^{2}}{h}\sum_{n} T_{n}(1-T_{n})
+$$
+
+其中 $S_{I}(0)$ 是零頻噪聲譜密度，$V$ 是偏壓。定義**法諾因子**
+
+$$
+F \equiv \frac{S_{I}(0)}{2 e I} = \frac{\sum_{n} T_{n}(1-T_{n})}{\sum_{n} T_{n}}
+$$
+
+典型情形包括：彈道平臺 $T_{n}\approx 1$ 導致 $F\approx 0$，噪聲被抑制；**擴散導線**滿足 $F=1/3$；隧穿結 $T_{n}\ll 1$ 導致泊松型噪聲 $F\approx 1$。
+
+---
+
+### 10.12.4 弱局域化（WL）與弱反局域化（WAL）
+
+時間反演的擴散路徑之間發生量子干涉，可增強背散射：
+
+- 時間反演保持且自旋–軌道作用弱時，出現 **WL**：在 $B=0$ 處出現**電導負修正造成的谷值**，即量子修正降低電導。
+- SOC 強或存在 $\pi$ 貝里相位時，出現 **WAL**：形成**正向**尖峰，即反局域化。
+
+二維中，$B=0$ 附近的磁電導遵循日上–拉金–長岡型修正，其示意形式為
+
+$$
+\Delta \sigma(B) \sim \frac{e^{2}}{2\pi^{2}\hbar} \left[ f\!\left(\frac{B_{\phi}}{B}\right) - f\!\left(\frac{B_{\phi}+B_{\mathrm{so}}}{B}\right) - \cdots \right]
+$$
+
+其中 $B_{\phi}\propto 1/L_{\phi}^{2}$，$B_{\mathrm{so}}$ 描述 SOC。二維無 SOC 時，$B=0$ 的修正按下式標度變化
+
+$$
+\Delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+其中 $\ell$ 是平均自由程；WAL 的符號相反。
+
+---
+
+### 10.12.5 普適電導漲落（UCF）
+
+樣品特有的干涉使介觀電導 $G(B)$ 或 $G(V_{g})$ 呈現**非週期但可重複**的起伏。其**變異數**具有**普適性**，不依賴材料的具體細節，數量級為
+
+$$
+\mathrm{var}(G) \sim \left(\frac{e^{2}}{h}\right)^{2} \times \frac{1}{\beta}
+$$
+
+其中 $\beta=1,2,4$ 分別標記正交（TRS）、酉（TRS 破缺）和辛（強 SOC）對稱性類別。精確係數取決於維度和長寬比，但數量級固定，因此稱為「普適」。
+
+---
+
+### 10.12.6 退相干與能量弛豫
+
+非彈性過程會破壞相位相干：
+
+- **電子–電子**散射在低 $T$ 時佔主導，常滿足 $1/\tau_{\phi}\propto T^{p}$；$p$ 依賴維度，一維中通常為次線性，二維擴散體系中近似線性  
+- 較高 $T$ 下的**電子–聲子**散射通常滿足 $1/\tau_{\phi}\propto T^{q}$，且 $q>2$  
+- **磁性雜質**：自旋翻轉可破壞相干，隨 $T$ 的變化還可能顯示近藤物理
+
+擬合 WL/WAL 磁電導或 AB 振幅隨周長的衰減，可以提取 $L_{\phi}=\sqrt{D\tau_{\phi}}$。
+
+---
+
+### 10.12.7 接觸電阻與四探針測量
+
+朗道爾理論提醒我們，即使**完美**的一維導線，每條佔據的自旋簡併通道也具有由接觸限制的電阻
+
+$$
+R_{\mathrm{Q}} = \frac{h}{2e^{2}} \approx 12.9\ \mathrm{k}\Omega
+$$
+
+上述值對應一條通道。多端幾何（霍爾條、四探針）可將接觸或界面效應同器件內稟透射區分開來。
+
+---
+
+### 10.12.8 隨機矩陣普適性
+
+完全混沌或強無序、但保持相位相干的腔體（「量子點」），其透射本徵值的統計服從**維格納–戴森系綜**：
+
+- **高斯正交系綜 GOE（β=1）**：保持 TRS，無 SOC  
+- **高斯酉系綜 GUE（β=2）**：TRS 破缺  
+- **高斯辛系綜 GSE（β=4）**：強 SOC，保持 TRS
+
+這些系綜決定 $G$ 的分佈、**散粒噪聲**（例如混沌腔中 $F=1/4$）和能級間距（維格納猜測）。磁場與 SOC 強度可調節不同對稱性類別之間的交叉。
+
+---
+
+### 10.12.9 介觀超導：奈米尺度的安德烈夫過程
+
+在潔淨的正常金屬–超導體（NS）界面，亞隙輸運透過**安德烈夫反射**發生：電子作為電洞回溯反射，同時向凝聚態加入一個庫珀對。其結果包括：
+
+- 完全透明 NS 點接觸的低偏壓電導**加倍**（BTK 極限）  
+- 短 SNS 結中的**多重安德烈夫反射（MAR）**，在 $eV=2\Delta/n$ 處產生能隙的次諧波特徵  
+- 具有 SOC 與塞曼場、並受超導鄰近效應影響的奈米線中，調節參數後安德烈夫束縛態可演變為**類馬約拉納**零模，這是拓撲超導的一個例子
+
+---
+
+### 10.12.10 從介觀輸運到安德森局域化：標度理論的橋梁
+
+無序增強或維度降低時，干涉修正（WL/WAL、UCF）變強。在低維中：
+
+- **一維、二維**：正交類中（無 SOC、無磁場），任意弱的無序都會使 $T=0$ 下的無交互作用電子局域化  
+- **三維**：在臨界無序處可發生真正的**金屬–絕緣體轉變**
+
+**無因次電導** $g \equiv G/(e^{2}/h)$ 遵循標度流 $d\ln g/d\ln L = \beta(g)$；$\beta(g)$ 的**符號**決定金屬性或絕緣性。第 10.13 節將詳細介紹**安德森局域化**及其標度理論。
+
+---
+
+### 10.12.11 簡短例題
+
+**(a) 朗道爾公式入門**  
+隨柵極打開，某 QPC 在 $G=(2,4,6)\times e^{2}/h$ 處出現平臺。估計佔據模式數，以及平臺之間傾斜過渡區中的平均 $T_{n}$。
+
+**(b) 三類散粒噪聲**  
+分別計算以下體系的 $F$：① 滿足 $T\ll 1$ 的隧穿結；② 位於平臺上的彈道 QPC；③ 擴散導線。解釋即使 $G$ 相近，$F$ 為何仍能區分它們。
+
+**(c) AB 與 AAS 的比較**  
+周長為 $L$ 的環顯示振幅為 $A_{1}\propto e^{-L/L_{\phi}}$ 的 $h/e$ 振盪，以及更弱、振幅為 $A_{2}$ 的 $h/2e$ 諧波。說明 $A_{2}$ 為何按 $e^{-2L/L_{\phi}}$ 衰減。
+
+**(d) WL 擬合**  
+給定一條在 $B=0$ 處有尖銳尖點的二維磁電導曲線，添加頂柵、增強 SOC 後其曲率反轉，定性擬合 $L_{\phi}$ 和 $L_{\mathrm{so}}$ 的變化趨勢。
+
+**(e) UCF 標度**  
+證明當 $k_{B}T$ 超過索利斯能量 $E_{T}=\hbar D/L^{2}$ 時，在 $k_{B}T$ 能窗內的熱平均如何降低變異數 $\mathrm{var}(G)$。
+
+**(f) 接觸電阻**  
+長度為 $L\ll \ell$ 的彈道單模奈米線顯示 $R\approx R_{\mathrm{Q}}$。解釋為什麼增加一對**電壓**探針進行四探針測量後測得的內部電阻近乎零，而兩探針測量仍讀出 $\sim R_{\mathrm{Q}}$。
+
+---
+
+### 10.12.12 常見誤區
+
+- **忘記接觸**：朗道爾電導包含接觸電阻；不要把有限的雙端 $R$ 歸因於「完美導線」本身。  
+- **混淆系綜漲落與樣品噪聲**：UCF 是隨 $B$ 或 $V_{g}$ 變化的**可重複**特徵，而非隨機閃爍；在 $B$ 窗口上平均，可顯露疊加的 WL 背景。  
+- **混淆 WL 的符號**：WAL 需要強 SOC 或 $\pi$ 貝里相位，例如拓撲表面態；否則通常預期 WL。  
+- **認為法諾因子總滿足 $=1$**：泊松散粒噪聲出現於隧穿極限；彈道與擴散器件以可預期的方式抑制噪聲。  
+- **混淆相位與能量弛豫**：退相干消除干涉，卻不一定使能量達到平衡；不要把 $\tau_{\phi}$ 等同於能量弛豫時間。  
+- **過度擬合 HLN 公式**：二維 WL/WAL 公式的參數彼此相關；應謹慎報告 $L_{\phi}$、$L_{\mathrm{so}}$ 的趨勢，避免給出精度虛高的數值。
+
+---
+
+## 10.13 安德森局域化與標度理論
+
+增大無序後，干涉效應會變得決定性：波函數**局域化**，直流輸運消失，電導呈指數小量。這就是**安德森局域化**，一種由無序與干涉共同束縛本徵態的單粒子量子相。本節介紹安德森模型、標度理論與 $\beta$ 函數、三維遷移率邊與臨界性、對稱性類別的差異（正交、酉、辛）、有限尺寸效應與多重分形、實驗特徵（變程跳躍、庫侖隙、WL/WAL 磁響應），以及便捷的計算方法（轉移矩陣、索利斯數和非線性 σ 模型簡介）。最後簡要介紹多體局域化。
+
+---
+
+### 10.13.1 最簡模型
+
+晶格上的緊束縛**安德森漢彌爾頓量**為：
+
+$$
+H = \sum_{i} \epsilon_{i}\,|i\rangle\langle i| + \sum_{\langle ij\rangle} t_{ij}\,|i\rangle\langle j|
+$$
+
+其中隨機在位能 $\epsilon_{i}$ 取自寬度為 $W$ 的分佈，例如 $[-W/2,W/2]$ 上的均勻分佈，$t_{ij}=t$ 為短程躍遷。無序 $W$ 與帶寬 $W_{\mathrm{band}}\sim zt$ 相競爭。
+
+**啟發式判斷。** 當彈性平均自由程 $\ell$ 降至**伊奧菲–雷格爾**邊界 $k_{F}\ell \sim 1$ 時，波在一個平均自由程內就受到強烈散射，干涉開始主導物理行為。
+
+---
+
+### 10.13.2 從擴散到局域化：標度假設
+
+對邊長為 $L$ 的超立方樣品，定義**無因次電導** $g$：
+
+$$
+g(L) \equiv \frac{G(L)}{e^{2}/h} \sim h\,\nu(E_{F})\, D\, L^{d-2} \sim \frac{E_{T}}{\Delta}
+$$
+
+其中 $\nu$ 為態密度，$D$ 為擴散常數，$E_{T}=\hbar D/L^{2}$ 為索利斯能量，$\Delta\sim [\nu L^{d}]^{-1}$ 為能級間距。**單參數標度**假設（阿布拉哈姆斯–安德森–利恰爾代洛–拉馬克里希南）認為
+
+$$
+\beta(g) \equiv \frac{d\ln g}{d\ln L}
+$$
+
+只依賴 $g$ 和對稱性類別。其推論如下：
+
+- **$d=1$ 和二維（正交類）**：對所有 $g$ 都有 $\beta(g)<0$，因此 $T=0$ 下沒有真正的金屬固定點；任意弱無序都會局域化，二維中這一過程隨尺度呈緩慢的對數變化。  
+- **$d=3$**：$\beta(g)$ 在 $g^{\ast}$ 處穿過零，產生**金屬–絕緣體轉變**（MIT）。關聯長度或局域化長度
+
+$$
+\xi \sim |W-W_{c}|^{-\nu}
+$$
+
+在臨界無序 $W_{c}$ 處發散；金屬一側滿足 $g(L\!\gg\!\ell)\sim (L/\ell)^{d-2}$。
+
+改變對稱性類別為酉類或辛類會改變 $\beta$，也可能改變二維的結論，見第 10.13.6 節。
+
+---
+
+### 10.13.3 遷移率邊與三維臨界性
+
+在三維中，本徵態可在帶中心附近為**擴展態**，在帶尾為**局域態**；分隔兩者的能量稱為**遷移率邊** $E_{c}(W)$。調節無序會移動 $E_{c}$；當 $W=W_{c}$ 時，$E_{c}$ 到達 $E_{F}$，直流輸運消失。
+
+臨界行為（無交互作用的正交類）包括：
+
+- **局域化長度** $\xi\sim |W-W_{c}|^{-\nu}$，其中 $\nu$ 是普適指數  
+- 金屬一側的**電導率標度關係**
+
+$$
+\sigma \sim \frac{e^{2}}{h}\, \xi^{2-d}\, \mathcal F\!\left(\frac{L}{\xi},\frac{L_{\phi}}{\xi}\right)
+$$
+
+在 $T=0$、$L\to\infty$ 時，$\sigma \propto (W_{c}-W)^{\mu}$，其中指數 $\mu$ 透過標度關係與 $\nu$ 聯繫。
+
+---
+
+### 10.13.4 量子修正：WL/WAL 與 $\ln T$ 變化
+
+在**擴散**區域（$k_{F}\ell\gg 1$），時間反演路徑間的干涉產生**弱局域化（WL）** 修正。二維正交類中，零場修正具有如下形式
+
+$$
+\delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+垂直磁場破壞時間反演並**抑制** WL，在 $B=0$ 附近產生**負磁阻尖點**，符合日上–拉金–長岡線形。強自旋–軌道耦合下（辛類），修正反號，成為**弱反局域化（WAL）**。
+
+**交互作用**還產生具有 $\ln T$ 趨勢的阿爾特舒勒–阿羅諾夫（AA）修正，並在隧穿態密度中產生零偏壓異常。WL 與 AA 共同作用，常導致二維金屬中觀察到的 $\sigma(T)=\sigma_{0}+a\ln T$。
+
+---
+
+### 10.13.5 絕緣一側：跳躍與庫侖隙
+
+當態以長度 $\xi$ 局域化時，直流輸運透過聲子輔助的**變程跳躍（VRH）** 進行。
+
+- **莫特變程跳躍**，不存在長程庫侖作用導致的軟隙：
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{0}}{T}\right)^{\frac{1}{d+1}}\right]
+$$
+
+- **埃弗羅斯–什克洛夫斯基變程跳躍**，庫侖交互作用在態密度中形成軟隙：
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{1}}{T}\right)^{1/2}\right]
+$$
+
+變程跳躍中，磁響應可能很大且為正，涉及波函數收縮與跳躍路徑干涉。
+
+---
+
+### 10.13.6 對稱性類別與二維的特殊性
+
+二維體系的結局並不統一，而是取決於整體對稱性：
+
+- **正交類（TRS、無 SOC）**：$T=0$ 下所有態局域化；$\sigma$ 對數下降。  
+- **酉類（$B$ 破壞 TRS）**：庫珀子被抑制；二維中最終仍出現局域化，但 $\beta$ 的負值較小。  
+- **辛類（強 SOC、TRS 保持）**：**WAL** 使大 $g$ 時 $\beta(g)>0$，並允許透過無序或載流子密度調節真正的**二維金屬–絕緣體轉變**。
+
+其他類別，如手徵類和博戈柳博夫–德熱納類，還帶來特殊情形。在酉類 A 本身中，整數**量子霍爾**平臺之間也存在連接局域化霍爾平臺的拓撲轉變。
+
+---
+
+### 10.13.7 有限尺寸標度與轉移矩陣方法
+
+數值上可用轉移矩陣計算寬度為 $M$ 的長條的**準一維局域化長度** $\lambda_{M}(W)$，再透過下式的資料塌縮提取 $\nu$ 和 $W_{c}$：
+
+$$
+\frac{\lambda_{M}}{M} = \mathcal F\!\left[(W-W_{c})\,M^{1/\nu}\right]
+$$
+
+不同 $M$ 的曲線在 $W_{c}$ 處相交；斜率可給出 $\nu$。這是研究無交互作用普適類的主要方法。
+
+---
+
+### 10.13.8 遷移率邊處的多重分形
+
+臨界波函數既不是平面波，也不是指數局域態，而是**多重分形**。振幅矩滿足標度關係
+
+$$
+P_{q} \equiv \sum_{i} |\psi(i)|^{2q} \sim L^{-D_{q}(q-1)}
+$$
+
+其中廣義維數 $D_{q}$ 構成非平庸的譜，而非只有幾何維數 $d$。多重分形可見於參與率、局域態密度（LDOS）漲落與臨界電導分佈。
+
+---
+
+### 10.13.9 場論簡介：非線性 σ 模型
+
+圖解方法和無序平均會導出描述擴散模式（擴散子、庫珀子）的**非線性 σ 模型**。耦合常數反映 $g$；重整化可重現 $\beta(g)$、WL/WAL 的符號，以及芬克爾斯坦推廣中的交互作用修正。這是標度與普適性的解析理論基礎。
+
+---
+
+### 10.13.10 光學與交流輸運
+
+在金屬一側，光學電導具有寬度由無序展寬至 $1/\tau$ 的德魯德峰。接近臨界點時，德魯德權重塌縮。在無交互作用安德森絕緣體中，低頻交流電導按冪律上升，對應莫特交流跳躍；交互作用和庫侖隙會改變指數。因此，即使直流訊號小到無法測量，有限頻率探針仍可探測 $\xi$ 與跳躍尺度。
+
+---
+
+### 10.13.11 多體局域化（MBL）：交互作用體系中的延續
+
+在**沒有**熱庫時加入交互作用，局域化可能在有限能量密度下保持，其特徵包括：
+
+- **湧現的局域運動積分（LIOM）**，以及高激發本徵態中滿足面積律的糾纏  
+- 猝滅後**糾纏隨時間對數增長**  
+- **不存在直流輸運**，本徵態熱化失效
+
+MBL 要求體系隔離；聲子或引線最終會使其退局域化。儘管如此，它仍是冷原子與介觀電路中引人關注的「多體版本的安德森局域化」相。
+
+---
+
+### 10.13.12 簡短例題
+
+**(a) 索利斯數**  
+將能級對扭曲邊界條件的能量敏感度（索利斯能量）與平均能級間距比較，證明 $g\simeq E_{T}/\Delta$。
+
+**(b) 二維 WL 斜率**  
+對一條獨立自旋通道，從庫珀子迴路積分出發，推導二維中的 $\delta \sigma(0)=-(e^{2}/\pi h)\ln(L_{\phi}/\ell)$，並解釋垂直 $B$ 為何透過 $L_{B}=\sqrt{\hbar/(2eB)}$ 截斷對數。
+
+**(c) 變程跳躍指數**  
+從 $d$ 維常數態密度出發，優化跳躍距離與能量，得到莫特變程跳躍指數 $1/(d+1)$。再加入庫侖隙 $g(E)\propto |E-E_{F}|^{d-1}$，得到埃弗羅斯–什克洛夫斯基 $1/2$ 定律。
+
+**(d) 轉移矩陣曲線交點**  
+對寬度 $M=8,12,16$，畫出 $\lambda_{M}/M$ 隨 $W$ 的變化，標出 $W_{c}$ 處的唯一交點。說明如何由斜率之比得到 $\nu$。
+
+**(e) 多重分形矩**  
+給定 $L^{d}$ 晶格上的本徵態振幅，計算 $P_{2}$，並對不同尺寸作雙對數擬合，提取有效分形維數 $D_{2}$。
+
+**(f) 對稱性改變**  
+定性說明加入強 SOC 如何使庫珀子貢獻反號並產生 WAL，以及微小 $B$ 為何透過破壞時間反演而抑制干涉修正。
+
+---
+
+### 10.13.13 常見誤區
+
+- **「所有二維體系都會局域化，沒有例外。」** 這一說法只適用於沒有強 SOC 的正交類。二維辛類可有真正的金屬–絕緣體轉變，量子霍爾效應還會帶來拓撲臨界性。  
+- **混淆變程跳躍與有隙熱激活。** 變程跳躍的指數是**非阿倫尼烏斯型**；應檢查 $(\ln \rho)$ 對 $T^{-\alpha}$ 的斜率，以辨別維度和庫侖隙影響。  
+- **將 $k_{F}\ell\sim 1$ 等同於轉變點。** 它只是擴散物理的啟發式邊界，並非精確的 $W_{c}$。  
+- **忽略二維交互作用。** 阿爾特舒勒–阿羅諾夫項常與 WL 一樣大。若 $\ln T$ 斜率隨柵極調節 SOC 而反號，則是 WAL，而非交互作用修正反號。  
+- **過度解讀有限樣品。** 若 $L\ll \xi$，僅憑 $\rho(L)$ 增大不能證明絕緣性；應作有限尺寸標度分析。  
+- **MBL 不等於安德森局域化。** MBL 是交互作用體系的高激發態現象；安德森局域化是單粒子或無交互作用的本徵態性質，並不限於 $T=0$。
+
+---
+
+### 10.13.14 基礎習題組
+
+- 從德魯德擴散出發，構造二維中包含最低階量子干涉的 $g(L)$ 與 $\beta$ 函數；證明大 $g$ 時正交類為負、辛類為正  
+- 用日上–拉金–長岡公式計算 $B=0$ 附近的磁電導 $\Delta \sigma(B)$，並從模擬資料中提取 $L_{\phi}$  
+- 分別用莫特和埃弗羅斯–什克洛夫斯基變程跳躍擬合模擬 $\rho(T)$，判斷是否存在庫侖隙  
+- 實現三維安德森模型的轉移矩陣程序，得到 $\lambda_{M}/M$ 的交點，並透過資料塌縮估計 $\nu$  
+- 在 $W\approx W_{c}$ 附近對 $q=2,3$ 計算 $P_{q}$，驗證不同尺寸間的多重分形標度  
+- 代入 $D=\sigma/(e^{2}\nu)$ 和 $\Delta^{-1}=\nu L^{d}$，證明 $g\sim E_{T}/\Delta$ 可化為 $g\sim \sigma L^{d-2}/(e^{2}/h)$
+
+---
+
+## 10.14 莫爾量子物質與二維材料
+
+將原子級薄晶體以微小轉角堆疊，能帶結構就會發生豐富變化。**范德瓦耳斯（vdW）異質結構**讓我們能夠精細調節幾何（扭轉）、靜電環境（雙柵極）與對稱性（對齊、應變）。由此產生**平帶**、**關聯絕緣體**、**非常規超導**、**量子反常霍爾效應**和**莫爾激子**，都存在於可在晶片上重新調控的人工超晶格中。
+
+---
+
+### 10.14.1 為什麼研究二維與莫爾結構
+
+- **二維晶體**，包括石墨烯、六方氮化硼（hBN）及 MoS$_2$、WSe$_2$ 等過渡金屬二硫屬化物（TMD），可被剝離、堆疊、旋轉並連接電極。
+- 層間較弱的**范德瓦耳斯**鍵允許自由組合異質結構，避免複雜的界面化學限制。
+- 層間小**轉角** $\theta$ 產生長波長的**莫爾超晶格**，其週期為
+
+$$
+L_{m} = \frac{a}{2\sin(\theta/2)}
+$$
+
+其中 $a$ 是單層晶格常數。當 $\theta \sim 1^{\circ}$ 時，$L_{m}$ 達到十幾至幾十奈米，遠大於 $a$，因此動量空間摺疊成微型布里淵區，能帶變平。
+
+---
+
+### 10.14.2 連續模型與「魔角」平帶
+
+對於扭轉雙層石墨烯（tBLG），**比斯特里策–麥克唐納**連續模型透過層間隧穿 $w$ 和相對轉角 $\theta$ 耦合兩層的狄拉克錐。定義
+
+$$
+k_{\theta} = 2 k_{D} \sin(\theta/2),\qquad k_{D} = \frac{4\pi}{3a}
+$$
+
+以及無因次耦合
+
+$$
+\alpha = \frac{w}{\hbar v_{F} k_{\theta}}
+$$
+
+在**魔角**處，第一個魔角約為 $\theta \approx 1.1^{\circ}$，$\alpha$ 使狄拉克速度降至接近零，帶寬 $W$ 縮小到數毫電子伏特。當交互作用 $U$ 具有相近尺度時，關聯效應主導物理行為。
+
+交互作用尺度的粗略估計為：
+
+$$
+U \sim \frac{e^{2}}{4\pi \varepsilon_{0} \varepsilon_{r} L_{m}}
+$$
+
+在小 $\theta$ 下，該值很容易落在 10–50 meV 的範圍，即 $U/W \gg 1$。
+
+---
+
+### 10.14.3 莫爾哈伯德模型與維格納物理
+
+莫爾勢為瓦尼爾函數定義了**有效晶格**：
+
+- **tBLG**：脆弱拓撲使嚴格局域的緊束縛描述複雜化，但電荷中性點附近的低能物理常可投影到分谷的陳能帶。
+- **TMD 異質雙層**，例如小轉角的 WSe$_2$/WS$_2$：形成良好局域化的莫爾**三角**或**蜂窩**晶格，可實現真正的**哈伯德模型**，並透過轉角或電場調節 $t$。
+
+在低填充且 $r_{s}$ 較大時，動能不再佔優，可出現**維格納晶體**或廣義電荷有序。柵極與位移場可調節競爭序，包括莫特態、電荷密度波及自旋、谷極化。
+
+---
+
+### 10.14.4 莫爾體系中的拓撲：谷、貝里曲率與陳數
+
+單層 TMD 具有**不同谷符號相反的貝里曲率**；即使沒有淨磁場，堆疊與莫爾摺疊也能設計出**陳能帶**。分谷霍爾響應為：
+
+$$
+\sigma_{xy}^{v} = -\frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K)} + \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K')}
+$$
+
+若兩個谷等量填充，時間反演要求總陳數 $C_{\text{tot}}=0$；但**自發谷極化**打破這一平衡，可在零 $B$ 下產生**量子反常霍爾效應**。
+
+無反演中心的堆疊結構中，**貝里曲率偶極矩**可在 $E$ 的二階產生**非線性霍爾**訊號。
+
+---
+
+### 10.14.5 對稱性破缺：關聯絕緣體、超導、量子反常霍爾效應與向列性
+
+透過雙柵極調節每個莫爾晶胞的載流子密度 $\nu$，可探索豐富相圖：
+
+- 整數 $\nu$ 處的**關聯絕緣體**，可為類莫特態或內部自由度極化的能帶絕緣體。
+- 對關聯態輕微摻雜後出現的**非常規超導**；其對**位移場**和**庫侖屏蔽**的敏感性提示，某些平臺中配對可能源於電子機制。
+- 單谷陳能帶發生交換極化時產生的**量子反常霍爾效應（QAHE）**。
+- **向列性**：輸運與 STM 中可見的旋轉對稱性破缺，常與應變或交互作用驅動的類波梅蘭丘克不穩定性有關。
+
+對於態密度為 $N(0)$ 的平帶，可用最簡有效配對關係估計：
+
+$$
+k_{B}T_{c} \sim W\, \exp\!\left(-\frac{1}{\lambda_{\text{eff}}}\right),\qquad \lambda_{\text{eff}} \equiv V_{\text{eff}} N(0)
+$$
+
+較小的 $W$ 可增強態密度，使不大的 $V_{\text{eff}}$ 也產生較強耦合，但同時降低 $T_{c}$ 的前因子；僅憑這一弱耦合估計，不能保證較高轉變溫度。細節取決於谷、自旋結構及形狀因子。
+
+---
+
+### 10.14.6 TMD 激子、層間激子與莫爾極化激元
+
+由於屏蔽減弱和二維運動學，單層 TMD 支持束縛很強的**激子**，束縛能可達數百毫電子伏特。堆疊兩種不同 TMD 可形成**第二類**能帶排列，以及電子、電洞分處不同層的**層間激子**：
+
+- 壽命長，可達納秒至 $\mu$ 秒，具有較大的**電偶極矩**，可在面外電場的空間梯度下漂移。
+- 存在扭轉時，莫爾勢產生**激子微帶**與**俘獲陣列**，即「激子晶格」。
+
+對於採用局域介電常數和 $1/r$ 庫侖勢的嚴格二維激子，類氫模型的基態束縛能估計為：
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}} \times 54.4\ \mathrm{eV}
+$$
+
+實際數值需要**凱爾迪什**屏蔽模型，但對 $\mu^{\ast}$ 和 $\varepsilon_{r}$ 的標度依賴仍提供直觀指引。
+
+將激子耦合到微腔，可得到具有可調色散與交互作用的**莫爾激子–極化激元**。
+
+---
+
+### 10.14.7 自旋–谷鎖定與谷電子學
+
+在單層 TMD 中，SOC 將自旋與谷鎖定。**圓偏振光**可以分別選擇性激發 $K$ 或 $K'$，實現**谷極化**。在反演對稱性破缺的雙層中，或施加位移場後，無需 $B$ 就能調控橫向於 $\boldsymbol E$ 的**谷霍爾**電流。有限的貝里曲率偶極矩 $\boldsymbol D$ 產生**非線性霍爾效應**：
+
+$$
+\boldsymbol J^{(2\omega)} \propto \frac{e^{3}\tau}{\hbar^{2}(1+i\omega\tau)}\, [\hat{\boldsymbol z}\times\boldsymbol E(\omega)]\,[\boldsymbol D\cdot\boldsymbol E(\omega)]
+$$
+
+可在零磁場下測得二次諧波霍爾電壓。
+
+---
+
+### 10.14.8 實驗調控參數與探針
+
+- **調控參數**：轉角 $\theta$、雙柵極產生的**位移場** $D$、每個莫爾晶胞的載流子密度 $\nu$、**介電環境**（hBN 厚度、附近金屬柵極）以及**應變**。
+- **輸運**：縱向與霍爾電阻率隨 $\nu$ 的變化、$B$ 下的朗道扇形圖，以及反映莫爾費米面口袋的量子振盪。
+- **STM/STS**：直接探測態密度、能隙分佈、莫爾圖樣及局域有序。
+- **光學**：用光致發光與反射探測激子，用圓二色性探測谷，用泵浦–探測研究動力學。
+- **電容與壓縮率**：探測熱力學態密度和對稱性破缺，如自旋、谷極化平臺。
+- **磁測量**：QAHE 平臺、陳能帶產生的軌道磁化，以及利用探針尖端 SQUID 成像邊緣模式。
+
+---
+
+### 10.14.9 基礎建模途徑
+
+- 對石墨烯體系採用**連續狄拉克模型與週期隧穿**，用少量參數 $(v_{F}, w_{0/1}, \theta)$ 描述平帶和拓撲。
+- 對三角或蜂窩晶格上的 TMD 雙層採用**莫爾哈伯德模型**，包含在位 $U$、近鄰 $V$，以及 SOC 可能產生的洪特或伊辛各向異性。
+- 用**哈特里–福克**方法研究內部自由度的對稱性破缺；用 **DMFT 或精確對角化（ED）** 研究關聯及有限 $T$ 的譜；用**貝里幾何與威爾遜環路**追蹤陳數，見第 10.11 節。
+
+---
+
+### 10.14.10 簡短例題
+
+**(a) 莫爾長度尺度**  
+給定石墨烯的 $a=0.246\ \mathrm{nm}$ 和 $\theta=1.1^{\circ}$，計算 $L_{m}=a/[2\sin(\theta/2)]$，並在 $\varepsilon_{r}=5$ 時估計 $U \sim e^{2}/(4\pi \varepsilon_{0}\varepsilon_{r} L_{m})$。
+
+**(b) 魔角參數**  
+給定 $v_{F}=1.0\times 10^{6}\ \mathrm{m/s}$ 和 $w=110\ \mathrm{meV}$，計算 $\theta=1.1^{\circ}$ 時的 $\alpha=w/(\hbar v_{F} k_{\theta})$，並討論能帶平坦程度。
+
+**(c) 三角晶格哈伯德模型**  
+假設某 TMD 莫爾體系具有 $t=2\ \mathrm{meV}$、$U=20\ \mathrm{meV}$，利用 $W\approx 9|t|$ 估計 $U/W$，並討論半填充時是莫特絕緣體還是金屬。
+
+**(d) 谷霍爾符號**  
+若 $C=1$ 的單谷陳能帶完全極化，在零 $B$ 下，以 $e^{2}/h$ 為單位的 $\sigma_{xy}$ 是多少？與陳數 $C$ 相反的兩個谷均填滿的情形比較。
+
+**(e) 層間激子偶極矩**  
+對於層間距 $d=0.7\ \mathrm{nm}$，估計偶極矩 $p=ed$，以及 $E=0.1\ \mathrm{V/nm}$ 時的斯塔克位移 $\Delta E = -pE$。
+
+**(f) 非線性霍爾估計**  
+給定貝里曲率偶極矩 $|D|=0.1\ \text{\AA}$ 和弛豫時間 $\tau=0.1\ \mathrm{ps}$，估計在 $E(\omega)=1\ \mathrm{kV/cm}$ 下二次諧波霍爾電流的數量級，給出標度關係即可。
+
+---
+
+### 10.14.11 常見誤區
+
+- **「平帶只能來自魔角。」** 許多莫爾平臺，如 TMD 和 hBN 上的石墨烯，無需精確魔角調節也有窄帶；位移場與介電屏蔽可顯著改變帶寬。
+- **忽略內部自由度**：自旋、谷、層構成多種「味」自由度；對稱性破缺常選擇其中一種或其組合。過早壓縮這些自由度的模型會遺漏真實有序態。
+- **忽略谷分辨拓撲**：不同谷的總陳數可以抵消；內部自由度佔據不平衡時，仍可出現**谷**霍爾響應與**軌道磁化**。
+- **瓦尼爾化陷阱**：tBLG 的脆弱拓撲阻礙嚴格局域的瓦尼爾基，除非擴展所選子空間；不要強行採用過度簡化的緊束縛模型。
+- **過度依賴平均場擬合**：哈特里–福克方法容易預言有序；應結合熱力學、壓縮率及對無序的穩健性進行交叉檢驗。
+- **過度使用類氫激子模型**：二維屏蔽是非局域的，需要凱爾迪什描述；類氫估計提供尺度指引，而非最終數值。
+
+---

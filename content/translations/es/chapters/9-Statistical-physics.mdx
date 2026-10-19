@@ -1,0 +1,2653 @@
+---
+description: "Física estadística desde las colectividades y funciones de partición hasta los gases cuánticos, transiciones de fase, grupo de renormalización y transporte fuera del equilibrio."
+---
+
+## 9.1 Fundamentos: de los microestados a la termodinámica
+
+La física estadística es el arte de predecir leyes **macroscópicas** a partir de incertidumbre **microscópica**. Nunca conocemos el estado exacto de $10^{23}$ cuerpos; en su lugar, organizamos el desconocimiento en **colectividades estadísticas** cuyos promedios reproducen la temperatura, la presión, la magnetización y demás. Esta sección construye el núcleo: microestados frente a macroestados, el postulado fundamental, las tres colectividades estándar y el límite termodinámico. También mostramos cómo la perspectiva de la **teoría de la información** convierte la «máxima entropía» en el motor único de las distribuciones conocidas.
+
+![Un gas inicialmente confinado a la mitad de un recipiente se expande por todo el recipiente aislado. Un mayor número de microestados accesibles corresponde a una entropía mayor.](/images/diagrams/entropy.svg)
+
+---
+
+### 9.1.1 Microestados, macroestados y espacio de fases
+
+Un **microestado** es una especificación completa de los grados de libertad del sistema. Para $N$ partículas puntuales clásicas, es un punto del espacio de fases de $6N$ dimensiones con coordenadas
+
+$$
+\Gamma \equiv (\boldsymbol r_{1},\dots,\boldsymbol r_{N};\boldsymbol p_{1},\dots,\boldsymbol p_{N})
+$$
+
+Un **macroestado** se define mediante unas pocas variables globales, por ejemplo, $(E,V,N)$ para un gas aislado. Muchos microestados corresponden al mismo macroestado. Contar cuántos conduce a la entropía.
+
+El teorema de Liouville establece que el flujo hamiltoniano es **incompresible** en el espacio de fases, por lo que los elementos de volumen se conservan a lo largo de las trayectorias. Esto hace que las distribuciones uniformes sobre capas de energía sean dinámicamente consistentes.
+
+---
+
+### 9.1.2 Postulado fundamental y principio de Boltzmann
+
+**Postulado fundamental.** Para un sistema aislado con $(E,V,N)$ fijos en equilibrio, todos los microestados compatibles con estas restricciones son **igualmente probables**.
+
+Sea $\Omega(E,V,N)$ el número de microestados con energías en $[E,E+\delta E]$ para un $\delta E$ pequeño, pero macroscópico. Entonces la **entropía** es
+
+$$
+S(E,V,N) = k_{B}\,\ln \Omega(E,V,N)
+$$
+
+La temperatura termodinámica se obtiene de
+
+$$
+\frac{1}{T} = \left(\frac{\partial S}{\partial E}\right)_{V,N}
+$$
+
+y la presión y el potencial químico son
+
+$$
+\frac{p}{T} = \left(\frac{\partial S}{\partial V}\right)_{E,N},\qquad -\,\frac{\mu}{T} = \left(\frac{\partial S}{\partial N}\right)_{E,V}
+$$
+
+Para subsistemas débilmente interactuantes $A$ y $B$, la aditividad de $S$ a $E$ total fija da la condición de equilibrio $T_{A}=T_{B}$ al maximizar $S_{A}(E_{A})+S_{B}(E_{B})$ sujeto a $E_{A}+E_{B}=E$.
+
+---
+
+### 9.1.3 Límite termodinámico, extensividad y concavidad
+
+Definimos el **límite termodinámico** como $N\to\infty$, $V\to\infty$ con $n=N/V$ fijo. En este límite:
+
+- La entropía se vuelve **extensiva**: $S(\lambda E,\lambda V,\lambda N)\approx \lambda S(E,V,N)$  
+- $S$ es **cóncava** en sus variables naturales, garantizando estabilidad y capacidades caloríficas positivas cuando corresponde  
+- Las fluctuaciones de variables **intensivas** disminuyen como $1/\sqrt{N}$, haciendo precisa la termodinámica
+
+Las interacciones de corto alcance garantizan la equivalencia de colectividades; los casos de largo alcance (autogravitación, Coulomb sin apantallar) pueden violar la aditividad y requieren cuidado.
+
+---
+
+### 9.1.4 Colectividad microcanónica
+
+La densidad de probabilidad microcanónica es uniforme respecto de la medida invariante sobre la capa de energía inducida por la medida de Liouville, no respecto del área euclídea de la hipersuperficie. Aquí $\omega(E,V,N)=\int d\Gamma\,\delta(H(\Gamma)-E)$ es la densidad de estados, distinta del recuento en una capa finita $\Omega\simeq\omega\,\delta E$ para una anchura de energía estrecha y fija:
+
+$$
+\rho_{\text{mc}}(\Gamma) = \frac{1}{\omega(E,V,N)}\,\delta\!\left(H(\Gamma)-E\right)
+$$
+
+Los valores esperados son
+
+$$
+\langle A\rangle_{\text{mc}} = \frac{1}{\omega}\int d\Gamma\;A(\Gamma)\,\delta\!\left(H(\Gamma)-E\right)
+$$
+
+Maximizar $S=k_{B}\ln\Omega$ sujeto a restricciones reproduce las relaciones termodinámicas. Para muchos sistemas, este es el anclaje conceptual; en la práctica, la colectividad canónica suele ser más fácil de calcular y se vuelve equivalente para $N$ grande.
+
+---
+
+### 9.1.5 Colectividad canónica mediante un baño térmico
+
+Colocamos el sistema $S$ débilmente acoplado a un enorme foco $R$ con $E_{\text{tot}}$ fija. La probabilidad de encontrar $S$ en el microestado $i$ con energía $E_{i}$ es proporcional al número de estados del foco con energía $E_{\text{tot}}-E_{i}$:
+
+$$
+P(i) \propto \Omega_{R}(E_{\text{tot}}-E_{i}) \approx \exp\!\left[\frac{1}{k_{B}}\,S_{R}(E_{\text{tot}})-\frac{E_{i}}{k_{B}T}\right] \propto e^{-\beta E_{i}}
+$$
+
+con temperatura inversa $\beta \equiv 1/(k_{B}T)$. Normalizamos para obtener
+
+$$
+P(i) = \frac{e^{-\beta E_{i}}}{Z},\qquad Z(\beta,V,N) \equiv \sum_{i} e^{-\beta E_{i}}
+$$
+
+$Z$ es la **función de partición**. Los potenciales termodinámicos se obtienen así:
+
+$$
+F(T,V,N) \equiv -\,k_{B}T\,\ln Z
+$$
+
+$$
+U = \langle E\rangle = -\,\frac{\partial}{\partial \beta}\ln Z
+$$
+
+$$
+S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = k_{B}\left(\ln Z + \beta U\right)
+$$
+
+Las fluctuaciones de energía satisfacen
+
+$$
+\langle (\Delta E)^{2}\rangle = k_{B}T^{2}C_{V}
+$$
+
+por lo que las fluctuaciones relativas escalan como $1/\sqrt{N}$ para sistemas normales.
+
+---
+
+### 9.1.6 Colectividad gran canónica: intercambio de partículas
+
+Si se intercambian tanto energía como partículas con un reservorio, la probabilidad del microestado $i$ con $(E_{i},N_{i})$ es
+
+$$
+P(i) = \frac{e^{-\beta(E_{i}-\mu N_{i})}}{\Xi}
+$$
+
+con **función de partición gran canónica**
+
+$$
+\Xi(\beta,V,\mu) \equiv \sum_{N=0}^{\infty}\sum_{i\in N} e^{-\beta(E_{i}-\mu N)}
+$$
+
+Definimos el gran potencial
+
+$$
+\Phi_{G}(T,V,\mu) \equiv -\,k_{B}T\,\ln \Xi
+$$
+
+Entonces
+
+$$
+p = -\left(\frac{\partial \Phi_{G}}{\partial V}\right)_{T,\mu},\quad N = -\left(\frac{\partial \Phi_{G}}{\partial \mu}\right)_{T,V},\quad S = -\left(\frac{\partial \Phi_{G}}{\partial T}\right)_{V,\mu}
+$$
+
+Fluctuaciones:
+
+$$
+\langle (\Delta N)^{2}\rangle = k_{B}T\left(\frac{\partial N}{\partial \mu}\right)_{T,V}
+$$
+
+y las covarianzas entre energía y número proceden de derivadas mixtas de $\ln \Xi$.
+
+---
+
+### 9.1.7 Transformadas de Legendre y potenciales termodinámicos
+
+La termodinámica se organiza mediante transformadas de Legendre que intercambian variables naturales:
+
+- $S=S(E,V,N)$  
+- $F=U-TS$ con variables naturales $(T,V,N)$  
+- $G=F+pV$ con $(T,p,N)$  
+- $H=U+pV$ con $(S,p,N)$  
+- $\Phi_{G}=F-\mu N$ con $(T,V,\mu)$
+
+Las relaciones de Maxwell se deducen de la igualdad de derivadas parciales mixtas, por ejemplo,
+
+$$
+\left(\frac{\partial S}{\partial V}\right)_{T} = \left(\frac{\partial p}{\partial T}\right)_{V}
+$$
+
+---
+
+### 9.1.8 Fundamento en teoría de la información (perspectiva de Jaynes)
+
+Sean $\{p_{i}\}$ probabilidades sobre microestados. **Maximizamos** la entropía de Shannon
+
+$$
+\mathcal S[p] \equiv -k_{B}\sum_{i} p_{i}\ln p_{i}
+$$
+
+sujeta a las restricciones conocidas. Con solo la normalización y la energía media fijas, los multiplicadores de Lagrange dan
+
+$$
+p_{i} = \frac{e^{-\beta E_{i}}}{Z}
+$$
+
+Con restricciones de energía y número de partículas, se obtiene la forma gran canónica $p_{i}\propto e^{-\beta(E_{i}-\mu N_{i})}$. Así, las colectividades son las distribuciones **menos sesgadas** compatibles con los datos macroscópicos.
+
+La entropía relativa $D(p\Vert q)=\sum p_{i}\ln(p_{i}/q_{i})\ge 0$ mide la distancia respecto de una distribución previa $q$. Muchos teoremas de fluctuaciones y resultados de respuesta lineal son compactos en este lenguaje.
+
+---
+
+### 9.1.9 Grandes desviaciones, concentración y equivalencia de colectividades
+
+Para $N\gg 1$, las probabilidades se concentran exponencialmente cerca de los valores termodinámicos. Si $A$ es un observable aditivo,
+
+$$
+\mathbb P\!\left(\frac{A}{N}\approx a\right)\sim e^{-N\,I(a)}
+$$
+
+con una **función de tasa** $I(a)\ge 0$ que se anula en el valor de equilibrio. Bajo condiciones estándar de convexidad:
+
+- Las colectividades microcanónica, canónica y gran canónica son **equivalentes** en el límite termodinámico  
+- Las faltas de concavidad indican coexistencia de fases; las construcciones de Maxwell las corrigen al nivel de los potenciales termodinámicos
+
+---
+
+### 9.1.10 Pequeños ejemplos resueltos
+
+**(a) Sistema de dos niveles**  
+Niveles de energía $0$ y $\epsilon$ para $N$ sitios no interactuantes. Función de partición canónica por sitio
+
+$$
+z = 1 + e^{-\beta\epsilon}
+$$
+
+Total $Z=z^{N}$. La energía media es $U=N\,\epsilon/(e^{\beta\epsilon}+1)$ y la capacidad calorífica muestra un máximo de Schottky cerca de $k_{B}T\sim \epsilon$.
+
+**(b) Oscilador armónico cuántico**  
+Un único oscilador con $E_{n}=(n+\tfrac12)\hbar\omega$ da
+
+$$
+Z = \frac{e^{-\beta\hbar\omega/2}}{1-e^{-\beta\hbar\omega}}
+$$
+
+La energía media $U=\frac{\hbar\omega}{2}+\frac{\hbar\omega}{e^{\beta\hbar\omega}-1}$ tiende a $k_{B}T$ a $T$ alta (equipartición) y a $\hbar\omega/2$ en $T\to 0$.
+
+**(c) Lanzamiento de monedas y Stirling**  
+Para $N$ monedas independientes y equilibradas, la multiplicidad de $k$ caras es $\binom{N}{k}\approx \exp\!\left[N\,H(k/N)\right]/\sqrt{2\pi N x(1-x)}$ con $x=k/N$ y entropía binaria $H(x)=-x\ln x-(1-x)\ln(1-x)$. Este es el arquetipo de las grandes desviaciones.
+
+**(d) Temperatura microcanónica del gas ideal**  
+Para un gas ideal clásico, contar estados da
+
+$$
+\Omega(E,V,N) \propto \frac{V^{N}E^{\tfrac{3N}{2}-1}}{N!\,\Gamma\!\left(\tfrac{3N}{2}\right)}
+$$
+
+por lo que, a anchura fija de la capa de energía, $S=k_{B}\ln\Omega$ da $U=(\tfrac{3N}{2}-1)k_{B}T$ y $pV=Nk_{B}T$. En el límite termodinámico, $U\simeq\tfrac{3}{2}Nk_{B}T$.
+
+**(e) Fluctuaciones canónicas**  
+Demuestra $\langle (\Delta E)^{2}\rangle = k_{B}T^{2}C_{V}$ tomando $\partial^{2}_{\beta}\ln Z$ y relaciona la capacidad calorífica con la curvatura de $\ln Z$.
+
+---
+
+### 9.1.11 Colección mínima de problemas
+
+- Partiendo de $S=k_{B}\ln\Omega$, deduce $1/T=(\partial S/\partial E)_{V,N}$ y $p/T=(\partial S/\partial V)_{E,N}$  
+- Deduce la colectividad canónica maximizando $\mathcal S[p]$ con las restricciones $\sum p_{i}=1$ y $\sum p_{i}E_{i}=U$  
+- Demuestra que $F=-k_{B}T\ln Z$ implica $S=-\partial F/\partial T$ y $p=-\partial F/\partial V$  
+- Para un gas ideal clásico, calcula $\Omega(E,V,N)$ salvo una constante usando el volumen del espacio de fases y obtén la entropía de Sackur–Tetrode  
+- Demuestra $\langle (\Delta N)^{2}\rangle = k_{B}T\,(\partial N/\partial\mu)_{T,V}$ en la colectividad gran canónica  
+- Analiza cuándo falla la equivalencia de colectividades y da un ejemplo físico con fuerzas de largo alcance
+
+---
+
+## 9.2 Funciones de partición y potenciales termodinámicos
+
+Las funciones de partición generan todo lo termodinámico. Una vez que tienes $Z$ o $\Xi$ o el análogo $N\!pT$, las derivadas te dan $U,p,S,\mu$ y todos los coeficientes de respuesta. Esta sección construye la maquinaria canónica y gran canónica, añade la colectividad isotérmica–isobárica y muestra cómo las transformadas de Legendre y los puntos de silla las vinculan con la entropía microcanónica. Los ejemplos resueltos concretan las fórmulas.
+
+---
+
+### 9.2.1 Función de partición canónica y cumulantes
+
+Para $(T,V,N)$ fijos, los pesos canónicos son $P(i)\propto e^{-\beta E_{i}}$ con
+
+$$
+Z(\beta,V,N) \equiv \sum_{i} e^{-\beta E_{i}}
+$$
+
+Energía libre de Helmholtz
+
+$$
+F(T,V,N) \equiv -\,k_{B}T\,\ln Z
+$$
+
+Derivadas estándar
+
+$$
+U \equiv \langle E\rangle = -\,\frac{\partial}{\partial \beta}\ln Z
+$$
+
+$$
+S = -\left(\frac{\partial F}{\partial T}\right)_{V,N} = k_{B}\left(\ln Z + \beta U\right)
+$$
+
+$$
+p = -\left(\frac{\partial F}{\partial V}\right)_{T,N}
+$$
+
+Los cumulantes de energía se obtienen de las derivadas de $\ln Z$ respecto de $\beta$. Por ejemplo,
+
+$$
+\langle(\Delta E)^{2}\rangle = \frac{\partial^{2}}{\partial \beta^{2}}\ln Z = k_{B}T^{2} C_{V}
+$$
+
+Las fuerzas generalizadas para un parámetro de control $\lambda$ que entra en $H(\lambda)$ obedecen
+
+$$
+\left(\frac{\partial F}{\partial \lambda}\right)_{T,V,N} = \left\langle \frac{\partial H}{\partial \lambda}\right\rangle
+$$
+
+Ejemplos: $M = -\left(\partial F/\partial B\right)_{T,V,N}$ para un campo magnético $B$ y $p = -\left(\partial F/\partial V\right)_{T,N}$ para el volumen.
+
+---
+
+### 9.2.2 Función de partición gran canónica, fugacidad y presión
+
+Cuando el número de partículas fluctúa a $(T,V,\mu)$ fijos
+
+$$
+\Xi(\beta,V,\mu) \equiv \sum_{N=0}^{\infty}\sum_{i\in N} e^{-\beta(E_{i}-\mu N)}
+$$
+
+Definimos el gran potencial
+
+$$
+\Phi_{G}(T,V,\mu) \equiv -\,k_{B}T\,\ln \Xi
+$$
+
+La termodinámica en esta colectividad es compacta
+
+$$
+p = -\left(\frac{\partial \Phi_{G}}{\partial V}\right)_{T,\mu}
+$$
+
+$$
+N = -\left(\frac{\partial \Phi_{G}}{\partial \mu}\right)_{T,V}
+$$
+
+$$
+S = -\left(\frac{\partial \Phi_{G}}{\partial T}\right)_{V,\mu}
+$$
+
+Es habitual usar la **fugacidad** $z\equiv e^{\beta \mu}$. Las fluctuaciones del número y la compresibilidad se relacionan mediante
+
+$$
+\langle(\Delta N)^{2}\rangle = k_{B}T\left(\frac{\partial N}{\partial \mu}\right)_{T,V}
+$$
+
+Para un gas ideal uniforme se encuentra la identidad útil $pV = k_{B}T \ln \Xi$.
+
+---
+
+### 9.2.3 Colectividad isotérmica–isobárica y energía libre de Gibbs
+
+Muchos experimentos mantienen $(T,p,N)$ fijos. La función de partición isotérmica–isobárica es la transformada de Laplace de $Z$ respecto de $V$, con un volumen de referencia fijo $V_{0}$ que la hace adimensional:
+
+$$
+\Delta(\beta,p,N) \equiv \int_{0}^{\infty} \frac{dV}{V_{0}}\; e^{-\beta p V}\, Z(\beta,V,N)
+$$
+
+Su potencial termodinámico es la **energía libre de Gibbs**
+
+$$
+G(T,p,N) \equiv -\,k_{B}T\,\ln \Delta
+$$
+
+Entonces
+
+$$
+\left(\frac{\partial G}{\partial p}\right)_{T,N} = V,\qquad
+\left(\frac{\partial G}{\partial T}\right)_{p,N} = -S,\qquad
+\left(\frac{\partial G}{\partial N}\right)_{T,p} = \mu
+$$
+
+Las fluctuaciones de $V$ a $(T,p,N)$ fijos se generan mediante derivadas de $\ln \Delta$.
+
+---
+
+### 9.2.4 Estructura de Legendre y vínculo microcanónico
+
+Las colectividades canónica y gran canónica son **transformadas de Laplace** del recuento microcanónico de estados
+
+$$
+Z(\beta,V,N) = \int dE\; \omega(E,V,N)\,e^{-\beta E}
+$$
+
+Para sistemas grandes, la integral está dominada por un punto de silla $E^{\ast}$ con $\partial_{E}\ln\omega|_{E^{\ast}}=\beta$, es decir, $1/T = \partial S/\partial E$. Evaluar en el punto de silla da la relación de Legendre
+
+$$
+F(T,V,N) = U - T S
+$$
+
+Análogamente, la transformación gran canónica respecto de $E$ y $N$ da
+
+$$
+\Phi_{G}(T,V,\mu) = U - T S - \mu N
+$$
+
+Por eso los potenciales termodinámicos son transformadas de Legendre de $S$.
+
+---
+
+### 9.2.5 Gas ideal clásico en la colectividad canónica
+
+Tomamos $N$ partículas indistinguibles de masa $m$ con hamiltoniano $H=\sum p_{i}^{2}/2m$ e ignoramos las interacciones. La función de partición canónica se factoriza en una parte traslacional
+
+$$
+Z(\beta,V,N) = \frac{1}{N!}\left[\frac{V}{\lambda_{T}^{3}}\right]^{N}
+$$
+
+con longitud de onda térmica
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi \hbar^{2}}{m k_{B} T}}
+$$
+
+Entonces
+
+$$
+F = -\,k_{B}T \ln Z = -\,Nk_{B}T\left[\ln\!\left(\frac{V}{N\,\lambda_{T}^{3}}\right) + 1\right]
+$$
+
+La ecuación de estado se obtiene inmediatamente
+
+$$
+pV = Nk_{B}T
+$$
+
+La entropía tiene la forma de Sackur–Tetrode
+
+$$
+S = Nk_{B}\left[\ln\!\left(\frac{V}{N\,\lambda_{T}^{3}}\right) + \frac{5}{2}\right]
+$$
+
+y la energía interna es $U=\tfrac{3}{2}Nk_{B}T$ con $C_{V}=\tfrac{3}{2}Nk_{B}$. El $1/N!$ resuelve la paradoja de Gibbs al imponer la indistinguibilidad.
+
+---
+
+### 9.2.6 Gases ideales cuánticos mediante el desarrollo en conglomerados
+
+Para bosones o fermiones no interactuantes con energías de una partícula $\{\epsilon_{\alpha}\}$
+
+$$
+\ln \Xi = \mp \sum_{\alpha} \ln\!\left(1 \mp z\,e^{-\beta \epsilon_{\alpha}}\right)
+$$
+
+signo superior para bosones, inferior para fermiones. Las ocupaciones son
+
+$$
+\langle n_{\alpha}\rangle = \frac{1}{z^{-1}e^{\beta \epsilon_{\alpha}} \mp 1}
+$$
+
+En el límite continuo se sustituye $\sum_{\alpha}\to \int d\epsilon\,g(\epsilon)$ para obtener la termodinámica de gases de fotones, fonones o electrones. Las interacciones pueden incluirse perturbativamente mediante desarrollos viriales o en conglomerados que corrigen $\ln \Xi$ mediante coeficientes $B_{2},B_{3},\dots$.
+
+---
+
+### 9.2.7 Fuerzas generalizadas y matrices de respuesta
+
+Si un hamiltoniano clásico depende linealmente de controles externos $\boldsymbol{\lambda}=(\lambda_{1},\dots)$, la matriz de segundas derivadas de $F$ da la respuesta de covarianza que aparece abajo. La misma forma a tiempos iguales se aplica a observables cuánticos que conmutan con el hamiltoniano. El acoplamiento no lineal requiere un término adicional de derivada explícita, y los observables cuánticos que no conmutan requieren la correlación de Kubo en tiempo imaginario:
+
+$$
+\chi_{ab} \equiv -\left(\frac{\partial^{2} F}{\partial \lambda_{a}\,\partial \lambda_{b}}\right)_{T,V,N} = \beta\,\langle \Delta X_{a}\,\Delta X_{b}\rangle
+$$
+
+donde $X_{a}\equiv -\partial H/\partial \lambda_{a}$ es el observable conjugado. Los ejemplos incluyen la susceptibilidad magnética, la compresibilidad y las capacidades caloríficas. Las derivadas mixtas codifican relaciones de Maxwell, por ejemplo, $\left(\partial S/\partial V\right)_{T,N}=\left(\partial p/\partial T\right)_{V,N}$.
+
+---
+
+### 9.2.8 Sistemas de red de tipo Ising y práctica de recuento
+
+Para una red finita con espines $s_{i}=\pm 1$ y hamiltoniano $H=-J\sum_{\langle ij\rangle}s_{i}s_{j}-h\sum_{i}s_{i}$, la función de partición canónica es
+
+$$
+Z(\beta,h) = \sum_{\lbrace s\rbrace} \exp\!\left[\beta J \sum_{\langle ij\rangle}s_{i}s_{j} + \beta h \sum_{i}s_{i}\right]
+$$
+
+Aunque la evaluación exacta es difícil más allá de una dimensión, las derivadas de $\ln Z$ siguen definiendo la magnetización $M=\left(\partial \ln Z/\partial (\beta h)\right)$ y la susceptibilidad $\chi=\partial M/\partial h$. Los métodos de campo medio o matriz de transferencia aproximan $Z$ sistemáticamente.
+
+---
+
+### 9.2.9 Gibbs–Duhem y comprobaciones de extensividad
+
+Para un sistema extensivo con $U(S,V,N)$ homogénea de grado uno, se cumple la relación de Euler
+
+$$
+U = TS - pV + \mu N
+$$
+
+Al derivar se obtiene la ecuación de **Gibbs–Duhem**
+
+$$
+S\,dT - V\,dp + N\,d\mu = 0
+$$
+
+Esta es una comprobación de coherencia para cualquier ecuación de estado que deduzcas de una función de partición.
+
+---
+
+### 9.2.10 Trucos de Laplace, puntos de silla y coincidencia de colectividades
+
+Como $Z$ y $\Delta$ son transformadas de Laplace, la termodinámica de $N$ grande se obtiene de su punto de silla dominante. La concavidad de $S(E,V,N)$ garantiza la equivalencia de colectividades. En transiciones de primer orden, $Z$ desarrolla varios puntos de silla en competencia; las transformadas de Legendre seleccionan la envolvente convexa y las fluctuaciones se vuelven no gaussianas en sistemas finitos.
+
+---
+
+### 9.2.11 Pequeños ejemplos resueltos
+
+**(a) Gas ideal $N\!pT$**
+
+Calcula $\Delta$ para el gas ideal usando $Z=(V/\lambda_{T}^{3})^{N}/N!$ para demostrar
+
+$$
+\Delta = \frac{1}{V_{0}\,\lambda_{T}^{3N}(\beta p)^{N+1}}
+$$
+
+y verifica $G=Nk_{B}T\ln\!\left(\beta p\,\lambda_{T}^{3}\right)+k_{B}T\ln(\beta pV_{0})$ y $V = \left(\partial G/\partial p\right)_{T,N} = (N+1)k_{B}T/p$. Para $N$ grande, la corrección relativa $1/N$ se anula y $V\simeq Nk_{B}T/p$.
+
+**(b) Presión a partir de $Z$ mediante el virial**
+
+Para un gas clásico interactuante con potencial de pares $u(r)$, demuestra que $p = Nk_{B}T/V - \tfrac{2\pi n^{2}}{3}\int_{0}^{\infty} dr\, r^{3} u'(r) g(r)$ usando $p=-(\partial F/\partial V)_{T,N}$ y un argumento de cambio uniforme de escala, donde $n=N/V$ y $g(r)$ es la distribución de pares.
+
+**(c) Fluctuaciones del número y compresibilidad**
+
+En la colectividad gran canónica, verifica $\langle(\Delta N)^{2}\rangle = k_{B}T\,\left(\partial N/\partial \mu\right)_{T,V}$ y relaciónalo con la compresibilidad isotérmica $\kappa_{T}=\frac{1}{n^{2}}\left(\partial n/\partial \mu\right)_{T}$.
+
+**(d) Microcanónica ↔ canónica**
+
+Partiendo de $Z\simeq\int (dE/\delta E)\,\exp[S(E)/k_{B}-\beta E]$, realiza un desarrollo cuadrático de $S(E)$ alrededor de $E^{\ast}$ para obtener fluctuaciones gaussianas de energía con varianza $k_{B}T^{2}C_{V}$.
+
+**(e) Energía libre del sistema de dos niveles**
+
+Para $N$ sitios independientes de dos niveles con energías $0$ y $\epsilon$, calcula $Z=(1+e^{-\beta\epsilon})^{N}$, después $F$, $S$ y $C_{V}$, y localiza el máximo de Schottky.
+
+---
+
+### 9.2.12 Colección mínima de problemas
+
+- Deduce todas las relaciones canónicas para $U,S,p$ partiendo de $F=-k_{B}T\ln Z$ y verifica la relación de Maxwell $\left(\partial S/\partial V\right)_{T,N}=\left(\partial p/\partial T\right)_{V,N}$  
+- Demuestra que en la colectividad gran canónica, $pV=k_{B}T\ln\Xi$ para un gas ideal, y obtén $N$ y $S$ mediante derivadas de $\ln\Xi$  
+- Calcula la función de partición isotérmica–isobárica de un sólido armónico clásico tratado como $3N$ osciladores independientes y extrae $G(T,p,N)$ en el límite de compresibilidad débil  
+- Usando $\ln \Xi = \mp\sum_{\alpha}\ln(1\mp z e^{-\beta\epsilon_{\alpha}})$, recupera las distribuciones de Bose–Einstein y Fermi–Dirac y el límite clásico cuando $z\ll 1$  
+- A partir de la extensividad, demuestra la relación de Euler $U=TS-pV+\mu N$ y después la ecuación de Gibbs–Duhem, y compruébalas con los resultados del gas ideal anteriores
+
+---
+
+## 9.3 Gas ideal clásico y equipartición
+
+El gas ideal clásico es el entrenamiento de la física estadística: aprendes a contar estados, calcular derivadas de los logaritmos $\ln$ de las funciones de partición y ver surgir leyes macroscópicas como si nada. Deducimos la distribución de Maxwell–Boltzmann, demostramos la equipartición, recuperamos $pV=Nk_{B}T$ y construimos intuición sobre adiabáticas, velocidad del sonido y cuándo falla la descripción clásica (hola, $\lambda_{T}$).
+
+---
+
+### 9.3.1 Repaso del recuento canónico y Z del gas ideal
+
+Para $N$ partículas puntuales indistinguibles de masa $m$ en un volumen $V$ con hamiltoniano $H=\sum_{i=1}^{N}\boldsymbol p_{i}^{2}/2m$, la función de partición canónica se factoriza:
+
+$$
+Z(\beta,V,N) = \frac{1}{N!}\left[\frac{V}{\lambda_{T}^{3}}\right]^{N}
+$$
+
+con longitud de onda térmica
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi\hbar^{2}}{m k_{B} T}}
+$$
+
+La termodinámica se obtiene inmediatamente:
+
+$$
+F = -\,Nk_{B}T\left[\ln\!\left(\frac{V}{N\lambda_{T}^{3}}\right) + 1\right],\qquad
+U = \frac{3}{2}Nk_{B}T,\qquad
+pV = Nk_{B}T
+$$
+
+Capacidades caloríficas:
+
+$$
+C_{V} = \left(\frac{\partial U}{\partial T}\right)_{V,N} = \frac{3}{2}Nk_{B},\qquad
+C_{p} = C_{V} + Nk_{B} = \frac{5}{2}Nk_{B},\qquad
+\gamma \equiv \frac{C_{p}}{C_{V}} = \frac{5}{3}
+$$
+
+La entropía tiene la forma de Sackur–Tetrode:
+
+$$
+S = Nk_{B}\left[\ln\!\left(\frac{V}{N\lambda_{T}^{3}}\right) + \frac{5}{2}\right]
+$$
+
+El $1/N!$ elimina la paradoja de Gibbs al codificar la indistinguibilidad.
+
+---
+
+### 9.3.2 Distribución de Maxwell–Boltzmann (velocidades, rapideces y energías)
+
+Cada componente del momento es gaussiana:
+
+$$
+f(p_{x}) = \sqrt{\frac{\beta}{2\pi m}}\;\exp\!\left(-\frac{\beta p_{x}^{2}}{2m}\right)
+$$
+
+Equivalentemente, cada componente de la velocidad es gaussiana con varianza $\langle v_{x}^{2}\rangle = k_{B}T/m$. La distribución de **rapideces** (radial en el espacio de velocidades) es
+
+$$
+f(v) = 4\pi \left(\frac{m}{2\pi k_{B}T}\right)^{3/2} v^{2} \exp\!\left(-\frac{m v^{2}}{2k_{B}T}\right)
+$$
+
+Momentos útiles:
+
+$$
+v_{\text{mp}} = \sqrt{\frac{2k_{B}T}{m}},\qquad
+\langle v\rangle = \sqrt{\frac{8k_{B}T}{\pi m}},\qquad
+v_{\text{rms}} = \sqrt{\frac{3k_{B}T}{m}}
+$$
+
+La distribución de energía cinética es de tipo $\chi^{2}$ con $3$ grados de libertad:
+
+$$
+f(E) = \frac{2}{\sqrt{\pi}}\frac{1}{(k_{B}T)^{3/2}}\sqrt{E}\,e^{-E/k_{B}T},\qquad \langle E\rangle = \frac{3}{2}k_{B}T
+$$
+
+---
+
+### 9.3.3 Teorema de equipartición
+
+**Enunciado.** Cada grado de libertad cuadrático del hamiltoniano contribuye $\tfrac{1}{2}k_{B}T$ a la energía media.
+
+**Esbozo de demostración (canónica, integración por partes).** Si $H$ contiene un término $\alpha x^{2}$, entonces
+
+$$
+\langle x\,\partial H/\partial x \rangle = k_{B}T
+$$
+
+Para $H=\sum p_{i}^{2}/2m + \cdots$, cada $p_{i}^{2}/2m$ cuadrático da $\langle p_{i}^{2}/2m\rangle = \tfrac{1}{2}k_{B}T$. Un gas monoatómico tiene $3N$ momentos traslacionales → $U=\tfrac{3}{2}Nk_{B}T$.
+
+**Cuándo falla (y por qué eso es bueno).** La equipartición clásica falla cuando las rotaciones o vibraciones cuantizadas tienen separaciones entre niveles mayores que $k_{B}T$, aunque el hamiltoniano sea cuadrático. Sus contribuciones térmicas se «congelan». Esto explica la caída de los calores específicos a bajas $T$ y el intervalo de validez de Dulong–Petit.
+
+---
+
+### 9.3.4 Teoría cinética
+
+A partir de los impactos elásticos contra una pared, la presión puede escribirse
+
+$$
+p = \frac{2}{3}\frac{U}{V}
+$$
+
+La combinamos con $U=\tfrac{3}{2}Nk_{B}T$ para obtener $pV=Nk_{B}T$. Más generalmente, para interacciones por pares $u(r)$, el **teorema del virial** da
+
+$$
+pV = Nk_{B}T + \frac{1}{3}\left\langle \sum_{i<j} \boldsymbol r_{ij}\cdot \boldsymbol F_{ij} \right\rangle
+$$
+
+El gas ideal tiene $\boldsymbol F_{ij}=0$, por lo que el segundo término se anula.
+
+---
+
+### 9.3.5 Adiabáticas, velocidad del sonido y maniobras termodinámicas rápidas
+
+Para un cambio **adiabático reversible** ($dQ=0$) de un gas ideal monoatómico,
+
+$$
+p V^{\gamma} = \text{const},\qquad T V^{\gamma-1} = \text{const},\qquad T^{\gamma} p^{1-\gamma} = \text{const}
+$$
+
+con $\gamma=5/3$. La **velocidad del sonido** (pequeñas ondas adiabáticas de densidad) es
+
+$$
+c_{s} = \sqrt{\gamma \frac{k_{B}T}{m}}
+$$
+
+Para mezclas, sustituye $m$ por la masa molecular media y $\gamma$ por la razón apropiada de capacidades caloríficas.
+
+---
+
+### 9.3.6 Campos externos: fórmula barométrica y separabilidad
+
+En un campo gravitatorio uniforme $U(z)=mgz$, el peso de Boltzmann de un cuerpo se factoriza:
+
+$$
+n(z) \propto e^{-\beta m g z},\qquad n(z) = n(0)\,e^{-z/H},\qquad H \equiv \frac{k_{B}T}{m g}
+$$
+
+Las partes de momento y posición se separan, por lo que los resultados de energía cinética (equipartición, rapideces MB) permanecen inalterados.
+
+---
+
+### 9.3.7 Transporte en una pantalla: camino libre medio y compañía
+
+Para esferas duras de diámetro $d$ a densidad numérica $n$, el camino libre medio es
+
+$$
+\ell \simeq \frac{1}{\sqrt{2}\,\pi d^{2}\,n}
+$$
+
+Usando una rapidez típica $\bar v \sim \langle v\rangle$,
+
+$$
+D \sim \frac{1}{3}\bar v\,\ell,\qquad
+\eta \sim \frac{1}{3} n m \bar v\,\ell,\qquad
+\kappa \sim \frac{1}{3} n C_{V}^{\text{por partícula}} \bar v\,\ell
+$$
+
+Estas dependencias de la teoría cinética son notablemente buenas para gases diluidos; las secciones eficaces reales y las mezclas refinan los prefactores.
+
+---
+
+### 9.3.8 Validez de la descripción clásica
+
+El comportamiento clásico no degenerado requiere que el parámetro de **dilución** sea pequeño:
+
+$$
+n\,\lambda_{T}^{3} \ll 1
+$$
+
+Si $n\lambda_{T}^{3}\gtrsim 1$ ($T$ baja o $n$ alta), entra en juego la estadística cuántica: los bosones piden Bose–Einstein, los fermiones siguen a Pauli y la distribución MB deja de servir.
+
+---
+
+### 9.3.9 Más allá de los monoatómicos: qué cuenta la equipartición
+
+Para una molécula **diatómica lineal** rígida a $T$ intermedia:
+
+- $3$ modos cuadráticos traslacionales más $2$ rotacionales → $f=5$ grados de libertad efectivos, por lo que $C_{V} \approx \tfrac{5}{2}Nk_{B}$, $\gamma \approx 7/5$
+- Las vibraciones añaden $2$ modos cuadráticos más, pero solo cuando $k_{B}T$ supera la separación cuántica vibracional; de lo contrario, están congeladas
+
+Moraleja: **cuenta solo los modos activos a tu $T$**.
+
+---
+
+### 9.3.10 Pequeños ejemplos resueltos
+
+**(a) Rapidez cuadrática media del aire a $T$ ambiente**
+
+Para $\mathrm{N}_{2}$ con $m\approx 28\,\mathrm{u}$ a $T=300\ \mathrm{K}$,
+
+$$
+v_{\text{rms}}=\sqrt{\frac{3k_{B}T}{m}}
+$$
+
+Sustituye los números para obtener unos cientos de $\mathrm{m/s}$; compara con $v_{\text{mp}}$ y $\langle v\rangle$.
+
+**(b) Compresión adiabática**
+
+Un gas monoatómico se comprime adiabáticamente de $(p_{1},V_{1})$ a $(p_{2},V_{2})$. Usa $pV^{\gamma}=\text{const}$ para encontrar $T_{2}/T_{1}=(V_{1}/V_{2})^{\gamma-1}$.
+
+**(c) Altura de escala barométrica del helio**
+
+Para He a $T=300\ \mathrm{K}$, calcula $H=k_{B}T/(m g)$ y compara con $\mathrm{N}_{2}$ para ver claramente la dependencia con la masa.
+
+**(d) Camino libre medio en condiciones estándar de temperatura y presión**
+
+Toma $d\approx 0.3\ \mathrm{nm}$, $n\approx 2.5\times 10^{25}\ \mathrm{m}^{-3}$; estima $\ell$ y comenta por qué los olores se difunden rápidamente.
+
+**(e) Comprobación de coherencia de la equipartición**
+
+Demuestra directamente a partir de $\int dp\;p^{2} e^{-\beta p^{2}/2m}$ que $\langle p^{2}/2m\rangle = \tfrac{1}{2}k_{B}T$ y amplía el resultado a tres componentes.
+
+---
+
+### 9.3.11 Colección mínima de problemas
+
+- Partiendo de $f(v)$, deduce $v_{\text{mp}}$, $\langle v\rangle$ y $v_{\text{rms}}$  
+- Demuestra la identidad de equipartición $\langle x\,\partial H/\partial x\rangle=k_{B}T$ para una coordenada cuadrática y aplícala a $p^{2}/2m$  
+- Deduce $p=\tfrac{2}{3}U/V$ contando colisiones con las paredes y recupera $pV=Nk_{B}T$  
+- Para una diatómica lineal con constante rotacional $B$, estima la temperatura a la que se «activan» las rotaciones comparando $k_{B}T$ con $\hbar^{2}/(2I)$  
+- Comprueba el criterio de clasicidad para un gas atómico frío de densidad $n$ y temperatura $T$: calcula $n\lambda_{T}^{3}$ y analiza cuándo se necesita estadística cuántica
+
+---
+
+## 9.4 Fluctuaciones y principio de fluctuación–respuesta
+
+Las leyes macroscópicas parecen precisas porque las fluctuaciones relativas escalan como $1/\sqrt{N}$, hasta que dejan de hacerlo. Esta sección organiza **qué fluctúa**, **cuánto** y **por qué las respuestas equivalen a fluctuaciones**. Conectamos las colectividades canónica, gran canónica e isotérmica–isobárica; introducimos relaciones estáticas de fluctuación–disipación; vinculamos las correlaciones de pares con la compresibilidad y adelantamos qué falla cerca de los puntos críticos.
+
+---
+
+### 9.4.1 Energía y número: las dos varianzas emblemáticas
+
+**Canónica ($T,V,N$ fijos):**
+
+$$
+\langle(\Delta E)^{2}\rangle = \frac{\partial^{2}}{\partial \beta^{2}}\ln Z = k_{B}T^{2}\,C_{V}
+$$
+
+La magnitud relativa disminuye como $\langle(\Delta E)^{2}\rangle^{1/2}/U \sim 1/\sqrt{N}$ para sistemas normales.
+
+**Gran canónica ($T,V,\mu$ fijos):**
+
+$$
+\langle(\Delta N)^{2}\rangle = k_{B}T\left(\frac{\partial N}{\partial \mu}\right)_{T,V}
+$$
+
+Equivalentemente, en términos de densidad $n=N/V$ y compresibilidad isotérmica $\kappa_{T} \equiv -\frac{1}{V}\left(\frac{\partial V}{\partial p}\right)_{T,N}$,
+
+$$
+\langle(\Delta N)^{2}\rangle = N\,k_{B}T\,n\,\kappa_{T}
+$$
+
+para un fluido de un componente, donde se han usado $dn = \chi_{\mu}\,d\mu$ y las identidades termodinámicas estándar.
+
+---
+
+### 9.4.2 Fluctuaciones de volumen a presión fija
+
+Manteniendo $(T,p,N)$ fijos, la función de partición isotérmica–isobárica $\Delta$ genera
+
+$$
+\langle(\Delta V)^{2}\rangle = -k_{B}T \left(\frac{\partial V}{\partial p}\right)_{T,N} = k_{B}T\,V\,\kappa_{T}
+$$
+
+De nuevo, **fluctuación = respuesta**: la compresibilidad mide cuánto varía $V$ cuando se modifica $p$; ese mismo coeficiente fija la varianza de equilibrio.
+
+---
+
+### 9.4.3 Fluctuación–respuesta estática en una línea
+
+Sea un control $\lambda$ acoplado a un observable $X$ independiente de la fuente mediante $H \to H - \lambda X$ (por lo que $X=-\partial H/\partial \lambda$). En una colectividad canónica clásica, o para un observable cuántico que conmuta con el hamiltoniano,
+
+$$
+\chi_{XX} \equiv \left(\frac{\partial \langle X\rangle}{\partial \lambda}\right)_{T,V,N} = \beta\,\langle(\Delta X)^{2}\rangle
+$$
+
+Casos especiales:
+
+- Para la energía, $\partial U/\partial\beta=-\langle(\Delta E)^{2}\rangle$ y $\partial U/\partial T=C_{V}$ dan $\langle(\Delta E)^{2}\rangle=k_{B}T^{2}C_{V}$. Aquí la temperatura inversa es el parámetro conjugado en el peso de Boltzmann; variarla es distinto de variar la fuente $\lambda$ a temperatura fija de arriba.  
+- $X=N$ en la colectividad gran canónica da $\left(\partial N/\partial \mu\right)_{T,V}=\beta\,\langle(\Delta N)^{2}\rangle$
+
+Positividad de las varianzas $\Rightarrow$ **estabilidad**: $C_{V}\ge 0$, $\kappa_{T}\ge 0$ en colectividades con $T$ fija.
+
+---
+
+### 9.4.4 Correlaciones, factor de estructura y regla de suma de la compresibilidad
+
+Definimos la densidad microscópica $\hat n(\boldsymbol r)=\sum_{i}\delta(\boldsymbol r-\boldsymbol r_{i})$, la correlación de pares $g(\boldsymbol r)$ y el **factor de estructura estático**
+
+$$
+S(\boldsymbol k) \equiv \frac{1}{N}\left\langle \delta \hat n_{\boldsymbol k}\,\delta \hat n_{-\boldsymbol k}\right\rangle,\qquad \delta \hat n_{\boldsymbol k} \equiv \int d^{3}r\, e^{-i\mathbf k\cdot \mathbf r}\,[\hat n(\mathbf r)-n]
+$$
+
+En un fluido uniforme,
+
+$$
+S(\boldsymbol k) = 1 + n \int d^{3}r\, e^{-i\boldsymbol k\cdot \boldsymbol r}\,[g(\boldsymbol r)-1]
+$$
+
+Tomar $\boldsymbol k\to 0$ conecta las **correlaciones microscópicas** con la **respuesta macroscópica**:
+
+$$
+S(0) = n\,k_{B}T\,\kappa_{T}
+$$
+
+Esta es la **regla de suma de la compresibilidad**. Cerca de un punto crítico, $\kappa_{T}\to \infty$ y $S(0)$ se disparan: la llamada opalescencia crítica.
+
+---
+
+### 9.4.5 Puntos de silla, curvatura y grandes desviaciones
+
+La entropía microcanónica $S(E)$ controla las fluctuaciones mediante su **curvatura**. Desarrollamos alrededor de la energía más probable $E^{\ast}$:
+
+$$
+S(E) \approx S(E^{\ast}) + \frac{E-E^{\ast}}{T} + \frac{1}{2}(E-E^{\ast})^{2}\left(\frac{\partial^{2} S}{\partial E^{2}}\right)_{E^{\ast}}
+$$
+
+Realizar la transformada de Laplace a la colectividad canónica da una gaussiana para $E$ con varianza $( -k_{B}/S'' )$, equivalente a $k_{B}T^{2}C_{V}$. Más generalmente, los observables aditivos obedecen un **principio de grandes desviaciones**:
+
+$$
+\mathbb P\!\left(\frac{A}{N}\approx a\right)\sim e^{-N I(a)}
+$$
+
+donde $I(a)\ge 0$ es la **función de tasa** (transformada de Legendre de la función generadora de cumulantes). En transiciones de primer orden, el potencial termodinámico pertinente desarrolla varios puntos de silla en competencia → fluctuaciones **no gaussianas** y coexistencia de fases.
+
+---
+
+### 9.4.6 Fluctuaciones críticas y longitud de correlación
+
+Sea $\phi$ un parámetro de orden (por ejemplo, densidad de magnetización). Definimos el correlador conexo
+
+$$
+G(\boldsymbol r) \equiv \langle \phi(\boldsymbol r)\phi(\boldsymbol 0)\rangle_{c}
+$$
+
+Lejos de la criticidad, la ley de potencias crítica se corta a una longitud de correlación finita. Esquemáticamente, se puede escribir
+
+$$
+G(\boldsymbol r) \sim \frac{e^{-r/\xi}}{r^{d-2+\eta}}
+$$
+
+con longitud de correlación finita $\xi$; el prefactor mostrado no es una fórmula asintótica exacta general a grandes distancias. La susceptibilidad estática reducida $\chi \equiv \int d^{d}r\, G(\boldsymbol r)$, con su factor de normalización térmica absorbido en la definición, escala como
+
+$$
+\chi \sim \xi^{2-\eta}
+$$
+
+Por tanto, en un volumen $V$, la varianza del parámetro de orden promediado espacialmente escala como $\mathrm{Var}(\bar\phi) \sim \chi/V$. Cuando $\xi$ es finita, las fluctuaciones relativas $\sim 1/\sqrt{V}$. Cuando $T\to T_{c}$, $\xi\to\infty$ y la ley $1/\sqrt{N}$ **deja de ser válida**.
+
+---
+
+### 9.4.7 Escalado de tamaño finito: cuando N es grande, pero no infinita
+
+- Para sistemas **no críticos**: $\mathrm{Var}(A) \propto N$ para $A$ aditivo → magnitud relativa $\propto N^{-1/2}$.  
+- Cerca de la criticidad: con $\xi$ comparable al tamaño del sistema $L$, sustituye $\xi$ por $L$ en las fórmulas de escalado; los máximos del calor específico o de la susceptibilidad se **redondean** y **desplazan** con $L$ de manera predecible (lo que se usa para extraer exponentes críticos numéricamente).
+
+---
+
+### 9.4.8 Ejemplo: paramagneto no interactuante y ley de Curie
+
+$N$ espines $s=\tfrac12$ en un campo $B$ con hamiltoniano $H=-\mu B\sum_{i}\sigma_{i}$, $\sigma_{i}=\pm 1$. La función de partición de un espín es $z=2\cosh(\beta\mu B)$, y la magnetización por espín
+
+$$
+m \equiv \frac{\langle M\rangle}{N} = \mu\,\tanh(\beta\mu B)
+$$
+
+La varianza de $M$ es binomial:
+
+$$
+\langle(\Delta M)^{2}\rangle = N\,\mu^{2}\,\mathrm{sech}^{2}(\beta\mu B)
+$$
+
+La susceptibilidad estática $\chi \equiv \left(\partial \langle M\rangle/\partial B\right)_{T}$ coincide con fluctuación–respuesta:
+
+$$
+\chi = \beta\,\langle(\Delta M)^{2}\rangle = \frac{N\mu^{2}}{k_{B}T}\,\mathrm{sech}^{2}(\beta\mu B)
+$$
+
+En el límite de campo débil, ley de Curie:
+
+$$
+\chi \approx \frac{N\mu^{2}}{k_{B}T}
+$$
+
+---
+
+### 9.4.9 Ejemplo: fluctuaciones de densidad del gas ideal y S(0)
+
+En un gas ideal clásico gran canónico, las partículas no están correlacionadas: $g(\boldsymbol r)=1$. Entonces $S(\boldsymbol k)=1$ para todo $\boldsymbol k$ y
+
+$$
+S(0) = 1 = n\,k_{B}T\,\kappa_{T}
+$$
+
+por lo que $\kappa_{T}=1/(n k_{B}T)$, el resultado del gas ideal. En esta colectividad con reservorio, la varianza del número en un subvolumen $V'$ es **poissoniana**: $\langle(\Delta N')^{2}\rangle=\langle N'\rangle$. Con número total de partículas fijo, las fluctuaciones de subvolumen son, en cambio, binomiales (véase 9.4.11(e)), y el factor de estructura a vector de onda exactamente nulo se anula. En ese caso, la regla de suma de la compresibilidad se refiere al límite de longitud de onda larga tomado después del límite termodinámico.
+
+---
+
+### 9.4.10 Errores habituales
+
+- **Mezclar colectividades.** No uses la $C_{V}$ canónica con fluctuaciones gran canónicas del número salvo que hayas ajustado la colectividad a la medida.  
+- **Forzar ajustes gaussianos cerca de transiciones.** A primer orden, las distribuciones pueden ser bimodales (dos fases); en la criticidad, las distribuciones del parámetro de orden suelen ser no gaussianas, pero sus colas no tienen por qué ser leyes de potencias.  
+- **Ignorar restricciones.** Los totales conservados suprimen varianzas (por ejemplo, $N$ total fijo reduce las fluctuaciones de subvolumen).  
+- **Llamar «inestabilidad» a una $C_{V}$ negativa.** En pequeños sistemas microcanónicos con fuerzas de largo alcance puede aparecer $C_{V}<0$; indica falta de equivalencia entre colectividades, no un fallo algebraico.
+
+---
+
+### 9.4.11 Pequeños ejemplos resueltos
+
+**(a) Varianza del volumen $N\!pT$**  
+A partir de $\Delta=\int (dV/V_{0})\,e^{-\beta pV}Z$, demuestra $\langle(\Delta V)^{2}\rangle = k_{B}T\,V\,\kappa_{T}$ y verifícalo para un gas ideal.
+
+**(b) Regla de suma de la compresibilidad**  
+Partiendo de $S(\boldsymbol k)=1+n\int d^{3}r\,e^{-i\boldsymbol k\cdot\boldsymbol r}[g(r)-1]$, toma $\boldsymbol k\to 0$ y usa la termodinámica para deducir $S(0)=n k_{B}T\kappa_{T}$.
+
+**(c) Grandes desviaciones de energía**  
+A partir de $Z\simeq\int (dE/\delta E)\,e^{S(E)/k_{B}-\beta E}$, realiza el desarrollo cuadrático e identifica $\langle(\Delta E)^{2}\rangle$; determina cuándo falla la aproximación gaussiana.
+
+**(d) Varianza del paramagneto → Curie**  
+Calcula $\langle M\rangle$ y $\langle M^{2}\rangle$ a partir de $z$ y demuestra $\chi=\beta\langle(\Delta M)^{2}\rangle$; toma $B\to 0$ para obtener $\chi\propto 1/T$.
+
+**(e) Fluctuaciones de subvolumen**  
+Para un gas ideal, divide una caja en dos volúmenes $V'$ y $V-V'$. Con $N$ total fijo, demuestra $\mathrm{Var}(N')=N(V'/V)(1-V'/V)$ (binomial), en contraste con la varianza poissoniana gran canónica.
+
+---
+
+### 9.4.12 Colección mínima de problemas
+
+- Demuestra la relación estática general $\chi_{XX}=\beta\langle(\Delta X)^{2}\rangle$ a partir de derivadas de $\ln Z$ con un término fuente  
+- Deduce $\langle(\Delta N)^{2}\rangle = k_{B}T\left(\partial N/\partial\mu\right)_{T,V}$ y conéctalo con $\kappa_{T}$ para un fluido de un componente  
+- Demuestra que $S(0)=n k_{B}T\kappa_{T}$ implica $S(0)\to\infty$ cuando un líquido se aproxima a su punto crítico gas–líquido y explica cualitativamente la «opalescencia crítica»  
+- Usando una energía libre de Landau $\phi^{4}$, $f=a(T-T_{c})\phi^{2}+b\phi^{4}$, calcula fluctuaciones gaussianas por encima de $T_{c}$ y extrae $\chi\propto 1/(T-T_{c})$ a nivel de campo medio  
+- Para un modelo de red con parámetro de orden conservado, analiza cómo la conservación modifica la relajación a tiempos largos (pero no las varianzas estáticas a tiempos iguales) a $T$ fijo
+
+---
+
+## 9.5 Gases cuánticos: estadísticas de Bose y Fermi, polilogaritmos y camino hacia la degeneración
+
+La estadística clásica MB es excelente… hasta que $n\lambda_{T}^{3}$ deja de ser diminuto. Entonces la indistinguibilidad y la simetría de intercambio cambian las reglas. Esta sección deduce Bose–Einstein y Fermi–Dirac a partir de la colectividad gran canónica, calcula la termodinámica con funciones polilogaritmo, conecta con el límite clásico mediante desarrollos viriales y construye las herramientas del gas de Fermi degenerado, incluido el desarrollo de Sommerfeld. También describimos cómo cambia el potencial químico con $T$ y $n$.
+
+![Cuando el producto de beta por la diferencia entre la energía y el potencial químico es positivo, la ocupación de Bose supera el límite de Maxwell–Boltzmann, que supera la ocupación de Fermi.](/images/diagrams/quantum-statistics.svg)
+
+---
+
+### 9.5.1 Colectividad gran canónica → distribuciones BE/FD
+
+Colocamos partículas idénticas no interactuantes en la colectividad gran canónica a $(T,V,\mu)$. Con fugacidad $z\equiv e^{\beta \mu}$ y niveles de una partícula $\{\epsilon_{\alpha}\}$,
+
+$$
+\ln \Xi = \mp \sum_{\alpha}\ln\!\left(1 \mp z\,e^{-\beta\epsilon_{\alpha}}\right)
+$$
+
+signo superior para bosones, inferior para fermiones. Las ocupaciones son
+
+$$
+\langle n_{\alpha}\rangle = \frac{1}{z^{-1}e^{\beta\epsilon_{\alpha}} \mp 1}
+$$
+
+El menos del denominador da el agrupamiento de **Bose–Einstein**; el más da el bloqueo de **Fermi–Dirac**.
+
+---
+
+### 9.5.2 Densidad de estados en tres dimensiones y sustitución por el continuo
+
+Para degeneración de espín $g$ y dispersión no relativista $\epsilon=\boldsymbol p^{2}/2m$ en un volumen $V$,
+
+$$
+g(\epsilon)\,d\epsilon = g\,\frac{V}{4\pi^{2}}\left(\frac{2m}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}\,d\epsilon
+$$
+
+Las sumas se convierten en integrales $\sum_{\alpha}\to \int d\epsilon\,g(\epsilon)$.
+
+Definimos la longitud de onda térmica
+
+$$
+\lambda_{T} \equiv \sqrt{\frac{2\pi \hbar^{2}}{m k_{B} T}}
+$$
+
+y el polilogaritmo $\operatorname{Li}_{s}(x) \equiv \sum_{k\ge1} x^{k}/k^{s}$.
+
+---
+
+### 9.5.3 Termodinámica con polilogaritmos: N, U y p
+
+Tanto para bosones como para fermiones, los resultados se compactan mediante polilogaritmos. Sea
+
+$$
+g_{s}(z) \equiv \operatorname{Li}_{s}(z),\qquad f_{s}(z) \equiv -\,\operatorname{Li}_{s}(-z)
+$$
+
+Entonces, en $d=3$ para un gas no relativista uniforme,
+
+- **Bosones** $(\text{BE})$
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,g_{3/2}(z),\qquad 
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,g_{5/2}(z),\qquad 
+U = \frac{3}{2}\,pV
+$$
+
+- **Fermiones** $(\text{FD})$
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,f_{3/2}(z),\qquad 
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,f_{5/2}(z),\qquad 
+U = \frac{3}{2}\,pV
+$$
+
+La identidad virial $U=\tfrac{3}{2}pV$ se cumple para cualquier gas ideal no relativista con dispersión cuadrática.
+
+---
+
+### 9.5.4 Límite clásico y primera corrección cuántica
+
+Cuando $z\ll 1$ ($T$ alta o $n$ baja), ambas estadísticas se reducen a MB, ya que $g_{s}(z)\approx z$ y $f_{s}(z)\approx z$. Continuar el desarrollo da la corrección cuántica dominante a la ley del gas ideal
+
+$$
+\frac{p}{n k_{B}T} = 1 \pm \frac{1}{2^{5/2}}\,\frac{n\,\lambda_{T}^{3}}{g} + \mathcal O\!\left((n\lambda_{T}^{3}/g)^{2}\right)
+$$
+
+signo superior para **fermiones** (la «repulsión» de Pauli aumenta la presión), inferior para **bosones** (la «atracción» de Bose la reduce)
+
+---
+
+### 9.5.5 Comportamiento del potencial químico
+
+- **Bosones**: $\mu \le 0$. A $n$ fija, cuando disminuye $T$, $\mu$ aumenta hacia $0^{-}$. Para un gas ideal uniforme, la capacidad de los estados excitados está limitada por $g_{3/2}(1)=\zeta(3/2)$, lo que conduce a condensación de Bose–Einstein cuando $n\lambda_{T}^{3}$ supera una constante. Detallamos la condensación en §9.7.
+- **Fermiones**: $\mu$ es positivo a $T$ baja y se aproxima a la **energía de Fermi** $\epsilon_{F}$ cuando $T\to 0$. Con $n\equiv N/V$ y degeneración de espín $g$,
+
+$$
+\epsilon_{F} = \frac{\hbar^{2}}{2m}\left(\frac{6\pi^{2} n}{g}\right)^{2/3},\qquad 
+k_{B}T_{F} \equiv \epsilon_{F}
+$$
+
+A $T/T_{F}$ finita pero pequeña, $\mu(T)$ disminuye respecto de $\epsilon_{F}$ en $\sim (T/T_{F})^{2}$.
+
+---
+
+### 9.5.6 Gas de Fermi degenerado y desarrollo de Sommerfeld
+
+Para $T\ll T_{F}$, evaluamos asintóticamente las integrales de Fermi. Sea $x\equiv T/T_{F}\ll 1$.
+
+- **Potencial químico**
+
+$$
+\mu(T) = \epsilon_{F}\left[1 - \frac{\pi^{2}}{12}x^{2} - \frac{\pi^{4}}{80}x^{4} + \cdots\right]
+$$
+
+- **Energía interna y presión a $T$ baja**
+
+$$
+U = \frac{3}{5}N\epsilon_{F}\left[1 + \frac{5\pi^{2}}{12}x^{2} + \cdots\right],\qquad 
+p = \frac{2}{5} n \epsilon_{F}\left[1 + \frac{5\pi^{2}}{12}x^{2} + \cdots\right]
+$$
+
+- **Capacidad calorífica por partícula**
+
+$$
+\frac{C_{V}}{N k_{B}} = \frac{\pi^{2}}{2}\,x + \mathcal O(x^{3})
+$$
+
+La linealidad en $T$ es la señal de una superficie de Fermi con una capa delgada de estados térmicamente activos de espesor $\sim k_{B}T$.
+
+---
+
+### 9.5.7 Gas de Bose no degenerado y umbral de la condensación
+
+Por encima de la condensación (sin ocupación macroscópica del estado fundamental), $\mu<0$ resuelve $n\lambda_{T}^{3} = g\,g_{3/2}(z)$. La termodinámica se obtiene de §9.5.3 con $z<1$. Al reducir $T$ a $n$ fija, $z\to 1^{-}$, $g_{s}(z)\to \zeta(s)$, y la densidad de estados excitados se satura en
+
+$$
+n_{\text{ex,max}} = \frac{g}{\lambda_{T}^{3}}\,\zeta(3/2)
+$$
+
+Las partículas «sobrantes» deben ocupar el estado fundamental a la temperatura crítica obtenida en §9.7 y por debajo de ella.
+
+---
+
+### 9.5.8 Límites relativista y sin masa (adelanto)
+
+Para partículas sin masa con $\epsilon=pc$, la densidad de estados es $g(\epsilon)\propto \epsilon^{2}$. La dispersión masiva $\epsilon=\sqrt{p^{2}c^{2}+m^{2}c^{4}}$ solo se aproxima a esta forma en el límite ultrarrelativista. Los bosones sin masa (fotones) tienen $U\propto VT^{4}$ con $p=U/3V$. Desarrollamos los fotones y fonones en §9.6.
+
+---
+
+### 9.5.9 Pequeños ejemplos resueltos
+
+**(a) Comprobación del límite clásico**
+
+Demuestra que tomar $z\ll 1$ en $N = gV\lambda_{T}^{-3} g_{3/2}(z)$ y $p = g k_{B}T \lambda_{T}^{-3} g_{5/2}(z)$ reproduce $pV=Nk_{B}T$ a orden dominante y da después la corrección $\pm 2^{-5/2} n\lambda_{T}^{3}/g$.
+
+**(b) Densidad de estados tridimensional**
+
+Deduce $g(\epsilon)$ contando estados de momento en una caja y usando $\epsilon=\boldsymbol p^{2}/2m$.
+
+**(c) Cálculo numérico de la energía de Fermi**
+
+Para electrones en un metal con $n\approx 8.5\times 10^{28}\ \mathrm{m}^{-3}$ y $g=2$, calcula $\epsilon_{F}$ y $T_{F}$, y después estima $C_{V}/(Nk_{B})$ a $T=300\ \mathrm{K}$.
+
+**(d) A $T$ baja: $\mu(T)$ para fermiones**
+
+Usa el desarrollo de Sommerfeld de $\int d\epsilon\,\epsilon^{1/2}/(e^{\beta(\epsilon-\mu)}+1)$ para obtener la serie de $\mu(T)$ hasta $\mathcal O(x^{4})$.
+
+**(e) Gas de Bose cerca de $z\to 1^{-}$**
+
+Evalúa $g_{3/2}(z)$ numéricamente cerca de $z=1$ usando el desarrollo del polilogaritmo y muestra cómo $n\lambda_{T}^{3}$ se aproxima a $g\,\zeta(3/2)$.
+
+---
+
+### 9.5.10 Colección mínima de problemas
+
+- Partiendo de $\ln\Xi$, deduce $\langle n_{\alpha}\rangle$ y las formas BE/FD  
+- Sustituye las sumas por $\int d\epsilon\,g(\epsilon)$ para obtener las fórmulas con polilogaritmos de $N$, $p$ y $U$ en $d=3$  
+- Desarrolla $p/(n k_{B}T)$ en potencias de $n\lambda_{T}^{3}$ e identifica el signo del segundo coeficiente virial para bosones frente a fermiones  
+- Deduce la energía de Fermi $\epsilon_{F}$ y $p(T=0)=\tfrac{2}{5}n\epsilon_{F}$, y después usa Sommerfeld para obtener $C_{V}\propto T$  
+- A $n$ fija para un gas ideal de Bose, demuestra $\mu\to 0^{-}$ cuando $T\downarrow T_{c}$ y calcula la pendiente $d\mu/dT$ en $z\lesssim 1$ a partir de la ecuación del número
+
+---
+
+## 9.6 Fotones y fonones: radiación del cuerpo negro y capacidad calorífica de los sólidos
+
+Dos gases de Bose arquetípicos, dos mundos muy distintos. **Fotones**: sin masa, espín 1, número no conservado, $\mu=0$, presión $p=U/3V$, ley $T^{4}$. **Fonones**: vibraciones de red con dispersión lineal a longitudes de onda largas, tres polarizaciones y un corte de Debye que impone $3N$ modos. Juntos explican el espectro de la luz y por qué los calores específicos de los sólidos caen a cero a $T$ baja.
+
+---
+
+### 9.6.1 Fundamentos del gas de fotones
+
+Los fotones se crean y aniquilan libremente en equilibrio térmico, por lo que el potencial químico **debe** ser cero. Colocamos ondas electromagnéticas en una gran cavidad cúbica de volumen $V$ con condiciones de contorno periódicas. Contar los modos transversales por frecuencia angular $\omega$ da la densidad de estados
+
+$$
+g(\omega)\,d\omega = \frac{V}{\pi^{2}c^{3}}\,\omega^{2}\,d\omega
+$$
+
+La ocupación de Bose con $\mu=0$ es $n_{B}(\omega)=\left(e^{\beta\hbar\omega}-1\right)^{-1}$, dando la **densidad de energía de Planck**
+
+$$
+u(\omega)\,d\omega \equiv \frac{dU}{V} = \frac{\hbar\omega^{3}}{\pi^{2}c^{3}}\;\frac{d\omega}{e^{\beta\hbar\omega}-1}
+$$
+
+El espectro de **número** se obtiene dividiendo por $\hbar\omega$
+
+$$
+n(\omega)\,d\omega = \frac{\omega^{2}}{\pi^{2}c^{3}}\;\frac{d\omega}{e^{\beta\hbar\omega}-1}
+$$
+
+---
+
+### 9.6.2 Stefan–Boltzmann y Wien: dos corolarios famosos
+
+Integrar $u(\omega)$ sobre todas las $\omega$ da
+
+$$
+\frac{U}{V} \equiv a\,T^{4},\qquad a = \frac{\pi^{2}k_{B}^{4}}{15\,\hbar^{3}c^{3}}
+$$
+
+La presión de radiación de un gas isótropo de fotones es
+
+$$
+p = \frac{1}{3}\,\frac{U}{V}
+$$
+
+El **flujo radiativo** de una superficie negra es $\Phi=\sigma T^{4}$ con
+
+$$
+\sigma = \frac{a c}{4} = \frac{\pi^{2}k_{B}^{4}}{60\,\hbar^{3}c^{2}}
+$$
+
+La longitud de onda del máximo de emitancia espectral satisface el **desplazamiento de Wien**
+
+$$
+\lambda_{\text{max}}\,T = b,\qquad b \approx 2.898\times 10^{-3}\ \text{m}\cdot\text{K}
+$$
+
+obtenido al maximizar la forma en $\lambda$ de la ley de Planck.
+
+La densidad de entropía y la entalpía se obtienen de $p=U/3V$:
+
+$$
+s \equiv \frac{S}{V} = \frac{4}{3}aT^{3},\qquad h \equiv \frac{U+pV}{V} = \frac{4}{3}aT^{4}
+$$
+
+---
+
+### 9.6.3 Fonones: sonido cuantizado con dispersión lineal
+
+En un cristal, los pequeños desplazamientos de la red forman modos normales. A longitudes de onda largas, las ramas **acústicas** tienen
+
+$$
+\omega = v_{s}\,k
+$$
+
+con velocidad del sonido $v_{s}$ y tres polarizaciones (una longitudinal y dos transversales). Al tratarlos como un gas de bosones no interactuantes, la ocupación de Bose es la misma $n_{B}(\omega)$, pero la densidad de estados usa $v_{s}$ en lugar de $c$ y debe tener un **corte** para imponer un número finito de modos.
+
+La idea clave de Debye: aproximar las ramas acústicas como lineales hasta un corte $k_{D}$ elegido de modo que el **número total de modos sea $3N$** para $N$ átomos
+
+$$
+\frac{V}{2\pi^{2}}\int_{0}^{k_{D}} k^{2}\,dk\times 3 = 3N \;\Rightarrow\; k_{D} = \left(6\pi^{2}\frac{N}{V}\right)^{1/3}
+$$
+
+Definimos la **frecuencia de Debye** y la **temperatura de Debye**
+
+$$
+\omega_{D} \equiv v_{s}\,k_{D},\qquad \Theta_{D} \equiv \frac{\hbar\omega_{D}}{k_{B}}
+$$
+
+Una sola $v_{s}$ «media» representa las tres polarizaciones con buena precisión para la termodinámica global.
+
+---
+
+### 9.6.4 Modelo de Debye
+
+La energía interna de los fonones, omitiendo términos de punto cero, es
+
+$$
+U = \int_{0}^{\omega_{D}} d\omega\; g_{D}(\omega)\,\hbar\omega\,n_{B}(\omega)
+$$
+
+con densidad de estados de Debye
+
+$$
+g_{D}(\omega) = \frac{9N}{\omega_{D}^{3}}\,\omega^{2}
+$$
+
+Cambiamos de variable $x \equiv \hbar\omega/k_{B}T$ para obtener la capacidad calorífica estándar de Debye
+
+$$
+C_{V} = 9N k_{B}\left(\frac{T}{\Theta_{D}}\right)^{3} \int_{0}^{\Theta_{D}/T} dx\; \frac{x^{4} e^{x}}{(e^{x}-1)^{2}}
+$$
+
+Comportamientos asintóticos:
+
+- **$T$ baja** $\left(T\ll \Theta_{D}\right)$
+
+$$
+C_{V} \simeq \frac{12\pi^{4}}{5}\,N k_{B}\left(\frac{T}{\Theta_{D}}\right)^{3}
+$$
+
+- **$T$ alta** $\left(T\gg \Theta_{D}\right)$
+
+$$
+C_{V} \to 3N k_{B}
+$$
+
+recuperando Dulong–Petit.
+
+---
+
+### 9.6.5 Modelo de Einstein: modos ópticos y transición de regímenes
+
+Einstein imaginó cada átomo como un oscilador independiente de una única frecuencia $\omega_{E}$. Entonces
+
+$$
+C_{V}^{\text{Ein}} = 3N k_{B}\;\frac{x^{2} e^{x}}{(e^{x}-1)^{2}},\qquad x \equiv \frac{\hbar\omega_{E}}{k_{B}T}
+$$
+
+Capta el límite de **$T$ alta** y la congelación **exponencial** a $T$ baja, pero no la ley **$T^{3}$**, porque carece de modos acústicos de baja frecuencia. Los cristales reales suelen interpolar: los modos ópticos se parecen a Einstein y los acústicos a Debye.
+
+---
+
+### 9.6.6 Termodinámica del gas de fonones
+
+Con $\omega=v_{s}k$ y tres polarizaciones, la **densidad de energía** de un gas libre de fonones a $T\ll \Theta_{D}$ baja reproduce la de los fotones con $c\to v_{s}$ y un factor $3/2$, porque tres ramas acústicas sustituyen a dos polarizaciones de fotones
+
+$$
+u_{\text{ph}}(T) \propto \frac{(k_{B}T)^{4}}{\hbar^{3} v_{s}^{3}}
+$$
+
+Derivar da $C_{V}\propto T^{3}$ como en Debye. En un sólido, la «presión» de los fonones modifica la respuesta elástica en lugar de empujar un volumen como un gas, pero la intuición de escalado es idéntica.
+
+---
+
+### 9.6.7 Cuerpos negros en la naturaleza: recorrido breve
+
+- El **fondo cósmico de microondas** es un cuerpo negro casi perfecto a $T\approx 2.725\ \text{K}$, un gas fósil de fotones que llena el universo  
+- Las **estrellas** aproximan cuerpos negros en partes de su espectro; las desviaciones codifican atmósferas y líneas  
+- Las **cavidades de laboratorio** con aberturas pequeñas imitan emisores de cuerpo negro y establecen patrones de radiometría
+
+---
+
+### 9.6.8 Errores habituales
+
+- **Olvidar $\mu=0$ para los fotones.** Cualquier intento de fijar el **número** de fotones en equilibrio es no físico salvo que también restrinjas el espectro mediante bombeo  
+- **Mezclar los máximos en $\omega$ y $\lambda$.** Los máximos de $u_{\omega}$ y de $u_{\lambda}$ ocurren en lugares distintos; la $b$ de Wien se refiere al máximo en **longitud de onda**  
+- **Ignorar polarizaciones o cortes.** Debye necesita $3N$ modos en total; omitir el factor 3 o el corte estropea $C_{V}$  
+- **Límite de $T$ alta con unidades cuánticas.** Comprueba siempre $\Theta_{D}/T$ o $x=\hbar\omega/k_{B}T$ antes de afirmar un comportamiento «clásico»
+
+---
+
+### 9.6.9 Pequeños ejemplos resueltos
+
+**(a) Recuperar Stefan–Boltzmann.**  
+Integra $u(\omega)$ usando $\int_{0}^{\infty} dx\,x^{3}/(e^{x}-1)=\pi^{4}/15$ después de $x=\beta\hbar\omega$ para obtener $U/V=aT^{4}$ y $p=U/3V$.
+
+**(b) Desplazamiento de Wien.**  
+Maximiza la densidad espectral en longitud de onda para demostrar $\lambda_{\text{max}}T=b$ y extrae $b$ numéricamente de la ecuación trascendente.
+
+**(c) Comportamiento asintótico de Debye a $T$ baja.**  
+Desarrolla la integral de Debye para $\Theta_{D}/T\to\infty$ para deducir $C_{V}\simeq(12\pi^{4}/5)N k_{B}(T/\Theta_{D})^{3}$.
+
+**(d) Einstein frente a Debye a $T$ intermedia.**  
+Representa $C_{V}/(3Nk_{B})$ frente a $T/\Theta$ para ambos modelos y explica por qué los datos reales suelen situarse entre ellos.
+
+**(e) Densidad de entropía del gas de fotones.**  
+Usando $p=U/3V$ y $dU=TdS-p\,dV$, deduce $s=(4/3)aT^{3}$.
+
+---
+
+### 9.6.10 Colección mínima de problemas
+
+- Partiendo del recuento de modos de la cavidad, deduce $g(\omega)$ y la $u(\omega)$ de Planck  
+- Demuestra $p=U/3V$ promediando el tensor de tensiones de Maxwell para radiación isótropa  
+- Demuestra que el recuento de modos de fonones con corte de Debye es igual a $3N$ y obtén $k_{D}$  
+- Evalúa numéricamente la integral de capacidad calorífica de Debye para $T/\Theta_{D}=\{0.05,0.2,1,3\}$ y compara con la predicción de Einstein a la misma $T$ usando $\omega_{E}\approx 0.806\,\omega_{D}$  
+- Deduce el escalado $T^{4}$ de la densidad de energía de fonones a $T$ baja adaptando el cálculo de fotones con $c\to v_{s}$
+
+---
+
+## 9.7 Condensación de Bose–Einstein y gas de Fermi degenerado
+
+Baja la temperatura y aumenta la densidad en el espacio de fases, y la estadística cuántica empieza a tomar decisiones ejecutivas. Los **bosones** se acumulan en el estado fundamental → **condensación de Bose–Einstein (BEC)**. Los **fermiones** forman un mar de Fermi con **presión de Pauli**. Construimos la referencia del gas ideal para BEC en tres dimensiones, añadimos trampas y correcciones de interacción, esbozamos la superfluidez mediante Bogoliubov y repasamos el gas de Fermi degenerado con un par de paradas sobre «por qué importa».
+
+---
+
+### 9.7.1 BEC en un gas ideal de Bose uniforme (3D)
+
+De §9.5, para bosones no interactuantes
+
+$$
+N = \frac{gV}{\lambda_{T}^{3}}\,g_{3/2}(z)
+$$
+
+con $z=e^{\beta\mu}$ y $g_{s}$ el polilogaritmo. Como $g_{3/2}(z)\le g_{3/2}(1)=\zeta(3/2)$, los **estados excitados** pueden albergar como máximo
+
+$$
+N_{\mathrm{ex,max}} = \frac{gV}{\lambda_{T}^{3}}\,\zeta(3/2)
+$$
+
+A densidad fija $n=N/V$, reducir $T$ disminuye $1/\lambda_{T}^{3}\propto T^{3/2}$ y, por tanto, la capacidad máxima de los estados excitados. La temperatura a la que esta capacidad iguala el número total de partículas es la **temperatura crítica**
+
+$$
+T_{c} = \frac{2\pi\hbar^{2}}{m k_{B}} \left(\frac{n}{g\,\zeta(3/2)}\right)^{2/3}
+$$
+
+Por debajo de $T_{c}$, el potencial químico queda fijado en $\mu=0$ y la **fracción condensada** es
+
+$$
+\frac{N_{0}}{N} = 1 - \left(\frac{T}{T_{c}}\right)^{3/2}
+$$
+
+La termodinámica por debajo de $T_{c}$ proviene enteramente de las excitaciones ($N_{0}$ no aporta energía en el gas ideal):
+
+$$
+p = \frac{g k_{B}T}{\lambda_{T}^{3}}\,\zeta(5/2),\qquad U = \frac{3}{2}pV
+$$
+
+Calor específico por partícula para $T<T_{c}$
+
+$$
+\frac{C_{V}}{N k_{B}} = \frac{15}{4}\,\frac{\zeta(5/2)}{\zeta(3/2)}\left(\frac{T}{T_{c}}\right)^{3/2}
+$$
+
+Por encima de $T_{c}$, $\mu<0$ resuelve $n\lambda_{T}^{3}=g\,g_{3/2}(z)$ y $C_{V}$ se aproxima al valor clásico $3N k_{B}/2$ a $T$ alta. En $T_{c}$, la $C_{V}$ del gas ideal muestra una cúspide.
+
+---
+
+### 9.7.2 Ausencia de BEC uniforme en 1D y 2D a $T$ finita
+
+Para un gas ideal homogéneo, $N_{\mathrm{ex}}\propto g_{d/2}(z)$ en $d$ dimensiones. La serie diverge en $z\to 1^{-}$ para $d\le 2$: en dos dimensiones $g_{1}(1)$ diverge y $g_{1}(z)$ crece logarítmicamente, mientras que en una dimensión la divergencia es más fuerte. Así, **no hay verdadera BEC** en sistemas uniformes 1D/2D a $T$ finita en el límite termodinámico; las interacciones en 2D aún pueden sostener **superfluidez** mediante una transición de Kosterlitz–Thouless, pero eso no es una población macroscópica de un único modo $k=0$.
+
+---
+
+### 9.7.3 Gases de Bose atrapados: potencial armónico
+
+Los experimentos confinan átomos en trampas aproximadamente armónicas $V(\mathbf r)=\tfrac{1}{2}m(\omega_{x}^{2}x^{2}+\omega_{y}^{2}y^{2}+\omega_{z}^{2}z^{2})$. La densidad de estados de una partícula se convierte en $g(\epsilon)\propto \epsilon^{2}/(\hbar\bar\omega)^{3}$ con media geométrica $\bar\omega\equiv(\omega_{x}\omega_{y}\omega_{z})^{1/3}$. La **temperatura crítica** de un gas ideal atrapado es
+
+$$
+k_{B}T_{c}^{\mathrm{trap}} = \hbar \bar\omega \left(\frac{N}{\zeta(3)}\right)^{1/3}
+$$
+
+y, para $T<T_{c}^{\mathrm{trap}}$,
+
+$$
+\frac{N_{0}}{N} = 1 - \left(\frac{T}{T_{c}^{\mathrm{trap}}}\right)^{3}
+$$
+
+El exponente mayor refleja la distinta densidad de estados.
+
+---
+
+### 9.7.4 Fluctuaciones canónicas frente a gran canónicas: la «catástrofe»
+
+En la colectividad **gran canónica** de un BEC ideal por debajo de $T_{c}$, un estado fundamental macroscópicamente ocupado tiene $\mathrm{Var}(N_{0})\sim \mathcal O(N^{2})$; este resultado basado en un reservorio no es adecuado para una nube finita con número fijo de partículas. La colectividad **canónica** impone $N$ total fijo, pero el escalado restante depende del espectro. En el régimen condensado habitual, una trampa armónica tridimensional da $\mathrm{Var}(N_{0})\sim \mathcal O(N)$, mientras que un gas ideal tridimensional uniforme a densidad fija tiene $\mathrm{Var}(N_{0})\sim \mathcal O(N^{4/3})$. Elige tanto la colectividad como el confinamiento apropiados para el experimento.
+
+---
+
+### 9.7.5 Interacciones y campo medio de Gross–Pitaevskii (GP)
+
+A $T$ ultrabaja domina la dispersión de onda $s$, con amplitud fijada por la longitud de dispersión $a$. El acoplamiento efectivo es
+
+$$
+g_{\mathrm{int}} = \frac{4\pi\hbar^{2} a}{m}
+$$
+
+Para un condensado débilmente interactuante con función de onda macroscópica $\Psi(\mathbf r,t)$,
+
+$$
+i\hbar\,\partial_{t}\Psi = \left[-\frac{\hbar^{2}\nabla^{2}}{2m}+V(\mathbf r)+g_{\mathrm{int}}\,|\Psi|^{2}\right]\Psi
+$$
+
+Esta es la **ecuación de Gross–Pitaevskii**. En materia uniforme de densidad $n=|\Psi|^{2}$,
+
+$$
+\mu = g_{\mathrm{int}}\,n,\qquad c = \sqrt{\frac{g_{\mathrm{int}}\,n}{m}},\qquad \xi \equiv \frac{\hbar}{\sqrt{2} m c}
+$$
+
+donde $c$ es la velocidad del sonido y $\xi$ la **longitud de recuperación**, la escala en la que el parámetro de orden se recupera cerca de defectos o fronteras.
+
+---
+
+### 9.7.6 Espectro de Bogoliubov y superfluidez (esbozo)
+
+Linealizar las fluctuaciones alrededor del condensado da la dispersión de **Bogoliubov**
+
+$$
+\epsilon_{k} = \sqrt{\left(\frac{\hbar^{2}k^{2}}{2m}\right)^{2} + c^{2}\hbar^{2}k^{2}}
+$$
+
+A $k$ pequeña es **fonónica**, $\epsilon_{k}\approx \hbar c k$, y a $k$ grande pasa a la de partícula libre $\epsilon_{k}\approx \hbar^{2}k^{2}/2m$. El criterio de Landau fija la rapidez crítica del flujo
+
+$$
+v_{c} = \min_{k}\frac{\epsilon_{k}}{\hbar k} = c
+$$
+
+por lo que los BEC débilmente interactuantes son **superfluidos** con flujo sin fricción por debajo de $c$.
+
+---
+
+### 9.7.7 Repaso del gas de Fermi degenerado: T=0 y T pequeña
+
+De §9.5, el gas de Fermi no interactuante tiene energía de Fermi
+
+$$
+\epsilon_{F} = \frac{\hbar^{2}}{2m}\left(\frac{6\pi^{2}n}{g}\right)^{2/3},\qquad p(0) = \frac{2}{5}n\,\epsilon_{F},\qquad U(0) = \frac{3}{5}N\,\epsilon_{F}
+$$
+
+Las correcciones a $T$ finita se obtienen del desarrollo de Sommerfeld: $C_{V}\propto T$, $\mu(T)\approx \epsilon_{F}\left[1-\frac{\pi^{2}}{12}(T/T_{F})^{2}+\cdots\right]$. La presión a $T=0$ encarna la **presión de Pauli**, estabilizando sistemas frente al colapso y fijando escalas en metales y objetos compactos.
+
+**Trampa armónica.** Para $N$ fermiones en una trampa armónica tridimensional con $\bar\omega$, la energía de Fermi a $T=0$ es
+
+$$
+\epsilon_{F}^{\mathrm{trap}} = \hbar \bar\omega\,(6N/g)^{1/3}
+$$
+
+y el radio de la nube se obtiene de un perfil de Thomas–Fermi.
+
+---
+
+### 9.7.8 Dos aplicaciones rápidas
+
+- **Enanas blancas (esquema).** Los electrones forman un gas muy degenerado. En el límite relativista, $p\sim n^{4/3}$ en lugar de $n^{5/3}$, lo que conduce a una masa máxima sostenible (límite de Chandrasekhar). Aquí el mensaje es cualitativo: la presión de degeneración es real, la presión térmica es opcional.
+- **Laboratorios de átomos fríos.** Las resonancias de Feshbach ajustan $a$ atravesando cero → BEC débilmente interactuantes, gases de Fermi unitarios fuertemente interactuantes y transición BEC–BCS. El sonido de Bogoliubov y los modos colectivos son confirmaciones de libro de texto de la teoría anterior.
+
+---
+
+### 9.7.9 Errores habituales
+
+- **Olvidar que $\mu=0$ por debajo de $T_{c}$ para el gas ideal de Bose.** No fuerces una $\mu$ negativa una vez formado el condensado  
+- **Usar fluctuaciones gran canónicas para una trampa de $N$ fija.** La varianza canónica es la apropiada para las nubes de átomos fríos  
+- **Afirmar que existe BEC uniforme en 2D.** No a $T$ finita; busca en cambio superfluidez KT  
+- **Tratar las interacciones como «pequeñas» sin comprobar $n a^{3}$.** GP/Bogoliubov de acoplamiento débil requiere $n a^{3}\ll 1$
+
+---
+
+### 9.7.10 Pequeños ejemplos resueltos
+
+**(a) $T_{c}$ para un BEC típico.**  
+Toma $\mathrm{^{87}Rb}$ con $m\approx 1.44\times 10^{-25}\ \mathrm{kg}$, $g=1$ y densidad $n=10^{20}\ \mathrm{m^{-3}}$. Sustituye en la fórmula de $T_{c}$ y estima la fracción condensada a $T=0.5T_{c}$.
+
+**(b) Ausencia de BEC en 2D.**  
+Demuestra que $N_{\mathrm{ex}} \propto g_{1}(z)$ diverge cuando $z\to 1^{-}$ para un gas uniforme 2D convirtiendo la suma en una integral e identificando el logaritmo.
+
+**(c) $T_{c}$ de una trampa.**  
+Dados $N=2\times 10^{5}$ átomos y $\bar\omega=2\pi\times 100\ \mathrm{Hz}$, calcula $T_{c}^{\mathrm{trap}}$ y la fracción condensada a $0.7T_{c}^{\mathrm{trap}}$.
+
+**(d) Longitud de recuperación.**  
+Para $a=5\ \mathrm{nm}$ y $n=10^{20}\ \mathrm{m^{-3}}$, estima $g_{\mathrm{int}}$, $c$ y $\xi$.
+
+**(e) Pendiente de Bogoliubov.**  
+Verifica que $\epsilon_{k}\approx \hbar c k$ en $k\ll 1/\xi$ y encuentra el valor de transición $k$ donde la dispersión se desvía, por ejemplo, un $10\%$.
+
+**(f) Comprobación numérica de la presión de Fermi.**  
+Para electrones con $n=8\times 10^{28}\ \mathrm{m^{-3}}$, calcula $\epsilon_{F}$ y $p(0)=\tfrac{2}{5}n\epsilon_{F}$; compara con la presión atmosférica.
+
+---
+
+### 9.7.11 Colección mínima de problemas
+
+- Deduce $T_{c}$ y la fracción condensada de un gas ideal de Bose uniforme; repite después para una trampa armónica usando la densidad de estados apropiada  
+- Partiendo de $p=(g k_{B}T/\lambda_{T}^{3})\zeta(5/2)$, calcula $C_{V}$ por debajo de $T_{c}$ y muestra la cúspide en $T_{c}$  
+- Muestra explícitamente por qué $g_{3/2}(1)$ converge en 3D, pero $g_{1}(1)$ diverge en 2D, y relaciónalo con la ausencia de BEC uniforme en 2D  
+- Linealiza la ecuación GP alrededor de una solución uniforme y deduce la dispersión de Bogoliubov y la velocidad crítica de Landau  
+- Usa el desarrollo de Sommerfeld para obtener $U(T)$ y $C_{V}(T)$ de un gas de Fermi tridimensional hasta orden $(T/T_{F})^{2}$; deduce $\epsilon_{F}^{\mathrm{trap}}$ para confinamiento armónico
+
+---
+
+## 9.8 Campo medio y teoría de Landau: parámetros de orden, van der Waals y Curie–Weiss
+
+El campo medio es la aproximación del «trabajo en grupo»: cada grado de libertad siente el **promedio** de todos los demás. A menudo acierta con la **forma** de los diagramas de fases y da exponentes críticos analíticos. La **teoría de Landau** convierte esa idea en un desarrollo controlado en el **parámetro de orden** y las simetrías. Esta sección construye el magnetismo de Curie–Weiss, el fluido de van der Waals con construcción de Maxwell, las energías libres y exponentes de Landau, la longitud de correlación de Landau–Ginzburg, el criterio de Ginzburg y la aparición de transiciones de primer orden y puntos tricríticos.
+
+![Para un parámetro de orden escalar real, un doble pozo par tiene dos mínimos relacionados por simetría. Elegir cualquiera de ellos rompe la simetría de reflexión.](/images/diagrams/symmetry-breaking.svg)
+
+---
+
+### 9.8.1 Qué supone el campo medio
+
+Elegimos un parámetro de orden $\phi$ que cambia de signo bajo la simetría rota:
+
+- Ferromagneto: $\phi \equiv m$ (densidad de magnetización), simetría $m\to -m$  
+- Líquido–gas: $\phi \equiv n-n_{c}$ (desviación de densidad), sin simetría de Ising, pero con las mismas matemáticas cerca de $T_{c}$
+
+**Idea del campo medio:** sustituir los vecinos por su promedio. Se ignoran las fluctuaciones cuando la coordinación es alta o la interacción es de largo alcance, condiciones cada vez más justificadas a mayor dimensión espacial $d$.
+
+---
+
+### 9.8.2 Ferromagneto de Curie–Weiss (tipo Ising, z vecinos)
+
+Partimos de espines de Ising $\sigma_{i}=\pm 1$, acoplamiento $J>0$ y campo $h$. En campo medio, cada espín ve un campo efectivo $h_{\text{eff}}=h + z J m$ con $m\equiv \langle \sigma\rangle$. La función de partición de un sitio es $z_{1}=2\cosh(\beta h_{\text{eff}})$, dando la ecuación de **autoconsistencia**
+
+$$
+m = \tanh\!\left[\beta\,(h + z J m)\right]
+$$
+
+En $h=0$, desarrollamos para $m$ pequeña y obtenemos la temperatura crítica de **Curie–Weiss**
+
+$$
+k_{B}T_{c} = z J
+$$
+
+Comportamiento crítico:
+
+- $T>T_{c}$ pequeño $h$: $m \approx \chi h$ con
+
+$$
+\chi = \frac{1}{k_{B}(T-T_{c})}
+$$
+
+por lo que $\gamma_{\text{MF}}=1$
+
+- $T<T_{c}$ en $h=0$: aparecen soluciones no nulas
+
+$$
+m \sim \left(1-\frac{T}{T_{c}}\right)^{1/2}
+$$
+
+por lo que $\beta_{\text{MF}}=1/2$
+
+- En $T=T_{c}$, $m \propto h^{1/3}$, por lo que $\delta_{\text{MF}}=3$
+
+El calor específico presenta un **salto finito** (sin divergencia): $\alpha_{\text{MF}}=0$
+
+---
+
+### 9.8.3 Energía libre de Landau: la simetría dicta la forma
+
+Escribimos un desarrollo **analítico** en el parámetro de orden compatible con las simetrías. Para un escalar de tipo Ising $m$ en un sistema uniforme
+
+$$
+F(m;T,h) = F_{0}(T) + a_{2}\,t\,m^{2} + a_{4}\,m^{4} + a_{6}\,m^{6} - h\,m
+$$
+
+con desviación de temperatura $t\equiv T-T_{c}$ y $a_{4}>0$ para una transición estándar de segundo orden. Cerca de este punto crítico ordinario, truncamos a orden cuártico, despreciando el término séxtico en la minimización y las fórmulas críticas dominantes siguientes:
+
+$$
+\frac{\partial F}{\partial m} = 2 a_{2}\,t\,m + 4 a_{4}\,m^{3} - h = 0
+$$
+
+Consecuencias en $h=0$:
+
+- Para $t>0$: mínimo en $m=0$  
+- Para $t<0$: mínimos en
+
+$$
+m_{\star}(t) = \pm \sqrt{\frac{-a_{2}\,t}{2 a_{4}}}
+$$
+
+por lo que $\beta_{\text{MF}}=1/2$
+
+Susceptibilidad por encima de $T_{c}$ a partir de respuesta lineal:
+
+$$
+\chi^{-1} = \left.\frac{\partial^{2}F}{\partial m^{2}}\right|_{m=0} = 2 a_{2}\,t
+$$
+
+por lo que $\chi \propto t^{-1}$ y $\gamma_{\text{MF}}=1$
+
+En $t=0$ con $h\neq 0$:
+
+$$
+4 a_{4}\,m^{3} = h \quad\Rightarrow\quad m \propto h^{1/3}
+$$
+
+por lo que $\delta_{\text{MF}}=3$
+
+**Salto del calor específico.** Sustituimos $m_{\star}$ en $F$:
+
+$$
+F_{\min}(t<0) = F_{0}(T) - \frac{a_{2}^{2}}{4 a_{4}}\,t^{2}
+$$
+
+Por tanto, $C = -T\,\partial^{2}F/\partial T^{2}$ adquiere un escalón finito en $T_{c}$, es decir, $\alpha_{\text{MF}}=0$ con discontinuidad.
+
+---
+
+### 9.8.4 Primer orden y tricriticidad
+
+Si la física microscópica hace que $a_{4}<0$, el término $m^{4}$ desestabiliza. Se estabiliza con $a_{6}>0$. Entonces, al variar $t$, aparecen **dos mínimos** en $\pm m$ **antes** de $t=0$ y el sistema salta en la coexistencia $t=t_{\text{coex}}$, donde los pozos tienen la misma profundidad. Ese salto es una transición de **primer orden** con calor latente.
+
+El punto donde $a_{4}$ cambia de signo en $t=0$ es un **punto tricrítico**. El análisis de Landau con $a_{4}=0$ predice exponentes distintos, por ejemplo, $m\sim (-t)^{1/4}$.
+
+---
+
+### 9.8.5 Funcional de Landau–Ginzburg y longitud de correlación
+
+Permitimos variaciones espaciales lentas del parámetro de orden. El funcional de energía libre de **Landau–Ginzburg** es
+
+$$
+\mathcal F[\phi] = \int d^{d}r\;\left[\frac{r_{0}}{2}\,\phi^{2} + \frac{c}{2}\,(\nabla \phi)^{2} + \frac{u}{4}\,\phi^{4} - h\,\phi\right]
+$$
+
+con $r_{0}\propto t$. En el régimen **gaussiano** ($u$ pequeña, $t>0$), el correlador de dos puntos en espacio de Fourier tiene forma de Ornstein–Zernike
+
+$$
+S(\boldsymbol k) \equiv \langle|\phi_{\boldsymbol k}|^{2}\rangle \propto \frac{1}{r_{0} + c k^{2}}
+$$
+
+Definimos la **longitud de correlación**
+
+$$
+\xi^{2} = \frac{c}{r_{0}} \propto t^{-1}
+$$
+
+por tanto $\nu_{\text{MF}}=1/2$. En tres dimensiones, el correlador en espacio real tiene la forma $e^{-r/\xi}/r^{d-2}$; este prefactor exponencial no es la fórmula general en cualquier dimensión. En la criticidad, en dimensiones mayores que dos, el correlador gaussiano tiene la potencia de distancia inversa fijada por la dimensión menos dos, dando $\eta_{\text{MF}}=0$.
+
+---
+
+### 9.8.6 Criterio de Ginzburg: cuándo falla el campo medio
+
+El campo medio ignora las fluctuaciones del parámetro de orden. Comparamos la magnitud de las fluctuaciones en un volumen de correlación $\xi^{d}$ con $m_{\star}^{2}$. Aproximadamente,
+
+$$
+\frac{\langle \delta \phi^{2}\rangle_{\xi}}{m_{\star}^{2}} \sim \frac{k_{B}T}{u\,\xi^{d}\,m_{\star}^{4}}
+$$
+
+Usar $m_{\star}^{2}\sim |t|/u$ y $\xi\sim t^{-1/2}$ da un **número de Ginzburg** $\mathrm{Gi}$ tal que el campo medio solo es válido para
+
+$$
+|t| \gg \mathrm{Gi}
+$$
+
+En resumen: para $d>4$ la integral de fluctuaciones es benigna y el campo medio es asintóticamente exacto. Para $d\le 4$, un intervalo próximo a $T_{c}$ está **dominado por fluctuaciones** y requiere el grupo de renormalización (§9.10).
+
+---
+
+### 9.8.7 Fluido de van der Waals: líquido–gas en campo medio
+
+Escribimos la ecuación de estado en forma de densidad numérica $n=N/V$:
+
+$$
+p(n,T) = \frac{n\,k_{B}T}{1 - b n} - a\,n^{2}
+$$
+
+con volumen excluido $b$ y atracción $a$. El **punto crítico** satisface $(\partial p/\partial n)_{T_{c}}=(\partial^{2}p/\partial n^{2})_{T_{c}}=0$, dando
+
+$$
+n_{c} = \frac{1}{3b},\qquad
+k_{B}T_{c} = \frac{8 a}{27 b},\qquad
+p_{c} = \frac{a}{27 b^{2}}
+$$
+
+En forma molar $p = RT/(V_{m}-b) - a/V_{m}^{2}$ se obtiene $V_{c}=3b$, $T_{c}=8a/(27 b R)$, $p_{c}=a/(27 b^{2})$.
+
+Definimos **variables reducidas** $p_{r}\equiv p/p_{c}$, $v_{r}\equiv V_{m}/V_{c}$, $T_{r}\equiv T/T_{c}$ para obtener la **ley de estados correspondientes**
+
+$$
+p_{r} = \frac{8 T_{r}}{3 v_{r}-1} - \frac{3}{v_{r}^{2}}
+$$
+
+Por debajo de $T_{c}$, $p(V)$ tiene forma de S. La región de inestabilidad mecánica satisface $(\partial p/\partial V)_{T}>0$; las **espinodales** resuelven $(\partial p/\partial V)_{T}=0$. La presión de **coexistencia** a una $T<T_{c}$ dada queda fijada por la regla de **igualdad de áreas de Maxwell** (ya que $g=\mu$ debe ser igual en ambas fases).
+
+Cerca de $T_{c}$, la diferencia de densidades obedece la ley de campo medio
+
+$$
+\Delta n \propto (T_{c}-T)^{1/2}
+$$
+
+coincidiendo con $\beta_{\text{MF}}=1/2$.
+
+---
+
+### 9.8.8 Metaestabilidad, nucleación y espinodales
+
+El doble pozo de Landau para $t<0$ con un campo pequeño $h$ muestra dos mínimos de distinta profundidad: el más alto es **metaestable**. El decaimiento ocurre por **nucleación** de gotas críticas, que no describe el campo medio estático, pero que sugiere la barrera entre mínimos. Al acercarse a una **espinodal**, la barrera desaparece; la susceptibilidad y la longitud de correlación divergen en ese límite en campo medio.
+
+---
+
+### 9.8.9 Guía rápida: exponentes de campo medio y relaciones de escalado
+
+**Exponentes de campo medio (tipo Ising):**
+
+| Exponente | Significado | Valor |
+|---|---|---|
+| $\alpha$ | $C \sim \lvert t\rvert^{-\alpha}$ | $0$ con salto |
+| $\beta$ | $m \sim (-t)^{\beta}$ | $1/2$ |
+| $\gamma$ | $\chi \sim \lvert t\rvert^{-\gamma}$ | $1$ |
+| $\delta$ | $m \sim h^{1/\delta}$ en $t=0$ | $3$ |
+| $\nu$ | $\xi \sim \lvert t\rvert^{-\nu}$ | $1/2$ |
+| $\eta$ | $G(r)\sim r^{-(d-2+\eta)}$ en $t=0$ | $0$ |
+
+
+**Relaciones de escalado (satisfechas por el campo medio):**
+
+- Widom: $\gamma = \beta(\delta-1)$  
+- Rushbrooke: $\alpha + 2\beta + \gamma = 2$  
+- Josephson (hiperescalado): $2 - \alpha = d\,\nu$  
+  - Con exponentes de campo medio se cumple en $d=d_{c}=4$ al nivel de leyes de potencias (puede haber correcciones logarítmicas); falla para $d>d_{c}$. Por debajo de $d_{c}$, usa los exponentes corregidos por fluctuaciones.
+
+---
+
+### 9.8.10 Errores habituales
+
+- **Forzar $m\neq 0$ por encima de $T_{c}$ en $h=0$.** En Landau con $a_{4}>0$, el único mínimo para $t>0$ es $m=0$  
+- **Confundir coexistencia y espinodal.** La construcción de Maxwell fija la coexistencia; la espinodal es el límite de metaestabilidad donde $(\partial p/\partial V)_{T}=0$  
+- **Ignorar la simetría.** Si la simetría prohíbe términos impares, no los añadas a mano. Si un campo $h$ la rompe, incluye $-h m$  
+- **Declarar «exacto» el campo medio.** Es bueno lejos de $T_{c}$, en $d$ alta o con interacciones de largo alcance; cerca de $T_{c}$ en $d\le 4$, véase §9.10
+
+---
+
+### 9.8.11 Pequeños ejemplos resueltos
+
+**(a) $\chi$ de Curie–Weiss**  
+Linealiza $m=\tanh[\beta(zJ m + h)]$ para $m$ pequeña en $h=0$ para deducir $\chi=1/[k_{B}(T-T_{c})]$ e identificar $T_{c}$.
+
+**(b) $m(T)$ de Landau y salto de $C$**  
+Minimiza $F= a_{2} t m^{2} + a_{4} m^{4}$ en $h=0$ para $t<0$ y obtén $m_{\star}^{2}=-a_{2}t/(2a_{4})$. Sustituye en $F$ y calcula la discontinuidad del calor específico en $T_{c}$.
+
+**(c) Ornstein–Zernike**  
+A partir del funcional LG cuadrático, deduce $S(k)\propto 1/(r_{0}+c k^{2})$ e identifica $\xi=\sqrt{c/r_{0}}$.
+
+**(d) Punto crítico de van der Waals**  
+Usando $p = n k_{B}T/(1-b n) - a n^{2}$, impón $\partial_{n}p=\partial_{n}^{2}p=0$ para encontrar $(n_{c},T_{c},p_{c})$; después escribe la ecuación de estado reducida.
+
+**(e) Escalado tricrítico**  
+Fija $a_{4}=0$, conserva $a_{6}>0$ y minimiza $F=a_{2} t m^{2}+a_{6} m^{6}$. Demuestra $m\sim (-t)^{1/4}$ y extrae $\beta_{\text{tri}}$.
+
+---
+
+### 9.8.12 Colección mínima de problemas
+
+- Deduce los exponentes de campo medio $\alpha,\beta,\gamma,\delta$ a partir del polinomio de Landau y verifica las relaciones de Widom y Rushbrooke  
+- Partiendo del funcional LG, calcula el correlador en espacio real $G(r)$ en $d$ dimensiones y confirma $\eta_{\text{MF}}=0$  
+- Aplica el criterio de Ginzburg para estimar la anchura $|t|\lesssim \mathrm{Gi}$ de la región crítica fuera del campo medio de un imán tridimensional de tipo Ising con $u$ y $c$ dados  
+- Para van der Waals, implementa analíticamente la construcción de igual área de Maxwell cerca de $T_{c}$ y demuestra $\Delta n \propto (T_{c}-T)^{1/2}$  
+- Explora el caso de primer orden con $a_{4}<0$: encuentra la coexistencia $t_{\text{coex}}$ igualando las profundidades de los pozos y localiza las espinodales donde se anula la segunda derivada en un mínimo
+
+---
+
+## 9.9 El modelo de Ising: matrices de transferencia, dualidad y criticidad exacta en 2D
+
+Si la física estadística tuviera una mascota, sería el modelo de Ising: espines $\sigma_{i}=\pm 1$ que solo hablan con sus vecinos y, aun así, recrean todo el drama de las transiciones de fase. En 1D es tranquilo (sin transición a $T$ finita). En 2D es icónico: un punto crítico exacto con exponentes distintos de los de campo medio y divergencia logarítmica del calor específico. Esta sección aborda la solución exacta 1D, la intuición de paredes de dominio, la dualidad de Kramers–Wannier, los resultados principales de Onsager y los datos de escalado que realmente usarás.
+
+![Espines paralelos comparados con espines vecinos alternados en una red bipartita.](/images/diagrams/magnetic-order.svg)
+
+---
+
+### 9.9.1 Definición y notación
+
+En una red con vecinos más próximos $\langle ij\rangle$ y campo externo $H$,
+
+$$
+H(\{\sigma\}) = -J \sum_{\langle ij\rangle} \sigma_{i}\sigma_{j} - H \sum_{i} \sigma_{i}
+$$
+
+También usaremos los acoplamientos **adimensionales**
+
+$$
+K \equiv \beta J,\qquad \tilde h \equiv \beta H
+$$
+
+$J$ positivo favorece la alineación (ferromagneto). Función de partición $Z=\sum_{\{\sigma\}} e^{-\beta H(\{\sigma\})}$.
+
+---
+
+### 9.9.2 Cadena 1D: solución exacta con matriz de transferencia
+
+Para un anillo de $N$ espines (condiciones de contorno periódicas), construimos la matriz de transferencia $2\times 2$
+
+$$
+T_{\sigma,\sigma'} = \exp\!\left[K\,\sigma\sigma' + \frac{\tilde h}{2}(\sigma+\sigma')\right]
+$$
+
+Sus autovalores son
+
+$$
+\lambda_{\pm} = e^{K}\cosh \tilde h \pm \sqrt{e^{2K}\sinh^{2}\tilde h + e^{-2K}}
+$$
+
+La termodinámica en el límite $N\to\infty$ está gobernada por $\lambda_{+}$:
+
+$$
+f \equiv -\frac{1}{\beta N}\ln Z = -\frac{1}{\beta}\ln \lambda_{+}
+$$
+
+En **campo nulo** $\tilde h=0$,
+
+$$
+\lambda_{+}=2\cosh K,\qquad \lambda_{-}=2\sinh K
+$$
+
+**No** hay magnetización espontánea a ningún $T>0$, es decir, $m=\lim_{\tilde h\to 0}\frac{1}{N}\partial_{\tilde h}\ln Z=0$. La función conexa de dos puntos decae exponencialmente,
+
+$$
+\langle \sigma_{0}\sigma_{r}\rangle_{c} = \left(\frac{\lambda_{-}}{\lambda_{+}}\right)^{r}
+$$
+
+por lo que la longitud de correlación es
+
+$$
+\xi^{-1} = -\ln \tanh K
+$$
+
+Finita para todo $T>0$, y divergente solo en $T=0$. Veredicto: Ising 1D **no tiene transición de fase a $T$ finita**.
+
+---
+
+### 9.9.3 Intuición de paredes de dominio (kinks): por qué 1D permanece desordenado
+
+Invierte un bloque contiguo y crearás **dos** paredes de dominio, cada una con coste energético $2J$. Pero su **entropía** crece como $\ln N$ (muchos lugares donde ponerlas). La energía libre de un par de paredes es $\Delta F \sim 2\cdot 2J - k_{B}T\ln N$, por lo que, para cualquier $T>0$ y $N$ grande, gana el término entrópico → proliferan las paredes de dominio → desaparece el orden de largo alcance. En 2D, la energía crece con el **perímetro** y la entropía compite de otra forma, permitiendo una $T_{c}$ finita.
+
+---
+
+### 9.9.4 Red cuadrada 2D
+
+La dualidad de Kramers–Wannier relaciona la función de partición a acoplamiento $K$ con la de un acoplamiento **dual** $K^{\star}$ mediante
+
+$$
+\sinh(2K)\,\sinh(2K^{\star}) = 1
+$$
+
+El punto crítico está en la **autodualidad**, $K=K^{\star}$, dando
+
+$$
+\sinh(2K_{c}) = 1
+$$
+
+Equivalentemente,
+
+$$
+\frac{k_{B}T_{c}}{J} = \frac{2}{\ln(1+\sqrt{2})}
+$$
+
+Para acoplamientos anisótropos $J_{x},J_{y}$, la línea crítica es $\sinh(2K_{x})\sinh(2K_{y})=1$.
+
+---
+
+### 9.9.5 Solución de Onsager: comportamiento crítico exacto (en H=0)
+
+La energía libre completa en $H=0$ se conoce exactamente (no reescribiremos aquí la integral), pero los **resultados clave** son:
+
+- El **calor específico** diverge logarítmicamente
+
+$$
+C \sim -\ln|t|,\qquad t \equiv \frac{T-T_{c}}{T_{c}}
+$$
+
+por lo que $\alpha=0$ con un logaritmo
+
+- **Magnetización espontánea** para $T<T_{c}$ (Yang)
+
+$$
+m(T) = \left[\,1 - \sinh^{-4}(2K)\,\right]^{1/8}
+$$
+
+- **Exponentes críticos** (universalidad de Ising 2D)
+
+$$
+\alpha=0,\quad \beta=\frac{1}{8},\quad \gamma=\frac{7}{4},\quad \delta=15,\quad \nu=1,\quad \eta=\frac{1}{4}
+$$
+
+- La **longitud de correlación** diverge como $\xi \sim |t|^{-\nu}$ con $\nu=1$; el correlador crítico decae como $G(r)\sim r^{-d+2-\eta}=r^{-1/4}$ en 2D
+
+El punto crítico de Ising 2D también es una teoría conforme de campos con carga central $c=\tfrac{1}{2}$ (útil después para el escalado de tamaño finito y las razones exactas de amplitudes).
+
+---
+
+### 9.9.6 Matrices de transferencia, escalado y trucos de tamaño finito
+
+- **Correspondencia matriz de transferencia ↔ cuántica.** El modelo clásico de Ising 2D se transforma en la cadena **cuántica de Ising 1D en campo transverso** mediante descomposición de Trotter. $T=T_{c}$ clásica $\leftrightarrow$ punto crítico cuántico a temperatura cero. Muchas fórmulas de tamaño finito se trasladan directamente.
+- **Escalado de tamaño finito.** En una caja de tamaño lineal $L$, las susceptibilidades y los momentos del parámetro de orden escalan en $T_{c}$ como
+
+$$
+\chi_{\max}(L) \propto L^{\gamma/\nu} = L^{7/4},\qquad m(T_{c},L) \propto L^{-\beta/\nu} = L^{-1/8}
+$$
+
+Los cumulantes de Binder y los métodos de cruce son formas prácticas de localizar $T_{c}$ en simulaciones.
+
+---
+
+### 9.9.7 Qué aporta la universalidad
+
+Ya no necesitas repetir las matemáticas a escala de red. Cualquier sistema bidimensional de corto alcance con ruptura de una simetría $\mathbb Z_{2}$ (líquido–gas a lo largo de la isoterma crítica, imanes uniaxiales, aleaciones binarias) comparte los **mismos** exponentes y funciones de escalado cerca de la criticidad. El campo medio de Landau (§9.8) es cualitativamente correcto, pero sus exponentes difieren; la renormalización (§9.10) explica por qué.
+
+---
+
+### 9.9.8 Errores habituales
+
+- **Olvidar que en 1D no hay orden a $T$ finita.** Si tu código encuentra $m\neq 0$ en 1D a $T>0$ con $H=0$, te engaña el tamaño finito o el algoritmo rompe la simetría  
+- **Mezclar campos.** La expresión cerrada $m(T)$ anterior solo vale para $H=0$; activar $H$ destruye las singularidades críticas de esa forma exacta  
+- **$T_{c}$ incorrecta.** Es $\sinh(2K_{c})=1$, no $\tanh$ ni $\cosh$; equivalentemente, $k_{B}T_{c}/J = 2/\ln(1+\sqrt{2})$  
+- **Exponentes de campo medio en 2D.** El campo medio da $\beta=1/2$, $\gamma=1$, etc., que **no** son correctos para Ising 2D; usa el conjunto exacto anterior  
+- **Errores de signo en la longitud de correlación.** En 1D, $\xi^{-1}=-\ln(\tanh K)$; observa el signo menos y que $\tanh K<1$ para $T>0$
+
+---
+
+### 9.9.9 Pequeños ejemplos resueltos
+
+**(a) Matriz de transferencia 1D en $H=0$.**  
+Deduce $\lambda_{\pm}=2(\cosh K,\ \sinh K)$, obtén $f=-k_{B}T\ln(2\cosh K)$ y demuestra $\xi^{-1}=-\ln\tanh K$.
+
+**(b) Dualidad de Kramers–Wannier.**  
+Partiendo de las series de alta y baja temperatura para $\ln Z$, demuestra que coinciden salvo un prefactor bajo $\sinh(2K)\sinh(2K^{\star})=1$ y después deduce $K_{c}$ de la autodualidad.
+
+**(c) Comprobación de la magnetización.**  
+Verifica $m(T\!\to\!0)\to 1$ a partir de $m(T)=\left[1-\sinh^{-4}(2K)\right]^{1/8}$ y que $m(T\!\to\!T_{c}^{-})\sim |t|^{1/8}$.
+
+**(d) Escalado de tamaño finito de $\chi$.**  
+Suponiendo $\chi(t,L)=L^{\gamma/\nu}\,\Phi(t L^{1/\nu})$, demuestra que el valor máximo escala como $L^{7/4}$ en 2D y explica cómo extraerías $\nu$ mediante colapso de datos.
+
+**(e) Gas de paredes de dominio 1D.**  
+Trata los kinks como no interactuantes con fugacidad $y\equiv e^{-2K}$. Obtén la función de dos puntos $\propto (1-2y)^{r}$ a orden dominante, reproduciendo $\xi^{-1}\approx -\ln(1-2y)$ para $y\ll 1$.
+
+---
+
+### 9.9.10 Colección mínima de problemas
+
+- Construye la matriz de transferencia 1D con campo $\tilde h$ y deduce $\lambda_{\pm}$ y $f(T,\tilde h)$; calcula $m=\partial_{\tilde h}\ln \lambda_{+}$ y comprueba $m(\tilde h\to 0)=0$ para $T>0$  
+- Usa la dualidad para obtener la línea crítica anisótropa 2D $\sinh(2K_{x})\sinh(2K_{y})=1$; redúcela a la $\sinh(2K_{c})=1$ isótropa  
+- A partir de la $m(T)$ exacta, extrae $\beta=1/8$ y confirma la relación de Widom $\gamma=\beta(\delta-1)$ con $\delta=15$ y $\gamma=7/4$  
+- Demuestra que el calor específico 2D se comporta como $C \sim -\ln|t|$ desarrollando la integral de energía libre de Onsager cerca de $T_{c}$  
+- Transforma el modelo clásico 2D en la cadena cuántica de Ising 1D en campo transverso e identifica el punto crítico cuántico en términos de campo transverso e intercambio
+
+---
+
+## 9.10 Fenómenos críticos y fundamentos del grupo de renormalización
+
+Cerca de una transición de fase continua, el sistema olvida los detalles microscópicos y se vuelve **invariante de escala**. La longitud de correlación $\xi$ diverge, las fluctuaciones abarcan todos los tamaños y la termodinámica desarrolla leyes de potencias con exponentes universales. El **grupo de renormalización (RG)** convierte esto en matemáticas: describir a grano grueso, reescalar y seguir cómo fluyen los acoplamientos. Los puntos fijos gobiernan su entorno y sus autovalores fijan los exponentes.
+
+---
+
+### 9.10.1 Por qué falla el campo medio
+
+El campo medio supone que las fluctuaciones son pequeñas. Pero en un punto crítico la longitud de correlación
+
+$$
+\xi \sim |t|^{-\nu},\qquad t \equiv \frac{T-T_{c}}{T_{c}}
+$$
+
+diverge, el correlador en $t=0$ se convierte en una ley de potencias
+
+$$
+G(r) \equiv \langle \phi(\mathbf r)\phi(\mathbf 0)\rangle_{c} \sim \frac{1}{r^{d-2+\eta}}
+$$
+
+y la parte singular de la densidad de energía libre escala como $f_{s}\sim \xi^{-d}$. No puedes desarrollar alrededor de una única escala de longitud cuando no la hay.
+
+---
+
+### 9.10.2 Hipótesis de escalado y leyes de homogeneidad
+
+Suponemos que la densidad de energía libre **singular** satisface una relación de homogeneidad al reescalar por un factor $b>0$
+
+$$
+f_{s}(t,h) = b^{-d}\, f_{s}\!\left(t\,b^{y_{t}},\, h\,b^{y_{h}}\right)
+$$
+
+Aquí $h$ es el campo conjugado al parámetro de orden. Elegimos $b=|t|^{-1/y_{t}}$ e identificamos exponentes:
+
+- Calor específico $C \sim -\partial^{2}f_{s}/\partial T^{2} \sim |t|^{-\alpha}$ con
+
+$$
+2 - \alpha = \frac{d}{y_{t}} \equiv d\,\nu
+$$
+
+- Parámetro de orden $m \equiv -\partial f_{s}/\partial h|_{h\to 0} \sim |t|^{\beta}$ con
+
+$$
+\beta = \frac{d - y_{h}}{y_{t}}
+$$
+
+- Susceptibilidad $\chi \equiv \partial m/\partial h|_{h\to 0} \sim |t|^{-\gamma}$ con
+
+$$
+\gamma = \frac{2 y_{h} - d}{y_{t}}
+$$
+
+En $t=0$, elegimos $b=h^{-1/y_{h}}$ para obtener $m \sim h^{1/\delta}$ con
+
+$$
+\delta = \frac{y_{h}}{d - y_{h}}
+$$
+
+La relación de Fisher vincula $\eta$ con $y_{h}$ mediante el correlador crítico:
+
+$$
+2 - \eta = 2y_{h}-d
+$$
+
+Reuniendo las **relaciones de escalado** clásicas
+
+- Widom: $\gamma = \beta(\delta - 1)$  
+- Rushbrooke: $\alpha + 2\beta + \gamma = 2$  
+- Josephson (hiperescalado): $2 - \alpha = d\,\nu$  
+- Fisher: $\gamma = (2 - \eta)\,\nu$
+
+El hiperescalado suele cumplirse **por debajo** de la **dimensión crítica superior** $d_{c}$.
+
+---
+
+### 9.10.3 Espines de bloque de Kadanoff: el esquema que funciona
+
+Agrupamos los espines en bloques de tamaño $b$, promediamos para obtener un nuevo campo $\phi'$ y reescalamos las longitudes hasta la red original. Los acoplamientos $\{K\}$ fluyen hacia nuevos acoplamientos $\{K'\}$. Iteramos:
+
+- Las direcciones **relevantes** crecen bajo RG ($K'\!-\!K^{\star}\sim b^{y} (K-K^{\star})$ con $y>0$)  
+- Las direcciones **irrelevantes** disminuyen ($y<0$)  
+- Las **marginales** necesitan análisis de orden superior
+
+La criticidad es un flujo hacia un **punto fijo no trivial** $K^{\star}$ con al menos una dirección relevante (temperatura). El exponente de longitud de correlación es el inverso del autovalor térmico:
+
+$$
+\nu = \frac{1}{y_{t}}
+$$
+
+y el autovalor del campo controla $y_{h}$ y, por tanto, $\eta,\beta,\gamma,\delta$ mediante §9.10.2.
+
+---
+
+### 9.10.4 RG de Wilson por capas de momento y funciones beta
+
+Para un parámetro de orden escalar, el funcional de Landau–Ginzburg–Wilson (LGW)
+
+$$
+\mathcal F[\phi] = \int d^{d}x\left[\frac{1}{2}(\nabla\phi)^{2} + \frac{r}{2}\phi^{2} + \frac{u}{4!}\phi^{4} - h\,\phi\right]
+$$
+
+Describimos a grano grueso integrando y eliminando modos en una capa de momentos $\Lambda/b < |\boldsymbol k| < \Lambda$, y después reescalamos $\boldsymbol x\to \boldsymbol x/b$ y $\phi\to b^{(d-2+\eta)/2}\phi$. Los acoplamientos fluyen con el «tiempo RG» $\ell\equiv \ln b$ como se muestra esquemáticamente abajo; los puntos suspensivos incluyen términos de bucle dependientes de la masa necesarios para determinar el autovalor térmico:
+
+$$
+\frac{dr}{d\ell} = 2 r - c_{1} u + \cdots,\qquad
+\frac{du}{d\ell} = \beta(u) = \epsilon\,u - c_{2}\,u^{2} + \cdots
+$$
+
+con $\epsilon \equiv 4 - d$. Las constantes $c_{1},c_{2}$ dependen de los convenios; lo importante:
+
+- Para $d<4$ ($\epsilon>0$) existe un punto fijo de **Wilson–Fisher** $u^{\star}\sim \epsilon/c_{2}$ que da exponentes distintos de los de campo medio  
+- Para $d>4$ ($\epsilon<0$), el punto fijo gaussiano $u^{\star}=0$ es estable y valen los exponentes de campo medio (con posibles logaritmos en $d=4$)
+
+Para el modelo $O(N)$, el desarrollo en $\epsilon$ da el siguiente exponente de longitud de correlación a un bucle y la dimensión anómala dominante a dos bucles:
+
+$$
+\nu = \frac{1}{2} + \frac{N+2}{4(N+8)}\,\epsilon + \mathcal O(\epsilon^{2})
+$$
+
+$$
+\eta = \frac{(N+2)}{2(N+8)^{2}}\,\epsilon^{2} + \mathcal O(\epsilon^{3})
+$$
+
+Para la universalidad de **Ising** ($N=1$):
+
+$$
+\nu = \frac{1}{2} + \frac{1}{12}\,\epsilon + \cdots,\qquad
+\eta = \frac{1}{54}\,\epsilon^{2} + \cdots
+$$
+
+Sustituir $\epsilon=1$ da estimaciones aproximadas en 3D; los bucles superiores junto con la resumación las refinan.
+
+---
+
+### 9.10.5 Dimensión crítica superior y variables peligrosamente irrelevantes
+
+El acoplamiento $\phi^{4}$, $u$, es **marginal** en $d=4$ e **irrelevante** para $d>4$. Sin embargo, para $d>4$ puede ser **peligrosamente irrelevante**: se anula bajo RG, pero sigue controlando la amplitud de $m$ por debajo de $T_{c}$, modificando el hiperescalado ingenuo. Consecuencias:
+
+- Los exponentes de campo medio $\alpha=0,\beta=1/2,\gamma=1,\delta=3,\nu=1/2,\eta=0$ valen para $d\ge d_{c}=4$  
+- El hiperescalado $2-\alpha=d\nu$ falla para $d>4$ (la densidad de energía libre no escala como $\xi^{-d}$ sin un reescalado dependiente de $u$)
+
+Aparecen logaritmos en $d=4$, por ejemplo, $C \sim |\ln t|^{p}$.
+
+---
+
+### 9.10.6 Escalado de tamaño finito y colapso de datos
+
+Con una caja periódica de tamaño $L$, RG y homogeneidad implican el ansatz de **escalado de tamaño finito (FSS)** para la parte singular de la energía libre
+
+$$
+f_{s}(t,h;L) = L^{-d}\,\mathcal F\!\left(t\,L^{1/\nu},\ h\,L^{y_{h}}\right)
+$$
+
+Formas para observables:
+
+- Parámetro de orden: $m(t,h=0;L) = L^{-\beta/\nu}\,\mathcal M(t\,L^{1/\nu})$  
+- Susceptibilidad: $\chi(t;L) = L^{\gamma/\nu}\,\mathcal X(t\,L^{1/\nu})$  
+- Calor específico: $C(t;L) = L^{\alpha/\nu}\,\mathcal C(t\,L^{1/\nu})$ salvo un fondo analítico aditivo
+
+**Ventajas prácticas:** las curvas para distintos $L$ colapsan al representarlas frente a $t L^{1/\nu}$ con multiplicación vertical por $L^{\beta/\nu}$ para el parámetro de orden o $L^{-\gamma/\nu}$ para la susceptibilidad, y las temperaturas seudocríticas se desplazan como
+
+$$
+T_{c}(L) - T_{c}(\infty) \propto L^{-1/\nu}
+$$
+
+---
+
+### 9.10.7 Clases de universalidad (mapa rápido)
+
+- **Ising ($O(1)$, simetría $\mathbb Z_{2}$):** imanes uniaxiales, líquido–gas a lo largo de la isoterma crítica, aleaciones binarias  
+- **XY ($O(2)$):** helio superfluido, espines planos, superconductores de película delgada; en 2D tiene una transición de **Kosterlitz–Thouless** (esencial, no de ley de potencias)  
+- **Heisenberg ($O(3)$):** imanes isótropos  
+- **Percolación:** transición de conectividad geométrica con exponentes propios  
+- **Percolación dirigida:** transiciones de fase hacia estados absorbentes (fuera del equilibrio)
+
+Misma dimensión, mismas simetrías y reglas de conservación similares → mismos exponentes.
+
+---
+
+### 9.10.8 Interludio KT (XY 2D)
+
+En 2D, los vórtices se disocian en $T_{\mathrm{KT}}$ con longitud de correlación
+
+$$
+\xi \sim \exp\!\left(\frac{b}{\sqrt{|T-T_{\mathrm{KT}}|}}\right)
+$$
+
+No hay exponentes estándar de ley de potencias; en su lugar hay un salto universal de la rigidez superfluida. Esto sigue siendo RG, pero en otro diagrama de flujo con fugacidad de vórtices y rigidez como acoplamientos.
+
+---
+
+### 9.10.9 Pequeños ejemplos resueltos
+
+**(a) Relaciones de escalado en dos líneas**  
+Parte de $f_{s}(t,h)=b^{-d} f_{s}(t b^{y_{t}}, h b^{y_{h}})$. Deduce $\alpha,\beta,\gamma,\delta$ y verifica Widom y Rushbrooke.
+
+**(b) RG por capas de $\phi^{4}$ a un bucle**  
+Integra los modos en $\Lambda/b<k<\Lambda$ para LGW, reescala y muestra esquemáticamente $du/d\ell=\epsilon u - c_{2}u^{2}$ y $dr/d\ell=2r - c_{1}u$. Identifica $u^{\star}$. Para extraer $\nu=1/y_{t}$ a $\mathcal O(\epsilon)$, conserva los términos de un bucle dependientes de la masa omitidos en este flujo esquemático, desplázate a la superficie crítica y linealiza allí.
+
+**(c) Desplazamiento por tamaño finito**  
+Suponiendo $\chi(t,L)=L^{\gamma/\nu}\,\mathcal X(t L^{1/\nu})$, obtén la posición del máximo de susceptibilidad $t^{\ast}(L)\propto L^{-1/\nu}$.
+
+**(d) Receta para el colapso de datos**  
+Dados datos de Monte Carlo de $m(T;L)$ en Ising 2D a $H=0$, reescala $m\to L^{\beta/\nu} m$ y $T\to (T-T_{c}) L^{1/\nu}$ con $\beta=1/8$, $\nu=1$. Explica los parámetros ajustables y las comprobaciones de calidad.
+
+**(e) $u$ peligrosamente irrelevante por encima de $d_{c}$**  
+En $d>4$, demuestra que $m\propto (-t)^{1/2} u^{-1/2}$ a nivel de campo medio, ilustrando cómo un acoplamiento «irrelevante» fija amplitudes y rompe el hiperescalado ingenuo.
+
+---
+
+### 9.10.10 Errores habituales
+
+- **Usar hiperescalado donde falla.** Por encima de $d_{c}=4$ para sistemas de tipo Ising, $2-\alpha=d\nu$ no es válido sin matices  
+- **Confundir transición de regímenes y criticidad.** Un flujo próximo a un punto fijo, pero no en él, muestra exponentes **efectivos** que cambian con la escala  
+- **Ignorar fondos analíticos.** El calor específico suele tener una parte no singular que puede ocultar una $\alpha$ pequeña  
+- **Olvidar las condiciones de contorno en FSS.** Los exponentes son universales; las funciones de escalado y las correcciones subdominantes **no** lo son  
+- **Mezclar KT con escalado de ley de potencias.** En XY 2D, espera singularidades esenciales y un salto de rigidez, no $\beta,\gamma$, etc.
+
+---
+
+### 9.10.11 Colección mínima de problemas
+
+- A partir de la hipótesis de homogeneidad, deduce las cuatro relaciones estándar de escalado e identifica el conjunto de exponentes independientes  
+- Calcula $\nu$ y $\eta$ hasta $\mathcal O(\epsilon)$ para el modelo $O(N)$ y particulariza a $N=1,2,3$  
+- Demuestra que en $d=4$ el punto fijo gaussiano es marginal y deduce una corrección logarítmica a $C$ en la teoría $\phi^{4}$  
+- Usa FSS para estimar $\nu$ a partir de máximos sintéticos o simulados de susceptibilidad de Ising a tamaños $L=\{16,32,64,128\}$  
+- Para el flujo RG de KT, escribe las ecuaciones de orden más bajo para la rigidez $K$ y la fugacidad de vórtices $y$, y muestra la separatriz correspondiente a $T_{\mathrm{KT}}$
+
+---
+
+## 9.11 Respuesta lineal y fluctuación–disipación
+
+Perturba suavemente un sistema y observa cómo responde. La **teoría de respuesta lineal** convierte pequeñas perturbaciones en fórmulas universales que vinculan **disipación** y **fluctuaciones de equilibrio**. El correlador retardado fija la respuesta, la causalidad da Kramers–Kronig y el **teorema de fluctuación–disipación (FDT)** une los espectros de ruido con la parte imaginaria de las susceptibilidades. Los coeficientes de transporte se obtienen entonces de integrales temporales de autocorrelaciones de corrientes (Green–Kubo).
+
+---
+
+### 9.11.1 Planteamiento: fuente, observable y núcleo de respuesta
+
+Perturbamos un hamiltoniano de equilibrio mediante un campo débil dependiente del tiempo $h(t)$ acoplado a un operador $A$:
+
+$$
+H'(t) = -\,h(t)\,A
+$$
+
+Medimos otro observable $B$. A orden lineal,
+
+$$
+\delta\langle B(t)\rangle = \int_{-\infty}^{\infty} dt'\; \chi_{BA}(t-t')\,h(t')
+$$
+
+con susceptibilidad **causal** $\chi_{BA}(t<0)=0$. En espacio de frecuencias,
+
+$$
+\delta\langle B(\omega)\rangle = \chi_{BA}(\omega)\,h(\omega)
+$$
+
+La **potencia absorbida** de una excitación sinusoidal $h(t)=h_{0}\cos\omega t$ queda fijada por la parte disipativa $\chi_{AA}''(\omega)$.
+
+---
+
+### 9.11.2 Fórmula de Kubo: límites cuántico y clásico
+
+En la representación de Heisenberg con promedio de equilibrio $\langle\cdots\rangle$, la susceptibilidad **retardada** es
+
+$$
+\chi_{BA}(t) = \frac{i}{\hbar}\,\Theta(t)\,\langle\,[B(t),A(0)]\,\rangle
+$$
+
+Equivalentemente,
+
+$$
+\chi_{BA}(\omega) = \int_{0}^{\infty} dt\; e^{i\omega t}\,\frac{i}{\hbar}\,\langle\,[B(t),A(0)]\,\rangle
+$$
+
+**Límite clásico.** Sustituimos los conmutadores por $i\hbar$ multiplicado por corchetes de Poisson y obtenemos
+
+$$
+\chi_{BA}(t) = -\Theta(t)\,\beta\,\frac{d}{dt}\,C_{BA}(t),\qquad C_{BA}(t)\equiv \langle \delta B(t)\,\delta A(0)\rangle
+$$
+
+Esta es la forma del FDT en el dominio temporal para variables conjugadas.
+
+---
+
+### 9.11.3 Causalidad ⇒ Kramers–Kronig
+
+La causalidad hace que $\chi_{BA}(\omega)$ sea **analítica** en el semiplano superior. Las partes real e imaginaria son transformadas de Hilbert:
+
+$$
+\mathrm{Re}\,\chi(\omega) = \frac{1}{\pi}\,\mathcal P\!\int_{-\infty}^{\infty} d\omega'\,\frac{\chi''(\omega')}{\omega'-\omega}
+$$
+
+$$
+\chi''(\omega) = -\frac{1}{\pi}\,\mathcal P\!\int_{-\infty}^{\infty} d\omega'\,\frac{\mathrm{Re}\,\chi(\omega')}{\omega'-\omega}
+$$
+
+Disipación $\Leftrightarrow$ dispersión: no puedes tener una sin la otra.
+
+---
+
+### 9.11.4 Teorema de fluctuación–disipación en espacio de frecuencias
+
+Definimos la densidad espectral de equilibrio **simetrizada** de $A$,
+
+$$
+S_{AA}(\omega) \equiv \int_{-\infty}^{\infty} dt\; e^{i\omega t}\,\frac{1}{2}\,\langle \{ \delta A(t),\delta A(0) \} \rangle
+$$
+
+Entonces el **FDT cuántico** establece
+
+$$
+S_{AA}(\omega) = \hbar\,\coth\!\left(\frac{\beta\hbar\omega}{2}\right)\,\chi_{AA}''(\omega)
+$$
+
+El límite clásico $\beta\hbar\omega\ll 1$ da
+
+$$
+S_{AA}(\omega) = \frac{2 k_{B} T}{\omega}\,\chi_{AA}''(\omega)
+$$
+
+Interpretación: los mismos modos que disipan energía al ser excitados también fluctúan en equilibrio, y la razón queda fijada por $T$ (o por $\hbar\omega$ a alta frecuencia).
+
+---
+
+### 9.11.5 Relaciones de Green–Kubo: transporte a partir de autocorrelaciones
+
+Los coeficientes de transporte son **integrales temporales de autocorrelaciones de corrientes**.
+
+- **Autodifusión** en $d$ dimensiones con velocidad $\boldsymbol v$:
+
+$$
+D = \frac{1}{d}\int_{0}^{\infty} dt\;\langle \boldsymbol v(t)\cdot \boldsymbol v(0)\rangle
+$$
+
+- **Conductividad eléctrica** para corriente total $J_{x}$ en volumen $V$:
+
+$$
+\sigma = \frac{\beta}{V}\int_{0}^{\infty} dt\;\langle J_{x}(t)\,J_{x}(0)\rangle
+$$
+
+- **Viscosidad de cizalladura** a partir de la componente de tensión microscópica integrada en volumen $\sigma_{xy}$:
+
+$$
+\eta = \frac{\beta}{V}\int_{0}^{\infty} dt\;\langle \sigma_{xy}(t)\,\sigma_{xy}(0)\rangle
+$$
+
+- **Conductividad térmica** en un sistema isótropo de $d$ dimensiones, con corriente total de calor $\boldsymbol J_{Q}$ (integral en volumen de la densidad de flujo de calor):
+
+$$
+\kappa = \frac{k_{B}\beta^{2}}{dV}\int_{0}^{\infty} dt\;\langle \boldsymbol J_{Q}(t)\cdot \boldsymbol J_{Q}(0)\rangle
+$$
+
+Todos son promedios de equilibrio con la dinámica **sin perturbar**.
+
+---
+
+### 9.11.6 Langevin, Fokker–Planck y relación de Einstein
+
+Para una partícula browniana de posición $x$ en un fluido viscoso,
+
+$$
+m\dot v = -\gamma v + \xi(t)
+$$
+
+con ruido blanco gaussiano $\langle \xi(t)\xi(0)\rangle = 2\gamma k_{B}T\,\delta(t)$. Al resolver se obtiene la **relación de Einstein**
+
+$$
+D = \frac{k_{B} T}{\gamma}
+$$
+
+y la autocorrelación de velocidad $\langle v(t)v(0)\rangle = (k_{B}T/m)\,e^{-t/\tau}$ con $\tau=m/\gamma$. La ecuación de Fokker–Planck asociada hace evolucionar la densidad de probabilidad y la relaja hacia el estado estacionario de Maxwell–Boltzmann.
+
+---
+
+### 9.11.7 Ejemplos de ruido: Johnson–Nyquist y compañía
+
+Para una resistencia $R$ en el régimen clásico $\hbar\omega\ll k_{B}T$, la densidad espectral de ruido de **tensión** unilateral (frecuencias positivas) es el doble de la densidad bilateral definida en 9.11.4:
+
+$$
+S_{V}^{(1)}(\omega) = 4 k_{B} T\,R
+$$
+
+La corrección **cuántica** multiplica por $\tfrac{\hbar\omega}{2k_{B}T}\coth(\beta\hbar\omega/2)$. Para una resistencia sola, el ruido de corriente se obtiene como $S_{I}^{(1)}(\omega)=4 k_{B} T/R$. La misma lógica sustenta el ruido magnético en RMN, el ruido de fuerza en microscopía de fuerza atómica y los límites de ruido de disparo en conductores mesoscópicos.
+
+---
+
+### 9.11.8 Reciprocidad de Onsager y reversibilidad microscópica
+
+Cuando los flujos generalizados $J_{i}$ responden linealmente a fuerzas termodinámicas $X_{j}$,
+
+$$
+J_{i} = \sum_{j} L_{ij}\,X_{j}
+$$
+
+la simetría de inversión temporal implica las relaciones de **Onsager–Casimir**
+
+$$
+L_{ij}(B) = \epsilon_{i}\epsilon_{j}\,L_{ji}(-B)
+$$
+
+donde $\epsilon_{i}=\pm 1$ es la paridad bajo inversión temporal de $J_{i}$. A campo magnético nulo y para fuerzas y flujos con la misma paridad, $L_{ij}=L_{ji}$. La reciprocidad es un eco macroscópico de la simetría de correlación en equilibrio.
+
+---
+
+### 9.11.9 Causalidad, pasividad y reglas de suma
+
+- **Pasividad:** $\chi''(\omega)\ge 0$ para $\omega>0$ en sistemas estables y pasivos; codifica disipación positiva.  
+- **Reglas de suma:** los momentos de $\chi''(\omega)$ se vinculan con conmutadores a tiempos iguales o susceptibilidades estáticas, por ejemplo, una regla de suma $f$ para la respuesta de carga.  
+- **Colas de alta frecuencia:** a menudo fijadas por el álgebra de operadores a tiempos cortos; útiles para comprobar cálculos numéricos o modelos truncados.
+
+---
+
+### 9.11.10 Errores habituales
+
+- **Usar correladores simétricos en lugar de retardados en $\chi$.** La $\chi$ de Kubo necesita el **conmutador** y $\Theta(t)$.  
+- **Olvidar la elección de colectividad.** Los promedios de Green–Kubo se toman en la colectividad de **equilibrio** que corresponde a las magnitudes conservadas.  
+- **Abusar del FDT clásico a alta frecuencia.** Usa el factor cuántico $\coth(\beta\hbar\omega/2)$ cuando $\hbar\omega\gtrsim k_{B}T$.  
+- **Mezclar canales de respuesta.** El acoplamiento $H'=-hA$ significa que el FDT correcto relaciona $S_{AA}$ con $\chi_{AA}''$, no con otro operador.  
+- **Ignorar leyes de conservación.** Las corrientes vinculadas a densidades conservadas tienen colas hidrodinámicas a tiempos largos que pueden alterar la convergencia ingenua de las integrales.
+
+---
+
+### 9.11.11 Pequeños ejemplos resueltos
+
+**(a) Kramers–Kronig a partir de causalidad**  
+Supón $\chi(t)=0$ para $t<0$, transforma por Fourier y demuestra las relaciones de transformada de Hilbert para $\mathrm{Re}\,\chi$ y $\chi''$.
+
+**(b) FDT clásico en el dominio temporal**  
+Con $H'=-h(t)A$ y $B=A$, demuestra $\chi_{AA}(t)=-\Theta(t)\beta\,\frac{d}{dt}C_{AA}(t)$ y recupera $S_{AA}(\omega)=\tfrac{2k_{B}T}{\omega}\chi_{AA}''(\omega)$.
+
+**(c) Ruido de Johnson**  
+Toma un circuito con una resistencia únicamente. Usando $I(\omega)=V(\omega)/R$ y el FDT, deduce $S_{V}^{(1)}=4k_{B}TR$ en la banda clásica.
+
+**(d) Difusión a partir de correlaciones de velocidad**  
+Para una componente cartesiana de velocidad con correlador exponencial $\langle v(t)v(0)\rangle=v_{0}^{2}e^{-t/\tau}$, integra para obtener $D=v_{0}^{2}\tau$ y compara con $D=k_{B}T/\gamma$ con $v_{0}^{2}=k_{B}T/m$ y $\tau=m/\gamma$.
+
+**(e) Green–Kubo para conductividad**  
+Demuestra que un campo eléctrico uniforme se acopla como $H'=+E_{x}J_{x}t$ en gauge temporal con potencial vector igual a menos el campo eléctrico por el tiempo, y deduce $\sigma=(\beta/V)\int_{0}^{\infty}dt\,\langle J_{x}(t)J_{x}(0)\rangle$.
+
+**(f) Comprobación de la reciprocidad de Onsager**  
+Para transporte termoeléctrico con corrientes eléctrica y de calor, escribe la matriz $2\times 2$ de $L$ y justifica $L_{12}(B)=L_{21}(-B)$.
+
+---
+
+### 9.11.12 Colección mínima de problemas
+
+- Partiendo de la fórmula de Kubo, demuestra el FDT cuántico $S_{AA}(\omega)=\hbar\coth(\beta\hbar\omega/2)\chi_{AA}''(\omega)$  
+- Deduce la relación de Einstein $D=\mu k_{B}T$ relacionando la movilidad $\mu$ con el límite de baja frecuencia de la respuesta de velocidad  
+- Demuestra que $\chi''(\omega)\ge 0$ para un sistema pasivo evaluando la potencia media absorbida de una excitación sinusoidal  
+- A partir de la ecuación de continuidad, conecta las colas de tiempos largos de las correlaciones de corriente con la difusión hidrodinámica y analiza la convergencia de las integrales de Green–Kubo  
+- Calcula $\eta$ a partir de un modelo microscópico de esferas duras mediante la autocorrelación de tensiones y compara con el escalado de la teoría cinética
+
+---
+
+## 9.12 Teoría cinética y ecuación de Boltzmann
+
+La mecánica estadística nos enseñó cómo es el equilibrio. La teoría cinética explica cómo avanzan los sistemas hacia él y qué ocurre mientras aún no están allí. La protagonista es la **ecuación de Boltzmann**, una ley mesoscópica de evolución para la distribución de una partícula $f(\boldsymbol r,\boldsymbol v,t)$. A partir de ella deduciremos coeficientes de transporte, conectaremos con la hidrodinámica y veremos dónde y por qué falla la teoría.
+
+---
+
+### 9.12.1 De lo microscópico a lo mesoscópico: la función de distribución
+
+Definimos $f(\boldsymbol r,\boldsymbol v,t)$ de modo que $f\,d^{3}r\,d^{3}v$ sea el **número esperado** de partículas en la celda del espacio de fases. Normalizamos a $N=\int d^{3}r\,d^{3}v\,f$. Las densidades conservadas son momentos de $f$:
+
+$$
+n(\boldsymbol r,t) = \int d^{3}v\, f,\quad
+\boldsymbol u(\boldsymbol r,t) = \frac{1}{n}\int d^{3}v\, \boldsymbol v\, f,\quad
+\varepsilon(\boldsymbol r,t) = \int d^{3}v\, \tfrac{1}{2} m v^{2}\, f
+$$
+
+El tensor de presión y el flujo de calor son momentos superiores de la velocidad peculiar $\boldsymbol c\equiv\boldsymbol v-\boldsymbol u$.
+
+---
+
+### 9.12.2 La ecuación de Boltzmann y el caos molecular
+
+En una fuerza externa $\boldsymbol F$,
+
+$$
+\frac{\partial f}{\partial t} + \boldsymbol v\cdot\nabla_{\boldsymbol r} f + \frac{\boldsymbol F}{m}\cdot\nabla_{\boldsymbol v} f = C[f]
+$$
+
+La integral de colisión $C[f]$ codifica colisiones binarias. Para interacciones de corto alcance y **caos molecular** (Stosszahlansatz: velocidades previas a la colisión no correlacionadas),
+
+$$
+C[f](\boldsymbol r,\boldsymbol v) = \int d^{3}v_{2}\int d\Omega\; g\,\sigma(g,\Omega)\,\big[f'f_{2}' - f f_{2}\big]
+$$
+
+con $g=|\boldsymbol v-\boldsymbol v_{2}|$, sección eficaz diferencial $\sigma$ y $f'=f(\boldsymbol r,\boldsymbol v',t)$ los valores posteriores a la colisión determinados por la conservación de energía y momento.
+
+**Invariantes de colisión.** Para cualquier $\psi(\boldsymbol v)$ igual a $1$, $\boldsymbol v$ o $v^{2}$,
+
+$$
+\int d^{3}v\; \psi(\boldsymbol v)\,C[f] = 0
+$$
+
+lo que conduce a conservación local de masa, momento y energía.
+
+---
+
+### 9.12.3 Equilibrio local = Maxwell–Boltzmann
+
+$C[f]=0$ (para todas las secciones eficaces) si y solo si $f$ es una **maxwelliana local**,
+
+$$
+f_{\mathrm{LE}}(\boldsymbol r,\boldsymbol v,t) = n(\boldsymbol r,t) \left(\frac{m}{2\pi k_{B} T(\boldsymbol r,t)}\right)^{3/2} \exp\!\left[-\frac{m|\boldsymbol v-\boldsymbol u(\boldsymbol r,t)|^{2}}{2k_{B}T(\boldsymbol r,t)}\right]
+$$
+
+Esta $f_{\mathrm{LE}}$ maximiza la densidad local de entropía dados $n,\boldsymbol u,T$ y es el punto fijo de las colisiones.
+
+---
+
+### 9.12.4 Teorema H: la entropía crece
+
+Definimos la $H\equiv \int d^{3}r\,d^{3}v\, f\ln f$ de Boltzmann. Usando la integral de colisión,
+
+$$
+\frac{dH}{dt} = \int d^{3}r\,d^{3}v\, C[f]\,(1+\ln f) \le 0
+$$
+
+con igualdad solo para $f=f_{\mathrm{LE}}$. Identificar $S=-k_{B} H + \text{const}$ da un **aumento monótono de entropía** hacia el equilibrio local. Salvedades: depende del caos molecular y de colisiones binarias diluidas; las fuerzas de largo alcance y las correlaciones previas a las colisiones pueden invalidar la demostración.
+
+---
+
+### 9.12.5 Hidrodinámica como ecuaciones de momentos
+
+Tomamos momentos de Boltzmann y usamos los invariantes de colisión para obtener las ecuaciones de **Euler** (ideales) o **Navier–Stokes–Fourier** (disipativas). Sean $\rho=mn$, $p=nk_{B}T$.
+
+- **Continuidad**
+
+$$
+\partial_{t}\rho + \nabla\cdot(\rho\,\boldsymbol u) = 0
+$$
+
+- **Momento**
+
+$$
+\partial_{t}(\rho \boldsymbol u) + \nabla\cdot(\rho \boldsymbol u\boldsymbol u + p\,\mathbb I + \boldsymbol{\Pi}) = n\boldsymbol F
+$$
+
+- **Energía**
+
+$$
+\partial_{t}\varepsilon + \nabla\cdot\big[(\varepsilon+p)\boldsymbol u + \boldsymbol{\Pi}\cdot\boldsymbol u + \boldsymbol q\big] = n\boldsymbol F\cdot\boldsymbol u
+$$
+
+$\boldsymbol{\Pi}$ es la tensión viscosa y $\boldsymbol q$ el flujo de calor. Para **cerrar** estas ecuaciones, desarrollamos alrededor de $f_{\mathrm{LE}}$.
+
+---
+
+### 9.12.6 Chapman–Enskog y coeficientes de transporte
+
+Suponemos gradientes débiles (número de Knudsen pequeño $K\!n\equiv \ell/L$) y escribimos $f=f_{\mathrm{LE}} + f^{(1)} + \cdots$, donde $f^{(1)}$ es lineal en los gradientes. Resolver Boltzmann a primer orden da la **viscosidad newtoniana** y la **ley de Fourier del calor**:
+
+$$
+\boldsymbol{\Pi} = -\eta\left[\nabla\boldsymbol u + (\nabla\boldsymbol u)^{T} - \tfrac{2}{3}(\nabla\cdot\boldsymbol u)\mathbb I\right] - \zeta\,(\nabla\cdot\boldsymbol u)\,\mathbb I
+$$
+
+$$
+\boldsymbol q = -\kappa\,\nabla T
+$$
+
+Para esferas duras (masa $m$, diámetro $d$) a densidad numérica $n$ y temperatura $T$,
+
+$$
+\eta \sim \frac{5}{16 d^{2}} \sqrt{\frac{m k_{B} T}{\pi}},\qquad
+\kappa \sim \frac{75 k_{B}}{64 d^{2}} \sqrt{\frac{k_{B} T}{\pi m}}
+$$
+
+salvo factores de corrección modestos de polinomios de Sonine; la **viscosidad volumétrica** $\zeta$ se anula para gases ideales monoatómicos.
+
+---
+
+### 9.12.7 Modelos de tiempo de relajación y BGK
+
+Las integrales de colisión exactas son difíciles. El modelo de **Bhatnagar–Gross–Krook** (BGK) sustituye $C[f]$ por una única tasa de relajación hacia el equilibrio local:
+
+$$
+C_{\mathrm{BGK}}[f] = -\frac{f - f_{\mathrm{LE}}}{\tau}
+$$
+
+Elegir $\tau$ para reproducir $\eta$ recupera la hidrodinámica de primer orden y fija $\kappa$ como predicción. Para un gas monoatómico, el modelo BGK de un único tiempo de relajación tiene $\mathrm{Pr}=1$, por lo que no puede ajustar ambos coeficientes independientemente. Estos modelos de relajación se usan ampliamente en Boltzmann en redes y transporte en semiconductores. La **aproximación de tiempo de relajación** más sencilla en sólidos hace lo mismo para la dispersión electrónica.
+
+---
+
+### 9.12.8 Número de Knudsen, capas límite y fallos
+
+- **Régimen hidrodinámico** $K\!n\ll 1$: Navier–Stokes–Fourier es válido.  
+- **Transición** $K\!n \sim 0.1$: flujos con deslizamiento, capas de Knudsen cerca de paredes; se necesitan condiciones de contorno cinéticas.  
+- **Balístico** $K\!n\gtrsim 1$: flujo molecular libre; Boltzmann sin desarrollos en gradientes o incluso dinámica de Vlasov sin colisiones (para fuerzas de largo alcance).  
+- **Gases densos**: las correcciones de Enskog modifican $C[f]$ y el transporte.  
+- **Coulomb de largo alcance**: muchas desviaciones de ángulo pequeño → operador de colisión de **Landau** (Fokker–Planck).
+
+---
+
+### 9.12.9 Boltzmann cuántico y factores de Pauli y Bose
+
+Para gases cuánticos diluidos a $T$ suficientemente alta para que las longitudes de coherencia sean cortas, el término de colisión adquiere estados finales **estimulados o bloqueados**:
+
+$$
+C_{\mathrm{Q}}[f] \propto \int\! d\Gamma\; \big[f' f_{2}' (1 \pm f)(1 \pm f_{2}) - f f_{2} (1 \pm f')(1 \pm f_{2}')\big]
+$$
+
+signo superior para bosones, inferior para fermiones. Esta es la modificación de **Uehling–Uhlenbeck**. A $T$ muy baja en superfluidos, la teoría cinética debe incluir modos colectivos (fonones, cuasipartículas de Bogoliubov).
+
+---
+
+### 9.12.10 Transporte de Boltzmann en sólidos (electrones y fonones)
+
+En cristales, $f(\boldsymbol k,\boldsymbol r,t)$ evoluciona en el **espacio $\boldsymbol k$** con velocidad de banda $\boldsymbol v_{\boldsymbol k}=\nabla_{\boldsymbol k}\epsilon_{\boldsymbol k}/\hbar$ y fuerzas debidas a campos eléctricos y curvatura de Berry (tema avanzado). Con un tiempo de relajación $\tau(\boldsymbol k)$,
+
+$$
+\sigma_{xx} = e^{2}\!\int\!\frac{d^{3}k}{(2\pi)^{3}}\; \tau(\boldsymbol k)\, v_{x}^{2}\, \left(-\frac{\partial f_{0}}{\partial \epsilon}\right)
+$$
+
+reproduce **Drude** en bandas de electrones libres, mientras que Boltzmann para fonones explica la conductividad térmica de la red mediante dispersión de tres fonones y límites de frontera.
+
+---
+
+### 9.12.11 Respuesta lineal frente a teoría cinética: el mismo juego, distintas pantallas
+
+Green–Kubo (9.11) dice transporte = integrales temporales de autocorreladores. Chapman–Enskog dice transporte = soluciones de Boltzmann a primer orden en gradientes. Coinciden cuando ambos son aplicables. La teoría cinética gana cuando los **caminos libres medios** y las **secciones eficaces** son explícitos; Green–Kubo gana para líquidos interactuantes donde las cuasipartículas son poco claras, pero las simulaciones pueden medir correlaciones.
+
+---
+
+### 9.12.12 Pequeños ejemplos resueltos
+
+**(a) Camino libre medio y viscosidad**  
+Para esferas duras a densidad numérica $n$ con sección eficaz $\sigma=\pi d^{2}$, demuestra $\ell\simeq 1/(\sqrt{2}\,n\sigma)$ y estima $\eta\sim \tfrac{1}{3} n m \bar v\,\ell$; compara con el valor de Chapman–Enskog.
+
+**(b) De BGK a Navier–Stokes**  
+Introduce $C_{\mathrm{BGK}}$ en Boltzmann, resuelve para $f^{(1)}$ y deduce $\eta = p \tau$ y $\kappa = \tfrac{5}{2} k_{B}^{2} T n \tau/m$ para un gas monoatómico.
+
+**(c) Atenuación del sonido**  
+Linealiza Boltzmann alrededor de $f_{\mathrm{LE}}$ para una onda plana $e^{i(\mathbf k\cdot\mathbf r - \omega t)}$ y calcula el coeficiente de atenuación en términos de $\eta$ y $\kappa$.
+
+**(d) Gas de Lorentz**  
+Para partículas ligeras dispersadas elásticamente por centros duros fijos de densidad $n_{i}$, calcula $D$ y muestra cómo las secciones eficaces anisótropas modifican el transporte.
+
+**(e) Modificación cuántica**  
+Deduce el balance detallado con bloqueo de Pauli para una colisión fermiónica de dos estados y muestra cómo suprime el espacio de fases disponible para dispersión con sección eficaz $\sigma$ a $T$ baja. Explica por qué el efecto sobre la conductividad depende de si esas colisiones relajan el momento.
+
+---
+
+### 9.12.13 Errores habituales
+
+- **Olvidar las restricciones de conservación en $C[f]$.** Todo operador de colisión de un modelo debe conservar masa, momento y energía (BGK lo hace por construcción si $f_{\mathrm{LE}}$ reproduce los momentos locales).  
+- **Usar Navier–Stokes a $K\!n$ grande.** Espera deslizamiento, capas de Knudsen o comportamiento balístico; pasa a la descripción cinética.  
+- **Suponer $\zeta=0$ en general.** Solo es cierto para gases ideales monoatómicos; los modos internos crean viscosidad volumétrica.  
+- **Ignorar condiciones de contorno.** La reflexión especular frente a la difusa en las paredes cambia el transporte cercano a ellas en un factor de orden uno.  
+- **Tratar Coulomb como esferas duras.** El predominio de muchos cuerpos y ángulos pequeños exige Landau/Fokker–Planck, no Boltzmann con raros impactos fuertes.
+
+---
+
+### 9.12.14 Colección mínima de problemas
+
+- Partiendo de la ecuación de Boltzmann, deduce las ecuaciones de continuidad, momento y energía e identifica $\boldsymbol{\Pi}$ y $\boldsymbol q$  
+- Realiza el primer paso de polinomios de Sonine para esferas duras y calcula $\eta$ a orden dominante; compara con la estimación heurística $\tfrac{1}{3} n m \bar v \ell$  
+- Implementa BGK y demuestra $\eta=p\tau$; ajusta $\tau$ a una viscosidad medida para predecir la conductividad térmica y el número de Prandtl  
+- Para un gas diluido de electrones con dispersión elástica por impurezas, calcula $\sigma$ en la aproximación de tiempo de relajación y analiza cualitativamente la regla de Matthiessen  
+- Deduce el término de colisión de Uehling–Uhlenbeck para partículas indistinguibles y muestra cómo se reduce a Boltzmann clásico cuando $f\ll 1$
+
+---
+
+**En resumen:** la ecuación de Boltzmann es el puente entre colisiones microscópicas y flujos macroscópicos. Con caos molecular y dispersión de corto alcance, conduce $f$ hacia una maxwelliana local, cuyos gradientes lentos originan hidrodinámica con $\eta,\kappa,\zeta$ calculables a partir de secciones eficaces. Haz demasiado grande el camino libre medio, demasiado alta la densidad o demasiado largas las interacciones, y la ecuación cambia de aspecto, pero la idea central sobrevive: la dinámica de **distribuciones**, no solo de partículas, gobierna la física fuera del equilibrio
+
+---

@@ -1,0 +1,1002 @@
+---
+description: "Oscilaciones y ondas: del péndulo y la ley de Hooke a Fourier, interferencia, difracción, efecto Doppler y ondas cuánticas, con ecuaciones y contexto histórico."
+---
+
+## 2.1 Galileo y la lámpara de Pisa  
+
+En el año 1583, dentro de la catedral de Pisa, un joven estudiante de medicina llamado **Galileo Galilei** se recostó en su banco y alzó la vista. Sobre él, suspendida del elevado techo, colgaba una gran lámpara de bronce. Un sacristán acababa de apagar su llama y la lámpara empezó a oscilar suavemente en su cadena. Galileo, curioso e inquieto, midió sus oscilaciones comparándolas con los latidos de su propio pulso.  
+
+![Un péndulo está desplazado un ángulo theta. La tensión apunta hacia el punto de suspensión y la gravedad hacia abajo.](/images/diagrams/pendulum.svg)
+
+Para su asombro, el movimiento parecía isócrono: cada oscilación, larga o corta, duraba casi lo mismo. Lo que empezó como una observación casual durante la misa se convertiría en una piedra angular de la física moderna: reconocer que el movimiento oscilatorio obedece una ley matemática.  
+
+### De la metafísica a la mecánica  
+
+Antes de Galileo, el movimiento se discutía en términos aristotélicos: los objetos buscaban su «lugar natural» y el tiempo se medía cualitativamente, no cuantitativamente. El péndulo reveló algo distinto: una regularidad mecánica independiente de la experiencia subjetiva. El isocronismo sugería que la naturaleza contenía ritmos que podían captarse, predecirse y, finalmente, aprovecharse.  
+
+Galileo escribiría más adelante, en *Discursos y demostraciones matemáticas en torno a dos nuevas ciencias*, que las propiedades del péndulo podían usarse para medir el tiempo con precisión: una afirmación audaz en una época en que los relojes se desviaban varios minutos al día.  
+
+---
+
+### Modelo matemático: el péndulo  
+
+Para un péndulo de longitud $L$ y desplazamiento angular $\theta$ respecto de la vertical, la segunda ley de Newton da:
+
+$$
+mL^2\ddot{\theta} + mgL\sin\theta = 0.
+$$
+
+Esta es una ecuación de movimiento no lineal. Su solución exacta implica integrales elípticas, pero para ángulos pequeños aproximamos $\sin\theta \approx \theta$:
+
+$$
+\ddot{\theta} + \frac{g}{L}\theta = 0.
+$$
+
+Así se reduce al conocido oscilador armónico simple con frecuencia angular:
+
+$$
+\omega_0 = \sqrt{\frac{g}{L}}, \qquad T = 2\pi\sqrt{\frac{L}{g}}.
+$$
+
+Por tanto, el período depende únicamente de la longitud y de la gravedad, no de la amplitud. Este hecho matemático explicaba por qué la lámpara de Galileo parecía seguir el ritmo de su pulso.  
+
+---
+
+### Perspectiva energética  
+
+El péndulo también ilustra la relación entre energía cinética y potencial.  
+
+- Cinética:  
+$$
+T = \tfrac{1}{2} m v^2 = \tfrac{1}{2} m (L\dot{\theta})^2,
+$$  
+
+- Potencial:  
+$$
+U = mgL(1-\cos\theta) \approx \tfrac{1}{2} mgL\theta^2 \quad (\text{pequeño } \theta).
+$$  
+
+Para oscilaciones pequeñas, el potencial es cuadrático, como el de un resorte. La energía total permanece constante y se intercambia entre movimiento y altura: un prototipo de todos los sistemas oscilatorios.  
+
+---
+
+### Hacia la medición del tiempo  
+
+Aunque Galileo nunca construyó un reloj de péndulo, inspiró a otros. En el siglo XVII, Christiaan Huygens materializaría la idea y produciría relojes con errores de solo segundos al día, una revolución para la navegación y la astronomía.  
+
+El vínculo entre oscilación y tiempo quedó establecido: cada vaivén podía servir de latido, cada ciclo de unidad. La lámpara de Pisa se había convertido en un metrónomo cósmico que vinculaba la medición humana a los ritmos del universo.  
+
+---
+
+## 2.2 La ley de Hooke y la ciencia de la elasticidad  
+
+Si Galileo descubrió el ritmo de las oscilaciones, Robert Hooke le dio una ley universal.  
+Nacido en 1635 en la isla de Wight, Hooke tuvo una infancia de salud frágil, pero una intensa vida intelectual. Cuando llegó a ser encargado de experimentos de la recién fundada Royal Society, ya se lo conocía como un genio inquieto: arquitecto, microscopista, astrónomo y mecánico. Sin embargo, fue su estudio de los resortes y de la elasticidad lo que aseguró su nombre en la historia de las oscilaciones.  
+
+![La masa está desplazada hacia la derecha de su posición de equilibrio; la fuerza restauradora apunta hacia la izquierda.](/images/diagrams/spring.svg)
+
+En 1678, Hooke publicó una frase concisa e inmortal:  
+
+> *«Ut tensio, sic vis»* — *Como la extensión, así la fuerza.*  
+
+Esta afirmación, hoy llamada ley de Hooke, expresa la fuerza restauradora lineal de un cuerpo elástico.  
+
+---
+
+### Ley de Hooke: la fuerza restauradora lineal  
+
+Consideremos un resorte estirado o comprimido un desplazamiento $x$ respecto del equilibrio. La fuerza restauradora es  
+
+$$
+F = -kx,
+$$  
+
+donde $k$ es la constante elástica, una medida de la rigidez.  
+
+Al combinarla con la segunda ley de Newton obtenemos la ecuación de movimiento:  
+
+$$
+m\ddot{x} + kx = 0.
+$$  
+
+---
+
+### Solución: movimiento armónico simple  
+
+La solución general es:  
+
+$$
+x(t) = A\cos(\omega_0 t + \phi),
+$$  
+
+con frecuencia angular  
+
+$$
+\omega_0 = \sqrt{\frac{k}{m}}, \qquad T = \frac{2\pi}{\omega_0}.
+$$  
+
+Esto describe el movimiento armónico simple (MAS), la oscilación más fundamental de la física. Proporciona el modelo para analizar no solo resortes, sino también moléculas, circuitos e incluso sistemas cuánticos.  
+
+---
+
+### Energía del resorte  
+
+Las oscilaciones son una danza de energía:  
+
+- Cinética:  
+$$
+T = \tfrac{1}{2} m \dot{x}^2,
+$$  
+
+- Potencial (elástica):  
+$$
+U = \tfrac{1}{2} k x^2.
+$$  
+
+Energía total:  
+
+$$
+E = T + U = \tfrac{1}{2} kA^2,
+$$  
+
+una constante independiente del tiempo. La energía se intercambia entre movimiento y almacenamiento elástico: un principio que se repite en todo sistema oscilatorio.  
+
+---
+
+### Más allá del caso ideal: amortiguamiento y excitación  
+
+Los resortes reales no son perfectos. El rozamiento y la resistencia del aire introducen una fuerza de amortiguamiento $-b\dot{x}$:  
+
+$$
+m\ddot{x} + b\dot{x} + kx = 0.
+$$  
+
+- Si $b$ es pequeño, la oscilación decae lentamente: régimen subamortiguado.  
+- Si $b$ es grande, el movimiento es lento: régimen sobreamortiguado.  
+- En el valor crítico $b^2 = 4mk$, el sistema presenta amortiguamiento crítico y vuelve al equilibrio lo más rápidamente posible sin oscilar.  
+
+Añadamos una fuerza externa de excitación $F_0\cos(\omega t)$ y obtendremos el oscilador forzado:  
+
+$$
+m\ddot{x} + b\dot{x} + kx = F_0 \cos(\omega t).
+$$  
+
+A determinadas frecuencias, la respuesta se amplifica extraordinariamente: un fenómeno llamado resonancia. La resonancia explica por qué los puentes oscilan peligrosamente con el viento, por qué se ordena a los soldados romper el paso al cruzarlos y por qué un cantante de ópera puede romper una copa.  
+
+---
+
+### Hooke como persona: fricciones en la ciencia  
+
+La vida profesional de Hooke también fue oscilatoria: descubrimientos brillantes seguidos de amargas disputas. Se enfrentó a Isaac Newton por la naturaleza de la luz y la invención del telescopio reflector. Algunos afirmaban que Newton intentó borrar después el legado de Hooke; cuando Newton llegó a la presidencia de la Royal Society, el único retrato conocido de Hooke desapareció misteriosamente.  
+
+Sin embargo, su ley perduró. Hooke dio a la física el principio restaurador: al desplazarse, los sistemas tienden a regresar al equilibrio.  
+
+---
+
+### El legado de la elasticidad  
+
+La idea de Hooke trascendió los resortes helicoidales. Su ley sustenta:  
+
+- **La ciencia de materiales**: la definición del módulo de Young, la tensión mecánica y la deformación.  
+- **La ingeniería estructural**: desde puentes hasta rascacielos.  
+- **Las vibraciones moleculares**: los enlaces se comportan como pequeños resortes.  
+- **Los circuitos oscilatorios**: inductores y condensadores reproducen el principio de Hooke.  
+
+Desde el tictac de un reloj hasta el temblor de un átomo, la ley de Hooke está en todas partes.  
+
+Es el latido de la oscilación: la tendencia universal a regresar al equilibrio.  
+
+---
+## 2.3 Huygens: el relojero y los osciladores acoplados  
+
+Si Galileo vislumbró la regularidad del péndulo, fue el polímata neerlandés Christiaan Huygens (1629–1695) quien convirtió esa idea en una tecnología que transformó la vida humana: el reloj de péndulo.  
+
+Huygens desarrolló su reloj de péndulo en 1656; la patente llegó el 16 de junio de 1657. Mientras los anteriores relojes mecánicos se desviaban varios minutos al día, el dispositivo de Huygens redujo el error a unos segundos. Para los marinos que navegaban por los océanos y los astrónomos que cartografiaban el cielo, esta precisión fue revolucionaria.  
+
+
+---
+
+### El péndulo como instrumento para medir el tiempo  
+
+El período de un péndulo simple de longitud $L$ es  
+
+$$
+T = 2\pi \sqrt{\tfrac{L}{g}}.
+$$  
+
+Pero Huygens identificó un problema sutil: el isocronismo es solo aproximado. A amplitudes mayores, el período aumenta ligeramente porque la aproximación $\sin \theta \approx \theta$ deja de ser válida.  
+
+La ingeniosa solución de Huygens fue el péndulo cicloidal. Al obligarlo a oscilar a lo largo del arco de una cicloide —la curva que traza un punto de una rueda al rodar—, garantizó que la fuerza restauradora siguiera siendo exactamente proporcional al desplazamiento. La cicloide es la famosa **curva tautócrona**: con independencia del punto de partida de una cuenta, tarda lo mismo en llegar al fondo.  
+
+<CycloidalPendulumFigure locale="es" />
+
+Con una cuerda sin masa e inextensible, una masa puntual, contacto sin rozamiento y gravedad uniforme, la fuerza tangencial es $F_s=-mg\,dy/ds=-mg\,s/(4a)$. Por tanto, el período resultante $T=2\pi\sqrt{4a/g}$ es independiente de la amplitud. Aquí $y$ es la altura sobre el punto más bajo; la fórmula es válida mientras la cuerda permanezca tensa en el arco accesible.
+
+Para un péndulo cicloidal ideal sin rozamiento, sea $s$ la longitud de arco con signo desde el punto más bajo. Su ecuación exacta es:
+
+$$
+\ddot{s} + \omega_0^2 s = 0,
+$$  
+
+Para un círculo generador de radio $a$, $y=s^2/(8a)$ y $\omega_0^2=g/(4a)$. Así, el período es independiente de la amplitud dentro del arco cicloidal accesible; esta no es una ecuación para el ángulo de un péndulo ordinario.
+
+Así, Huygens dio al mundo un oscilador verdaderamente isócrono que sustentaba la medición del tiempo con elegancia matemática.  
+
+---
+
+### Longitud geográfica e imperio  
+
+La medición precisa del tiempo no era una mera curiosidad. Determinar la **longitud geográfica en el mar** requería comparar la hora solar local con una hora de referencia del puerto de origen. Un error de una hora en el reloj del barco suponía un error de 15° en la posición, que podía equivaler a cientos de kilómetros de desviación. Huygens y sus colaboradores probaron relojes de péndulo en el mar, pero el movimiento del barco dificultaba una medición fiable; estos ensayos no resolvieron el problema de la longitud.
+
+---
+
+### El misterio de la sincronía  
+
+En febrero de 1665, mientras una enfermedad lo mantenía recluido en sus habitaciones, Huygens observó algo sorprendente. Dos relojes de péndulo situados sobre un soporte común terminaban sincronizándose en oposición de fase, oscilando en direcciones contrarias. Tras una perturbación, regresaban a esa relación de fase.
+
+Llamó a este fenómeno «extraña simpatía». Hoy lo reconocemos como un ejemplo de osciladores acoplados: las pequeñas vibraciones transmitidas por el soporte común permitían intercambiar energía y llevaban a los péndulos a un ritmo compartido.  
+
+La matemática de los osciladores acoplados revela que, cuando dos osciladores interactúan, tienden a establecer relaciones de fase estables. Este principio subyace a innumerables fenómenos:  
+
+- La sincronización de luciérnagas que emiten destellos al unísono.  
+- El latido rítmico del corazón humano, donde las células marcapasos se sincronizan.  
+- Los láseres acoplados y las uniones Josephson de la física moderna.  
+- Las oscilaciones colectivas del flujo de tráfico y de los ciclos económicos.  
+
+La observación de Huygens desde su lecho de enfermo abrió una nueva frontera: el estudio del **orden emergente** en sistemas que interactúan.  
+
+---
+
+### Huygens como científico  
+
+Huygens fue más que un relojero. Descubrió los anillos de Saturno con sus telescopios, propuso la teoría ondulatoria de la luz (anticipándose a Young y Fresnel) y mantuvo correspondencia con Descartes, Leibniz y Newton. Su trabajo encarnaba el espíritu del siglo XVII: combinar experimento, invención y rigor matemático.  
+
+Pero su contribución a las oscilaciones fue singular: convirtió el propio tiempo en algo mecánico. Desde la lámpara de la catedral de Galileo hasta el preciso reloj de péndulo de Huygens, el latido de la física se convirtió en el latido de la civilización.  
+
+---
+
+### Legado  
+
+Todo reloj de un teléfono inteligente y todo satélite GPS sigue basándose en el mismo principio: un oscilador repetitivo e isócrono que define el tiempo. Ya sea el péndulo oscilante de Huygens o los átomos de cesio que vibran en la actualidad, la continuidad es clara.  
+
+Las oscilaciones no solo describen el movimiento; definen nuestra medida de la realidad.  
+
+---
+## 2.4 D’Alembert y el nacimiento de la ecuación de ondas  
+
+A mediados del siglo XVIII, tanto la música como las matemáticas habían transformado Europa. Violines, clavecines y órganos llenaban las catedrales de sonidos resonantes; pero ¿cómo producía sonido exactamente una cuerda tensa? Los antiguos griegos sabían que una cuerda de lira producía notas relacionadas con su longitud, pero la ley de movimiento que regía esas vibraciones seguía siendo un misterio.  
+
+Aquí entra **Jean le Rond d’Alembert** (1717–1783). Abandonado de niño en las escaleras de la iglesia de Saint-Jean-le-Rond de París, llegó a ser uno de los mayores matemáticos de la Ilustración, coeditor de la *Encyclopédie* y fundador de la física matemática. En 1746 dedujo una de las ecuaciones más importantes de toda la ciencia: la ecuación de ondas.  
+
+---
+
+### La ecuación de ondas de una cuerda vibrante  
+
+Consideremos una cuerda tensa de longitud $L$, extendida a lo largo del eje $x$ con una tensión $T$ y una masa por unidad de longitud $\mu$. Sea $y(x,t)$ su desplazamiento transversal. Un pequeño elemento de longitud $\Delta x$ obedece la segunda ley de Newton:  
+
+- Fuerzas verticales: la diferencia entre las componentes de la tensión de la cuerda produce una fuerza vertical neta.  
+- Masa: $\mu \Delta x$ aporta la inercia.  
+
+En el límite continuo:  
+
+$$
+\mu \frac{\partial^2 y}{\partial t^2} = T \frac{\partial^2 y}{\partial x^2}.
+$$  
+
+o bien  
+
+$$
+\frac{\partial^2 y}{\partial t^2} = c^2 \frac{\partial^2 y}{\partial x^2}, \qquad c = \sqrt{\tfrac{T}{\mu}}.
+$$  
+
+Esta es la ecuación de ondas unidimensional. Afirma que las perturbaciones de la cuerda se propagan a una rapidez $c$, determinada únicamente por la tensión y la densidad.  
+
+---
+
+### Solución general: ondas en ambas direcciones  
+
+D’Alembert reconoció que la solución general podía escribirse como la suma de dos ondas viajeras arbitrarias:  
+
+$$
+y(x,t) = f(x - ct) + g(x + ct).
+$$  
+
+Aquí, $f$ y $g$ son funciones arbitrarias determinadas por la forma y la velocidad iniciales. El primer término describe una onda que se mueve hacia la derecha; el segundo, una que se mueve hacia la izquierda.  
+
+La idea era profunda:  
+- La ecuación de ondas es lineal, de modo que sus soluciones se superponen.  
+- Las perturbaciones viajan sin deformarse si $f$ y $g$ son suaves.  
+- La onda no «fluye hacia fuera» como un fluido, sino que se propaga como un patrón que se sostiene por sí mismo.  
+
+Por primera vez, el movimiento se describía como propagación de una forma, no de materia.  
+
+---
+
+### Ondas estacionarias y condiciones de contorno  
+
+Una cuerda real está fija en ambos extremos:  
+
+$$
+y(0,t) = y(L,t) = 0.
+$$  
+
+Esta restricción selecciona soluciones discretas, conocidas como modos normales:  
+
+$$
+y_n(x,t) = A_n \sin\!\left(\frac{n\pi x}{L}\right)\cos(\omega_n t + \phi_n), \qquad \omega_n = n\pi \frac{c}{L}.
+$$  
+
+Cada modo corresponde a un armónico musical. El modo $n=1$ es el tono fundamental; los valores superiores de $n$ dan los armónicos superiores. Así, la matemática de d’Alembert explica la física de la armonía.  
+
+---
+
+### La filosofía de la Ilustración en forma de ecuación  
+
+Para d’Alembert, esto era más que matemática. Era una afirmación ilustrada: la naturaleza podía condensarse en una ley elegante. La ecuación de ondas simbolizaba el orden racional en lugar del misterio.  
+
+Al mismo tiempo surgieron debates. **Daniel Bernoulli** defendía la superposición de modos normales; **Leonhard Euler** buscaba desarrollos rigurosos. Sus discusiones moldearon la propia noción matemática de «función».  
+
+---
+
+### Más allá de las cuerdas: universalidad de la ecuación de ondas  
+
+La misma forma apareció después por toda la física:  
+
+- **Ondas sonoras** en el aire: la presión obedece $\nabla^2 p - \tfrac{1}{c^2}\partial^2 p/\partial t^2 = 0$.  
+- **Ondas electromagnéticas** en la teoría de Maxwell: $\nabla^2 \mathbf{E} - \tfrac{1}{c^2}\partial^2 \mathbf{E}/\partial t^2 = 0$.  
+- **Mecánica cuántica**: la ecuación de Schrödinger se asemeja a una pariente difusiva de la ecuación de ondas.  
+- **Ondas gravitacionales**: al linealizar las ecuaciones de campo de Einstein se obtienen ondulaciones del propio espacio-tiempo.  
+
+Así, de una cuerda de violín en París surgió el prototipo de todas las ondas de la naturaleza.  
+
+---
+
+### D’Alembert como persona  
+
+Además de matemático, d’Alembert fue filósofo, enciclopedista y figura política. Criado en la pobreza, mantuvo su escepticismo ante la autoridad y su crítica a la superstición. Su trabajo científico reflejaba su convicción de que el universo es racional, comprensible y se rige por principios que pueden descubrirse.  
+
+La ecuación de ondas es su legado: un ritmo perdurable escrito en símbolos en vez de sonidos, que describe desde la pulsación de una cuerda hasta el murmullo del cosmos.  
+
+---
+## 2.5 Bernoulli, Euler y el principio de superposición  
+
+El descubrimiento de la ecuación de ondas por d’Alembert provocó intensos debates en toda Europa. Matemáticos y físicos se preguntaban: ¿cómo describir el movimiento general de una cuerda? ¿Era una única onda simple que iba y venía, o algo más complicado?  
+
+![Los tres primeros modos normales de una cuerda fija en ambos extremos. La longitud de onda es 2L dividido entre n.](/images/diagrams/standing-waves.svg)
+
+En este debate intervinieron dos gigantes: **Daniel Bernoulli** (1700–1782), miembro de la prolífica familia suiza de matemáticos, y **Leonhard Euler** (1707–1783), quizá el matemático más prolífico de la historia. Sus intercambios moldearon no solo la teoría de ondas, sino los propios fundamentos del análisis moderno.  
+
+---
+
+### La visión de Bernoulli: superposición de modos  
+
+Daniel Bernoulli, inspirado por la música, sostenía que cualquier perturbación inicial de una cuerda podía describirse como una superposición de modos normales.  
+
+Para una cuerda de longitud $L$ fija en ambos extremos, los modos permitidos son:  
+
+$$
+y_n(x,t) = A_n \sin\!\left(\frac{n\pi x}{L}\right)\cos(\omega_n t + \phi_n),  
+\qquad \omega_n = n\pi \frac{c}{L}, \quad n=1,2,3,\dots
+$$  
+
+Bernoulli afirmaba que la solución general era simplemente:  
+
+$$
+y(x,t) = \sum_{n=1}^\infty A_n \sin\!\left(\frac{n\pi x}{L}\right)\cos(\omega_n t + \phi_n).
+$$  
+
+Cada modo corresponde a un armónico, del mismo modo que los músicos saben que una cuerda vibrante produce no solo su tono fundamental, sino también armónicos superiores.  
+
+Esta idea era revolucionaria: el movimiento complejo puede descomponerse en oscilaciones simples.  
+
+---
+
+### La objeción de Euler  
+
+Leonhard Euler, sin embargo, era prudente. Cuestionaba que las formas iniciales arbitrarias de una cuerda pudieran representarse mediante series trigonométricas. En aquella época, el propio concepto de «función» aún no estaba claro. ¿Podía desarrollarse una forma irregular, quizá discontinua, como una suma de ondas sinusoidales suaves?  
+
+Euler exigía rigor. Escribió: *«No se puede afirmar sin más que cualquier función arbitraria puede representarse de este modo»*. Su escepticismo estaba justificado: la matemática de las series infinitas todavía se estaba construyendo.  
+
+El debate entre Bernoulli y Euler acabaría resolviéndolo **Joseph Fourier** décadas después, al demostrar que, en condiciones adecuadas, las funciones periódicas arbitrarias pueden representarse mediante series trigonométricas.  
+
+---
+
+### Modos normales: el lenguaje de la física  
+
+A pesar de los debates, la visión de Bernoulli perduró. Hoy, los modos normales son una piedra angular de la física:  
+
+- En mecánica, las moléculas vibran en modos característicos.  
+- En electromagnetismo, las cavidades y guías de onda resuenan en patrones discretos.  
+- En mecánica cuántica, las partículas en un pozo de potencial tienen estados propios cuantizados.  
+- En ingeniería estructural, los puentes y rascacielos vibran en modos normales que deben calcularse para evitar su colapso.  
+
+El principio es universal: lo complejo puede reducirse a una suma de elementos simples.  
+
+---
+
+### Forma matemática: principio de superposición  
+
+La razón subyacente es la linealidad de la ecuación de ondas. Si $y_1(x,t)$ y $y_2(x,t)$ son soluciones, su suma también lo es:  
+
+$$
+y(x,t) = y_1(x,t) + y_2(x,t).
+$$  
+
+Este es el **principio de superposición**, una de las características más profundas de la física de ondas. Significa que la interferencia, la resonancia y la armonía son consecuencias naturales de la linealidad.  
+
+---
+
+### De la música a la matemática  
+
+Para los músicos del siglo XVIII, esto significaba que una sola pulsación excitaba toda una familia de tonos: la riqueza tímbrica de un violín o un violonchelo. Para los matemáticos, significaba que una forma caótica podía descomponerse en senos y cosenos fundamentales. Para los físicos, que las ondas podían analizarse por partes.  
+
+---
+
+### Repercusión histórica  
+
+Las disputas entre Euler y Bernoulli no eran meramente técnicas. Ayudaron a aclarar qué es una **función** y abrieron el camino al análisis moderno. También revelaron que las matemáticas podían describir no solo curvas idealizadas, sino formas y movimientos arbitrarios.  
+
+En retrospectiva, su desacuerdo fue fecundo: Euler exigía rigor, Bernoulli amplitud, y juntos prepararon el escenario para la gran síntesis de Fourier.  
+
+---
+
+### Legado  
+
+El principio de superposición impregna hoy toda la ciencia. En acústica, óptica, campos cuánticos o circuitos eléctricos, la idea es la misma:  
+
+**Todo movimiento es una armonía de modos.**  
+
+Lo que comenzó con una cuerda vibrante se convirtió en una filosofía universal de la física.  
+
+---
+## 2.6 Fourier y la matemática de las ondas  
+
+Al comenzar el siglo XIX, el debate sobre las cuerdas vibrantes había madurado, pero seguía sin resolverse. Euler exigía rigor, Bernoulli invocaba los armónicos y los matemáticos discutían si las formas arbitrarias podían expresarse como sumas de senos. En este debate intervino **Joseph Fourier** (1768–1830), un matemático francés cuyo trabajo sobre el calor cambiaría para siempre nuestra manera de pensar las ondas.  
+
+---
+
+### Calor y armonía  
+
+Napoleón nombró a Fourier prefecto de Isère, y este estudió el problema de la conducción del calor en sólidos. ¿Cómo evoluciona la temperatura dentro de un cuerpo calentado? Afirmó audazmente que la distribución inicial de temperaturas, por irregular que fuera, podía descomponerse en una serie infinita de senos y cosenos.  
+
+En su monumental *Théorie analytique de la chaleur* (1822), declaró:  
+
+> *«Cualquier función, continua o discontinua, puede representarse mediante una serie trigonométrica».*  
+
+Esto sorprendió a sus contemporáneos. Las funciones con esquinas pronunciadas o discontinuidades parecían inadecuadas para representarse mediante ondas suaves. Pero Fourier mostró que incluso esos perfiles irregulares podían aproximarse tan bien como se quisiera.  
+
+---
+
+### Series de Fourier  
+
+Bajo condiciones de convergencia adecuadas, una función periódica $f(x)$ de período $2\pi$ puede escribirse como:  
+
+$$
+f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[a_n \cos(nx) + b_n \sin(nx)\right].
+$$  
+
+Los coeficientes vienen dados por relaciones de ortogonalidad:  
+
+$$
+a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos(nx)\, dx,  
+\qquad  
+b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin(nx)\, dx.
+$$  
+
+Este desarrollo significa que toda forma de onda es una suma de armónicos. Una onda cuadrada abrupta, un pulso triangular, una señal complicada: todos pueden expresarse superponiendo oscilaciones.  
+
+---
+
+### Convergencia y rigor  
+
+La afirmación de Fourier provocó controversia. Matemáticos como Lagrange, Laplace y Dirichlet dudaban de su generalidad. La cuestión de la convergencia persiguió al análisis durante décadas. Finalmente, el rigor del siglo XIX (Cauchy, Weierstrass, Dirichlet) estableció las condiciones bajo las que convergen las series de Fourier.  
+
+Pero la intuición física de Fourier era correcta: a efectos prácticos, cualquier función razonable podía representarse mediante ondas. Esta síntesis de matemática, física e ingeniería se convirtió en la columna vertebral de la ciencia moderna.  
+
+---
+
+### Transformada de Fourier: más allá de lo periódico  
+
+Para funciones no periódicas, Fourier extendió la idea a las integrales:  
+
+$$
+f(x) = \frac{1}{2\pi} \int_{-\infty}^\infty \hat{f}(k)\, e^{ikx}\, dk,
+$$  
+
+donde  
+
+$$
+\hat{f}(k) = \int_{-\infty}^\infty f(x)\, e^{-ikx}\, dx.
+$$  
+
+Esta es la **transformada de Fourier**, que convierte señales temporales en espectros de frecuencia. Reveló que toda señal contiene frecuencias ocultas y que a menudo resulta más natural analizarla en el espacio de frecuencias.  
+
+---
+
+### Aplicaciones en la física  
+
+Las ideas de Fourier impregnan todos los campos de la ciencia:  
+
+- **Conducción del calor**: las soluciones de la ecuación de difusión se desarrollan en modos de Fourier.  
+- **Acústica**: una nota musical es una superposición de armónicos; el timbre surge del espectro.  
+- **Óptica**: los patrones de difracción e interferencia son transformadas de Fourier de aperturas.  
+- **Mecánica cuántica**: la función de onda en el espacio de momentos es la transformada de Fourier de la función de onda en el espacio de posiciones.  
+- **Ingeniería eléctrica**: las señales, los filtros y las comunicaciones se basan en el análisis de Fourier.  
+- **Computación moderna**: algoritmos como la **transformada rápida de Fourier (FFT)** permiten descomponer rápidamente datos digitales y sustentan la compresión de audio y vídeo y la obtención de imágenes médicas (resonancia magnética, tomografía computarizada).  
+
+---
+
+### Fourier y el lenguaje de la frecuencia  
+
+El análisis de Fourier cambió nuestra visión del mundo: en vez de preguntar «¿qué forma tiene?», preguntamos «¿cuáles son sus frecuencias?». Cada sonido, cada imagen, cada oscilación se entiende como un **espectro**: una distribución de componentes armónicas.  
+
+---
+
+### Anécdotas históricas  
+
+El propio Fourier tuvo una vida agitada. Participó en la expedición de Napoleón a Egipto, sobrevivió a convulsiones políticas y regresó a Francia para sumergirse en las matemáticas. Su insistencia en la universalidad de las series trigonométricas fue ridiculizada al principio y reivindicada con el tiempo. Hoy su nombre está inscrito no solo en los libros de texto, sino en todo dispositivo digital que reproduce música o procesa una imagen.  
+
+---
+
+### Legado  
+
+Fourier completó lo que Bernoulli había imaginado y Euler había puesto en duda: una teoría rigurosa y universal para descomponer el movimiento en oscilaciones. Su matemática reveló que las ondas no son solo soluciones, sino un lenguaje en el que habla el universo.  
+
+Cada tono musical, cada destello de luz, cada pulso de datos es un acorde en la gran sinfonía de Fourier.  
+
+---
+## 2.7 La doble rendija de Young y la naturaleza de la luz  
+
+Al comienzo del siglo XIX, la naturaleza de la luz era objeto de un intenso debate. **Isaac Newton** había sostenido que la luz estaba formada por corpúsculos: pequeñas partículas que viajaban por el espacio. Su autoridad era inmensa; la teoría corpuscular dominó Inglaterra durante un siglo. Sin embargo, en Europa persistían teorías ondulatorias, propuestas por Huygens y apoyadas después por Euler. La cuestión seguía abierta: *¿era la luz un flujo de partículas o una onda?*  
+
+![Dos rendijas producen franjas luminosas cuando su diferencia de caminos es un múltiplo entero de la longitud de onda. Las franjas son esquemáticas.](/images/diagrams/double-slit.svg)
+
+En este debate intervino el polímata inglés **Thomas Young** (1773–1829). Médico, lingüista, egiptólogo y físico, Young encarnaba el ideal ilustrado de curiosidad universal. En 1801 ideó uno de los experimentos más simples y profundos de la física: el experimento de la doble rendija.  
+
+---
+
+### El experimento  
+
+Young hizo pasar la luz de una sola fuente por dos rendijas estrechas, de modo que incidiera sobre una pantalla lejana. Si la luz estuviera formada únicamente por partículas, cabría esperar dos bandas luminosas, cada una correspondiente a la imagen de una rendija. En cambio, Young observó una serie de franjas claras y oscuras alternas.  
+
+Las regiones luminosas correspondían a interferencia constructiva, en la que las crestas de las ondas se reforzaban. Las bandas oscuras correspondían a interferencia destructiva, en la que las crestas coincidían con los valles y se cancelaban.  
+
+La luz, al parecer, podía *sumarse* o *anularse* a sí misma: el sello característico de una onda.  
+
+---
+
+### Condiciones de interferencia  
+
+Para dos rendijas separadas una distancia $d$ e iluminadas con luz monocromática de longitud de onda $\lambda$, la diferencia de caminos a un ángulo $\theta$ es:  
+
+$$
+\Delta = d \sin \theta.
+$$  
+
+- Hay **interferencia constructiva** cuando  
+$$
+\Delta = m \lambda, \qquad m \in \mathbb{Z}.
+$$  
+
+- Hay **interferencia destructiva** cuando  
+$$
+\Delta = \left(m + \tfrac{1}{2}\right)\lambda.
+$$  
+
+Así, el patrón es un conjunto de franjas cuya separación revela la longitud de onda de la luz.  
+
+---
+
+### La audaz afirmación de Young  
+
+Young anunció sus resultados en 1803, en una época en que la autoridad de Newton era casi intocable. Los críticos rechazaron su teoría ondulatoria por «ingeniosa, pero errónea». Sin embargo, su demostración era innegable: solo las ondas podían explicar las franjas observadas.  
+
+En 1807 escribió: *«La evidencia de la interferencia proporciona una prueba directa de la teoría ondulatoria de la luz y es incompatible con la hipótesis corpuscular»*.  
+
+Su idea no solo confirmó la anterior teoría ondulatoria de Huygens, sino que introdujo en la física el término longitud de onda.  
+
+---
+
+### Más allá de la luz: el principio de superposición  
+
+El experimento de Young reveló una regla universal: cuando las oscilaciones se solapan, sus efectos se suman. Es el principio de superposición, ya presente en las cuerdas vibrantes y las ondas sonoras, pero ahora revelado en la propia luz.  
+
+---
+
+### Un siglo después: la sorpresa cuántica  
+
+Irónicamente, el experimento de la doble rendija reaparecería en el siglo XX con nuevas implicaciones sorprendentes. Cuando se envían fotones, electrones o incluso moléculas individuales a través de las rendijas, uno a uno, siguen formando un patrón de interferencia, siempre que ninguna medición revele qué camino han seguido.  
+
+Así, el experimento de Young se convirtió en el escenario de la mecánica cuántica, al demostrar que las partículas presentan un comportamiento ondulatorio y que la propia observación influye en la realidad. Richard Feynman comentaría más adelante:  
+
+> *«En realidad, contiene el único misterio [de la mecánica cuántica]».*  
+
+---
+
+### Aplicaciones modernas  
+
+El principio de las dos rendijas de Young resuena por todas partes:  
+
+- **Interferómetros ópticos**: Michelson utilizó la interferencia para detectar el movimiento de la Tierra, abriendo el camino a la relatividad.  
+- **Interferencia en películas delgadas**: las pompas de jabón y las películas de aceite brillan con colores debido a las diferencias de caminos.  
+- **Difracción de rayos X**: la interferencia de ondas atómicas revela las estructuras cristalinas.  
+- **Computación cuántica**: la interferencia de amplitudes cuánticas permite algoritmos como los de Shor y Grover.  
+
+---
+
+### Legado  
+
+Con dos rendijas, Young dividió la física en dos: el viejo mundo de las partículas y el nuevo mundo de las ondas. Sus franjas no eran solo patrones de luz, sino también de pensamiento: mostraban que la naturaleza está tejida de interferencia y que la verdad surge del experimento, no de la autoridad.  
+
+---
+## 2.8 Fresnel y el triunfo de la óptica ondulatoria  
+
+Aunque Young había mostrado que la luz produce interferencias, muchos escépticos seguían aferrándose a la teoría corpuscular de Newton. En la Francia de principios del siglo XIX, el debate era intenso: ¿podía la luz ser realmente una onda? La figura decisiva que llevó la discusión a su conclusión fue **Augustin-Jean Fresnel** (1788–1827), un ingeniero cuya perseverancia silenciosa transformó la óptica para siempre.  
+
+---
+
+### El ingeniero de la luz  
+
+Fresnel se formó como ingeniero civil y trabajó en caminos y puentes del imperio de Napoleón. La física era su pasión, a la que se dedicaba por las noches y en sus momentos libres. Animado por sus colegas, comenzó a estudiar la difracción: la sutil desviación y expansión de las ondas luminosas al pasar por obstáculos o rendijas.  
+
+A diferencia de la reflexión o la refracción, la difracción no podía explicarse mediante simples rayos. Exigía una teoría ondulatoria. Fresnel combinó el **principio de Huygens** (cada punto de un frente de onda actúa como fuente de ondas secundarias) con una matemática rigurosa, y produjo una teoría que explicaba los detalles más finos de los patrones de difracción observados.  
+
+---
+
+### Integrales de Fresnel y patrones de difracción  
+
+Para una rendija de anchura $a$ iluminada por luz de longitud de onda $\lambda$, la aproximación de Fraunhofer (campo lejano) da la distribución de intensidad al ángulo $\theta$:
+
+$$
+I(\theta) \propto \left( \frac{\sin \beta}{\beta} \right)^2, \qquad \beta = \frac{\pi a \sin \theta}{\lambda}.
+$$  
+
+Esto predice un máximo central luminoso flanqueado por franjas cada vez menos intensas, exactamente como muestran los experimentos.  
+
+De forma más general, Fresnel introdujo las **integrales de Fresnel**, funciones especiales que describen la difracción en condiciones de campo cercano. Estas integrales siguen siendo herramientas esenciales de la óptica actual.  
+
+---
+
+### La «mancha de Fresnel»  
+
+En 1818, la Academia de Ciencias francesa convocó un concurso sobre la teoría de la difracción. Fresnel presentó su teoría ondulatoria. Entre los jueces estaba el formidable **Siméon Denis Poisson**, firme defensor de la visión corpuscular.  
+
+Poisson intentó ridiculizar la teoría de Fresnel deduciendo una predicción absurda: un pequeño obstáculo circular debería producir, justo en su centro, un punto luminoso, ¡en medio de la sombra! Parecía disparatado.  
+
+Pero cuando Dominique Arago realizó el experimento, el punto luminoso apareció. Hoy se conoce como **mancha de Poisson** o **mancha de Fresnel**, y constituye una de las confirmaciones experimentales más espectaculares de la teoría ondulatoria de la historia.  
+
+---
+
+### Interferencia + difracción = culminación de la descripción ondulatoria  
+
+Con las franjas de la doble rendija de Young y la teoría de difracción de Fresnel, la naturaleza ondulatoria de la luz dejó de estar en duda. Fresnel proporcionó no solo argumentos cualitativos, sino también un marco cuantitativo y predictivo. Sus métodos anticiparon la óptica de Fourier moderna: el patrón de difracción de una apertura es, en esencia, su transformada de Fourier.  
+
+---
+
+### Lentes de Fresnel  
+
+Fresnel no fue solo un teórico. Inventó la **lente de Fresnel**, un diseño notable que permitió a los faros proyectar haces visibles a kilómetros de distancia usando menos vidrio. Estas lentes concéntricas escalonadas salvaron vidas en el mar y aún se utilizan en proyectores, faros de vehículos e incluso paneles solares.  
+
+
+---
+
+### Legado  
+
+La contribución de Fresnel fue decisiva: culminó la teoría ondulatoria de la luz. Su matemática unificó interferencia, difracción y propagación en un solo marco. Con su trabajo, los corpúsculos de Newton cedieron el paso a una nueva visión: la luz como onda electromagnética, que Maxwell formalizaría poco después.  
+
+Aunque murió joven, a los 39 años, el legado de Fresnel perdura en cada red de difracción, cada instrumento óptico y cada haz de faro que atraviesa la noche.  
+
+Mostró que la luz se desvía, se extiende e interfiere, no por ser corpuscular, sino por ser una onda.  
+
+---
+## 2.9 Chladni y las placas que cantan  
+
+Aunque muchos avances en oscilaciones y ondas surgieron de grandes academias y grandes mentes matemáticas, uno de los más fascinantes vino de un músico y físico itinerante. **Ernst Florens Friedrich Chladni** (1756–1827), a menudo llamado el *padre de la acústica*, convirtió el sonido en espectáculo y la física en arte.  
+
+---
+
+### Arena sobre metal: el nacimiento de las figuras de Chladni  
+
+Chladni espolvoreó arena fina sobre una placa metálica delgada y pasó un arco de violín por su borde. Para asombro del público, la arena saltó y se reorganizó en intrincados patrones geométricos: estrellas, círculos y redes. Hoy se llaman **figuras de Chladni**, manifestaciones visibles de las líneas nodales de las ondas estacionarias de la placa.  
+
+Donde la placa vibra intensamente, la arena se desplaza; donde permanece inmóvil (nodos), la arena se acumula. Así, una oscilación invisible se convierte en un dibujo visible.  
+
+
+El propio Napoleón Bonaparte pidió una demostración, y Chladni accedió, frotando sus placas con el arco ante la corte francesa. El emperador quedó tan impresionado que ofreció un premio por una teoría matemática de las placas vibrantes: un desafío que inspiró a Sophie Germain a entrar en los anales de la física matemática.  
+
+---
+
+### La ecuación de la placa vibrante  
+
+La física de una placa elástica delgada es más compleja que la de una cuerda. Para un desplazamiento de la placa $w(x,y,t)$, la ecuación que la gobierna es:  
+
+$$
+D \nabla^4 w + \rho h \frac{\partial^2 w}{\partial t^2} = 0,
+$$  
+
+donde:  
+- $D = \frac{Eh^3}{12(1-\nu^2)}$ es la rigidez a flexión,  
+- $E$ es el módulo de Young,  
+- $h$ es el espesor,  
+- $\nu$ es el coeficiente de Poisson,  
+- $\rho$ es la densidad.  
+
+Esta es la **ecuación de ondas biarmónica**, que predice patrones nodales complejos dependientes de las condiciones de contorno y la frecuencia.  
+
+---
+
+### El arte se encuentra con la física  
+
+Las demostraciones de Chladni cautivaron tanto a científicos como a artistas. Para los compositores, las figuras sugerían una geometría de la armonía. Para los físicos, proporcionaban evidencia visual directa de las ondas estacionarias y la resonancia. Para el público, revelaban que el sonido podía verse además de oírse.  
+
+Todavía hoy se usan placas de Chladni en las aulas para ilustrar la resonancia, y sus versiones modernas emplean altavoces y generadores digitales de frecuencia para mostrar deslumbrantes patrones de aspecto fractal.  
+
+---
+
+### Influencia en la ciencia posterior  
+
+El trabajo de Chladni inspiró a generaciones:  
+
+- **Sophie Germain**: ganó el premio de Napoleón por sus contribuciones a la teoría de las placas vibrantes, superando las barreras que afrontaba como mujer en las matemáticas.  
+- **Lord Rayleigh**: amplió la teoría acústica en su monumental *Teoría del sonido*.  
+- **Acústica moderna**: los patrones de Chladni sustentan el estudio de los modos de vibración de instrumentos, edificios y máquinas.  
+
+Sus experimentos también sembraron la idea de que **los sistemas complejos revelan un orden oculto** cuando se los lleva a resonancia.  
+
+---
+
+### Legado  
+
+Chladni conectó los mundos de la música, la física y el espectáculo. Sus placas cantaban no solo al oído, sino también a la vista, recordándonos que las oscilaciones impregnan toda la naturaleza.  
+
+Con granos de arena hizo visible lo invisible y dio a la física uno de sus experimentos más poéticos.  
+
+---
+## 2.10 Doppler y el sonido del movimiento  
+
+En 1842, el físico austríaco **Christian Doppler** (1803–1853) presentó un artículo con una idea sencilla y transformadora: la frecuencia observada de una onda depende del movimiento relativo entre la fuente y el observador.  
+
+Lo que comenzó como un experimento mental con trompetistas en un carruaje en movimiento se convirtió en un principio que resuena desde las sirenas de las ambulancias hasta el universo en expansión.  
+
+---
+
+### La idea original  
+
+Doppler propuso que, si una fuente sonora se mueve hacia un observador, las ondas se comprimen y el tono sube; si se aleja, las ondas se estiran y el tono baja.  
+
+Su ejemplo era encantadoramente musical: imaginemos una fila de trompetistas tocando la misma nota mientras pasan a gran velocidad. Los observadores junto al camino oirían tonos más altos al acercarse y más bajos al alejarse.  
+
+Al principio hubo dudas. Pero, en 1845, el científico neerlandés **Christophorus Buys Ballot** comprobó el efecto colocando músicos en un tren en marcha, y confirmó la predicción de Doppler con resonantes notas de instrumentos de metal.  
+
+---
+
+### Desplazamiento Doppler del sonido  
+
+Si una fuente de frecuencia $f$ se mueve con rapidez $v_s$ respecto de un medio cuya rapidez de onda es $v$, y el observador se mueve con rapidez $v_o$:  
+
+$$
+f' = f \frac{v \pm v_o}{v \mp v_s},
+$$  
+
+donde los signos dependen de la dirección.  
+
+- Fuente que se acerca → $f'$ mayor.  
+- Fuente que se aleja → $f'$ menor.  
+
+Esto explica el conocido aullido de una sirena al pasar: el tono baja bruscamente cuando el vehículo pasa junto al observador.  
+
+---
+
+### Desplazamiento Doppler de la luz  
+
+Para las ondas electromagnéticas, que no requieren un medio, la relatividad especial proporciona la siguiente fórmula para un acercamiento colineal; $v$ es la rapidez relativa positiva de acercamiento:
+
+$$
+f' = f \sqrt{\frac{1+\beta}{1-\beta}}, \qquad \beta = \frac{v}{c}.
+$$  
+
+- Los objetos que se acercan a nosotros presentan desplazamiento al azul.  
+- Los objetos que se alejan presentan desplazamiento al rojo.  
+
+En astronomía, esto permite medir las velocidades estelares y la propia expansión del universo.  
+
+---
+
+### Aplicaciones en la ciencia  
+
+El efecto Doppler se ha convertido en uno de los principios de la física con más aplicaciones:  
+
+- **Astronomía**: el desplazamiento al rojo de las galaxias revela la expansión cósmica (ley de Hubble). Las estrellas binarias se detectan mediante desplazamientos Doppler periódicos.  
+- **Medicina**: la ecografía Doppler mide el flujo sanguíneo en las arterias y el latido del corazón.  
+- **Meteorología**: el radar Doppler sigue las tormentas y la rotación de los tornados.  
+- **Navegación**: los radares policiales miden la velocidad de los vehículos; los satélites GPS tienen en cuenta los desplazamientos Doppler para determinar ubicaciones precisas.  
+- **Vida cotidiana**: el cambio de tono de la sirena cuando pasa una ambulancia.  
+
+---
+
+### El significado profundo  
+
+El efecto Doppler ilustra cómo las oscilaciones codifican información sobre el movimiento. Una onda no solo transporta una frecuencia: traduce la velocidad en sonido y color.  
+
+En cierto sentido, el propio universo es una orquesta Doppler: las galaxias se alejan con desplazamientos al rojo cada vez mayores, mientras las estrellas cercanas cantan notas azules de acercamiento.  
+
+---
+
+### Legado  
+
+Christian Doppler murió joven, a los 49 años, pero su nombre vive en la física, la astronomía y la medicina. Su idea reveló que las ondas no son ritmos fijos, sino experiencias relativas moldeadas por el movimiento.  
+
+Cada vez que baja el tono de la bocina de un tren, o que un médico escucha el pulso de la sangre mediante ecografía Doppler, resuena su idea: el movimiento deja su huella en la oscilación.  
+
+---
+
+## 2.11 Lord Rayleigh y la ciencia moderna de las ondas  
+
+A finales del siglo XIX, la teoría de las oscilaciones y las ondas había alcanzado una gran amplitud. La interferencia, la difracción, los armónicos y el análisis de Fourier habían sentado sus bases. Hacía falta una síntesis: un tratamiento completo que uniera esas ideas dispersas. Esa tarea la realizó John William Strutt, tercer barón Rayleigh (1842–1919), conocido en la ciencia simplemente como Lord Rayleigh.  
+
+---
+
+### La teoría del sonido  
+
+Entre 1877 y 1878, Rayleigh publicó su monumental obra en dos volúmenes *The Theory of Sound*. Fue el estudio de acústica más exhaustivo escrito hasta entonces y se convirtió en el fundamento de la física de ondas moderna.  
+
+Analizó:  
+- Las vibraciones de cuerdas, varillas y membranas.  
+- La propagación del sonido en el aire y en los sólidos.  
+- Los fenómenos de resonancia y batidos.  
+- La distinción entre velocidad de fase y velocidad de grupo.  
+
+Con una elegante prosa victoriana, Rayleigh dio al mundo un lenguaje preciso para el movimiento ondulatorio.  
+
+---
+
+### Velocidad de grupo  
+
+Una de las contribuciones fundamentales de Rayleigh fue aclarar la idea de velocidad de grupo.  
+
+Consideremos un paquete de ondas formado por la superposición de ondas con números de onda $k$ ligeramente distintos. Si la relación de dispersión es $\omega(k)$, entonces:  
+
+- **Velocidad de fase** (velocidad de las crestas):  
+$$
+v_p = \frac{\omega}{k}.
+$$  
+
+- **Velocidad de grupo** (velocidad de propagación de la envolvente de un paquete de ondas de banda estrecha en condiciones adecuadas):
+$$
+v_g = \frac{d\omega}{dk}.
+$$  
+
+Esta distinción resultó crucial en óptica, acústica y, después, mecánica cuántica. En muchos medios, $v_p \neq v_g$, de modo que las crestas adelantan a la envolvente o quedan rezagadas respecto de ella.  
+
+En medios débilmente absorbentes con dispersión suficientemente suave, la velocidad de grupo también puede describir el transporte de energía. En general, no coincide con la velocidad de la información o del frente de señal, especialmente en medios con dispersión anómala. Esta distinción es esencial en la física de ondas moderna.
+
+---
+
+### Dispersión de Rayleigh  
+
+Otro resultado célebre es la dispersión de Rayleigh. Rayleigh mostró que las partículas pequeñas dispersan la luz con una intensidad proporcional a $\tfrac{1}{\lambda^4}$.  
+
+$$
+I \propto \frac{1}{\lambda^4}.
+$$  
+
+Esto explica por qué el cielo es azul: las longitudes de onda más cortas (azules) se dispersan en la atmósfera más intensamente que las largas (rojas). Al atardecer, cuando la luz solar atraviesa una mayor cantidad de atmósfera, el azul se dispersa fuera del haz y el cielo brilla en rojo.  
+
+Así, cada niño que se pregunta por qué el cielo es azul está preguntando por la física de Lord Rayleigh.  
+
+---
+
+### Acústica y resonancia  
+
+Rayleigh también formalizó los fenómenos de resonancia. Mostró cómo la respuesta de un sistema alcanza su máximo cerca de su frecuencia natural y cómo surgen los batidos cuando interfieren dos frecuencias próximas. Su análisis de tubos de órgano, campanas y placas vibrantes convirtió la acústica en una ciencia rigurosa.  
+
+El diseño de salas de conciertos, la afinación de instrumentos e incluso la reducción del ruido en maquinaria tienen sus raíces en las ideas de Rayleigh.  
+
+---
+
+### Ecos cuánticos  
+
+Aunque Rayleigh trabajó antes de la teoría cuántica, sus conceptos ondulatorios pasaron directamente a ella. La ecuación de Schrödinger describe ondas de materia cuyos paquetes se propagan con una velocidad de grupo igual a la velocidad de la partícula clásica. El lenguaje de los modos normales y la superposición sigue siendo esencial en la teoría cuántica de campos.  
+
+---
+
+### Legado  
+
+Rayleigh no fue solo teórico, sino también experimentador. Descubrió el gas noble argón (lo que le valió el Premio Nobel de Física de 1904), presidió la Royal Society y formó a futuras generaciones de científicos.  
+
+Pero su mayor legado en física de ondas es la claridad. Convirtió el sonido, antes dominio de músicos y artesanos, en una ciencia precisa, y su terminología —fase, velocidad de grupo, resonancia, dispersión— sigue guiándonos.  
+
+Cada vez que nos maravillamos ante el cielo azul, disfrutamos de una sinfonía o analizamos un paquete de ondas en mecánica cuántica, repetimos la visión de Rayleigh: las ondas son el lenguaje universal de la física.  
+
+---
+## 2.12 Extensiones modernas: lo cuántico, lo electromagnético y más allá  
+
+A comienzos del siglo XX, la historia de las oscilaciones y las ondas había trascendido los péndulos, los resortes y el sonido. La misma matemática empezó a revelarse en la electricidad, el magnetismo, la mecánica cuántica e incluso en el propio espacio-tiempo. La onda se había convertido en algo más que un fenómeno: un paradigma universal.  
+
+---
+
+### Ondas electromagnéticas  
+
+En la década de 1860, **James Clerk Maxwell** unificó la electricidad y el magnetismo en un conjunto de cuatro elegantes ecuaciones. De ellas surgió la predicción de ondas que se propagan por sí mismas:  
+
+$$
+\nabla^2 \mathbf{E} - \frac{1}{c^2} \frac{\partial^2 \mathbf{E}}{\partial t^2} = 0,  
+\qquad  
+\nabla^2 \mathbf{B} - \frac{1}{c^2} \frac{\partial^2 \mathbf{B}}{\partial t^2} = 0.
+$$  
+
+Estas soluciones eran ondas electromagnéticas que viajaban a la rapidez $c = 3 \times 10^8 \, \text{m/s}$: la propia velocidad de la luz.  
+
+Así, se reveló que la luz era una oscilación electromagnética, uniendo la óptica con la electricidad. Las ondas de radio, microondas, infrarrojos, ultravioletas, rayos X y rayos gamma son el mismo fenómeno: ondas de distintas frecuencias del espectro electromagnético.  
+
+---
+
+### Ondas cuánticas  
+
+En 1924, **Louis de Broglie** propuso que la materia tiene propiedades ondulatorias, con una longitud de onda:  
+
+$$
+\lambda = \frac{h}{p},
+$$  
+
+donde $h$ es la constante de Planck y $p$ el momento lineal. Poco después, **Erwin Schrödinger** formuló la mecánica ondulatoria:  
+
+$$
+i \hbar \frac{\partial \psi}{\partial t} = -\frac{\hbar^2}{2m} \nabla^2 \psi + V \psi.
+$$  
+
+Aquí, $\psi$ es la función de onda, que codifica la distribución de probabilidad de las partículas. A diferencia de las ondas clásicas, las ondas cuánticas describen probabilidades, no certezas. Sin embargo, la matemática es la misma: oscilaciones, superposición e interferencia.  
+
+El experimento de la doble rendija de Young cobró nueva vida, ahora con electrones, neutrones e incluso moléculas. Las franjas de interferencia se convirtieron en el misterio más profundo de la realidad cuántica.  
+
+---
+
+### Dualidad onda-partícula  
+
+En física cuántica, ondas y partículas ya no son opuestos, sino aspectos duales de una misma entidad. Un fotón interfiere como una onda, pero incide sobre un detector como una partícula. Las oscilaciones ya no son meras vibraciones mecánicas: son amplitudes de probabilidad que dan forma a la propia estructura de la realidad.  
+
+---
+
+### Relatividad y ondas gravitacionales  
+
+La teoría de la relatividad general de Einstein (1915) predijo que el propio espacio-tiempo puede oscilar. En 2015, el observatorio LIGO lo confirmó al detectar ondas gravitacionales procedentes de la colisión de agujeros negros.  
+
+Estas ondas obedecen ecuaciones sorprendentemente parecidas a las de d’Alembert: ondulaciones que se propagan a la velocidad de la luz y transportan energía a través del cosmos.  
+
+Así, el paradigma ondulatorio se extiende desde las lámparas oscilantes hasta el temblor del espacio-tiempo.  
+
+---
+
+### Fenómenos ondulatorios no lineales y modernos  
+
+Los siglos XX y XXI han descubierto comportamientos ondulatorios aún más profundos:  
+
+- **Ondas no lineales**: solitones que conservan su forma al viajar, cruciales en la fibra óptica.  
+- **Caos y osciladores**: oscilaciones no lineales acopladas que presentan atractores extraños.  
+- **Oscilaciones del plasma**: ondas colectivas en gases ionizados.  
+- **Condensados de Bose–Einstein**: oscilaciones cuánticas macroscópicas a temperaturas ultrabajas.  
+
+Desde la tecnología hasta la cosmología, las ondas ya no son casos especiales: son el comportamiento habitual de los sistemas dinámicos.  
+
+---
+
+### El lenguaje universal de las oscilaciones  
+
+Del péndulo de Galileo a las ondas gravitacionales, el recorrido de las oscilaciones es un viaje hacia la unidad:  
+
+- El tiempo se mide mediante osciladores.  
+- La materia vibra en modos atómicos y moleculares.  
+- La energía se propaga mediante ondas, desde el sonido hasta la luz.  
+- La propia información, en los ordenadores y las comunicaciones, viaja en señales oscilatorias.  
+
+Dondequiera que miremos, el universo late, resuena y oscila.  
+
+---
+
+### Epílogo del capítulo 2  
+
+Los pioneros —Galileo, Hooke, Huygens, d’Alembert, Bernoulli, Euler, Fourier, Young, Fresnel, Chladni, Doppler y Rayleigh— allanaron el camino. Sus ideas revelaron que las oscilaciones no son accidentes, sino necesidades entretejidas en las leyes de la naturaleza.  
+
+Del tictac de un péndulo a las ondulaciones del espacio-tiempo, la física nos enseña que el propio cosmos es una gran sinfonía de ondas.  
+
+---

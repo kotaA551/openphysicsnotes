@@ -42,3 +42,16 @@ test('results and input work are bounded, queries are deterministic and reusable
   assert.equal(queryTerms('a '.repeat(1000)).length, 1);
   assert.equal(queryTerms(Array.from({ length: 30 }, (_, i) => `word${i}`).join(' ')).length, 12);
 });
+
+test('an exact localized article title survives competing section matches and the result limit', () => {
+  const localized = prepareIndex({ version: 1, articles: [
+    { title: 'Física da matéria condensada', contentTitle: 'Física da matéria condensada', href: '/pt-BR/condensed', contentLocale: 'pt-BR' },
+    { title: 'Mecânica quântica', contentTitle: '7. Mecânica quântica', href: '/pt-BR/quantum', contentLocale: 'pt-BR' },
+  ], sections: [
+    ...Array.from({ length: MAX_RESULTS + 2 }, (_, i) => ({ article: 0, id: `related-${i}`, heading: 'Mecânica quântica', text: 'Aplicações da mecânica quântica em materiais.' })),
+    { article: 1, id: 'introduction', heading: 'Introdução', text: 'Estados e observáveis descrevem o sistema.' },
+  ] });
+  assert.equal(search(localized, 'MECANICA QUANTICA')[0].href, '/pt-BR/quantum#introduction');
+  assert.equal(search(localized, '7. Mecânica quântica')[0].href, '/pt-BR/quantum#introduction');
+  assert.equal(search(localized, 'materiais')[0].href, '/pt-BR/condensed#related-0');
+});

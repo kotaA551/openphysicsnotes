@@ -1,6 +1,6 @@
 # International SEO checks
 
-English URLs remain at the root. Static pages have ten translated variants; articles advertise only editions with their own translated MDX. All 20 articles have English, German, Brazilian Portuguese, Simplified Chinese and Japanese editions. Navier–Stokes, the five expanded curiosities (black-hole information, dark energy, dark matter, loop quantum gravity, and string theory), and the new Groups, Lie algebras and gauge theory curiosity additionally have French, Italian, Spanish, Traditional Chinese and Korean editions, covering all ten site languages. That gives 135 real article editions and 65 English fallback pages.
+English URLs remain at the root. Static pages have ten translated variants; articles advertise only editions with their own complete translated MDX. All 12 chapters and 8 curiosities now have editions in English, French, German, Italian, Spanish, Brazilian Portuguese, Simplified Chinese, Traditional Chinese, Japanese and Korean. This gives 200 real article editions, zero English fallback pages, and 230 canonical sitemap URLs including the homepage, About and Privacy variants.
 
 `translatedArticleLocales` supplies article availability. `languageAlternates` supplies the same absolute, reciprocal hreflang cluster (including itself and English `x-default`) to page metadata and the sitemap. Translated articles are self-canonical. English fallback articles keep `noindex, follow`, remain crawlable, point to the English canonical, and are excluded from alternate-language clusters and the sitemap.
 
@@ -17,15 +17,18 @@ node --test tests/seo/metadata.test.mjs
 npx tsc --noEmit --incremental false
 ```
 
-After a coordinated production build, verify all 230 generated HTML pages, 165 sitemap URLs, reciprocal alternates, robots directives, descriptions, Open Graph/Twitter fields and structured data. The checker also verifies all ten Navier–Stokes bodies have the requested content language, no fallback notice, rendered KaTeX/MathML without KaTeX errors, and the complete reciprocal language cluster:
+After a coordinated build, verify all 230 generated HTML pages, 230 sitemap URLs, reciprocal alternates, robots directives, descriptions, Open Graph/Twitter fields and structured data. The checker also verifies all 200 article bodies have the requested content language, no fallback notice, rendered KaTeX/MathML without KaTeX errors, and the complete reciprocal language cluster:
 
 ```sh
-node tests/seo/generated-seo-check.mjs --dist .next-de-pt-apply-check --output ../evidence/seo/generated-seo.json
+node tests/seo/generated-seo-check.mjs --dist .next --output ../evidence/generated-seo.json
+node tests/search/generated-search-check.mjs
 ```
 
 Also run `node tests/curiosities/source-check.mjs` after regenerating the discussion manifest, and `node tests/curiosities/generated-check.mjs` after the build. They verify the expanded fifty editions, preserved old headings and discussion IDs, mathematics, source-link parity, SVG safety, and the Differential Geometry style scope across all ten routes.
 
 The checker reads the selected build only and does not start a server, modify a build or contact the production website. Run from the repository being checked. It can inspect any completed custom `NEXT_BUILD_DIR`; stale pre-SEO builds are expected to fail against the new source metadata.
+
+Search indexes are rebuilt for all ten languages by the static `/search/[locale]` route. The generated-search checker verifies every article's content language, localized title/body queries, result fragments and index-size budget. Newly translated headings keep their previously published English fragments; article rendering, search and discussion targets share `lib/article-anchors.mjs`. Translation completeness, exact source structure and mathematical preservation are checked separately under `tests/translations`.
 
 Primary references checked 2026-10-13:
 

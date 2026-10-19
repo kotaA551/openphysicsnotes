@@ -35,7 +35,8 @@ function snippet(text: string, terms: string[]) {
 export function prepareIndex(index: SearchIndex) {
   return index.sections.map(section => {
     const article = index.articles[section.article];
-    return { section, article, title: normalize(`${article.title} ${article.contentTitle}`), heading: normalize(section.heading), body: normalize(section.text) };
+    const titles = [normalize(article.title), normalize(article.contentTitle)];
+    return { section, article, titles, title: titles.join(' '), heading: normalize(section.heading), body: normalize(section.text) };
   });
 }
 
@@ -47,6 +48,9 @@ export function search(index: ReturnType<typeof prepareIndex>, query: string): S
   for (const row of index) {
     if (!terms.every(term => row.title.includes(term) || row.heading.includes(term) || row.body.includes(term))) continue;
     const score = terms.reduce((sum, term) => sum + (row.heading.includes(term) ? 30 : 0) + (row.title.includes(term) ? 12 : 0) + (row.body.includes(term) ? 4 : 0), 0)
+      // An exact article-title query must remain discoverable even when many
+      // sections in other articles mention the same topic.
+      + (row.titles.includes(phrase) ? 1000 : 0)
       + (row.heading === phrase ? 90 : row.heading.includes(phrase) ? 40 : 0)
       + (row.body.includes(phrase) ? 8 : 0);
     found.push({ row, score });

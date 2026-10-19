@@ -11,6 +11,7 @@ import remarkMath from 'remark-math';
 import katex from 'katex';
 import { JSDOM } from 'jsdom';
 import { articleSections } from '../../lib/search/build.mjs';
+import { articleHeadingIds } from '../../lib/article-anchors.mjs';
 import { typescriptLoader } from '../seo/load-typescript.mjs';
 
 const slug='groups-lie-algebras-gauge-theory';
@@ -29,7 +30,7 @@ const walk=(n,f)=>{f(n);for(const child of n.children||[])walk(child,f);};
 const words=n=>n.type==='text'?n.value:['math','inlineMath','code','inlineCode'].includes(n.type)?'':(n.children||[]).map(words).join('');
 const normalized=s=>s.replace(/\s+/g,'');
 const sectionsCache=new Map();
-async function sections(kind,id,locale){const key=`${locale}/${kind}/${id}`;if(!sectionsCache.has(key)){const article=loadArticle(kind,id,locale);assert.ok(article,`missing article ${key}`);sectionsCache.set(key,await articleSections(article.content));}return sectionsCache.get(key);}
+async function sections(kind,id,locale){const key=`${locale}/${kind}/${id}`;if(!sectionsCache.has(key)){const article=loadArticle(kind,id,locale);assert.ok(article,`missing article ${key}`);sectionsCache.set(key,await articleSections(article.content,articleHeadingIds(kind,id,article.contentLocale)));}return sectionsCache.get(key);}
 assert.equal(articleList('curiosities')[7].slug,slug,'append after the seven existing curiosities');
 if(!partial)assert.deepEqual(translatedArticleLocales('curiosities',slug),locales);
 const reports=[],errors=[],assets=new Set(),descriptions=new Set(),bodies=new Set();

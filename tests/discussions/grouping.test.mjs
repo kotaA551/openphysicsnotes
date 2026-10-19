@@ -12,10 +12,14 @@ import remarkRehype from 'remark-rehype';
 import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import rehypeDiscussions, { discussionGroups, discussionSections } from '../../lib/discussions/sections.mjs';
+import rehypeArticleAnchors, { articleHeadingIds } from '../../lib/article-anchors.mjs';
 const processor = unified().use(remarkParse).use(remarkMdx).use(remarkGfm).use(remarkMath)
   .use(remarkRehype, { passThrough: ['mdxJsxFlowElement', 'mdxJsxTextElement', 'mdxFlowExpression', 'mdxTextExpression', 'mdxjsEsm'] })
   .use(rehypeKatex).use(rehypeSlug);
-const parse = source => processor.run(processor.parse(source));
+const parse = (source, ids = []) => {
+  const configured = processor().use(rehypeArticleAnchors, { ids });
+  return configured.run(configured.parse(source));
+};
 test('one panel at 2.3 / 2.4 groups every descendant subsection and example', async () => {
   const tree = await parse('## 2.3 Parent\n\nIntro\n\n### 2.3.1 First\n\nBody\n\n#### Example\n\nExample\n\n#### 1 Step\n\nStep\n\n### 2.3.2 Second\n\nText\n\n## 2.4 Next\n\nNext\n\n### Unnumbered\n\nText');
   const groups = discussionGroups(tree);
@@ -45,7 +49,7 @@ test('all source articles/locales preserve every legacy scope exactly once and e
   for (const [key, ids] of Object.entries(manifest)) {
     const [kind, slug, locale] = key.split('/');
     const file = path.join(locale === 'en' ? 'content' : `content/translations/${locale}`, kind, `${slug}.mdx`);
-    const tree = await parse(matter(await fs.readFile(file, 'utf8')).content);
+    const tree = await parse(matter(await fs.readFile(file, 'utf8')).content, articleHeadingIds(kind, slug, locale));
     const original = structuredClone(tree), legacy = discussionSections(tree), groups = discussionGroups(tree);
     const memberships = groups.flatMap(g => g.choices.map(c => c.id));
     assert.equal(new Set(memberships).size, memberships.length, `${key}: duplicate membership/count`);

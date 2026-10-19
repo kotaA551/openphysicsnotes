@@ -1,0 +1,3095 @@
+---
+description: "Fisica della materia condensata: cristalli, fononi, bande elettroniche, trasporto, magnetismo, superconduttività e fasi topologiche."
+---
+
+## 10.1 Cristalli e spazio reciproco
+
+I solidi cristallini sono periodici nello spazio. La periodicità offre un enorme vantaggio: i reticoli trasformano somme in regole di selezione, le trasformate di Fourier quantizzano $k$ e la diffrazione identifica la struttura. Questa sezione introduce il linguaggio reticolo–base, i vettori reciproci, le zone di Brillouin, gli indici di Miller e gli strumenti della diffrazione (Bragg, Laue, Ewald, fattori di struttura). Collegheremo la dualità fcc/bcc, le regole di selezione dei cristalli comuni e alcuni metodi rapidi per non perdersi tra gli indici.
+
+![Un reticolo quadrato e il suo reticolo reciproco. I loro vettori primitivi obbediscono alla relazione tra basi reciproche.](/images/diagrams/reciprocal-lattice.svg)
+
+---
+
+### 10.1.1 Reticolo, base e struttura cristallina
+
+Un **reticolo di Bravais** è l'insieme dei punti
+
+$$
+\boldsymbol R = n_{1}\,\boldsymbol a_{1} + n_{2}\,\boldsymbol a_{2} + n_{3}\,\boldsymbol a_{3},\qquad n_{i}\in\mathbb Z
+$$
+
+con tre **vettori primitivi** linearmente indipendenti $\boldsymbol a_{i}$. Una **struttura cristallina** = reticolo **più** una base di atomi nelle posizioni $\{\boldsymbol\tau_{j}\}$ dentro una cella primitiva; le posizioni atomiche sono $\boldsymbol r = \boldsymbol R + \boldsymbol\tau_{j}$.
+
+- **Cella di Wigner–Seitz**: l'insieme dei punti più vicini a un dato punto reticolare che a qualsiasi altro.  
+- **Convenzionale e primitiva**: le celle cubiche convenzionali sono più gradevoli da visualizzare; le celle primitive hanno volume minimo e sono ottime per la teoria.
+
+**Consiglio pratico**: non dire mai «il reticolo del diamante». Il diamante ha un **reticolo fcc** con una base a due punti $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$.
+
+---
+
+### 10.1.2 Simmetria: gruppi puntuali e gruppi spaziali (panoramica in una schermata)
+
+- **Gruppo puntuale**: rotazioni, riflessioni e inversione che lasciano fisso almeno un punto.  
+- **Gruppo spaziale**: operazioni del gruppo puntuale + **traslazioni** + rotazioni **elicoidali** e riflessioni con **scorrimento**.  
+- In tre dimensioni esistono **14 reticoli di Bravais**, **32** gruppi puntuali cristallografici e **230** gruppi spaziali. Per la teoria delle bande servono soprattutto il reticolo e i piccoli gruppi dei punti $k$ ad alta simmetria.
+
+---
+
+### 10.1.3 Reticolo reciproco e zona di Brillouin
+
+Definiamo i **vettori primitivi reciproci** $\boldsymbol b_{i}$ mediante $\boldsymbol a_{i}\cdot \boldsymbol b_{j}=2\pi\delta_{ij}$. In forma vettoriale
+
+$$
+\boldsymbol b_{1} = 2\pi \frac{\boldsymbol a_{2}\times \boldsymbol a_{3}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{2} = 2\pi \frac{\boldsymbol a_{3}\times \boldsymbol a_{1}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{3} = 2\pi \frac{\boldsymbol a_{1}\times \boldsymbol a_{2}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})}
+$$
+
+Il **reticolo reciproco** consiste dei vettori $\boldsymbol G = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}$ con interi $(h,k,\ell)$.
+
+La **prima zona di Brillouin (BZ)** è la cella di Wigner–Seitz del reticolo reciproco. È la cella primitiva nello spazio $k$ e il dominio naturale dei vettori d'onda di Bloch.
+
+- Dualità: **fcc $\leftrightarrow$ bcc**. Il reciproco di fcc è bcc e viceversa. Il cubico semplice è autoduale.
+
+---
+
+### 10.1.4 Teorema di Bloch in una riga
+
+In un potenziale periodico $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$, gli autostati di singola particella sono **onde di Bloch**:
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R) = u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+I vettori d'onda $\boldsymbol k$ si possono scegliere nella prima BZ. La traslazione $\boldsymbol k\to \boldsymbol k+\boldsymbol G$ lascia invariata la fisica.
+
+---
+
+### 10.1.5 Piani, direzioni e indici (corso rapido su Miller)
+
+- Le **direzioni** usano parentesi quadre $[u\,v\,w]$ per un vettore reticolare proporzionale a $u\,\boldsymbol a_{1}+v\,\boldsymbol a_{2}+w\,\boldsymbol a_{3}$. Famiglie di direzioni equivalenti: $\langle u\,v\,w\rangle$.  
+- I **piani** usano parentesi tonde $(h\,k\,\ell)$, gli **indici di Miller**, definiti come reciproci delle intercette lungo $\boldsymbol a_{i}$. Famiglie: $\{h\,k\,\ell\}$.  
+- La **distanza** tra i piani della famiglia $(h\,k\,\ell)$ è legata al vettore reciproco $\boldsymbol G_{hkl}$:
+
+$$
+\boldsymbol G_{hkl} = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}
+$$
+
+$$
+d_{hkl} = \frac{2\pi}{|\boldsymbol G_{hkl}|}
+$$
+
+Per il caso **cubico**, $a_{1}=a\,\hat x$ ecc., $d_{hkl}= a/\sqrt{h^{2}+k^{2}+\ell^{2}}$.
+
+Nel caso **esagonale** si usano spesso gli indici di Miller–Bravais $(h\,k\,i\,\ell)$ con $i=-(h+k)$ per rendere manifesta la simmetria del piano basale.
+
+---
+
+### 10.1.6 Diffrazione: Bragg, Laue ed Ewald esprimono la stessa idea
+
+La diffusione elastica conserva $|\boldsymbol k|=|\boldsymbol k'|$ e trasferisce una quantità di moto cristallina $\Delta\boldsymbol k=\boldsymbol k'-\boldsymbol k$ uguale a un vettore reciproco:
+
+$$
+\Delta \boldsymbol k = \boldsymbol G
+$$
+
+**Condizione di Bragg** nello spazio reale:
+
+$$
+2 d_{hkl}\,\sin\theta = n\,\lambda
+$$
+
+La **condizione di Laue** nello spazio $k$ è esattamente $\boldsymbol k'-\boldsymbol k=\boldsymbol G$. Costruzione della **sfera di Ewald**: disegnare una sfera di raggio $|\boldsymbol k|=2\pi/\lambda$ ancorata alla coda di $\boldsymbol k$; i punti del reticolo reciproco sulla sfera danno le riflessioni consentite.
+
+Il **fattore di struttura** codifica la base:
+
+$$
+F(\boldsymbol G) = \sum_{j=1}^{m} f_{j}\,e^{-i\boldsymbol G\cdot \boldsymbol\tau_{j}}
+$$
+
+con fattori di forma atomici $f_{j}$. L'intensità diffratta è
+
+$$
+I(\boldsymbol G) \propto |F(\boldsymbol G)|^{2}
+$$
+
+La somma reticolare impone che $\boldsymbol G$ appartenga al reticolo reciproco; $F$ decide se la riflessione sia effettivamente visibile.
+
+---
+
+### 10.1.7 Regole di selezione per strutture comuni
+
+- **Cubico semplice (sc)** con un atomo a $(0,0,0)$:
+
+$$
+F(\mathbf G)=f,\quad \text{nessuna estinzione sistematica}
+$$
+
+- **Cubico a corpo centrato (bcc)**, base $\{(0,0,0),\,(\tfrac12,\tfrac12,\tfrac12)a\}$:
+
+$$
+F = f\left[1 + e^{-i\pi(h+k+\ell)}\right] = 
+\begin{cases}
+2f & h+k+\ell\ \text{pari} \\
+0 & h+k+\ell\ \text{dispari}
+\end{cases}
+$$
+
+- **Cubico a facce centrate (fcc)**, base $\{(0,0,0),\,(\tfrac12,\tfrac12,0)a,\,(\tfrac12,0,\tfrac12)a,\,(0,\tfrac12,\tfrac12)a\}$:
+
+$$
+F = f\left[1 + e^{-i\pi(h+k)} + e^{-i\pi(h+\ell)} + e^{-i\pi(k+\ell)}\right] =
+\begin{cases}
+4f & h,k,\ell\ \text{tutti pari o tutti dispari} \\
+0 & \text{altrimenti}
+\end{cases}
+$$
+
+- **NaCl (salgemma)**: reticolo fcc con base a due specie $\{(0,0,0)\ \text{Na},\ (\tfrac12,\tfrac12,\tfrac12)a\ \text{Cl}\}$. Allora
+
+$$
+F = f_{\mathrm{Na}} + f_{\mathrm{Cl}}\,e^{-i\pi(h+k+\ell)}
+$$
+
+L'intensità si alterna con $h+k+\ell$ a seconda del contrasto $f$.
+
+- **Diamante**: reticolo fcc con base $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$. La fase aggiuntiva produce ulteriori zeri sistematici rispetto a fcc.
+
+---
+
+### 10.1.8 Dualità fcc–bcc e punti $k$ ad alta simmetria
+
+Se $\{\boldsymbol a_{i}\}$ sono vettori **fcc**, i reciproci $\{\boldsymbol b_{i}\}$ generano un reticolo **bcc** nello spazio $k$ (e viceversa). Imparare le etichette standard:
+
+- **BZ fcc**: $\Gamma$ al centro, $X$ ai centri delle facce quadrate, $L$ ai centri delle facce esagonali, $W$ ai vertici.  
+- **BZ bcc**: punti $\Gamma$, $H$, $N$, $P$.  
+
+È qui che compaiono frequentemente estremi delle bande e degenerazioni e che gli sperimentatori misurano ARPES e oscillazioni quantistiche.
+
+---
+
+### 10.1.9 Scorciatoie di geometria reale ↔ reciproca
+
+- **Relazione tra i volumi**:
+
+$$
+V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast} = (2\pi)^{3}
+$$
+
+- **Normale ai piani**: il vettore reciproco $\boldsymbol G_{hkl}$ è **normale** ai piani $(hkl)$.  
+- **Angolo tra i piani** $(h_{1}k_{1}\ell_{1})$ e $(h_{2}k_{2}\ell_{2})$:
+
+$$
+\cos\theta = \frac{\boldsymbol G_{1}\cdot \boldsymbol G_{2}}{|\boldsymbol G_{1}|\,|\boldsymbol G_{2}|}
+$$
+
+- Ancora la **distanza**: $d_{hkl}=2\pi/|\boldsymbol G_{hkl}|$.
+
+---
+
+### 10.1.10 Brevi esempi svolti
+
+**(a) Il reciproco di bcc è fcc**  
+Partire da una cella cubica convenzionale bcc di lato $a$ e vettori primitivi $\boldsymbol a_{1}=\tfrac a2(\hat y+\hat z-\hat x)$ ecc. Calcolare $\boldsymbol b_{i}$ e mostrare che i punti reciproci occupano vertici e centri delle facce di una cella cubica convenzionale di spigolo $4\pi/a$.
+
+**(b) $d_{hkl}$ per il caso cubico**  
+Usando $\boldsymbol G_{hkl}=(2\pi/a)(h\,\hat x + k\,\hat y + \ell\,\hat z)$, mostrare $d_{hkl}=a/\sqrt{h^{2}+k^{2}+\ell^{2}}$. Bragg dà $2d\sin\theta=n\lambda$; risolvere per l'angolo di riflessione del primo ordine $(111)$ per un dato $\lambda/a$.
+
+**(c) Assenze sistematiche fcc**  
+Calcolare $F$ per le famiglie $(100)$, $(110)$, $(111)$ e confermare che sopravvivono soltanto gli indici «tutti pari» o «tutti dispari».
+
+**(d) Zeri del diamante**  
+Il diamante ha $F \propto \left[1 + e^{-i\pi(h+k+\ell)/2}\right]\times(\text{fattore fcc})$. Mostrare che $(222)$ è estinta ma $(111)$ è consentita, in accordo con le tabelle dei raggi X.
+
+**(e) Schizzo della costruzione di Ewald**  
+Per $\lambda=1.54\ \text{\AA}$ (Cu K$\alpha$), disegnare una circonferenza di raggio $2\pi/\lambda$ passante per l'origine del reticolo reciproco fcc e segnare quali vettori $\boldsymbol G$ sulla circonferenza prevedano riflessioni per un dato orientamento del cristallo.
+
+---
+
+### 10.1.11 Errori comuni
+
+- **Confondere reticolo e struttura**: il reticolo è l'impalcatura periodica; la **base** vi dispone gli atomi.  
+- **Unità errate nello spazio reciproco**: i cristallografi usano spesso una convenzione senza $2\pi$; qui $a_{i}\cdot b_{j}=2\pi\delta_{ij}$. Sceglierne una e mantenerla.  
+- **Indici di Miller e di direzione**: $(hkl)$ è un piano, $[uvw]$ una direzione. Per il cubico, $(hkl)\perp [hkl]$; non vale in generale.  
+- **Dimenticare il fattore di forma**: anche se $F\neq 0$, $f_{j}(\boldsymbol G)$ diminuisce con $|\boldsymbol G|$, modificando le intensità.  
+- **Confusione sulla BZ**: lo schema a «zona ridotta» ripiega $k$ nella prima BZ; se le bande sembrano raddoppiate, probabilmente si sono mescolati grafici a zona estesa e ridotta.
+
+---
+
+### 10.1.12 Raccolta minima di problemi
+
+- Ricavare i vettori reciproci $\boldsymbol b_{i}$ da $\boldsymbol a_{i}$ e dimostrare $V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast}=(2\pi)^{3}$  
+- Mostrare che la condizione di Laue $\boldsymbol k'-\boldsymbol k=\boldsymbol G$ e la legge di Bragg $2d\sin\theta=n\lambda$ sono equivalenti mediante la geometria $\boldsymbol G$  
+- Calcolare il fattore di struttura e le regole di selezione per NaCl e CsCl; confrontare quali $(hkl)$ si annullano in ciascuno  
+- Per un reticolo esagonale con $a$ e $c$, scrivere $\boldsymbol b_{i}$ e ottenere $d_{hkl}$ in termini di $(h\,k\,i\,\ell)$  
+- Individuare i punti ad alta simmetria $\Gamma$, $X$, $L$, $W$ per fcc nelle coordinate cartesiane $k$ dati $a$ e disegnare la prima BZ
+
+---
+
+## 10.2 Vibrazioni reticolari e fononi
+
+Gli atomi di un cristallo non sono statue: oscillano. Queste oscillazioni collettive sono **fononi**, modi normali quantizzati del reticolo. In questa sezione passiamo dalle catene unidimensionali alle matrici dinamiche tridimensionali complete, separiamo i rami **acustici** e **ottici**, calcoliamo dispersioni, velocità di gruppo e densità degli stati, poi quantizziamo. Trattiamo anche trasporto termico, anarmonicità, espansione termica tramite il parametro di Grüneisen, accoppiamento elettrone–fonone e rapide firme sperimentali (neutroni, Raman, IR).
+
+---
+
+### 10.2.1 Reticolo armonico: impostazione
+
+Sia $\boldsymbol R$ l'etichetta dei siti di Bravais e $\kappa$ l'indice dell'atomo della base all'interno di una cella unitaria. Lo spostamento dell'atomo $(\boldsymbol R,\kappa)$ è $\boldsymbol u_{\kappa}(\boldsymbol R,t)$. Nell'approssimazione **armonica**, l'energia potenziale è quadratica negli spostamenti:
+
+$$
+U = \tfrac{1}{2}\sum_{\boldsymbol R\kappa\alpha}\sum_{\boldsymbol R'\kappa'\beta}
+\Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa\alpha}(\boldsymbol R)\,u_{\kappa'\beta}(\boldsymbol R')
+$$
+
+dove $\Phi$ sono **costanti di forza** e $\alpha,\beta\in\{x,y,z\}$. Newton:
+
+$$
+M_{\kappa}\,\ddot u_{\kappa\alpha}(\boldsymbol R,t) = -\sum_{\boldsymbol R'\kappa'\beta} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa'\beta}(\boldsymbol R',t)
+$$
+
+Proviamo soluzioni di onda piana $u_{\kappa\alpha}(\boldsymbol R,t)=M_{\kappa}^{-1/2}e_{\kappa\alpha}(\boldsymbol q)\,e^{i(\boldsymbol q\cdot \boldsymbol R - \omega t)}$. Si ottiene un problema agli autovalori
+
+$$
+\sum_{\kappa'\beta} D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q)\,e_{\kappa'\beta}(\boldsymbol q) = \omega^{2}(\boldsymbol q)\,e_{\kappa\alpha}(\boldsymbol q)
+$$
+
+con la **matrice dinamica**
+
+$$
+D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q) = \frac{1}{\sqrt{M_{\kappa}M_{\kappa'}}}
+\sum_{\boldsymbol R} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R)\,e^{-i\boldsymbol q\cdot \boldsymbol R}
+$$
+
+Per $r$ atomi per cella si ottengono $3r$ rami: 3 acustici $\omega\to 0$ quando $\boldsymbol q\to 0$ e $3r-3$ ottici.
+
+---
+
+### 10.2.2 Catena monoatomica unidimensionale: l'esempio più semplice
+
+Masse $m$ collegate da molle $K$ con passo reticolare $a$. Sia $u_{n}$ lo spostamento del sito $n$. Equazione del moto:
+
+$$
+m\,\ddot u_{n} = K\,(u_{n+1} - 2u_{n} + u_{n-1})
+$$
+
+L'ansatz $u_{n}=u_{0}e^{i(nka-\omega t)}$ dà la dispersione
+
+$$
+\omega(k) = 2\sqrt{\frac{K}{m}}\;\left|\sin\frac{ka}{2}\right|
+$$
+
+Punti essenziali:
+
+- Soltanto un ramo **acustico**, lineare vicino a $k=0$ con velocità del suono $v_{s}=a\sqrt{K/m}$  
+- La **zona di Brillouin** è $-\pi/a<k\le \pi/a$; $\omega(k)$ è periodica con $2\pi/a$  
+- La **velocità di gruppo** $v_{g}(k)=\partial\omega/\partial k$ determina il flusso di energia
+
+**Densità degli stati** in una dimensione per un singolo ramo:
+
+$$
+g(\omega) = \frac{L}{\pi}\,\frac{1}{|d\omega/dk|}
+$$
+
+Quindi $g(\omega)$ diverge ai bordi della BZ dove $d\omega/dk\to 0$ (singolarità di van Hove).
+
+---
+
+### 10.2.3 Catena biatomica unidimensionale: acustico più ottico
+
+Due masse alternate $m_{1},m_{2}$, stessa molla $K$, lunghezza della cella unitaria $a$ contenente entrambi gli atomi. Con accoppiamento tra primi vicini, la dispersione a due rami è
+
+$$
+\omega^{2}(k) = K\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)
+\pm \sqrt{K^{2}\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)^{2} - \frac{4K^{2}}{m_{1}m_{2}}\sin^{2}\!\frac{ka}{2}}
+$$
+
+- Il segno **meno** è il ramo **acustico** con $\omega\to 0$ quando $k\to 0$  
+- Il segno **più** è il ramo **ottico** con $\omega(k=0)=\sqrt{2K(1/m_{1}+1/m_{2})}$
+
+A $k=0$, il modo acustico muove i due atomi **in fase**; il modo ottico li muove **in opposizione di fase**. Per masse diverse si apre un **gap** al bordo della zona.
+
+---
+
+### 10.2.4 Cristalli tridimensionali: polarizzazioni e velocità del suono
+
+Per $r=1$ (Bravais monoatomico) ci sono 3 rami acustici: uno **longitudinale** (LA) e due **trasversi** (TA). Vicino a $\boldsymbol q=0$ sono **onde sonore** con dispersione lineare
+
+$$
+\omega_{\text{LA}}(\boldsymbol q) \approx v_{L}|\boldsymbol q|,\qquad \omega_{\text{TA}}(\boldsymbol q) \approx v_{T}|\boldsymbol q|
+$$
+
+Per propagazione lungo un asse cubico in cristalli cubici, le velocità si collegano alle costanti elastiche e alla densità di massa $\rho$ (limite continuo):
+
+$$
+v_{L} = \sqrt{\frac{C_{11}}{\rho}},\qquad v_{T} = \sqrt{\frac{C_{44}}{\rho}}
+$$
+
+Più in generale, l'equazione di Christoffel dà velocità dipendenti dalla direzione.
+
+Per $r>1$ si aggiungono $3r-3$ rami **ottici**, che tipicamente hanno una debole dispersione in $\boldsymbol q$ vicino al centro della zona. Se la base porta cariche opposte, alcuni modi ottici sono **attivi nell'IR** (vedi §10.14).
+
+---
+
+### 10.2.5 Quantizzazione: fononi come bosoni
+
+Promuoviamo ogni modo normale $(\boldsymbol q,s)$ a un oscillatore armonico:
+
+$$
+H = \sum_{\boldsymbol q,s} \hbar\omega_{\boldsymbol q s}\left(b^{\dagger}_{\boldsymbol q s} b_{\boldsymbol q s} + \tfrac{1}{2}\right)
+$$
+
+con $[b_{\boldsymbol q s},b^{\dagger}_{\boldsymbol q' s'}]=\delta_{\boldsymbol q\boldsymbol q'}\delta_{ss'}$. L'operatore spostamento è
+
+$$
+\boldsymbol u_{\kappa}(\boldsymbol R) = \sum_{\boldsymbol q,s} \sqrt{\frac{\hbar}{2M_{\kappa} N \omega_{\boldsymbol q s}}}\;
+\left[\boldsymbol e_{\kappa s}(\boldsymbol q)b_{\boldsymbol q s} e^{i\boldsymbol q\cdot \boldsymbol R} + \boldsymbol e_{\kappa s}^{\ast}(\boldsymbol q)b^{\dagger}_{\boldsymbol q s} e^{-i\boldsymbol q\cdot \boldsymbol R}\right]
+$$
+
+L'occupazione fononica segue la statistica di Bose con potenziale chimico $\mu=0$ all'equilibrio.
+
+---
+
+### 10.2.6 Capacità termica e ritorno a Debye
+
+Energia fononica totale per volume $U/V=\sum_{s}\int d\omega\,\hbar\omega\,g_{s}(\omega)\,n_{B}(\omega)$ con $n_{B}=(e^{\beta\hbar\omega}-1)^{-1}$. Modi acustici a bassa $T$ $\Rightarrow$ **legge di Debye** $C_{V}\propto T^{3}$ in tre dimensioni; alta $T$ $\Rightarrow$ Dulong–Petit $3Nk_{B}$ (vedi §9.6 per l'integrale completo di Debye). I modi ottici aggiungono picchi simili a quello di Schottky quando i loro gap diventano termicamente accessibili.
+
+---
+
+### 10.2.7 Trasporto termico: $\kappa$ dalla teoria cinetica
+
+In un cristallo, il calore è trasportato soprattutto dai fononi acustici. La teoria cinetica dà
+
+$$
+\kappa = \frac{1}{3}\sum_{s}\int d\omega\; g_s(\omega)\,C_{\omega s}\,v_{g}^{2}(\omega,s)\,\tau(\omega,s)
+$$
+
+dove la densità degli stati per volume è indicata con g, $C_{\omega s}=\hbar\omega\,\partial n_{B}/\partial T$ è la capacità termica del modo, $v_{g}=\partial\omega/\partial q$ la velocità di gruppo e $\tau$ il tempo di vita. Canali di diffusione:
+
+- **Fonone–fonone** (anarmonico). Si divide in processi **normali (N)**, che conservano la quantità di moto cristallina, e **Umklapp (U)** con $\boldsymbol q_{1}+\boldsymbol q_{2}=\boldsymbol q_{3}+\boldsymbol G$, che degradano la corrente termica  
+- Diffusione ai **bordi** (dominante alla nanoscala o a bassissime $T$)  
+- Diffusione da **isotopi e disordine**  
+- Diffusione **fonone–elettrone** e **fonone–difetto** nei metalli
+
+Empiricamente, $\kappa(T)$ cresce spesso come $\sim T^{3}$ a bassissime $T$ (regime balistico o limitato dai bordi), raggiunge un massimo e poi diminuisce circa come $1/T$ ad alte $T$ (limitato da Umklapp).
+
+---
+
+### 10.2.8 Anarmonicità, spostamenti di frequenza e tempi di vita
+
+I cristalli reali non sono perfettamente armonici. I termini cubici e quartici causano:
+
+- **Espansione termica** (effetto quasi armonico)  
+- **Rinormalizzazione delle frequenze** $\omega(\boldsymbol q,T)$  
+- **Tempi di vita finiti** $\tau_{\boldsymbol q s}$ tramite diffusione a tre e quattro fononi
+
+Una misura macroscopica utile è il **parametro di Grüneisen**
+
+$$
+\gamma_{\boldsymbol q s} \equiv -\frac{\partial \ln \omega_{\boldsymbol q s}}{\partial \ln V},\qquad
+\gamma \equiv \frac{\sum_{\boldsymbol q s} \gamma_{\boldsymbol q s} C_{\boldsymbol q s}}{\sum_{\boldsymbol q s} C_{\boldsymbol q s}}
+$$
+
+Il **coefficiente di espansione termica** volumetrico $\alpha$ è collegato a $\gamma$ e al modulo di comprimibilità $B$:
+
+$$
+\alpha = \frac{\gamma\,C_{V}}{B\,V}
+$$
+
+(Approssimazione quasi armonica; funziona sorprendentemente bene per molti solidi semplici.)
+
+---
+
+### 10.2.9 Accoppiamento elettrone–fonone: l'origine di resistività e appaiamento
+
+Gli spostamenti modulano l'hamiltoniana elettronica $H_{e}$, producendo un'interazione $H_{e\text{-}ph}$. Due archetipi:
+
+- **Potenziale di deformazione** (corto raggio): $\delta V \sim \Xi\,\nabla\cdot \boldsymbol u$ si accoppia ai fononi LA  
+- **Fröhlich** (polare a lungo raggio): nei cristalli ionici, i fononi LO creano campi elettrici macroscopici che si accoppiano fortemente agli elettroni
+
+Conseguenze:
+
+- **Resistività dei metalli**: a bassa $T\ll \Theta_{D}$, legge di Bloch–Grüneisen $\rho \propto T^{5}$; ad alta $T$, approssimativamente $\rho\propto T$  
+- **Superconduttività**: lo scambio di fononi virtuali fornisce un'attrazione efficace che può superare la repulsione coulombiana vicino alla superficie di Fermi (BCS)
+
+---
+
+### 10.2.10 Instabilità e modi soffici: Peierls in una dimensione
+
+Nei metalli unidimensionali, la suscettività elettronica ha un picco a $q=2k_{F}$. L'accoppiamento elettrone–fonone ammorbidisce il fonone a quel vettore d'onda; sotto una $T$ critica, il **modo soffice** $\omega(2k_{F})\to 0$ induce una distorsione reticolare con vettore d'onda 2kF (periodo raddoppiato, o dimerizzazione, a metà riempimento), aprendo un gap: una **transizione di Peierls**. In dimensioni superiori, onde di densità di carica e transizioni strutturali seguono una logica simile.
+
+---
+
+### 10.2.11 Firme sperimentali dei fononi
+
+- **Diffusione anelastica di neutroni (INS)**: misura il fattore di struttura dinamico $S(\boldsymbol q,\omega)$, ricostruendo l'intera $\omega(\boldsymbol q)$ e gli autovettori  
+- **Spettroscopia Raman**: sonda i fononi ottici al centro della zona; valgono le regole di selezione della simmetria  
+- Assorbimento e riflettività nell'**infrarosso (IR)**: i fononi ottici attivi nell'IR nei cristalli polari si separano in LO e TO a $\Gamma$ (relazione di Lyddane–Sachs–Teller)  
+- **Diffusione Brillouin della luce**: accede ai fononi acustici a grande lunghezza d'onda (GHz)  
+- **Calore specifico** e **conducibilità termica** rispetto a $T$: firme termodinamiche macroscopiche della densità degli stati e della diffusione
+
+---
+
+### 10.2.12 Brevi esempi svolti
+
+**(a) Velocità di gruppo nella catena monoatomica**  
+Da $\omega(k)=2\sqrt{K/m}\,\left|\sin(ka/2)\right|$, calcolare $v_{g}(k)$ e mostrare $v_{g}\to v_{s}=a\sqrt{K/m}$ quando $k\to 0^{+}$.
+
+**(b) Singolarità al bordo della densità degli stati**  
+Usare $g(\omega)=(L/\pi)/|d\omega/dk|$ per mostrare che la densità degli stati unidimensionale diverge a $k=\pi/a$.
+
+**(c) Gap biatomico a $\Gamma$**  
+Calcolare $\omega_{\text{opt}}(0)$ e $\omega_{\text{ac}}(0)$ per la catena biatomica e interpretare gli autovettori.
+
+**(d) $T^{3}$ di Debye**  
+Assumendo tre rami acustici con dispersione lineare fino a un taglio di Debye $q_{D}$, integrare per ottenere $C_{V}\propto T^{3}$ a basse $T$.
+
+**(e) Soglia di Umklapp**  
+Mostrare che un processo Umklapp richiede che $\boldsymbol q_{1}+\boldsymbol q_{2}$ esca dalla prima BZ; stimare la temperatura minima alla quale tali $\boldsymbol q$ diventano termicamente popolati in un cubico semplice con vettore d'onda di Debye $q_{D}$.
+
+**(f) Espansione termica da $\gamma$**  
+Partendo da $F(T,V)=U_{\text{el}}(V)+\sum_{\boldsymbol q s}\left[\tfrac{1}{2}\hbar\omega_{\boldsymbol q s} + k_{B}T\ln(1-e^{-\beta\hbar\omega_{\boldsymbol q s}})\right]$, mostrare che $\alpha=\gamma C_{V}/(BV)$ nell'approssimazione quasi armonica.
+
+---
+
+### 10.2.13 Errori comuni
+
+- **«Ottico richiede ioni».** No: bastano $r>1$ atomi per cella. L'**attività IR** richiede polarità; i fononi ottici esistono comunque  
+- **Velocità di fase e di gruppo**: il trasporto di energia usa $v_{g}=\partial\omega/\partial k$, non $\omega/k$  
+- **Dimenticare le regole di selezione**: Raman vede soltanto le simmetrie attive in Raman; l'IR vede i modi attivi nell'IR; i neutroni si accoppiano alle posizioni nucleari e ai momenti magnetici  
+- **Mescolare gli schemi della BZ**: le rappresentazioni a zona ridotta ed estesa cambiano dove compaiono i rami, ma non la fisica  
+- **Abusare dell'approssimazione armonica**: trasporto termico ed espansione richiedono anarmonicità; includere processi N e U nel modellare $\kappa(T)$
+
+---
+
+### 10.2.14 Raccolta minima di problemi
+
+- Ricavare le dispersioni unidimensionali monoatomica e biatomica e tracciarle entrambe nella prima BZ  
+- Costruire una matrice dinamica $6\times 6$ per una base cubica a due atomi con forze centrali tra primi vicini ed estrarre $\omega(\boldsymbol q)$ lungo una linea ad alta simmetria  
+- Calcolare $g(\omega)$ per un modello di Debye in $d=1,2,3$ e mostrare i corrispondenti scaling del calore specifico a basse $T$  
+- Usare la regola di Matthiessen con tassi di diffusione da bordi, isotopi e Umklapp per adattare una curva sintetica $\kappa(T)$; individuare lo scaling della temperatura del picco con le dimensioni del campione  
+- Stimare la temperatura di Bloch–Grüneisen e il passaggio dalla legge $T^{5}$ per un metallo con $v_{s}$ e $k_{F}$ dati
+
+---
+
+## 10.3 Metalli di Drude–Sommerfeld
+
+I metalli sembrano complicati alla scala atomica, ma i loro elettroni seguono leggi sorprendentemente semplici. **Drude** fornì il primo quadro cinetico (1900): elettroni classici come un gas di palle da biliardo cariche con collisioni occasionali. **Sommerfeld** (1928) corresse i principali errori usando la statistica di Fermi–Dirac. Insieme sostengono tuttora una quantità sorprendente di fisica dei metalli: conducibilità continua e alternata, effetto Hall, magnetotrasporto, calore specifico, paramagnetismo di Pauli e legge di Wiedemann–Franz.
+
+---
+
+### 10.3.1 Modello di Drude: un tempo di rilassamento, molte applicazioni
+
+Supponiamo che elettroni di conduzione di massa (efficace) $m^{\ast}$ e carica $-e$ subiscano collisioni che ne randomizzano il moto, con tempo medio $\tau$.
+
+**Equazione del moto (sollecitazione stazionaria)** per la velocità media $\boldsymbol v$ sotto campi $(\boldsymbol E,\boldsymbol B)$:
+
+$$
+m^{\ast}\,\frac{d\boldsymbol v}{dt} = -e\left(\boldsymbol E + \boldsymbol v\times \boldsymbol B\right) - \frac{m^{\ast}\boldsymbol v}{\tau}
+$$
+
+- **Conducibilità continua** a $B=0$ con densità di corrente $\boldsymbol J = -ne\,\boldsymbol v$:
+
+$$
+\sigma_{0} = \frac{ne^{2}\tau}{m^{\ast}},\qquad \rho_{0} \equiv \frac{1}{\sigma_{0}} = \frac{m^{\ast}}{ne^{2}\tau}
+$$
+
+Definiamo la **mobilità** $\mu \equiv e\tau/m^{\ast}$, così che $\sigma_{0}=ne\mu$.
+
+- **Conducibilità alternata (Drude)** per il campo $\propto e^{-i\omega t}$:
+
+$$
+\sigma(\omega) = \frac{\sigma_{0}}{1 - i\omega\tau}
+$$
+
+La parte reale è una lorentziana di larghezza $1/\tau$; la parte immaginaria è positiva a frequenza positiva e ha un massimo a $\omega\sim 1/\tau$.
+
+- **Frequenza di plasma** (polo degli elettroni liberi in ottica):
+
+$$
+\omega_{p}^{2} = \frac{ne^{2}}{\varepsilon_{0} m^{\ast}}
+$$
+
+Per $\omega\ll\omega_{p}$, i metalli riflettono; per $\omega>\omega_{p}$, trasmettono come un dielettrico.
+
+- **Profondità di penetrazione** nel limite di buon conduttore ($\omega\tau\ll 1$):
+
+$$
+\delta = \sqrt{\frac{2}{\mu_{0}\,\omega\,\sigma_{0}}}
+$$
+
+---
+
+### 10.3.2 Effetto Hall e tensore di conducibilità
+
+Con $\boldsymbol B = B\hat z$, la soluzione di Drude dà il tensore di conducibilità
+
+$$
+\sigma = 
+\begin{pmatrix}
+\dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & -\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & 0 \\
+\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & 0 \\
+0 & 0 & \sigma_{0}
+\end{pmatrix},
+\qquad
+\omega_{c} \equiv \frac{eB}{m^{\ast}}
+$$
+
+Invertendolo si ottiene il tensore di resistività. Due risultati fondamentali:
+
+- **Coefficiente di Hall** (campo debole):
+
+$$
+R_{H} \equiv \frac{E_{y}}{J_{x}B} = -\,\frac{1}{ne}
+$$
+
+- La **magnetoresistenza** nel modello di Drude **isotropo a banda singola** è **zero**: $\rho_{xx}(B)=\rho_{0}$ nonostante $\sigma_{xx}$ diminuisca, perché l'inversione del tensore cancella l'effetto. I materiali reali mostrano magnetoresistenza finita a causa di bande multiple, anisotropia o variazioni di $\tau(\boldsymbol k)$.
+
+---
+
+### 10.3.3 Trasporto termico di Drude e Wiedemann–Franz (anticipazione)
+
+Una semplice stima cinetica dà la conducibilità termica elettronica $\kappa_{e}\sim \tfrac{1}{3} C_{e} v_{F}^{2}\tau$ (una volta introdotta $v_{F}$). Drude prevede ingenuamente il **rapporto di Wiedemann–Franz**
+
+$$
+\frac{\kappa_{e}}{\sigma T} \equiv L \stackrel{?}{=}\text{const}
+$$
+
+Ma soltanto con la statistica di **Sommerfeld** otteniamo il corretto **numero di Lorenz**
+
+$$
+L_{0} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2}
+$$
+
+Lo ricaveremo correttamente dopo avere quantizzato il gas elettronico.
+
+---
+
+### 10.3.4 La correzione: gas di elettroni liberi di Sommerfeld
+
+Gli elettroni sono **fermioni**. Poniamone $N$ in una scatola di volume $V$ e riempiamo gli stati di quantità di moto fino alla **sfera di Fermi**.
+
+- **Vettore d'onda ed energia di Fermi** (degenerazione di spin $g=2$):
+
+$$
+k_{F} = \left(3\pi^{2} n\right)^{1/3},\qquad \epsilon_{F} = \frac{\hbar^{2} k_{F}^{2}}{2 m^{\ast}},\qquad v_{F}=\frac{\hbar k_{F}}{m^{\ast}}
+$$
+
+- **Densità degli stati** per volume per una banda parabolica:
+
+$$
+g(\epsilon) = \frac{1}{2\pi^{2}}\left(\frac{2m^{\ast}}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}
+$$
+
+A basse $T\ll T_{F}$, soltanto un guscio di larghezza $\sim k_{B}T$ attorno a $\epsilon_{F}$ è termicamente attivo. Questo spiega perché gran parte della termodinamica classica di Drude fallisse.
+
+---
+
+### 10.3.5 Calore specifico elettronico: lineare in $T$
+
+Usando lo sviluppo di Sommerfeld,
+
+$$
+C_{e} = \gamma\,T,\qquad \gamma = \frac{\pi^{2}}{3}\,k_{B}^{2}\,g(\epsilon_{F})
+$$
+
+La linearità in $T$ concorda con gli esperimenti ed è minuscola rispetto a $3n_{\mathrm{atom}}k_{B}$ (con n_atom densità numerica atomica) a temperatura ambiente, perché partecipa soltanto una frazione $\sim (T/T_{F})$ degli elettroni.
+
+---
+
+### 10.3.6 Wiedemann–Franz, nel modo corretto
+
+La teoria cinetica con statistica di Fermi dà
+
+$$
+\kappa_{e} = \frac{1}{3} v_{F}^{2}\tau\,C_{e}
+$$
+
+Combinando con $\sigma_{0}=ne^{2}\tau/m^{\ast}$ e $n=\int^{\epsilon_{F}} g(\epsilon)\,d\epsilon$ si ottiene, per diffusione elastica con $\tau$ indipendente dall'energia,
+
+$$
+\frac{\kappa_{e}}{\sigma T} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2} \equiv L_{0}
+$$
+
+Le deviazioni di $L$ da $L_{0}$ diagnosticano diffusione anelastica, forte dipendenza di $\tau$ dall'energia o ulteriori portatori di calore (fononi, magnoni).
+
+---
+
+### 10.3.7 Paramagnetismo di Pauli e diamagnetismo di Landau (cenni)
+
+- **Paramagnetismo di Pauli** dalla polarizzazione degli spin in un campo $B$:
+
+$$
+\chi_{\text{Pauli}} = \mu_{0}\,\mu_{B}^{2}\,g(\epsilon_{F})
+$$
+
+Piccolo, indipendente da $T$ all'ordine dominante.
+
+- Il **diamagnetismo di Landau** dal moto orbitale in campi quantizzanti dà
+
+$$
+\chi_{\text{Landau}} = -\frac{1}{3}\,\chi_{\text{Pauli}}
+$$
+
+per un gas di elettroni liberi. Nei metalli reali, la $\chi$ netta include anche diamagnetismo degli elettroni interni e possibili termini di Van Vleck.
+
+---
+
+### 10.3.8 Potere termoelettrico e formula di Mott (in una riga)
+
+Il coefficiente di Seebeck $S$ (tensione da un gradiente di temperatura) non è descritto correttamente a bassa temperatura dal modello classico di Drude; con la statistica di Fermi,
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+Questa **formula di Mott** rende $S$ una sonda sensibile dell'asimmetria particella–lacuna e della diffusione vicino a $\epsilon_{F}$.
+
+---
+
+### 10.3.9 Che cosa sbaglia Drude (e perché Sommerfeld vince)
+
+- **Capacità termica**: Drude classico prevede $C_{e}\sim Nk_{B}$; i dati mostrano $C_{e}\propto T\ll Nk_{B}$. Sommerfeld corregge il problema.  
+- **Segno di Hall**: Drude a banda singola dà $R_{H}=-1/ne$ (elettroni). Molti materiali hanno $R_{H}$ **positivo** a causa di superfici di Fermi di tipo lacuna o compensazione multibanda.  
+- **Magnetoresistenza**: zero in Drude a banda singola, ma finita nella realtà per anisotropia, tasche multiple o $\tau(\boldsymbol k)$.  
+- **Ottica ad alta frequenza**: Drude da solo non descrive l'assorbimento interbanda e i contributi delle cariche legate; aggiungere oscillatori di Lorentz per una $\varepsilon(\omega)$ realistica.
+
+---
+
+### 10.3.10 Collegamento alla struttura a bande
+
+Sostituire $m^{\ast}$ con la **massa efficace di banda** ricavata dalla dispersione $\epsilon(\boldsymbol k)$ vicino alla superficie di Fermi:
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{\hbar^{2}}\left.\frac{\partial^{2}\epsilon(\boldsymbol k)}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{F}}
+$$
+
+Una $m^{\ast}$ anisotropa rende $\sigma$ un tensore anche a $B=0$. Il trasporto reale usa la teoria di **Boltzmann** linearizzata attorno alla superficie di Fermi con $\tau(\boldsymbol k)$ (vedi §10.7).
+
+---
+
+### 10.3.11 Regola di somma ottica e peso spettrale
+
+Per un modello di Drude parabolico a banda singola, il peso integrato della conducibilità è legato alla densità dei portatori:
+
+$$
+\int_{0}^{\infty} d\omega\;\mathrm{Re}\,\sigma(\omega) = \frac{\pi ne^{2}}{2 m^{\ast}}
+$$
+
+Nei sistemi correlati, il peso di Drude può essere soppresso e trasferito a strutture nel medio infrarosso simili a contributi interbanda, spesso interpretate come firma di un peso quasiparticellare ridotto.
+
+---
+
+### 10.3.12 Brevi esempi svolti
+
+**(a) Numeri affidabili**  
+Prendere $n=8.5\times 10^{28}\ \mathrm{m^{-3}}$, $\tau=3\times 10^{-14}\ \mathrm{s}$, $m^{\ast}=m_{e}$. Calcolare $\sigma_{0}$, $\rho_{0}$, $\omega_{p}$ e $\delta$ a $\omega/2\pi=10\ \mathrm{GHz}$.
+
+**(b) Barra di Hall**  
+Per un campione di spessore $t$, larghezza $w$, corrente $I$ lungo $x$ e campo $B\hat z$, mostrare il modulo della tensione di Hall $V_{H} = I\,B/(ne\,t)$ nel limite di Drude a banda singola. Esprimere $V_{H}$ per il rame in funzione di corrente, campo e spessore usando i parametri del materiale di (a).
+
+**(c) $C_{e}$ di Sommerfeld**  
+Ricavare $C_{e}=\gamma T$ usando lo sviluppo di Sommerfeld ed esprimere $\gamma$ in termini di $n$ e $m^{\ast}$.
+
+**(d) Wiedemann–Franz da Boltzmann**  
+Linearizzare l'equazione di Boltzmann con diffusione elastica da impurità e mostrare $L=L_{0}$ quando $\tau(\epsilon)$ è costante vicino a $\epsilon_{F}$.
+
+**(e) Segno del potere termoelettrico di Mott**  
+Assumendo $\sigma(\epsilon)\propto \epsilon^{s}$ vicino a $\epsilon_{F}$, mostrare $S = -(\pi^{2}/3)(k_{B}^{2}T/e)\,s/\epsilon_{F}$ e interpretare $S>0$ rispetto a $S<0$.
+
+---
+
+### 10.3.13 Errori comuni
+
+- **Dimenticare la massa efficace**: usare sempre $m^{\ast}$ dalla struttura a bande, non la massa nuda $m_{e}$, nelle formule di trasporto.  
+- **Leggere la magnetoresistenza da $\sigma_{xx}$**: la $\rho_{xx}$ misurata può essere indipendente da $B$ in Drude a banda singola anche se $\sigma_{xx}$ diminuisce; invertire il tensore.  
+- **Assumere $R_{H}=-1/ne$ universalmente**: la compensazione multibanda e superfici di Fermi deformate possono invertire il segno o ridurre il modulo.  
+- **Abusare di $\tau$ costante**: la diffusione dipendente dall'energia o dall'angolo cambia $L$, $S$ e la magnetoresistenza; attenzione fuori dai regimi a bassa $T$ limitati dalle impurità.  
+- **Confondere masse ottiche e di trasporto**: le masse ciclotronica, termodinamica e di banda possono differire in sistemi anisotropi o interagenti.
+
+---
+
+## 10.4 Teorema di Bloch e struttura a bande
+
+I potenziali periodici prendono il complicato caos atomico e lo comprimono in regole pulite nello spazio delle quantità di moto. Il punto principale: il **teorema di Bloch** afferma che gli elettroni in un cristallo si muovono come onde piane modulate da un inviluppo periodico sul reticolo. Da qui si aprono gap ai bordi delle zone di Brillouin, le dispersioni $E_{n}(\boldsymbol k)$ definiscono velocità e masse efficaci, e le prospettive «quasi libera» e «tight-binding» diventano la stessa storia, osservata da lati opposti.
+
+![Bande schematiche di valenza e conduzione sono separate da un intervallo energetico proibito. L'energia varia periodicamente con la quantità di moto cristallina.](/images/diagrams/band-gap.svg)
+
+---
+
+### 10.4.1 Stati di Bloch ed equazione centrale
+
+Per un singolo elettrone in un potenziale periodico $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$,
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R)=u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+Sviluppiamo la parte periodica sul reticolo nei vettori reciproci $\boldsymbol G$:
+
+$$
+u_{n\boldsymbol k}(\boldsymbol r) = \sum_{\boldsymbol G} c_{n}(\boldsymbol k+\boldsymbol G)\,e^{i\boldsymbol G\cdot \boldsymbol r}
+$$
+
+e il potenziale come $V(\boldsymbol r)=\sum_{\boldsymbol G} U_{\boldsymbol G}\,e^{i\boldsymbol G\cdot \boldsymbol r}$. Inseriamo nell'equazione di Schrödinger per ottenere l'**equazione centrale**
+
+$$
+\left[\frac{\hbar^{2}}{2m}\,|\boldsymbol k+\boldsymbol G|^{2} - E\right] c(\boldsymbol k+\boldsymbol G) + \sum_{\boldsymbol G'} U_{\boldsymbol G-\boldsymbol G'}\,c(\boldsymbol k+\boldsymbol G') = 0
+$$
+
+È un sistema lineare infinito nei coefficienti delle onde piane $c$. Troncarlo ragionevolmente dà le bande.
+
+---
+
+### 10.4.2 Ripiegamento delle zone e zona ridotta o estesa
+
+Gli elettroni liberi hanno la dispersione parabolica $E=\hbar^{2}|\boldsymbol k|^{2}/2m$. In una rappresentazione reticolare, $\boldsymbol k$ e $\boldsymbol k+\boldsymbol G$ hanno lo stesso vettore d'onda ridotto, ma possono appartenere a bande diverse. Si può scegliere:
+
+- **Zona estesa**: mostrare $E(\boldsymbol k)$ attraverso zone successive nello spazio $k$  
+- **Zona ridotta**: ripiegare tutte le quantità di moto nella prima zona di Brillouin; le copie diventano **bande** separate, indicizzate da $n$
+
+Quando $V\neq 0$, gli stati degeneri dopo il ripiegamento si **mescolano** e si aprono gap agli incroci.
+
+---
+
+### 10.4.3 Gap dalla riflessione di Bragg: un esempio 2×2
+
+A un bordo dove $\boldsymbol k$ e $\boldsymbol k'=\boldsymbol k-\boldsymbol G$ sono degeneri per l'elettrone libero, conserviamo soltanto queste due onde piane nell'equazione centrale. Il problema agli autovalori è
+
+$$
+\begin{pmatrix}
+\epsilon_{\boldsymbol k} & U_{\boldsymbol G} \\
+U_{\boldsymbol G}^{\ast} & \epsilon_{\boldsymbol k'}
+\end{pmatrix}
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+= E
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+$$
+
+con $\epsilon_{\boldsymbol q}=\hbar^{2}|\boldsymbol q|^{2}/2m$. Esattamente al bordo della zona, dove $\epsilon_{\boldsymbol k}=\epsilon_{\boldsymbol k'}$, le due energie si separano come
+
+$$
+E_{\pm} = \epsilon_{0} \pm |U_{\boldsymbol G}|
+$$
+
+quindi il **gap di banda** è
+
+$$
+E_{g} = 2\,|U_{\boldsymbol G}|
+$$
+
+Morale: componenti di Fourier più intense del potenziale reticolare ai vettori reciproci $\boldsymbol G$ aprono gap maggiori sui corrispondenti piani della zona di Brillouin.
+
+---
+
+### 10.4.4 Kronig–Penney in una riga (intuizione unidimensionale)
+
+Per una successione periodica unidimensionale di barriere delta (costante reticolare $a$), la dispersione soddisfa una relazione trascendente
+
+$$
+\cos(ka) = \cos(\alpha a) + \frac{P}{\alpha a}\,\sin(\alpha a)
+$$
+
+dove $\alpha=\sqrt{2mE}/\hbar$ nelle buche e $P$ codifica l'intensità delle barriere. Le regioni dove il membro destro ha modulo $\le 1$ sono **bande consentite**; dove supera 1 sono **gap proibiti**. Regolare $P$ porta con continuità dal quasi libero ($P\to 0$) al tight-binding ($P\gg 1$).
+
+---
+
+### 10.4.5 Velocità di gruppo, massa efficace e densità degli stati
+
+La dispersione di banda non è soltanto gradevole da guardare: le sue derivate sono fisica:
+
+- **Velocità di gruppo**
+
+$$
+\boldsymbol v_{n}(\boldsymbol k) = \frac{1}{\hbar}\,\nabla_{\boldsymbol k} E_{n}(\boldsymbol k)
+$$
+
+- **Tensore di massa efficace** vicino a un estremo
+
+$$
+\left(m_{n}^{\ast}\right)^{-1}_{\alpha\beta} = \frac{1}{\hbar^{2}}\,\left.\frac{\partial^{2}E_{n}}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{0}}
+$$
+
+Curvatura $\uparrow$ ⇒ massa leggera; curvatura $\downarrow$ ⇒ massa pesante. Una curvatura negativa vicino al massimo della banda di valenza significa che sono **lacune** con carica positiva e massa positiva a governare il trasporto.
+
+- **Densità degli stati** per una singola banda degenere in spin in tre dimensioni
+
+$$
+g(E) = \frac{1}{4\pi^{3}} \int_{E_{n}(\boldsymbol k)=E} \frac{dS_{k}}{|\nabla_{\boldsymbol k} E_{n}|}
+$$
+
+I punti critici dove il gradiente dell'energia si annulla causano non analiticità di van Hove; una divergenza dipende dalla dimensione e dal tipo di punto critico, mentre estremi o selle tridimensionali generici producono cuspidi finite.
+
+---
+
+### 10.4.6 Quasi libero e tight-binding: due ingrandimenti, stesso film
+
+- **Elettrone quasi libero (NFE)**: partire dalle parabole e aprire gap perturbativamente dove si incrociano. Adatto quando $|U_{\boldsymbol G}| \ll \epsilon_{F}$.  
+- **Tight-binding (TB)**: partire da orbitali localizzati con hopping $t$ tra siti; le bande emergono da combinazioni leganti e antileganti. Ideale quando gli orbitali sono compatti e $t$ è piccolo rispetto alle energie sul sito.
+
+Entrambi sono limiti degli stessi strumenti di Bloch. NFE spiega l'apertura dei gap e le masse leggere nei metalli semplici; TB riproduce le forme delle bande nei solidi covalenti e ionici e sarà al centro del §10.5 (qui vivono le funzioni di Wannier).
+
+---
+
+### 10.4.7 Metodo $k\cdot p$: sviluppo locale vicino a un bordo di banda
+
+Vicino a un $\boldsymbol k_{0}$ ad alta simmetria, sviluppiamo l'hamiltoniana come $H(\boldsymbol k)\approx H(\boldsymbol k_{0})+\frac{\hbar}{m}\,(\boldsymbol k-\boldsymbol k_{0})\cdot (\boldsymbol p+\hbar\boldsymbol k_{0}) + \cdots$. La perturbazione al secondo ordine dà
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{m}\delta_{\alpha\beta} + \frac{2}{m^{2}} \sum_{m\neq n} \frac{\operatorname{Re}\!\left[\langle n0|p_{\alpha}|m0\rangle \langle m0|p_{\beta}|n0\rangle\right]}{E_{n0}-E_{m0}}
+$$
+
+dove $\{|m0\rangle\}$ sono stati di Bloch a $\boldsymbol k_{0}$. Questo collega la massa efficace agli elementi di matrice interbanda e alle regole di selezione di simmetria (per esempio lacune pesanti e leggere nei semiconduttori).
+
+---
+
+### 10.4.8 Simmetria, degenerazioni e contributo spin–orbita
+
+- La simmetria cristallina protegge degenerazioni nei punti $k$ ad alta simmetria e lungo linee. Rompere la simmetria (deformazioni, campi) le separa.  
+- **Inversione** e **inversione temporale** insieme impongono doppietti di Kramers in presenza di spin.  
+- L'**accoppiamento spin–orbita (SOC)** mescola carattere di spin e orbitale; con inversione rotta si possono ottenere separazioni di tipo **Rashba**. Qui restiamo introduttivi e torneremo alla topologia nel §10.11.
+
+---
+
+### 10.4.9 Superfici di Fermi e indicazioni sul trasporto
+
+La **superficie di Fermi** è la superficie a energia costante $E_{n}(\boldsymbol k)=\epsilon_{F}$. La sua curvatura e connettività determinano:
+
+- Masse ciclotroniche e oscillazioni quantistiche (de Haas–van Alphen, Shubnikov–de Haas)  
+- Conducibilità anisotropa ed effetto Hall (tramite velocità e tempi di vita sulla superficie di Fermi)  
+- Vettori di nesting che possono amplificare instabilità a onda di densità
+
+Dispersione di Bloch più tempo di diffusione sono l'intera base del trasporto nel §10.7.
+
+---
+
+### 10.4.10 Funzioni di Wannier: rappresentazioni delle bande nello spazio reale
+
+Una trasformazione unitaria degli stati di Bloch sulla BZ dà **funzioni di Wannier** $|n,\boldsymbol R\rangle$ localizzate vicino alla cella $\boldsymbol R$. Per un sottospazio di bande localizzabile, gauge regolari seguiti dalla minimizzazione della dispersione spaziale producono funzioni di Wannier massimamente localizzate, che agiscono come orbitali tight-binding e sono perfette per costruire modelli, interpolare e calcolare risposte nello spazio reale. Sviluppiamo questo nel §10.5.
+
+---
+
+### 10.4.11 ARPES e ricostruzione delle bande (come osserviamo $E(\boldsymbol k)$)
+
+La **fotoemissione risolta in angolo (ARPES)** misura direttamente la parte occupata di $E(\boldsymbol k)$. Nei materiali bidimensionali è quasi letterale; in tre dimensioni c'è una complicazione legata a $k_{z}$. Combinare con oscillazioni quantistiche e conducibilità ottica per ricostruire la struttura a bande a bassa energia effettivamente percepita dal trasporto.
+
+---
+
+### 10.4.12 Brevi esempi svolti
+
+**(a) Ampiezza del gap da una singola componente di Fourier**  
+Prendere un potenziale cosinusoidale unidimensionale $V(x)=2U_{G}\cos(Gx)$ con $G=2\pi/a$. Eseguire il troncamento 2×2 dell'equazione centrale a $k=G/2$ e mostrare $E_{g}=2|U_{G}|$.
+
+**(b) Massa efficace vicino a un minimo di banda**  
+Per $E(k)\approx E_{0}+\alpha k^{2}+\beta k^{4}$ in una dimensione, estrarre $m^{\ast}=\hbar^{2}/(2\alpha)$ e discutere come il termine $k^{4}$ alteri la densità degli stati, ma non $m^{\ast}$ al minimo.
+
+**(c) Singolarità della densità degli stati in due dimensioni**  
+Per una banda TB su reticolo quadrato $E(\boldsymbol k)=-2t(\cos k_{x}a+\cos k_{y}a)$, individuare i punti di sella e mostrare la singolarità logaritmica di van Hove in $g(E)$.
+
+**(d) Verifica del ripiegamento delle zone**  
+Partire da una parabola di elettrone libero e ripiegare mediante $\pm G$ nella prima BZ. Disegnare dove compaiono degenerazioni e segnare quali vengono rimosse quando $U_{G}\neq 0$.
+
+**(e) $k\cdot p$ per un semiconduttore a gap diretto**  
+A $\Gamma$ in un modello a gap diretto con simmetria d'inversione, mostrare che stati di conduzione e valenza di parità opposta consentono un elemento di matrice della quantità di moto non nullo e quindi un accoppiamento interbanda lineare in $k$; mostrare come l'accoppiamento al secondo ordine con altre bande corregga l'energia e la massa della banda di conduzione non degenere.
+
+---
+
+### 10.4.13 Errori comuni
+
+- **Mescolare zone ridotte ed estese**: tenere traccia del fatto che un «incrocio» sia reale o soltanto una copia ripiegata.  
+- **Identificare curvatura e velocità**: la velocità è la derivata prima, non la curvatura; banda piatta $\Rightarrow$ massa pesante e portatori lenti.  
+- **Dimenticare la base**: regole di selezione e ampiezze dei gap dipendono dalle **componenti di Fourier** $U_{\boldsymbol G}$, che codificano base atomica e legami.  
+- **Assumere un andamento parabolico ovunque**: gli adattamenti a massa efficace funzionano soltanto vicino agli estremi; lontano contano non parabolicità e anisotropia.  
+- **Ignorare il SOC dove è grande**: negli elementi pesanti o nei cristalli senza inversione, il SOC modifica ordine e separazione delle bande, aspetti cruciali per la topologia.
+
+---
+
+### 10.4.14 Raccolta minima di problemi
+
+- Ricavare l'equazione centrale dallo sviluppo di Bloch e scriverla come problema matriciale agli autovalori per un insieme finito di $\boldsymbol G$  
+- Eseguire il calcolo 2×2 dell'apertura del gap su un piano di zona generico con normale $\boldsymbol G$; ottenere $E_{g}=2|U_{\boldsymbol G}|$  
+- Calcolare il tensore $m^{\ast}$ per una superficie ellissoidale a energia costante e collegarlo alla massa ciclotronica in un campo lungo un asse arbitrario  
+- Per un modello di Kronig–Penney unidimensionale con barriere delta, tracciare le bande consentite per diversi $P$ e individuare i limiti NFE e TB  
+- Usando un semplice modello TB su reticolo a nido d'ape, mostrare come nascano i coni di Dirac e come un potenziale alternato tra sottoreticoli apra un gap di massa
+
+---
+
+## 10.5 Tight-binding e Wannier: dagli orbitali locali alle bande
+
+Quando gli elettroni sono più «casalinghi» che «viaggiatori frequenti», il **tight-binding (TB)** è la prospettiva adatta. Si parte da orbitali localizzati di tipo atomico, si permette loro di saltare tra siti e si ottengono bande le cui forme e simmetrie sono scolpite dalla chimica nello spazio reale. Le **funzioni di Wannier** sono le rappresentazioni pulite e ortonormali delle bande di Bloch nello spazio reale, perfette per costruire modelli, calcolare risposte e aggiungere campi o disordine. Questa sezione costruisce il TB da zero, aggiunge regole multiorbitali e di Slater–Koster, tratta i campi magnetici tramite fasi di Peierls e mostra il legame di Wannier con polarizzazione e fisica dei bordi (anticipazione SSH).
+
+---
+
+### 10.5.1 Dagli orbitali alle somme di Bloch
+
+Scegliamo orbitali $\{\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})\}$ centrati sui siti della base $\boldsymbol\tau_{\alpha}$ nella cella $\boldsymbol R$, con etichetta orbitale $\alpha$ (per esempio $s,p_{x},p_{y},p_{z}$).
+
+Formiamo le **somme di Bloch**
+
+$$
+\varphi_{\alpha\boldsymbol k}(\boldsymbol r) = \frac{1}{\sqrt{N}} \sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\alpha})}\,\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})
+$$
+
+Sviluppiamo gli autostati come $\psi_{n\boldsymbol k}=\sum_{\alpha} c_{n\alpha}(\boldsymbol k)\,\varphi_{\alpha\boldsymbol k}$. Elementi di matrice
+
+$$
+H_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,t_{\alpha\beta}(\boldsymbol R),\qquad
+S_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,s_{\alpha\beta}(\boldsymbol R)
+$$
+
+con **hopping** $t_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|H|\phi_{\beta\boldsymbol R}\rangle$ e **sovrapposizione** $s_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|\phi_{\beta\boldsymbol R}\rangle$. Risolviamo il problema **generalizzato** agli autovalori
+
+$$
+H(\boldsymbol k)\,c_{n}(\boldsymbol k)=E_{n}(\boldsymbol k)\,S(\boldsymbol k)\,c_{n}(\boldsymbol k)
+$$
+
+Nel **TB ortogonale** approssimiamo $S=\mathbb I$.
+
+---
+
+### 10.5.2 Catena monoatomica unidimensionale (TB ortogonale)
+
+Un orbitale per sito, costante reticolare $a$, energia sul sito $\varepsilon_{0}$, hopping tra primi vicini $-t$.
+
+$$
+E(k)=\varepsilon_{0}-2t\cos(ka)
+$$
+
+Larghezza di banda $W=4|t|$. La massa efficace vicino a un estremo a $k=0$ è
+
+$$
+\frac{1}{m^{\ast}}=\frac{1}{\hbar^{2}}\frac{\partial^{2}E}{\partial k^{2}}=\frac{2ta^{2}}{\hbar^{2}}
+$$
+
+Il segno di $t$ determina la **curvatura** della banda e quale estremo sia legante o antilegante.
+
+---
+
+### 10.5.3 Catena biatomica e anticipazione SSH
+
+Due siti per cella, $A$ a $0$, $B$ a $a/2$, hopping alternati $t_{1}$ e $t_{2}$. Nella base $(A,B)$ con gauge di fase della cella
+
+$$
+H(k)=
+\begin{pmatrix}
+\varepsilon_{A} & -t_{1}-t_{2}\,e^{-ika} \\
+-t_{1}-t_{2}\,e^{ika} & \varepsilon_{B}
+\end{pmatrix}
+$$
+
+Per $\varepsilon_{A}=\varepsilon_{B}$ la dispersione è
+
+$$
+E_{\pm}(k)=\varepsilon_{0}\pm \sqrt{t_{1}^{2}+t_{2}^{2}+2t_{1}t_{2}\cos(ka)}
+$$
+
+Il gap al bordo della zona $k=\pi/a$ è $2|t_{1}-t_{2}|$. Il **limite SSH** ($\varepsilon_{A}=\varepsilon_{B}$) sostiene stati topologici di bordo quando $|t_{2}|>|t_{1}|$ con bordi aperti; torneremo alla topologia nel §10.11.
+
+---
+
+### 10.5.4 Reticoli quadrato e a nido d'ape (classici)
+
+**Quadrato (un orbitale, primi vicini)**
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t\big[\cos(k_{x}a)+\cos(k_{y}a)\big]
+$$
+
+**Nido d'ape (grafene, un $p_{z}$ per sito, primi vicini)**. Base a due siti $A,B$ e tre vettori di primo vicino $\{\boldsymbol\delta_{i}\}$:
+
+$$
+H(\boldsymbol k)=
+\begin{pmatrix}
+0 & -t\,\sum_{i=1}^{3}e^{i\boldsymbol k\cdot \boldsymbol\delta_{i}} \\
+-t\,\sum_{i=1}^{3}e^{-i\boldsymbol k\cdot \boldsymbol\delta_{i}} & 0
+\end{pmatrix}
+$$
+
+Autovalori
+
+$$
+E_{\pm}(\boldsymbol k)=\pm t\,\Big|1+e^{i\boldsymbol k\cdot \boldsymbol a_{1}}+e^{i\boldsymbol k\cdot \boldsymbol a_{2}}\Big|
+$$
+
+Si toccano nei **coni di Dirac** $K,K'$ con dispersione lineare e velocità di Fermi $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$, dove a è la costante del reticolo di Bravais triangolare.
+
+---
+
+### 10.5.5 TB multiorbitale e regole di Slater–Koster
+
+Gli hopping dipendono dall'orientamento degli orbitali rispetto al legame. **Slater–Koster** parametrizza gli integrali a due centri usando i coseni direttori $(l,m,n)$ tra siti.
+
+Esempi:
+
+- $s$–$s$: $t_{ss\sigma}$  
+- $s$–$p$: $t_{sp\sigma}\,(l,m,n)$ proiettato sull'asse $p$  
+- $p$–$p$: canali $\sigma$ e $\pi$
+
+Per un legame lungo $\hat x$:
+
+$$
+\langle p_{x}|H|p_{x}\rangle = t_{pp\sigma},\qquad
+\langle p_{y}|H|p_{y}\rangle = \langle p_{z}|H|p_{z}\rangle = t_{pp\pi}
+$$
+
+Hopping incrociati come $\langle s|H|p_{x}\rangle\propto t_{sp\sigma}$ moltiplicati per il coseno direttore appropriato. Questa contabilità di simmetria permette di scrivere rapidamente $H(\boldsymbol k)$ per cristalli reali ed evita hopping non consentiti.
+
+---
+
+### 10.5.6 Oltre i primi vicini e spostamenti di van Hove
+
+Aggiungere secondi vicini $t'$ ecc. modifica curvatura e singolarità della densità degli stati. Sul reticolo quadrato
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t[\cos k_{x}a+\cos k_{y}a]-4t'\cos k_{x}a\cos k_{y}a
+$$
+
+Regolare $t'$ fa passare la sella di **van Hove** attraverso $\epsilon_{F}$, una via comune verso instabilità (onde di densità, superconduttività) nei materiali stratificati.
+
+---
+
+### 10.5.7 Campo magnetico: sostituzione di Peierls
+
+L'accoppiamento minimale nel TB entra tramite **fasi di Peierls** sugli hopping
+
+$$
+t_{ij}\ \longrightarrow\ t_{ij}\,\exp\!\left(\frac{ie}{\hbar}\int_{\boldsymbol r_{i}}^{\boldsymbol r_{j}} \boldsymbol A\cdot d\boldsymbol\ell\right)
+$$
+
+Quindi la somma degli angoli di fase attorno a una plaquette è $2\pi\Phi/\Phi_{0}$. Su un reticolo quadrato con flusso razionale $\Phi/\Phi_{0}=p/q$, la simmetria traslazionale si amplia a una **cella unitaria magnetica** e lo spettro si frammenta nella farfalla di Hofstadter.
+
+---
+
+### 10.5.8 Disordine e funzioni di Green nello spazio reale
+
+I materiali reali hanno impurità. Aggiungere casualità dei siti $\varepsilon_{i}$ o dei legami $t_{ij}\to t_{ij}+\delta t_{ij}$. L'hamiltoniana TB nello spazio reale è perfetta per:
+
+- Studi di **localizzazione di Anderson** (vedi §10.13)  
+- Spettri di **superficie e bordo** tramite nastri finiti e funzioni di Green ricorsive  
+- **Trasporto** con Landauer–Büttiker, dove $G=(2e^{2}/h)\,T(E_{F})$ e $T$ deriva da TB nello spazio reale più contatti
+
+---
+
+### 10.5.9 Funzioni di Wannier: rappresentazioni localizzate delle bande
+
+Dati stati di Bloch $\{|\psi_{n\boldsymbol k}\rangle\}$ in un sottospazio di una banda (o gruppo di bande), definiamo le **funzioni di Wannier**
+
+$$
+|\,\boldsymbol R, n\,\rangle = \frac{1}{\sqrt{N}}\sum_{\boldsymbol k\in\mathrm{BZ}} e^{-i\boldsymbol k\cdot \boldsymbol R}\, \sum_{m} U_{mn}(\boldsymbol k)\,|\,\psi_{m\boldsymbol k}\rangle
+$$
+
+dove N è il numero di celle, gli stati di Bloch sono normalizzati sull'intero cristallo finito e $U(\boldsymbol k)$ è una trasformazione unitaria di **gauge** all'interno del sottospazio. Proprietà:
+
+- **Ortonormali** e **localizzate nella cella**. La scelta di $U(\boldsymbol k)$ determina la dispersione spaziale  
+- Le **funzioni di Wannier massimamente localizzate (MLWF)** scelgono $U$ per minimizzare la dispersione totale $\Omega=\sum_{n}\big[\langle r^{2}\rangle_{n}-|\langle \boldsymbol r\rangle_{n}|^{2}\big]$  
+- Per bande isolate con topologia banale, esistono funzioni di Wannier esponenzialmente localizzate che riproducono esattamente la banda
+
+**Tight-binding da Wannier.** Gli hopping sono elementi di matrice tra funzioni di Wannier
+
+$$
+t_{nm}(\boldsymbol R)=\langle \boldsymbol 0,n|H|\boldsymbol R,m\rangle
+$$
+
+L'**interpolazione** $H(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot \boldsymbol R}\,t(\boldsymbol R)$ dà bande indistinguibili dal sottospazio ab initio, ma al costo del TB.
+
+---
+
+### 10.5.10 Polarizzazione e centri di Wannier (il contributo di Berry)
+
+La densità di polarizzazione elettronica di un isolante è collegata ai **centri** di Wannier $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$:
+
+$$
+\boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{modulo un quanto}
+$$
+
+Una **formula equivalente con la fase di Berry** usa il gauge di Bloch. In pratica, seguire il flusso dei centri di Wannier sotto cambiamenti adiabatici permette di calcolare differenze di polarizzazione e risposte piezoelettriche (la topologia ritorna nel §10.11).
+
+---
+
+### 10.5.11 Fisica dei bordi con TB: l'esempio SSH in 15 secondi
+
+Apriamo una catena finita con $t_{1},t_{2}$ alternati. Nella fase **topologica** $|t_{2}|>|t_{1}|$, i modi di bordo decadono come $\sim (t_{1}/t_{2})^{x}$, con x misurata in celle. La simmetria chirale fissa un modo isolato di un bordo semi-infinito a $E=0$; in una catena finita, l'ibridazione dei bordi può produrre una separazione simmetrica esponenzialmente piccola e anche perturbazioni che rompono la simmetria tra sottoreticoli possono spostare le energie.
+
+---
+
+### 10.5.12 Brevi esempi svolti
+
+**(a) Wannier da una banda cosinusoidale unidimensionale**  
+Per il modello ortogonale a un orbitale $E(k)=\varepsilon_{0}-2t\cos ka$, mostrare che la trasformazione inversa di Bloch recupera l'orbitale localizzato scelto $w_{0}(x)$. Spiegare perché la sola dispersione non implichi né una forma asintotica $K_{0}(|x|/\xi)$ né $\xi\sim a\sqrt{t/\Delta}$: occorre specificare anche le autofunzioni di Bloch e le altre bande.
+
+**(b) Velocità di Fermi del grafene**  
+Dall'hamiltoniana a primi vicini del reticolo a nido d'ape, linearizzare vicino a $K$ per ottenere $H_{\text{Dirac}}=\hbar v_{F}\,\boldsymbol\sigma\cdot \boldsymbol q$ ed estrarre $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$.
+
+**(c) Slater–Koster su un legame cubico**  
+Per un cristallo cubico con un orbitale $s$ e tre orbitali $p$ per sito e legami tra primi vicini lungo gli assi, scrivere $H(\boldsymbol k)$ usando $t_{ss\sigma},t_{sp\sigma},t_{pp\sigma},t_{pp\pi}$.
+
+**(d) Verifica della fase di Peierls**  
+Su un reticolo quadrato nel gauge di Landau $\boldsymbol A=(0,Bx,0)$, mostrare che l'hopping lungo $\hat y$ acquista una fase $e^{i 2\pi \phi\, m}$ con $\phi\equiv \Phi/\Phi_{0}$ e $m$ indice $x$, mentre gli hopping $\hat x$ restano reali.
+
+**(e) La sovrapposizione conta**  
+Includere una sovrapposizione tra primi vicini $s$ nella catena unidimensionale e risolvere il problema generalizzato agli autovalori per mostrare che la dispersione diventa $E(k)=(\varepsilon_{0}-2t\cos ka)/(1+2s\cos ka)$.
+
+**(f) Stati di bordo SSH**  
+Diagonalizzare numericamente una catena SSH aperta di 40 siti (TB) e tracciare le funzioni d'onda dei due stati nel mezzo del gap; verificare la localizzazione esponenziale e la parità alle estremità opposte.
+
+---
+
+### 10.5.13 Errori comuni
+
+- **Dimenticare la sovrapposizione**: molti TB introduttivi pongono $S=\mathbb I$; quando gli orbitali non sono ortogonali, usare il problema generalizzato oppure ortogonalizzare prima  
+- **Hopping non consentiti**: se la simmetria vieta un elemento di matrice, non introdurlo. Usare Slater–Koster o la teoria dei gruppi per annullare i termini corretti  
+- **Trascuratezza del gauge nelle funzioni di Wannier**: fasi casuali al variare di $\boldsymbol k$ danno funzioni di Wannier delocalizzate. Le MLWF fissano il gauge: farlo prima di fidarsi degli hopping nello spazio reale  
+- **Peierls senza contabilità del flusso**: assicurarsi che la somma degli angoli di fase dei collegamenti sia $2\pi\Phi/\Phi_{0}$ per plaquette, indipendentemente dal gauge  
+- **Sovraadattare il TB**: troppi parametri nascondono la fisica e falliscono fuori dall'intervallo di adattamento. Partire dal minimo; aggiungere vicini soltanto quando lo richiedono i dati
+
+---
+
+### 10.5.14 Raccolta minima di problemi
+
+- Costruire le dispersioni TB unidimensionale e biatomica ed estrarre le masse efficaci attorno ai bordi di banda  
+- Scrivere l'hamiltoniana a primi vicini del nido d'ape, trovare $K,K'$, linearizzare per ottenere l'hamiltoniana di Dirac e $v_{F}$  
+- Usare Slater–Koster per costruire un TB $sp^{2}$ per il grafene, includendo i settori $pp\pi$ e $pp\sigma$; discutere perché $p_{z}$ si disaccoppi nel foglio piano  
+- Implementare fasi di Peierls per il TB sul reticolo quadrato a flusso razionale $p/q$ e tracciare lo spettro di Hofstadter per $q\le 10$  
+- Generare MLWF per un modello giocattolo a due bande, calcolare $t(\boldsymbol R)$ e mostrare che $E(\boldsymbol k)$ interpolata con Wannier riproduce la banda esatta fino alla precisione di macchina  
+- Calcolare la variazione di polarizzazione dovuta a una dimerizzazione traslante nel modello SSH tramite lo spostamento dei centri di Wannier e confrontare con il risultato della fase di Berry
+
+---
+
+## 10.6 Semiconduttori e drogaggio
+
+I semiconduttori sono metalli in «modalità difficile»: i portatori scarseggiano finché non si regola il gap di banda, si aggiungono droganti o si illumina con fotoni. Questa sezione costruisce il quadro della massa efficace, le statistiche intrinseche e drogate, il trasporto per deriva e diffusione con la relazione di Einstein, i canali di ricombinazione, le firme ottiche e gli strumenti essenziali della giunzione pn. Manteniamo il legame con la struttura a bande restando utili per i dispositivi.
+
+---
+
+### 10.6.1 Bordi di banda, masse efficaci e densità degli stati
+
+Vicino a un minimo di conduzione e a un massimo di valenza,
+
+$$
+E_{c}(\boldsymbol k) \approx E_{c0} + \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{e}^{\ast -1}\,\boldsymbol k,\qquad
+E_{v}(\boldsymbol k) \approx E_{v0} - \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{h}^{\ast -1}\,\boldsymbol k
+$$
+
+Definiamo il gap di banda $E_{g}=E_{c0}-E_{v0}$. I tensori di massa efficace $m_{e}^{\ast},m_{h}^{\ast}$ possono essere anisotropi; spesso si usano masse della densità degli stati $m_{e}^{\ast,\mathrm{DOS}}, m_{h}^{\ast,\mathrm{DOS}}$ per definire le densità degli stati tridimensionali
+
+$$
+N_{c}(T) = 2\left(\frac{m_{e}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2},\qquad
+N_{v}(T) = 2\left(\frac{m_{h}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2}
+$$
+
+Queste alimentano la statistica dei portatori.
+
+
+---
+
+### 10.6.2 Portatori intrinseci e legge di azione di massa
+
+Con livello di Fermi $E_{F}$, le popolazioni non degeneri (Boltzmann) sono
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{F})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{F}-E_{v0})/k_{B}T}
+$$
+
+Moltiplicando si ottiene la **legge di azione di massa**
+
+$$
+np = n_{i}^{2},\qquad
+n_{i}(T) = \sqrt{N_{c}N_{v}}\;e^{-E_{g}/(2k_{B}T)} \propto T^{3/2}\,e^{-E_{g}/(2k_{B}T)}
+$$
+
+In un cristallo intrinseco $n=p=n_{i}$ e $E_{F}$ si trova vicino al centro del gap, spostato dalle masse della densità degli stati.
+
+---
+
+### 10.6.3 Drogaggio: donatori, accettori e neutralità di carica
+
+I droganti sostituzionali aggiungono livelli idrogenoidi poco profondi. La teoria della massa efficace dà
+
+$$
+E_{D} \approx \frac{m_{e}^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{D}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{m_{e}^{\ast}}\,a_{0}
+$$
+
+Analogamente per gli accettori con $m_{h}^{\ast}$. A $T$ ambiente, i droganti poco profondi sono di solito ionizzati.
+
+Per un cristallo di tipo n con densità di donatori $N_{D}$ e accettori $N_{A}$,
+
+$$
+n - p + N_{A}^{-} - N_{D}^{+} = 0
+$$
+
+Assumendo ionizzazione completa nel regime non degenere, $N_{D}^{+}\approx N_{D}$ e $N_{A}^{-}\approx N_{A}$. Allora
+
+$$
+n \approx \frac{1}{2}\left[(N_{D}-N_{A}) + \sqrt{(N_{D}-N_{A})^{2} + 4 n_{i}^{2}}\right],\qquad
+p = \frac{n_{i}^{2}}{n}
+$$
+
+Nel limite dei **portatori maggioritari** $N_{D}-N_{A}\gg n_{i}$, $n\approx N_{D}-N_{A}$ e $p\approx n_{i}^{2}/n$.
+
+A basse $T$, l'ionizzazione parziale produce una regione di **congelamento** in cui $n<N_{D}$; usare l'occupazione di Fermi–Dirac dei livelli dei droganti.
+
+---
+
+### 10.6.4 Mobilità, diffusione e conducibilità
+
+Ogni portatore ha mobilità $\mu$ con velocità di deriva $\boldsymbol v_{d}=\pm \mu \boldsymbol E$. La conducibilità è
+
+$$
+\sigma = q\,(n\mu_{n} + p\mu_{p}),\qquad \rho = \frac{1}{\sigma}
+$$
+
+Fonti di diffusione:
+
+- Reticolo (fononi): tipicamente $\mu \propto T^{-3/2}$ in tre dimensioni  
+- Impurità ionizzate: $\mu \propto T^{+3/2}$ a basse $T$  
+- Regola di Matthiessen per i tassi: $\mu^{-1}\approx \mu_{\mathrm{ph}}^{-1}+\mu_{\mathrm{imp}}^{-1}+\cdots$
+
+Il coefficiente di Hall a due portatori (campo debole) mostra la compensazione:
+
+$$
+R_{H} = \frac{p\mu_{p}^{2} - n\mu_{n}^{2}}{q\,(n\mu_{n}+p\mu_{p})^{2}}
+$$
+
+Il segno identifica il tipo di portatore dominante, pesato con la mobilità.
+
+---
+
+### 10.6.5 Deriva–diffusione e relazione di Einstein
+
+Le densità di corrente dei portatori per deriva e diffusione si scrivono
+
+$$
+\boldsymbol J_{n} = q\,n\mu_{n}\boldsymbol E + q D_{n}\nabla n,\qquad
+\boldsymbol J_{p} = q\,p\mu_{p}\boldsymbol E - q D_{p}\nabla p
+$$
+
+Nella statistica non degenere,
+
+$$
+D_{n} = \frac{k_{B}T}{q}\,\mu_{n},\qquad
+D_{p} = \frac{k_{B}T}{q}\,\mu_{p}
+$$
+
+Questa **relazione di Einstein** è il volto della fluttuazione–dissipazione nei semiconduttori.
+
+---
+
+### 10.6.6 Ricombinazione, tempo di vita e livelli quasi-Fermi
+
+Fuori equilibrio (illuminazione, iniezione), elettroni e lacune si possono descrivere mediante **livelli quasi-Fermi** $E_{Fn},E_{Fp}$ con
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{Fn})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{Fp}-E_{v0})/k_{B}T}
+$$
+
+Canali netti di ricombinazione e generazione:
+
+- **Radiativo (banda–banda)**: $R_{\mathrm{rad}} = B\,(np - n_{i}^{2})$  
+- **Shockley–Read–Hall (mediato da trappole)**: circa $R_{\mathrm{SRH}} \approx \frac{np - n_{i}^{2}}{\tau_{p}(n+n_{1}) + \tau_{n}(p+p_{1})}$ con parametri delle trappole $n_{1},p_{1}$  
+- **Auger**: $R_{\mathrm{Auger}} = C_{n} n (np-n_{i}^{2}) + C_{p} p (np-n_{i}^{2})$
+
+Definiamo il tempo di vita dei portatori minoritari $\tau$ tramite $R\approx \delta n/\tau$ per piccoli segnali. I tempi di vita fissano le lunghezze di diffusione $L=\sqrt{D\tau}$ che determinano la raccolta nei fotodiodi e nelle celle solari.
+
+---
+
+### 10.6.7 Gap diretti e indiretti, assorbimento ed eccitoni
+
+Coefficiente di assorbimento ottico vicino al bordo di banda:
+
+- **Gap diretto**: $\alpha(\hbar\omega)\propto \sqrt{\hbar\omega - E_{g}}$  
+- **Gap indiretto**: assistito da fononi, $\alpha$ cresce lentamente e mostra dipendenza dalla temperatura
+
+Il legame delle coppie elettrone–lacuna produce **eccitoni** con serie idrogenoidi. La teoria della massa efficace stima
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}}\,\frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{X}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{\mu^{\ast}}\,a_{0}
+$$
+
+con massa ridotta $\mu^{\ast}=(m_{e}^{\ast} m_{h}^{\ast})/(m_{e}^{\ast}+m_{h}^{\ast})$. I picchi eccitonici arricchiscono il bordo di assorbimento nei cristalli puliti e nei materiali bidimensionali.
+
+---
+
+### 10.6.8 Giunzione pn essenziale: potenziale interno, svuotamento e legge del diodo
+
+Uniamo regioni p e n; i portatori diffondono, lasciando droganti ionizzati e formando una **regione di svuotamento** con campo interno. All'equilibrio,
+
+$$
+V_{\mathrm{bi}} = \frac{k_{B}T}{q}\,\ln\!\left(\frac{N_{A} N_{D}}{n_{i}^{2}}\right)
+$$
+
+Trascurando la carica libera nella regione di svuotamento (giunzione brusca), la larghezza totale di svuotamento sotto tensione applicata $V$ è
+
+$$
+W = \sqrt{\frac{2\varepsilon_{s}}{q}\,\frac{N_{A}+N_{D}}{N_{A}N_{D}}\,(V_{\mathrm{bi}} - V)}
+$$
+
+La polarizzazione diretta riduce la barriera; l'**equazione ideale del diodo di Shockley** è:
+
+$$
+I = I_{0}\left(e^{qV/(k_{B}T)} - 1\right)
+$$
+
+dove $I_{0}\propto n_{i}^{2}$ scala inversamente con le lunghezze di diffusione e il drogaggio. In polarizzazione inversa la corrente rimane quasi fissata a $-I_{0}$ finché intervengono meccanismi di rottura (Zener/tunnel o valanga).
+
+---
+
+### 10.6.9 Contatti metallo–semiconduttore: ohmico e Schottky in breve
+
+Un metallo su un semiconduttore forma:
+
+- Un contatto **ohmico** se la barriera è abbastanza sottile o bassa per il tunneling, oppure se un forte drogaggio piega le bande facilitando l'iniezione  
+- Altrimenti una barriera **Schottky** con raddrizzamento. L'altezza della barriera è determinata dal lavoro di estrazione del metallo, dall'affinità elettronica del semiconduttore e dall'ancoraggio all'interfaccia
+
+Il trasporto attraverso un contatto Schottky in polarizzazione diretta segue spesso l'emissione termoionica con $I\propto T^{2} e^{-q\Phi_{B}/k_{B}T}\,(e^{qV/k_{B}T}-1)$.
+
+---
+
+### 10.6.10 Regimi di temperatura (la rappresentazione in tre atti)
+
+Per un semiconduttore drogato, al crescere di $T$:
+
+1) **Congelamento**: droganti parzialmente ionizzati, $n<N_{D}$  
+2) **Estrinseco**: plateau dove $n\approx N_{D}$ (oppure $p\approx N_{A}$) e $np\approx n_{i}^{2}$  
+3) **Intrinseco**: $n\approx p\approx n_{i}$ quando $n_{i}$ supera esponenzialmente le densità dei droganti
+
+I dati di resistività e Hall in funzione di $T$ permettono di leggere energie di attivazione e diffusione dominante.
+
+---
+
+### 10.6.11 Brevi esempi svolti
+
+**(a) Densità dei portatori intrinseci**  
+Dati $m_{e}^{\ast,\mathrm{DOS}}=0.26\,m_{e}$, $m_{h}^{\ast,\mathrm{DOS}}=0.39\,m_{e}$, $E_{g}=1.12\ \mathrm{eV}$ a $300\ \mathrm{K}$, stimare $n_{i}$ per questo modello illustrativo con un gap simile a quello del silicio usando la forma $T^{3/2} e^{-E_{g}/2k_{B}T}$; trattare le masse fornite come parametri dell'esercizio, non come precise masse della densità degli stati del silicio.
+
+**(b) Livello di Fermi nel Si drogato**  
+Per $N_{D}=10^{16}\ \mathrm{cm^{-3}}$ e $n_{i}=10^{10}\ \mathrm{cm^{-3}}$ a $300\ \mathrm{K}$, trovare $n,p$ e individuare $E_{F}$ rispetto a $E_{c0}$ tramite $n=N_{c} e^{-(E_{c0}-E_{F})/k_{B}T}$.
+
+**(c) Verifica della relazione di Einstein**  
+Con $\mu_{n}=1350\ \mathrm{cm^{2}/Vs}$ misurata nel Si a $300\ \mathrm{K}$, calcolare $D_{n}$ e una lunghezza di diffusione per $\tau_{n}=1\ \mu\mathrm{s}$.
+
+**(d) Larghezza di svuotamento**  
+Per una giunzione pn di Si con $N_{A}=10^{17}$, $N_{D}=10^{16}\ \mathrm{cm^{-3}}$, $\varepsilon_{s}=11.7\,\varepsilon_{0}$, calcolare $W$ a $V=0$ e a $V=0.6\ \mathrm{V}$.
+
+**(e) Radiativo e SRH**  
+Dati $B=10^{-10}\ \mathrm{cm^{3}/s}$, $n=p=10^{15}\ \mathrm{cm^{-3}}$, stimare $R_{\mathrm{rad}}$ e confrontarlo con un tasso SRH con $\tau=1\ \mu\mathrm{s}$.
+
+---
+
+### 10.6.12 Errori comuni
+
+- **Dimenticare la legge di azione di massa**: all'equilibrio $np=n_{i}^{2}$ anche nel materiale drogato; violazioni segnalano iniezione o illuminazione  
+- **Usare Einstein oltre il suo ambito**: la relazione standard $D=\mu k_{B}T/q$ richiede statistica non degenere; i semiconduttori degeneri richiedono correzioni di Fermi–Dirac  
+- **Assumere ionizzazione completa**: a basse $T$ o per droganti più profondi, risolvere l'occupazione dei droganti in modo autoconsistente  
+- **Confondere masse della densità degli stati e della conducibilità**: $N_{c,v}(T)$ richiedono masse della densità degli stati; il trasporto richiede masse di conducibilità (tensoriali) e diffusione  
+- **Dogma del diodo ideale**: i diodi reali hanno resistenza in serie, ricombinazione nello svuotamento (fattore di idealità $n_{\mathrm{id}}>1$) e stati d'interfaccia
+
+---
+
+## 10.7 Superfici di Fermi e trasporto
+
+La **superficie di Fermi (FS)** è la sezione VIP di un metallo: a bassa temperatura quasi tutto ciò che riguarda il trasporto, conducibilità, Hall, magnetoresistenza e oscillazioni quantistiche, deriva da quasiparticelle che vi risiedono. La geometria nello spazio $k$ diventa fisica misurabile in laboratorio. Questa sezione costruisce le equazioni semiclassiche del moto, gli strumenti di Boltzmann e Chambers, il magnetotrasporto con bande multiple e compensazione e gli strumenti delle oscillazioni quantistiche (Onsager più Lifshitz–Kosevich). Evidenzieremo anche come la topologia della FS (orbite chiuse o aperte) determini la risposta magnetica.
+
+---
+
+### 10.7.1 Equazioni semiclassiche del moto (ancora senza Berry)
+
+Per una banda $\epsilon(\boldsymbol k)$ nei campi $(\boldsymbol E,\boldsymbol B)$, la dinamica semiclassica è
+
+$$
+\hbar\,\dot{\boldsymbol k} = -e\left(\boldsymbol E + \dot{\boldsymbol r}\times \boldsymbol B\right),\qquad
+\dot{\boldsymbol r} = \frac{1}{\hbar}\,\nabla_{\boldsymbol k}\epsilon(\boldsymbol k)
+$$
+
+Con $\boldsymbol E=0$ si ottiene **moto ciclotronico** nello spazio $k$ lungo curve a energia costante perpendicolari a $\boldsymbol B$; la velocità nello spazio reale è $\boldsymbol v=\dot{\boldsymbol r}$. Rimandiamo curvatura di Berry e velocità anomala al §10.11.
+
+---
+
+### 10.7.2 Frequenza e massa ciclotroniche
+
+Le orbite chiuse hanno frequenza
+
+$$
+\omega_{c} = \frac{eB}{m_{c}}
+$$
+
+dove la **massa ciclotronica** è fissata dall'area dell'orbita rilevante nello spazio $k$, $A(E)$, normale a $\boldsymbol B$:
+
+$$
+m_{c}(E) = \frac{\hbar^{2}}{2\pi}\,\frac{\partial A(E)}{\partial E}\Big|_{E=\epsilon_{F}}
+$$
+
+Per una parabola isotropa $E=\hbar^{2}k^{2}/2m^{\ast}$, $m_{c}=m^{\ast}$; per ellissoidi anisotropi, $m_{c}$ dipende dall'orientamento del campo.
+
+---
+
+### 10.7.3 Trasporto di Boltzmann: tempo di rilassamento e Chambers
+
+Linearizzare l'equazione di Boltzmann in un campo stazionario con tempo di rilassamento $\tau(\boldsymbol k)$ dà la corrente
+
+$$
+\boldsymbol J = -e \int \frac{d^{3}k}{4\pi^{3}}\,\boldsymbol v(\boldsymbol k)\,\delta f(\boldsymbol k),\qquad
+\delta f = -e\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \boldsymbol E
+$$
+
+Nella **formula di Chambers**, il cammino libero medio vettoriale è una media sulla storia lungo l'orbita
+
+$$
+\boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; \exp\!\left[-\int_{0}^{t}\frac{dt'}{\tau(\boldsymbol k_{-t'})}\right]\,\boldsymbol v(\boldsymbol k_{-t})
+$$
+
+che conduce al tensore di conducibilità (schematicamente)
+
+$$
+\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\Lambda_{\beta}
+$$
+
+dove il cammino libero medio vettoriale è definito dall'integrale sulla storia precedente. Per un metallo isotropo con un unico $\tau$, questo si riduce a Drude.
+
+---
+
+### 10.7.4 Angolo di Hall, tensore di mobilità e cammino libero medio
+
+Definiamo la **mobilità** $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$ e l'**angolo di Hall** $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx -\omega_{c}\tau$ (banda singola). Il **cammino libero medio**
+
+$$
+\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{per quasiparticelle ben definite}
+$$
+
+Vicino al limite di **Ioffe–Regel** $k_{F}\ell\sim 1$, i metalli diventano «cattivi» e il trasporto semiclassico comincia a cedere.
+
+---
+
+### 10.7.5 Magnetoresistenza: perché Drude a banda singola resta piatto
+
+In una singola banda isotropa con $\tau$ costante, la resistività $\rho_{xx}$ è **indipendente dal campo** anche se $\sigma_{xx}$ diminuisce; l'inversione del tensore cancella l'effetto. I materiali reali mostrano magnetoresistenza a causa di (i) più tipi di portatori, (ii) anisotropia o deformazione della FS, (iii) $\tau(\boldsymbol k)$ dipendente dall'angolo o (iv) orbite aperte. Un riepilogo pratico è la **regola di Kohler**
+
+$$
+\frac{\Delta \rho}{\rho_{0}} \equiv \frac{\rho(B)-\rho_{0}}{\rho_{0}} = F\!\left(\frac{B}{\rho_{0}}\right) \approx F(\omega_{c}\tau)
+$$
+
+Se un unico tempo di diffusione controlla tutto, le curve a diverse $T$ collassano quando vengono tracciate rispetto a $B/\rho_{0}(T)$.
+
+---
+
+### 10.7.6 Modello a due bande (elettroni più lacune)
+
+Siano $(n_{e},\mu_{e})$ e $(n_{h},\mu_{h})$ densità e mobilità; $s_{e}=-1$, $s_{h}=+1$ i segni delle cariche. Le conducibilità si sommano:
+
+$$
+\sigma_{xx} = \sum_{i=e,h} \frac{n_{i} e \mu_{i}}{1+(\mu_{i}B)^{2}},\qquad
+\sigma_{xy} = \sum_{i=e,h} \frac{s_{i} n_{i} e \mu_{i}^{2} B}{1+(\mu_{i}B)^{2}}
+$$
+
+Invertire per ottenere $\rho_{xx},\rho_{xy}$. Regimi principali:
+
+- **Compensazione** $n_{e}\approx n_{h}$ con mobilità elevate ⇒ grande **magnetoresistenza non saturante**, quasi quadratica, nel regime di compensazione; la mancata saturazione asintotica richiede compensazione esatta  
+- **Portatore dominante** $n_{e}\gg n_{h}$ ⇒ segno di Hall fissato soltanto se le differenze di mobilità non invertono il segno a campo debole; magnetoresistenza minore e tendente a saturare
+
+Gli adattamenti multibanda di $\rho_{xx}(B)$ e $\rho_{xy}(B)$ sono il primo strumento per leggere tipi di portatori e mobilità.
+
+---
+
+### 10.7.7 Orbite aperte e chiuse; dipendenza angolare
+
+- Le **orbite chiuse** su tasche chiuse della FS danno $\omega_{c}$ e oscillazioni convenzionali.  
+- Le **orbite aperte** (per esempio fogli deformati quasi unidimensionali) consentono ai portatori di fluire lungo una direzione; la magnetoresistenza diventa fortemente **anisotropa** e può crescere linearmente o quadraticamente senza saturare, a seconda della geometria.  
+- Le **AMRO** (oscillazioni angolari della magnetoresistenza) nei metalli stratificati nascono dal moto orbitale su una FS quasi bidimensionale deformata quando $\boldsymbol B$ si inclina; nel modello cilindrico coerente standard, i massimi della resistenza tra strati si trovano agli **angoli di Yamaji** fissati dalla deformazione.
+
+---
+
+### 10.7.8 Oscillazioni quantistiche: Onsager più Lifshitz–Kosevich
+
+La quantizzazione di Landau trasforma le aree delle orbite in livelli discreti. La **relazione di Onsager** collega la frequenza delle oscillazioni $F$ (in $1/B$) all'area della sezione estrema della FS $A_{F}$ perpendicolare a $\boldsymbol B$:
+
+$$
+F = \frac{\hbar}{2\pi e}\,A_{F}
+$$
+
+L'ampiezza di **Lifshitz–Kosevich (LK)** ha tre fattori classici:
+
+$$
+\Delta M,\ \Delta \rho \ \propto\ R_{T}\,R_{D}\,R_{S}\,\cos\!\left(2\pi\frac{F}{B} - \gamma\right)
+$$
+
+con
+
+$$
+R_{T} = \frac{X}{\sinh X},\quad X=\frac{2\pi^{2} k_{B} T}{\hbar \omega_{c}}
+$$
+
+$$
+R_{D} = \exp\!\left(-\frac{\pi}{\omega_{c}\tau}\right) = \exp\!\left(-\frac{2\pi^{2} k_{B} T_{D}}{\hbar \omega_{c}}\right)
+$$
+
+$$
+R_{S} = \cos\!\left(\frac{\pi g m_{c}}{2 m_{e}}\right)
+$$
+
+$R_{T}$ dà il **grafico della massa** per ricavare $m_{c}$, $R_{D}$ è il fattore di **Dingle** per la diffusione, con tempo di vita quantistico e non necessariamente di trasporto, e $R_{S}$ è la modulazione dovuta alla separazione di spin. La fase $\gamma$ può codificare la fase di Berry per sistemi di Dirac/Weyl (vedi §10.11).
+
+---
+
+### 10.7.9 Risonanza ciclotronica e sonde ottiche
+
+Nei campioni puliti, un campo alternato rileva risonanze a $\omega=n\,\omega_{c}$, fornendo direttamente $m_{c}$. La **conducibilità ottica** si scompone in un contributo di Drude e contributi interbanda; la **regola di somma f** fissa il peso spettrale totale (vedi §10.3). Nei conduttori stratificati, la **conducibilità tra strati** in funzione dell'inclinazione rivela la deformazione della FS.
+
+---
+
+### 10.7.10 Metrologia pratica della FS (ARPES e oscillazioni)
+
+- **ARPES** ricostruisce direttamente bande occupate e contorni della FS in $k_{\parallel}$; ottima per sistemi bidimensionali e superfici, più complessa per $k_{z}$ nel volume.  
+- Le **oscillazioni quantistiche** vedono soltanto aree **estreme**, ma con precisione eccezionale e sensibilità al volume.  
+- Le **scansioni angolari delle oscillazioni quantistiche** ricostruiscono le forme complete della FS da $F(\theta)$; combinarle con ARPES per chiarire tasche e deformazioni tridimensionali.
+
+---
+
+### 10.7.11 Cenni termoelettrici e di Nernst
+
+Vicino alla FS, la **formula di Mott** collega il coefficiente di Seebeck alla derivata energetica della conducibilità a $\epsilon_{F}$:
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+L'**effetto Nernst** (tensione trasversa prodotta da un gradiente termico in $B$) è estremamente sensibile alla curvatura della FS e alle asimmetrie dei tempi di vita quasiparticellari, spesso un segnale di piccole tasche.
+
+---
+
+### 10.7.12 Peculiarità del campo forte e del limite quantistico
+
+A grandissimi $B$, i portatori si concentrano in pochi livelli di Landau più bassi. Nel **limite quantistico** (soltanto $n=0$ occupato), magnetoresistenza e proprietà termoelettriche possono comportarsi diversamente da Drude, talvolta **linearmente in $B$** o con inversioni di segno. I materiali di Dirac/Weyl possono mostrare un contributo dell'anomalia chirale alla magnetoresistenza longitudinale quando $\boldsymbol E\parallel \boldsymbol B$ (dettagli nel §10.11).
+
+---
+
+### 10.7.13 Brevi esempi svolti
+
+**(a) Area di Onsager dalla frequenza**  
+Si misura $F=1.0\ \mathrm{kT}$ per $\mathbf B\parallel \hat z$. Calcolare l'area estrema
+
+$$
+A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \text{\AA}^{-2}
+$$
+
+e un vettore d'onda di Fermi circolare equivalente $k_{F}=\sqrt{A_{F}/\pi}$.
+
+**(b) Grafico della massa LK**  
+Date ampiezze delle oscillazioni rispetto a $T$ a $B$ fissato, adattare $R_{T}=X/\sinh X$ per estrarre $m_{c}$ da $X=(2\pi^{2}k_{B}T m_{c})/(e\hbar B)$.
+
+**(c) Magnetoresistenza a due bande**  
+Prendere $n_{e}=n_{h}=5\times 10^{25}\ \mathrm{m^{-3}}$, $\mu_{e}=1.5\ \mathrm{m^{2}/Vs}$, $\mu_{h}=0.8\ \mathrm{m^{2}/Vs}$. Calcolare $\rho_{xx}(B)$ e mostrare una crescita quadratica fino a diversi tesla senza saturazione.
+
+**(d) AMRO/Yamaji**  
+Per una FS cilindrica quasi bidimensionale con dispersione tra strati $-2t_{\perp}\cos k_{z}c$, nel limite coerente di media orbitale ad alto campo mostrare che i massimi della magnetoresistenza tra strati si trovano vicino a $\tan\theta \approx \pi (\nu-1/4)/(k_{F} c)$ con intero positivo $\nu$, fornendo $k_{F}$ dal periodo angolare.
+
+**(e) Verifica di Ioffe–Regel**  
+Con $k_{F}=0.8\ \text{\AA}^{-1}$, $v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$ e $\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$ in una singola banda, stimare $\tau=m^{\ast}/(ne^{2}\rho_{0})$, calcolare $\ell=v_{F}\tau$ e commentare $k_{F}\ell$.
+
+---
+
+### 10.7.14 Errori comuni
+
+- **Confondere le masse**: $m^{\ast}$ (curvatura di banda), $m_{c}$ (ciclotronica) e masse ottiche o termodinamiche differiscono in sistemi anisotropi o multibanda  
+- **Dimenticare l'inversione del tensore**: gli andamenti di $\sigma_{xx}$ non si traducono direttamente in $\rho_{xx}$; invertire sempre il tensore completo  
+- **Assumere un unico $\tau$**: punti caldi e freddi e diffusione anisotropa compromettono il collasso di Kohler e imitano una magnetoresistenza multibanda  
+- **Interpretare male la fase delle oscillazioni**: estrarre la fase di Berry richiede un'accurata sottrazione del fondo e convenzioni sugli indici; gli zeri di spin possono spostare la fase apparente  
+- **Ignorare la geometria**: disallineamento del campione e concentrazione della corrente possono simulare un'enorme magnetoresistenza lineare nei cristalli compensati ad alta mobilità  
+- **Ignorare le orbite aperte**: osservare una «magnetoresistenza saturante» e attribuirla alle impurità quando la vera causa è la topologia della FS e l'orientamento del campo
+
+---
+
+## 10.8 Magnetismo
+
+Il magnetismo si presenta in due grandi forme: momenti **localizzati**, che si comportano come piccoli spin quantistici accoppiati dallo scambio, e magnetismo **itinerante**, in cui è il mare di Fermi stesso a polarizzarsi. Dalle leggi di Curie–Weiss alle onde di spin e alla risonanza ferromagnetica, questa sezione costruisce gli strumenti standard: modelli di Heisenberg e meccanismi di scambio (diretto, superscambio, doppio scambio, RKKY), ferromagneti di Stoner, magnoni nei ferro- e antiferromagneti, anisotropia e domini, e il divieto di Mermin–Wagner in una o due dimensioni senza campi che rompano la simmetria. Manteniamo la matematica concisa e le conclusioni operative.
+
+![Confronto tra spin paralleli e spin vicini alternati su un reticolo bipartito.](/images/diagrams/magnetic-order.svg)
+
+---
+
+### 10.8.1 Momenti magnetici, fattori $g$ e unità
+
+Un elettrone possiede contributi di spin $\boldsymbol S$ ed eventualmente orbitali $\boldsymbol L$. L'operatore momento magnetico è
+
+$$
+\boldsymbol{\mu} = -g_{S}\mu_{B}\,\boldsymbol S/\hbar - g_{L}\mu_{B}\,\boldsymbol L/\hbar
+$$
+
+con magnetone di Bohr $\mu_{B}=e\hbar/(2m_{e})$ e $g_{S}\approx 2$. Nei solidi, il **quenching** del momento angolare orbitale da parte del campo cristallino lascia spesso momenti di spin efficaci, talvolta modificati dall'interazione spin–orbita che produce anisotropia.
+
+La **magnetizzazione** $\boldsymbol M$ è il momento per volume. La risposta lineare definisce la suscettività $\chi$ tramite $\boldsymbol M=\chi \boldsymbol H$ (caso isotropo), con $\boldsymbol B=\mu_{0}(\boldsymbol H+\boldsymbol M)$.
+
+---
+
+### 10.8.2 Modelli a momenti locali: Ising/Heisenberg/XXZ
+
+Per spin localizzati $\{\boldsymbol S_{i}\}$ su un reticolo, le hamiltoniane minime sono
+
+- **Ising**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,S_{i}^{z} S_{j}^{z} - h\sum_{i} S_{i}^{z}
+$$
+
+- **Heisenberg (simmetria SU(2))**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,\boldsymbol S_{i}\cdot \boldsymbol S_{j} + g\mu_{B} B \sum_{i} S_{i}^{z}
+$$
+
+- **Anisotropia XXZ**
+
+$$
+H = -\sum_{\langle ij\rangle} \left[J_{\perp}\,(S_{i}^{x} S_{j}^{x}+S_{i}^{y} S_{j}^{y}) + J_{z}\,S_{i}^{z} S_{j}^{z}\right]
+$$
+
+Qui gli spin sono adimensionali (momento angolare diviso per $\hbar$), ogni legame tra primi vicini viene contato una volta e $N$ sotto indica la densità numerica. Nella nostra convenzione di segno, $J>0$ favorisce il **ferromagnetismo** (FM) e $J<0$ l'**antiferromagnetismo** (AFM).
+
+Fenomenologia di **Curie–Weiss** per paramagneti: sopra la temperatura di ordinamento,
+
+$$
+\chi(T) = \frac{C}{T-\Theta_{\mathrm{CW}}},\qquad
+C = \frac{\mu_{0} N g^{2} \mu_{B}^{2} S(S+1)}{3k_{B}}
+$$
+
+Il segno di $\Theta_{\mathrm{CW}}$ suggerisce uno scambio dominante FM ($>0$) o AFM ($<0$).
+
+---
+
+### 10.8.3 Meccanismi di scambio: da dove viene $J$
+
+- **Scambio diretto**: sovrapposizione di orbitali locali vicini; Pauli più Coulomb producono una differenza energetica tra allineamenti di spin paralleli e antiparalleli.  
+- **Superscambio**: hopping virtuale attraverso un legante non magnetico (per esempio TM–O–TM). Per una situazione di tipo Hubbard a metà riempimento,
+
+$$
+J \sim -\frac{4t^{2}}{U}
+$$
+
+spesso **antiferromagnetico**.  
+- **Doppio scambio** (manganiti a valenza mista): gli elettroni itineranti allineano i momenti di spin elettronico localizzati per massimizzare l'hopping, favorendo FM e metallicità.  
+- **RKKY** (nei metalli con momenti localizzati): gli elettroni di conduzione mediano un accoppiamento oscillante
+
+$$
+J(r) \propto \frac{\cos(2k_{F} r)}{r^{3}}
+$$
+
+che induce ordini complessi o vetri di spin quando il disordine mescola le fasi.
+
+---
+
+### 10.8.4 Ferromagnetismo itinerante: criterio di Stoner
+
+In una banda semplice, lo scambio abbassa l'energia se la polarizzazione di spin separa le bande di $\pm \Delta/2$. Il campo medio di **Stoner** dà un criterio
+
+$$
+I\,N(\epsilon_{F}) > 1
+$$
+
+con $I$ parametro di interazione e $N(\epsilon_{F})$ DOS per spin al livello di Fermi. Conseguenze:
+
+- **Suscettività di Pauli** finita, amplificata fino a
+
+$$
+\chi = \frac{\chi_{0}}{1 - I N(\epsilon_{F})}
+$$
+
+- La **rigidità delle onde di spin** emerge nella fase a simmetria rotta (vedi §10.8.6)
+
+I magneti itineranti combinano struttura a bande e interazioni; ARPES, oscillazioni quantistiche e regole di somma ottiche aiutano a distinguerne i contributi.
+
+---
+
+### 10.8.5 Temperature di ordinamento in campo medio
+
+Su un reticolo con numero di coordinazione $z$ e scambio $J$ tra primi vicini, il campo medio di Weiss prevede
+
+- **Heisenberg FM**
+
+$$
+k_{B} T_{C}^{\mathrm{MF}} = \frac{1}{3}\,z J S(S+1)
+$$
+
+- **AFM (bipartito)**
+
+$$
+k_{B} T_{N}^{\mathrm{MF}} = \frac{1}{3}\,z |J| S(S+1)
+$$
+
+I valori reali di $T_{C/N}$ sono ridotti dalle fluttuazioni, soprattutto in bassa dimensionalità o per piccoli $S$.
+
+---
+
+### 10.8.6 Onde di spin (magnoni) nei ferromagneti
+
+In un modello di Heisenberg FM, le piccole oscillazioni trasversali sono **magnoni**. La trasformazione di Holstein–Primakoff dà, all'ordine dominante,
+
+$$
+H \approx E_{0} + \sum_{\boldsymbol k} \hbar \omega_{\boldsymbol k}\, b_{\boldsymbol k}^{\dagger} b_{\boldsymbol k}
+$$
+
+con dispersione vicino a $\boldsymbol k=0$
+
+$$
+\hbar \omega_{\boldsymbol k} \approx D\,k^{2} + \Delta_{\mathrm{ani}}
+$$
+
+Qui $D$ è la **rigidità delle onde di spin**, determinata da $J$ e dalla geometria del reticolo, mentre $\Delta_{\mathrm{ani}}$ deriva dall'anisotropia (altrimenti il modo di Goldstone è privo di gap). L'eccitazione termica dei magnoni riduce la magnetizzazione:
+
+$$
+M(T) \approx M(0)\left[1 - A\,T^{3/2}\right]
+$$
+
+Questa è la **legge di Bloch in $T^{3/2}$** nei FM tridimensionali.
+
+Il **calore specifico** dei magnoni in 3D scala come $C_{\mathrm{mag}}\propto T^{3/2}$ a basse $T$ (dispersione quadratica → DOS $\propto \sqrt{E}$).
+
+---
+
+### 10.8.7 Antiferromagneti: onde di spin su due sottoreticoli
+
+Per un AFM collineare su un reticolo bipartito, la teoria lineare delle onde di spin dà due rami con dispersione **lineare** a piccoli $k$:
+
+$$
+\hbar \omega_{\boldsymbol k} \approx \hbar c\,|\boldsymbol k|
+$$
+
+La velocità $c$ dipende da $|J|$, $S$ e dal passo reticolare. L'anisotropia produce un piccolo gap. La suscettività uniforme mostra spesso una cuspide a $T_{N}$; al di sotto, le componenti trasversale e longitudinale differiscono.
+
+---
+
+### 10.8.8 Anisotropia magnetica, campi smagnetizzanti e domini
+
+- L'**anisotropia magnetocristallina**, dovuta all'accoppiamento spin–orbita, seleziona assi o piani facili. Il modello minimo
+
+$$
+E_{\mathrm{ani}} = K_{1} \sin^{2}\theta + K_{2} \sin^{4}\theta + \cdots
+$$
+
+influisce sulla coercitività e sulla struttura dei domini.  
+- I **campi smagnetizzanti** nascono perché $\nabla\cdot \boldsymbol M$ sulle superfici agisce come una «carica magnetica». La forma definisce un tensore di smagnetizzazione $\mathsf N$ con campo $\boldsymbol H_{d}=-\mathsf N \boldsymbol M$.  
+- I **domini** si formano per bilanciare l'energia delle pareti e l'energia magnetostatica. Le **pareti di dominio** hanno larghezza $\delta \sim \sqrt{A/K}$ ed energia $\sigma \sim \sqrt{A K}$, dove $A$ è la rigidità di scambio e $K$ l'anisotropia.
+
+---
+
+### 10.8.9 Risonanza ferromagnetica (FMR) e dinamica
+
+La dinamica della magnetizzazione obbedisce all'equazione di **Landau–Lifshitz–Gilbert** (LLG)
+
+$$
+\frac{d\boldsymbol M}{dt} = -\gamma\mu_{0}\,\boldsymbol M\times \boldsymbol H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\boldsymbol M\times \frac{d\boldsymbol M}{dt}
+$$
+
+con modulo positivo del rapporto giromagnetico $\gamma$, in radianti al secondo per tesla, e smorzamento $\alpha$. Per un modo uniforme in un film sottile magnetizzato nel piano (formula di Kittel, caso semplice),
+
+$$
+\omega^{2} = (\gamma\mu_{0})^{2}\,(H+H_{k})(H+H_{k}+M_{s})
+$$
+
+La FMR misura i campi di anisotropia $H_{k}$ e lo smorzamento.
+
+---
+
+### 10.8.10 Dimensionalità: Mermin–Wagner e Kosterlitz–Thouless
+
+I magneti a simmetria continua, strettamente in 1D/2D e con scambio a corto raggio, non possono ordinarsi a $T$ finita (in assenza di gap, i modi di Goldstone distruggono l'ordine a lungo raggio): è il **teorema di Mermin–Wagner**. Possibili vie d'uscita:
+
+- Aggiungere **anisotropia** (discretizzazione di tipo Ising), termini dipolari a lungo raggio o accoppiamento tra strati  
+- Nel modello XY in 2D, attendersi una transizione di **Kosterlitz–Thouless** con dissociazione delle coppie di vortici e ordine algebrico, anziché una $T_{C}$ convenzionale
+
+---
+
+### 10.8.11 Cenni essenziali di magnetotrasporto
+
+- **Effetto Hall anomalo (AHE)** nei FM: $\rho_{xy}=R_{0}B + R_{s} M$, con meccanismi intrinseci dovuti alla curvatura di Berry ed estrinseci di scattering asimmetrico e salto laterale.  
+- **Onde di spin e resistività**: contributi aggiuntivi $T^{2}$ o $T^{3/2}$ a basse $T$ nei FM, dovuti allo scattering da magnoni.  
+- **Caloritronica di spin**: i segnali Seebeck di spin e di trascinamento magnonico collegano il trasporto dei magnoni a quello di carica e calore.
+
+---
+
+### 10.8.12 Brevi esempi svolti
+
+**(a) Pendenza di Curie–Weiss**  
+Dati $S=5/2$, $g=2$ e la densità numerica $N$, mostra che la pendenza ad alta $T$ di $1/\chi(T)$ è $1/C$, con $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$. Adatta i dati per ricavare $N$ o $S$.
+
+**(b) Rigidità delle onde di spin in un FM cubico**  
+Per il modello di Heisenberg a primi vicini su reticolo cubico (passo $a$), mostra
+
+$$
+\hbar \omega_{\mathbf k} = J S z \left(1-\gamma_{\mathbf k}\right)
+$$
+
+con $z=6$ e $\gamma_{\mathbf k}=\tfrac{1}{3}[\cos(k_{x}a)+\cos(k_{y}a)+\cos(k_{z}a)]$. Sviluppa per piccoli $k$ per ricavare $D$.
+
+**(c) Dispersione AFM a due sottoreticoli**  
+Per un AFM bipartito ipercubico con scambio a primi vicini $J<0$, ricava la velocità dei magnoni nel regime lineare a piccoli $k$, $c=|J|Sa\sqrt{2z}/\hbar$, a meno di fattori geometrici.
+
+**(d) Amplificazione di Stoner**  
+Dato $\chi/\chi_{0}=5$, stima $I N(\epsilon_{F})$ e commenta la vicinanza all'instabilità $=1$.
+
+**(e) Larghezza di una parete di dominio**  
+Con $A=1\times 10^{-11}\ \mathrm{J/m}$ e $K=5\times 10^{4}\ \mathrm{J/m^{3}}$, stima $\delta=\sqrt{A/K}$ e $\sigma\sim\sqrt{A K}$.
+
+**(f) Cambiamenti di segno RKKY**  
+Per $k_{F}=1.2\ \text{\AA}^{-1}$, calcola i primi zeri e cambiamenti di segno di $\cos(2k_{F} r)$ per vedere a quali distanze l'accoppiamento passa da FM ad AFM e viceversa.
+
+---
+
+### 10.8.13 Errori comuni
+
+- **Convenzioni di segno per $J$**: verifica se l'Hamiltoniana usa $-J \boldsymbol S_{i}\cdot \boldsymbol S_{j}$ o $+J$; l'associazione FM/AFM si inverte con la scelta.  
+- **Estendere troppo Curie–Weiss**: è una legge ad **alta $T$**; vicino e sotto $T_{C/N}$ le fluttuazioni critiche invalidano la linearità del campo medio.  
+- **Ignorare l'anisotropia**: in 2D non c'è ordine a $T$ finita senza anisotropia o termini a lungo raggio; anche un piccolo $K$ conta molto.  
+- **Confondere Pauli e Curie**: nei paramagneti itineranti (Pauli), al variare di $T$ resta costante $\chi$; i momenti locali (Curie) seguono $1/T$. Nei composti reali possono essere presenti entrambi.  
+- **Mescolare contributi smagnetizzanti e intrinseci**: i cicli di magnetizzazione grezzi dipendono dalla geometria; correggi la smagnetizzazione per ottenere $M(H)$ intrinseca.  
+- **Trascurare il gap magnonico**: un'intercetta a frequenza finita negli spettri delle onde di spin FM/AFM segnala gap di anisotropia o di Zeeman; non adattare i dati con un modello totalmente privo di gap.
+
+---
+
+### 10.8.14 Raccolta minima di problemi
+
+- Ricava la suscettività di Curie–Weiss da un campo di Weiss $H_{\mathrm{eff}}=\lambda M$ per spin $S$ e collega $\Theta_{\mathrm{CW}}$ a $\lambda$ e al parametro microscopico $J$  
+- Calcola $T_{C}^{\mathrm{MF}}$ e $M(T)$ in campo medio per un FM di Heisenberg cubico; confronta con la legge di Bloch $T^{3/2}$ a basse $T$ e discuti i regimi di validità  
+- Applica la teoria lineare delle onde di spin (Holstein–Primakoff) a una catena FM 1D, ottieni $\omega_{k}$ e mostra perché manca un ordine a lungo raggio a $T$ finita (divergenza infrarossa)  
+- Partendo dalla LLG, ricava la formula di Kittel per un film sottile con anisotropia uniassiale e identifica $H_{k}=2K/\mu_{0} M_{s}$  
+- Per una semplice banda parabolica con parametro di Stoner $I$, calcola in campo medio la magnetizzazione $m$ in funzione di $T$ e traccia il diagramma di fase nello spazio $(I N(\epsilon_{F}),T)$
+
+---
+
+## 10.9 Superconduttività
+
+I superconduttori sono i protagonisti più teatrali della materia condensata: sotto una temperatura critica riducono la resistenza in corrente continua a zero, di fatto, **e** espellono i campi magnetici (effetto Meissner). Microscopicamente, gli elettroni formano **coppie di Cooper** che condensano in uno stato quantistico con fase coerente. Questa sezione costruisce la fenomenologia (London, Meissner), la teoria di campo mesoscopica (Ginzburg–Landau), i risultati microscopici BCS (gap, $T_{c}$, DOS) e i segnali osservabili: tipo I e II, vortici, campi e correnti critici ed effetti Josephson.
+
+---
+
+### 10.9.1 Equazioni di London ed effetto Meissner
+
+Partiamo dalla fenomenologia. Nel gauge di London, con fase uniforme del condensato e senza vortici, le **equazioni di London** per la supercorrente $\boldsymbol J_{s}$ sono (con $n_s$ densità degli elettroni superconduttori)
+
+$$
+\frac{\partial \boldsymbol J_{s}}{\partial t} = \frac{n_{s} e^{2}}{m}\,\boldsymbol E
+$$
+
+$$
+\boldsymbol J_{s} = -\frac{1}{\mu_{0}\lambda^{2}}\,\boldsymbol A,\qquad
+\lambda^{2} \equiv \frac{m}{\mu_{0} n_{s} e^{2}}
+$$
+
+Combinandole con le equazioni di Maxwell si elimina $\boldsymbol J_{s}$ e si ottiene lo **schermaggio del campo magnetico**
+
+$$
+\nabla^{2}\boldsymbol B = \frac{\boldsymbol B}{\lambda^{2}}
+$$
+
+quindi un campo statico decade all'interno del superconduttore come $B(x)=B_{0} e^{-x/\lambda}$. Questo **effetto Meissner** distingue i superconduttori dai conduttori perfetti ideali non superconduttori, che si limiterebbero a congelare il campo $B$ presente durante il raffreddamento.
+
+---
+
+### 10.9.2 Teoria di Ginzburg–Landau (GL)
+
+La GL è un'energia libera di Landau per un parametro d'ordine complesso $\psi(\boldsymbol r)$ (funzione d'onda delle coppie di Cooper), accoppiato minimamente al potenziale vettore:
+
+$$
+\mathcal F[\psi,\boldsymbol A] = \alpha |\psi|^{2} + \frac{\beta}{2} |\psi|^{4}
++ \frac{1}{2m^{\ast}} \left| \left(-i\hbar \nabla - 2e\,\boldsymbol A\right)\psi \right|^{2}
++ \frac{|\boldsymbol B|^{2}}{2\mu_{0}}
+$$
+
+La minimizzazione dà le **equazioni GL**
+
+$$
+\alpha \psi + \beta |\psi|^{2}\psi + \frac{1}{2m^{\ast}}\left(-i\hbar \nabla - 2e\boldsymbol A\right)^{2}\psi = 0
+$$
+
+$$
+\boldsymbol J_{s} = \frac{2e}{m^{\ast}}\,\mathrm{Re}\left\{\psi^{\ast}\left(-i\hbar \nabla - 2e\boldsymbol A\right)\psi\right\}
+$$
+
+Lunghezze GL fondamentali:
+
+$$
+\xi = \sqrt{\frac{\hbar^{2}}{2 m^{\ast} |\alpha|}},\qquad
+\lambda = \sqrt{\frac{m^{\ast}}{4 \mu_{0} e^{2} |\psi|^{2}}}
+$$
+
+Il **parametro GL** adimensionale $\kappa \equiv \lambda/\xi$ classifica i superconduttori:
+
+- **Tipo I** se $\kappa < 1/\sqrt{2}$ (un solo campo critico $H_{c}$, stato Meissner completo fino alla brusca distruzione della superconduttività)  
+- **Tipo II** se $\kappa > 1/\sqrt{2}$ (stato misto con vortici tra $H_{c1}$ e $H_{c2}$)
+
+---
+
+### 10.9.3 Fondamenti BCS: accoppiamento, gap e $T_{c}$
+
+La BCS mostra che qualunque debole attrazione ritardata tra elettroni vicini a $\epsilon_{F}$ (per esempio mediata da fononi) causa un'**instabilità di Cooper** e uno stato fondamentale appaiato con gap energetico $\Delta$.
+
+Gap a temperatura zero e temperatura critica (onda $s$ isotropa, accoppiamento debole):
+
+$$
+\Delta(0) = 2\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+$$
+k_{B} T_{c} = 1.14\,\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+Rapporto universale BCS:
+
+$$
+\frac{2\Delta(0)}{k_{B} T_{c}} \approx 3.53
+$$
+
+La **densità degli stati** delle quasiparticelle (per spin) diventa
+
+$$
+N_{s}(E) = N(0)\,\mathrm{Re}\,\frac{|E|}{\sqrt{E^{2}-\Delta^{2}}}
+$$
+
+con picchi di coerenza a $E=\pm \Delta$. Il calore specifico presenta un salto di $\Delta C/C_{n}|_{T_{c}}=1.43$; il comportamento a basse $T$ è attivato, $C\sim e^{-\Delta/(k_{B}T)}$, per un'onda $s$ con gap completo.
+
+**Lunghezza di coerenza BCS** (limite pulito):
+
+$$
+\xi_{0} = \frac{\hbar v_{F}}{\pi \Delta(0)}
+$$
+
+---
+
+### 10.9.4 Campi critici, correnti e stato misto
+
+Usando le densità di energia libera $F_s,F_n$, il tipo I ha un **campo critico termodinamico** $H_{c}(T)$ che soddisfa $F_{n}(0)-F_{s}(0)=\mu_{0}H_{c}^{2}/2$.
+
+Il tipo II presenta tre scale:
+
+$$
+\mu_{0} H_{c1} \approx \frac{\Phi_{0}}{4\pi \lambda^{2}} \ln \kappa
+$$
+
+$$
+\mu_{0} H_{c2} = \frac{\Phi_{0}}{2\pi \xi^{2}}
+$$
+
+$$
+\Phi_{0} = \frac{h}{2e}
+$$
+
+Per $H_{c1}<H<H_{c2}$, il campo magnetico penetra attraverso **vortici di Abrikosov** che trasportano un quanto di flusso $\Phi_{0}$. I nuclei dei vortici hanno raggio $\sim \xi$, dove $|\psi|$ è soppresso; le supercorrenti circolanti decadono su $\lambda$. Nei materiali puliti e in assenza di ancoraggio, i vortici formano un reticolo triangolare.
+
+**Densità di corrente critica** (stima GL di rottura delle coppie vicino a $T_{c}$):
+
+$$
+J_{d} \sim \frac{H_{c}}{\lambda}
+$$
+
+In pratica, il **moto dei vortici** (flusso viscoso) limita la corrente; un forte ancoraggio aumenta la **corrente critica** $J_{c}\ll J_{d}$ usata nelle applicazioni.
+
+---
+
+### 10.9.5 Quantizzazione del flusso e rigidità di fase
+
+L'univocità della fase del condensato $\varphi$ lungo un circuito chiuso dà
+
+$$
+\oint \nabla \varphi\cdot d\boldsymbol\ell = 2\pi n
+$$
+
+Insieme alla relazione per la supercorrente, ciò dà la quantizzazione del flussoide; la **quantizzazione del flusso** $\Phi=n\Phi_{0}$ segue quando il contorno si trova in profondità in un superconduttore molteplicemente connesso, dove la supercorrente si annulla. La rigidità di fase è all'origine delle correnti persistenti e degli effetti Josephson.
+
+---
+
+### 10.9.6 Effetti Josephson
+
+Due superconduttori separati da una barriera sottile (SIS) sostengono una **supercorrente** senza tensione:
+
+- **Josephson in continua**:
+
+$$
+I = I_{c}\,\sin\phi
+$$
+
+dove $\phi$ è la differenza di fase e $I_{c}$ la corrente critica. In presenza di campo magnetico, l'interferenza attraverso una giunzione di larghezza $W$ dà una **figura di Fraunhofer** $I_{c}(B)\propto |\sin(\pi \Phi/\Phi_{0})/(\pi \Phi/\Phi_{0})|$.
+
+- **Josephson in alternata**: una tensione continua $V$ fa evolvere la fase secondo $\dot\phi = 2eV/\hbar$, generando una corrente alternata alla frequenza
+
+$$
+f = \frac{2e}{h}\,V
+$$
+
+L'irraggiamento a microonde produce **gradini di Shapiro** alle tensioni $V_{n}=n\,h f/(2e)$. Due giunzioni in un anello formano uno **SQUID** con periodo $\Phi_{0}$ in funzione del flusso applicato, permettendo una magnetometria ultrasensibile.
+
+Nelle giunzioni SNS, il trasporto sotto il gap avviene tramite **riflessione di Andreev**, formando stati legati discreti di Andreev che trasportano la supercorrente.
+
+---
+
+### 10.9.7 Prossimità ed effetti mesoscopici
+
+Un metallo normale in buon contatto con un superconduttore acquisisce correlazioni di coppia su una **lunghezza di prossimità** (limite sporco $L_{\phi}\sim \sqrt{\hbar D/k_{B}T}$). La conduttanza sotto il gap di un'interfaccia NS è aumentata dalla riflessione di Andreev e si avvicina a un fattore 2 nel limite BTK ideale a tensione nulla per un contatto perfettamente trasparente.
+
+---
+
+### 10.9.8 Cenni su superconduttori non convenzionali e ad alta $T_{c}$
+
+Non tutti i superconduttori sono a onda $s$. L'accoppiamento a **onda $d$** (cuprati) presenta linee nodali, che danno una termodinamica a legge di potenza ($C\sim T^{2}$ in 3D) e una DOS di tunneling a forma di V. L'**onda $p$** e altri stati esotici possono ospitare stati legati di Majorana in contesti topologici. In molti casi non convenzionali, il «collante» non è costituito dai fononi ma dalle interazioni elettrone–elettrone (fluttuazioni di spin), e i rapporti BCS si discostano da 3,53.
+
+---
+
+### 10.9.9 Segnali sperimentali caratteristici
+
+- **Trasporto**: resistenza nulla sotto $T_{c}$; tensione finita solo quando la corrente supera $J_{c}$ o i vortici si muovono  
+- **Magnetizzazione**: espulsione di Meissner, isteresi irreversibile dovuta all'ancoraggio dei vortici nel tipo II  
+- **Termodinamica**: salto del calore specifico a $T_{c}$; entropia dall'integrazione di $C/T$, seguita dall'integrazione della differenza di entropia per ottenere l'energia di condensazione  
+- **Spettroscopia**: picchi di coerenza tunneling/STM a $\pm \Delta$; simmetria del gap da ARPES; conduttività ottica con area mancante trasferita alla delta a frequenza zero (regola di somma di Ferrell–Glover–Tinkham)  
+- **Microonde/THz**: la conduttività in alternata mostra una delta del superfluido e una risposta delle quasiparticelle a frequenza finita  
+- **Muoni/NMR**: profondità di penetrazione, reticolo dei vortici e simmetria del gap dai tassi di rilassamento
+
+---
+
+### 10.9.10 Brevi esempi svolti
+
+**(a) Profondità di penetrazione dalla densità dei portatori**  
+Usando $\lambda^{2}=m/(\mu_{0} n_{s} e^{2})$, stima $\lambda$ per $n_{s}=10^{28}\ \mathrm{m^{-3}}$ e $m=m_{e}$.
+
+**(b) Stima di $H_{c2}$**  
+Un superconduttore di tipo II ha $\xi=4\ \mathrm{nm}$. Calcola $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$.
+
+**(c) Lunghezza di coerenza dal gap e da $v_{F}$**  
+Con $v_{F}=2.0\times 10^{5}\ \mathrm{m/s}$ e $\Delta(0)=1.5\ \mathrm{meV}$, stima $\xi_{0}=\hbar v_{F}/(\pi \Delta)$ e confrontala con la $\xi$ GL vicino a $T_{c}$.
+
+**(d) Frequenza Josephson**  
+Quale frequenza a microonde deriva da $V=1.00\ \mathrm{mV}$ applicata a una giunzione? Usando $f=(2e/h)V$, mostra $f\approx 483.6\ \mathrm{GHz/mV}\times 1.00\ \mathrm{mV}$.
+
+**(e) Quantizzazione del flusso in un anello**  
+Un anello superconduttore di area $A=20\ \mu\mathrm{m}^{2}$ mostra oscillazioni SQUID con periodo $\Delta B$. Verifica $\Delta B=\Phi_{0}/A$ e calcola il periodo.
+
+**(f) Corrente di rottura delle coppie (ordine di grandezza)**  
+Dati $\mu_{0}H_{c}=0.2\ \mathrm{T}$ e $\lambda=120\ \mathrm{nm}$, stima $J_{d}\sim H_{c}/\lambda$ e confrontala con una $J_{c}$ misurata e limitata dall'ancoraggio.
+
+---
+
+### 10.9.11 Errori comuni
+
+- **Meissner e conduttore perfetto**: nello stato Meissner, i superconduttori espellono i campi *preesistenti e quelli appena applicati*; i conduttori perfetti si limitano a bloccare il campo presente durante il raffreddamento  
+- **Dimenticare il $2e$**: le coppie di Cooper portano carica $2e$; il quanto di flusso è $h/2e$, non $h/e$  
+- **Confondere tipo I e II**: la classificazione usa $\kappa=\lambda/\xi$; non riguarda «quanto è forte il campo», ma il segno dell'energia di interfaccia  
+- **Ignorare i vortici**: nel tipo II, una resistenza finita con corrente e campo spesso deriva dal moto dei vortici, non dalla distruzione del gap  
+- **Usare formule del limite pulito in campioni sporchi**: $\xi$ e $\lambda$ si rinormalizzano per lo scattering da impurezze; confronta il cammino libero medio $l$ con $\xi_{0}$  
+- **Presumere un'onda $s$**: la simmetria del gap conta; leggi di potenza in $C(T)$ e $\lambda(T)$ e quasiparticelle nodali rivelano un accoppiamento non convenzionale
+
+---
+
+### 10.9.12 Raccolta minima di problemi
+
+- Partendo dalle equazioni di London, ricava $\nabla^{2}\boldsymbol B=\boldsymbol B/\lambda^{2}$ e mostra il decadimento esponenziale di $B(x)$ in un semispazio  
+- Dalla GL, calcola l'energia superficiale tra regioni normali e superconduttrici e riproduci il confine tipo I/II a $\kappa=1/\sqrt{2}$  
+- Usa l'univocità di $\psi$ e la relazione per la supercorrente per ricavare la quantizzazione del flussoide; ottieni $\Phi_{0}=h/2e$ e la quantizzazione del flusso per un contorno con supercorrente nulla  
+- Usa l'equazione BCS del gap ad accoppiamento debole per ottenere $\Delta(0)$ e il rapporto $2\Delta(0)/k_{B}T_{c}$  
+- Ricava $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$ linearizzando l'equazione GL in un campo e riconducendola ai livelli di Landau del parametro d'ordine  
+- Calcola l'inviluppo di Fraunhofer $I_{c}(B)$ per una giunzione Josephson rettangolare e ricava l'area della giunzione dal periodo
+
+---
+
+## 10.10 Correlazioni forti e fisica di Mott
+
+Se gli elettroni debolmente interagenti sono tranquilli, quelli fortemente correlati mettono in scena un dramma caotico: localizzazione senza gap di banda, masse efficaci enormi, trasporto da cattivo metallo e peso spettrale che si sposta su scale di eV quando il drogaggio cambia di pochi punti percentuali. La mascotte è l'**isolante di Mott**: una strana creatura che secondo la teoria delle bande dovrebbe condurre (banda semipiena), ma si rifiuta perché gli elettroni non vogliono condividere un sito quando la repulsione locale $U$ è grande. Questa sezione presenta la famiglia Hubbard, il superscambio e il modello $t$–$J$, la transizione di Mott (Brinkman–Rice e Slater), il trasferimento di peso spettrale, la fisica multiorbitale e di Hund e un'introduzione rapida alla DMFT, con segnali sperimentali immediatamente riconoscibili.
+
+---
+
+### 10.10.1 Modello di Hubbard: il dramma minimale
+
+Metti gli elettroni su un reticolo, permetti loro di saltare con ampiezza $t$ e penalizza la doppia occupazione con $U$:
+
+$$
+H = -t \sum_{\langle i j \rangle,\sigma}\!\left(c^{\dagger}_{i\sigma} c_{j\sigma} + \text{h.c.}\right)
++ U \sum_{i} n_{i\uparrow} n_{i\downarrow} - \mu \sum_{i} n_{i}
+$$
+
+- A **mezzo riempimento** e per **$U/W \ll 1$** (larghezza di banda $W$), può essere valida una descrizione metallica paramagnetica, purché nessun ordinamento o instabilità di bassa dimensionalità apra un gap.  
+- Per **$U/W \gg 1$**, il moto della carica si congela: ogni sito preferisce un solo elettrone per evitare $U$, producendo un isolante di Mott con momenti locali.  
+- Il drogaggio rispetto al mezzo riempimento introduce portatori mobili in un ambiente fortemente interagente → trasporto insolito e, in alcuni materiali, superconduttività ad alta $T_{c}$.
+
+---
+
+### 10.10.2 Da Hubbard a Heisenberg: superscambio
+
+Quando $U\gg t$ a mezzo riempimento, i salti virtuali creano uno scambio **antiferromagnetico** efficace tra spin vicini:
+
+$$
+H_{\text{eff}} = J \sum_{\langle i j\rangle} \boldsymbol S_{i}\cdot \boldsymbol S_{j},\qquad
+J = \frac{4 t^{2}}{U}
+$$
+
+Questo è il **superscambio**. Intuitivamente: gli spin paralleli bloccano lo scambio per il principio di Pauli; quelli antiparalleli possono occupare virtualmente lo stesso sito e tornare indietro, abbassando l'energia.
+
+---
+
+### 10.10.3 Modello $t$–$J$: strumento per il Mott drogato
+
+Drogare un isolante di Mott mantenendo grande $U$ dà il modello vincolato
+
+$$
+H_{tJ} = -t \sum_{\langle i j\rangle,\sigma}\! \left(\tilde c^{\dagger}_{i\sigma} \tilde c_{j\sigma}+\text{h.c.}\right)
++ J \sum_{\langle i j\rangle} \left(\boldsymbol S_{i}\cdot \boldsymbol S_{j} - \frac{1}{4}\,n_{i} n_{j}\right)
+$$
+
+dove $\tilde c$ vieta la doppia occupazione. Il vincolo di **assenza di doppia occupazione** è la difficoltà centrale; lo affrontano il campo medio, i metodi con bosoni o fermioni ausiliari, oppure i metodi numerici. In 2D, la competizione tra energia cinetica e formazione di singoletti di spin favorisce tendenze all'accoppiamento a onda $d$.
+
+---
+
+### 10.10.4 Slater e Mott: perché gli isolanti non sono tutti uguali
+
+Due vie per aprire un gap a mezzo riempimento:
+
+- **Isolante di Slater**: un antiferromagnete ad accoppiamento debole. L'ordine a lungo raggio raddoppia la cella unitaria, ripiegando le bande e aprendo un gap di campo medio $\propto m$ che si chiude sopra la temperatura di Néel $T_{N}$.  
+- **Isolante di Mott**: gap $\sim U$ dovuto alla fisica locale; il materiale resta isolante **senza** ordine a lungo raggio, anche sopra $T_{N}$.
+
+**Come distinguerli in laboratorio**: se la fase ad alta $T$ è ancora isolante con grande energia di attivazione e ARPES mostra bande di Hubbard inferiore e superiore lontane dal potenziale chimico, siamo nel regime Mott (per esempio NiO). Se il gap collassa proprio a $T_{N}$ con una piccola riorganizzazione spettrale, il comportamento è di tipo Slater.
+
+---
+
+### 10.10.5 Anatomia della funzione spettrale: bande di Hubbard e quasiparticella
+
+Definisci la funzione spettrale a un elettrone $A(\boldsymbol k,\omega)$. In un metallo correlato vicino a una transizione di Mott:
+
+- Uno stretto **picco di quasiparticella (QP)** di peso $Z$ si trova a cavallo del livello di Fermi.  
+- Le **bande di Hubbard** incoerenti si trovano a $\omega \sim \pm U/2$ e portano peso $1-Z$.
+
+Il **peso di quasiparticella** è
+
+$$
+Z = \left[1 - \left.\frac{\partial \mathrm{Re}\,\Sigma(\omega)}{\partial \omega}\right|_{\omega=0}\right]^{-1}
+$$
+
+con $\Sigma$ autoenergia. All'aumentare delle correlazioni, $Z \downarrow$, la massa efficace $m^{\ast}\propto 1/Z \uparrow$ e, al punto di Mott, $Z\to 0$: la QP si dissolve e restano solo le bande di Hubbard.
+
+---
+
+### 10.10.6 Quadro di Brinkman–Rice e transizione metallo–isolante
+
+In una descrizione di campo medio delle correlazioni come liquido di Fermi, l'energia cinetica viene rinormalizzata da $Z$ e la **transizione metallo–isolante di Mott** (MIT) avviene quando
+
+$$
+Z \to 0 \quad \text{quando} \quad U \to U_{c}^{-}
+$$
+
+La divergenza di $m^{\ast}$ e il collasso del peso di Drude sono segnali caratteristici. Nei reticoli 3D reali, la transizione a $T$ finita è spesso **del primo ordine**, con isteresi (coesistono due soluzioni: metallo e isolante), e termina in un punto critico: un quadro riprodotto molto bene dalla DMFT.
+
+---
+
+### 10.10.7 Segnali ottici e ARPES (come riconoscere il carattere Mott)
+
+- **Ottica**: il peso di Drude diminuisce come $Z$, mentre crescono una struttura nel medio infrarosso e l'assorbimento delle bande di Hubbard. Il **trasferimento di peso spettrale** ridistribuisce il peso oltre una finestra di integrazione a bassa energia, rispettando la regola di somma ottica f completa: il peso si sposta su scale di eV con un drogaggio di pochi punti percentuali.  
+- **ARPES**: picco QP coerente vicino a $E_{F}$, più un ampio fondo incoerente e strutture «a cascata» ad alta energia. Il drogaggio di un isolante di Mott ricava nuovi stati a bassa energia dalla banda di Hubbard superiore e rimodella la dispersione (marcati **cambi di pendenza** se conta anche l'interazione elettrone–fonone).  
+- **Trasporto**: resistività oltre il limite di Mott–Ioffe–Regel (MIR, «cattivo metallo»), forti asimmetrie del potere termoelettrico, coefficiente di Hall che cambia segno con $T$ e con il drogaggio.
+
+---
+
+### 10.10.8 Isolanti a trasferimento di carica e di Mott (Zaanen–Sawatzky–Allen)
+
+Negli ossidi dei metalli di transizione, gli stati occupati più alti possono essere prevalentemente stati $p$ dei leganti, anziché stati $d$ della banda di Hubbard inferiore del metallo. Confronta $U$ (su $d$) con l'**energia di trasferimento di carica** $\Delta$ (da O $2p$ a TM $d$):
+
+- **Isolante di Mott–Hubbard**: $\Delta > U$; gap soprattutto tra le bande di Hubbard $d$ inferiore e superiore.  
+- **Isolante a trasferimento di carica**: $\Delta < U$; gap da O $p$ alla banda $d$ superiore. Drogare con lacune porta a stati di carattere ossigeno (come nei cuprati).
+
+Questa classificazione spiega risposte al drogaggio e soglie ottiche molto diverse tra ossidi con elementi simili nella tavola periodica.
+
+---
+
+### 10.10.9 Metalli di Hund e ingredienti multiorbitali
+
+Con più orbitali attivi, l'**accoppiamento di Hund** $J_{H}$ allinea gli spin sullo stesso atomo. Effetti:
+
+- Sopprime le fluttuazioni di carica interorbitali, riducendo $Z$ anche quando $U$ è moderato → «**metallo di Hund**» con quasiparticelle pesanti e forte scattering.  
+- Favorisce la selettività orbitale: alcuni orbitali si localizzano per effetto Mott, mentre altri restano itineranti (**fase di Mott orbitalmente selettiva**).  
+- Compete o coopera con campi cristallini e SOC: è fondamentale per rutenati, superconduttori a base di ferro e ossidi 4d/5d.
+
+---
+
+### 10.10.10 DMFT in una pagina: autoenergia locale, conseguenze globali
+
+La **teoria dinamica di campo medio (DMFT)** riconduce un modello reticolare a un'**impurezza quantistica** immersa in un bagno autoconsistente. L'autoenergia è assunta **locale** (indipendente dal momento): $\Sigma(\boldsymbol k,\omega)\to \Sigma(\omega)$; l'approccio è esatto a coordinazione infinita e notevolmente valido in 3D.
+
+L'autoconsistenza (reticolo di Bethe con semilarghezza di banda $D$) si scrive
+
+$$
+\Delta(\omega) = t^{2} G_{\text{loc}}(\omega),\qquad
+G_{\text{loc}}(\omega) = \int \frac{d\epsilon\,\rho_{0}(\epsilon)}{\omega+\mu-\Sigma(\omega)-\epsilon}
+$$
+
+dove $\Delta$ è l'ibridazione dell'impurezza e $\rho_{0}$ la DOS non interagente. Itera: risolvi l'impurezza → ottieni $\Sigma$ → ricalcola $G_{\text{loc}}$ → aggiorna $\Delta$.
+
+**Cosa riproduce bene la DMFT**
+
+- Spettro a tre picchi (QP e bande di Hubbard), collasso di $Z$ a $U_{c}$, MIT del primo ordine con coesistenza.  
+- Evoluzione termica della resistività, incluso il comportamento da cattivo metallo.  
+- Asimmetrie di drogaggio e trasferimento di peso spettrale.  
+- Con bande LDA come input (LDA+DMFT): materiali realistici, per esempio V$_2$O$_3$, SrVO$_3$ e pnicturi di ferro.
+
+---
+
+### 10.10.11 La particolarità 1D: liquidi di Luttinger e separazione spin–carica
+
+In un sistema strettamente 1D, i liquidi di Fermi sono instabili: le correlazioni producono un **liquido di Luttinger** con modi di spin e carica separati. Segnali: DOS di tunneling a legge di potenza, velocità diverse per le eccitazioni di spin e carica osservabili con ARPES o negli analoghi ad atomi freddi. Il modello di Hubbard 1D è **esattamente risolvibile** (ansatz di Bethe) e mostra un gap di Mott a mezzo riempimento per qualunque $U>0$.
+
+---
+
+### 10.10.12 Kondo, fermioni pesanti e il cugino reticolare (un breve cenno)
+
+Un momento locale in un metallo viene schermato dagli elettroni di conduzione sotto la **temperatura di Kondo** $T_{K}$, formando un singoletto con una risonanza stretta a $E_{F}$. Una disposizione periodica di questi momenti (reticolo di Kondo) si ibrida a basse $T$ formando quasiparticelle pesanti con $m^{\ast}\!\gg m_{e}$; a seconda di riempimento e simmetria si ottengono liquidi di Fermi pesanti, superconduttività non convenzionale o isolanti di Kondo. (Un approfondimento richiederebbe una sezione a sé; qui il messaggio è: «le correlazioni possono anche **far emergere** bande, oltre a separarle».)
+
+---
+
+### 10.10.13 Brevi esempi svolti
+
+**(a) Segno e scala del superscambio**  
+Per un dimero di Hubbard a due siti e mezzo riempimento, applica la perturbazione al secondo ordine in $t/U$ e mostra $J=4t^{2}/U$, spiegando perché è AFM.
+
+**(b) Divergenza della massa di Brinkman–Rice**  
+Assumendo $Z=1-(U/U_{c})^{2}$ vicino alla MIT, mostra che $m^{\ast}/m=1/Z$ diverge quando $U\to U_{c}^{-}$ e che il peso di Drude scala con $Z$.
+
+**(c) Autoconsistenza DMFT su Bethe**  
+Con DOS semicircolare $\rho_{0}(\epsilon)=\frac{2}{\pi D^{2}}\sqrt{D^{2}-\epsilon^{2}}$ e $D=2t$, ricava $\Delta(\omega)=t^{2}G_{\text{loc}}(\omega)$.
+
+**(d) Trasferimento del peso spettrale ottico**  
+Usa la regola di somma f per spiegare perché il peso spettrale integrato a bassa energia diminuisce con $U$ a riempimento fissato, e schematizza come il drogaggio ripristina il peso di Drude creando anche assorbimento nel medio IR.
+
+**(e) Classificazione ZSA**  
+Dati $U=6\ \mathrm{eV}$ e l'energia di trasferimento di carica $\Delta=3\ \mathrm{eV}$, identifica il tipo di isolante e prevedi se il drogaggio con lacune crea portatori di carattere O-$p$ o TM-$d$.
+
+**(f) Modello semplice di metallo di Hund**  
+In un modello Hubbard–Hund a due orbitali con $U$ moderato ma $J_{H}$ finito, spiega qualitativamente perché le fluttuazioni di carica interorbitali sono soppresse e $Z$ diminuisce rispetto al caso $J_{H}=0$.
+
+---
+
+### 10.10.14 Errori comuni
+
+- **Chiamare «Mott» ogni isolante AFM**: se il gap collassa a $T_{N}$, è probabilmente di Slater. Controlla la fase paramagnetica.  
+- **Equiparare un grande $U$ a un isolante a qualunque riempimento**: lontano dal mezzo riempimento si può avere un **metallo correlato** con piccolo $Z$, non necessariamente un isolante.  
+- **Dimenticare il trasferimento di peso spettrale**: le semplici descrizioni a bande conservano il peso a bassa energia al variare del drogaggio; la fisica di Mott **non** lo fa.  
+- **Usare masse efficaci di banda negli adattamenti correlati**: trasporto e termodinamica misurano $m^{\ast}\sim m/Z$; usa i valori rinormalizzati.  
+- **Estendere troppo la DMFT senza dipendenza dal momento**: la DMFT a singolo sito non descrive bene pseudogap dipendenti da $k$ o ordine a corto raggio; servono DMFT a cluster/DCA o metodi diagrammatici.  
+- **Confondere Mott e Anderson**: la localizzazione dovuta alle interazioni (Mott) differisce da quella dovuta al disordine (Anderson); possono coesistere (Mott–Anderson), ma le diagnosi differiscono (per esempio regolazione dell'interazione o del disordine).
+
+---
+
+### 10.10.15 Raccolta minima di problemi
+
+- Partendo dal modello di Hubbard a mezzo riempimento e $U\gg t$, ricava il parametro di Heisenberg $J=4t^{2}/U$ tramite la trasformazione di Schrieffer–Wolff  
+- Implementa un'autoenergia Hubbard-I e traccia l'emergere delle bande di Hubbard superiore e inferiore al crescere di $U$; confronta con la struttura a tre picchi della DMFT  
+- Per una DOS semicircolare, risolvi le equazioni DMFT a $T=0$ con la teoria delle perturbazioni iterata e traccia $Z(U)$; individua $U_{c}$  
+- Calcola l'evoluzione con il drogaggio della conduttività ottica in un modello semplice a tre picchi (QP e due bande di Hubbard); verifica il trasferimento di peso spettrale  
+- Classifica un ossido come Mott–Hubbard o a trasferimento di carica usando valori tabulati di $U$ e $\Delta$, e prevedi l'andamento di segno e modulo del coefficiente di Seebeck con un lieve drogaggio di lacune  
+- Costruisci un campo medio Hubbard–Hund a due orbitali e individua dove compare una fase di Mott orbitalmente selettiva in funzione di $U$, $J_{H}$ e della separazione dovuta al campo cristallino
+
+---
+
+## 10.11 Teoria topologica delle bande
+
+Alcuni isolanti a bande hanno «soltanto» un banale gap. Altri nascondono stati di bordo protetti, risposte quantizzate e i superpoteri della curvatura di Berry. Questa è la **teoria topologica delle bande**: usa la geometria nello spazio $k$ (fase e curvatura di Berry) e le simmetrie (inversione temporale, inversione spaziale, chirale) per classificare le fasi. Gli invarianti del volume prevedono i modi di bordo. Per cambiare l'invariante bisogna chiudere il gap da qualche parte: entrano così in scena transizioni di fase con nodi di Dirac o Weyl. Costruiamo gli strumenti.
+
+---
+
+### 10.11.1 Fase, connessione e curvatura di Berry
+
+Per una banda di Bloch $|u_{n\boldsymbol k}\rangle$ regolare in $\boldsymbol k$:
+
+- **Connessione di Berry**
+
+$$
+\boldsymbol A_{n}(\boldsymbol k) \equiv i \langle u_{n\boldsymbol k} | \nabla_{\boldsymbol k} u_{n\boldsymbol k} \rangle
+$$
+
+- **Curvatura di Berry**
+
+$$
+\boldsymbol\Omega_{n}(\boldsymbol k) \equiv \nabla_{\boldsymbol k} \times \boldsymbol A_{n}(\boldsymbol k)
+$$
+
+- **Fase di Berry** lungo un percorso chiuso $\mathcal C$ nella zona di Brillouin (BZ)
+
+$$
+\gamma_{n}[\mathcal C] = \oint_{\mathcal C} \boldsymbol A_{n}\cdot d\boldsymbol k
+$$
+
+Nota sul gauge: $\boldsymbol A$ dipende dalla scelta di fase di $|u\rangle$; $\boldsymbol\Omega$ e le fasi sui percorsi chiusi modulo $2\pi$ no. In 1D, la fase di Berry delle bande occupate controlla la **polarizzazione** (teoria moderna): $P$ è una fase di Berry sull'intera BZ (vedi §10.5.10).
+
+---
+
+### 10.11.2 Numero di Chern ed effetto Hall quantistico
+
+In 2D, il **numero di Chern** della banda $n$ è
+
+$$
+C_{n} = \frac{1}{2\pi} \int_{\mathrm{BZ}} d^{2}k\; \Omega_{n,z}(\boldsymbol k)
+$$
+
+Per un insieme di bande completamente riempite,
+
+$$
+\sigma_{xy} = -\frac{e^{2}}{h} \sum_{n\in \text{occ}} C_{n}
+$$
+
+Questo è il risultato TKNN dell'effetto Hall quantistico intero: un invariante topologico del **volume** prevede il numero di modi chirali al **bordo**. Se cambia $C$, il gap deve chiudersi da qualche parte.
+
+---
+
+### 10.11.3 Hall anomalo: curvatura di Berry senza $B$
+
+Anche a $B=0$, la rottura della simmetria di inversione temporale (TRS) dà un **effetto Hall anomalo intrinseco**
+
+$$
+\sigma_{xy}^{\mathrm{int}} = -\frac{e^{2}}{\hbar} \sum_{n} \int \frac{d^{3}k}{(2\pi)^{3}} f_{n\boldsymbol k}\,\Omega_{n,z}(\boldsymbol k)
+$$
+
+Qui $f$ è la funzione di Fermi. Pensa a $\boldsymbol\Omega$ come a un «campo magnetico nello spazio $k$» che devia i pacchetti d'onda (§10.7 aveva rimandato i termini di Berry).
+
+---
+
+### 10.11.4 Avvolgimento in 1D e introduzione al modello SSH
+
+Per un modello 1D a due bande con simmetria chirale $H(k)=\boldsymbol d(k)\cdot\boldsymbol\sigma$ e $d_{z}=0$, definisci $\phi(k)=\arg[d_{x}+id_{y}]$. Il **numero di avvolgimento**
+
+$$
+\nu = \frac{1}{2\pi} \int_{-\pi/a}^{\pi/a} dk\; \partial_{k}\phi(k)
+$$
+
+conta quante volte $\boldsymbol d$ gira attorno all'origine. L'invariante del volume $\nu=1$ dà **modi di bordo a energia zero** nella catena SSH (§10.5.3).
+
+---
+
+### 10.11.5 Inversione della massa di Dirac in 2D → isolante di Chern (alla Haldane)
+
+Considera un singolo cono di Dirac massivo
+
+$$
+H(\boldsymbol k)=v(k_{x}\sigma_{x}+k_{y}\sigma_{y}) + m\,\sigma_{z}
+$$
+
+Il contributo del cono continuo dalla banda di valenza (prima della regolarizzazione reticolare) è
+
+$$
+C = +\frac{1}{2}\,\mathrm{sgn}(m)
+$$
+
+Contribuiscono due coni di chiralità opposta (come nel reticolo a nido d'ape); se le loro masse hanno segni **opposti**, il totale $C=\pm 1$ → un **isolante di Chern** con un canale di bordo chirale.
+
+---
+
+### 10.11.6 Simmetria di inversione temporale e isolanti topologici $\mathbb{Z}_{2}$
+
+Con TRS ($\mathcal T^{2}=-1$ per gli elettroni), le bande formano **coppie di Kramers**. In 2D e 3D, gli isolanti sono classificati da un indice **$\mathbb{Z}_{2}$**, $\nu$ (2D) o $(\nu_{0};\nu_{1}\nu_{2}\nu_{3})$ (3D). Se è presente la simmetria di inversione spaziale, usa la scorciatoia delle **parità di Fu–Kane**:
+
+- A ogni TRIM $\Gamma_{i}$, moltiplica gli autovalori di inversione delle coppie di Kramers occupate per ottenere $\delta_{i}$
+- Quindi
+
+$$
+(-1)^{\nu} = \prod_{i}\delta_{i}
+$$
+
+L'indice forte in 3D è $(-1)^{\nu_{0}}=\prod_{i}\delta_{i}$; qui omettiamo i dettagli degli indici deboli. Un **TI forte** ($\nu_{0}=1$) ospita un numero dispari di coni di Dirac su qualunque superficie, protetti dalla TRS.
+
+Senza inversione spaziale, calcola un **ciclo di Wilson** della connessione di Berry (detto anche flusso dei centri di carica di Wannier). Se i centri ibridi di Wannier **si avvolgono** attraverso la BZ, la fase è topologica.
+
+---
+
+### 10.11.7 Corrispondenza volume–bordo (in una frase illustrativa)
+
+Invariante del volume non banale ⇒ stati di bordo robusti in cui non si può aprire un gap senza chiudere il gap del volume o rompere la simmetria protettiva.  
+- Isolante di Chern ($C$): $|C|$ modi di bordo **chirali** (unidirezionali).  
+- TI $\mathbb{Z}_{2}$ 2D: bordo **elicoidale** (coppia di Kramers contropropagante).  
+- TI forte 3D: numero dispari di **coni di Dirac superficiali**.  
+- Le fasi topologiche cristalline (protette da riflessione o rotazione) ospitano stati di bordo selettivi rispetto alla simmetria.
+
+---
+
+### 10.11.8 Semimetalli di Dirac e Weyl: topologia senza gap
+
+I parenti privi di gap:
+
+- I **nodi di Weyl** sono monopoli della curvatura di Berry in 3D con **carica chirale** intera $C=\pm 1$. Richiedono la rottura della TRS o dell'inversione spaziale per separare i nodi nello spazio $\boldsymbol k$. Conseguenze: **archi di Fermi** sulle superfici e **anomalia chirale** (MR longitudinale negativa quando $\boldsymbol E\parallel \boldsymbol B$). L'equazione dell'anomalia si scrive
+
+$$
+\partial_{t}\rho_{5} + \nabla\cdot \boldsymbol j_{5} = \frac{e^{2}}{2\pi^{2}\hbar^{2}}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+- I **semimetalli di Dirac** sovrappongono nodi di Weyl di chiralità opposta, mantenuti coincidenti dalla simmetria; rompendola, si separano in coppie di Weyl.
+
+---
+
+### 10.11.9 Rashba, vincolo spin–momento e coni di Dirac superficiali
+
+L'accoppiamento spin–orbita (SOC), insieme alla rottura dell'inversione spaziale, dà la separazione di **Rashba**
+
+$$
+H_{R} = \alpha (\boldsymbol\sigma \times \boldsymbol k)\cdot \hat{\boldsymbol z}
+$$
+
+Gli stati superficiali topologici nei TI mostrano un **vincolo spin–momento** (configurazioni elicoidali), che sopprime la retrodiffusione da disordine non magnetico. Le perturbazioni magnetiche che generano una massa di Dirac (per esempio un campo di scambio perpendicolare nel modello superficiale più semplice) possono aprire un gap nel cono di Dirac superficiale, permettendo risposte magnetoelettriche quantizzate (fisica assionica descritta sotto); un campo di scambio nel piano può invece spostare il cono.
+
+---
+
+### 10.11.10 Elettrodinamica assionica e risposta magnetoelettrica
+
+Nei TI 3D, l'azione elettromagnetica efficace aggiunge
+
+$$
+\mathcal L_{\theta} = \frac{\theta e^{2}}{2\pi h}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+con $\theta=0$ (banale) o $\pi$ (TI forte) modulo $2\pi$ se vale la TRS. Su una superficie in cui $\theta$ salta di $\pi$ si ottiene una conduttanza Hall superficiale **semiquantizzata** $e^{2}/(2h)$ quando la TRS è esplicitamente rotta al bordo.
+
+---
+
+### 10.11.11 Cicli di Wilson e flusso di Wannier (come calcoliamo gli invarianti)
+
+Discretizza $\boldsymbol k$ lungo un percorso chiuso $\mathcal C$ e costruisci il **ciclo di Wilson**
+
+$$
+W[\mathcal C] = \mathcal P \exp\!\left(i\int_{\mathcal C}\! \mathsf A(\boldsymbol k)\cdot d\boldsymbol k\right)
+$$
+
+dove $\mathsf A$ è la connessione di Berry non abeliana del sottospazio occupato. Le autofasi di $W$ danno i **centri di Wannier**; il loro flusso in funzione del $\boldsymbol k$ trasversale rivela Chern ($\nu$ si avvolge di $2\pi C$ per BZ) oppure $\mathbb{Z}_{2}$ (scambio di partner dispari o pari).
+
+---
+
+### 10.11.12 Magnetizzazione orbitale e polarizzazione moderna (ritorno a Berry)
+
+Due conseguenze della fase di Berry:
+
+- La **polarizzazione** (negli isolanti) è una fase di Berry degli stati occupati attraverso la BZ; solo le **variazioni** sono fisiche e sono quantizzate nei cicli adiabatici (pompa di Thouless).
+- La **magnetizzazione orbitale** nei cristalli si può esprimere come integrali sulla BZ che coinvolgono $\boldsymbol\Omega$ ed energie di banda; ciò la collega all'AHE intrinseco e ai moderni coefficienti magnetoelettrici.
+
+---
+
+### 10.11.13 Promemoria minimo delle classi di simmetria (una piccola parte della classificazione in dieci classi)
+
+| Classe | Simmetria (TRS, PHS, chirale) | Invariante 2D | Invariante 3D |
+|---|---|---|---|
+| A (nessuna simmetria) | –, –, – | $\mathbb{Z}$ (Chern) | 0 |
+| AII (TRS con $\mathcal T^{2}=-1$) | ✓, –, – | $\mathbb{Z}_{2}$ | $\mathbb{Z}_{2}$ (forte $\nu_{0}$) |
+| AIII (solo chirale) | –, –, ✓ | 0 | $\mathbb{Z}$ (avvolgimento) |
+
+La **classificazione in dieci classi** completa comprende i superconduttori (BdG) e altri invarianti; qui ci concentriamo sui casi più usati per gli elettroni.
+
+---
+
+### 10.11.14 Segnali sperimentali caratteristici
+
+- **Trasporto**: plateau del QHE intero; conduttanza di bordo quantizzata per gli isolanti di Chern; antilocalizzazione debole da fase di Berry $\pi$; MR longitudinale negativa nei Weyl (attenzione: esistono artefatti geometrici).  
+- **ARPES**: coni di Dirac superficiali, archi di Fermi, separazione di Rashba; l'ARPES risolta in spin conferma le configurazioni.  
+- **STM/STS**: assenza di retrodiffusione $180^{\circ}$ nella QPI per superfici elicoidali; successioni di livelli di Landau che rivelano la fase di Berry $\pi$.  
+- **Ottica**: grandi angoli Kerr/Faraday con superfici TI magnetizzate; risonanza ciclotronica con sfasamenti non banali.  
+- **Oscillazioni quantistiche**: sfasamenti (intercetta del grafico degli indici di Landau) legati alla fase di Berry, con cautele relative alla separazione di spin.
+
+---
+
+### 10.11.15 Brevi esempi svolti
+
+**(a) Chern per un Dirac a due bande**  
+Per $H=v(k_{x}\sigma_{x}+k_{y}\sigma_{y})+m\sigma_{z}$, calcola $\Omega_{z}(\boldsymbol k)$ e integra per mostrare $C=+\tfrac{1}{2}\mathrm{sgn}(m)$ per cono; due coni non equivalenti di chiralità opposta, con $m$ opposti, danno $C=\pm 1$.
+
+**(b) Test delle parità**  
+Dati gli autovalori di inversione ai quattro TRIM 2D come $(+,+,+,-)$ per le coppie di Kramers occupate, valuta $(-1)^{\nu}=-1$ ⇒ topologico.
+
+**(c) Avvolgimento del ciclo di Wilson**  
+Su una banda di Chern con $C=1$, mostra che l'angolo del centro di Wannier $\theta(k_{y})$ avanza di $2\pi$ quando $k_{y}$ attraversa la BZ. Confronta con una banda banale.
+
+**(d) Stati alle estremità SSH**  
+Calcola il numero di avvolgimento per $H(k)=(t_{1}+t_{2}\cos ka)\sigma_{x}+t_{2}\sin ka\,\sigma_{y}$. Mostra $\nu=1$ per $|t_{2}|>|t_{1}|$ e traccia gli spettri di bordo per una catena aperta.
+
+**(e) Carica monopolare di Weyl**  
+Valuta il flusso di $\boldsymbol\Omega$ attraverso una piccola sfera attorno a un nodo di Weyl e mostra che è uguale a $\pm 2\pi$ (cioè carica $\pm 1$).
+
+**(f) Hall superficiale dall'assione**  
+Assumendo un TI con superficie magnetizzata, quindi $\Delta\theta=\pi$, integra $\mathcal L_{\theta}$ attraverso il bordo per ottenere $\sigma_{xy}=e^{2}/(2h)$.
+
+---
+
+### 10.11.16 Errori comuni
+
+- **Trappole di gauge**: $\boldsymbol A$ dipende dal gauge; solo $\boldsymbol\Omega$ e le fasi sui percorsi chiusi modulo $2\pi$ sono fisiche. Per i calcoli numerici usa gauge regolari o cicli di Wilson.  
+- **Usare Fu–Kane senza inversione**: la scorciatoia delle parità richiede la simmetria di inversione spaziale; altrimenti usa cicli di Wilson o flusso dei centri di Wannier.  
+- **Confondere Rashba con la topologia**: la sola separazione di Rashba non produce un TI; servono un gap del volume e un indice $\mathbb{Z}_{2}$ non banale.  
+- **Interpretare male le fasi delle oscillazioni**: estrarre la fase di Berry dai diagrammi a ventaglio di Landau richiede di considerare Zeeman, deformazioni della superficie e geometria 3D.  
+- **Bordo e superficie non sono sempre equivalenti**: la protezione viene dalla simmetria; rompendola al confine, si può aprire un gap nello stato (per esempio tramite disordine magnetico su una superficie TI).  
+- **Chern nei sistemi con TRS**: con TRS intatta e senza ordine magnetico, il numero di Chern **totale** delle bande occupate deve essere zero; l'indice $\mathbb{Z}_{2}$ può comunque essere non banale.
+
+---
+
+### 10.11.17 Raccolta minima di problemi
+
+- Ricava la formula TKNN partendo da Kubo e mostra $\sigma_{xy}=-(e^{2}/h)\sum C_{n}$ per un isolante 2D pulito  
+- Implementa un calcolo del numero di Chern sulla BZ discreta tramite variabili di collegamento e convalidalo sul modello di Dirac a due bande  
+- Per un isolante centrosimmetrico con SOC, calcola $\mathbb{Z}_{2}$ di Fu–Kane dalle parità tabulate ai TRIM; poi conferma con il flusso dei cicli di Wilson  
+- Costruisci un modello di Weyl a due nodi, calcola la funzione di Green superficiale per una lastra e traccia gli archi di Fermi  
+- Aggiungi un termine di Zeeman superficiale a un cono di Dirac di un TI 3D e mostra l'apertura di un gap e la conduttanza Hall semiquantizzata  
+- Simula una pompa adiabatica di Thouless in un reticolo 1D e mostra che il trasporto di carica quantizzato uguaglia il numero di Chern del toro $(k,t)$
+
+---
+
+## 10.12 Trasporto mesoscopico e coerenza quantistica
+
+Riduci un conduttore finché le sue dimensioni diventano confrontabili con la lunghezza di coerenza e il cammino libero medio: il trasporto passa dal «flusso del traffico» all'**interferenza ondulatoria**. È il regime **mesoscopico**: gli elettroni mantengono la coerenza di fase attraverso il dispositivo, la conduttanza diventa specifica del campione ma riproducibile e il rumore quantistico rivela la statistica delle trasmissioni. Gli strumenti principali sono il trasporto di **Landauer–Büttiker**, l'interferenza di **Aharonov–Bohm**, la **localizzazione/antilocalizzazione debole** e le **fluttuazioni universali di conduttanza**. Terremo un occhio sugli esperimenti (QPC, anelli, nanofili) e uno sulle formule utilizzabili.
+
+---
+
+### 10.12.1 Landauer: la conduttanza come trasmissione
+
+Per un conduttore a due terminali con coerenza di fase, a bassa temperatura e piccola tensione applicata, la corrente è trasportata da canali quantistici indipendenti con trasmissioni $\{T_{n}\}$:
+
+$$
+G = \frac{2e^{2}}{h}\sum_{n} T_{n}
+$$
+
+Il fattore 2 è la degenerazione di spin (rimossa da Zeeman/SOC). Per un **contatto puntiforme quantistico** (QPC) nel limite balistico, i modi trasversali si aprono uno alla volta, quindi $T_{n}\approx 1$ e
+
+$$
+G \approx N\,\frac{2e^{2}}{h}
+$$
+
+danno **gradini di conduttanza quantizzata** in funzione della tensione di gate.
+
+**Descrizione multiterminale (Büttiker).** Con contatti $\alpha,\beta$ e probabilità di trasmissione $T_{\alpha\beta}$, la risposta lineare si scrive
+
+$$
+I_{\alpha} = \frac{2e^{2}}{h}\sum_{\beta}\left( T_{\beta\alpha} V_{\alpha} - T_{\alpha\beta} V_{\beta} \right)
+$$
+
+Ciò impone la conservazione della corrente e include automaticamente la geometria dei contatti.
+
+---
+
+### 10.12.2 Aharonov–Bohm (AB) e memoria di fase
+
+In un anello, due percorsi racchiudono un flusso magnetico $\Phi$. Le funzioni d'onda acquistano una fase relativa $2\pi \Phi/\Phi_{0}$, con $\Phi_{0}=h/e$. Risultato:
+
+- **Oscillazioni AB** della conduttanza periodiche in $h/e$  
+- Oscillazioni di **Altshuler–Aronov–Spivak (AAS)** a **$h/2e$**, dovute a coppie di percorsi chiusi legati dall'inversione temporale
+
+La visibilità decade con la **lunghezza di coerenza di fase** $L_{\phi}$, determinata dalla perdita di fase (elettrone–elettrone, elettrone–fonone, rumore esterno). Approssimativamente, i segnali scalano come $\exp(-L/L_{\phi})$ lungo un percorso interferente chiuso di lunghezza $L$.
+
+---
+
+### 10.12.3 Rumore granulare: la statistica di conteggio sottostante
+
+Anche a $T\to 0$, la corrente fluttua perché la carica è discreta. Per un conduttore coerente in fase,
+
+$$
+S_{I}(0) = 2 e V \frac{2e^{2}}{h}\sum_{n} T_{n}(1-T_{n})
+$$
+
+dove $S_{I}(0)$ è la densità spettrale del rumore a frequenza zero e $V$ la tensione applicata. Definisci il **fattore di Fano**
+
+$$
+F \equiv \frac{S_{I}(0)}{2 e I} = \frac{\sum_{n} T_{n}(1-T_{n})}{\sum_{n} T_{n}}
+$$
+
+Casi fondamentali: plateau balistico $T_{n}\approx 1$ ⇒ $F\approx 0$ (rumore soppresso); **filo diffusivo** ⇒ $F=1/3$; giunzione tunnel $T_{n}\ll 1$ ⇒ valore poissoniano $F\approx 1$.
+
+---
+
+### 10.12.4 Localizzazione debole (WL) e antilocalizzazione (WAL)
+
+L'interferenza quantistica dei percorsi diffusivi legati dall'inversione temporale aumenta la retrodiffusione:
+
+- Con inversione temporale conservata e debole spin–orbita, si ha **WL**: un **minimo negativo nella magnetoconduttanza** a $B=0$ (conduttanza ridotta dalla correzione quantistica).
+- Con forte SOC (o fase di Berry $\pi$), si ha **WAL**: una cuspide **positiva** (antilocalizzazione).
+
+In 2D, la magnetoconduttanza vicino a $B=0$ segue una correzione del tipo Hikami–Larkin–Nagaoka (schematicamente)
+
+$$
+\Delta \sigma(B) \sim \frac{e^{2}}{2\pi^{2}\hbar} \left[ f\!\left(\frac{B_{\phi}}{B}\right) - f\!\left(\frac{B_{\phi}+B_{\mathrm{so}}}{B}\right) - \cdots \right]
+$$
+
+dove $B_{\phi}\propto 1/L_{\phi}^{2}$ e $B_{\mathrm{so}}$ codifica il SOC. In 2D senza SOC, la correzione a $B=0$ scala come
+
+$$
+\Delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+con cammino libero medio $\ell$ (il segno si inverte per la WAL).
+
+---
+
+### 10.12.5 Fluttuazioni universali di conduttanza (UCF)
+
+La conduttanza mesoscopica $G(B)$ o $G(V_{g})$ presenta oscillazioni **aperiodiche ma riproducibili**, dovute all'interferenza specifica del campione. La loro **varianza** è **universale** (indipendente dai dettagli del materiale), dell'ordine di
+
+$$
+\mathrm{var}(G) \sim \left(\frac{e^{2}}{h}\right)^{2} \times \frac{1}{\beta}
+$$
+
+dove $\beta=1,2,4$ identifica le classi di simmetria ortogonale (TRS), unitaria (TRS rotta) e simplettica (forte SOC). I coefficienti precisi dipendono dalla dimensionalità e dal rapporto d'aspetto, ma l'ordine di grandezza è fissato: da qui «universale».
+
+---
+
+### 10.12.6 Perdita di fase e rilassamento energetico
+
+La coerenza di fase si perde a causa di processi anelastici:
+
+- Scattering **elettrone–elettrone** (dominante a basse $T$): spesso $1/\tau_{\phi}\propto T^{p}$, con $p$ dipendente dalla dimensione (sublineare in 1D, quasi lineare in 2D diffusivo)  
+- **Elettrone–fonone** a $T$ più alte: tipicamente $1/\tau_{\phi}\propto T^{q}$, con $q>2$  
+- **Impurezze magnetiche**: le inversioni di spin distruggono la coerenza; la fisica di Kondo può manifestarsi nell'andamento di $T$
+
+Ricava $L_{\phi}=\sqrt{D\tau_{\phi}}$ adattando la magnetoconduttanza WL/WAL o il decadimento dell'ampiezza AB in funzione della circonferenza.
+
+---
+
+### 10.12.7 Resistenza di contatto e rimedio a quattro sonde
+
+Landauer ci ricorda che anche un filo 1D **perfetto** ha una resistenza limitata dai contatti
+
+$$
+R_{\mathrm{Q}} = \frac{h}{2e^{2}} \approx 12.9\ \mathrm{k}\Omega
+$$
+
+per canale occupato degenere in spin. Le geometrie multiterminali (barre Hall, quattro sonde) separano gli effetti dei contatti e delle interfacce dalla trasmissione intrinseca del dispositivo.
+
+---
+
+### 10.12.8 Universalità delle matrici casuali
+
+Le cavità completamente caotiche o fortemente disordinate, ma coerenti in fase («punti quantici»), hanno autovalori di trasmissione la cui statistica segue gli **ensemble di Wigner–Dyson**:
+
+- **GOE (β=1)** con TRS, senza SOC  
+- **GUE (β=2)** con TRS rotta  
+- **GSE (β=4)** con forte SOC e TRS conservata
+
+Ciò governa le distribuzioni di $G$, il **rumore granulare** (per esempio $F=1/4$ nelle cavità caotiche) e le spaziature dei livelli (congettura di Wigner). Le transizioni tra classi di simmetria si regolano con il campo magnetico e l'intensità del SOC.
+
+---
+
+### 10.12.9 Superconduttività mesoscopica: Andreev alla nanoscala
+
+A un'interfaccia pulita normale–superconduttore (NS), il trasporto sotto il gap avviene tramite **riflessione di Andreev**: un elettrone viene retroriflesso come lacuna, aggiungendo una coppia di Cooper al condensato. Conseguenze:
+
+- **Raddoppio** della conduttanza a piccola tensione per un contatto puntiforme NS perfettamente trasparente (limite BTK)  
+- **Riflessioni multiple di Andreev** (MAR) nelle giunzioni SNS corte, che producono strutture subarmoniche del gap a $eV=2\Delta/n$  
+- Nei nanofili con effetto di prossimità, SOC e campo di Zeeman, gli stati legati di Andreev possono trasformarsi in modi a energia zero **di tipo Majorana** per parametri opportunamente regolati (un cenno alla superconduttività topologica)
+
+---
+
+### 10.12.10 Dal mesoscopico ad Anderson: il ponte dello scaling
+
+All'aumentare del disordine o al diminuire della dimensione, le correzioni di interferenza (WL/WAL, UCF) si rafforzano. In bassa dimensionalità:
+
+- **1D, 2D**: un disordine arbitrariamente debole localizza gli elettroni non interagenti a $T=0$ nella classe ortogonale (senza SOC e senza campo magnetico)  
+- **3D**: può verificarsi una vera **transizione metallo–isolante** a un disordine critico
+
+La **conduttanza adimensionale** $g \equiv G/(e^{2}/h)$ obbedisce a un flusso di scaling $d\ln g/d\ln L = \beta(g)$; il **segno** di $\beta(g)$ determina il comportamento metallico o isolante. Descriviamo in dettaglio la **localizzazione di Anderson** e la teoria dello scaling in §10.13.
+
+---
+
+### 10.12.11 Brevi esempi svolti
+
+**(a) Fondamenti di Landauer**  
+Un QPC mostra plateau a $G=(2,4,6)\times e^{2}/h$ quando si apre il gate. Stima il numero di modi occupati e il valore medio di $T_{n}$ su una transizione inclinata tra plateau.
+
+**(b) Tre casi di rumore granulare**  
+Calcola $F$ per (i) una giunzione tunnel con $T\ll 1$, (ii) un QPC balistico su un plateau, (iii) un filo diffusivo. Spiega perché $F$ li distingue anche se $G$ è simile.
+
+**(c) AB e AAS**  
+Un anello di circonferenza $L$ mostra oscillazioni $h/e$ di ampiezza $A_{1}\propto e^{-L/L_{\phi}}$ e un'armonica $h/2e$ più debole, $A_{2}$. Spiega perché $A_{2}$ decade come $e^{-2L/L_{\phi}}$.
+
+**(d) Adattamento WL**  
+Data una traccia di magnetoconduttanza 2D con una cuspide stretta a $B=0$ e un'inversione della curvatura dopo l'aggiunta di un gate superiore (SOC più forte), ricava qualitativamente gli andamenti di $L_{\phi}$ e $L_{\mathrm{so}}$.
+
+**(e) Scaling delle UCF**  
+Mostra come la media termica su una finestra energetica $k_{B}T$ riduca la varianza $\mathrm{var}(G)$ quando $k_{B}T$ supera l'energia di Thouless $E_{T}=\hbar D/L^{2}$.
+
+**(f) Resistenza di contatto**  
+Un nanofilo balistico a singolo modo di lunghezza $L\ll \ell$ mostra $R\approx R_{\mathrm{Q}}$. Spiega perché aggiungere una coppia di sonde di **tensione** per una misura a quattro sonde dà una resistenza interna quasi nulla, mentre la misura a due sonde continua a dare $\sim R_{\mathrm{Q}}$.
+
+---
+
+### 10.12.12 Errori comuni
+
+- **Dimenticare i contatti**: la conduttanza di Landauer include la resistenza di contatto; non attribuire al «filo perfetto» una $R$ finita misurata a due sonde.  
+- **Confondere ensemble e rumore del campione**: le UCF sono segnali caratteristici **riproducibili** in funzione di $B$ o $V_{g}$, non fluttuazioni casuali nel tempo; media su finestre di $B$ per mettere in evidenza la WL sovrapposta.  
+- **Confondere il segno della WL**: la WAL richiede forte SOC o fase di Berry $\pi$ (per esempio superfici topologiche); altrimenti aspettati WL.  
+- **Assumere sempre Fano $=1$**: il rumore granulare poissoniano compare solo nel tunneling; i dispositivi balistici e diffusivi sopprimono il rumore in modo prevedibile.  
+- **Fase e rilassamento energetico**: la perdita di fase distrugge l'interferenza senza necessariamente equilibrare l'energia; non identificare $\tau_{\phi}$ con il tempo di rilassamento energetico.  
+- **Adattare troppo la HLN**: la formula WL/WAL 2D ha parametri correlati; riporta con cautela gli andamenti ($L_{\phi}$, $L_{\mathrm{so}}$), senza attribuire ai numeri una precisione eccessiva.
+
+---
+
+## 10.13 Localizzazione di Anderson e teoria dello scaling
+
+Aumenta il disordine e l'interferenza smette di essere innocua: le funzioni d'onda **si localizzano**, il trasporto in continua scompare e la conduttanza diventa esponenzialmente piccola. È la **localizzazione di Anderson**, una fase quantistica a singola particella in cui disordine e interferenza intrappolano gli autostati. Questa sezione presenta il modello di Anderson, la teoria dello scaling e la funzione $\beta$, le soglie di mobilità e la criticità in 3D, le varianti delle classi di simmetria (ortogonale/unitaria/simplettica), le dimensioni finite e i multifrattali, i segnali sperimentali (VRH, gap di Coulomb, magnetorisposta WL/WAL) e metodi rapidi di calcolo (matrice di trasferimento, numero di Thouless, cenno al modello sigma non lineare). Chiudiamo con una breve visita alla localizzazione a molti corpi.
+
+---
+
+### 10.13.1 Il modello minimo
+
+L'**Hamiltoniana di Anderson** a legame forte su un reticolo:
+
+$$
+H = \sum_{i} \epsilon_{i}\,|i\rangle\langle i| + \sum_{\langle ij\rangle} t_{ij}\,|i\rangle\langle j|
+$$
+
+con energie locali casuali $\epsilon_{i}$ estratte da una distribuzione di larghezza $W$ (per esempio uniforme su $[-W/2,W/2]$) e hopping a corto raggio $t_{ij}=t$. Si confrontano $W$ e la larghezza di banda $W_{\mathrm{band}}\sim zt$.
+
+**Argomento euristico.** Quando il cammino libero medio elastico $\ell$ scende fino alla soglia di **Ioffe–Regel** $k_{F}\ell \sim 1$, le onde non riescono a percorrere un cammino libero medio mantenendo una fase ordinata: l'interferenza domina.
+
+---
+
+### 10.13.2 Dalla diffusione alla localizzazione: l'ipotesi di scaling
+
+Definisci la **conduttanza adimensionale** $g$ di un campione ipercubico di dimensione $L$:
+
+$$
+g(L) \equiv \frac{G(L)}{e^{2}/h} \sim h\,\nu(E_{F})\, D\, L^{d-2} \sim \frac{E_{T}}{\Delta}
+$$
+
+con densità degli stati $\nu$, costante di diffusione $D$, energia di Thouless $E_{T}=\hbar D/L^{2}$ e spaziatura dei livelli $\Delta\sim [\nu L^{d}]^{-1}$. Il postulato di **scaling a un parametro** (Abrahams–Anderson–Licciardello–Ramakrishnan) afferma che
+
+$$
+\beta(g) \equiv \frac{d\ln g}{d\ln L}
+$$
+
+dipende solo da $g$ (e dalla classe di simmetria). Conseguenze:
+
+- **$d=1$ e 2 (classe ortogonale)**: $\beta(g)<0$ per ogni $g$ ⇒ nessun vero punto fisso metallico a $T=0$; un disordine arbitrariamente debole localizza (in 2D in modo logaritmicamente lento).  
+- **$d=3$**: $\beta(g)$ attraversa lo zero a $g^{\ast}$ ⇒ **transizione metallo–isolante** (MIT). La lunghezza di correlazione/localizzazione
+
+$$
+\xi \sim |W-W_{c}|^{-\nu}
+$$
+
+diverge al disordine critico $W_{c}$; sul lato metallico $g(L\!\gg\!\ell)\sim (L/\ell)^{d-2}$.
+
+Le variazioni di simmetria (unitaria/simplettica) modificano $\beta$ e possono cambiare la conclusione in 2D (vedi §10.13.6).
+
+---
+
+### 10.13.3 Soglia di mobilità e criticità 3D
+
+In 3D, gli autostati possono essere **estesi** vicino al centro della banda e **localizzati** nelle code; l'energia che li separa è la **soglia di mobilità** $E_{c}(W)$. Regolare il disordine sposta $E_{c}$; a $W=W_{c}$, $E_{c}$ raggiunge $E_{F}$ e il trasporto in continua si annulla.
+
+Comportamento critico (classe ortogonale, non interagente):
+
+- **Lunghezza di localizzazione** $\xi\sim |W-W_{c}|^{-\nu}$ con $\nu$ universale  
+- **Scaling della conduttività** sul lato metallico
+
+$$
+\sigma \sim \frac{e^{2}}{h}\, \xi^{2-d}\, \mathcal F\!\left(\frac{L}{\xi},\frac{L_{\phi}}{\xi}\right)
+$$
+
+A $T=0$ e $L\to\infty$, $\sigma \propto (W_{c}-W)^{\mu}$ con un esponente $\mu$ legato a $\nu$ dallo scaling.
+
+---
+
+### 10.13.4 Correzioni quantistiche: WL/WAL e variazioni di $\ln T$
+
+Nel regime **diffusivo** ($k_{F}\ell\gg 1$), l'interferenza dei percorsi legati dall'inversione temporale dà correzioni di **localizzazione debole** (WL). In 2D (classe ortogonale), la correzione a campo nullo si comporta come
+
+$$
+\delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+Un campo magnetico perpendicolare rompe l'inversione temporale e **sopprime** la WL, producendo una **cuspide di magnetoresistenza negativa** attorno a $B=0$ (profilo di Hikami–Larkin–Nagaoka). Con forte accoppiamento spin–orbita (classe simplettica), il segno si inverte dando **antilocalizzazione debole** (WAL).
+
+Le **interazioni** aggiungono correzioni di Altshuler–Aronov con andamenti $\ln T$ e anomalie a tensione nulla nella DOS di tunneling. Insieme, WL e AA determinano spesso il comportamento $\sigma(T)=\sigma_{0}+a\ln T$ osservato nei metalli 2D.
+
+---
+
+### 10.13.5 Lato isolante: hopping e gap di Coulomb
+
+Quando gli stati sono localizzati con lunghezza $\xi$, il trasporto in continua avviene tramite **hopping a raggio variabile** (VRH) assistito da fononi.
+
+- **VRH di Mott** (senza gap di Coulomb a lungo raggio):
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{0}}{T}\right)^{\frac{1}{d+1}}\right]
+$$
+
+- **VRH di Efros–Shklovskii** (le interazioni coulombiane scavano un gap morbido nella DOS):
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{1}}{T}\right)^{1/2}\right]
+$$
+
+La magnetorisposta può essere grande e positiva nel VRH (contrazione delle funzioni d'onda e interferenza dei percorsi di hopping).
+
+---
+
+### 10.13.6 Classi di simmetria e particolarità 2D
+
+Il destino dei sistemi 2D non è unico: dipende dalle simmetrie globali:
+
+- **Ortogonale (TRS, senza SOC)**: tutti gli stati localizzati a $T=0$; $\sigma$ diminuisce logaritmicamente.  
+- **Unitaria (TRS rotta da $B$)**: cooperone soppresso; alla fine la localizzazione prevale ancora in 2D, ma $\beta$ è meno negativo.  
+- **Simplettica (forte SOC, TRS intatta)**: la **WAL** produce $\beta(g)>0$ per grandi $g$ e permette una vera **MIT 2D**, regolata dal disordine o dalla densità dei portatori.
+
+Altre classi (chirali, Bogoliubov–de Gennes) aggiungono casi particolari. All'interno della stessa classe unitaria A, anche i plateau dell'**effetto Hall quantistico** intero presentano transizioni topologiche tra plateau Hall localizzati.
+
+---
+
+### 10.13.7 Scaling a dimensioni finite e metodo della matrice di trasferimento
+
+I calcoli numerici ricavano $\nu$ e $W_{c}$ calcolando una **lunghezza di localizzazione quasi-1D** $\lambda_{M}(W)$ per barre di larghezza $M$ tramite matrici di trasferimento, poi facendo collassare
+
+$$
+\frac{\lambda_{M}}{M} = \mathcal F\!\left[(W-W_{c})\,M^{1/\nu}\right]
+$$
+
+Le curve per diversi $M$ si intersecano a $W_{c}$; la pendenza dà $\nu$. Questo è il metodo principale per le classi di universalità non interagenti.
+
+---
+
+### 10.13.8 Multifrattalità alla soglia di mobilità
+
+Le funzioni d'onda critiche non sono né onde piane né esponenzialmente localizzate: sono **multifrattali**. I momenti delle ampiezze scalano come
+
+$$
+P_{q} \equiv \sum_{i} |\psi(i)|^{2q} \sim L^{-D_{q}(q-1)}
+$$
+
+con uno spettro non banale di dimensioni generalizzate $D_{q}$ (non soltanto la dimensione geometrica $d$). La multifrattalità compare nei rapporti di partecipazione, nelle fluttuazioni della LDOS e nelle distribuzioni critiche della conduttanza.
+
+---
+
+### 10.13.9 Cenno alla teoria di campo: modello sigma non lineare
+
+I metodi diagrammatici e la media sul disordine conducono a un **modello sigma non lineare** per i modi diffusivi (diffusoni/cooperoni). Le costanti di accoppiamento seguono $g$; la rinormalizzazione riproduce $\beta(g)$, i segni WL/WAL e le correzioni di interazione (estensione di Finkel'stein). Questa è la struttura analitica alla base dello scaling e dell'universalità.
+
+---
+
+### 10.13.10 Trasporto ottico e in alternata
+
+Sul lato metallico, la conduttività ottica ha un picco di Drude con larghezza $1/\tau$ ampliata dal disordine. Avvicinandosi alla criticità, il peso di Drude collassa. In un isolante di Anderson non interagente, la conduttività in alternata a bassa frequenza cresce secondo una legge di potenza (hopping ac di Mott); interazioni e gap di Coulomb modificano gli esponenti. Le sonde a frequenza finita accedono così a $\xi$ e alle scale di hopping anche quando il segnale in continua è troppo piccolo per essere misurato.
+
+---
+
+### 10.13.11 Localizzazione a molti corpi (MBL): il seguito nei sistemi interagenti
+
+Aggiungi interazioni **senza** un bagno e la localizzazione può persistere a densità di energia finita:
+
+- **Integrali locali del moto emergenti** (LIOM), entanglement secondo una legge d'area negli autostati altamente eccitati  
+- **Crescita logaritmica dell'entanglement** dopo variazioni brusche dei parametri  
+- **Assenza di trasporto in continua** e fallimento della termalizzazione degli autostati
+
+La MBL richiede isolamento; fononi o contatti conducono infine alla delocalizzazione. Resta comunque una notevole fase «come Anderson, ma a molti corpi» per atomi freddi e circuiti mesoscopici.
+
+---
+
+### 10.13.12 Brevi esempi svolti
+
+**(a) Numero di Thouless**  
+Mostra $g\simeq E_{T}/\Delta$ confrontando la sensibilità energetica dei livelli a condizioni al contorno con torsione di fase (Thouless) con la spaziatura media dei livelli.
+
+**(b) Pendenza WL in 2D**  
+Per un canale di spin indipendente, partendo dall'integrale di loop del cooperone, ricava $\delta \sigma(0)=-(e^{2}/\pi h)\ln(L_{\phi}/\ell)$ in 2D e spiega perché un $B$ perpendicolare tronca il logaritmo tramite $L_{B}=\sqrt{\hbar/(2eB)}$.
+
+**(c) Esponenti VRH**  
+Da una DOS costante in $d$ dimensioni, ottimizza distanza ed energia di hopping per ottenere l'esponente VRH di Mott $1/(d+1)$. Poi includi un gap di Coulomb $g(E)\propto |E-E_{F}|^{d-1}$ per ottenere la legge di Efros–Shklovskii $1/2$.
+
+**(d) Intersezione con matrici di trasferimento**  
+Traccia schematicamente $\lambda_{M}/M$ in funzione di $W$ per larghezze $M=8,12,16$ e indica l'unica intersezione a $W_{c}$. Spiega come il rapporto delle pendenze dà $\nu$.
+
+**(e) Momento multifrattale**  
+Date le ampiezze di un autostato su un reticolo $L^{d}$, calcola $P_{2}$ e ricava una dimensione frattale efficace $D_{2}$ da un adattamento log–log tra diverse dimensioni del campione.
+
+**(f) Cambio di simmetria**  
+Spiega qualitativamente come un forte SOC inverte il segno del contributo del cooperone producendo WAL, e perché un piccolo $B$ sopprime la correzione di interferenza rompendo l'inversione temporale.
+
+---
+
+### 10.13.13 Errori comuni
+
+- **«Tutto si localizza in 2D, punto.»** Solo nella classe ortogonale senza forte SOC. La classe simplettica in 2D può mostrare una vera MIT; il QHE aggiunge criticità topologica.  
+- **Confondere VRH e gap con attivazione.** Gli esponenti VRH **non sono di Arrhenius**; controlla la pendenza di $(\ln \rho)$ in funzione di $T^{-\alpha}$ per gli effetti della dimensione e del gap di Coulomb.  
+- **Identificare $k_{F}\ell\sim 1$ con la transizione.** È un confine euristico della fisica diffusiva, non il valore preciso $W_{c}$.  
+- **Ignorare le interazioni in 2D.** I termini di Altshuler–Aronov sono spesso grandi quanto la WL. Se la pendenza di $\ln T$ si inverte regolando il SOC con il gate, si tratta di WAL, non di un cambio di segno dell'interazione.  
+- **Sovrainterpretare i campioni finiti.** Un aumento di $\rho(L)$ non dimostra un comportamento isolante se $L\ll \xi$; esegui lo scaling a dimensioni finite.  
+- **MBL e Anderson sono diversi.** La MBL è un fenomeno interagente di stati altamente eccitati; la localizzazione di Anderson è una proprietà degli autostati a singola particella (o non interagenti), non limitata a $T=0$.
+
+---
+
+### 10.13.14 Raccolta minima di problemi
+
+- Partendo dalla diffusione di Drude, costruisci $g(L)$ e la funzione $\beta$ al primo ordine dell'interferenza quantistica in 2D; mostra perché è negativa nella classe ortogonale e positiva in quella simplettica per grandi $g$  
+- Calcola la magnetoconduttanza $\Delta \sigma(B)$ vicino a $B=0$ con la formula di Hikami–Larkin–Nagaoka; ricava $L_{\phi}$ da un insieme di dati simulati  
+- Adatta dati sintetici di $\rho(T)$ al VRH di Mott e di Efros–Shklovskii e determina se è presente un gap di Coulomb  
+- Implementa un codice a matrice di trasferimento per il modello di Anderson 3D, produci le intersezioni di $\lambda_{M}/M$ e stima $\nu$ tramite collasso dei dati  
+- Valuta $P_{q}$ per $q=2,3$ a $W\approx W_{c}$ e verifica lo scaling multifrattale tra diverse dimensioni  
+- Mostra che $g\sim E_{T}/\Delta$ si riduce a $g\sim \sigma L^{d-2}/(e^{2}/h)$ inserendo $D=\sigma/(e^{2}\nu)$ e $\Delta^{-1}=\nu L^{d}$
+
+---
+
+## 10.14 Materia quantistica moiré e materiali 2D
+
+Impila cristalli atomicamente sottili con una piccola rotazione relativa e la struttura a bande diventa un caleidoscopio. Le **eterostrutture di van der Waals (vdW)** permettono di regolare geometria (torsione), elettrostatica (doppi gate) e simmetria (allineamento, deformazione) con un controllo quasi da videogioco. Il risultato: **bande piatte**, **isolanti correlati**, **superconduttività non convenzionale**, **Hall quantistico anomalo** ed **eccitoni moiré**, tutti in un superreticolo progettato su misura e riconfigurabile su un chip.
+
+---
+
+### 10.14.1 Perché 2D, perché moiré
+
+- I **cristalli 2D** (grafene, hBN, TMD come MoS$_2$ e WSe$_2$) si possono esfoliare, impilare, ruotare e collegare elettricamente.
+- Il debole legame **vdW** tra strati permette eterostrutture arbitrarie senza una chimica d'interfaccia problematica.
+- Un piccolo **angolo di torsione** $\theta$ tra strati crea un **superreticolo moiré** a grande lunghezza d'onda, con periodo
+
+$$
+L_{m} = \frac{a}{2\sin(\theta/2)}
+$$
+
+dove $a$ è la costante reticolare del monostrato. Per $\theta \sim 1^{\circ}$, $L_{m}$ è di decine di nanometri, enorme rispetto a $a$: lo spazio dei momenti si ripiega quindi in mini zone di Brillouin e le bande si appiattiscono.
+
+---
+
+### 10.14.2 Descrizione continua e bande piatte «magiche»
+
+Per il grafene a doppio strato ritorto (tBLG), il modello continuo di **Bistritzer–MacDonald** accoppia i coni di Dirac dei due strati mediante tunneling interstrato $w$ e rotazione relativa $\theta$. Definisci
+
+$$
+k_{\theta} = 2 k_{D} \sin(\theta/2),\qquad k_{D} = \frac{4\pi}{3a}
+$$
+
+e un accoppiamento adimensionale
+
+$$
+\alpha = \frac{w}{\hbar v_{F} k_{\theta}}
+$$
+
+Agli **angoli magici** (il primo vicino a $\theta \approx 1.1^{\circ}$), $\alpha$ porta la velocità di Dirac quasi a zero; la larghezza di banda $W$ si riduce a pochi meV. Con interazioni $U$ di grandezza simile, le correlazioni dominano.
+
+Una stima rapida della scala di interazione:
+
+$$
+U \sim \frac{e^{2}}{4\pi \varepsilon_{0} \varepsilon_{r} L_{m}}
+$$
+
+che raggiunge facilmente l'ordine di 10–50 meV a piccoli $\theta$, cioè $U/W \gg 1$.
+
+---
+
+### 10.14.3 Modelli di Hubbard moiré e fisica di Wigner
+
+Il potenziale moiré definisce **reticoli efficaci** per le funzioni di Wannier:
+
+- **tBLG**: la topologia fragile complica una descrizione a legame forte strettamente locale, ma la fisica a bassa energia viene spesso proiettata su bande di Chern risolte per valle vicino alla neutralità di carica.
+- **Eterodoppi strati TMD** (per esempio WSe$_2$/WS$_2$ con piccola torsione): reticoli moiré **triangolari** o **a nido d'ape** ben localizzati; un vero **modello di Hubbard** con $t$ regolabile tramite torsione o campo.
+
+A bassi riempimenti e grandi $r_{s}$, l'energia cinetica perde e possono comparire **cristalli di Wigner** o un ordine di carica generalizzato. Gli ordini in competizione (Mott, onde di densità di carica, polarizzazione di spin/valle) si regolano con gate e campo di spostamento.
+
+---
+
+### 10.14.4 Topologia nel moiré: valli, curvatura di Berry, Chern
+
+I TMD monostrato possiedono una **curvatura di Berry opposta nelle due valli**; l'impilamento e il ripiegamento moiré possono creare **bande di Chern** anche senza campo magnetico netto. Risposte Hall risolte per valle:
+
+$$
+\sigma_{xy}^{v} = -\frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K)} + \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K')}
+$$
+
+L'inversione temporale richiede Chern totale $C_{\text{tot}}=0$ se entrambe le valli sono ugualmente riempite, ma una **polarizzazione spontanea di valle** rompe questo equilibrio, producendo **Hall quantistico anomalo** a $B$ nullo.
+
+Il **dipolo della curvatura di Berry** negli impilamenti non centrosimmetrici genera segnali di **Hall non lineare** al secondo ordine in $E$.
+
+---
+
+### 10.14.5 Simmetrie rotte: isolanti correlati, SC, QAHE, fasi nematiche
+
+Regola la densità dei portatori per cella moiré $\nu$ (tramite doppi gate) e il diagramma di fase si anima:
+
+- **Isolanti correlati** a $\nu$ intero (di tipo Mott o isolanti a bande polarizzati in un grado di libertà interno).
+- **Superconduttività non convenzionale** con lieve drogaggio degli stati correlati; la sensibilità al **campo di spostamento** e allo **schermaggio coulombiano** suggerisce un accoppiamento dovuto a meccanismi elettronici in alcune piattaforme.
+- **Effetto Hall quantistico anomalo (QAHE)** quando una banda di Chern di una sola valle è polarizzata dallo scambio.
+- **Nematicità**: rottura della simmetria rotazionale visibile nel trasporto e nella STM, spesso legata alla deformazione o a instabilità di tipo Pomeranchuk indotte dalle interazioni.
+
+Un'interazione efficace minimale per l'accoppiamento in una banda piatta con DOS $N(0)$:
+
+$$
+k_{B}T_{c} \sim W\, \exp\!\left(-\frac{1}{\lambda_{\text{eff}}}\right),\qquad \lambda_{\text{eff}} \equiv V_{\text{eff}} N(0)
+$$
+
+Una piccola $W$ può aumentare la DOS e quindi l'accoppiamento prodotto da un modesto $V_{\text{eff}}$, ma riduce anche il prefattore di $T_{c}$; la sola stima ad accoppiamento debole non garantisce una temperatura di transizione elevata. I dettagli dipendono dalla struttura di valle/spin e dai fattori di forma.
+
+---
+
+### 10.14.6 Eccitoni TMD, eccitoni interstrato e polaritoni moiré
+
+I TMD monostrato ospitano **eccitoni** fortemente legati (centinaia di meV) grazie allo schermaggio ridotto e alla cinematica 2D. Impilare due TMD diversi forma un allineamento delle bande di **tipo II** ed **eccitoni interstrato** con elettrone e lacuna su strati diversi:
+
+- Lunghe vite medie (ns–$\mu$s), grandi **dipoli elettrici**, deriva in presenza di gradienti spaziali del campo elettrico fuori piano.
+- Con una torsione, il potenziale moiré crea **minibande eccitoniche** e **schiere di eccitoni intrappolati** (un «reticolo eccitonico»).
+
+Per un eccitone strettamente 2D con costante dielettrica locale e potenziale coulombiano $1/r$, la stima idrogenoide dell'energia di legame dello stato fondamentale è:
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}} \times 54.4\ \mathrm{eV}
+$$
+
+I valori reali richiedono il modello di schermaggio di **Keldysh**, ma lo scaling con $\mu^{\ast}$ e $\varepsilon_{r}$ dà l'idea.
+
+Accoppia gli eccitoni a una cavità: ottieni **eccitoni–polaritoni moiré** con dispersione e interazioni regolabili.
+
+---
+
+### 10.14.7 Vincolo spin–valle e valletronica
+
+Nei TMD monostrato, il SOC vincola lo spin alla valle. La luce **polarizzata circolarmente** seleziona $K$ o $K'$, permettendo la **polarizzazione di valle**. Rompendo l'inversione spaziale nei doppi strati (o applicando un campo di spostamento), si possono controllare correnti **Hall di valle** trasversali a $\boldsymbol E$ senza $B$. L'**effetto Hall non lineare** emerge da un dipolo finito della curvatura di Berry $\boldsymbol D$:
+
+$$
+\boldsymbol J^{(2\omega)} \propto \frac{e^{3}\tau}{\hbar^{2}(1+i\omega\tau)}\, [\hat{\boldsymbol z}\times\boldsymbol E(\omega)]\,[\boldsymbol D\cdot\boldsymbol E(\omega)]
+$$
+
+misurabile come tensione Hall alla seconda armonica a campo magnetico nullo.
+
+---
+
+### 10.14.8 Parametri di controllo e sonde sperimentali
+
+- **Controlli**: torsione $\theta$, **campo di spostamento** $D$ (doppi gate), densità dei portatori $\nu$ per cella moiré, **ambiente dielettrico** (spessore di hBN, gate metallici vicini), **deformazione**.
+- **Trasporto**: resistività longitudinale/Hall in funzione di $\nu$, ventagli di Landau sotto $B$, oscillazioni quantistiche che misurano le tasche della superficie di Fermi moiré.
+- **STM/STS**: DOS diretta, mappe del gap, visualizzazione delle figure moiré e dell'ordine locale.
+- **Ottica**: fotoluminescenza/riflettanza per gli eccitoni, dicroismo circolare per la valle, pompa–sonda per la dinamica.
+- **Capacità/compressibilità**: DOS termodinamica e rottura di simmetria (plateau di polarizzazione spin/valle).
+- **Magnetometria**: plateau QAHE, magnetizzazione orbitale da bande di Chern, immagini dei modi di bordo con SQUID su punta.
+
+---
+
+### 10.14.9 Approcci minimi alla modellizzazione
+
+- **Dirac continuo e tunneling periodico** per la famiglia del grafene; riproduce bande piatte e topologia con pochi parametri $(v_{F}, w_{0/1}, \theta)$.
+- **Hubbard moiré** per doppi strati TMD su reticoli triangolari/a nido d'ape, con $U$ locale, $V$ tra primi vicini e possibili anisotropie di Hund/Ising dovute al SOC.
+- **Hartree–Fock** per la rottura della simmetria dei gradi di libertà interni; **DMFT/ED** per correlazioni e spettri a $T$ finita; **Berry e cicli di Wilson** (vedi §10.11) per seguire Chern.
+
+---
+
+### 10.14.10 Brevi esempi svolti
+
+**(a) Scala di lunghezza moiré**  
+Grafene con $a=0.246\ \mathrm{nm}$ e $\theta=1.1^{\circ}$. Calcola $L_{m}=a/[2\sin(\theta/2)]$ e stima $U \sim e^{2}/(4\pi \varepsilon_{0}\varepsilon_{r} L_{m})$ per $\varepsilon_{r}=5$.
+
+**(b) Parametro dell'angolo magico**  
+Con $v_{F}=1.0\times 10^{6}\ \mathrm{m/s}$ e $w=110\ \mathrm{meV}$, calcola $\alpha=w/(\hbar v_{F} k_{\theta})$ a $\theta=1.1^{\circ}$ e commenta la piattezza delle bande.
+
+**(c) Hubbard su reticolo triangolare**  
+Assumi $t=2\ \mathrm{meV}$ e $U=20\ \mathrm{meV}$ per un moiré TMD. Stima $U/W$ con $W\approx 9|t|$ e discuti comportamento Mott o metallico a mezzo riempimento.
+
+**(d) Segno dell'Hall di valle**  
+Se una banda di Chern di una sola valle con $C=1$ è completamente polarizzata, quanto vale $\sigma_{xy}$ in unità di $e^{2}/h$ a $B$ nullo? Confronta con il caso in cui siano riempite entrambe le valli con $C$ opposti.
+
+**(e) Dipolo dell'eccitone interstrato**  
+Per una distanza tra strati $d=0.7\ \mathrm{nm}$, stima il momento di dipolo $p=ed$ e lo spostamento Stark $\Delta E = -pE$ per $E=0.1\ \mathrm{V/nm}$.
+
+**(f) Stima dell'Hall non lineare**  
+Dati un dipolo della curvatura di Berry $|D|=0.1\ \text{\AA}$ e un tempo di rilassamento $\tau=0.1\ \mathrm{ps}$, stima l'ordine di grandezza della corrente Hall alla seconda armonica sotto $E(\omega)=1\ \mathrm{kV/cm}$ (basta una risposta di scaling).
+
+---
+
+### 10.14.11 Errori comuni
+
+- **«Banda piatta significa solo angolo magico.»** Molte piattaforme moiré (TMD, grafene su hBN) ospitano bande strette senza una regolazione esatta all'angolo magico; campo di spostamento e schermaggio dielettrico modificano drasticamente le larghezze di banda.
+- **Ignorare i gradi di libertà interni**: spin, valle e strato danno diversi «sapori»; la fisica a simmetria rotta spesso ne seleziona uno, o una combinazione. I modelli che li eliminano troppo presto perdono ordini reali.
+- **Trascurare la topologia**: il Chern totale può annullarsi tra le valli; si ottengono comunque Hall di **valle** e **magnetizzazione orbitale** se i gradi di libertà interni sono sbilanciati.
+- **Trappole della costruzione di Wannier**: la topologia fragile del tBLG ostacola basi di Wannier strettamente locali, a meno di ampliare il sottospazio; non forzare un modello a legame forte troppo minimale.
+- **Affidarsi troppo al campo medio**: Hartree–Fock favorisce l'ordine; verifica con termodinamica, compressibilità e robustezza al disordine.
+- **Abusare del modello idrogenoide dell'eccitone**: lo schermaggio 2D è non locale (Keldysh); le stime idrogenoidi indicano le scale, non danno valori definitivi.
+
+---
+

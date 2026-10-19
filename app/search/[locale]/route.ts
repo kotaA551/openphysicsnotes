@@ -1,6 +1,7 @@
 import { articleList, loadArticle } from '@/lib/articles';
 import { isLocale, locales, localePath } from '@/lib/i18n';
 import { articleSections } from '@/lib/search/build.mjs';
+import { articleHeadingIds } from '@/lib/article-anchors.mjs';
 import { MAX_INDEX_BYTES, type SearchIndex } from '@/lib/search/engine';
 
 export const dynamic = 'force-static';
@@ -18,7 +19,7 @@ export async function GET(_request: Request, { params }: { params: Promise<{ loc
       if (!article) continue;
       const number = index.articles.length;
       index.articles.push({ title: article.title, contentTitle: article.contentTitle, contentLocale: article.contentLocale, href: localePath(locale, `/${kind}/${slug}`) });
-      const sections = await articleSections(article.content);
+      const sections = await articleSections(article.content, articleHeadingIds(kind, slug, article.contentLocale));
       // A title-only match should still lead to the first real heading.
       if (!sections.length) sections.push({ id: '', heading: '', text: '' });
       index.sections.push(...sections.map(section => ({ ...section, article: number })));

@@ -1,0 +1,2470 @@
+---
+description: 從古典場與相對論出發，學習純量場、狄拉克場和規範場的量子化，理解費曼圖、散射振幅、重整化、對稱性破缺及標準模型，探索量子場論的思想與應用。
+---
+
+
+## 8.1 從粒子到場：為什麼需要量子場論
+
+量子力學成功描述原子，狹義相對論成功描述高速運動，但兩者結合後，固定粒子數的框架顯露侷限。高能過程允許粒子產生與湮滅，單粒子量子力學無法完整處理。**量子場論（QFT）** 以場為基本對象，把粒子視為場的量子激發。本節說明為何需要場、如何量子化簡單場、粒子如何出現，以及局域性與對稱性所施加的約束。
+
+---
+
+### 8.1.1 單粒子量子力學的侷限
+
+- **相對論能量。** $E^{2}=p^{2}c^{2}+m^{2}c^{4}$ 的波動方程出現 $E$ 的正負分支，維持一致的單粒子機率解釋變得困難。
+- **粒子產生與湮滅。** 高能光子在滿足動量守恆的環境中可產生 $e^{+}e^{-}$，激發原子可發射光子；固定 $N$ 的希爾伯特空間無法描述這些通道。
+- **局域性與因果性。** 類空分離處的測量不能用於相互傳遞影響，僅靠固定粒子數波函數難以自然實現這一要求。
+
+QFT將場提升為算符。自由場及散射的粒子態可組織在允許粒子數變化的福克空間中，微觀因果性則透過場的對易關係表達。
+
+---
+
+### 8.1.2 場是無窮多個振子
+
+將自由古典玻色場按動量 $\boldsymbol k$ 作傅立葉展開，每個簡正模式都相當於諧振子。量子化就是把第7章的方法應用到每個 $\boldsymbol k$，即量子化全部簡正模式。
+
+![場為空間中的每一點指定一個振幅。傅立葉模為場的量子化提供振子座標。](/images/diagrams/field-modes.svg)
+
+---
+
+### 8.1.3 古典準備：克萊因—戈爾登場
+
+對於實純量場 $\phi(x)$，採用 $x=(ct,\boldsymbol x)$，勞侖茲不變作用量為
+
+$$
+S[\phi] = \int d^{4}x\;\mathcal L,\qquad
+\mathcal L = \frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,\frac{m^{2}c^{2}}{\hbar^{2}}\,\phi^{2}
+$$
+
+歐拉—拉格朗日方程給出 **克萊因—戈爾登（KG）方程**：
+
+$$
+\left(\Box + \frac{m^{2}c^{2}}{\hbar^{2}}\right)\phi(x) = 0,\qquad \Box \equiv \partial_{\mu}\partial^{\mu}
+$$
+
+平面波解滿足相對論色散關係 $k_{\mu}k^{\mu} = m^{2}c^{2}/\hbar^{2}$。
+
+---
+
+### 8.1.4 正則量子化：等時對易關係
+
+將 $\phi$ 及其共軛動量
+
+$$
+\pi(x) \equiv \frac{\partial \mathcal L}{\partial(\partial_{0}\phi)} = \partial_{0}\phi
+$$
+
+提升為算符，並要求等時對易關係：
+
+$$
+[\hat\phi(t,\boldsymbol x),\hat\phi(t,\boldsymbol y)] = 0
+$$
+
+$$
+[\hat\pi(t,\boldsymbol x),\hat\pi(t,\boldsymbol y)] = 0
+$$
+
+$$
+[\hat\phi(t,\boldsymbol x),\hat\pi(t,\boldsymbol y)] = i\hbar\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
+$$
+
+這是場論中對應於 $[x,p]=i\hbar$ 的關係。
+
+---
+
+### 8.1.5 模式展開與產生、湮滅算符
+
+先取體積 $V$ 的大盒子，最後令 $V\to\infty$，展開為
+
+$$
+\hat\phi(x) = \frac{1}{\sqrt{V}}\sum_{\boldsymbol k} \sqrt{\frac{\hbar c}{2\omega_{\boldsymbol k}}}\left(\hat a_{\boldsymbol k}\,e^{-i\omega_{\boldsymbol k} t + i\boldsymbol k\cdot\boldsymbol x} + \hat a_{\boldsymbol k}^{\dagger}\,e^{i\omega_{\boldsymbol k} t - i\boldsymbol k\cdot\boldsymbol x}\right)
+$$
+
+其中
+
+$$
+\omega_{\boldsymbol k} = \sqrt{c^{2}\boldsymbol k^{2} + \frac{m^{2}c^{4}}{\hbar^{2}}}
+$$
+
+選擇正規化，使
+
+$$
+[\hat a_{\boldsymbol k},\hat a_{\boldsymbol k'}^{\dagger}] = \delta_{\boldsymbol k\boldsymbol k'},\qquad
+[\hat a_{\boldsymbol k},\hat a_{\boldsymbol k'}] = 0,\qquad
+[\hat a_{\boldsymbol k}^{\dagger},\hat a_{\boldsymbol k'}^{\dagger}] = 0
+$$
+
+這就是第7.3節的諧振子代數，只是每個動量模式都有一組。
+
+---
+
+### 8.1.6 福克空間與粒子
+
+以 $\hat a_{\boldsymbol k}\ket{0}=0$ 定義真空。**單粒子態** 為
+
+$$
+\ket{\boldsymbol k} \equiv \hat a_{\boldsymbol k}^{\dagger}\ket{0}
+$$
+
+繼續作用產生算符即可構造多粒子態。模式 $\boldsymbol k$ 的數算符為 $\hat N_{\boldsymbol k}=\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}$，自由場漢彌爾頓量為
+
+$$
+\hat H = \sum_{\boldsymbol k}\hbar\omega_{\boldsymbol k}\left(\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k} + \frac{1}{2}\right)
+$$
+
+每個模式的 $\tfrac12$ 項累加形成真空能。在不涉及重力的自由場問題中，通常透過 **正規序** 減去這一常數。
+
+---
+
+### 8.1.7 正規序與真空能
+
+對玻色算符，正規序 $:\cdots:$ 將全部 $\hat a^{\dagger}$ 移至 $\hat a$ 左側。於是
+
+$$
+:\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}: = \hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}
+$$
+
+並且
+
+$$
+:\hat H: = \sum_{\boldsymbol k}\hbar\omega_{\boldsymbol k}\,\hat a_{\boldsymbol k}^{\dagger}\hat a_{\boldsymbol k}
+$$
+
+這相當於把真空能定義為零。涉及彎曲時空與重力時，真空能的重力效應和重整化必須認真處理；平直時空的許多粒子問題只涉及能量差，可採用上述約定。
+
+---
+
+### 8.1.8 局域性與微觀因果性
+
+QFT的核心要求之一是 **微觀因果性**：
+
+$$
+[\hat\phi(x),\hat\phi(y)] = 0\quad\text{對於}\quad (x-y)^{2}<0
+$$
+
+即這裡的純量場在類空分離處對易。自由KG場的對易子是普通數函數，在光錐外為零，使不可超光速傳遞影響落實到算符層面。
+
+---
+
+### 8.1.9 格林函數與傳播子
+
+關聯函數編碼場的物理資訊。時間序二點函數，即費曼傳播子，為
+
+$$
+\hbar\,\Delta_{F}(x-y) \equiv \langle 0|\,T\{\hat\phi(x)\hat\phi(y)\}\,|0\rangle
+$$
+
+它是KG算符的格林函數：
+
+$$
+\left(\Box + \frac{m^{2}c^{2}}{\hbar^{2}}\right)\Delta_{F}(x-y) = -\,i\,\delta^{(4)}(x-y)
+$$
+
+在動量空間中，
+
+$$
+\Delta_{F}(k) = \frac{i}{k^{2} - \frac{m^{2}c^{2}}{\hbar^{2}} + i\epsilon}
+$$
+
+質量殼上的極點與 $i\epsilon$ 處方規定如何繞過奇點，實現時間序邊界條件。它與因果響應的關係還需結合相應格林函數區分。
+
+---
+
+### 8.1.10 諾特流與能量—動量張量
+
+作用量的連續對稱性給出守恆流。時空平移對應 **能量—動量張量** $T^{\mu\nu}$，一種對稱形式為
+
+$$
+T^{\mu\nu} = \partial^{\mu}\phi\,\partial^{\nu}\phi - \eta^{\mu\nu}\,\mathcal L
+$$
+
+滿足 $\partial_{\mu}T^{\mu\nu}=0$。守恆荷為四維動量：
+
+$$
+P^{\nu} = \int d^{3}x\;T^{0\nu}
+$$
+
+它生成場的時空平移。
+
+若 $\phi$ 為複場，具有整體 $U(1)$ 對稱性 $\phi\to e^{i\alpha}\phi$，還會得到守恆 **諾特流** 與荷；在具有單位荷的自由複純量場中，該荷計數粒子數與反粒子數之差。
+
+---
+
+### 8.1.11 玻色子、費米子與自旋—統計關係
+
+整數自旋場使用對易關係量子化，對應玻色子；半整數自旋場使用反對易關係，對應費米子。對旋量 $\psi$，等時關係為
+
+$$
+\{\hat\psi_{\alpha}(t,\boldsymbol x),\hat\psi_{\beta}^{\dagger}(t,\boldsymbol y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
+$$
+
+這不是任意選擇。在相應局域性、勞侖茲不變性和正定性條件下，**自旋—統計定理** 給出這一聯繫。
+
+---
+
+### 8.1.12 交互作用如何引入
+
+可在拉格朗日量中加入交互作用項，例如純量場的
+
+$$
+\mathcal L = \frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,m^{2}\phi^{2} - \frac{\lambda}{4!}\,\phi^{4}
+$$
+
+也可耦合不同場，例如湯川項 $\bar\psi\psi\phi$，或透過協變導數引入規範耦合。微擾論把關聯函數展開為 **費曼圖**：傳播子是線，耦合是頂點。重整化用於處理發散並定義物理參數。
+
+---
+
+### 8.1.13 簡短例題
+
+**（a）單粒子正規化。**
+利用 $[\hat a,\hat a^{\dagger}]$ 代數證明 $\langle \boldsymbol k'|\boldsymbol k\rangle = \delta_{\boldsymbol k'\boldsymbol k}$。
+
+**（b）真空二點函數。**
+把模式展開代入 $\langle 0|T\{\hat\phi(x)\hat\phi(y)\}|0\rangle$，推導 $\Delta_{F}(x-y)$ 及其動量空間形式。
+
+**（c）微觀因果性檢驗。**
+計算自由場的 $[\hat\phi(x),\hat\phi(y)]$，用圍道積分證明 $(x-y)^{2}<0$ 時為零。
+
+**（d）單量子態的能量。**
+將 $\hat H$ 作用於 $\ket{\boldsymbol k}$，驗證 $E=\hbar\omega_{\boldsymbol k}$。
+
+---
+
+### 8.1.14 基本解題工具
+
+- 從 $\mathcal L=\tfrac12(\partial\phi)^{2}-\tfrac12 m^{2}\phi^{2}$ 推導共軛動量 $\pi$，並建立能恢復模式代數的等時對易關係。
+- 量子化複純量場，找出守恆 $U(1)$ 荷，證明其計數粒子減去反粒子。
+- 計算推遲格林函數 $\Delta_{R}(x)$，比較它與 $\Delta_{F}(x)$ 的支撐區域。
+- 對平直時空中的自由純量場，將 $\hat H$ 與 $T^{\mu\nu}$ 都正規序，檢驗其真空期望值為零。區分這一真空減除與交互作用或彎曲時空中的跡反常。
+- 對週期邊界盒中的純量場，在 $V\to\infty$ 極限把求和換為積分，恢復連續δ函數。
+
+---
+
+## 8.2 狄拉克場：旋量、反對易關係與相對論費米子
+
+要同時符合量子力學和狹義相對論地描述電子等自旋 $\tfrac12$ 粒子，需要具有 **旋量** 自由度、按 **等時反對易關係** 量子化的場。狄拉克方程預言反粒子，並在最低階給出磁矩的 $g\approx 2$。本節建立代數、解、量子化、守恆流和非相對論極限。
+
+> 單位約定：除非另有說明，使用 **自然單位** $\hbar=c=1$。可透過量綱分析恢復 $\hbar$ 和 $c$。
+
+---
+
+### 8.2.1 動機概覽
+
+KG方程符合相對論，卻描述自旋零；若強作單粒子機率解釋，其時間分量不正定。狄拉克希望得到時間一階、具有正定單粒子密度且與 $E^{2}=\boldsymbol p^{2}+m^{2}$ 相容的方程，方法是用滿足新代數的矩陣線性化相對論色散。
+
+---
+
+### 8.2.2 伽馬矩陣與克利福德代數
+
+引入 $4\times4$ 矩陣 $\gamma^{\mu}$，滿足
+
+$$
+\{\gamma^{\mu},\gamma^{\nu}\} \equiv \gamma^{\mu}\gamma^{\nu}+\gamma^{\nu}\gamma^{\mu} = 2\,\eta^{\mu\nu}\,\mathbb I
+$$
+
+度規為 $\eta^{\mu\nu}=\mathrm{diag}(+,-,-,-)$。兩種常用表示是：
+
+- **狄拉克基：** $\gamma^{0}=\begin{pmatrix}\mathbb I&0\\0&-\mathbb I\end{pmatrix}$，$\gamma^{i}=\begin{pmatrix}0&\sigma^{i}\\-\,\sigma^{i}&0\end{pmatrix}$。
+- **手徵，即外爾基：** $\gamma^{0}=\begin{pmatrix}0&\mathbb I\\ \mathbb I&0\end{pmatrix}$，$\gamma^{i}=\begin{pmatrix}0&\sigma^{i}\\ -\sigma^{i}&0\end{pmatrix}$。
+
+定義
+
+$$
+\gamma^{5} \equiv i\gamma^{0}\gamma^{1}\gamma^{2}\gamma^{3},\qquad (\gamma^{5})^{2}=1,\qquad \{\gamma^{5},\gamma^{\mu}\}=0
+$$
+
+以及 **西格瑪矩陣**
+
+$$
+\sigma^{\mu\nu} \equiv \frac{i}{2}\,[\gamma^{\mu},\gamma^{\nu}]
+$$
+
+---
+
+### 8.2.3 狄拉克方程、伴隨與拉格朗日量
+
+旋量場 $\psi(x)$ 的 **狄拉克方程** 為
+
+$$
+(i\gamma^{\mu}\partial_{\mu} - m)\,\psi(x) = 0
+$$
+
+定義伴隨 $\bar\psi \equiv \psi^{\dagger}\gamma^{0}$，勞侖茲不變拉格朗日量為
+
+$$
+\mathcal L = \bar\psi\,(i\gamma^{\mu}\partial_{\mu} - m)\,\psi
+$$
+
+對 $\bar\psi$ 變分得到狄拉克方程，對 $\psi$ 變分得到伴隨方程 $\bar\psi\,(i\overleftarrow{\partial}_{\mu}\gamma^{\mu}+m)=0$。
+
+整體 $U(1)$ 相位對稱性透過諾特定理給出 **守恆流**：
+
+$$
+j^{\mu} = \bar\psi\,\gamma^{\mu}\,\psi,\qquad \partial_{\mu}j^{\mu}=0
+$$
+
+在單粒子旋量解釋中，$j^{0}=\psi^{\dagger}\psi$ 為非負密度；量子場論中則需結合粒子、反粒子與荷算符解釋該流。
+
+---
+
+### 8.2.4 平面波旋量與完備性
+
+尋找平面波 $\psi=u_{s}(p)\,e^{-ip\cdot x}$ 和 $\psi=v_{s}(p)\,e^{+ip\cdot x}$，其中 $p^{2}=m^{2}$ 在殼，滿足
+
+$$
+(/\!\!p - m)\,u_{s}(p) = 0,\qquad (/\!\!p + m)\,v_{s}(p) = 0
+$$
+
+這裡 $/\!\!p\equiv \gamma^{\mu}p_{\mu}$，$s$ 標記自旋。QFT中方便的正規化為
+
+$$
+\bar u_{s}(p)\,u_{s'}(p)=2m\,\delta_{ss'},\qquad \bar v_{s}(p)\,v_{s'}(p)=-2m\,\delta_{ss'}
+$$
+
+自旋求和，即完備性關係，為
+
+$$
+\sum_{s} u_{s}(p)\,\bar u_{s}(p) = /\!\!p + m
+$$
+
+$$
+\sum_{s} v_{s}(p)\,\bar v_{s}(p) = /\!\!p - m
+$$
+
+這些恆等式是截面與傳播子計算的基本工具。
+
+---
+
+### 8.2.5 最小耦合與包立項預覽
+
+電磁場透過 **協變導數** $D_{\mu}=\partial_{\mu}+ieA_{\mu}$ 引入。狄拉克方程成為 $(i\gamma^{\mu}D_{\mu}-m)\psi=0$，拉格朗日量為 $\mathcal L=\bar\psi(i\gamma^{\mu}D_{\mu}-m)\psi$。非相對論極限給出磁交互作用，其磁矩為
+
+$$
+\boldsymbol{\mu} = g\,\frac{e}{2m}\,\boldsymbol S,\qquad g_{\text{Dirac}}=2
+$$
+
+QED輻射修正使 $g=2(1+a_{e})$，其中 $a_{e}$ 很小。
+
+---
+
+### 8.2.6 正則量子化與反對易關係
+
+將 $\psi$ 提升為算符場，要求等時反對易關係：
+
+$$
+\{\hat\psi_{\alpha}(t,\boldsymbol x),\hat\psi_{\beta}^{\dagger}(t,\boldsymbol y)\} = \delta_{\alpha\beta}\,\delta^{(3)}(\boldsymbol x-\boldsymbol y)
+$$
+
+$$
+\{\hat\psi,\hat\psi\}=\{\hat\psi^{\dagger},\hat\psi^{\dagger}\}=0
+$$
+
+作模式展開，先用盒正規化，最後令 $\sum\to\int$：
+
+$$
+\hat\psi(x) = \sum_{s}\int\!\frac{d^{3}\boldsymbol p}{(2\pi)^{3}}\;\frac{1}{\sqrt{2E_{\boldsymbol p}}}\left[
+\hat b_{s}(\boldsymbol p)\,u_{s}(p)\,e^{-ip\cdot x} + \hat d_{s}^{\dagger}(\boldsymbol p)\,v_{s}(p)\,e^{+ip\cdot x}\right]
+$$
+
+其中 $E_{\boldsymbol p}=\sqrt{\boldsymbol p^{2}+m^{2}}$，並有
+
+$$
+\{\hat b_{s}(\boldsymbol p),\hat b_{s'}^{\dagger}(\boldsymbol p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\boldsymbol p-\boldsymbol p')
+$$
+
+$$
+\{\hat d_{s}(\boldsymbol p),\hat d_{s'}^{\dagger}(\boldsymbol p')\}=(2\pi)^{3}\delta_{ss'}\delta^{(3)}(\boldsymbol p-\boldsymbol p')
+$$
+
+其他反對易子均為零。$\hat b^{\dagger}$ 產生粒子，$\hat d^{\dagger}$ 產生反粒子。
+
+正規序漢彌爾頓量為
+
+$$
+:\hat H: = \sum_{s}\int\!\frac{d^{3}\boldsymbol p}{(2\pi)^{3}}\;E_{\boldsymbol p}\left[\hat b_{s}^{\dagger}(\boldsymbol p)\hat b_{s}(\boldsymbol p)+\hat d_{s}^{\dagger}(\boldsymbol p)\hat d_{s}(\boldsymbol p)\right]
+$$
+
+---
+
+### 8.2.7 傳播子與費曼規則
+
+時間序二點函數，即狄拉克傳播子，為
+
+$$
+S_{F}(x-y) \equiv \langle 0|\,T\{\hat\psi(x)\,\bar{\hat\psi}(y)\}\,|0\rangle
+$$
+
+在動量空間中，
+
+$$
+S_{F}(p) = \frac{i}{/\!\!p - m + i\epsilon} = i\,\frac{/\!\!p+m}{p^{2}-m^{2}+i\epsilon}
+$$
+
+費曼圖中的自由狄拉克線攜帶此因子，交互作用插入頂點，例如QED中的 $-ie\gamma^{\mu}$。
+
+
+---
+
+### 8.2.8 雙線性量、流與戈登恆等式
+
+常用 **雙線性量** 按變換性質分類為：
+
+- 純量：$\bar\psi\psi$。
+- 贗純量：$i\bar\psi\gamma^{5}\psi$。
+- 向量：$\bar\psi\gamma^{\mu}\psi$。
+- 軸向量：$\bar\psi\gamma^{\mu}\gamma^{5}\psi$。
+- 張量：$\bar\psi\sigma^{\mu\nu}\psi$。
+
+整體相位對稱性使向量流守恆。**戈登恆等式** 將向量流分解為軌道與自旋相關部分：
+
+$$
+\bar u(p')\,\gamma^{\mu}\,u(p) = \frac{1}{2m}\,\bar u(p')\!\left[(p'+p)^{\mu} + i\,\sigma^{\mu\nu}(p'-p)_{\nu}\right]\!u(p)
+$$
+
+它是低能展開中包立磁項的代數來源。
+
+---
+
+### 8.2.9 手徵性、螺旋度與無質量極限
+
+定義手徵投影算符：
+
+$$
+P_{L}=\frac{1-\gamma^{5}}{2},\qquad P_{R}=\frac{1+\gamma^{5}}{2}
+$$
+
+當 $m=0$ 時，左右分量 $\psi_{L,R}=P_{L,R}\psi$ 解耦。**螺旋度** 是自旋沿動量方向的投影；對無質量粒子，手徵性與螺旋度有確定對應，反粒子的對應需注意約定。標準模型的帶電弱流耦合輕子的 $\psi_{L}$，而不耦合 $\psi_{R}$，說明手徵性具有直接物理意義。
+
+**馬約拉納與狄拉克。** 馬約拉納場滿足 $\psi^{c}=\psi$，即等於其荷共軛，不具有獨立的反粒子場。電子等狄拉克場則可以攜帶守恆 $U(1)$ 荷。
+
+---
+
+### 8.2.10 離散對稱性 $C$、$P$ 與 $T$ 概覽
+
+具體實現依賴表示和相位約定：
+
+- **宇稱 $P$：** $\psi(t,\mathbf x)\to \gamma^{0}\psi(t,-\mathbf x)$。
+- **荷共軛 $C$：** $\psi \to C\,\bar\psi^{T}$，其中 $C^{-1}\gamma^{\mu}C=-(\gamma^{\mu})^{T}$。
+- **時間反演 $T$：** 為反么正變換，在狄拉克基中可用 $\psi(t,\mathbf x)\to i\gamma^{1}\gamma^{3}\psi^{\ast}(-t,\mathbf x)$ 的形式表示。
+
+由雙線性量構造的局域勞侖茲不變交互作用，可按 $C$、$P$、$T$ 的變換性質分類。
+
+---
+
+### 8.2.11 非相對論極限與包立方程
+
+引入最小耦合 $D_{\mu}$，在狄拉克基中分出「大」「小」分量。消去小分量並保留到 $1/m$ 階，得到 **包立漢彌爾頓量**：
+
+$$
+H_{\text{Pauli}} = \frac{1}{2m}\,(\boldsymbol p - e\boldsymbol A)^{2} + e\phi - \frac{e}{2m}\,\boldsymbol{\sigma}\cdot \boldsymbol B
+$$
+
+其中 $\boldsymbol B=\nabla\times\boldsymbol A$。$\boldsymbol{\sigma}\cdot\boldsymbol B$ 項在樹級給出 $g=2$，更高階包含自旋—軌道與達爾文項，對應氫精細結構。
+
+---
+
+### 8.2.12 簡短例題
+
+**（a）流守恆。**
+用狄拉克方程及其伴隨證明 $\partial_{\mu}(\bar\psi\gamma^{\mu}\psi)=0$。
+
+**（b）傳播子的逆。**
+檢驗 $(/\!\!p-m)\,[(/\!\!p+m)/(p^{2}-m^{2})] = \mathbb I$。
+
+**（c）自旋求和。**
+用平面波解的完備性證明 $\sum_{s}u_{s}(p)\bar u_{s}(p)=/\!\!p+m$。
+
+**（d）包立約化。**
+從 $(\boldsymbol{\alpha}\cdot\boldsymbol{\pi}+ \beta m + e\phi)\psi=i\partial_{t}\psi$ 出發，採用 $\boldsymbol{\pi}=\boldsymbol p-e\boldsymbol A$，消去小分量至 $1/m$ 階，恢復 $-\tfrac{e}{2m}\boldsymbol{\sigma}\cdot\boldsymbol B$。
+
+**（e）$m=0$ 時的螺旋度守恆。**
+對自由無質量狄拉克漢彌爾頓量證明 $[H,\boldsymbol{\Sigma}\cdot \hat{\boldsymbol p}]=0$，從而得到螺旋度守恆。
+
+---
+
+### 8.2.13 基本解題工具
+
+- 對顯式狄拉克基或手徵基伽馬矩陣驗證克利福德代數，並計算 $\gamma^{5}$。
+- 將 $\hat\psi$ 投影到 $u_{s}(p)$、$v_{s}(p)$，求模式展開係數，恢復 $\{\hat b,\hat b^{\dagger}\}$ 與 $\{\hat d,\hat d^{\dagger}\}$ 的代數。
+- 用戈登恆等式取電磁流的非相對論極限，識別自旋磁矩項。
+- 按 $C$、$P$、$T$ 的變換性質分類雙線性量 $\bar\psi\Gamma\psi$。
+- 顯式證明質量項 $m\bar\psi\psi$ 混合左右手徵，而 $\bar\psi\gamma^{\mu}\psi$ 不混合。
+- 在手徵基中寫出馬約拉納實條件，比較其在殼自由度與狄拉克場。
+
+---
+
+## 8.2A 外爾與馬約拉納旋量：雙分量、質量項與自由度
+
+許多計算使用 **雙分量** 語言更簡潔。在手徵基中，狄拉克旋量分為 $\psi = \begin{pmatrix}\chi\\ \phi\end{pmatrix}$，包含左、右外爾旋量 $\chi$ 和 $\phi$。
+
+---
+
+### 8.2A.1 外爾方程與螺旋度
+
+無質量費米子的左右分量解耦：
+
+$$
+i\,\sigma^{\mu}\partial_{\mu}\,\chi = 0,\qquad
+i\,\bar\sigma^{\mu}\partial_{\mu}\,\phi = 0
+$$
+
+其中 $\sigma^{\mu}=(\mathbb I,\boldsymbol{\sigma})$、$\bar\sigma^{\mu}=(\mathbb I,-\boldsymbol{\sigma})$。單個外爾場有兩個在殼態，分別對應粒子與反粒子；場具有固定手徵性。在 $m=0$ 極限，粒子與反粒子的螺旋度分別與該手徵表示建立確定對應。
+
+---
+
+### 8.2A.2 狄拉克質量如何混合手徵
+
+雙分量形式的狄拉克質量項為
+
+$$
+\mathcal L_{m_D} = -\,m_D\left(\chi^{\dagger}\phi + \phi^{\dagger}\chi\right)
+$$
+
+它保留整體 $U(1)$ 費米子數，並耦合 $\chi$ 與 $\phi$，把兩個外爾場組合為一個狄拉克費米子。
+
+---
+
+### 8.2A.3 馬約拉納質量與實條件
+
+荷共軛作用為 $\psi^{c} \equiv C\,\bar\psi^{T}$。**馬約拉納** 費米子滿足
+
+$$
+\psi = \psi^{c}
+$$
+
+在雙分量形式中，可以為單個合適的外爾場寫出馬約拉納質量，例如左手徵場：
+
+$$
+\mathcal L_{m_M} = -\,\frac{1}{2}\,m_M\left(\chi^{T} i\sigma^{2}\chi + \chi^{\dagger} i\sigma^{2}\chi^{\ast}\right)
+$$
+
+它 **破壞** 相應的 $U(1)$ 數對稱性，粒子 $\leftrightarrow$ 反粒子為同一種對象。狄拉克質量與馬約拉納質量結合還可形成蹺蹺板機制。
+
+---
+
+### 8.2A.4 自由度計數
+
+- **狄拉克：** 4個在殼態，等於2個自旋態 $\times$ 粒子與反粒子。
+- **馬約拉納：** 2個在殼自旋態，粒子是自身反粒子。
+- **無質量外爾：** 一個手徵場對應2個在殼態，即具有相應固定螺旋度的粒子與反粒子。
+
+---
+
+### 8.2A.5 雙分量實用恆等式
+
+旋量縮並使用 $\epsilon^{ab}$，其中 $\epsilon^{12}=+1$。常用關係為
+
+$$
+\sigma^{\mu}\bar\sigma^{\nu} + \sigma^{\nu}\bar\sigma^{\mu} = 2\eta^{\mu\nu}\,\mathbb I,\qquad
+\bar\sigma^{\mu}\sigma^{\nu} + \bar\sigma^{\nu}\sigma^{\mu} = 2\eta^{\mu\nu}\,\mathbb I
+$$
+
+對於動量 $p\cdot\sigma \equiv p_{\mu}\sigma^{\mu}$ 和 $p\cdot\bar\sigma \equiv p_{\mu}\bar\sigma^{\mu}$，
+
+$$
+(p\cdot\sigma)(p\cdot\bar\sigma) = p^{2}\,\mathbb I
+$$
+
+這些關係使雙分量與四分量旋量代數能夠互相轉換。
+
+---
+
+### 8.2A.6 練習工具
+
+- 證明單場馬約拉納質量與該場守恆的整體 $U(1)$ 數不相容。
+- 從雙分量表達推導狄拉克質量項 $\bar\psi\psi$。
+- 在 $m=0$ 時，對平面波解推導螺旋度與手徵性的對應，並區分粒子和反粒子。
+- 顯式構造單粒子態，比較狄拉克與馬約拉納的物理自由度。
+
+---
+
+**小結：** 外爾旋量是基本手徵組成單元；狄拉克質量連接左右手徵，馬約拉納質量連接場與自身荷共軛並破壞相應 $U(1)$ 數。雙分量語言常使自由度和對稱性更加清晰。
+
+---
+
+## 8.2B 離散對稱性速查：旋量與雙線性量的 $C$、$P$、$T$
+
+離散對稱性幫助判斷允許的交互作用。下面採用一組常見的狄拉克基相位約定；$T$ 是 **反么正** 的。場變換的整體相位可隨約定改變，但物理分類保持一致。
+
+---
+
+### 8.2B.1 對場的作用：一種標準約定
+
+- **宇稱 $P$：** $\psi(t,\mathbf x)\to \gamma^{0}\psi(t,-\mathbf x)$，$\bar\psi\to \bar\psi(t,-\mathbf x)\gamma^{0}$。
+- **荷共軛 $C$：** $\psi \to C\,\bar\psi^{T}$，$\bar\psi \to -\,\psi^{T} C^{-1}$，其中 $C^{-1}\gamma^{\mu}C = -(\gamma^{\mu})^{T}$。
+- **時間反演 $T$：** $\psi(t,\mathbf x)\to i\gamma^{1}\gamma^{3}\,\psi^{\ast}(-t,\mathbf x)$，為反么正變換。
+
+---
+
+### 8.2B.2 雙線性量及變換符號
+
+定義雙線性量：
+- 純量：$S=\bar\psi\psi$。
+- 贗純量：$P=i\bar\psi\gamma^{5}\psi$。
+- 向量：$V^{\mu}=\bar\psi\gamma^{\mu}\psi$。
+- 軸向量：$A^{\mu}=\bar\psi\gamma^{\mu}\gamma^{5}\psi$。
+- 張量：$T^{\mu\nu}=\bar\psi\sigma^{\mu\nu}\psi$，其中 $\sigma^{\mu\nu}=\tfrac{i}{2}[\gamma^{\mu},\gamma^{\nu}]$。
+
+**在荷共軛 $C$ 下：**
+
+- $S$：偶。
+- $P$：偶。
+- $V^{\mu}$：奇。
+- $A^{\mu}$：偶。
+- $T^{\mu\nu}$：奇。
+
+**在宇稱 $P$ 下：**
+
+- $S$：偶。
+- $P$：奇。
+- $V^{0}$：偶；$V^{i}$：奇。
+- $A^{0}$：奇；$A^{i}$：偶。
+- $T^{0i}$：奇；$T^{ij}$：偶。
+
+**在時間反演 $T$ 下，採用反么正的標準約定：**
+
+- $S$：偶。
+- $P$：奇。
+- $V^{0}$：偶；$V^{i}$：奇。
+- $A^{0}$：偶；$A^{i}$：奇。
+- $T^{0i}$：偶；$T^{ij}$：奇。
+
+> 檢驗：$CP$ 使贗純量 $P$ 變號，這用於軸子和 $\theta$ 項的分類；在局域性、勞侖茲不變性及標準量子場論條件下，$CPT$ 保持理論不變。
+
+---
+
+### 8.2B.3 快速應用
+
+- 構造模型時，應檢驗包含所有伴隨場的完整縮並算符在 $CP$ 下的變換；僅憑出現 $S$、$V^{\mu}$、$P$ 或 $A^{\mu}$，不能判定整個算符的奇偶性。
+- 光譜學中，可用雙線性插值算符按 $J^{PC}$ 分類態與躍遷。
+- 電偶極矩檢驗：電子電偶極矩算符 $\bar\psi i\sigma^{\mu\nu}\gamma^{5}\psi\,F_{\mu\nu}$ 在 $P$ 與 $T$ 下為奇，結合 $CPT$ 可探測 $CP$ 破壞。
+
+---
+
+### 8.2B.4 練習工具
+
+- 使用 $C^{-1}\gamma^{\mu}C=-(\gamma^{\mu})^{T}$ 推導 $V^{\mu}$ 的 $C$ 宇稱。
+- 顯式作空間反演，證明 $V^{0}$ 與 $V^{i}$ 的 $P$ 符號不同。
+- 利用 $T$ 的反么正性，即包含複共軛，追蹤贗純量的額外符號。
+- 分類 $\bar\psi\sigma^{\mu\nu}\gamma^{5}\psi$ 的 $C$、$P$、$T$ 性質，並與對偶張量 $\tilde F^{\mu\nu}$ 聯繫。
+
+---
+
+**小結：** 固定約定後，$C$、$P$ 和 $T$ 對五類基本雙線性量的作用可以系統列出，用於判斷算符保持或破壞哪些離散對稱性。
+
+---
+
+## 8.2C QED頂點與沃德恆等式：規範不變性
+
+最小耦合給出QED的交互作用，而 **沃德恆等式** 則用代數表達規範對稱性如何消除非物理偏振的貢獻。
+
+![兩條帶方向的費米子線與一條光子線在 QED 頂點相接。這是散射振幅中的一個圖解項，並非粒子的實際軌跡。](/images/diagrams/qed-vertex.svg)
+
+---
+
+### 8.2C.1 從最小耦合到費曼規則
+
+從
+
+$$
+\mathcal L_{\text{QED}} = \bar\psi(i\gamma^{\mu}D_{\mu} - m)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu},\qquad D_{\mu}=\partial_{\mu}+ieA_{\mu}
+$$
+
+得到交互作用項
+
+$$
+\mathcal L_{\text{int}} = -\,e\,\bar\psi\gamma^{\mu}\psi\,A_{\mu}
+$$
+
+因此，一個光子與兩條費米子線相交的 **頂點因子** 為
+
+$$
+-\,i e\,\gamma^{\mu}
+$$
+
+外線費米子攜帶旋量 $u,\bar u$ 或 $v,\bar v$，內線提供相應傳播子。
+
+---
+
+### 8.2C.2 樹級在殼沃德恆等式
+
+動量為 $q=p'-p$ 的外光子連接費米子線時，振幅中包含 $\mathcal M^{\mu}=\bar u(p')\gamma^{\mu}u(p)$。與 $q_{\mu}$ 縮並：
+
+$$
+q_{\mu}\,\mathcal M^{\mu} = \bar u(p')\,(/\!\!{p'}-/\!\!p)\,u(p)
+$$
+
+代入 $(/\!\!p-m)u(p)=0$ 與 $\bar u(p')(/\!\!{p'}-m)=0$，得到
+
+$$
+q_{\mu}\,\mathcal M^{\mu} = 0
+$$
+
+因此，將光子偏振 $\epsilon^{\mu}$ 替換為 $\epsilon^{\mu} + \alpha\,q^{\mu}$ 不改變振幅，體現規範不變性。
+
+---
+
+### 8.2C.3 完整格林函數的沃德—高橋恆等式
+
+超越樹級後，完整頂點 $\Gamma^{\mu}(p',p)$ 與精確費米子傳播子 $S(p)$ 滿足
+
+$$
+q_{\mu}\,\Gamma^{\mu}(p',p) = S^{-1}(p') - S^{-1}(p)
+$$
+
+它表達電荷守恆，聯繫重整化常數，例如QED中的 $Z_{1}=Z_{2}$，並保證光子非物理縱向部分不進入物理 $S$ 矩陣元。
+
+---
+
+### 8.2C.4 偏振求和與規範選擇
+
+協變規範中的光子傳播子
+
+$$
+D_{\mu\nu}(k) = \frac{-i}{k^{2}+i\epsilon}\left[g_{\mu\nu} - (1-\xi)\frac{k_{\mu}k_{\nu}}{k^{2}}\right]
+$$
+
+含有規範參數 $\xi$。沃德恆等式保證可觀測量中所有依賴 $\xi$ 的非物理部分抵消。外部實光子的物理振幅滿足 $q\cdot\mathcal M=0$，因此偏振求和可等效使用 $\sum_{\lambda}\epsilon_{\mu}^{(\lambda)}\epsilon_{\nu}^{(\lambda)\ast}=-g_{\mu\nu}$。
+
+---
+
+### 8.2C.5 簡短例題
+
+**（a）電子被古典流散射。**
+對矩陣元 $\mathcal M^{\mu}=\bar u(p')\gamma^{\mu}u(p)$，按上述方法驗證 $q_{\mu}\mathcal M^{\mu}=0$。
+
+**（b）樹級 $e^{-}\mu^{-}\to e^{-}\mu^{-}$。**
+利用兩條費米子線上的流守恆，證明光子傳播子的縱向部分不貢獻振幅。
+
+**（c）由沃德—高橋恆等式得到 $Z_{1}=Z_{2}$。**
+說明 $q_{\mu}\Gamma^{\mu}=S^{-1}(p')-S^{-1}(p)$ 如何使QED的頂點與波函數重整化常數相等。
+
+---
+
+### 8.2C.6 練習工具
+
+- 從 $\mathcal L_{\text{QED}}$ 的規範不變性出發，為樹級完整振幅中的外光子推導 $q_{\mu}\mathcal M^{\mu}=0$。
+- 從時間序乘積中的流守恆，或路徑積分的源變換，推導沃德—高橋恆等式。
+- 用協變形式計算康普頓散射，顯式檢驗 $\xi$ 項的抵消。
+- 證明每個外光子偏振加上與 $q^{\mu}$ 成正比的項，都不改變完整QED樹級振幅。
+
+---
+
+## 8.3 場的路徑積分：生成泛函、費曼圖與歐氏方法
+
+路徑積分提供另一種QFT視角：對 **所有場構型** 按相位權重求和。關聯函數來自生成泛函的導數，微擾論成為級數展開，對稱性成為格林函數之間的恆等式。本節建立純量場路徑積分、費曼規則、連通與1PI泛函，並介紹計算和格點理論所需的歐氏化。
+
+> 全節採用自然單位 $\hbar=c=1$。
+
+---
+
+### 8.3.1 從粒子路徑到場構型
+
+非相對論粒子的躍遷振幅按權重 $e^{iS[x]}$ 對路徑求和。QFT把路徑 $x(t)$ 推廣為遍佈時空的場構型 $\phi(x)$，使用泛函積分。主要對象是場的 **關聯函數**，計算工具是 **生成泛函**。
+
+---
+
+### 8.3.2 自由純量場的 $Z[J]$
+
+實KG場的作用量為
+
+$$
+S_{0}[\phi] = \int d^{4}x\;\left[\frac{1}{2}\,\partial_{\mu}\phi\,\partial^{\mu}\phi - \frac{1}{2}\,m^{2}\phi^{2}\right]
+$$
+
+引入源 $J(x)$，定義
+
+$$
+Z_{0}[J] \equiv \int \mathcal D\phi\;\exp\!\left\{i\int d^{4}x\left[\frac{1}{2}\,\partial\phi\cdot\partial\phi - \frac{1}{2}m^{2}\phi^{2} + J\phi\right]\right\}
+$$
+
+利用滿足下式的格林函數 $\Delta_{F}$ 配方：
+
+$$
+(\Box + m^{2})\,\Delta_{F}(x-y) = -\,i\,\delta^{(4)}(x-y)
+$$
+
+高斯積分給出
+
+$$
+Z_{0}[J] = Z_{0}[0]\;\exp\!\left[-\,\frac{1}{2}\int d^{4}x\,d^{4}y\;J(x)\,\Delta_{F}(x-y)\,J(y)\right]
+$$
+
+對 $J$ 求泛函導數即可得到全部自由場關聯函數。
+
+---
+
+### 8.3.3 關聯函數、連通部分與威克定理
+
+時間序 $n$ 點函數為
+
+$$
+G^{(n)}(x_{1},\dots,x_{n}) \equiv \langle 0|\,T\{\phi(x_{1})\cdots\phi(x_{n})\}\,|0\rangle = \left.\frac{1}{Z_{0}[0]}\left(\frac{1}{i}\frac{\delta}{\delta J(x_{1})}\right)\!\cdots\!\left(\frac{1}{i}\frac{\delta}{\delta J(x_{n})}\right) Z_{0}[J]\right|_{J=0}
+$$
+
+定義
+
+$$
+W[J] \equiv -\,i\,\ln Z[J]
+$$
+
+則 **連通** 關聯函數由 $W$ 生成：
+
+$$
+G^{(n)}_{\text{conn}}(x_{1},\dots,x_{n}) = \left.i^{1-n}\frac{\delta^{n} W[J]}{\delta J(x_{1})\cdots \delta J(x_{n})}\right|_{J=0}
+$$
+
+自由高斯理論的威克定理指出，$n$ 點函數是二點函數 $\Delta_{F}$ 乘積對所有配對的求和，正對應二次型指數的導數結構。
+
+---
+
+### 8.3.4 引入交互作用：$\phi^{4}$ 與圖展開
+
+加入四次交互作用：
+
+$$
+S[\phi] = S_{0}[\phi] - \int d^{4}x\,\frac{\lambda}{4!}\,\phi^{4}(x)
+$$
+
+交互作用生成泛函為
+
+$$
+Z[J] = \int \mathcal D\phi\;\exp\!\left\{iS_{0}[\phi] + i\int d^{4}x\left[J\phi - \frac{\lambda}{4!}\phi^{4}\right]\right\}
+$$
+
+將交互作用視為作用於自由 $Z_{0}[J]$ 的微分算符：
+
+$$
+Z[J] = \exp\!\left[-\,i\,\frac{\lambda}{4!}\int d^{4}x\left(\frac{1}{i}\frac{\delta}{\delta J(x)}\right)^{\!4}\right] Z_{0}[J]
+$$
+
+展開指數得到費曼圖，規則為：
+
+- **傳播子，即內線：** $\Delta_{F}(x-y)$，或動量空間形式 $i/(p^{2}-m^{2}+i\epsilon)$。
+- **頂點：** 四條線相接，因子為 $-i\lambda$。
+- **外腿：** 對源求導，再令 $J=0$ 得到關聯函數；連通提取與截肢還需各自相應操作。
+- **對稱因子：** 每個圖按其自同構計數帶有 $1/S$。
+
+這些規則把微擾展開轉化為有組織的圖形計算。
+
+
+> **說明。** 在費曼圖中：
+> - **帶箭頭的直線** 表示費米子，例如電子和正電子。
+>   - 常用定向圖示中，沿時間方向的箭頭對應電子。
+>   - 反向箭頭可表示正電子，是圖示與計算約定。
+> - **波浪線** 在QED中表示光子，其他規範理論也使用類似線型。
+> - **頂點** 是各條線相交的交互作用位置。
+>   - QED每個頂點對應因子 $-ie\gamma^{\mu}$，表示電子—光子耦合。
+
+---
+
+### 8.3.5 有效作用量與1PI
+
+定義古典場，也稱平均場：
+
+$$
+\phi_{c}(x) \equiv \frac{\delta W[J]}{\delta J(x)}
+$$
+
+作勒讓德變換，定義 **有效作用量**：
+
+$$
+\Gamma[\phi_{c}] \equiv W[J] - \int d^{4}x\,J(x)\,\phi_{c}(x)
+$$
+
+源 $J$ 選擇為產生給定 $\phi_{c}$ 的源，於是
+
+$$
+\frac{\delta \Gamma}{\delta \phi_{c}(x)} = -\,J(x)
+$$
+
+令 $J=0$，得到量子運動方程 $\delta\Gamma/\delta\phi_{c}=0$。$\Gamma$ 在恆定背景下的泛函導數生成 **單粒子不可約（1PI）** 頂點；按圈數展開 $\Gamma$ 就是系統的半古典展開。
+
+---
+
+### 8.3.6 施溫格—戴森方程：場空間中的分部積分
+
+在適當邊界條件下，積分中的全泛函導數為零：
+
+$$
+\int \mathcal D\phi\;\frac{\delta}{\delta \phi(x)}\left[\,\mathcal F[\phi]\;e^{iS[\phi]}\right] = 0
+$$
+
+對純量理論選擇 $\mathcal F=\phi(y)$，得到
+
+$$
+\left\langle T\!\left\{\left[\left(\Box_{x} + m^{2}\right)\phi(x) + \frac{\lambda}{3!}\phi^{3}(x)\right]\phi(y)\right\}\right\rangle = -\,i\,\delta^{(4)}(x-y)
+$$
+
+更一般地，它形成聯繫 $n$ 點函數與更高點函數的方程層級，具體階數由交互作用決定；在動量空間中成為完整傳播子和頂點的精確積分方程。
+
+---
+
+### 8.3.7 威克轉動與歐氏時間
+
+實時積分高度振盪，不利於數值處理。在適當解析條件下轉到歐氏時間 $t\to -i\tau$：
+
+$$
+S_{E}[\phi] = \int d^{4}x_{E}\left[\frac{1}{2}(\partial_{\mu}\phi)^{2} + \frac{1}{2}m^{2}\phi^{2} + \frac{\lambda}{4!}\phi^{4}\right]
+$$
+
+權重成為 $e^{-S_{E}}$，並有
+
+$$
+Z_{E}[J] = \int \mathcal D\phi\;\exp\!\left[-\,S_{E}[\phi] + \int d^{4}x_{E}\,J\phi\right]
+$$
+
+此時 $Z_{E}$ 類似統計配分函數，通向 **格點場論**、蒙特卡洛採樣，以及QFT與臨界現象的聯繫。解析延拓可在適用條件下恢復閔可夫斯基結果。
+
+---
+
+### 8.3.8 規範場路徑積分：規範固定與鬼場
+
+對規範場 $A_{\mu}$，直接寫
+
+$$
+Z = \int \mathcal D A\;e^{iS[A]}
+$$
+
+會重複計數物理等價構型。需插入規範固定δ函數和 **法捷耶夫—波波夫行列式**：
+
+$$
+Z = \int \mathcal D A\,\mathcal D\bar c\,\mathcal D c\;\exp\!\left\{iS[A] + iS_{\text{gf}}[A] + iS_{\text{FP}}[\bar c,c,A]\right\}
+$$
+
+在協變規範中，
+
+$$
+S_{\text{gf}} = -\,\frac{1}{2\xi}\int d^{4}x\,(\partial_{\mu}A^{\mu})^{2}
+$$
+
+行列式可用鬼場作用量表示。隱含的整體 **BRST對稱性** 組織規範固定後的結構，導出沃德或斯拉夫諾夫—泰勒恆等式，使量子化與規範不變的物理結果相容。
+
+---
+
+### 8.3.9 路徑積分中的正則化與重整化
+
+圈積分可能發散，先用截斷、維數正則化或包立—維拉斯等方法處理，再向 $S$ 加入反項並 **重整化**，使物理 $n$ 點函數與給定測量條件相符。路徑積分清楚顯示：
+
+- 反項是作用量中的額外局域項。
+- 重整化群描述 **有效作用量** 隨尺度的變化。
+- 手徵反常等可表現為變換下 **積分測度不保持不變**，即藤川方法。
+
+---
+
+### 8.3.10 圖的含義：來自 $Z[J]$ 的規則
+
+- **非連通與連通：** $Z$ 生成全部圖，$W=-i\ln Z$ 提取連通部分。
+- **截肢與1PI：** 對 $W$ 求導再移除外傳播子得到散射核；對 $\Gamma$ 求導直接得到1PI頂點。
+- **對稱因子：** 來自重複泛函求導的組合計數，即圖前的 $1/S$。
+
+---
+
+### 8.3.11 簡短例題
+
+**（a）自由高斯檢驗。**
+直接從 $Z_{0}[J]$ 證明
+
+$$
+G^{(2)}(x,y) = \Delta_{F}(x-y),\qquad G^{(4)}(x_{1},\dots,x_{4}) = \Delta_{12}\Delta_{34} + \Delta_{13}\Delta_{24} + \Delta_{14}\Delta_{23}
+$$
+
+其中 $\Delta_{ij}\equiv \Delta_{F}(x_{i}-x_{j})$。
+
+**（b）零維 $\phi^{4}$ 玩具模型。**
+將 $\int \mathcal D\phi$ 替換為 $\int d\phi$，考慮
+
+$$
+Z(J) = \int_{-\infty}^{\infty} d\phi\;\exp\!\left[i\left(\frac{1}{2}m^{2}\phi^{2} - \frac{\lambda}{4!}\phi^{4} + J\phi\right)\right]
+$$
+
+按 $\lambda$ 展開並與費曼圖級數比較：沒有時空變量，只剩組合計數。
+
+**（c）$\phi^{4}$ 中的單圈蝌蚪圖。**
+由算符展開 $\exp[-i(\lambda/4!)\int (\delta/i\delta J)^{4}]$，$G^{(2)}$ 的 $O(\lambda)$ 修正包含
+
+$$
+\frac{-i\lambda}{2}\int d^{4}z\;\Delta_{F}(x-z)\,\Delta_{F}(0)\,\Delta_{F}(z-y)
+$$
+
+在 $\Delta_{F}(0)$ 中出現紫外發散，需要質量重整化。
+
+**（d）駐相法與古典極限。**
+令作用量按 $S\to S/\hbar$ 縮放，並取 $\hbar\to 0$；$Z$ 的主要貢獻來自滿足 $\delta S/\delta\phi=0$ 的場，附近漲落產生圈展開。這說明圈修正如何對應量子效應。
+
+**（e）由變量變換得到沃德恆等式。**
+對於整體對稱性 $\phi\to \phi + \epsilon\,\delta\phi$，若測度與作用量不變，則
+
+$$
+\partial_{\mu}\left\langle T\!\left\{J^{\mu}(x)\,\mathcal O[\phi]\right\}\right\rangle = -\,i\left\langle T\!\left\{\delta\phi(x)\,\frac{\delta\mathcal O[\phi]}{\delta\phi(x)}\right\}\right\rangle
+$$
+
+這是關聯函數內部流守恆的泛函表達。
+
+---
+
+### 8.3.12 基本解題工具
+
+- 透過配方推導 $Z_{0}[J]$，用 $Z_{0}[0]=1$ 固定正規化。
+- 從 $\phi^{4}$ 理論的 $Z[J]$ 出發，導出動量空間費曼規則，確定四點函數單圈魚圖的對稱因子。
+- 用 $-i\,\delta^{2}W/\delta J \delta J$ 計算連通二點函數，驗證 $W=-i\ln Z$ 移除了非連通部分。
+- 對 $\phi^{4}$ 仔細作威克轉動，說明 $iS\to -S_{E}$、$Z\to Z_{E}$，並追蹤傳播子的變化。
+- 寫出 $\phi^{4}$ 理論中完整傳播子 $G(x,y)$ 的施溫格—戴森方程，用圖表示。
+- 對 $U(1)$ 規範理論，概述法捷耶夫—波波夫程序如何在協變規範中產生鬼場，並寫出BRST變換。
+
+---
+
+## 8.4 LSZ約化與散射振幅
+
+理論常計算格林函數，實驗則測量 **截面**。連接兩者的是 **LSZ約化公式**：移除時間序關聯函數的外傳播子，使外腿在殼，便得到 **$S$ 矩陣振幅** $\mathcal M$。本節介紹純量和費米子的LSZ公式、$Z$ 因子、相空間、截面，以及由光學定理體現的么正性。
+
+---
+
+### 8.4.1 從關聯函數到振幅
+
+- 關聯函數：$G^{(n)} = \langle 0|T\{\phi\cdots\phi\}|0\rangle$。
+- 連通部分：$W=-i\ln Z$。
+- **截肢：** 移除外部傳播子。
+- **在殼極限：** $p^{2}\to m^{2}$；費米子使用相應的 $/\!\!p\to m$。
+- **波函數重整化：** 單粒子極點留數定義 $Z$ 因子。
+
+最終得到 $\mathcal M$，截面中使用它的 $|\mathcal M|^{2}$。
+
+---
+
+### 8.4.2 極點、留數與 $Z$ 因子
+
+實純量場的完整動量空間二點函數，在單粒子極點附近為
+
+$$
+\tilde G^{(2)}(p) = \int d^{4}x\,e^{ip\cdot x}\,G^{(2)}(x) \;\sim\; \frac{i\,Z_{\phi}}{p^{2}-m^{2}+i\epsilon} + \text{正則項}
+$$
+
+**留數** $Z_{\phi}$ 與場作用於真空產生正規化單粒子態的重疊有關，具體數值依賴場正規化。LSZ中每條外腿因此帶有 $Z_{\phi}^{-1/2}$。
+
+狄拉克場類似：
+
+$$
+\tilde S(p) \equiv \int d^{4}x\,e^{ip\cdot x}\,\langle 0|T\{\psi(x)\bar\psi(0)\}|0\rangle \;\sim\; \frac{i\,Z_{\psi}(/\!\!p+m)}{p^{2}-m^{2}+i\epsilon}
+$$
+
+---
+
+### 8.4.3 純量LSZ約化：入態到出態
+
+考慮質量為 $m$ 的中性純量的 $n\to m$ 過程，令 $G^{(n+m)}$ 為完整時間序關聯函數，則截肢在殼振幅為
+
+$$
+\mathcal M(\{p\}\to\{p'\}) =
+\left[\prod_{a=1}^{n} Z_{\phi}^{-1/2}\; i\!\int d^{4}x_{a}\;e^{ip_{a}\cdot x_{a}}\left(\Box_{x_{a}}+m^{2}\right)\right]
+\left[\prod_{b=1}^{m} Z_{\phi}^{-1/2}\; i\!\int d^{4}y_{b}\;e^{-ip'_{b}\cdot y_{b}}\left(\Box_{y_{b}}+m^{2}\right)\right]
+\,G^{(n+m)}(\{x\};\{y\})
+$$
+
+完成微分後令外動量在殼，即 $p_{a}^{2}=m^{2}$、$(p'_{b})^{2}=m^{2}$。傅立葉變換後，整體 $(2\pi)^{4}\delta^{(4)}(\sum p-\sum p')$ 表達動量守恆。
+
+---
+
+### 8.4.4 費米子LSZ：旋量投影
+
+費米子外腿需要旋量投影和狄拉克算符。一個動量為 $p$ 的入射費米子與一個動量為 $p'$ 的出射費米子，其示意形式為
+
+$$
+\mathcal M \;\propto\; Z_{\psi}^{-1/2}\, \bar u(p') \left[ -i\!\int d^{4}y\,e^{-ip'\cdot y}\,\left(i\overleftarrow{/\!\!partial}_{y}+m\right)\right]
+\,\langle 0|T\{\psi(y)\cdots\bar\psi(x)\}|0\rangle\,
+\left[i\!\int d^{4}x\,e^{ip\cdot x}\,\left(i/\!\!partial_{x}-m\right)\right] Z_{\psi}^{-1/2}\, u(p)
+$$
+
+作用全部外腿算符並取在殼極限，即恢復標準費曼規則振幅。外部反費米子需相應替換 $u\leftrightarrow v$、$\psi\leftrightarrow \bar\psi$ 投影。
+
+---
+
+### 8.4.5 為什麼使用截肢連通格林函數
+
+- **連通：** $W=-i\ln Z$ 去除非連通部分，分離無關的旁觀過程。
+- **截肢：** 除去外傳播子，得到直接進入 $\mathcal M$ 的核。
+- **1PI與連通：** $\Gamma[\phi_{c}]$ 的1PI頂點透過完整傳播子連接，可組成連通截肢函數。
+
+這就是畫圖、加外腿並求值背後的代數結構。
+
+---
+
+### 8.4.6 平面波、波包與 $i\epsilon$
+
+嚴格散射構造使用 **波包**，使重疊積分收斂，並使絕熱開啟與關閉交互作用具有明確意義；計算中常用平面波，並以 **$i\epsilon$ 處方** 規定時間序傳播子的極點邊界條件。
+
+---
+
+### 8.4.7 相空間、截面與衰變率
+
+對 $n_{i}\to n_{f}$ 散射，定義勞侖茲不變的 $n$ 體相空間：
+
+$$
+d\Pi_{n_{f}}(P;\{p_{f}\}) = \left[\prod_{k=1}^{n_{f}} \frac{d^{3}\mathbf p_{k}}{(2\pi)^{3}\,2E_{k}}\right]
+(2\pi)^{4}\,\delta^{(4)}\!\left(P-\sum_{k} p_{k}\right)
+$$
+
+質心系兩體散射的流量因子為
+
+$$
+\mathcal F = 4\sqrt{(p_{1}\cdot p_{2})^{2} - m_{1}^{2}m_{2}^{2}}
+$$
+
+微分截面為
+
+$$
+d\sigma = \frac{|\mathcal M|^{2}}{\mathcal F}\; d\Pi_{n_{f}}
+$$
+
+對於質量 $M$、總四動量 $P$ 的粒子衰變，寬度為
+
+$$
+d\Gamma = \frac{|\mathcal M|^{2}}{2M}\; d\Pi_{n_{f}}(P;\{p_{f}\})
+$$
+
+按需要對 $|\mathcal M|^{2}$ 的初態自旋和偏振取平均，對末態求和。
+
+---
+
+### 8.4.8 么正性與光學定理
+
+由 $S = 1 + iT$ 和 $S^{\dagger}S=\mathbb I$ 得到
+
+$$
+2\,\mathrm{Im}\,\mathcal M_{i\to i} = \sum_{X}\int d\Pi_{X}\; |\mathcal M_{i\to X}|^{2}
+$$
+
+**前向** 振幅的虛部在相應正規化下與總截面相聯繫。Cutkosky割線規則在圖形層面實現這一么正性關係。
+
+---
+
+### 8.4.9 交叉對稱性：解析延拓
+
+振幅可視為解析函數的邊界值。把粒子從初態移到末態，並相應變為反粒子，對應動量的 $p\to -p$ 延拓。同一個解析 $\mathcal M$ 可描述 $s$、$t$、$u$ 道，它們處於不同物理運動學區域。
+
+---
+
+### 8.4.10 簡短示例
+
+**（a）$\phi^{4}$ 理論中的樹級 $2\to 2$**
+
+對交互作用 $\mathcal L_{\text{int}}=-\lambda\phi^{4}/4!$，正確正規化外腿後，
+
+$$
+\mathcal M_{\text{tree}}(2\to 2) = -\,i\lambda
+$$
+
+樹級不依賴動量；單圈加入 $s,t,u$ 的對數依賴與反項。
+
+**（b）樹級湯川交換 $f\bar f\to f\bar f$**
+
+對 $\mathcal L_{\text{int}}=-g\,\bar\psi\psi\,\phi$，$t$ 道純量交換給出
+
+$$
+\mathcal M = (-ig)^{2}\;\bar u(p_{3})u(p_{1})\;\frac{i}{t-m_{\phi}^{2}+i\epsilon}\;\bar v(p_{2})v(p_{4})
+$$
+
+其中 $t=(p_{3}-p_{1})^{2}$。自旋求和可把雙線性量轉換為跡。
+
+**（c）QED外腿的流守恆**
+
+光子連接費米子線時，
+
+$$
+q_{\mu}\,\bar u(p')\gamma^{\mu}u(p)=0
+$$
+
+在殼條件使相應縱向貢獻消失，完整樹級振幅滿足沃德恆等式。
+
+---
+
+### 8.4.11 正規化與常用因子
+
+- 每條純量外腿帶有 $Z_{\phi}^{-1/2}$；旋量外腿帶有 $Z_{\psi}^{-1/2}$ 及旋量波函數 $u$ 或 $v$。
+- 在精確或重求和表達中可使用 **完整傳播子**；固定階微擾計算則通常用自由傳播子加上該階所有修正，避免重複計數。
+- 對未極化初態自旋、偏振取平均，對未分辨末態求和。
+- 完整相空間中有 $n$ 個相同末態粒子時，應計入 $n!$ 的除數，避免重複計數。
+
+---
+
+### 8.4.12 無質量量子與紅外問題
+
+存在無質量規範玻色子時，嚴格福克態的LSZ應用需要謹慎。**軟輻射** 及適當條件下的 **共線輻射** 使排他機率出現紅外發散，而滿足KLN條件的包容性可觀測量可得到有限結果。實際需將探測解析度以下的實輻射與虛修正一起計算。
+
+---
+
+### 8.4.13 簡短推導
+
+**（1）由極點結構推導純量LSZ。**
+從 $G^{(n+m)}$ 的傅立葉變換分離單粒子極點，讀出留數 $Z_{\phi}$，證明作用 $(\Box+m^{2})$ 可截去一條外傳播子。
+
+**（2）接觸交互作用 $\phi^{4}$ 的截面。**
+在相同質量 $m$ 的質心系中，若 $|\mathcal M|^{2}=\lambda^{2}$，
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{\lambda^{2}}{64\pi^{2}s}\,\frac{|\mathbf p_{f}|}{|\mathbf p_{i}|}
+$$
+
+其中 $s=(p_{1}+p_{2})^{2}$，相同質量給出 $|\mathbf p_{f}|=|\mathbf p_{i}|$。
+
+**（3）$\phi^{4}$ 單圈光學定理檢驗。**
+取 $s$ 道泡圖，其閾值以上的虛部與樹級振幅平方的 $2\to 2$ 相空間積分相對應。
+
+**（4）費米子LSZ投影。**
+在出射 $\psi$ 線上插入 $(i\overleftarrow{/\!\!partial}+m)$，與 $\bar u(p')$ 縮並，證明 $p'^{2}=m^{2}$ 時恢復通常外旋量因子。
+
+---
+
+### 8.4.14 基本解題工具
+
+- 從精確二點函數證明 $Z_{\phi}^{-1/2}(\Box+m^{2})G^{(n+m)}$ 截去一條純量外腿，並推廣到 $n+m$ 條。
+- 為 $e^{-}\mu^{-}\to e^{-}\mu^{-}$ 寫出LSZ公式，用傳播子與頂點恢復QED樹級振幅。
+- 推導質心系兩體相空間 $d\Pi_{2}$，對恆定 $\mathcal M$ 積分求 $2\to 2$ 總截面。
+- 用Cutkosky規則求簡單單圈圖的 $\mathrm{Im}\,\mathcal M_{ii}$，驗證光學定理。
+- 對 $\phi^{4}$ 的 $2\to 2$ 振幅，顯式說明外動量解析延拓如何聯繫 $s$、$t$ 與 $u$ 道。
+
+---
+
+## 8.5 重整化：發散、反項與耦合常數跑動
+
+圈圖可能在紫外發散。重整化用於定義物理參數並預測尺度依賴。本節以 $d=4$ 維實純量 $\phi^{4}$ 理論為例，建立反項、使用維數正則化、求 $\beta$ 函數，並寫出卡倫—西曼齊克方程。耦合常數會 **跑動**，場獲得 **反常維數**；中間參數依賴重整化尺度 $\mu$，精確可觀測量則不應依賴這一任意選擇。
+
+---
+
+### 8.5.1 冪次計數與可重整化性
+
+考慮實純量場
+
+$$
+\mathcal L = \frac{1}{2}(\partial_\mu\phi)(\partial^\mu\phi) - \frac{1}{2}m^{2}\phi^{2} - \frac{\lambda}{4!}\phi^{4}
+$$
+
+在 $d=4$ 中，場的質量維數為 $[\phi]=1$，因此 $[\lambda]=0$、$[m^{2}]=2$。含 $L$ 個圈、$I$ 條內線、$V_{4}$ 個四次頂點的圖，其表面紫外發散度 $D$ 為
+
+$$
+D = 4L - 2I
+$$
+
+利用圖的拓撲關係，$\phi^{4}$ 理論在 $d=4$ 中除真空項外，只有 **二點** 與 **四點** 函數需要基本反項；更高 $n$ 點函數表面收斂，但仍需處理發散子圖。這就是冪次可重整化的結構。
+
+---
+
+### 8.5.2 反項拉格朗日量與重整化條件
+
+將裸量寫為重整化量與反項的組合：
+
+$$
+\phi_{0} = Z_{\phi}^{1/2}\,\phi,\qquad m_{0}^{2} = m^{2} + \delta m^{2},\qquad \lambda_{0} = \mu^{\epsilon}\,(\lambda + \delta\lambda)
+$$
+
+這裡採用維數正則化 $d=4-\epsilon$，引入尺度 $\mu$ 以保持 $\lambda$ 無因次。拉格朗日量成為
+
+$$
+\mathcal L = \frac{1}{2}Z_{\phi}(\partial\phi)^{2} - \frac{1}{2}(m^{2} + \delta m^{2})\phi^{2} - \frac{1}{4!}(\lambda + \delta\lambda)\phi^{4}
+$$
+
+展開 $Z_{\phi}=1+\delta Z_{\phi}$，得到 **反項拉格朗日量**：
+
+$$
+\mathcal L_{\text{ct}} = \frac{1}{2}\delta Z_{\phi}(\partial\phi)^{2} - \frac{1}{2}\delta m^{2}\phi^{2} - \frac{1}{4!}\delta\lambda\,\phi^{4}
+$$
+
+重整化 **條件** 確定 $\delta Z_{\phi},\delta m^{2},\delta\lambda$。常用方案為：
+
+- **在殼方案（OS）：** 精確傳播子的極點位於 $p^{2}=m^{2}$，留數為 $1$，並令指定運動學點的 $4$ 點 $1\text{PI}$ 等於 $\lambda$。
+- **最小減除（MS或 $\overline{\text{MS}}$）：** 反項只減去 $1/\epsilon$ 極點，$\overline{\text{MS}}$ 還減去約定常數，方便重整化群計算。
+
+---
+
+### 8.5.3 單圈二點蝌蚪圖與質量重整化
+
+$1$ 圈 $2$ 點圖是 **蝌蚪圖**。維數正則化中，
+
+$$
+-i\Sigma_{\text{tad}} = \frac{-i\lambda}{2}\int\!\frac{d^{d}k}{(2\pi)^{d}}\,\frac{i}{k^{2}-m^{2}+i\epsilon}
+$$
+
+計算得到
+
+$$
+\Sigma_{\text{tad}} = \frac{\lambda m^{2}}{32\pi^{2}}\left(\frac{2}{\epsilon} - \gamma_{E} + \ln 4\pi + \ln\frac{\mu^{2}}{m^{2}} + 1\right) + \text{有限項}
+$$
+
+在 $\overline{\text{MS}}$ 方案中減去極點及 $-\gamma_{E}+\ln 4\pi$，定義 $\delta m^{2}$，使 **重整化自能** 有限。注意 $\phi^{4}$ 理論中單圈滿足 $\delta Z_{\phi}=0$，波函數重整化從兩圈開始。
+
+---
+
+### 8.5.4 單圈四點魚圖與耦合重整化
+
+$4$ 點 $1\text{PI}$ 的 $1$ 圈修正來自 $s,t,u$ 道的 **魚圖**。在適當非例外運動學點，可分離紫外發散：
+
+$$
+\Gamma^{(4)}_{\text{1-loop, div}} = -\,\frac{3\lambda^{2}}{16\pi^{2}}\;\frac{1}{\epsilon}
+$$
+
+因此在 $\overline{\text{MS}}$ 中，
+
+$$
+\delta\lambda = \frac{3\lambda^{2}}{16\pi^{2}}\;\frac{1}{\epsilon}
+$$
+
+因子 $3$ 來自 $s,t,u$ 三個道。有限部分依賴運動學和方案，但不改變此階的 $\beta$ 函數。
+
+---
+
+### 8.5.5 重整化群與 $\beta$ 函數
+
+裸參數不依賴 $\mu$，所以 $\mu\,d\lambda_{0}/d\mu=0$。使用 $\lambda_{0}=\mu^{\epsilon}Z_{\lambda}\lambda$、$Z_{\lambda}=1+\delta\lambda/\lambda$，定義
+
+$$
+\beta(\lambda) \equiv \mu\frac{d\lambda}{d\mu}\Big|_{\lambda_{0}} ,\qquad \gamma_{\phi}(\lambda) \equiv \frac{1}{2}\mu\frac{d\ln Z_{\phi}}{d\mu}\Big|_{\lambda_{0}},\qquad \gamma_{m}(\lambda) \equiv \frac{1}{m^{2}}\mu\frac{d m^{2}}{d\mu}\Big|_{\lambda_{0}}
+$$
+
+對 $d=4$ 維實 $\phi^{4}$ 理論，單圈結果為
+
+$$
+\beta(\lambda) = \frac{3}{16\pi^{2}}\lambda^{2}
+$$
+
+$$
+\gamma_{\phi}(\lambda) = 0 + \mathcal O(\lambda^{2})
+$$
+
+$$
+\gamma_{m}(\lambda) = \frac{\lambda}{16\pi^{2}} + \mathcal O(\lambda^{2})
+$$
+
+因此 $\lambda$ 隨紫外尺度 **增大**。求解 $d\lambda/d\ln\mu = \frac{3}{16\pi^{2}}\lambda^{2}$ 得到
+
+$$
+\lambda(\mu) = \frac{\lambda(\mu_{0})}{1 - \dfrac{3\lambda(\mu_{0})}{16\pi^{2}}\ln\!\left(\frac{\mu}{\mu_{0}}\right)}
+$$
+
+分母可在有限 $\mu$ 處為零，即 **朗道極點**。它說明微擾描述在高能失效，並提示 $d=4$ 維純 $\phi^{4}$ 理論的紫外完備性問題。
+
+---
+
+### 8.5.6 卡倫—西曼齊克方程與標度
+
+重整化 $n$ 點格林函數 $G^{(n)}$ 滿足
+
+$$
+\left[\mu\frac{\partial}{\partial\mu} + \beta(\lambda)\frac{\partial}{\partial\lambda} - n\,\gamma_{\phi}(\lambda) + \gamma_{m}(\lambda)\,m^{2}\frac{\partial}{\partial m^{2}}\right] G^{(n)}(x_{1},\dots,x_{n};\lambda,m,\mu) = 0
+$$
+
+它表達物理不應依賴任意尺度 $\mu$。將耦合與質量跑動到相關尺度，可 **重求和** 大對數 $\ln(p/\mu)$。
+
+---
+
+### 8.5.7 方案依賴與可觀測量
+
+改變重整化 **方案** 會改變 $\lambda(\mu)$ 的數值，但一致計算的 **$S$ 矩陣元** 和可測率在精確理論中不變；有限階結果的剩餘差異屬於更高階。常見選擇有：
+
+- **在殼方案：** 物理解釋直接，高圈計算較複雜。
+- **$\overline{\text{MS}}$ 方案：** 減去約定極點與常數，代數簡潔，適合RG。
+
+不同方案可透過有限重定義 $\lambda \to \lambda + c_{1}\lambda^{2} + \cdots$ 轉換。
+
+---
+
+### 8.5.8 反常維數與場強重整化
+
+儘管 $\phi^{4}$ 理論單圈有 $\gamma_{\phi}=0$，一般場仍會獲得 **反常維數**，使關聯函數的冪律受到 $\gamma_{\phi}$ 修正。在固定點 $\beta=0$ 的共形理論中，算符維數由古典維數加反常維數組成，是CFT資料的一部分。
+
+---
+
+### 8.5.9 紫外、紅外、對數與冪次發散
+
+維數正則化便於保持對稱性，將二次發散編碼為極點和質量依賴。紫外發散表現為 $1/\epsilon$ 極點；無質量情形還可能出現獨立的紅外極點。計算時應注意：
+
+- 規範理論與RG計算常使用 **維數正則化**。
+- 存在紅外問題時保留紅外調節量，並在構成適當包容性可觀測量後消去。
+
+---
+
+### 8.5.10 簡短例題
+
+**（a）$\overline{\text{MS}}$ 中的蝌蚪圖**
+
+證明選擇
+
+$$
+\delta m^{2} = \frac{\lambda m^{2}}{32\pi^{2}}\left(\frac{2}{\epsilon}\right)
+$$
+
+可在 $\overline{\text{MS}}$ 中消去 $\Sigma_{\text{tad}}$ 的紫外極點，並寫出有限自能。
+
+**（b）由反項求單圈 $\beta$**
+
+從 $\lambda_{0}=\mu^{\epsilon}(\lambda+\delta\lambda)$ 與 $\delta\lambda = \tfrac{3\lambda^{2}}{16\pi^{2}}\tfrac{1}{\epsilon}$ 出發，要求 $d\lambda_{0}/d\mu=0$，推導 $\beta(\lambda)=\tfrac{3}{16\pi^{2}}\lambda^{2}$。
+
+**（c）跑動耦合與朗道極點**
+
+給定尺度 $\mu_{0}=m$ 處的 $\lambda(\mu_{0})=0.1$，求分母為零的尺度並討論其物理意義。
+
+**（d）對稱點重整化**
+
+透過 $s=t=u=-\mu^{2}$ 處的 $1\text{PI}$、$4$ 點函數定義 $\lambda$，證明改變 $\mu$ 時，$\lambda$ 由相同的單圈 $\beta$ 控制。
+
+**（e）$G^{(2)}$ 的卡倫—西曼齊克方程**
+
+在動量空間寫出 $G^{(2)}(p^{2})$ 的方程，使用單圈 $\gamma_{\phi}=0$，求RG改進傳播子以求和領先對數。
+
+---
+
+### 8.5.11 基本解題工具
+
+- 用維數正則化計算單圈魚圖，提取極點。
+- 檢查自能的動量依賴，證明單圈 $\delta Z_{\phi}=0$。
+- 由反項 $\delta m^{2}$ 求單圈 $\gamma_{m}$，驗證上述結果。
+- 從卡倫—西曼齊克方程說明，大動量 $n$ 點函數由硬尺度處的跑動耦合控制。
+- 比較單圈OS與 $\overline{\text{MS}}$ 方案中的 $\lambda$，推導有限轉換。
+
+---
+
+## 8.6 非阿貝爾規範場與楊—米爾斯理論
+
+電磁學是阿貝爾 $U(1)$ 規範理論，古典光子場沒有直接的規範自耦合。標準模型還包含 **非阿貝爾** 規範對稱性，規範玻色子自身帶有規範荷並 **自交互作用**。本節建立楊—米爾斯理論，耦合物質，引入規範固定和鬼場，並介紹BRST、威爾遜線與漸近自由背後的單圈 $\beta$ 函數。
+
+
+---
+
+### 8.6.1 規範群、生成元與協變導數
+
+設 $G$ 是緊李群，某表示中的生成元 $T^{a}$ 滿足
+
+$$
+[T^{a},T^{b}] = i f^{abc} T^{c}
+$$
+
+採用顏色代數正規化：
+
+$$
+\mathrm{tr}(T^{a}T^{b}) = T_{R}\,\delta^{ab},\qquad T^{a}T^{a} = C_{F}\,\mathbb I,\qquad f^{acd}f^{bcd} = C_{A}\,\delta^{ab}
+$$
+
+對基本表示中的 $G=SU(N)$，有 $T_{R}=\tfrac12$、$C_{F}=\tfrac{N^{2}-1}{2N}$、$C_{A}=N$。
+
+物質場 $\psi$ 按 $\psi \to U(x)\psi$ 變換，其中 $U(x)\in G$。**協變導數** 為
+
+$$
+D_{\mu} \equiv \partial_{\mu} + i g\,A_{\mu}^{a} T^{a}
+$$
+
+使 $D_{\mu}\psi$ 與 $\psi$ 具有相同變換規律。非阿貝爾場強來自對易子：
+
+$$
+[D_{\mu},D_{\nu}] = i g\,F_{\mu\nu}^{a} T^{a}
+$$
+
+其中
+
+$$
+F_{\mu\nu}^{a} = \partial_{\mu}A_{\nu}^{a} - \partial_{\nu}A_{\mu}^{a} + g f^{abc} A_{\mu}^{b} A_{\nu}^{c}
+$$
+
+---
+
+### 8.6.2 楊—米爾斯拉格朗日量與運動方程
+
+含狄拉克物質場的楊—米爾斯作用量為
+
+$$
+\mathcal L_{\mathrm{YM+mat}} = -\,\frac{1}{4}\,F_{\mu\nu}^{a} F^{a\,\mu\nu} + \bar\psi\,(i\gamma^{\mu} D_{\mu} - m)\,\psi
+$$
+
+參數為 $\alpha^{a}(x)$ 的無窮小規範變換為
+
+$$
+\delta \psi = i g\,\alpha^{a} T^{a} \psi,\qquad
+\delta A_{\mu}^{a} = -\,\frac{1}{g}\,(D_{\mu}\alpha)^{a}
+$$
+
+楊—米爾斯運動方程為
+
+$$
+(D_{\mu} F^{\mu\nu})^{a} = g\,\bar\psi\,\gamma^{\nu} T^{a}\psi
+$$
+
+並滿足比安基恆等式 $D_{[\mu}F_{\nu\rho]}=0$。
+
+**三膠子與四膠子交互作用。** 展開 $F^{2}$ 出現三次 $\sim g f^{abc}(\partial A)AA$ 和四次 $\sim g^{2} f^{abe} f^{cde} A^{a}A^{b}A^{c}A^{d}$ 自耦合，QED的古典規範場項中沒有這些頂點。
+
+---
+
+### 8.6.3 規範固定、鬼場與傳播子
+
+直接對 $A_{\mu}$ 作路徑積分會重複計數規範等價構型。在協變規範中加入
+
+$$
+\mathcal L_{\mathrm{gf}} = -\,\frac{1}{2\xi}\,(\partial_{\mu}A^{a\,\mu})^{2}
+$$
+
+以及法捷耶夫—波波夫鬼場 $c^{a},\bar c^{a}$，其作用量為
+
+$$
+\mathcal L_{\mathrm{FP}} = (\partial_{\mu}\bar c^{a})\,(D^{\mu} c)^{a}
+$$
+
+鬼場是反對易純量，不作為物理外態出現；在物理振幅的微擾計算中作為內線和圈貢獻。動量空間膠子傳播子為
+
+$$
+\tilde D_{\mu\nu}^{ab}(k) = \frac{-\,i\,\delta^{ab}}{k^{2}+i\epsilon}\left[g_{\mu\nu} - (1-\xi)\frac{k_{\mu}k_{\nu}}{k^{2}}\right]
+$$
+
+鬼傳播子為 $i\,\delta^{ab}/(k^{2}+i\epsilon)$。費曼規範取 $\xi=1$，朗道規範取 $\xi=0$。
+
+---
+
+### 8.6.4 BRST對稱性概覽
+
+規範固定後的作用量不再具有原來的顯式局域規範不變性，但保留由冪零微分 $s$ 生成的整體 **BRST對稱性**：
+
+$$
+s\,A_{\mu}^{a} = (D_{\mu} c)^{a},\qquad
+s\,c^{a} = -\,\frac{g}{2}\,f^{abc} c^{b} c^{c},\qquad
+s\,\bar c^{a} = \frac{1}{\xi}\,\partial_{\mu}A^{a\,\mu},\qquad
+s\,\psi = i g\,c^{a} T^{a}\psi
+$$
+
+對所有場滿足 $s^{2}=0$。規範固定作用量 $\mathcal L_{\mathrm{YM}}+\mathcal L_{\mathrm{gf}}+\mathcal L_{\mathrm{FP}}$ 是BRST不變的。物理態由 **BRST上同調**，即閉態模去恰當態，描述，使非物理偏振與鬼態從物理結果中解耦。
+
+---
+
+### 8.6.5 費曼規則與顏色因子
+
+所有動量均取流入頂點，規則為：
+
+- **三膠子頂點**
+  頂點因子 $-g f^{abc}\,[g^{\mu\nu}(k-p)^{\rho} + g^{\nu\rho}(p-q)^{\mu} + g^{\rho\mu}(q-k)^{\nu}]$。
+
+- **四膠子頂點**
+  $-i g^{2}\big[f^{abe}f^{cde}(g^{\mu\rho}g^{\nu\sigma}-g^{\mu\sigma}g^{\nu\rho}) + \text{循環置換項}\big]$
+
+- **膠子—鬼—反鬼頂點**
+  $-g f^{abc}\,k_{\mu}$，其中 $k$ 按所用約定從鬼線流向反鬼線進入頂點。
+
+- **膠子—費米子—反費米子頂點**
+  $-i g\,\gamma^{\mu} T^{a}$
+
+常用顏色代數為：
+
+$$
+T^{a}_{ij} T^{a}_{kl} = T_{R}\left(\delta_{il}\delta_{jk} - \frac{1}{N}\delta_{ij}\delta_{kl}\right)\quad\text{對於}\ SU(N)
+$$
+
+以及
+
+$$
+\sum_{a} (T^{a}T^{a})_{ij} = C_{F}\,\delta_{ij}
+$$
+
+振幅平方和顏色求和中經常使用這些關係。
+
+---
+
+### 8.6.6 威爾遜線、環與規範不變觀測量
+
+沿路徑 $\mathcal C$ 的平行移動由 **威爾遜線** 給出：
+
+$$
+W(\mathcal C) = \mathcal P \exp\!\left(i g \int_{\mathcal C} A_{\mu}^{a} T^{a}\,dx^{\mu}\right)
+$$
+
+閉合路徑的跡 $\mathrm{tr}\,W(\mathcal C)$ 規範不變。在適當理論中，大矩形環的面積律或周長律可診斷禁閉；微擾論中的威爾遜線則用於重求和軟膠子效應。
+
+---
+
+### 8.6.7 貝塔函數與漸近自由
+
+若基本表示中有 $n_{f}$ 個狄拉克費米子和 $n_{s}$ 個複純量，單圈貝塔函數為
+
+$$
+\beta(g) \equiv \mu\,\frac{dg}{d\mu} = -\,\frac{g^{3}}{16\pi^{2}}\left(\frac{11}{3}C_{A} - \frac{4}{3}T_{R} n_{f} - \frac{1}{3} T_{R} n_{s}\right)
+$$
+
+對於QCD（$SU(3)$、$T_{R}=\tfrac12$、$n_{s}=0$），
+
+$$
+\beta(g) = -\,\frac{g^{3}}{16\pi^{2}}\left(11 - \frac{2}{3}n_{f}\right)
+$$
+
+負的 $\beta$ 表示滿足 $SU(3)$ 理論的條件 $n_{f} < 17$ 時，耦合在高能 **減小**，即漸近自由；紅外則變強，提示非微擾禁閉問題。
+
+---
+
+### 8.6.8 拓撲項與 $CP$
+
+除 $-\tfrac14 F^{2}$ 外，還可寫勞侖茲與規範不變密度
+
+$$
+\mathcal L_{\theta} = \theta\,\frac{g^{2}}{32\pi^{2}}\,F_{\mu\nu}^{a}\,\tilde F^{a\,\mu\nu},\qquad \tilde F^{\mu\nu} \equiv \frac{1}{2}\,\epsilon^{\mu\nu\rho\sigma} F_{\rho\sigma}
+$$
+
+它在古典局部表達中是全導數，卻可透過非平凡拓撲影響量子物理。對阿貝爾與非阿貝爾規範場，縮並後的拓撲密度在 $C$ 下為偶，在 $P$、$T$ 和 $CP$ 下為奇。反常與拓撲將在第8.10節進一步討論。
+
+---
+
+### 8.6.9 簡短例題
+
+**（a）推導三膠子頂點。**
+展開 $-\tfrac14 F^{a}_{\mu\nu}F^{a\,\mu\nu}$，保留 $A$ 的三次項，讀出動量空間規則。
+
+**（b）$q\bar q\to q'\bar q'$ 的顏色因子。**
+對初態顏色平均，求整體 $T_{R}^{2}$ 因子及費米子線上的 $C_{F}$ 跡。
+
+**（c）膠子自能中的鬼圈。**
+計算其符號與張量結構，驗證全部相關膠子和鬼圈貢獻之和的橫向性 $k_{\mu}\Pi^{\mu\nu}(k)=0$。
+
+**（d）$A_{\mu}$ 上的BRST冪零性。**
+用 $s A_{\mu}^{a}=(D_{\mu}c)^{a}$、$s c^{a}=-\tfrac{g}{2} f^{abc} c^{b}c^{c}$ 及雅可比恆等式證明 $s^{2}A_{\mu}^{a}=0$。
+
+**（e）單圈 $\beta$ 的符號。**
+整理膠子二點函數中的膠子圈 $\propto +\tfrac{11}{3}C_{A}$、費米子圈 $\propto -\tfrac{4}{3}T_{R} n_{f}$、純量圈 $\propto -\tfrac{1}{3}T_{R} n_{s}$ 及相關鬼貢獻，組合得到結果。
+
+---
+
+### 8.6.10 基本解題工具
+
+- 從 $D_{\mu}$ 推導 $F_{\mu\nu}$，證明比安基恆等式 $D_{[\mu}F_{\nu\rho]}=0$。
+- 在協變規範中量子化楊—米爾斯理論，寫出含鬼場的完整費曼規則。
+- 說明斯拉夫諾夫—泰勒恆等式如何約束膠子自能的橫向性，以及夸克—膠子頂點的耦合重整化與荷的普適性。
+- 將矩形威爾遜環計算到 $g^{2}$ 階，從其對數提取庫侖勢。
+- 使用保持背景規範不變性的背景場方法，推導單圈 $\beta$ 函數。
+
+---
+
+## 8.7 QED實踐：基本過程、單圈效應與 $\alpha$ 的跑動
+
+QED是受到極精密檢驗的規範理論。本節把工具用於樹級散射、紅外安全性、單圈真空極化、頂點和電子自能，並解釋電荷為何隨尺度 **跑動**。
+
+> 約定：自然單位 $\hbar=c=1$，度規 $g_{\mu\nu}=\mathrm{diag}(+,-,-,-)$；電荷參數 $e>0$，因此電子電荷為 $-e$，精細結構常數為 $\alpha\equiv e^{2}/4\pi$。
+
+---
+
+### 8.7.1 拉格朗日量、場與沃德恆等式回顧
+
+QED拉格朗日量為
+
+$$
+\mathcal L_{\mathrm{QED}}=\bar\psi(i\gamma^{\mu}D_{\mu}-m)\psi - \frac{1}{4}F_{\mu\nu}F^{\mu\nu},\qquad D_{\mu}=\partial_{\mu}+ieA_{\mu}
+$$
+
+規範不變性 $\psi\to e^{i\alpha(x)}\psi$、$A_{\mu}\to A_{\mu}-\partial_{\mu}\alpha/e$ 導出流守恆與 **沃德—高橋恆等式**：
+
+$$
+q_{\mu}\,\Gamma^{\mu}(p',p) = S^{-1}(p') - S^{-1}(p)
+$$
+
+它要求 $Z_{1}=Z_{2}$，即頂點和波函數重整化相等，並消除物理振幅中的非物理縱向光子貢獻。
+
+---
+
+### 8.7.2 常用費曼規則
+
+- **費米子傳播子：** $i(/\!\! p + m)/(p^{2}-m^{2}+i\epsilon)$。
+- **協變規範光子傳播子：**
+
+$$
+\frac{-i}{k^{2}+i\epsilon}\left[g_{\mu\nu} - (1-\xi)\frac{k_{\mu}k_{\nu}}{k^{2}}\right]
+$$
+
+- **頂點：** $-ie\gamma^{\mu}$。
+- **外線：** 旋量 $u,\bar u,v,\bar v$；光子偏振 $\epsilon^{\mu}$ 在物理條件下滿足 $q\cdot\epsilon=0$。
+
+---
+
+### 8.7.3 典型樹級過程：$e^{+}e^{-}\to \mu^{+}\mu^{-}$
+
+一個 $s$ 道光子給出
+
+$$
+\mathcal M = \bar v(p_{2})\,(-ie\gamma^{\mu})\,u(p_{1})\;\frac{-i g_{\mu\nu}}{s}\;\bar u(k_{1})\,(-ie\gamma^{\nu})\,v(k_{2})
+$$
+
+在滿足 $m_{e},m_{\mu}\approx 0$ 的質心系中，
+
+$$
+\overline{|\mathcal M|^{2}} = 2 e^{4}\,(1+\cos^{2}\theta)
+$$
+
+微分截面為
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{\alpha^{2}}{4s}\,(1+\cos^{2}\theta)
+$$
+
+總截面為
+
+$$
+\sigma(e^{+}e^{-}\to \mu^{+}\mu^{-}) = \frac{4\pi\alpha^{2}}{3s}
+$$
+
+這是 **R比值** 的參照過程。將 $\mu$ 替換為 $\sum_{q}Q_{q}^{2}$ 並計入顏色因子，可研究夸克產生閾值。
+
+---
+
+### 8.7.4 巴巴與莫勒散射：相同粒子與 $t$ 道
+
+- **巴巴散射**（$e^{+}e^{-}\to e^{+}e^{-}$）：$s$ 道 $+$ $t$ 道發生干涉；小角度時 $t$ 道佔優，呈 $\sim 1/\theta^{4}$ 行為，可用於亮度監測。
+- **莫勒散射**（$e^{-}e^{-}\to e^{-}e^{-}$）：包含 $t$ 與 $u$ 道，費米統計帶來相對負號，同樣具有前向峰。
+
+兩者都適合練習旋量跡和干涉，需正確處理自旋平均、求和，以及適用時的相同粒子因子 $1/2!$。
+
+---
+
+### 8.7.5 康普頓散射：$e\gamma\to e\gamma$
+
+包含s道與u道兩張圖，自旋求和後得到克萊因—仁科公式。在電子靜止系中，入射光子能量為 $\omega$、散射角為 $\theta$：
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{r_{e}^{2}}{2}\left(\frac{\omega'}{\omega}\right)^{2}\left(\frac{\omega'}{\omega}+\frac{\omega}{\omega'}-\sin^{2}\theta\right)
+$$
+
+其中古典電子半徑為 $r_{e}=e^{2}/4\pi m$，並有
+
+$$
+\omega' = \frac{\omega}{1+\frac{\omega}{m}(1-\cos\theta)}
+$$
+
+低能極限 $\omega\ll m$ 恢復湯姆孫散射 $d\sigma/d\Omega = r_{e}^{2}(1+\cos^{2}\theta)/2$。
+
+---
+
+### 8.7.6 莫特散射：電子被庫侖場散射
+
+電子透過單光子交換被外電荷 $Z$ 散射，得到 **莫特截面**：
+
+$$
+\left(\frac{d\sigma}{d\Omega}\right)_{\mathrm{Mott}} = \left(\frac{Z\alpha}{2p\sin^{2}\tfrac{\theta}{2}}\right)^{2}\cos^{2}\tfrac{\theta}{2}
+$$
+
+與盧瑟福結果相比，$\cos^{2}\tfrac{\theta}{2}$ 因子體現相對論自旋效應。
+
+---
+
+### 8.7.7 紅外物理：軟光子與KLN
+
+含光子的虛單圈圖會產生 **紅外發散**，實發射中能量為 $\omega<\Delta E$ 的 **軟光子** 也產生相應奇異項。布洛赫—諾德西克與KLN機制說明，按固定探測解析度適當組合 **虛修正與實發射**，可得到有限結果。對 $2\to 2$ QED過程，其結構為：
+
+- 虛軟修正包含 $\propto \alpha\,\ln^{2}\!\left(\frac{\lambda}{E}\right)$ 或 $\alpha\,\ln\!\lambda$，$\lambda$ 為紅外調節量。
+- 實軟發射 $\propto -$ 含相應對數，其中 $\lambda\to \Delta E$。
+- 相加後調節量抵消，留下與探測定義有關的物理對數 $\ln(E/\Delta E)$。
+
+計算次領先階時，必須包括與測量定義相容的實輻射區域，並正確處理軟、共線效應。
+
+---
+
+### 8.7.8 單圈自能與重整化概覽
+
+**電子自能** $\Sigma(/\!\! p)$ 修正質量和波函數。在 $\overline{\mathrm{MS}}$ 中，單圈有
+
+$$
+\Sigma(/\!\! p) = \frac{\alpha}{4\pi}\left[\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi\right)(-/\!\! p + 4m) + \cdots\right]
+$$
+
+**真空極化**，即光子自能，具有張量結構
+
+$$
+\Pi_{\mu\nu}(q) = \left(q_{\mu}q_{\nu}-q^{2}g_{\mu\nu}\right)\Pi(q^{2})
+$$
+
+規範不變性要求橫向性 $q^{\mu}\Pi_{\mu\nu}=0$。質量為 $m$ 的費米子單圈貢獻為
+
+$$
+\Pi(q^{2}) = \frac{\alpha}{3\pi}\left(\frac{1}{\epsilon}-\gamma_{E}+\ln 4\pi - \ln\frac{m^{2}}{\mu^{2}}\right) + \text{有限項}(q^{2}/m^{2})
+$$
+
+**頂點修正** $\Gamma^{\mu}=\gamma^{\mu}F_{1}(q^{2}) + \frac{i\sigma^{\mu\nu}q_{\nu}}{2m}F_{2}(q^{2})$ 產生 **反常磁矩** $a_{e}=F_{2}(0)$。
+
+施溫格的單圈結果為
+
+$$
+a_{e} = \frac{\alpha}{2\pi}
+$$
+
+更高圈提供更精細修正，與高精度實驗比較是QED的重要檢驗。
+
+---
+
+### 8.7.9 電磁耦合的跑動
+
+真空極化修飾光子傳播，使有效電荷依賴尺度。定義
+
+$$
+\alpha(q^{2}) = \frac{\alpha(\mu^{2})}{1 - \Delta\alpha(q^{2},\mu^{2})}
+$$
+
+對電荷 $Q_{f}$、質量 $m_{f}$ 的費米子，領先階為
+
+$$
+\Delta\alpha(q^{2},\mu^{2}) = \frac{\alpha}{3\pi}\,Q_{f}^{2}\,\ln\!\left(\frac{q^{2}}{\mu^{2}}\right) + \cdots
+$$
+
+計入相關尺度以下的帶電粒子後，$\alpha$ 緩慢增大：從 $q^{2}\approx 0$ 附近的 $\alpha^{-1}\approx 137$，變化到 $Z$ 極點附近約 $\alpha^{-1}\approx 128$。這些數值用於說明量級，精確結果依賴強子真空極化等輸入。
+
+---
+
+### 8.7.10 偏振求和、規範選擇與檢驗
+
+- 協變規範中的內光子需保留相應傳播子結構，沃德恆等式保證 $\xi$ 從可觀測量中消失。
+- 對外部實光子，可以使用
+
+$$
+\sum_{\lambda}\epsilon_{\mu}^{(\lambda)}(q)\,\epsilon_{\nu}^{(\lambda)\ast}(q) = -g_{\mu\nu}
+$$
+
+前提是已證明對應完整振幅或守恆流滿足 $q_{\mu}\mathcal M^{\mu}=0$。
+- 自旋求和常用以下跡關係：
+
+$$
+\sum_{s}u^{s}(p)\bar u^{s}(p)=/\!\! p+m,\qquad \sum_{s}v^{s}(p)\bar v^{s}(p)=/\!\! p-m
+$$
+
+---
+
+### 8.7.11 簡短例題
+
+**（a）$e^{+}e^{-}\to \mu^{+}\mu^{-}$ 的跡計算**
+用 $\gamma$ 矩陣的跡求 $\overline{|\mathcal M|^{2}}$，驗證 $(1+\cos^{2}\theta)$。
+
+**（b）軟光子因子化**
+證明軟極限中，$n\to m+\gamma_{\mathrm{soft}}$ 振幅因子化為
+
+$$
+\mathcal M_{\mathrm{soft}} = \mathcal M_{0}\;\left[e\sum_{i\in\text{帶電外線}}\eta_{i}\frac{p_{i}\cdot \epsilon}{p_{i}\cdot q}\right]
+$$
+
+其中出射與入射電荷分別採用 $\eta_{i}=\pm 1$。
+
+**（c）單圈 $a_{e}$ 概述**
+在 $q^{2}\to 0$ 處將頂點投影到 $\sigma^{\mu\nu}$ 結構，積分費曼參數得到 $F_{2}(0)=\alpha/2\pi$。
+
+**（d）真空極化與 $\alpha(q^{2})$**
+在 $|q^{2}|\gg m^{2}$ 極限計算 $\Pi(q^{2})$，推導 $\alpha$ 跑動的領先對數。
+
+**（e）康普頓低能極限**
+在 $\omega\ll m$ 下展開樹級振幅，恢復湯姆孫截面。
+
+---
+
+### 8.7.12 基本解題工具
+
+- 推導無質量近似的樹級巴巴微分截面，識別 $s\leftrightarrow t$ 關係與小角行為。
+- 從兩張圖計算克萊因—仁科公式，並取湯姆孫極限。
+- 對 $e^{+}e^{-}\to \mu^{+}\mu^{-}$ 的次領先階，展示虛修正和實軟發射的紅外調節量如何抵消，留下 $\ln(E/\Delta E)$。
+- 用沃德—高橋恆等式，在維數正則化下證明單圈 $Z_{1}=Z_{2}$。
+- 從重整化光子傳播子提取湯姆孫極限與重費米子閾值附近的有效電荷，討論解耦和匹配。
+
+---
+
+## 8.8 自發對稱性破缺：戈德斯通與希格斯機制
+
+當方程具有某種對稱性，而基態不保持它時，就出現 **自發對稱性破缺**。相應整體連續對稱性破缺產生無質量 **戈德斯通玻色子**；在規範理論的希格斯機制中，相關自由度轉為有質量規範玻色子的縱向模式。本節討論整體 $U(1)$、阿貝爾希格斯模型、非阿貝爾推廣、電弱理論，以及有效勢和拓撲缺陷。
+
+---
+
+### 8.8.1 「自發」的含義
+
+拉格朗日量具有連續對稱性，**真空** 卻選擇一組對稱相關最低點中的一個。沿真空流形平坦方向的激發是戈德斯通模，垂直方向的曲率通常對應有質量模。
+
+**秩序參數** 是在對稱變換下不保持不變的場或複合算符的真空期望值，記為 $v$。
+
+---
+
+### 8.8.2 複純量的整體 $U(1)$：墨西哥帽勢
+
+考慮複純量 $\phi$，具有整體 $U(1)$ 對稱性 $\phi\to e^{i\alpha}\phi$，以及
+
+$$
+\mathcal L = \partial_{\mu}\phi^{\ast}\partial^{\mu}\phi - V(\phi),\qquad
+V(\phi) = -\,\mu^{2}\,|\phi|^{2} + \frac{\lambda}{2}\,|\phi|^{4},\quad \mu^{2}>0,\ \lambda>0
+$$
+
+![複純量場位能的極小值在場空間中形成一個圓。徑向擾動與角向擾動不同；對於全域對稱性，角向的位能保持平坦。](/images/diagrams/vacuum-circle.svg)
+
+最低點滿足 $|\phi|^{2}=v^{2}/2$，其中
+
+$$
+v \equiv \sqrt{\frac{2\mu^{2}}{\lambda}}
+$$
+
+選定真空並展開：
+
+$$
+\phi(x) = \frac{1}{\sqrt{2}}\,[v + h(x) + i\,\pi(x)]
+$$
+
+代入並保留二次項：
+
+$$
+\mathcal L_{\text{quad}} = \frac{1}{2}(\partial h)^{2} + \frac{1}{2}(\partial \pi)^{2} - \frac{1}{2}\,m_{h}^{2}\,h^{2}
+$$
+
+其中
+
+$$
+m_{h}^{2} = \lambda v^{2},\qquad m_{\pi}^{2} = 0
+$$
+
+所以 $h$ 是有質量徑向模，$\pi$ 是破缺 $U(1)\to \{\}$ 產生的無質量 **戈德斯通玻色子**。
+
+---
+
+### 8.8.3 戈德斯通定理概覽
+
+對具有守恆流 $J^{\mu}_{a}$ 和荷 $Q_{a}$ 的連續 **整體** 對稱性，若某局域算符 $\mathcal O$ 的真空期望值不變性被破壞，即 $\langle 0|[Q_{a},\mathcal O]|0\rangle\neq 0$，則在標準相對論條件下存在無質量自旋零模。李群 $G$ 破缺到 $H$ 時，戈德斯通數目為
+
+$$
+N_{\text{GB}} = \dim G - \dim H
+$$
+
+勞侖茲不變真空中的相對論理論，戈德斯通模在低動量具有線性色散。
+
+---
+
+### 8.8.4 阿貝爾希格斯機制：縱向自由度的來源
+
+以耦合 $g$ 將 $U(1)$ 規範化，替換 $\partial_{\mu}\to D_{\mu}=\partial_{\mu}+igA_{\mu}$：
+
+$$
+\mathcal L = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} + |D_{\mu}\phi|^{2} - \left(-\mu^{2}|\phi|^{2} + \frac{\lambda}{2}|\phi|^{4}\right)
+$$
+
+在同一真空附近展開。採用 **么正規範** 消去相位，寫為
+
+$$
+\phi(x) = \frac{1}{\sqrt{2}}\,[v + h(x)]
+$$
+
+二次拉格朗日量包含
+
+$$
+\mathcal L_{\text{quad}} \supset \frac{1}{2}(\partial h)^{2} - \frac{1}{2}m_{h}^{2}h^{2} + \frac{1}{2}m_{A}^{2}\,A_{\mu}A^{\mu}
+$$
+
+質量為
+
+$$
+m_{h}^{2} = \lambda v^{2},\qquad m_{A}^{2} = g^{2} v^{2}
+$$
+
+自由度核對：
+
+- 破缺描述之前：複純量的實自由度數 $=2$，無質量規範場的橫向偏振數 $=2$，總計 $4$。
+- 之後：實純量 $h$ 的自由度數 $=1$，有質量向量 $A_{\mu}$ 的偏振數 $=3$，總計 $4$。
+
+戈德斯通模 $\pi$ 並未消失，而是成為有質量規範玻色子的縱向極化。
+
+---
+
+### 8.8.5 $R_{\xi}$ 規範、被吸收的戈德斯通模與 BRST
+
+么正規範使可重整化性不再顯然。在協變的 $R_{\xi}$ 規範中加入
+
+$$
+\mathcal L_{\text{gf}} = -\,\frac{1}{2\xi}\left(\partial_{\mu}A^{\mu} - \xi\,g\,v\,\pi\right)^{2}
+$$
+
+原本的戈德斯通模 $\pi$ 以如下質量傳播：
+
+$$
+m_{\pi}^{2} = \xi\,m_{A}^{2}
+$$
+
+法捷耶夫–波波夫鬼場也獲得依賴 $\xi$ 的質量。物理可觀測量與 $\xi$ 無關；**BRST 對稱性**保證非物理貢獻之間正確抵消。
+
+---
+
+### 8.8.6 非阿貝爾希格斯機制：$G\to H$
+
+令 $\phi$ 按非阿貝爾群 $G$ 的某個表示變換，並選取使 $G$ 破缺為子群 $H$ 的位能。寫出協變導數 $D_{\mu}=\partial_{\mu}+ig A_{\mu}^{a} T^{a}$。在真空期望值 $\langle\phi\rangle$ 附近展開，可得規範玻色子的質量矩陣：
+
+$$
+(M^{2})^{ab} \propto g^{2}\,\langle\phi\rangle^{\dagger}\{T^{a},T^{b}\}\langle\phi\rangle
+$$
+
+與**破缺**生成元對應的規範玻色子獲得質量，並吸收相應的戈德斯通模；與**未破缺**生成元對應的規範玻色子保持無質量，構成剩餘規範群 $H$。
+
+---
+
+### 8.8.7 電弱理論初探：$SU(2)_{L}\times U(1)_{Y}\to U(1)_{\text{em}}$
+
+取超荷為 $Y=1/2$ 的複純量二重態 $H$，位能為 $V=-\mu^{2}H^{\dagger}H+\lambda(H^{\dagger}H)^{2}$。令
+
+$$
+\langle H\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\ v\end{pmatrix},\qquad v \approx 246\ \text{GeV}
+$$
+
+則規範玻色子的質量為
+
+$$
+m_{W} = \frac{g v}{2},\qquad m_{Z} = \frac{\sqrt{g^{2}+g'^{2}}\,v}{2},\qquad m_{\gamma} = 0
+$$
+
+物理純量 $h$ 的質量滿足
+
+$$
+m_{h}^{2} = 2\lambda v^{2}
+$$
+
+湯川耦合 $\mathcal L_{Y} = -\,y_{f}\,\bar f_{L} H f_{R} + \text{h.c.}$ 給出費米子質量：
+
+$$
+m_{f} = \frac{y_{f} v}{\sqrt{2}}
+$$
+
+因此，與 $h$ 的耦合強度正比於質量；粒子越重，與希格斯場的耦合通常越強。
+
+---
+
+### 8.8.8 有效勢與輻射誘導的對稱性破缺
+
+量子修正把位能變成**有效勢** $V_{\text{eff}}(\phi)$，其極小值決定真空：
+
+$$
+e^{i\int d^{4}x\,\left[-V_{\text{eff}}(\phi_{c})\right]} \sim \int \mathcal D\varphi\ \exp\!\left\{iS[\phi_{c}+\varphi]\right\}
+$$
+
+在 $\overline{\text{MS}}$ 方案中，單圈結果可示意寫為
+
+$$
+V_{\text{eff}}^{(1)}(\phi) = \sum_{i}\frac{n_{i}}{64\pi^{2}}\,M_{i}^{4}(\phi)\left[\ln\!\left(\frac{M_{i}^{2}(\phi)}{\mu^{2}}\right) - c_{i}\right]
+$$
+
+其中 $M_{i}(\phi)$ 是依賴背景場的質量，$n_{i}$ 計數自由度，並為費米子帶入負號。有時，即使樹級滿足 $\mu^{2}=0$，輻射效應也能**誘導**自發對稱性破缺，即科爾曼–溫伯格機制。
+
+---
+
+### 8.8.9 拓撲結構：當真空流形具有非平凡拓撲
+
+真空流形 $\mathcal M=G/H$ 可以具有非平凡拓撲。可能出現的缺陷取決於它的同倫群：
+
+- $\pi_{0}(\mathcal M)\neq 0$ → 離散對稱性破缺產生的**疇壁**。
+- $\pi_{1}(\mathcal M)\neq 0$ → **弦**；整體 $U(1)$ 產生整體弦，規範 $U(1)$ 則產生阿布里科索夫–尼爾森–奧勒森渦旋。
+- $\pi_{2}(\mathcal M)\neq 0$ → 適當的非阿貝爾對稱性破缺產生的**單極子**。
+
+這些結構可出現在凝聚態系統或宇宙學中，並留下可觀測的訊號。
+
+---
+
+### 8.8.10 簡短例題
+
+**(a) 阿貝爾希格斯模型的質量譜**
+
+從 $|D\phi|^{2}$ 出發，取 $\phi=(v+h+i\pi)/\sqrt{2}$。展開動能項，證明 $A_{\mu}$ 獲得 $\tfrac{1}{2}g^{2}v^{2}A_{\mu}A^{\mu}$，且 $A_{\mu}\partial^{\mu}\pi$ 混合項被 $R_{\xi}$ 規範固定消去，留下 $m_{A}^{2}=g^{2}v^{2}$ 和 $m_{\pi}^{2}=\xi m_{A}^{2}$。
+
+**(b) $O(N)\to O(N-1)$ 的戈德斯通模計數**
+
+對實 $N$ 維向量 $\boldsymbol{\phi}$，位能 $V=-\tfrac{1}{2}\mu^{2}\boldsymbol{\phi}^{2}+\tfrac{\lambda}{4}(\boldsymbol{\phi}^{2})^{2}$ 給出 $G/H=O(N)/O(N-1)\cong S^{N-1}$。破缺生成元對應 $N-1$ 個戈德斯通模，另有一個滿足 $m_{h}^{2}=2\lambda v^{2}$ 的有質量徑向模。
+
+**(c) 真空期望值產生的湯川質量**
+
+給定複純量的交互作用 $-y\bar\psi_{L}\phi \psi_{R}+\text{h.c.}$，其中 $\langle\phi\rangle=v/\sqrt{2}$，證明費米子質量為 $m=yv/\sqrt{2}$，湯川參數為 $y=\sqrt{2}m/v$，而物理希格斯耦合的係數為 $y/\sqrt{2}=m/v$。
+
+**(d) 非阿貝爾質量矩陣**
+
+對表示 $R$ 中的 $\phi$，推導 $(M^{2})^{ab} \propto g^{2}\,\langle\phi\rangle^{\dagger} T^{\{a}T^{b\}} \langle\phi\rangle$，並在一個簡單的 $SU(2)\to \{\}$ 例子中將其對角化，得到三個質量簡併的規範玻色子。
+
+**(e) 單圈 $V_{\text{eff}}$ 的駐點條件**
+
+對整體 $U(1)$ 模型，取簡化的質量譜 $M_{h}^{2}(\phi)=3\lambda\phi^{2}-\mu^{2}$、$M_{\pi}^{2}(\phi)=\lambda\phi^{2}-\mu^{2}$。寫出駐點條件 $dV_{\text{eff}}/d\phi=0$，並討論如何選擇 $\mu\sim \phi$，利用跑動耦合改進結果。
+
+---
+
+### 8.8.11 基礎習題
+
+- 對具有勞侖茲不變真空的相對論性理論，證明戈德斯通模計數公式 $N_{\text{GB}}=\dim G - \dim H$。
+- 在 $R_{\xi}$ 規範中推導阿貝爾希格斯模型的質量譜，並驗證極點質量與 $\xi$ 無關。
+- 對具有單個希格斯二重態的 $SU(2)_{L}\times U(1)_{Y}$ 理論，推導 $m_{W}$、$m_{Z}$ 以及弱混合角關係 $\cos\theta_{W}=m_{W}/m_{Z}$。
+- 計算高能下的散射振幅 $W_{L}W_{L}\to W_{L}W_{L}$，說明希格斯交換如何抑制其隨 $s$ 的增長。
+- 在整體 $U(1)$ 模型中構造諾特流，證明戈德斯通模以導數形式耦合，從而使低能振幅受到抑制。
+
+---
+
+## 8.9 量子色動力學（QCD）：色、部分子與禁閉
+
+QCD 是描述夸克和膠子的非阿貝爾 $SU(3)_{\text{color}}$ 規範理論。它在短距離下弱耦合，表現為漸近自由；在長距離下強耦合，表現為禁閉。對撞機硬散射涉及的自由度是**部分子**，探測器最終記錄的是**強子**。連接兩者的關鍵是**因子化**、耦合的**跑動**以及**對稱性**。
+
+---
+
+### 8.9.1 拉格朗日量、場與色代數
+
+取 $n_{f}$ 種味的夸克 $\psi_{f}$，它們屬於 $SU(3)$ 的基本表示；膠子 $A_{\mu}^{a}$ 屬於伴隨表示。QCD 拉格朗日量為
+
+$$
+\mathcal L_{\mathrm{QCD}} = -\,\frac{1}{4}\,F_{\mu\nu}^{a} F^{a\,\mu\nu} + \sum_{f=1}^{n_{f}} \bar\psi_{f}\,(i\gamma^{\mu} D_{\mu} - m_{f})\,\psi_{f}
+$$
+
+其中協變導數與場強為
+
+$$
+D_{\mu} = \partial_{\mu} + i g\,A_{\mu}^{a} T^{a},\qquad
+F_{\mu\nu}^{a} = \partial_{\mu}A_{\nu}^{a} - \partial_{\nu}A_{\mu}^{a} + g f^{abc} A_{\mu}^{b} A_{\nu}^{c}
+$$
+
+對於 $SU(3)$，色因子為
+
+$$
+C_{A}=3,\qquad C_{F}=\frac{4}{3},\qquad T_{R}=\frac{1}{2}
+$$
+
+這些常數控制散射振幅、劈裂函數以及 $\beta$ 函數中的色結構。
+
+---
+
+### 8.9.2 漸近自由與跑動耦合
+
+在單圈階，QCD 的 $\beta$ 函數為
+
+$$
+\beta(g) \equiv \mu\frac{dg}{d\mu} = -\,\frac{g^{3}}{16\pi^{2}}\left(\frac{11}{3}C_{A} - \frac{4}{3}T_{R} n_{f}\right) + \cdots
+$$
+
+對 $SU(3)$，它變成 $\beta(g)=-(g^{3}/16\pi^{2})(11 - 2n_{f}/3)$，在物理的 $n_{f}$ 取值下為**負**。改用 $\alpha_{s}\equiv g^{2}/4\pi$ 表示，有
+
+$$
+\alpha_{s}(\mu) = \frac{4\pi}{\beta_{0}\,\ln(\mu^{2}/\Lambda_{\mathrm{QCD}}^{2})},\qquad \beta_{0}=11 - \frac{2}{3}n_{f}
+$$
+
+耦合在較高的 $\mu$ 下減小，體現紫外漸近自由；在接近 $\Lambda_{\mathrm{QCD}}$ 時增大，進入強耦合區域。跨越重夸克閾值時，需要對 $n_{f}$ 進行**匹配**。
+
+---
+
+### 8.9.3 禁閉、通量管與強子化
+
+非微擾 QCD 的證據支持色禁閉：沒有觀測到孤立的夸克或膠子。可以作如下直觀理解：
+
+- 非阿貝爾場線交互作用並聚集為**通量管**。較長的通量管需要能量 $\propto r$，最終可透過產生夸克–反夸克對而斷裂。
+- 格點計算中的靜態夸克勢，在適用的距離範圍內近似為 **Cornell 勢**：
+
+$$
+V(r) \simeq -\,\frac{4\alpha_{s}}{3\,r} + \kappa r
+$$
+
+它在短距離下具有庫侖形式，在較長距離下線性上升。高能事件中，部分子經輻射與強子化形成**噴注**：強子沿近似共同的方向成束射出，保留母部分子的部分運動學資訊。
+
+---
+
+### 8.9.4 手徵對稱性及其破缺
+
+對於輕夸克 $u,d,s$，在 $m_{q}\ll \Lambda_{\mathrm{QCD}}$ 的近似下，古典拉格朗日量具有近似整體對稱性
+
+$$
+SU(N_{f})_{L}\times SU(N_{f})_{R} \to SU(N_{f})_{V}
+$$
+
+夸克凝聚 $\langle \bar q q\rangle$ 使其自發破缺。產生的戈德斯通玻色子是輕的贗純量粒子；顯式夸克質量使它們成為**贗戈德斯通玻色子**。蓋爾曼–奧克斯–倫納關係為
+
+$$
+f_{\pi}^{2} m_{\pi}^{2} \simeq -\,(m_{u}+m_{d})\,\langle \bar q q \rangle
+$$
+
+軸矢 $U(1)_{A}$ 對稱性受到反常破壞：
+
+$$
+\partial_{\mu} J_{5}^{\mu} = \frac{n_{f}\,g^{2}}{16\pi^{2}}\,F_{\mu\nu}^{a}\,\tilde F^{a\,\mu\nu}
+$$
+
+這使 $\eta'$ 的質量顯著高於 π 介子的質量。
+
+---
+
+### 8.9.5 深度非彈性散射與部分子
+
+輕子透過大的動量轉移 $Q^{2}=-q^{2}$ 探測強子。在部分子模型的領頭階近似下，電子看到近似自由的自旋 $\tfrac12$ 部分子，出現**比約肯標度**。結構函數 $F_{1}(x,Q^{2})$ 和 $F_{2}(x,Q^{2})$ 依賴比約肯變量 $x=Q^{2}/(2P\cdot q)$。對於自旋 $\tfrac12$ 部分子，領頭階滿足 **Callan–Gross 關係**：
+
+$$
+F_{2}(x,Q^{2}) = 2x\,F_{1}(x,Q^{2})
+$$
+
+QCD 輻射造成標度破壞，由 **DGLAP 演化**描述：
+
+$$
+\mu \frac{\partial f_{i}(x,\mu)}{\partial \mu} = \sum_{j}\int_{x}^{1}\frac{dz}{z}\,P_{ij}\!\left(z,\alpha_{s}(\mu)\right)\,f_{j}\!\left(\frac{x}{z},\mu\right)
+$$
+
+其中 $f_{i}$ 是**部分子分佈函數（PDF）**，$P_{ij}$ 是含有 $C_{F},C_{A},T_{R}$ 等色因子的劈裂核。
+
+---
+
+### 8.9.6 因子化：從強子到部分子
+
+尺度為 $Q\gg \Lambda_{\mathrm{QCD}}$ 的硬過程可因子化為普適的長距離部分與可微擾計算的短距離核：
+
+$$
+\sigma_{AB\to X}(Q) = \sum_{i,j}\int_{0}^{1} dx_{a}\,dx_{b}\; f_{i/A}(x_{a},\mu)\,f_{j/B}(x_{b},\mu)\; \hat\sigma_{ij\to X}(\hat s,Q,\mu) + \mathcal O\!\left(\frac{\Lambda_{\mathrm{QCD}}}{Q}\right)^{p}
+$$
+
+末態強子用**碎裂函數** $D_{h/k}(z,\mu)$ 描述，它們同樣服從 DGLAP 演化。在給定微擾階數下，物理預言對非物理尺度 $\mu$ 的剩餘依賴屬於更高階效應。
+
+---
+
+### 8.9.7 噴注物理與軟、共線結構
+
+夸克和膠子更容易輻射軟的或共線的量子，產生 **Sudakov 對數**。紅外與共線安全性保證可觀測量具有良好的微擾定義。實際計算中：
+
+- 使用紅外與共線安全的噴注演算法，例如 $k_{T}$、反 $k_{T}$ 演算法。
+- 利用動量空間中的重整化群方法或有效場論，對大對數進行重求和，並運用軟–共線因子化。
+- 色因子控制輻射分佈：膠子噴注通常比夸克噴注更寬，其輻射強度的差別與 $C_{A}/C_{F}$ 有關。
+
+---
+
+### 8.9.8 重夸克與重夸克偶素
+
+當 $m_{Q}\gg \Lambda_{\mathrm{QCD}}$ 時，短距離產生過程可以微擾處理，而束縛動力學涉及非微擾效應，且適合非相對論描述。上面的 **Cornell 勢**是一個頗為有效的近似模型。重夸克有效理論（HQET）和非相對論 QCD（NRQCD）按 $1/m_{Q}$ 或夸克速度展開，以分離不同尺度。
+
+---
+
+### 8.9.9 格點 QCD：歐幾里得路徑積分
+
+轉到歐幾里得時間，以格距 $a$ 離散化時空，並計算
+
+$$
+Z_{E} = \int \mathcal D U\,\mathcal D \bar\psi\,\mathcal D\psi\;\exp\!\left[-\,S_{E}[U,\bar\psi,\psi]\right]
+$$
+
+規範場定義在鏈變量 $U=\exp(i a g A)$ 上，費米子的離散化則需謹慎處理。最終需外推到 $a\to 0$、足夠大的體積以及物理夸克質量。計算結果包括強子譜、矩陣元和靜態勢。
+
+---
+
+### 8.9.10 反常、拓撲與 $\theta$
+
+非平凡的規範叢允許引入 CP 奇的真空角：
+
+$$
+\mathcal L_{\theta} = \theta\,\frac{g^{2}}{32\pi^{2}}\,F_{\mu\nu}^{a}\,\tilde F^{a\,\mu\nu}
+$$
+
+瞬子等拓撲構型連接由繞數標記的不同真空，並與軸矢反常相關。強交互作用中的 $CP$ 破壞為何如此微弱，是尚待解釋的問題，也是軸子模型的動機；上述 QCD 核心動力學並不依賴軸子的存在。
+
+---
+
+### 8.9.11 簡短例題
+
+**(a) $\alpha_{s}$ 的單圈跑動。**
+求解 $d\alpha_{s}/d\ln\mu = -\beta_{0}\alpha_{s}^{2}/(2\pi)$，得到對數的倒數形式，並指出在 $\mu\sim \Lambda_{\mathrm{QCD}}$ 附近出現的類似朗道極點的紅外增長。
+
+**(b) 由部分子模型推導 Callan–Gross 關係。**
+假設散射對象是自由的自旋 $\tfrac12$ 部分子，推導 $F_{2}=2xF_{1}$，並討論膠子輻射如何透過 DGLAP 演化破壞精確標度。
+
+**(c) $q q \to q q$ 中的色因子。**
+計算 $t$ 道膠子交換的色代數，證明對末態顏色求和並對初態顏色平均後，該道在 $|\mathcal M|^{2}$ 中的色因子為 $T_{R}^{2}(N_{c}^{2}-1)/N_{c}^{2}$；相同味還需加入另一道及其干涉。
+
+**(d) 軟與共線劈裂。**
+從夸克 $\to$ 夸克加膠子的劈裂機率出發，得到領頭階核
+
+$$
+P_{qq}(z) = C_{F}\left[\frac{1+z^{2}}{1-z}\right]_{+}
+$$
+
+並說明「加號」處方如何實現紅外安全的減除。
+
+**(e) GMOR 標度關係。**
+利用手徵微擾論的冪次計數，說明 $m_{\pi}^{2}$ 在領頭階正比於輕夸克平均質量。
+
+---
+
+### 8.9.12 基礎習題
+
+- 推導單圈 QCD 的 $\beta$ 函數，解釋其符號為何與 QED 相反。
+- 從因子化出發，利用 PDF 和部分子層面的 $q\bar q\to \gamma^{\ast}$ 核，計算 Drell–Yan 產生的領頭階強子截面。
+- 用 $P_{qq}$ 核使簡化的 PDF $f(x,\mu_{0})=x^{a}(1-x)^{b}$ 沿 $\ln\mu$ 演化一步，並討論小 $x$ 與大 $x$ 區域的行為。
+- 說明領頭階色因子比 $C_{A}/C_{F}$ 如何使膠子輻射強於夸克輻射、噴注通常更寬，並聯繫粒子多重數的標度行為。
+- 利用 Cornell 勢估算重夸克偶素基態的波耳半徑，討論庫侖近似在何種條件下自洽。
+
+---
+
+## 8.10 反常與拓撲：當量子力學破壞古典對稱性
+
+有些對稱性在量子化後保留下來，有些則不然。古典拉格朗日量的某種對稱性在量子理論中失效，通常表現為原本守恆的流具有非零散度，這稱為**反常**。反常並非計算錯誤，而是對理論的深刻約束。**規範反常**必須抵消，否則理論不自洽；**整體對稱性的反常**可以具有物理意義，既能預言 $\pi^{0}\to\gamma\gamma$ 等真實過程，也能透過 ’t Hooft 反常匹配約束紅外動力學。$F\tilde F$、瞬子與陳–西蒙斯形式等拓撲結構，是這些結果的核心。
+
+---
+
+### 8.10.1 什麼是反常
+
+古典諾特流 $J^{\mu}$ 滿足 $\partial_{\mu}J^{\mu}=0$。在量子理論中，這一關係可能失效：
+
+$$
+\partial_{\mu}J^{\mu} = \mathcal A
+$$
+
+其中 $\mathcal A$ 是由紫外資訊和對稱性決定的局域算符。若 $J^{\mu}$ 耦合到規範場，$\mathcal A\neq 0$ 會破壞規範不變性與么正性；若 $J^{\mu}$ 對應**整體對稱性**，則可以允許 $\mathcal A$，且其效應常可測量。
+
+---
+
+### 8.10.2 QED 中的軸矢反常（ABJ）：三角圖
+
+對 QED 中的無質量狄拉克費米子，古典軸矢流 $J_{5}^{\mu}=\bar\psi\gamma^{\mu}\gamma^{5}\psi$ 守恆，但單圈三角圖給出
+
+$$
+\partial_{\mu}J_{5}^{\mu} = \frac{e^{2}}{8\pi^{2}}\,F_{\mu\nu}\,\tilde F^{\mu\nu}
+$$
+
+其中對偶場強為
+
+$$
+\tilde F^{\mu\nu} \equiv \frac{1}{2}\,\epsilon^{\mu\nu\rho\sigma}F_{\rho\sigma}
+$$
+
+對於有質量費米子，還需在右側加入古典項 $2im\,\bar\psi\gamma^{5}\psi$。透過夸克軸矢流，反常可以解釋測得的 $\pi^{0}\to\gamma\gamma$ 衰變率。
+
+---
+
+### 8.10.3 藤川方法：路徑積分測度中的反常
+
+考慮手徵旋轉 $\psi\to e^{i\alpha\gamma^{5}}\psi$、$\bar\psi\to \bar\psi e^{i\alpha\gamma^{5}}$。相應的作用量變分給出古典流關係，而**泛函積分測度**還會獲得雅可比因子：
+
+$$
+\mathcal D\bar\psi\,\mathcal D\psi \;\to\; \mathcal D\bar\psi\,\mathcal D\psi\;\exp\!\left[i\int d^{4}x\;\alpha(x)\,\frac{e^{2}}{8\pi^{2}}\,F_{\mu\nu}\tilde F^{\mu\nu}\right]
+$$
+
+這裡對 $\mathrm{Tr}\,\gamma^{5}\exp(-/\!\! D^{2}/\Lambda^{2})$ 作了正則化。這一結果再現 ABJ 反常，並可推廣到非阿貝爾理論。
+
+---
+
+### 8.10.4 非阿貝爾手徵反常與相容性
+
+對於規範群表示 $R$ 中的一個無質量狄拉克場 $\psi$，單態軸流反常為
+
+$$
+\partial_{\mu}J_{5}^{\mu} \supset \frac{g^{2}}{8\pi^{2}}\,\mathrm{tr}_{R}\!\left(F_{\mu\nu}\tilde F^{\mu\nu}\right)
+$$
+
+這裡 $F_{\mu\nu}=F_{\mu\nu}^{a}T^{a}$，因此係數透過 $\mathrm{tr}_{R}(T^{a}T^{b})=T_{R}\delta^{ab}$ 依賴於 **二次指標**。相比之下，手徵規範反常涉及 **三次跡** $\mathrm{tr}_{R}(T^{a}\{T^{b},T^{c}\})$，對手徵費米子帶符號求和後的貢獻必須為零。Wess–Zumino 相容性條件約束不同規範流反常之間的相容性。
+
+---
+
+### 8.10.5 規範反常的抵消：標準模型為何自洽
+
+在四維中，需要消除以下微擾反常：
+
+- 純非阿貝爾反常 $[G]^{3}$。
+- 混合反常 $[G]^{2}\!-\!U(1)$。
+- 阿貝爾反常 $[U(1)]^{3}$。
+- 規範–重力混合反常 $[\text{grav}]^{2}\!-\!U(1)$。
+
+在標準模型的一代費米子中，超荷滿足 $\sum Y = \sum Y^{3} = 0$；計入夸克的色重數後，$SU(3)^{2}\!-\!U(1)$ 與 $SU(2)^{2}\!-\!U(1)$ 反常消失，而二重態的局域微擾 $[SU(2)]^{3}$ 反常自動為零。因此，這些規範反常相互抵消，滿足理論自洽性所需的條件。
+
+---
+
+### 8.10.6 ’t Hooft 反常匹配：紫外資訊在重整化群流下保留
+
+若某個**整體對稱性**在紫外具有非零反常，紅外描述也必須再現同一反常。理論不能簡單地流向平凡、對稱且有能隙的狀態；若用有能隙的相來匹配反常，就需要合適的拓撲自由度。這限制了可能的禁閉與對稱性破缺模式，也是檢驗某些對偶關係的重要依據。
+
+---
+
+### 8.10.7 瞬子、拓撲與 $\theta$ 項
+
+在歐幾里得 $SU(N)$ 規範理論中，有限作用量構型可由一個整數標記：
+
+$$
+Q \equiv \frac{1}{32\pi^{2}}\int d^{4}x\ \mathrm{tr}\left(F_{\mu\nu}\tilde F^{\mu\nu}\right)
+$$
+
+瞬子滿足 $Q=\pm 1,\pm 2,\dots$，連接具有不同陳–西蒙斯數的真空。CP 奇的項
+
+$$
+\mathcal L_{\theta} = \theta\,\frac{g^{2}}{32\pi^{2}}\,\mathrm{tr}(F_{\mu\nu}\tilde F^{\mu\nu})
+$$
+
+不改變局域古典運動方程，卻會影響真空並破壞 $CP$。強交互作用中 $CP$ 破壞為何如此微弱，就是 $\theta$ 問題，也是引入軸子的動機。
+
+阿蒂亞–辛格指標定理把拓撲與狄拉克算符的零模聯繫起來：
+
+$$
+n_{+} - n_{-} = Q
+$$
+
+它揭示了軸矢反常的非微擾根源，並與 $U(1)_{A}$ 問題以及破壞手徵性的過程所滿足的選擇定則相關。
+
+---
+
+### 8.10.8 鞍點子與反常引起的 $B+L$ 破壞
+
+在有限溫度電弱理論中，藉助 **鞍點子（sphaleron）** 越過位能障的躍遷會改變陳–西蒙斯數，破壞重子數和輕子數，但保持 $B-L$ 守恆。每單位拓撲躍遷引起的淨變化為
+
+$$
+\Delta B = \Delta L = N_{g}
+$$
+
+其中 $N_{g}$ 是費米子的世代數，這裡取陳–西蒙斯數正向改變一個單位。每代有三個顏色的夸克，各自的重子數為三分之一，以及一個輕子，其輕子數為一。因此三代時重子數與輕子數各改變三；反向躍遷使兩者的符號同時反轉。這把反常與早期宇宙中的重子生成情景聯繫起來。
+
+---
+
+### 8.10.9 陳–西蒙斯形式、反常流入與宇稱反常
+
+用微分形式語言可寫為
+
+$$
+d\,\mathrm{CS}_{3}(A) = \mathrm{tr}\,F\wedge F
+$$
+
+其中
+
+$$
+\mathrm{CS}_{3}(A) = \mathrm{tr}\left(A\wedge dA + \frac{2i g}{3}A\wedge A\wedge A\right)
+$$
+
+將邊界與體內的陳–西蒙斯項耦合，可產生**反常流入**：邊界的反常變分由體內貢獻抵消，從而保證整體規範不變性。在奇數維中，積分掉費米子可誘導陳–西蒙斯項，其係數的量子化與大規範變換下的不變性密切相關。保持規範不變性與保持宇稱之間可能出現不可兼得的衝突，這就是**宇稱反常**的核心。
+
+---
+
+### 8.10.10 Wess–Zumino–Witten 項與 $\pi^{0}\to\gamma\gamma$
+
+紫外反常在紅外體現為特定算符。在手徵拉格朗日量中，**Wess–Zumino–Witten（WZW）項**由反常確定，其整數係數正比於 $N_{c}$。由此得到 $\pi^{0}\to\gamma\gamma$ 振幅：
+
+$$
+\mathcal A(\pi^{0}\to\gamma\gamma) = \frac{\alpha\,N_{c}}{3\pi f_{\pi}}\,\epsilon^{\mu\nu\rho\sigma}\,\epsilon_{\mu}q_{\nu}\,\epsilon'_{\rho}q'_{\sigma}
+$$
+
+進而得到衰變寬度
+
+$$
+\Gamma(\pi^{0}\to\gamma\gamma) = \frac{\alpha^{2}\,m_{\pi}^{3}}{64\pi^{3} f_{\pi}^{2}}
+$$
+
+這一結果與實驗符合良好，展示了反常如何給出可檢驗的定量預言。
+
+---
+
+### 8.10.11 規範–重力混合反常與純重力反常
+
+手徵物質可以產生混合反常：
+
+$$
+\partial_{\mu}J^{\mu} \supset \frac{1}{384\pi^{2}}\,\epsilon^{\mu\nu\rho\sigma}R^{\alpha}{}_{\beta\mu\nu}R^{\beta}{}_{\alpha\rho\sigma}
+$$
+
+在某些偶數維度中，一些理論還存在**純重力反常**，它們必須抵消，理論才能自洽。在弦論緊緻化中，這些條件篩選允許的粒子譜；在凝聚態邊界理論中，則可由高維體內的反常流入實現抵消。
+
+---
+
+### 8.10.12 簡短例題
+
+**(a) ABJ 三角圖與圈動量的選取**
+對存在歧義的線性發散積分進行正則化，證明保持向量流的沃德恆等式會固定軸矢反常係數 $e^{2}/8\pi^{2}$。
+
+**(b) 藤川跡的計算**
+按 $1/\Lambda$ 展開，計算 $\mathrm{Tr}\,\gamma^{5}\exp(-\not D^{2}/\Lambda^{2})$ 的領頭貢獻，並提取 $F\tilde F$。
+
+**(c) 由無窮遠處的純規範場求瞬子數**
+證明有限作用量的場在空間無窮遠處滿足 $A_{\mu}\to U^{-1}\partial_{\mu}U/g$，且 $Q$ 測量映射 $U:S^{3}\to SU(2)$ 的繞數。
+
+**(d) 標準模型反常檢驗**
+對一代費米子，計入夸克的色重數，驗證 $\sum Y=0$、$\sum Y^{3}=0$，以及 $SU(2)^{2}\!-\!U(1)$ 和 $SU(3)^{2}\!-\!U(1)$ 反常的消失。
+
+**(e) 從 WZW 項得到 $\pi^{0}\to\gamma\gamma$**
+從 WZW 項出發，推導 $\pi^{0}F\tilde F$ 耦合，並得到上面的衰變寬度。
+
+---
+
+### 8.10.13 基礎習題
+
+- 推導表示 $R$ 中狄拉克費米子的單態軸流反常係數，用 $\mathrm{tr}_{R}(T^{a}T^{b})$ 表示其群論因子，並將它與手徵規範反常區分開來  
+- 對具有 $N_{f}$ 種味的簡化 $SU(N)$ 規範理論，利用手徵整體對稱性的 ’t Hooft 反常匹配約束其紅外行為。
+- 證明電弱理論中 $B+L$ 流的散度正比於 $\mathrm{tr}\,W_{\mu\nu}\tilde W^{\mu\nu}$，並計算 $\Delta(B+L)$ 的選擇定則。
+- 對體內的 $\theta\int \mathrm{tr}\,F\wedge F$ 作變分，與邊界流的不守恆相匹配，展示反常流入。
+- 在 $2+1$ 維中，積分掉與 $U(1)$ 耦合的重狄拉克費米子，證明誘導的陳–西蒙斯項的係數為 $\tfrac12\,\mathrm{sign}(m)$，並解釋大規範不變性為何要求總係數量子化。
+
+---
