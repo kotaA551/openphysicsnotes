@@ -40,7 +40,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
   const navigation = (desktop = false) => <>{(['chapters', 'curiosities'] as const).map(kind => <section className="nav-section" key={kind}>
     <h2 hidden={desktop && kind === 'chapters'}>{t[kind]}</h2><nav aria-label={t[kind]}>{(kind === 'chapters' ? chapters : curiosities).map((item, index) => {
       const href = localePath(locale, `/${kind}/${item.slug}`);
-      return <Link key={item.slug} href={href} aria-current={pathname === href ? 'page' : undefined} onClick={() => dialog.current?.close()}><span className="nav-number">{String(index + 1).padStart(2, '0')}</span><span>{topicTitle(locale, kind, index)}</span></Link>;
+      return <Link prefetch={false} key={item.slug} href={href} aria-current={pathname === href ? 'page' : undefined} onClick={() => dialog.current?.close()}><span className="nav-number">{String(index + 1).padStart(2, '0')}</span><span>{topicTitle(locale, kind, index)}</span></Link>;
     })}</nav></section>)}</>;
   function choose(value: string) {
     setPreference(value);
@@ -58,7 +58,7 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
           <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       </button>
-      <Link className="brand" href={localePath(locale)} aria-label={`Open Physics Notes · ${t.home}`}>
+      <Link prefetch={false} className="brand" href={localePath(locale)} aria-label={`Open Physics Notes · ${t.home}`}>
         <Image src="/opn-logo-mark-512.png" alt="" width={30} height={30}/>
         <span translate="no">Open Physics Notes</span>
       </Link>
@@ -94,11 +94,11 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         Open Physics Notes
       </span>
       <nav className="flex gap-4 md:gap-6 items-center" aria-label={t.menu}>
-        <Link href="https://comiiic.com/?utm_source=open_physics_notes&utm_medium=referral&utm_campaign=footer&utm_content=comiiic_logo" 
+        <Link prefetch={false} href="https://comiiic.com/?utm_source=open_physics_notes&utm_medium=referral&utm_campaign=footer&utm_content=comiiic_logo" 
               title="Comiiic" target="_blank" rel="noopener noreferrer">
           <Image src="/comiiic-180x180.png" alt="Comiiic" width={30} height={30} />
         </Link>
-        <Link href={localePath(locale, '/about')}>{t.about}</Link>
+        <Link prefetch={false} href={localePath(locale, '/about')}>{t.about}</Link>
       </nav>
     </footer>
     <dialog id="mobile-navigation" ref={dialog} className="mobile-drawer" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }} onClose={() => { document.body.style.overflow = ''; }} onToggle={event => { document.body.style.overflow = (event.currentTarget as HTMLDialogElement).open ? 'hidden' : ''; }}>
