@@ -1,0 +1,89 @@
+全サイト検証完了記録（2026-10-20）
+
+対象: implement/b-no-comments
+実装基準コミット: cf7cb1de45e0cb0821e8fc8e02bf01877f998624
+前段の26ページ限定検証に続き、今回はOPN_COMPARE_SAMPLEを解除して実行。
+実行範囲はローカルのみ。push/merge/deploy/アップロードは行っていない。
+既存A/B/C比較ブランチと元リポジトリは維持。
+
+全サイトproduction build + static export:
+245生成タスク、export終了、プロセス終了コード0。
+230 canonicalページ: 記事200（20記事×10言語）、ホーム/about/privacy計30。
+10言語の検索インデックス、sitemap.xml、robots.txtを出力。
+全canonicalページのHTMLと遷移用.txtが内部.html/.rscと各々ハッシュ一致。
+全記事の数式78,608個が元MDXの数式数と一致。
+コメントUI/API参照0、ランタイムAPIルート0。
+生成物中にKaTeXエラーなし。
+
+全件集計（1回ずつ保存されたファイルの合計。利用者1回の転送量ではない）:
+230ページのHTML合計: 354,464,690 bytes
+230ページの独立遷移payload合計: 145,716,282 bytes
+_next/static: 95ファイル、2,001,269 bytes
+publicの画像等はこの_next/static集計に含まない。
+
+検査:
+・node --testによる既存/新規テスト22件成功、失敗0。
+・記事レイアウト130版、見出し13,080個のAST保持検査成功。
+・翻訳カバレッジ200/200、fallback0。
+・SEO: 全230ページ、全200記事、canonical/hreflang/JSON-LD等成功。
+・検索: 10言語・200記事・14,570セクションのリンク先を確認。
+  JSチャンク32件に記事本文コーパスが混入していないことも確認。
+・コメント参照の不在、全静的HTML/payloadの一致を全件確認。
+
+旧SEOテストの調整:
+初回は旧テストの「MathML必須」が全200記事で失敗し、その集計1件も失敗。
+これは基準Bから採用済みのHTML-only仕様との不整合。
+HTML-onlyであることを明示し、数式が全て残ることを元MDXの数式数との
+比較で検証するようテストを更新。再検査は230ページ全て成功、エラー0。
+実行アプリに追加修正は不要だった。MathMLのアクセシビリティ損失を
+解消したという意味ではなく、既知のトレードオフとして残る。
+初回失敗結果もfull-seo-legacy-mathml-validation.jsonに保存。
+
+全サイトexportから再測定したChapter10:
+HTML: 5,842,618 raw / 340,241 gzip(level9) / 191,291 Brotli(quality5)
+埋込Flight: 3,623,359 raw / 195,634 gzip / 125,098 Brotli
+独立RSC: 2,393,759 raw / 170,994 gzip / 116,489 Brotli
+数式1,476個、MathML0。
+埋込FlightはHTML内に含まれ、HTMLサイズに追加して数えない。
+前段の代表測定との微小な圧縮差はビルド識別子等を含む別ビルドの差。
+これらはローカル値で、Vercelの請求量削減を測定したものではない。
+
+成果物（このリポジトリを基準とした相対パス）:
+.next-full-export/                 全サイト静的成果物
+.next/                             その内部ビルド
+.next-limited-export-build/         保存した前段限定exportの内部ビルド
+.next-no-comments-export/           前段限定export成果物
+../build-full-export.log
+../tests-full-no-comments.log
+../results/full-translation-coverage.json
+../results/full-export-validation.json
+../results/full-seo-validation.json
+../results/full-search-validation.json
+../results/no-comments-full.json
+../results/no-comments-full.html
+
+再現（PowerShell）:
+Remove-Item Env:OPN_COMPARE_SAMPLE -ErrorAction SilentlyContinue
+$env:OPN_STATIC_EXPORT='1'
+$env:NEXT_BUILD_DIR='.next-full-export'
+$env:NEXT_TELEMETRY_DISABLED='1'
+node node_modules/next/dist/bin/next build
+node --test tests/article-layout/*.test.mjs tests/figures/*.test.mjs tests/no-comments/*.test.mjs tests/search/*.test.mjs tests/seo/*.test.mjs
+node tests/translations/coverage.mjs ../results/full-translation-coverage.json --require-complete
+node tests/no-comments/full-export-check.mjs
+node tests/seo/generated-seo-check.mjs --dist .next --output ../results/full-seo-validation.json
+$env:NEXT_BUILD_DIR='.next'
+node tests/search/generated-search-check.mjs
+node measure.mjs .next no-comments-full
+
+残る範囲:
+・実ブラウザーQA（表示、コピー、hydration、検索、言語切替、図版操作、
+  実遷移/再訪問/先読み）は未完了。CUA初期化が
+  "trusted Node process exited unexpectedly; kernel reset"で失敗した。
+  今回の環境では代替node_repl等も呼び出せなかった。
+  あらゆるブラウザー経路が不可能と判断したものではない。
+  対応ツールの復旧後、またはローカルブラウザーの手動QAで確認できる。
+・静的配信のホスト設定、画像方針、cache/MIME/ルート解決、本番適用は未実施。
+  通常Nextモードは保持。今回の全件実行はoutput:exportのproduction build。
+・Supabaseはユーザー本人が削除する方針。こちらの調査/削除準備は終了し、
+  認証再試行・DB操作・追加アクセスは行っていない。

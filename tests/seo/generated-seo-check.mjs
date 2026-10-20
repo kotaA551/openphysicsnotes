@@ -1,6 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkMdx from 'remark-mdx';
+import remarkMath from 'remark-math';
 import { typescriptLoader } from './load-typescript.mjs';
 
 // Read a completed build only. Never starts a server or writes inside the build.
@@ -19,6 +23,11 @@ const reports = [];
 const errors = [];
 const navierStokesLocales = ['en', 'fr', 'de', 'it', 'es', 'pt-BR', 'zh-CN', 'zh-TW', 'ja', 'ko'];
 const articleContentReports = [];
+const mathParser = unified().use(remarkParse).use(remarkMdx).use(remarkMath);
+function countMath(node) {
+  return (node.type === 'math' || node.type === 'inlineMath' ? 1 : 0)
+    + (node.children || []).reduce((sum, child) => sum + countMath(child), 0);
+}
 
 function decode(value = '') {
   return value.replace(/&#(x[\da-f]+|\d+);|&(amp|lt|gt|quot|apos);/gi, (_, numeric, named) => numeric
@@ -89,12 +98,18 @@ function checkArticleContent(kind, slug, locale) {
     assert.ok(classNames.includes('katex'), 'mathematics must be rendered by KaTeX');
     assert.ok(classNames.includes('katex-display'), 'display equations must be rendered');
     assert.ok(!classNames.includes('katex-error'), 'no KaTeX rendering errors');
-    assert.ok(/<math\b/.test(article), 'accessible MathML must be included');
+    // The chosen B baseline explicitly uses HTML-only math. This is a known
+    // accessibility tradeoff, not an assertion that MathML accessibility remains.
+    assert.ok(classNames.includes('katex-html'), 'visual math HTML must be included');
+    assert.ok(!/<math\b/.test(article), 'chosen HTML-only output must not include MathML');
+    const sourceMath = countMath(mathParser.parse(loadArticle(kind, slug, locale).content));
+    const renderedMath = classNames.filter(name => name === 'katex').length;
+    assert.equal(renderedMath, sourceMath, 'every source math expression must survive rendering');
     const metadata = reports.find(report => report.route === route);
     assert.ok(metadata && !metadata.noindex, 'all ten editions must pass metadata checks and be indexable');
     assert.deepEqual(new Set(metadata.hreflang), new Set([...navierStokesLocales, 'x-default']), 'each edition must advertise the complete ten-language cluster');
     assert.equal(metadata.canonical, siteUrl + route, 'each edition must be self-canonical');
-    articleContentReports.push({ route, contentLanguage: locale, fallback: false, renderedMath: true, result: 'pass' });
+    articleContentReports.push({ route, contentLanguage: locale, fallback: false, renderedMath: true, mathExpressions: renderedMath, mathML: false, result: 'pass' });
   });
 }
 
