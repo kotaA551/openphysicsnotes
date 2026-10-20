@@ -15,7 +15,7 @@ const { locales } = load('lib/i18n.ts');
 const { loadArticle } = load('lib/articles.ts');
 export const slugs = ['black-hole-information-paradox','dark-energy','dark-matter','loop-quantum-gravity','string-theory'];
 const legacy = JSON.parse(fs.readFileSync('tests/curiosities/legacy-sections.json','utf8'));
-const manifest = JSON.parse(fs.readFileSync('lib/discussions/manifest.json','utf8'));
+const manifest = JSON.parse(fs.readFileSync('tests/fixtures/legacy-heading-ids.json','utf8'));
 const errors = [];
 const reports = [];
 const assets = new Set();
@@ -28,7 +28,7 @@ for (const [key, old] of Object.entries(legacy)) {
     const current = fs.readFileSync(old.file,'utf8').split(/\r?\n/).filter(line=>/^#{1,6} /.test(line));
     let last = -1;
     for (const heading of old.headings) { last = current.indexOf(heading,last+1); assert.ok(last >= 0,`missing/reordered ${heading}`); }
-    for(const id of old.ids) assert.ok(manifest[key]?.includes(id),`lost discussion ID ${id}`);
+    for(const id of old.ids) assert.ok(manifest[key]?.includes(id),`lost legacy heading ID ${id}`);
   });
 }
 for (const slug of slugs) {

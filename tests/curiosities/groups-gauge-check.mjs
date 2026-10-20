@@ -86,7 +86,7 @@ for(const locale of languages)try {
       }
     }
   }
-  if(!partial){const manifest=JSON.parse(fs.readFileSync('lib/discussions/manifest.json','utf8'));for(const id of ids)assert.ok(manifest[`curiosities/${slug}/${locale}`].includes(id),`missing discussion scope ${id}`);}
+  if(!partial){const manifest=JSON.parse(fs.readFileSync('tests/fixtures/legacy-heading-ids.json','utf8'));for(const id of ids)assert.ok(manifest[`curiosities/${slug}/${locale}`].includes(id),`missing legacy heading ${id}`);}
   const report={locale,majorSections:major.length,headings:ids.length,displayEquations:displayMath.length,mathExpressions:math.length,paragraphs:paragraphs.length,figures:images.length,characters:content.length};
   if(dist){
     const route=localePath(locale,`/curiosities/${slug}`),html=fs.readFileSync(path.join(dist,'server/app',route.slice(1)+'.html'),'utf8');
@@ -96,8 +96,8 @@ for(const locale of languages)try {
     assert.equal(doc.querySelectorAll('.translation-notice,.katex-error').length,0);
     const allIds=[...doc.querySelectorAll('[id]')].map(n=>n.id);assert.equal(new Set(allIds).size,allIds.length);
     for(const id of ids)assert.ok(doc.getElementById(id),`rendered anchor ${id}`);
-    const panels=[...doc.querySelectorAll('.section-discussion')];assert.equal(panels.length,major.length);
-    assert.deepEqual(panels.map(p=>p.dataset.discussionSection),[...doc.querySelectorAll('article h2[id]')].map(h=>h.id));
+    const panels=[...doc.querySelectorAll('.section-discussion')];assert.equal(panels.length,0);
+
     const index=JSON.parse(fs.readFileSync(path.join(dist,'server/app/search',locale+'.body'),'utf8'));
     const indexArticle=index.articles.find(a=>a.href===route);assert.equal(indexArticle?.contentLocale,locale);
     const results=search(prepareIndex(index),indexArticle.title);assert.ok(results.some(r=>r.href.startsWith(route+'#')),'search title finds article');

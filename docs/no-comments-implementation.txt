@@ -1,0 +1,74 @@
+コメント機能除去プロトタイプ
+
+基準:
+compare/b-next-compact
+3f6d63cbd8183bd69a52c19d3b19d0684b274006
+既存のA/B/C比較結果と元リポジトリを変更せず、この派生ブランチだけを変更。
+
+変更:
+ArticlePageからDiscussionProvider、SectionDiscussion、rehypeDiscussions、
+コメントCSSの組み込みを除去。StaticPagesから専用プライバシー段落を除去。
+UIコンポーネント、件数取得、遅延パネル、投稿処理、/api/discussions、
+Supabase用サーバーコード、バリデーター、コメント翻訳辞書、
+manifest生成スクリプトとpredev/prebuildフックを除去。
+コメント専用PGlite依存と旧コメント機能テストを除去。
+共有のremark/MDX依存は検索等で必要なため維持。
+
+維持:
+記事の本文・図版・翻訳・見出しアンカー・SEO・検索・言語切替は変更しない。
+CycloidalPendulumFigureは維持し、幾何テストをtests/figuresへ移動。
+記事レイアウトが使う見出し分類はlib/article-structure.mjsへ移動。
+旧manifestはコメントデータではなく見出しIDの許可一覧であり、
+既存アンカーの回帰検査用にtests/fixtures/legacy-heading-ids.jsonへ移動。
+Supabaseマイグレーション、cleanup設定ファイルは履歴/確認資料として保持。
+それらを実行するフックはない。クラウド資源・実データは変更していない。
+docs/discussions-setup.md等の過去文書は旧実装の履歴資料であり、
+このブランチのセットアップ手順としては使用しない。
+
+静的exportの評価:
+OPN_STATIC_EXPORT=1でoutput:'export'およびimages.unoptimizedを有効化。
+robots/sitemapはforce-static。検索ルートは元からビルド時の静的JSON。
+コメント削除により専用の動的APIは不要。
+通常のNextモードは保持しているため、next startのNodeサーバーおよび
+標準next/image処理は通常配信時には残る。
+静的export時は画像の別最適化や静的ファイルのcache/MIME/ルート解決を
+ホスト側で適切に設定する必要がある。Next/ReactのJS・RSCは引き続き出力される。
+NEXT_PUBLIC_GA_IDを設定した場合の任意Analyticsは既存のまま。
+
+比較用ルート制限:
+基準Bにハードコードされていた制限をOPN_COMPARE_SAMPLE=1のときだけに変更。
+未指定なら全locale/全記事のgenerateStaticParamsを維持する。
+代表ビルドは英語Chapter1・Chapter10、日本語Chapter10、
+exportに空動的ルートを作らないため英語/日本語dark-matterと周辺ページを生成。
+全26ページ。全245ページの一括ビルドは今回行っていない。
+この測定設定を公開設定として使用しない。
+
+再現（PowerShell、既存依存を利用）:
+$env:NEXT_TELEMETRY_DISABLED='1'
+$env:OPN_COMPARE_SAMPLE='1'
+$env:NEXT_BUILD_DIR='.next-no-comments'
+node node_modules/next/dist/bin/next build
+node measure.mjs .next-no-comments no-comments
+node --test tests/no-comments/source.test.mjs tests/search/*.test.mjs tests/seo/metadata.test.mjs tests/figures/*.test.mjs
+node --test --test-name-pattern='roles distinguish' tests/article-layout/layout.test.mjs
+node tests/no-comments/build-check.mjs
+
+$env:OPN_STATIC_EXPORT='1'
+$env:NEXT_BUILD_DIR='.next-no-comments-export'
+node node_modules/next/dist/bin/next build
+node measure.mjs .next no-comments-export
+node tests/no-comments/build-check.mjs ../variant-b/.next-b-final .next ../results/no-comments-export-validation.json
+
+注意: exportの内部ビルドは.next、静的成果物は.next-no-comments-exportになる。
+通常ビルドに戻る際はOPN_STATIC_EXPORTを解除する。
+測定スクリプトのJSON/HTMLは兄弟resultsフォルダーへ保存される。
+tests/article-layout/generated-check.mjs等は以前の別変更用の比較器。
+今回の受入検証はtests/no-comments/build-check.mjsを使用する。
+
+検証の限界:
+実ブラウザー操作ツールの初期化失敗が継続。ブラウザーでの表示、コピー、
+hydration、実遷移、先読み、図版操作は未検証。
+検索操作の既存テストはJSDOMであり、実ブラウザーQAと同一ではない。
+HTML-only数式のアクセシビリティ損失は基準Bから引き継いでいる。
+本番へのpush/merge/deploy、レポートのアップロード/共有は行わない。
+保存コメントの削除は別の対象確認・復元確認・実行直前確認を要する作業として保留。

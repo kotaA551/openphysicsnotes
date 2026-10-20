@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+export const dynamic = 'force-static';
 import { locales, localePath } from '@/lib/i18n';
 import { articleList, translatedArticleLocales } from '@/lib/articles';
 import { absoluteUrl, languageAlternates } from '@/lib/seo';

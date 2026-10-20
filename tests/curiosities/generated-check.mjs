@@ -12,7 +12,7 @@ const { articleMetadata, siteUrl } = load('lib/seo.ts');
 const { loadArticle } = load('lib/articles.ts');
 const slugs = ['black-hole-information-paradox','dark-energy','dark-matter','loop-quantum-gravity','string-theory'];
 const legacy = JSON.parse(fs.readFileSync('tests/curiosities/legacy-sections.json','utf8'));
-const manifest = JSON.parse(fs.readFileSync('lib/discussions/manifest.json','utf8'));
+const manifest = JSON.parse(fs.readFileSync('tests/fixtures/legacy-heading-ids.json','utf8'));
 const errors = [], reports = [];
 let preservedIds = 0;
 const check = (name,run) => {try{run();}catch(error){errors.push(`${name}: ${error.message}`);}};
@@ -33,7 +33,7 @@ for(const locale of locales) {
       assert.equal(title.closest('.differential-geometry-body'),null,'actual title remains outside scope');
       const key = `curiosities/${slug}/${loadArticle('curiosities',slug,locale).contentLocale}`;
       for(const id of legacy[key]?.ids || []) { assert.ok(document.getElementById(id),`old anchor missing: ${id}`); preservedIds++; }
-      for(const id of manifest[key] || []) assert.ok(document.getElementById(id),`discussion manifest points to missing heading: ${id}`);
+      for(const id of manifest[key] || []) assert.ok(document.getElementById(id),`legacy fixture points to missing heading: ${id}`);
       if(slug==='differential-geometry') {
         const headings = article.querySelectorAll('.differential-geometry-body h1');
         assert.equal(headings.length,7,'all seven major section headings scoped');

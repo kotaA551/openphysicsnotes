@@ -10,7 +10,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolink from 'rehype-autolink-headings';
 import rehypeArticleLayout from '../../lib/article-layout.mjs';
-import { discussionGroups } from '../../lib/discussions/sections.mjs';
+import { articleGroups } from '../../lib/article-structure.mjs';
 import { typescriptLoader } from '../seo/load-typescript.mjs';
 
 const parser = unified().use(remarkParse).use(remarkMdx).use(remarkGfm).use(remarkMath)
@@ -18,7 +18,7 @@ const parser = unified().use(remarkParse).use(remarkMdx).use(remarkGfm).use(rema
   .use(rehypeKatex).use(rehypeSlug).use(rehypeAutolink, { behavior: 'wrap' });
 const parse = source => parser.run(parser.parse(source));
 const annotate = rehypeArticleLayout();
-const groupsWithoutOffsets = tree => discussionGroups(tree).map(({ start, end, ...group }) => group);
+const groupsWithoutOffsets = tree => articleGroups(tree).map(({ start, end, ...group }) => group);
 const withoutSeparators = tree => ({ ...tree, children: tree.children.filter(node => !(node.type === 'element' && node.tagName === 'hr')) });
 
 test('roles distinguish sections, nested numbered headings and proof steps without touching nested blocks', async () => {
@@ -36,7 +36,7 @@ test('roles distinguish sections, nested numbered headings and proof steps witho
   assert.deepEqual(tree, withoutSeparators(original), 'only root separators and heading annotations may change');
 });
 
-test('every targeted translation and fallback removes separators while retaining all other AST nodes and discussion groups', async () => {
+test('every targeted translation and fallback removes separators while retaining all other AST nodes and article groups', async () => {
   const load = typescriptLoader(), {locales} = load('lib/i18n.ts'), {articleList,loadArticle} = load('lib/articles.ts');
   const cache = new Map();
   let routes = 0, fallbacks = 0, headings = 0;

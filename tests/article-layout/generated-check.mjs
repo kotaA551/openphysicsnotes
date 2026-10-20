@@ -1,3 +1,4 @@
+// Historical layout-migration comparator; comment-removal checks live in tests/no-comments/build-check.mjs.
 // Compare two completed builds; no server, network or database access.
 import fs from 'node:fs';
 import path from 'node:path';

@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "@electric-sql/pglite": "^0.5.8",
     "@tailwindcss/postcss": "^4.1.12",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^24.3.0",
@@ -36,11 +35,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "tsc --noEmit",
-    "predev": "node scripts/discussion-manifest.mjs",
-    "prebuild": "node scripts/discussion-manifest.mjs",
-    "test:discussions": "node --test tests/discussions/*.test.mjs",
     "test:search": "node --test tests/search/*.test.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test:no-comments": "node --test tests/no-comments/*.test.mjs",
+    "test:figures": "node --test tests/figures/*.test.mjs"
   },
   "engines": {
     "node": ">=18.18.0"

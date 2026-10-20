@@ -53,7 +53,7 @@ for(const locale of locales)for(const kind of ['chapters','curiosities'])for(con
   }
   const panels=matches(newBody,/<details\b[^>]*data-discussion-section="([^"]*)"[^>]*>/g).map(([,id])=>decode(id));
   const oldPanels=matches(oldBody,/<details\b[^>]*data-discussion-section="([^"]*)"[^>]*>/g).map(([,id])=>decode(id));
-  assert.deepEqual(panels,oldPanels,'persistent discussion section IDs');
+  assert.deepEqual(panels,[],'discussion UI removed');
   reports.push({route,headings:headings(newBody).length,formulas:formulas(newBody).length,images:newImages.length,internalLinks,discussionSections:panels.length,status:'pass'});
  }catch(error){errors.push({route,error:error.message});}
 }

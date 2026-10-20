@@ -5,13 +5,13 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import rehypeSlug from 'rehype-slug';
 import rehypeArticleAnchors, { articleHeadingIds } from '../../lib/article-anchors.mjs';
 import { articleSections } from '../../lib/search/build.mjs';
-import { discussionGroups } from '../../lib/discussions/sections.mjs';
+import { articleGroups } from '../../lib/article-structure.mjs';
 
-test('translated visible headings retain published links in HTML, search and discussion groups', async () => {
+test('translated visible headings retain published links in HTML, search and article groups', async () => {
   const source = '## 1. Mécanique\n\nLe mouvement.\n\n## 2. Énergie\n\nLe travail.';
   const ids = ['1-mechanics', '2-energy'];
   let groups;
-  const inspect = () => tree => { groups = discussionGroups(tree); };
+  const inspect = () => tree => { groups = articleGroups(tree); };
   const { content } = await compileMDX({ source, options: { mdxOptions: {
     rehypePlugins: [rehypeSlug, [rehypeArticleAnchors, { ids }], inspect],
   } } });
