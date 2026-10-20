@@ -3,6 +3,7 @@ import './article-reading.css';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
+import MathLeaf from './MathLeaf';
 import remarkCompactMath from '@/lib/compact-math.mjs';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -30,6 +31,6 @@ export default function ArticlePage({ kind, slug, locale }: { kind: ArticleKind;
  const t = messages(locale);
  const bodyClass = kind === 'chapters' ? 'article-reading' : slug === 'differential-geometry' ? 'article-reading differential-geometry-body' : undefined;
  const schema = articleStructuredData(kind, slug, article);
- const components = { CycloidalPendulumFigure, SectionDiscussion, Callout, RelatedBooks: (props: React.ComponentProps<typeof RelatedBooks>) => <RelatedBooks {...props} heading={t.reading}/>, AffiliateNote: () => <AffiliateNote text={t.affiliate}/> };
+ const components = { MathLeaf, CycloidalPendulumFigure, SectionDiscussion, Callout, RelatedBooks: (props: React.ComponentProps<typeof RelatedBooks>) => <RelatedBooks {...props} heading={t.reading}/>, AffiliateNote: () => <AffiliateNote text={t.affiliate}/> };
  return <><nav className="breadcrumb" aria-label={t.home}><Link prefetch={false} href={localePath(locale)}>{t.home}</Link><span aria-hidden="true">/</span><span>{t[kind]}</span></nav><article className="prose"><h1>{article.title}</h1>{!article.translated && <p className="translation-notice" role="status">{t.fallback}</p>}<DiscussionProvider key={`${kind}/${slug}/${article.contentLocale}`} articleKind={kind} articleSlug={slug} contentLocale={article.contentLocale} locale={locale}><div className={bodyClass} lang={article.contentLocale}><MDXRemote source={article.content} components={components} options={{ mdxOptions: { remarkPlugins: [remarkGfm, remarkMath, remarkCompactMath], rehypePlugins: [ rehypeSlug, [rehypeArticleAnchors, { ids: articleHeadingIds(kind, slug, article.contentLocale) }], [rehypeAutolinkHeadings, { behavior: 'wrap' }], ...(bodyClass ? [rehypeArticleLayout] : []), rehypeDiscussions], format: 'mdx' } }}/></div></DiscussionProvider></article><div className="article-navigation"><TopicIndex locale={locale}/></div>{schema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}/>}</>;
 }
