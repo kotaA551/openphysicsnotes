@@ -1,0 +1,971 @@
+---
+description: "Campos elétricos e magnéticos, equações de Maxwell, ondas, potenciais e eletrodinâmica relativística, com deduções e aplicações."
+---
+
+## 4.1 Introdução: eletricidade, magnetismo e luz
+
+O eletromagnetismo estuda os fios invisíveis que conectam nosso mundo: faíscas que saltam, bússolas que giram e luz que traz mensagens das estrelas. Antes de se tornar uma teoria unificada, eletricidade e magnetismo eram curiosidades estudadas separadamente, cada qual com uma história que remonta à Antiguidade.
+
+---
+
+### 4.1.1 Curiosidades antigas
+
+A palavra *eletricidade* vem do grego *elektron*, âmbar. Por volta de 600 a.C., **Tales** de Mileto notou que âmbar esfregado com pele atraía pequenos objetos. A eletricidade estática era intrigante, mas parecia um truque de salão. Pedras-ímã, pedaços de minério de ferro naturalmente magnetizados, também eram conhecidas na China e na Grécia. Elas se alinhavam ao campo terrestre, orientando bússolas séculos antes de sua física ser compreendida.
+
+Ainda assim, por milênios, eletricidade e magnetismo permaneceram ligados a tradições e instrumentos de navegação, em vez de uma ciência sistemática.
+
+---
+
+### 4.1.2 Primeiros experimentos no Iluminismo
+
+No século XVIII, a eletricidade virou espetáculo. **Benjamin Franklin** empinou sua famosa pipa durante uma tempestade, demonstrando o parentesco entre raios e faíscas. Ele cunhou os termos carga *positiva* e *negativa* e popularizou a conservação da carga.
+
+Na Itália, experimentos revelaram relações entre eletricidade e biologia. **Luigi Galvani** observou pernas de rãs se contraírem ao contato com metais e propôs a “eletricidade animal”. **Alessandro Volta** discordou: argumentou que a fonte era química, não biológica, e construiu em 1800 a primeira **pilha voltaica**, protótipo da bateria. Pela primeira vez existia uma fonte contínua e controlável de corrente, inaugurando uma revolução.
+
+Na década de 1820, **Georg Ohm** quantificou a relação entre corrente, tensão e resistência:
+
+$$
+V = IR.
+$$
+
+A lei de Ohm, inicialmente contestada, tornou-se um pilar da teoria de circuitos. A eletricidade passava de curiosidade a ciência quantitativa.
+
+---
+
+### 4.1.3 O mistério do magnetismo
+
+O magnetismo também avançou. A bússola era indispensável aos exploradores. Em *De Magnete* (1600), William Gilbert defendeu que a própria Terra é um enorme ímã. Mas o magnetismo parecia separado da eletricidade; sua relação ainda não havia sido reconhecida.
+
+Isso mudou no século XIX.
+
+---
+
+### 4.1.4 A Revolução Industrial e a busca por energia
+
+No início do século XIX, máquinas a vapor moviam fábricas e ferrovias, mas tecnologias elétricas começavam a surgir. A telegrafia prometia comunicação instantânea entre continentes. Cientistas perguntavam se a eletricidade poderia mover máquinas, transmitir energia ou iluminar cidades. Responder exigia uma teoria mais profunda.
+
+---
+
+### 4.1.5 O enigma da luz
+
+Outro fio entrou na história: a **luz**. Isaac Newton a descrevera como partículas; Thomas Young e Augustin Fresnel demonstraram interferência e difração, confirmando sua natureza ondulatória. Mas que tipo de onda? O som precisa de ar, ondas na água precisam de água — que meio transportava a luz pelo espaço vazio? Físicos invocaram o **éter luminífero**, uma substância hipotética que preencheria o vazio.
+
+O cenário estava pronto para a unificação. O século XIX revelaria que eletricidade, magnetismo e luz eram faces de uma realidade mais profunda.
+ 
+A eletricidade começou com âmbar esfregado; o magnetismo, com pedras-ímã; a luz, com ondas misteriosas. No início do século XIX, baterias, circuitos e bússolas já os haviam transformado em ferramentas poderosas, mas ainda separadas. As próximas seções acompanham Ørsted, Ampère, Faraday e Maxwell na construção dessa unidade: o eletromagnetismo.
+
+---
+
+## 4.2 Ørsted, Ampère e a descoberta do eletromagnetismo
+
+No começo do século XIX, eletricidade e magnetismo ainda eram assuntos distintos. Baterias produziam correntes constantes; ímãs orientavam bússolas. A unidade oculta ainda não era amplamente reconhecida — até um experimento inesperado em Copenhague mudar a física para sempre.
+
+---
+
+### 4.2.1 Hans Christian Ørsted e a descoberta acidental
+
+**Hans Christian Ørsted** (1777–1851) foi um físico e filósofo dinamarquês. Influenciado pela filosofia romântica da natureza, acreditava na unidade natural: eletricidade, magnetismo, química e luz estavam interligados. Durante anos procurou evidências, sem encontrar nada conclusivo.
+
+Em 1820, durante uma aula, Ørsted observou algo peculiar: um fio percorrido por corrente desviava uma bússola próxima. A eletricidade parecia influenciar o magnetismo. Isso estava longe de ser um detalhe: significava que **correntes elétricas criam campos magnéticos**.
+
+A descoberta se espalhou rapidamente pela Europa. Em poucos meses, físicos e matemáticos tentaram quantificar o fenômeno. Entre eles estava **André-Marie Ampère**, que construiria a base matemática da eletrodinâmica.
+
+---
+
+### 4.2.2 Experimentos e lei de Ampère
+
+**André-Marie Ampère** (1775–1836), matemático e físico francês, ficou fascinado pelo relato de Ørsted. Percebeu que a chave era a **corrente**, não a eletricidade estática. Colocou fios paralelos com corrente lado a lado e mediu as forças.
+
+Descobriu que **correntes paralelas se atraem quando têm o mesmo sentido e se repelem quando têm sentidos opostos**. Isso indicava um novo tipo de força, entre cargas em movimento, não apenas estáticas.
+
+Ampère deduziu uma expressão quantitativa. A força por unidade de comprimento entre dois condutores longos e paralelos separados por $r$ é
+
+$$
+\frac{F}{L} = \frac{\mu_0}{2\pi} \frac{I_1 I_2}{r},
+$$
+
+onde $I_1$ e $I_2$ são as correntes. O resultado é tão fundamental que a antiga definição SI do ampere se baseava nele.
+
+De forma mais geral, Ampère formulou sua lei: a circulação do campo magnético $\mathbf B$ em uma curva fechada é proporcional à corrente envolvida:
+
+$$
+\oint \boldsymbol B \cdot d\boldsymbol l = \mu_0 I_{\text{enc}}.
+$$
+
+Essa **lei de Ampère** é uma das quatro grandes equações de Maxwell, com a posterior correção da corrente de deslocamento. No cálculo vetorial moderno:
+
+$$
+\nabla \times \boldsymbol B = \mu_0 \boldsymbol J.
+$$
+
+---
+
+### 4.2.3 Lei de Biot–Savart
+
+Simultaneamente, Jean-Baptiste Biot e Félix Savart investigaram o campo magnético produzido por correntes. Estabeleceram a **lei de Biot–Savart**, que descreve o campo no ponto $\mathbf r$ devido a um elemento de corrente $I d\mathbf l$:
+
+$$
+d\boldsymbol B = \frac{\mu_0}{4\pi} \frac{I\, d\boldsymbol l \times \hat{\boldsymbol r}}{r^2}.
+$$
+
+A integração ao longo do fio fornece o campo completo. A lei de Biot–Savart é análoga à lei elétrica de Coulomb, mas contém o produto vetorial crucial que expressa o caráter circulante do magnetismo.
+
+---
+
+### 4.2.4 Legado experimental
+
+Essas descobertas não eram apenas acadêmicas. Fundamentaram tecnologias que transformariam a sociedade:
+
+- **Eletroímãs.** Fios enrolados em núcleos de ferro produziam campos fortes e controláveis, permitindo telégrafos e motores.
+- **Padrões de medição.** Correntes podiam ser medidas por deflexão magnética, unindo eletricidade e magnetismo na metrologia.
+- **Eletrodinâmica matemática.** A lei de Ampère trouxe um princípio unificador: correntes são fontes de campos magnéticos.
+
+---
+
+### 4.2.5 Repercussão filosófica
+
+O experimento de Ørsted confirmou sua intuição da unidade da natureza. A matemática de Ampère revelou essa unidade quantitativamente. Eletricidade e magnetismo não eram mais curiosidades separadas, mas profundamente interligadas. Como sugerira o poeta Goethe: “Os fenômenos da natureza são apenas as letras de um alfabeto misterioso.” Ampère e Ørsted haviam decifrado algumas palavras desse alfabeto.
+
+---
+
+### 4.2.6 Rumo a Faraday e Maxwell
+
+A história não terminou ali. Na década de 1830, **Michael Faraday** ampliou a unidade: correntes produzem campos magnéticos, mas campos magnéticos variáveis também produzem correntes. Esse princípio de indução (§4.3) levaria James Clerk Maxwell a completar a unificação, mostrando que a própria luz é uma onda eletromagnética.
+
+Em resumo:
+Em 1820, a inesperada deflexão da bússola de Ørsted iniciou uma revolução. O trabalho sistemático de Ampère quantificou a nova interação: correntes geram campos magnéticos, e suas forças obedecem a leis precisas. Com a lei de Biot–Savart e a lei circuital de Ampère, o eletromagnetismo ganhou suas primeiras equações rigorosas. Uma curiosidade de sala de aula tornou-se a base da eletrodinâmica moderna.
+
+---
+
+## 4.3 Faraday e o conceito de campo
+
+Ørsted e Ampère mostraram a ligação entre eletricidade e magnetismo; **Michael Faraday** (1791–1867) deu profundidade e visão a essa ligação. Seus experimentos revelaram que o magnetismo podia gerar eletricidade, e não apenas o contrário, e sua ideia de “linhas de força” fundamentou o conceito moderno de campo.
+
+---
+
+### 4.3.1 Vida e personalidade de Faraday
+
+Nascido em uma família pobre de Londres, Faraday teve pouca educação formal. Aprendiz de encadernador, lia avidamente os textos científicos que encadernava. Fascinado, assistiu a palestras do químico Humphry Davy na Royal Institution. Sua dedicação lhe rendeu uma vaga de assistente de Davy. Apesar das barreiras sociais, tornou-se um dos experimentalistas mais celebrados da história.
+
+Faraday não era matemático. Admitia: *“Não tenho a menor pretensão de possuir conhecimentos matemáticos.”* Ainda assim, com intuição, experimentos e imaginação, descobriu leis que Maxwell depois codificaria matematicamente. Ele exemplificava o espírito experimental: observação cuidadosa, aparelhos engenhosos e curiosidade persistente.
+
+---
+
+### 4.3.2 Descoberta da indução eletromagnética
+
+Após Ørsted, a pergunta central era: se correntes criam campos magnéticos, o magnetismo pode criar correntes? Faraday respondeu em 1831 com a descoberta da **indução eletromagnética**.
+
+Ele enrolou duas bobinas em um anel de ferro. Ligando uma à bateria e outra ao galvanômetro, viu a agulha desviar, mas apenas ao ligar ou desligar a corrente. Corrente constante não produzia efeito; somente um **fluxo magnético variável** induzia corrente na segunda bobina.
+
+
+Faraday concluiu que um campo magnético variável no tempo induz uma força eletromotriz, fem. Era uma simetria profunda: eletricidade gera magnetismo, e magnetismo variável gera eletricidade.
+
+---
+
+### 4.3.3 Lei da indução de Faraday
+
+Faraday generalizou seus experimentos em uma lei:
+
+$$
+\mathcal{E} = -\frac{d\Phi_B}{dt},
+$$
+
+![Um ímã se aproxima de uma espira, alterando seu fluxo magnético. A lei de Faraday relaciona a fem induzida à taxa de variação do fluxo.](/images/diagrams/induction.svg)
+
+onde $\mathcal{E}$ é a fem induzida e $\Phi_B$ é o fluxo magnético através do circuito:
+
+$$
+\Phi_B = \int \boldsymbol B \cdot d\boldsymbol A.
+$$
+
+O sinal negativo expressa a **lei de Lenz**: a corrente induzida se opõe à variação do fluxo, refletindo a conservação da energia.
+
+Na forma completa de cálculo vetorial, posteriormente formulada por Maxwell:
+
+$$
+\nabla \times \boldsymbol E = -\frac{\partial \boldsymbol B}{\partial t}.
+$$
+
+Essa é a lei de Faraday, uma das quatro equações de Maxwell.
+
+---
+
+### 4.3.4 Linhas de força e o conceito de campo
+
+Faraday não dominava o cálculo e descrevia suas descobertas por **linhas de força**. Visualizava efeitos elétricos e magnéticos como linhas que atravessavam o espaço e exerciam influência localmente. Para contemporâneos acostumados à ação à distância, isso era radical. Mas Faraday insistia que o próprio espaço era ativo: os campos eram reais.
+
+![Exemplos separados: o campo elétrico aponta para fora de uma carga positiva e para dentro, em direção a uma carga negativa.](/images/diagrams/electric-fields.svg)
+
+
+Esse salto conceitual, campos como entidades físicas, foi tão revolucionário quanto a gravitação de Newton. Libertou a física da ideia de forças atuando instantaneamente pelo espaço vazio. Para Faraday, campos eram tangíveis, algo que se podia imaginar e até desenhar.
+
+---
+
+### 4.3.5 Triunfos experimentais
+
+O laboratório de Faraday se tornou palco de descobertas:
+
+- **Ímã e condutor em rotação.** Ele demonstrou que movimento relativo entre condutor e campo magnético induz correntes, princípio dos geradores.
+- **Efeito magneto-óptico de Faraday.** Descobriu que um campo magnético gira o plano de polarização da luz que atravessa vidro, revelando uma ligação com a óptica.
+- **Eletroquímica.** Formulou as leis da eletrólise e introduziu termos como *eletrodo*, *ânodo* e *cátodo*.
+
+Essas realizações mostram sua versatilidade e profunda intuição.
+
+---
+
+### 4.3.6 A influência de Faraday em Maxwell
+
+Embora Faraday escrevesse qualitativamente, suas linhas de campo capturavam algo profundo. **James Clerk Maxwell** traduziu essas visões em equações. Maxwell reconheceu: *“As linhas de força de Faraday podem ser representadas matematicamente… Toda a teoria do eletromagnetismo é o desenvolvimento dessa ideia.”*
+
+Faraday ligou assim experimento e teoria. Sem sua visão, a síntese de Maxwell talvez não tivesse surgido.
+
+---
+
+### 4.3.7 Impacto tecnológico
+
+A indução de Faraday tornou possível o uso prático da eletricidade:
+
+- **Geradores.** Rotação mecânica em campos magnéticos fundamentou os dínamos que abastecem a indústria.
+- **Transformadores.** A indução entre bobinas permite conversão eficiente de tensão, essencial às redes elétricas.
+- **Motores.** O princípio inverso, correntes produzindo movimento, completa o ciclo.
+
+As descobertas de Faraday sustentam quase toda tecnologia moderna movida a eletricidade.
+
+---
+
+### 4.3.8 Significado filosófico
+
+O conceito de campo de Faraday remodelou a física. A ideia de espaço preenchido por campos antecipou tanto Maxwell quanto o espaço-tempo de Einstein. Refletia uma nova ontologia: campos são agentes reais da natureza, não meras conveniências matemáticas. Como Einstein observou depois: *“A maior e mais fecunda mudança nos axiomas da física foi o conceito de campo de Faraday.”*
+
+---
+
+## 4.4 A síntese de Maxwell: as equações do campo
+
+Se Faraday forneceu a visão experimental, **James Clerk Maxwell** (1831–1879) deu ao eletromagnetismo sua forma matemática. Suas equações unificaram eletricidade, magnetismo e óptica, mostrando que a própria luz é uma onda eletromagnética. A física ganhou poder preditivo e um novo paradigma: a natureza é governada por campos que obedecem a equações diferenciais.
+
+---
+
+### 4.4.1 Maxwell como cientista
+
+Nascido em Edimburgo, Escócia, Maxwell mostrou talento matemático precoce e foi profundamente influenciado por Faraday. Onde Faraday desenhava linhas de força, Maxwell usava cálculo. Trabalhou com visão de cores, estabilidade dos anéis de Saturno e teoria cinética, mas sua maior realização foi a síntese do eletromagnetismo.
+
+Maxwell também refletia sobre filosofia da ciência. Insistia que equações não bastavam: eram necessários modelos, analogias e visualização. Sua combinação de intuição e matemática o tornou herdeiro de Faraday e precursor da teoria moderna de campos.
+
+---
+
+### 4.4.2 Equações de Maxwell na forma moderna
+
+Maxwell reuniu as leis experimentais de Coulomb, Ampère, Faraday e Gauss em quatro equações diferenciais:
+
+1. **Lei de Gauss para o campo elétrico.**<br />
+   $\displaystyle \nabla \cdot \boldsymbol{E} = \frac{\rho}{\varepsilon_0}$<br />
+   Cargas elétricas $\rho$ são fontes de campo elétrico.
+
+2. **Lei de Gauss para o magnetismo.**<br />
+   $\displaystyle \nabla \cdot \boldsymbol{B} = 0$<br />
+   Essa teoria não contém monopolos magnéticos; linhas de campo magnético não têm inícios ou fins isolados.
+
+3. **Lei da indução de Faraday.**<br />
+   $\displaystyle \nabla \times \boldsymbol{E} = -\,\frac{\partial \boldsymbol{B}}{\partial t}$<br />
+   Campos magnéticos variáveis no tempo induzem campos elétricos.
+
+4. **Lei de Ampère–Maxwell.**<br />
+   $\displaystyle \nabla \times \boldsymbol{B} = \mu_0 \boldsymbol{J} + \mu_0 \varepsilon_0 \,\frac{\partial \boldsymbol{E}}{\partial t}$<br />
+   Correntes e campos elétricos variáveis geram campos magnéticos.
+
+A adição crucial é o **termo de corrente de deslocamento**, $\mu_0 \varepsilon_0 \partial \boldsymbol E/\partial t$, introduzido por Maxwell para preservar a conservação da carga. Sem ele, a lei de Ampère falha em situações como a carga de um capacitor. Com ele, as equações ganham consistência e simetria.
+
+---
+
+### 4.4.3 Equação de onda e natureza da luz
+
+Combine as leis de Faraday e Ampère–Maxwell no espaço livre, $\rho=0$ e $\boldsymbol J=0$. Tomando o rotacional da lei de Faraday:
+
+$$
+\nabla \times (\nabla \times \boldsymbol E) = - \frac{\partial}{\partial t}(\nabla \times \boldsymbol B).
+$$
+
+Substitua a lei de Ampère–Maxwell:
+
+$$
+\nabla \times (\nabla \times \boldsymbol E) = - \mu_0 \varepsilon_0 \frac{\partial^2 \boldsymbol E}{\partial t^2}.
+$$
+
+Usando a identidade vetorial $\nabla \times (\nabla \times \boldsymbol E) = \nabla(\nabla \cdot \boldsymbol E) - \nabla^2 \boldsymbol E$ e a lei de Gauss, $\nabla \cdot \boldsymbol E = 0$ no espaço livre,
+
+$$
+\nabla^2 \mathbf E = \mu_0 \varepsilon_0 \frac{\partial^2 \boldsymbol E}{\partial t^2}.
+$$
+
+Essa é uma **equação de onda** com velocidade
+
+$$
+c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}}.
+$$
+
+Os valores de $\mu_0$ e $\varepsilon_0$ forneciam $c \approx 3.0 \times 10^8 \,\mathrm{m/s}$, a velocidade medida da luz. Portanto, a luz é uma onda eletromagnética. Foi uma das previsões teóricas mais impressionantes da história: a óptica foi incorporada ao eletromagnetismo.
+
+---
+
+### 4.4.4 Energia do campo e vetor de Poynting
+
+Maxwell também mostrou que campos transportam energia e momento. A **densidade de energia** é
+
+$$
+u = \frac{1}{2} \varepsilon_0 E^2 + \frac{1}{2\mu_0} B^2,
+$$
+
+e o **vetor de Poynting**
+
+$$
+\boldsymbol S = \frac{1}{\mu_0} \boldsymbol E \times \boldsymbol B
+$$
+
+representa o fluxo de energia eletromagnética. Assim, luz não é apenas vibração: é energia em trânsito. Mais tarde, pressão de radiação e transferência de momento foram confirmadas experimentalmente.
+
+---
+
+### 4.4.5 Simetria e unificação
+
+As equações de Maxwell acoplam simetricamente $\boldsymbol E$ e $\boldsymbol B$ por suas variações temporais. Expressam leis locais de conservação de carga, energia e momento e substituem a ação instantânea à distância por campos locais.
+
+Essa simetria inspirou generalizações posteriores. Na relatividade, as equações de Maxwell ganham uma forma tensorial elegante:
+
+$$
+\partial_\mu F^{\mu\nu} = \mu_0 J^\nu, \qquad
+\partial_{[\alpha} F_{\beta\gamma]} = 0,
+$$
+
+onde $F^{\mu\nu}$ é o tensor eletromagnético. A unidade de eletricidade e magnetismo antecipou unificações mais profundas.
+
+> **Objetivo.** Mostrar como as quatro equações de Maxwell na forma de vetores tridimensionais
+>
+> $$
+> \nabla\!\cdot\!\boldsymbol{E}=\frac{\rho}{\varepsilon_{0}},\quad
+> \nabla\!\times\!\boldsymbol{E}=-\frac{\partial\boldsymbol{B}}{\partial t},\quad
+> \nabla\!\cdot\!\boldsymbol{B}=0,\quad
+> \nabla\!\times\!\boldsymbol{B}=\mu_{0}\boldsymbol{J}+\mu_{0}\varepsilon_{0}\frac{\partial\boldsymbol{E}}{\partial t}.
+> $$
+>
+> se reduzem ao par covariante
+>
+> $$
+> \partial_{\mu}F^{\mu\nu}=\mu_{0}J^{\nu},
+> \qquad
+> \partial_{\mu}\tilde F^{\mu\nu}=0,
+> $$
+>
+> e, se desejado, a **uma** equação complexa combinando $F$ com seu dual.
+
+#### 1. Preparação: notação e convenções em quatro dimensões
+
+Trabalhamos no espaço-tempo plano com métrica $\eta_{\mu\nu}=\mathrm{diag}(1,-1,-1,-1)$ e coordenadas $x^{\mu}=(ct,x,y,z)$.
+Mantemos explícitas as unidades SI, portanto 
+$$c=1/\sqrt{\mu_{0}\varepsilon_{0}}$$.
+
+- Quadrigradiente: $\partial^{\mu}=\left(\tfrac{1}{c}\tfrac{\partial}{\partial t},\,-\nabla\right)$
+- Quadricorrente: $J^{\mu}=(c\rho,\,\boldsymbol{J})$
+- Quadripotencial: $A^{\mu}=\!\left(\tfrac{\phi}{c},\,\boldsymbol{A}\right)$
+
+Defina o **tensor de campo**:
+
+$$
+F_{\mu\nu}\equiv \partial_{\mu}A_{\nu}-\partial_{\nu}A_{\mu},\qquad
+F^{\mu\nu}=\eta^{\mu\alpha}\eta^{\nu\beta}F_{\alpha\beta}.
+$$
+
+Dual:
+
+$$
+\tilde F^{\mu\nu}\equiv \tfrac{1}{2}\,\varepsilon^{\mu\nu\alpha\beta}F_{\alpha\beta},
+\qquad \varepsilon^{0123}=+1.
+$$
+
+$$
+F^{i0}=+\frac{E^{i}}{c},\quad F^{0i}=-\frac{E^{i}}{c},\quad
+F^{ij}=-\varepsilon^{ijk}B_{k}.
+$$
+
+Forma matricial:
+
+$$
+F^{\mu\nu}=
+\begin{pmatrix}
+0 & -E_{x}/c & -E_{y}/c & -E_{z}/c\\
+E_{x}/c & 0 & -B_{z} & B_{y}\\
+E_{y}/c & B_{z} & 0 & -B_{x}\\
+E_{z}/c & -B_{y} & B_{x} & 0
+\end{pmatrix}.
+$$
+
+E, a partir dos potenciais:
+
+$$
+\boldsymbol{E}=-\nabla\phi-\frac{\partial \boldsymbol{A}}{\partial t},\qquad
+\boldsymbol{B}=\nabla\times\boldsymbol{A}.
+$$
+
+#### 2. Equações homogêneas a partir da geometria
+
+Como $F=dA$, temos
+
+$$
+\partial_{\alpha}F_{\beta\gamma}+\partial_{\beta}F_{\gamma\alpha}+\partial_{\gamma}F_{\alpha\beta}=0,
+$$
+
+isto é,
+
+$$
+\partial_{\mu}\tilde F^{\mu\nu}=0
+\quad\Longleftrightarrow\quad
+\nabla\!\cdot\!\boldsymbol{B}=0,\quad
+\nabla\!\times\!\boldsymbol{E}=-\frac{\partial\boldsymbol{B}}{\partial t}.
+$$
+
+#### 3. Equações não homogêneas
+
+Equação:
+
+$$
+\partial_{\mu}F^{\mu\nu}=\mu_{0}J^{\nu},\quad J^{\nu}=(c\rho,\boldsymbol{J}).
+$$
+
+(a) $\nu=0$
+
+$$
+\partial_{i}F^{i0}=\frac{1}{c}\nabla\!\cdot\!\boldsymbol{E}=\mu_{0}c\rho
+\;\;\Rightarrow\;\;
+\nabla\!\cdot\!\boldsymbol{E}=\frac{\rho}{\varepsilon_{0}}.
+$$
+
+(b) $\nu=i$
+
+$$
+\partial_{0}F^{0i}+\partial_{j}F^{ji}
+=-\frac{1}{c^{2}}\frac{\partial E^{i}}{\partial t}+(\nabla\times\boldsymbol{B})^{i}
+=\mu_{0}J^{i}.
+$$
+
+Portanto,
+
+$$
+\nabla\times\boldsymbol{B}=\mu_{0}\boldsymbol{J}+\mu_{0}\varepsilon_{0}\frac{\partial\boldsymbol{E}}{\partial t}.
+$$
+
+#### 4. Uma equação complexa
+
+Defina
+
+$$
+\mathcal{F}^{\mu\nu}=F^{\mu\nu}-i\,\tilde F^{\mu\nu}.
+$$
+
+Então
+
+$$
+\partial_{\mu}\,\mathcal{F}^{\mu\nu}=\mu_{0}J^{\nu},
+$$
+
+o que reúne as equações não homogêneas e homogêneas.
+
+#### 5. Guia de consulta
+
+- Forma vetorial:
+
+$$
+\nabla\!\cdot\!\boldsymbol{E}=\frac{\rho}{\varepsilon_{0}},\quad
+\nabla\!\times\!\boldsymbol{E}=-\frac{\partial\boldsymbol{B}}{\partial t},\quad
+\nabla\!\cdot\!\boldsymbol{B}=0,\quad
+\nabla\!\times\!\boldsymbol{B}=\mu_{0}\boldsymbol{J}+\mu_{0}\varepsilon_{0}\frac{\partial\boldsymbol{E}}{\partial t}.
+$$
+
+- Par covariante:
+
+$$
+\partial_{\mu}F^{\mu\nu}=\mu_{0}J^{\nu},\qquad
+\partial_{\mu}\tilde F^{\mu\nu}=0.
+$$
+
+- Forma em uma linha:
+
+$$
+\partial_{\mu}\,(F^{\mu\nu}-i\,\tilde F^{\mu\nu})=\mu_{0}J^{\nu}.
+$$
+
+---
+
+### 4.4.6 Confirmação experimental
+
+Na década de 1880, o físico alemão **Heinrich Hertz** gerou e detectou ondas de rádio, confirmando Maxwell. Seus experimentos mostraram reflexão, refração e interferência idênticas às da luz, ampliando o espectro eletromagnético. Depois, Marconi as utilizou na comunicação por rádio, revolucionando a sociedade.
+
+---
+
+### 4.4.7 Significado filosófico e histórico
+
+A unificação de Maxwell rivalizou com a de Newton. Newton unificara a mecânica celeste e terrestre; Maxwell unificou eletricidade, magnetismo e luz. Nos dois casos, fenômenos diferentes passaram a compartilhar uma teoria.
+
+Filosoficamente, Maxwell elevou o campo a conceito central da física: uma realidade física, não mera ferramenta matemática. Einstein reconheceu depois: *“A mudança mais profunda nos axiomas da física no século XIX foi a introdução do campo por Maxwell.”*
+
+---
+
+### 4.4.8 Rumo à relatividade e além
+
+As equações de Maxwell, porém, traziam um enigma: previam uma velocidade da luz constante e independente do observador. Como conciliá-la com a relatividade newtoniana? A busca da solução, pelas transformações de Lorentz e pela relatividade especial de Einstein, será o tema do próximo capítulo (§5).
+
+---
+
+## 4.5 Radiação eletromagnética
+
+A previsão de Maxwell de que a luz é uma onda eletromagnética foi extraordinária. Unificou óptica, eletricidade e magnetismo, sugerindo que a cintilação de uma vela e o estalo de uma faísca são faces da mesma realidade. Mas a teoria exigia confirmação. As últimas décadas do século XIX trariam essa prova, ampliariam o espectro e lançariam tecnologias que definem o mundo moderno.
+
+![Em um ponto de uma onda plana, campo elétrico, campo magnético e direção de propagação são mutuamente perpendiculares.](/images/diagrams/em-wave.svg)
+
+---
+
+### 4.5.1 Propriedades ondulatórias da luz
+
+Muito antes de Maxwell, sabia-se que a luz se comportava como onda. O **experimento de dupla fenda de Thomas Young** (1801) mostrou interferência; **Augustin Fresnel** explicou difração e polarização. Maxwell esclareceu *que tipo* de onda: oscilações de campos elétricos e magnéticos, em vez de apenas vibrações do éter.
+
+Ondas eletromagnéticas são **transversais**: o campo elétrico $\boldsymbol E$ e o magnético $\boldsymbol B$ são perpendiculares entre si e à direção de propagação $\mathbf k$. No espaço livre:
+
+$$
+\boldsymbol E \perp \boldsymbol B, \qquad \boldsymbol E \times \boldsymbol B \parallel \boldsymbol k.
+$$
+
+A onda transporta um fluxo de energia dado pelo **vetor de Poynting**:
+
+$$
+\boldsymbol S = \frac{1}{\mu_0}\boldsymbol E \times \boldsymbol B.
+$$
+
+Assim, a luz não é apenas iluminação: é fluxo de energia eletromagnética.
+
+---
+
+### 4.5.2 Experimentos de Hertz
+
+Na década de 1880, **Heinrich Hertz** testou Maxwell. Com transmissores de centelhador e espiras ressonantes, gerou ondas de rádio no laboratório. Observou reflexão, refração, interferência e polarização, todas as características da luz. Hertz declarou: *“Provei que ondas eletromagnéticas existem no espaço livre.”* Assim, a previsão de Maxwell foi confirmada.
+
+Embora Hertz não visse uso prático, outros logo viram. **Guglielmo Marconi** adaptou a tecnologia à telegrafia sem fio, inaugurando a era do rádio. Hoje, cada transmissão, sinal de celular e conexão Wi-Fi descende das faíscas de Hertz.
+
+---
+
+### 4.5.3 O espectro eletromagnético
+
+A radiação eletromagnética abrange um enorme espectro. Comprimento de onda $\lambda$ e frequência $\nu$ obedecem a $c = \lambda \nu$. Faixas diferentes aparecem em fenômenos diversos:
+
+- **Ondas de rádio** (km–m): comunicação, radiodifusão, radar.
+- **Micro-ondas** (cm–mm): cozimento, radar, enlaces de satélite.
+- **Infravermelho** (10⁻³–10⁻⁶ m): radiação térmica, imagens térmicas, astronomia.
+- **Luz visível** (400–700 nm): a faixa estreita que nossos olhos evoluíram para detectar.
+- **Ultravioleta** (10⁻⁸–10⁻⁷ m): esterilização, fluorescência, queimaduras solares.
+- **Raios X** (10⁻¹⁰ m): imagens médicas, cristalografia.
+- **Raios gama** (&lt;10⁻¹² m): transições nucleares, fenômenos cósmicos.
+
+O que une essas radiações é sua origem em cargas oscilantes e correntes aceleradas, não seu efeito sobre nossos sentidos. Antenas, átomos e núcleos irradiam quando cargas aceleram.
+
+---
+
+### 4.5.4 Antenas e mecanismos de radiação
+
+A radiação eletromagnética surge quando cargas aceleram. Um exemplo simples é o dipolo oscilante: cargas indo e voltando produzem uma corrente variável no tempo. O campo radiado decai como $1/r$, ao contrário do campo estático de Coulomb $1/r^2$, permitindo que a energia se propague ao infinito.
+
+Antenas aproveitam esse princípio. Um dipolo de meia onda entra em ressonância com as correntes aplicadas e irradia eficientemente. Antenas receptoras fazem o inverso, convertendo radiação em correntes. Assim, a radiação eletromagnética se tornou uma ferramenta de comunicação além de um fenômeno natural.
+
+---
+
+### 4.5.5 Pressão de radiação e momento
+
+Ondas eletromagnéticas transportam momento além de energia. A pressão exercida sobre uma superfície é
+
+$$
+P = \frac{I}{c},
+$$
+
+onde $I$ é a intensidade. Essa **pressão de radiação** é pequena no cotidiano, mas crucial na astrofísica: impulsiona caudas de cometas, contribui ao equilíbrio estelar e molda a poeira cósmica. No laboratório, fundamenta pinças ópticas que manipulam moléculas individuais com feixes luminosos.
+
+---
+
+### 4.5.6 Radiação eletromagnética na natureza e na tecnologia
+
+- **Astronomia.** Quase toda informação sobre o universo chega por radiação eletromagnética. De mapas de galáxias por radioastronomia a explosões de raios gama que revelam cataclismos, o espectro é nosso mensageiro cósmico.
+- **Medicina.** Raios X revelam o interior do corpo; a ressonância magnética usa princípios eletromagnéticos e ressonância nuclear com ondas de rádio; radioterapia utiliza fótons de alta energia.
+- **Cotidiano.** Lâmpadas, lasers, micro-ondas, Wi-Fi e fibras ópticas ocupam partes distintas e indispensáveis do espectro.
+
+---
+
+### 4.5.7 Rumo aos desafios quânticos
+
+No fim do século XIX, a teoria ondulatória clássica parecia completa. Mas surgiram problemas: a radiação de corpo negro contrariava as previsões clássicas, e o efeito fotoelétrico revelava comportamento corpuscular da luz. Essas anomalias levariam à teoria quântica (§4.8). Ainda assim, a visão ondulatória permanece central à óptica, ao rádio e à comunicação.
+
+---
+
+## 4.6 Surge a relatividade
+
+As equações de Maxwell traziam uma surpresa: previam a propagação de ondas eletromagnéticas à velocidade
+
+$$
+c = \frac{1}{\sqrt{\mu_0 \varepsilon_0}}
+$$ 
+
+uma constante universal determinada pelas propriedades do espaço livre. Diferentemente do som ou de ondas na água, a luz parecia dispensar um meio. Mas a física do século XIX pressupunha que toda onda precisava de um suporte, um **éter** que preenchesse o espaço. Essa tensão com a mecânica newtoniana preparou uma revolução conceitual.
+
+---
+
+### 4.6.1 O éter luminífero
+
+Os físicos do século XIX imaginavam a luz ondulando em um meio sutil, o **éter luminífero**. Ele teria de ser perfeitamente transparente, extremamente rígido para sustentar ondas transversais e, ainda assim, não resistir ao movimento dos planetas. Era uma substância paradoxal: necessária à visão ondulatória da época, mas indetectável.
+
+Se existisse éter, o movimento terrestre deveria produzir um “vento de éter”. Luz a favor ou contra ele teria velocidades diferentes, assim como o som viaja mais rápido a favor do vento. Detectar isso tornou-se um desafio experimental.
+
+---
+
+### 4.6.2 O experimento de Michelson–Morley
+
+Em 1887, **Albert Michelson** e **Edward Morley** realizaram o teste decisivo. Seu interferômetro dividia a luz em caminhos perpendiculares, refletia-a de volta e reunia os feixes. Se a Terra se movesse pelo éter, as franjas mudariam de posição com a rotação do aparelho.
+
+Resultado: nenhum deslocamento. A velocidade da luz parecia igual em todas as direções, independentemente do movimento terrestre. Repetições cada vez mais precisas continuaram sem detectar vento de éter. Esse se tornou um dos resultados nulos mais famosos da física.
+
+---
+
+### 4.6.3 Contração de Lorentz–FitzGerald
+
+Para salvar o éter, surgiram ajustes ad hoc. **George FitzGerald** (1889) e **Hendrik Lorentz** (1892) sugeriram que objetos se contraem na direção do movimento por um fator
+
+$$
+L = L_0 \sqrt{1 - \frac{v^2}{c^2}}.
+$$
+
+A contração de Lorentz–FitzGerald explicaria o resultado nulo: os braços do interferômetro encolheriam o suficiente para cancelar o efeito. Lorentz desenvolveu as **transformações de Lorentz**, mostrando como coordenadas espaciais e temporais devem mudar entre referenciais móveis para preservar a forma das equações de Maxwell.
+
+---
+
+### 4.6.4 A revolução de Einstein em 1905
+
+Em 1905, um funcionário de patentes de 26 anos, **Albert Einstein**, resolveu o debate do éter com simplicidade radical. Propôs dois postulados:
+
+1. **Princípio da relatividade.** As leis da física são as mesmas em todos os referenciais inerciais.
+2. **Constância da velocidade da luz.** A luz no vácuo viaja à velocidade $c$, independentemente do movimento da fonte ou do observador.
+
+Desses postulados, Einstein deduziu as transformações completas de Lorentz como a verdadeira estrutura do espaço e do tempo, em vez de um remendo para o éter.
+
+---
+
+### 4.6.5 Dilatação temporal e contração de comprimentos
+
+A relatividade de Einstein previu efeitos estranhos, mas testáveis:
+
+- **Dilatação temporal.** Um relógio em movimento marca o tempo mais lentamente:
+
+  $$
+  \Delta t = \gamma \Delta t_0, \qquad \gamma = \frac{1}{\sqrt{1-v^2/c^2}}.
+  $$
+
+- **Contração de comprimentos.** Uma haste em movimento encurta na direção do movimento:
+
+  $$
+  L = \frac{L_0}{\gamma}.
+  $$
+
+- **Relatividade da simultaneidade.** Eventos simultâneos em um referencial podem não ser simultâneos em outro.
+
+Esses efeitos, estranhos à intuição newtoniana, foram repetidamente confirmados por tempos de vida de partículas, satélites GPS e aceleradores.
+
+---
+
+### 4.6.6 Eletromagnetismo como semente da relatividade
+
+A relatividade não foi uma invenção abstrata: nasceu do eletromagnetismo. Maxwell previa uma velocidade universal da luz; experimentos não mostravam deriva de éter; transformações de Lorentz preservavam as equações. Einstein elevou essas ideias a princípios da natureza.
+
+Assim, o eletromagnetismo forçou o abandono de espaço e tempo absolutos, unindo-os no **espaço-tempo**.
+
+---
+
+### 4.6.7 Rumo à generalização
+
+A teoria de Einstein de 1905, hoje **relatividade especial**, se aplicava a referenciais inerciais. Uma década depois, ele a ampliou para referenciais acelerados e gravitação: a **relatividade geral**. Mas a semente de ambas era a eletrodinâmica de Maxwell.
+
+---
+
+## 4.7 Aplicações do eletromagnetismo
+
+O eletromagnetismo é mais que uma joia teórica: é base da civilização moderna. Da iluminação doméstica às telas em nossas mãos, de imagens médicas à comunicação interplanetária, ele alimenta e possibilita nosso mundo. O que começou com a bússola de Ørsted e as bobinas de Faraday hoje impulsiona a economia global.
+
+---
+
+### 4.7.1 Geração elétrica: do disco de Faraday à rede
+
+Em 1831, Faraday construiu um gerador simples: um disco de cobre girava entre polos de um ímã e produzia corrente contínua. O aparelho rudimentar continha o princípio essencial: **movimento mecânico em um campo magnético produz eletricidade**.
+
+Geradores modernos aperfeiçoam a ideia. Em usinas a carvão, nucleares, hidrelétricas e eólicas, turbinas produzem rotação relativa entre bobinas e campos magnéticos, induzindo corrente alternada (CA). Sistemas de transmissão usam **transformadores**, também baseados na indução de Faraday, para elevar tensões em longas distâncias e reduzi-las para distribuição segura.
+
+Conceito central: **corrente alternada e transformadores**. A CA oscila, permitindo indução entre bobinas estacionárias. Isso possibilita conversão eficiente de tensão e redes elétricas de grande escala. Transformadores são essenciais às redes convencionais de CA em grande escala; isso não exclui geração e transmissão em corrente contínua.
+
+---
+
+### 4.7.2 Motores elétricos
+
+O inverso do gerador é o motor: eletricidade produz movimento mecânico. Uma bobina percorrida por corrente em um campo magnético sofre torque. Esse princípio move de ventiladores domésticos a robôs industriais.
+
+- **Motores CC.** Comutadores simples invertem o sentido da corrente para manter o torque.
+- **Motores de indução CA.** Campos magnéticos girantes induzem correntes no rotor; são robustos e comuns na indústria.
+- **Motores síncronos.** O rotor fica sincronizado em fase com a frequência de alimentação, permitindo temporização precisa.
+
+Motores e geradores completam o ciclo energético moderno: energia mecânica vira elétrica e depois volta a mecânica.
+
+---
+
+### 4.7.3 Comunicação: do telégrafo ao Wi-Fi
+
+O eletromagnetismo permitiu vencer a distância.
+
+- **Telégrafo (década de 1830).** Pulsos de corrente em fios transmitiam mensagens codificadas.
+- **Telefone (1876).** Alexander Graham Bell usou correntes variáveis para reproduzir a fala.
+- **Rádio (década de 1890).** Marconi aproveitou as ondas de Hertz para telegrafia sem fio através dos oceanos.
+- **Espectro eletromagnético.** Hoje, rádio, micro-ondas e comunicação óptica transportam enormes volumes de dados. Fibras guiam luz por reflexão interna total; satélites retransmitem micro-ondas pelo globo.
+
+Princípio básico: **cargas aceleradas irradiam**. Antenas convertem correntes em ondas eletromagnéticas e vice-versa, transpondo o espaço.
+
+---
+
+### 4.7.4 Medicina: imagens e terapia
+
+O eletromagnetismo revolucionou a medicina, revelando o interior do corpo e suas funções.
+
+- **Raios X.** Descobertos por Wilhelm Röntgen em 1895, esses fótons energéticos revelam ossos e tecidos.
+- **Ressonância magnética.** Campos intensos alinham spins nucleares; ondas de rádio os perturbam; os sinais emitidos permitem reconstruir imagens anatômicas detalhadas.
+- **Eletrocardiograma (ECG).** Mede sinais elétricos do coração.
+- **Radioterapia.** Radiação eletromagnética de alta energia é direcionada a células cancerígenas.
+
+Essas técnicas exemplificam a dupla função diagnóstica e terapêutica do eletromagnetismo: forças invisíveis iluminam a vida.
+
+---
+
+### 4.7.5 Tecnologia cotidiana
+
+O eletromagnetismo permeia o cotidiano.
+
+- **Iluminação.** De lâmpadas incandescentes e fluorescentes a LEDs, todas dependem de correntes controladas e emissão eletromagnética.
+- **Computação.** Transistores chaveiam correntes em gigahertz; pulsos eletromagnéticos transportam informação pelos chips.
+- **Dispositivos sem fio.** Smartphones trocam micro-ondas com estações, integrando rádio, óptica e eletrônica.
+- **Transporte.** Alguns trens de alta velocidade usam levitação magnética; automóveis dependem de motores, sensores e sistemas de comunicação.
+
+Todo dispositivo moderno é, em sua essência, uma máquina eletromagnética.
+
+---
+
+### 4.7.6 Aplicações astrofísicas
+
+O eletromagnetismo também é a lente do astrônomo. Estrelas brilham por radiação eletromagnética; nuvens interestelares emitem rádio; pulsares projetam sinais como faróis pelo cosmos. Telescópios do rádio aos raios gama mapeiam o universo.
+
+Campos magnéticos moldam galáxias, impulsionam jatos próximos a buracos negros e aprisionam plasma em magnetosferas planetárias. Sem eletromagnetismo, o universo seria escuro e silencioso.
+
+---
+
+### 4.7.7 Princípios de engenharia: exergia e eficiência
+
+Aplicações de engenharia dependem da eficiência. A termodinâmica (§3) estabelece limites; o eletromagnetismo os implementa.
+
+- **Eficiência de transmissão.** Perdas ôhmicas $I^2 R$ motivam linhas de alta tensão.
+- **Eletrônica.** Minimizar o consumo exige reduzir resistência, capacitância e perdas indutivas.
+- **Compatibilidade eletromagnética.** Dispositivos devem operar sem interferências, exigindo blindagem e normas.
+
+Assim, o eletromagnetismo aplicado não apenas gera campos: administra-os para melhorar o desempenho.
+
+---
+
+### 4.7.8 Eletromagnetismo e a era digital
+
+A revolução digital é eletromagnética em sua essência. Informação é armazenada como cargas, transmitida como pulsos eletromagnéticos e exibida como luz. Fibras transportam bits como fótons; Wi-Fi, como micro-ondas; chips os processam como fluxos de elétrons. A teoria da informação de Claude Shannon, formulada em termos de entropia, se articula com a engenharia eletromagnética.
+
+A internet é, assim, um organismo eletromagnético: elétrons em fios, fótons no vidro e ondas no ar, todos governados por Maxwell.
+
+---
+
+### 4.7.9 Reflexão filosófica
+
+Faraday não poderia prever redes globais e smartphones ao descobrir a indução. Mesmo assim, seu princípio de que fluxo magnético variável produz corrente sustenta todos eles. A transformação da civilização é, nesse sentido, um triunfo da física abstrata. Eletricidade e magnetismo, antes curiosidades, tornaram-se motores da modernidade.
+ 
+As aplicações abrangem energia, movimento, comunicação, medicina e computação. Geradores iluminam cidades, motores movem máquinas, antenas conectam continentes, raios X revelam corpos e transistores calculam. Dos sinais cósmicos às redes digitais, o eletromagnetismo é a infraestrutura da vida moderna. As equações de Maxwell também são um manual de funcionamento da civilização.
+
+---
+
+## 4.8 Indícios quânticos e teoria de campos
+
+No fim do século XIX, o eletromagnetismo parecia completo: Maxwell unificara luz, eletricidade e magnetismo; Hertz demonstrara ondas de rádio; motores, geradores e telégrafos prosperavam. Parecia restar à física apenas preencher detalhes. Mas o próprio sucesso revelou fenômenos que a teoria clássica não explicava. Essas anomalias abririam caminho à mecânica quântica e à teoria quântica do campo eletromagnético: a **eletrodinâmica quântica (QED)**.
+
+---
+
+### 4.8.1 Radiação de corpo negro e o quantum de Planck
+
+Um **corpo negro** é um objeto ideal que absorve toda radiação e reemite energia com um espectro dependente apenas da temperatura. Eletromagnetismo clássico e mecânica estatística previam a **lei de Rayleigh–Jeans**:
+
+$$
+u(\nu, T) \propto \nu^2 k_B T,
+$$
+
+Ela diverge em altas frequências, absurdo chamado **catástrofe ultravioleta**. Experimentos, porém, mostravam um máximo seguido de decaimento.
+
+Em 1900, **Max Planck** resolveu o paradoxo propondo que osciladores eletromagnéticos trocam energia em quanta discretos:
+
+$$
+E = n h \nu.
+$$
+
+Essa hipótese radical produziu a distribuição correta:
+
+$$
+u(\nu, T) = \frac{8\pi h \nu^3}{c^3} \frac{1}{e^{h\nu/k_B T} - 1}.
+$$
+
+Planck introduzira a constante $h$, inaugurando a era quântica.
+
+---
+
+### 4.8.2 Einstein e o fóton: o efeito fotoelétrico
+
+Em 1905, **Albert Einstein** explicou o **efeito fotoelétrico**, a emissão de elétrons de um metal iluminado. A teoria clássica previa que a intensidade controlaria a energia dos elétrons e que qualquer frequência causaria emissão após tempo suficiente. Os experimentos mostravam o contrário:
+
+- Não há emissão abaixo de uma frequência limiar.
+- Acima dela, energias dos elétrons dependem da frequência, não da intensidade.
+- A intensidade afeta a quantidade de elétrons, não sua energia máxima.
+
+Einstein propôs que a luz consiste em quanta, **fótons**, cada um com energia $E = h\nu$. Um elétron absorve um fóton; se $h\nu$ supera a função trabalho $W$, ele escapa com energia cinética
+
+$$
+K_{\text{max}} = h\nu - W.
+$$
+
+Esse comportamento corpuscular da luz surpreendeu os físicos e rendeu a Einstein o Nobel de 1921.
+
+---
+
+### 4.8.3 Espalhamento Compton e dualidade onda-partícula
+
+Em 1923, **Arthur Compton** observou raios X espalhados por elétrons com mudança de frequência, correspondente à mudança de comprimento de onda
+
+$$
+\Delta \lambda = \frac{h}{m_e c}(1 - \cos \theta).
+$$
+
+O resultado concordava com conservação de energia e momento se os fótons fossem partículas de momento $p = h/\lambda$. A luz exibia inegavelmente propriedades ondulatórias e corpusculares. Os campos contínuos de Maxwell precisavam de uma atualização quântica.
+
+---
+
+### 4.8.4 O nascimento da eletrodinâmica quântica
+
+Nas décadas de 1920 e 1930, a mecânica quântica amadureceu, mas conciliá-la com o eletromagnetismo exigiu a **teoria quântica de campos**. O campo eletromagnético foi quantizado, e suas excitações identificadas como fótons. Partículas carregadas interagem trocando fótons virtuais ou reais.
+
+<figure className="study-figure" data-study-figure="qed-muon-annihilation">
+<img src="/images/diagrams/qed-muon-annihilation.svg" alt="Um elétron e um pósitron se aniquilam por meio de um fóton virtual em um múon e um antimúon; as setas indicam o fluxo fermiônico." loading="lazy" width="900" height="480" />
+<figcaption>
+
+Este diagrama de árvore da QED, apenas com troca de fóton, representa uma contribuição à amplitude de espalhamento, não trajetórias medidas. As setas indicam o fluxo fermiônico; os momentos das antipartículas apontam no sentido oposto. A troca do bóson Z é omitida. Usam-se unidades naturais $\hbar=c=1$.
+
+- Quadrimomentos de entrada, à esquerda: p₁ do elétron e p₂ do pósitron.
+- Quadrimomentos de saída, à direita: k₁ do múon e k₂ do antimúon.
+- A linha ondulada interna é um fóton fora da camada de massa: $q=p_1+p_2=k_1+k_2$ e $s=q^2$.
+
+[Abrir a figura em tamanho completo](/images/diagrams/qed-muon-annihilation.svg)
+
+</figcaption>
+</figure>
+
+Na década de 1940, **Richard Feynman, Julian Schwinger e Sin-Itiro Tomonaga** aperfeiçoaram a QED com técnicas de renormalização para tratar infinitos. Diagramas de Feynman representaram intuitivamente interações elétron-fóton por linhas e vértices. A QED tornou-se a teoria científica mais precisa, prevendo grandezas como o momento magnético do elétron até doze casas decimais.
+
+
+> **Nota.** Em um diagrama de Feynman:
+> - **Linhas retas com setas** representam férmions, como elétrons ou pósitrons.
+>   - Seta para a frente no tempo: elétron.
+>   - Seta para trás no tempo: pósitron.
+> - **Linhas onduladas** representam fótons ou, mais geralmente, bósons de calibre.
+> - **Vértices** são pontos de interação onde as linhas se encontram.
+>   - Na QED, cada vértice corresponde a um fator $-ie\gamma^{\mu}$, representando o acoplamento elétron-fóton.
+
+---
+
+### 4.8.5 Mudanças conceituais
+
+Os indícios quânticos exigiram mudanças profundas:
+
+- **Quantização da energia.** A luz não é infinitamente divisível: vem em fótons discretos.
+- **Dualidade onda-partícula.** A luz apresenta interferência como onda e espalhamento como partícula.
+- **Flutuações do vácuo.** Mesmo o espaço vazio apresenta fótons virtuais, cuja descrição captura efeitos mensuráveis como a força de Casimir e o deslocamento de Lamb.
+
+Assim, o eletromagnetismo se tornou o primeiro campo de testes da teoria quântica de campos e o protótipo das teorias de calibre posteriores.
+
+---
+
+### 4.8.6 Aplicações e impacto moderno
+
+O eletromagnetismo quântico sustenta tecnologias tanto quanto o clássico:
+
+- **Lasers.** Emissão estimulada de fótons cria luz coerente, revolucionando comunicação e medicina.
+- **Semicondutores.** A teoria de bandas, no quadro da eletrodinâmica quântica, fundamenta a eletrônica.
+- **Óptica quântica.** Manipular fótons individuais permite criptografia e informação quântica.
+- **Física de altas energias.** A QED fornece o modelo para as interações eletrofraca e forte do Modelo Padrão.
+
+---
+
+## 4.9 Conclusão: a unidade da natureza
+
+O eletromagnetismo começou com curiosidades dispersas: âmbar atraindo palha, pedras-ímã girando agulhas, raios partindo árvores, luz ofuscando olhos. No século XIX, esses fios formaram uma única trama. A história não trata apenas de equações, mas da unidade de eletricidade e magnetismo, luz e radiação, ciência e tecnologia, teoria e aplicação.
+
+---
+
+### 4.9.1 De Ørsted a Maxwell
+
+- Ørsted revelou que correntes desviam bússolas, ligando eletricidade e magnetismo.
+- Ampère quantificou forças entre correntes.
+- Faraday descobriu a indução por fluxo magnético variável e introduziu a visão dos campos.
+- Maxwell coroou a síntese com quatro equações que descrevem eletricidade, magnetismo e luz como manifestações de um campo.
+
+Cada etapa foi experimental e conceitual. O que começou com faíscas e bússolas terminou em equações capazes de prever a estrutura do espectro eletromagnético e a própria velocidade da luz.
+
+---
+
+### 4.9.2 O conceito de campo
+
+Antes do eletromagnetismo, a física assumia ação instantânea à distância. As linhas de força de Faraday, matematizadas por Maxwell, mudaram essa visão. O campo se tornou uma entidade física que preenche o espaço e evolui por leis locais. O conceito repercutiu em toda a física:
+
+- A relatividade geral de Einstein trata a gravidade como curvatura dos campos do espaço-tempo.
+- A teoria quântica de campos descreve partículas como excitações de campos subjacentes.
+
+A ideia de campo, nascida no eletromagnetismo, tornou-se a ontologia central da física moderna.
+
+---
+
+### 4.9.3 Espectro eletromagnético e tecnologia
+
+Da previsão de Maxwell vieram a verificação de Hertz, o rádio de Marconi, lasers, fibras ópticas, Wi-Fi, ressonância magnética e smartphones. Todo o espectro, do rádio aos raios gama, é usado em comunicação, medicina, indústria e exploração. A civilização é, de fato, um empreendimento eletromagnético.
+
+Redes elétricas distribuem energia por indução e transformadores. Motores e geradores incorporam Faraday. Semicondutores e transistores, guiados pela eletrodinâmica quântica, operam o mundo digital. De aparelhos domésticos a telescópios espaciais, o eletromagnetismo é a base da tecnologia.
+
+---
+
+### 4.9.4 Impacto filosófico e científico
+
+O eletromagnetismo redefiniu as fronteiras da física:
+
+- Demonstrou que forças aparentemente distintas são aspectos de uma realidade.
+- Estabeleceu o campo como entidade física real.
+- Levou diretamente à relatividade, pois Maxwell implicava uma velocidade universal da luz.
+- Preparou a teoria quântica por anomalias como radiação de corpo negro e efeito fotoelétrico.
+
+Assim, ele conecta física clássica e moderna, articulando mecânica, relatividade e teoria quântica.
+
+---
+
+### 4.9.5 Unidade como princípio orientador
+
+O sucesso inspirou unificações mais profundas. A teoria eletrofraca unificou eletromagnetismo e força nuclear fraca; teorias de grande unificação buscam incorporar a força forte; a esperança final inclui a gravidade. Cada etapa segue Maxwell: unidade escondida na diversidade, revelada por experimento e matemática.
+
+---
+
+### 4.9.6 A dimensão humana
+
+Essa também é uma história de pessoas: Faraday, o encadernador pobre que se tornou gênio experimental; Maxwell, o matemático escocês que viu campos em equações; Hertz, que tornou ondas visíveis; engenheiros e inventores que transformaram princípios em redes e rádios. Imaginação, curiosidade e persistência remodelam ciência e sociedade.
+  
+O eletromagnetismo unificou eletricidade, magnetismo e luz, transformou a física com o conceito de campo e revolucionou a tecnologia com motores, geradores e comunicação. Ligou a física clássica à moderna e preparou a relatividade e a teoria quântica. A unidade descoberta em faíscas e ímãs tornou-se fundamento da civilização. Seu legado está nas equações, mas também no brilho das lâmpadas, no zumbido das máquinas, nos sinais de galáxias distantes e nos fótons que nos permitem ler estas palavras.
+
+---

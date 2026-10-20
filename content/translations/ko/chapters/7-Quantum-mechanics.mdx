@@ -1,0 +1,1825 @@
+---
+title: "양자역학"
+description: "상태와 관측량의 공리부터 슈뢰딩거 방정식, 조화 진동자, 각운동량, 수소 원자와 섭동론까지 양자역학의 원리와 계산을 익힙니다."
+---
+
+## 7.1 기초와 공리
+
+양자역학은 공리를 쓰기 전까지만 막연하게 느껴진다. 공리를 쓰면 명확한 입력과 출력을 가진 기계가 된다. 이 장에서 사용할 간결한 규칙을 정리하자. 능숙하게 계산할 만큼의 디랙 표기법과 구체성을 유지할 만큼의 좌표 공식을 함께 사용한다.
+
+---
+
+### 7.1.1 상태 공간과 디랙 표기법의 기초
+
+**닫힌 양자계**는 복소 힐베르트 공간 $\mathcal H$에 놓인다. 순수 상태는 단위 벡터, 즉 켓 $\ket{\psi}\in\mathcal H$이다. 전체 위상은 물리적 의미가 없다. $\ket{\psi}$와 $e^{i\phi}\ket{\psi}$는 같은 물리적 상태를 나타낸다. 쌍대 벡터 $\bra{\psi}$는 복소 켤레 전치인 **브라**이다. 내적은 $\braket{\phi}{\psi}$이다.
+
+정규직교 기저 $\{\ket{n}\}$는 항등 연산자를 다음과 같이 분해한다.
+
+$$
+\mathbb I = \sum_n \ket{n}\bra{n}
+$$
+
+위치처럼 연속적인 기저에서는 합이 적분이 되고 크로네커 델타가 디랙 델타가 된다.
+
+$$
+\int \ket{x}\bra{x}\,dx = \mathbb I,\qquad \braket{x}{x'}=\delta(x-x')
+$$
+
+위치 공간의 파동함수는 $\psi(x)=\braket{x}{\psi}$이며 정규화 조건은
+
+$$
+\int |\psi(x)|^{2}\,dx = 1
+$$
+
+운동량 공간의 진폭은 푸리에 변환으로 연결된다.
+
+$$
+\tilde\psi(p)=\braket{p}{\psi}=\frac{1}{\sqrt{2\pi\hbar}}\int e^{-ipx/\hbar}\,\psi(x)\,dx
+$$
+
+켤레 변환으로 역변환한다.
+
+---
+
+### 7.1.2 관측량과 스펙트럼
+
+모든 관측량 $A$는 자기 수반, 즉 에르미트 연산자 $\hat A$로서 $\mathcal H$에 작용한다. 측정 결과는 고윳값이며, 측정 후 상태는 해당 고유벡터이다. 축퇴가 있으면 이를 고려해야 한다. 스펙트럼 분해는
+
+$$
+\hat A = \sum_a a\,\Pi_a
+$$
+
+이며 $\Pi_a$는 고유공간으로의 직교 사영 연산자이다. 연속 스펙트럼에서는 합을 적분 $A=\int a\,d\Pi(a)$로 바꾼다.
+
+상태 $\ket{\psi}$에서의 기댓값은
+
+$$
+\langle A \rangle_\psi = \bra{\psi}\,\hat A\,\ket{\psi}
+$$
+
+분산 $(\Delta A)^2=\langle A^2\rangle-\langle A\rangle^2$는 퍼짐을 정량화한다. 교환하지 않는 관측량들은 동시에 확정될 수 없으며, 일반적인 부등식은
+
+$$
+\Delta A\,\Delta B \ge \frac{1}{2}\,\big|\langle[\hat A,\hat B]\rangle\big|
+$$
+
+위치와 운동량은 **정준 교환 관계(CCR)**를 만족한다.
+
+$$
+[\hat x,\hat p] = i\hbar
+$$
+
+따라서 $\Delta x\,\Delta p\ge \hbar/2$이다.
+
+$x$ 표현에서는
+
+$$
+\hat x\,\psi(x)=x\,\psi(x),\qquad \hat p\,\psi(x) = -\,i\hbar\,\frac{d\psi}{dx}
+$$
+
+이므로 정준 교환 관계는 익숙한 미분 항등식이 된다.
+
+---
+
+### 7.1.3 측정 공리: 사영 측정
+
+$A$를 상태 $\ket{\psi}$에서 측정할 때 고윳값 $a$를 얻을 확률은
+
+$$
+P(a) = \bra{\psi}\,\Pi_a\,\ket{\psi}
+$$
+
+이며 **붕괴한** 측정 후 상태는
+
+$$
+\frac{\Pi_a\ket{\psi}}{\sqrt{P(a)}}
+$$
+
+축퇴된 $a$에 대해 $\Pi_a$는 전체 고유공간으로 사영한다. 더 일반적인 측정인 POVM은 사영 측정을 넘어선다. 이 장의 대부분에서는 사영 측정으로 충분하다.
+
+---
+
+### 7.1.4 시간 발전: 유니터리 동역학
+
+닫힌 계는 **유니터리하게** 시간 발전한다. 시간에 무관한 해밀토니안에는 강연속인 단일 매개변수 유니터리 군 $U(t)$가 존재하며
+
+$$
+\ket{\psi(t)} = U(t)\,\ket{\psi(0)},\qquad U(t_1)U(t_2)=U(t_1+t_2),\quad U(0)=\mathbb I
+$$
+
+스톤 정리에 따르면 $U(t)=\exp\!\left(-\tfrac{i}{\hbar}\hat H t\right)$이고, 여기서 $\hat H$는 자기 수반 **해밀토니안**이다. 미분하면 **시간 의존 슈뢰딩거 방정식**을 얻는다.
+
+$$
+i\hbar\,\frac{d}{dt}\ket{\psi(t)}=\hat H\,\ket{\psi(t)}
+$$
+
+$x$ 표현에서 표준적인 운동 에너지와 퍼텐셜의 합인 해밀토니안을 사용하면
+
+$$
+i\hbar\,\frac{\partial \psi(x,t)}{\partial t}
+= \left[-\,\frac{\hbar^{2}}{2m}\,\frac{\partial^{2}}{\partial x^{2}} + V(x,t)\right]\psi(x,t)
+$$
+
+$H$가 시간에 무관하면 **정상 상태**는 다음을 푼다.
+
+$$
+\hat H\,\ket{n}=E_n\ket{n}
+$$
+
+시간에 따라 위상 $\ket{n(t)}=e^{-iE_n t/\hbar}\ket{n}$만 변한다. 일반해는 $\ket{\psi(t)}=\sum_n c_n e^{-iE_n t/\hbar}\ket{n}$로 전개한다.
+
+---
+
+### 7.1.5 복합계와 얽힘
+
+부분계 $A$와 $B$의 상태는 **텐서곱** $\mathcal H_A\otimes\mathcal H_B$에 놓인다. $\ket{\psi_A}$와 $\ket{\psi_B}$가 상태이면 곱상태는 $\ket{\psi_A}\otimes\ket{\psi_B}$이다. 하지만 일반적인 상태는 **얽혀 있다**. 예를 들어
+
+$$
+\ket{\Psi} = \frac{1}{\sqrt2}\left(\ket{0}_A\ket{1}_B + \ket{1}_A\ket{0}_B\right)
+$$
+
+는 곱으로 분해할 수 없다. 관측량은 $A\otimes \mathbb I$ 또는 $\mathbb I\otimes B$처럼 작용한다. 부분적인 정보는 아래에서 다룰 **축약 밀도 연산자**로 표현한다.
+
+---
+
+### 7.1.6 밀도 연산자: 혼합 상태의 간단한 소개
+
+모든 상태가 순수하지는 않다. 정보 부족이나 결어긋남은 양의 준정부호이고 대각합이 1인 연산자 $\rho$로 표현되는 **혼합 상태**를 만들며 기댓값은
+
+$$
+\langle A\rangle = \mathrm{Tr}(\rho\,\hat A)
+$$
+
+순수 상태는 사영 연산자 $\rho=\ket{\psi}\bra{\psi}$이고 $\rho^{2}=\rho$를 만족한다. 복합계 $\rho_{AB}$에서 $A$만의 상태는 **부분 대각합**이다.
+
+$$
+\rho_A = \mathrm{Tr}_B\,\rho_{AB}
+$$
+
+유니터리 시간 발전은 $\rho(t)=U(t)\rho(0)U^\dagger(t)$이다. 사영 측정 후의 갱신은 $\rho\mapsto \Pi_a\rho\,\Pi_a/\mathrm{Tr}(\Pi_a\rho)$이며 측정 결과 $a$를 조건으로 한다.
+
+---
+
+### 7.1.7 확률 흐름과 연속성
+
+$\psi(x,t)$가 정규화되어 있을 때 **확률 밀도** $\rho(x,t)=|\psi(x,t)|^{2}$와 **확률 흐름**을 정의한다.
+
+$$
+j(x,t)=\frac{\hbar}{2mi}\left[\psi^{\ast}\frac{\partial \psi}{\partial x}-\left(\frac{\partial \psi^{\ast}}{\partial x}\right)\psi\right]
+$$
+
+이들은 **연속 방정식**을 따른다.
+
+$$
+\frac{\partial \rho}{\partial t} + \frac{\partial j}{\partial x} = 0
+$$
+
+따라서 총확률이 보존된다. 3차원에서는 미분을 기울기와 발산으로 바꾼다.
+
+---
+
+## 증명
+
+이득이나 손실이 없는 **실수** 퍼텐셜 $V(x,t)$를 가정한다. 다음을 정의하자.
+
+$$
+\rho(x,t)=|\psi(x,t)|^{2}=\psi^{\ast}(x,t)\,\psi(x,t),\qquad
+j(x,t)=\frac{\hbar}{2mi}\Big[\psi^{\ast}\partial_x\psi-(\partial_x\psi^{\ast})\psi\Big].
+$$
+
+시간 의존 슈뢰딩거 방정식과 그 복소 켤레는
+
+$$
+i\hbar\,\partial_t\psi
+=-\frac{\hbar^{2}}{2m}\,\partial_x^{2}\psi+V\psi,
+\qquad
+-\,i\hbar\,\partial_t\psi^{\ast}
+=-\frac{\hbar^{2}}{2m}\,\partial_x^{2}\psi^{\ast}+V\psi^{\ast}.
+$$
+
+## 1단계: $\rho$를 시간에 대해 미분하기
+
+$$
+\partial_t\rho=\partial_t(\psi^{\ast}\psi)
+=(\partial_t\psi^{\ast})\psi+\psi^{\ast}(\partial_t\psi).
+$$
+
+방정식을 사용하여 $\partial_t\psi$와 $\partial_t\psi^{\ast}$를 대입한다.
+
+$$
+\partial_t\psi=\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi+V\psi\right),
+\qquad
+\partial_t\psi^{\ast}=-\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi^{\ast}+V\psi^{\ast}\right).
+$$
+
+따라서
+
+$$
+\begin{aligned}
+\partial_t\rho
+&=\left[-\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi^{\ast}+V\psi^{\ast}\right)\right]\psi
++\psi^{\ast}\left[\frac{1}{i\hbar}\!\left(-\frac{\hbar^{2}}{2m}\partial_x^{2}\psi+V\psi\right)\right] \\
+&=\frac{1}{i\hbar}\left[
+-\frac{\hbar^{2}}{2m}\big(\psi^{\ast}\partial_x^{2}\psi-\psi\,\partial_x^{2}\psi^{\ast}\big)
++\cancel{V\psi^{\ast}\psi}-\cancel{V\psi^{\ast}\psi}
+\right].
+\end{aligned}
+$$
+
+퍼텐셜 항이 소거되므로
+
+$$
+\partial_t\rho
+=-\,\frac{\hbar}{2mi}\Big(\psi^{\ast}\partial_x^{2}\psi-\psi\,\partial_x^{2}\psi^{\ast}\Big).
+$$
+
+## 2단계: 발산 형태로 다시 쓰기
+
+곱의 미분법에 따른 항등식을 사용한다.
+
+$$
+\partial_x\big(\psi^{\ast}\partial_x\psi\big)
+=(\partial_x\psi^{\ast})(\partial_x\psi)+\psi^{\ast}\partial_x^{2}\psi,
+$$
+
+$$
+\partial_x\big(\psi\,\partial_x\psi^{\ast}\big)
+=(\partial_x\psi)(\partial_x\psi^{\ast})+\psi\,\partial_x^{2}\psi^{\ast}.
+$$
+
+빼면
+
+$$
+\partial_x\big(\psi^{\ast}\partial_x\psi-\psi\,\partial_x\psi^{\ast}\big)
+=\psi^{\ast}\partial_x^{2}\psi-\psi\,\partial_x^{2}\psi^{\ast}.
+$$
+
+따라서
+
+$$
+\partial_t\rho
+=-\,\frac{\hbar}{2mi}\,\partial_x\!\left(\psi^{\ast}\partial_x\psi-\psi\,\partial_x\psi^{\ast}\right)
+=-\,\partial_x\!\left[\frac{\hbar}{2mi}\Big(\psi^{\ast}\partial_x\psi-(\partial_x\psi^{\ast})\psi\Big)\right].
+$$
+
+괄호 안이 $j(x,t)$임을 알아보면
+
+$$
+\boxed{\;\partial_t\rho+\partial_x j=0\;}
+$$
+
+이것이 확률 보존을 보장하는 **연속 방정식**이다.
+
+## 참고
+
+- 경계 조건 $j\to 0$를 $\pm\infty$에서 적용하면
+
+$$
+\frac{d}{dt}\int_{-\infty}^{\infty}\rho(x,t)\,dx=0,
+$$
+
+이므로 총확률은 1로 유지된다.
+
+- $d$차원에서는
+
+$$
+\mathbf j(\boldsymbol r,t)=\frac{\hbar}{2mi}\big(\psi^{\ast}\nabla\psi-(\nabla\psi^{\ast})\psi\big),\qquad
+\partial_t\rho+\nabla\!\cdot\boldsymbol j=0.
+$$
+
+- $V$가 복소수이면, 즉 흡수하거나 증폭하는 매질이면 연속 방정식에 생성 또는 소멸 항이 추가된다.
+
+
+---
+
+### 7.1.8 에렌페스트 정리: 고전적 극한이 드러나다
+
+파동 묶음이 좁으면 양자적 기댓값은 거의 고전적으로 시간 발전한다.
+
+$$
+\frac{d}{dt}\langle \hat x \rangle = \frac{\langle \hat p \rangle}{m},\qquad
+\frac{d}{dt}\langle \hat p \rangle = -\,\left\langle \frac{\partial V}{\partial x} \right\rangle
+$$
+
+$V(x)$가 파동 묶음의 폭에 걸쳐 매끄러우면 $\langle \partial V/\partial x\rangle \approx \partial V(\langle x\rangle)/\partial x$이고 중심은 뉴턴의 법칙을 따른다. 대응 원리를 미분 형태로 표현한 것이다.
+
+---
+
+### 7.1.9 정상 상태, 마디, 직교성
+
+시간에 무관한 $V$에서 고유함수 $\phi_n(x)$는 다음을 푼다.
+
+$$
+\left[-\,\frac{\hbar^{2}}{2m}\frac{d^{2}}{dx^{2}} + V(x)\right]\phi_n(x) = E_n\,\phi_n(x)
+$$
+
+서로 다른 고윳값에 해당하는 상태는 직교한다.
+
+$$
+\int \phi_m^{\ast}(x)\,\phi_n(x)\,dx=0\quad (m\ne n)
+$$
+
+실수인 구속 퍼텐셜은 이산 스펙트럼을 만들며, $n$가 증가하면 마디 수가 늘어난다. 결합 상태와 산란 상태의 예는 §7.2.6–7.2.7에서 살펴본다.
+
+---
+
+### 7.1.10 대칭성과 보존량
+
+유니터리 연산자 $U$가 해밀토니안을 불변으로 유지하여 $U^\dagger \hat H U=\hat H$이면, 뇌터 정리와 같은 방식으로 보존되는 생성자 $G$가 존재한다. 무한소 유니터리 변환 $U=\exp(-i\epsilon G/\hbar)$는 다음을 뜻한다.
+
+$$
+\frac{d}{dt}\langle G\rangle = \frac{i}{\hbar}\langle [\hat H,G]\rangle
+$$
+
+따라서 $[H,G]=0 \Rightarrow \langle G\rangle$는 일정하다. 병진 불변성은 $p$를, 회전 불변성은 $\boldsymbol L$를 보존한다. 시간 불변성, 즉 명시적인 $t$ 의존성이 $H$에 없다는 조건은 에너지를 보존한다.
+
+---
+
+### 7.1.11 간단한 사전: 묘사와 연산자
+
+- **슈뢰딩거 묘사**: 상태가 시간 발전하고 연산자는 명시적인 시간 의존성이 없는 한 고정되어 있다.  
+- **하이젠베르크 묘사**: 연산자가 시간 의존성을 가지며 상태는 고정된다. 운동 방정식은
+
+$$
+\frac{d\hat A_H}{dt} = \frac{i}{\hbar}\,[\hat H,\hat A_H] + \left(\frac{\partial \hat A}{\partial t}\right)_H
+$$
+
+두 묘사는 유니터리하게 동등하다. 대수를 간단하게 만드는 쪽을 선택하면 된다.
+
+---
+
+### 7.1.12 간단한 풀이 예제
+
+**(a) 최소 불확정성 가우스 상태**
+
+다음을 택하자.
+
+$$
+\psi(x) = \left(\frac{1}{\pi d^{2}}\right)^{1/4}\exp\!\left(-\frac{x^{2}}{2d^{2}}\right)
+$$
+
+그러면 $\Delta x=d/\sqrt{2}$와 $\Delta p=\hbar/(\sqrt{2}d)$이며 따라서 $\Delta x\,\Delta p=\hbar/2$이다. 자유 해밀토니안 아래에서 시간 발전하면 $d(t)$는 넓어지고 운동량 퍼짐은 일정하게 유지되므로, 위치–운동량 표준편차의 곱은 초기 시각에서 멀어질수록 증가한다.
+
+**(b) 1차원 자유 입자 전파 함수의 형태**
+
+커널 $K(x,t;x',0)$는 $i\hbar\partial_t\psi=-(\hbar^2/2m)\partial_x^2\psi$를 초기 조건 $\psi(x,0)=\psi_0(x)$와 함께 푸는 것으로
+
+$$
+K(x,t;x',0)=\sqrt{\frac{m}{2\pi i\hbar t}}\;\exp\!\left(\frac{i m (x-x')^{2}}{2\hbar t}\right)
+$$
+
+이며 $\psi(x,t)=\int K(x,t;x',0)\,\psi_0(x')\,dx'$이다. 이 커널은 어떤 초기 자유 입자 파동 묶음도 시간 발전시킨다.
+
+**(c) 교환자 대수 준비 운동**
+
+$[\hat x,\hat p]=i\hbar$일 때 다음을 보여라.
+
+$$
+[\hat x,\hat p^{2}] = 2i\hbar\,\hat p
+$$
+
+$[\hat x,AB]=A[\hat x,B]+[\hat x,A]B$를 사용한다. 이 항등식은 뒤에서 여러 계산을 빠르게 해 준다.
+
+---
+
+### 7.1.13 작업 기억에 담아 둘 내용
+
+- 상태는 힐베르트 공간에 놓이며 전체 위상은 물리적 의미가 없다.  
+- 관측량은 에르미트 연산자이고 결과는 고윳값이며 기댓값은 $\langle A\rangle=\bra{\psi}A\ket{\psi}$이다.  
+- 측정은 사영 연산자로 표현되는 확률적 과정이며, 측정 후 상태는 사영하고 다시 정규화한다.  
+- 닫힌 계는 $U(t)=e^{-iHt/\hbar}$에 따라 유니터리하게 시간 발전한다. 슈뢰딩거와 하이젠베르크 묘사는 서로 다른 표현 방식이다.  
+- 정준 교환 관계 $[\hat x,\hat p]=i\hbar$ $\Rightarrow$ 불확정성 및 $x$와 $p$의 푸리에 쌍대성  
+- 복합계는 텐서곱 공간에 놓이며 얽힘은 예외가 아니라 일반적인 경우이다.  
+- 혼합 상태에는 밀도 연산자가 필요하며 부분 대각합은 부분계를 설명한다.
+
+---
+
+## 7.2 슈뢰딩거 방정식: 파동, 확률, 정상 상태
+
+양자역학은 동역학을 선형적인 파동의 시간 발전으로 바꾼다. 중심 대상은 **파동함수** $\psi(\mathbf r,t)$이다. 그 절댓값 제곱은 확률 밀도를 주고 위상은 간섭과 흐름을 결정한다. 이를 움직이는 엔진은 **슈뢰딩거 방정식**이다. 이 절에서는 방정식, 보존 법칙, 정상 상태로의 분리, 에너지를 양자화하는 경계 조건을 살펴본다.
+
+---
+
+### 7.2.1 시간 의존 슈뢰딩거 방정식과 정규화
+
+질량 $m$인 입자가 퍼텐셜 $V(\mathbf r,t)$에 있을 때
+
+$$
+i\hbar\,\frac{\partial \psi(\mathbf r,t)}{\partial t}
+= \left[-\,\frac{\hbar^2}{2m}\,\nabla^2 + V(\mathbf r,t)\right]\psi(\mathbf r,t)
+$$
+
+확률적 해석은 **총확률이 1인 정규화**를 요구한다.
+
+$$
+\int_{\mathbb R^3} |\psi(\mathbf r,t)|^2\,d^3r = 1
+$$
+
+차원을 확인하자. 3차원에서 $|\psi|^2$는 확률 **밀도**이므로 $[\psi]=\text{길이}^{-3/2}$이다.
+
+---
+
+### 7.2.2 연속 방정식과 확률 흐름
+
+슈뢰딩거 방정식은 국소적인 확률 보존을 뜻한다. **확률 흐름**을 정의하자.
+
+$$
+\boldsymbol j(\boldsymbol r,t) = \frac{\hbar}{2mi}\left[\psi^{\ast}\,\nabla\psi - \psi\,\nabla\psi^{\ast}\right]
+$$
+
+그러면
+
+$$
+\frac{\partial}{\partial t}|\psi|^{2} + \nabla\cdot \boldsymbol j = 0
+$$
+
+최소 결합 $\hat{\boldsymbol p}\to \hat{\boldsymbol p}-q\boldsymbol A$와 $V\to V+q\phi$로 전자기장을 포함하면 흐름은
+
+$$
+\boldsymbol j = \frac{\hbar}{2mi}\left[\psi^{\ast}\,\nabla\psi - \psi\,\nabla\psi^{\ast}\right] - \frac{q}{m}\,\boldsymbol A\,|\psi|^{2}
+$$
+
+이 되어 게이지 공변인 흐름을 보여 준다.
+
+---
+
+### 7.2.3 관측량과 기댓값
+
+고전적인 양을 $\psi$에 작용하는 **연산자**로 승격한다.
+
+$$
+\hat{\boldsymbol x}=\boldsymbol r,\qquad \hat{\boldsymbol p}=-\,i\hbar\,\nabla
+$$
+
+관측량 $\hat A$의 기댓값은
+
+$$
+\langle A \rangle(t) = \int \psi^{\ast}(\boldsymbol r,t)\,\hat A\,\psi(\boldsymbol r,t)\,d^{3}r
+$$
+
+물리적 관측량은 자기 수반 연산자에 대응하여 $\langle A\rangle$가 실수이고 스펙트럼 정리를 적용할 수 있다. 정준 교환 관계
+
+$$
+[\hat x_i,\hat p_j]=i\hbar\,\delta_{ij}
+$$
+
+는 불확정성 한계 $\Delta x\,\Delta p \ge \hbar/2$를 뜻한다.
+
+---
+
+### 7.2.4 정상 상태와 시간 비의존 방정식
+
+$V(\boldsymbol r)$가 시간에 무관하면 분리 가능한 해를 찾는다.
+
+$$
+\psi(\boldsymbol r,t) = \phi(\boldsymbol r)\,e^{-iEt/\hbar}
+$$
+
+대입하면 **시간 비의존 슈뢰딩거 방정식**을 얻는다.
+
+$$
+\left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\boldsymbol r)\right]\phi(\boldsymbol r) = E\,\phi(\boldsymbol r)
+$$
+
+결합 상태의 고윳값 $\{E_n\}$는 구속 퍼텐셜 $V$ 아래에서 이산적이며, 대응하는 $\{\phi_n\}$를 정규직교하게 선택할 수 있다.
+
+$$
+\int \phi_m^{\ast}\phi_n\,d^{3}r = \delta_{mn}
+$$
+
+어떤 해도 중첩 $\psi(\boldsymbol r,t)=\sum_n c_n \phi_n(\boldsymbol r)\,e^{-iE_n t/\hbar}$로 시간 발전하며 $\sum_n |c_n|^{2}=1$이다.
+
+---
+
+### 7.2.5 경계 조건과 자기 수반성
+
+해밀토니안은 적절한 경계 조건을 따르는 상태에 대해서만 자기 수반이다. 실제로는 다음을 적용한다.
+
+- 유한하고 조각별로 매끄러운 $V$에서는 $\phi$와 그 1차 미분이 유한한 계단 경계에서 모두 연속이다.  
+- 무한한 벽, 예를 들어 경계에서 $\phi=0$인 경우 파동함수는 0이다.  
+- $\delta$ 모양의 뾰족한 퍼텐셜에서는 $\phi$는 연속이지만 미분은 퍼텐셜 세기에 비례하는 정해진 불연속을 가진다.  
+- 정규화 가능한 결합 상태는 무한대에서 충분히 빠르게 $\phi\to 0$를 만족해야 한다.
+
+이 조건들은 경계항을 없애어 $\int \phi^{\ast}(\hat H\psi)=\int (\hat H\phi)^{\ast}\psi$가 성립하게 한다.
+
+---
+
+### 7.2.6 대표적인 1차원 예제: 짧지만 유용하게
+
+![가장 낮은 세 정상 상태의 파동함수는 양쪽 벽에서 0이다. 더 높은 상태에는 내부 마디가 추가된다.](/images/diagrams/quantum-well.svg)
+
+
+**(a) 자유 입자.** $V=0$이면 평면파를 얻는다.
+
+$$
+\psi_k(x,t)=\frac{1}{\sqrt{2\pi}}\,e^{i(kx-\omega t)},\qquad \omega=\frac{\hbar k^{2}}{2m}
+$$
+
+여러 $k$ 값을 중첩하여 파동 묶음을 만든다. 묶음의 중심은 군속도 $v_g=\hbar k/m$로 움직이고 시간이 지나며 퍼진다.
+
+**(b) 무한 사각 우물.** 폭이 $L$이고 구간이 $0<x<L$일 때
+
+$$
+\phi_n(x)=\sqrt{\frac{2}{L}}\,\sin\!\left(\frac{n\pi x}{L}\right),\qquad
+E_n=\frac{\hbar^{2}\pi^{2}n^{2}}{2mL^{2}},\quad n=1,2,\dots
+$$
+
+실수 고유함수 $\Rightarrow$ 정상 상태의 흐름 $j=0$. 중첩 상태는 흐름을 가질 수 있다.
+
+**(c) 유한 계단과 장벽.** $\phi$와 $\phi'$의 연속성을 요구하면 반사율 $R$와 투과율 $T$를 얻는다. 실수 퍼텐셜에서는 확률 플럭스 보존이 $R+T=1$를 강제한다. 장벽의 경우 터널링은 $T\sim e^{-2\kappa a}$를 주며, $\kappa=\sqrt{2m(V_0-E)}/\hbar$이고 폭은 $a$이다.
+
+---
+
+### 7.2.7 1차원 산란의 확률 흐름
+
+왼쪽에서 $\psi(x)=A_{\text{in}}e^{ikx}+A_{\text{re}}e^{-ikx}$, 오른쪽에서 $\psi(x)=A_{\text{tr}}e^{ik'x}$인 정상 산란 상태의 **플럭스**
+
+$$
+j_{\text{in}}=\frac{\hbar k}{m}|A_{\text{in}}|^{2},\quad
+j_{\text{re}}=\frac{\hbar k}{m}|A_{\text{re}}|^{2},\quad
+j_{\text{tr}}=\frac{\hbar k'}{m}|A_{\text{tr}}|^{2}
+$$
+
+로 반사율과 투과율을 정의한다.
+
+$$
+R=\frac{j_{\text{re}}}{j_{\text{in}}},\qquad T=\frac{j_{\text{tr}}}{j_{\text{in}}}
+$$
+
+실수 $V$에서는 연속 방정식으로부터 $R+T=1$가 나온다.
+
+### 자세한 설명
+
+**설정**: 왼쪽에는 입사파와 반사파, 오른쪽에는 투과파가 있다.
+
+$x \to -\infty$에서
+$$
+\psi_L(x) = A_{\text{in}} e^{ikx} + A_{\text{re}} e^{-ikx},
+\qquad k = \frac{\sqrt{2m(E - V_L)}}{\hbar}
+$$
+
+$x \to +\infty$에서
+$$
+\psi_R(x) = A_{\text{tr}} e^{ik'x},
+\qquad k' = \frac{\sqrt{2m(E - V_R)}}{\hbar}
+$$
+
+여기서 $V_L, V_R$는 상수이며 $E > \max\{V_L, V_R\}$이다.
+
+#### 1) 연속 방정식과 확률 플럭스
+
+시간 의존 슈뢰딩거 방정식은
+$$
+i\hbar \frac{\partial \psi}{\partial t}
+= -\frac{\hbar^2}{2m}\frac{\partial^2 \psi}{\partial x^2} + V(x)\psi.
+$$
+
+그 복소 켤레는
+$$
+-\,i\hbar \frac{\partial \psi^\ast}{\partial t}
+= -\frac{\hbar^2}{2m}\frac{\partial^2 \psi^\ast}{\partial x^2} + V(x)\psi^\ast.
+$$
+
+첫 식에 $\psi^\ast$를, 둘째 식에 $\psi$를 곱하고 빼면
+$$
+i\hbar \Bigl(\psi^\ast \frac{\partial \psi}{\partial t} + \psi \frac{\partial \psi^\ast}{\partial t}\Bigr)
+= -\frac{\hbar^2}{2m}\Bigl[\psi^\ast \frac{\partial^2 \psi}{\partial x^2}
+- \psi \frac{\partial^2 \psi^\ast}{\partial x^2}\Bigr]
++ \cancel{(V - V)|\psi|^2}.
+$$
+
+왼쪽은
+$$
+i\hbar \frac{\partial}{\partial t}|\psi|^2,
+$$
+
+이 되고 오른쪽은 전미분으로 쓸 수 있다.
+$$
+-\frac{\hbar^2}{2m}\frac{\partial}{\partial x}
+\Bigl[\psi^\ast \frac{\partial \psi}{\partial x}
+- \Bigl(\frac{\partial \psi^\ast}{\partial x}\Bigr)\psi\Bigr].
+$$
+
+따라서 실수 $V(x)$에 대해
+$$
+\frac{\partial}{\partial t}|\psi|^2 + \frac{\partial}{\partial x}\,j(x,t) = 0,
+$$
+
+이며 확률 플럭스는
+$$
+j(x,t) = \frac{\hbar}{2mi}\Bigl[\psi^\ast \frac{\partial \psi}{\partial x}
+- \Bigl(\frac{\partial \psi^\ast}{\partial x}\Bigr)\psi\Bigr].
+$$
+
+정상 상태 $\psi(x,t) = \psi(x)e^{-iEt/\hbar}$에 대해  
+$\partial_t |\psi|^2 = 0$이므로
+$$
+\frac{d}{dx}j(x) = 0 \quad \Rightarrow \quad j(x) = \text{일정}.
+$$
+
+#### 2) 왼쪽의 플럭스
+
+왼쪽에서는
+$$
+\psi_L(x) = A_{\text{in}} e^{ikx} + A_{\text{re}} e^{-ikx}.
+$$
+
+미분과 켤레는
+$$
+\frac{d\psi_L}{dx} = ikA_{\text{in}} e^{ikx} - ikA_{\text{re}} e^{-ikx},
+\qquad
+\psi_L^\ast = A_{\text{in}}^\ast e^{-ikx} + A_{\text{re}}^\ast e^{ikx}.
+$$
+
+다음을 계산하자.
+$$
+\psi_L^\ast \frac{d\psi_L}{dx}
+= (A_{\text{in}}^\ast e^{-ikx} + A_{\text{re}}^\ast e^{ikx})
+(ikA_{\text{in}} e^{ikx} - ikA_{\text{re}} e^{-ikx}).
+$$
+
+전개하면
+$$
+= ik|A_{\text{in}}|^2 - ik|A_{\text{re}}|^2
++ ik\bigl(-A_{\text{in}}^\ast A_{\text{re}} e^{-2ikx}
++ A_{\text{re}}^\ast A_{\text{in}} e^{2ikx}\bigr).
+$$
+
+마찬가지로
+$$
+\Bigl(\frac{d\psi_L^\ast}{dx}\Bigr)\psi_L
+= (-ikA_{\text{in}}^\ast e^{-ikx} + ikA_{\text{re}}^\ast e^{ikx})
+(A_{\text{in}} e^{ikx} + A_{\text{re}} e^{-ikx}),
+$$
+
+이를 전개하면
+$$
+= -ik|A_{\text{in}}|^2 + ik|A_{\text{re}}|^2
++ ik\bigl(-A_{\text{in}}^\ast A_{\text{re}} e^{-2ikx}
++ A_{\text{re}}^\ast A_{\text{in}} e^{2ikx}\bigr).
+$$
+
+빼면 간섭항이 소거된다.
+$$
+\psi_L^\ast \frac{d\psi_L}{dx}
+- \Bigl(\frac{d\psi_L^\ast}{dx}\Bigr)\psi_L
+= 2ik\bigl(|A_{\text{in}}|^2 - |A_{\text{re}}|^2\bigr).
+$$
+
+따라서
+$$
+j_L = \frac{\hbar}{2mi}\cdot 2ik\bigl(|A_{\text{in}}|^2 - |A_{\text{re}}|^2\bigr)
+= \frac{\hbar k}{m}\bigl(|A_{\text{in}}|^2 - |A_{\text{re}}|^2\bigr).
+$$
+
+다음을 정의하면
+$$
+j_{\text{in}} = \frac{\hbar k}{m}|A_{\text{in}}|^2, \qquad
+j_{\text{re}} = \frac{\hbar k}{m}|A_{\text{re}}|^2,
+$$
+
+다음을 얻는다.
+$$
+j_L = j_{\text{in}} - j_{\text{re}}.
+$$
+
+#### 3) 오른쪽의 플럭스
+
+오른쪽에서는
+$$
+\psi_R(x) = A_{\text{tr}} e^{ik'x}.
+$$
+
+미분과 켤레는
+$$
+\frac{d\psi_R}{dx} = ik'A_{\text{tr}} e^{ik'x},
+\qquad
+\psi_R^\ast = A_{\text{tr}}^\ast e^{-ik'x}.
+$$
+
+따라서
+$$
+\psi_R^\ast \frac{d\psi_R}{dx}
+- \Bigl(\frac{d\psi_R^\ast}{dx}\Bigr)\psi_R
+= 2ik'|A_{\text{tr}}|^2.
+$$
+
+그러므로
+$$
+j_R = \frac{\hbar}{2mi}\cdot 2ik'|A_{\text{tr}}|^2
+= \frac{\hbar k'}{m}|A_{\text{tr}}|^2
+\equiv j_{\text{tr}}.
+$$
+
+## 4) 플럭스 보존 $\Rightarrow R+T=1$
+
+정상성 및 실수 $V(x)$라는 조건은 $j(x)$가 일정함을 뜻한다.
+$$
+j_L = j_R.
+$$
+
+따라서
+$$
+j_{\text{in}} - j_{\text{re}} = j_{\text{tr}}
+\quad \Rightarrow \quad
+j_{\text{in}} = j_{\text{re}} + j_{\text{tr}}.
+$$
+
+반사율과 투과율을 정의하자.
+$$
+R = \frac{j_{\text{re}}}{j_{\text{in}}}, \qquad
+T = \frac{j_{\text{tr}}}{j_{\text{in}}}.
+$$
+
+마지막으로
+$$
+1 = \frac{j_{\text{re}}}{j_{\text{in}}} + \frac{j_{\text{tr}}}{j_{\text{in}}}
+\quad \Rightarrow \quad
+\boxed{R + T = 1}.
+$$
+
+**참고:**  
+$V(x)$가 복소수여서 흡수를 나타내면 연속 방정식에 생성항이 추가된다.
+$$
+\frac{\partial j}{\partial x}
+= \frac{2}{\hbar}\,\operatorname{Im}V(x)\,|\psi(x)|^2,
+$$
+따라서 일반적으로 $R+T<1$이다.
+
+---
+
+### 7.2.8 에렌페스트 정리: 중심은 고전적으로 움직인다
+
+완전한 양자 동역학에서도
+
+$$
+\frac{d}{dt}\langle \hat x \rangle = \frac{\langle \hat p \rangle}{m},\qquad
+\frac{d}{dt}\langle \hat p \rangle = -\,\left\langle \frac{\partial V}{\partial x} \right\rangle
+$$
+
+$\psi$가 좁고 $V$가 매끄러우면 $\langle \partial V/\partial x\rangle\approx \partial V(\langle x\rangle)/\partial x$이다. 따라서 파동 묶음의 **중심**은 뉴턴의 법칙을 따르고, 퍼짐과 간섭이 고전적 운동에서 벗어나는 부분을 나타낸다.
+
+---
+
+### 7.2.9 결합 상태의 마디, 위상, 흐름
+
+시간에 무관한 실수 $V$에서는 정상 결합 상태의 고유함수를 실수로 선택할 수 있으므로
+
+$$
+\boldsymbol j = \boldsymbol 0
+$$
+
+양자수 $n$는 1차원 우물에서 $\phi_n$의 마디, 즉 영점 수를 센다. $n$가 클수록 진동이 많고 에너지가 높다. 상대 위상은 **중첩 상태**에서만 중요하며, 간섭이 확률을 재분배하고 구속 퍼텐셜에서도 0이 아닌 흐름을 만들 수 있다.
+
+---
+
+### 7.2.10 실제로 사용할 단위와 척도 변환
+
+식을 간단하게 하려면 **자연 단위계** 또는 **원자 단위계**를 사용한다.
+
+- 자연 단위계: 상대론적 계산에서는 $\hbar=c=1$  
+- 원자 단위계: 비상대론적 전자에서는 $\hbar=m_e=e=4\pi\varepsilon_0=1$이며, 에너지는 하트리, 길이는 보어 반지름 단위이다.
+
+무차원 척도 변환은 흔히 $\hat H$를 조절 매개변수 하나를 가진 최소한의 형태로 바꾸어 수치 계산과 이해를 돕는다.
+
+---
+
+### 7.2.11 간단한 풀이 예제
+
+**(a) 가우스 파동 묶음의 정규화**
+
+$\psi(x,0)=C\,e^{-(x-x_0)^2/(4\sigma^2)}\,e^{ik_0 x}$를 택하자. $\int|\psi|^2 dx=1$를 요구하면
+
+$$
+C=\frac{1}{(2\pi\sigma^{2})^{1/4}}
+$$
+
+시간 발전은 정규화를 보존한다.
+
+
+
+**(b) 우물 속 기댓값**
+
+무한 우물의 $\phi_n$에 대해 대칭성은 $\langle x\rangle = L/2$와 다음을 준다.
+
+$$
+\langle x^{2}\rangle = \frac{L^{2}}{3} - \frac{L^{2}}{2\pi^{2}n^{2}}
+$$
+
+따라서 공간적 퍼짐은 $n$가 증가함에 따라 고전적인 균일 분포의 극한으로 커진다.
+
+**(c) 델타 퍼텐셜에서의 불연속**
+
+$V(x)=\lambda\,\delta(x)$에서 연속성 $\phi(0^{+})=\phi(0^{-})$와 미분의 불연속
+
+$$
+\phi'(0^{+})-\phi'(0^{-})=\frac{2m\lambda}{\hbar^{2}}\,\phi(0)
+$$
+
+은 에너지 $E=-m\lambda^{2}/(2\hbar^{2})$인 결합 상태 하나를 준다. 조건은 $\lambda<0$이다.
+
+---
+
+## 7.3 양자 조화 진동자: 대수, 파동, 결맞는 운동
+
+조화 진동자는 양자역학의 만능 도구이다. 진동, 포논, 분자의 신축 운동, 전자기장의 기준 모드, 심지어 모든 것의 ‘영점 요동’을 모형화한다. 수학도 아름다워진다. 하나의 퍼텐셜에 **미분방정식 해법**인 에르미트 다항식과 **대수적 해법**인 사다리 연산자가 상보적으로 대응하며 다양한 물리적 통찰을 제공한다.
+
+![등간격의 진동자 에너지 준위는 이차 퍼텐셜의 최솟값보다 hbar 오메가의 절반만큼 높은 곳에서 시작한다.](/images/diagrams/quantum-oscillator.svg)
+
+---
+
+### 7.3.1 설정과 자연스러운 척도
+
+질량 $m$인 1차원 입자를 다음과 같이 생각하자.
+
+$$
+V(x) = \frac{1}{2} m\omega^{2} x^{2}
+$$
+
+두 자연스러운 척도가 대수를 간단하게 한다.
+
+$$
+x_{0} \equiv \sqrt{\frac{\hbar}{m\omega}},\qquad
+p_{0} \equiv \sqrt{m\hbar\omega}
+$$
+
+무차원 좌표 $\xi \equiv x/x_{0}$를 도입한다. 편의에 따라 $x$와 $\xi$를 오가며 사용한다.
+
+---
+
+### 7.3.2 미분방정식 해법: 에르미트의 세계
+
+시간 비의존 슈뢰딩거 방정식
+
+$$
+-\frac{\hbar^{2}}{2m}\,\frac{d^{2}\phi}{dx^{2}} + \frac{1}{2} m\omega^{2} x^{2}\,\phi = E\,\phi
+$$
+
+은 $\xi$에서 다음이 된다.
+
+$$
+\frac{d^{2}\phi}{d\xi^{2}} + \left(2\epsilon - \xi^{2}\right)\phi = 0,\qquad \epsilon \equiv \frac{E}{\hbar\omega}
+$$
+
+급수가 끝날 때만 정규화 가능한 해가 존재하며, 그 결과 **에르미트 다항식** $H_{n}(\xi)$와 양자화된 스펙트럼을 얻는다.
+
+$$
+E_{n} = \hbar\omega\left(n+\frac{1}{2}\right),\qquad n=0,1,2,\dots
+$$
+
+정규화된 고유함수는
+
+$$
+\phi_{n}(x) = \frac{1}{\pi^{1/4}\,\sqrt{2^{n} n!\,x_{0}}}\;H_{n}\!\left(\frac{x}{x_{0}}\right)\,\exp\!\left(-\frac{x^{2}}{2x_{0}^{2}}\right)
+$$
+
+직교성과 완비성은 에르미트 다항식의 성질에서 나온다. 마디 수는 $n$와 함께 증가하며 $H_{n}$의 부호가 바뀌는 위치에 놓인다.
+
+---
+
+### 7.3.3 대수적 해법: 세 줄로 보는 사다리 연산자
+
+다음을 정의하자.
+
+$$
+a \equiv \frac{1}{\sqrt{2}}\left(\frac{x}{x_{0}} + i\,\frac{p}{p_{0}}\right),\qquad
+a^{\dagger} \equiv \frac{1}{\sqrt{2}}\left(\frac{x}{x_{0}} - i\,\frac{p}{p_{0}}\right)
+$$
+
+이들은 다음을 만족한다.
+
+$$
+[a,a^{\dagger}] = 1
+$$
+
+해밀토니안은
+
+$$
+H = \hbar\omega\left(a^{\dagger}a + \frac{1}{2}\right)
+$$
+
+이 되며 **수 연산자** $N\equiv a^{\dagger}a$와 고유상태 $\ket{n}$는 다음을 만족한다.
+
+$$
+N\ket{n}=n\ket{n},\quad
+a\ket{n}=\sqrt{n}\,\ket{n-1},\quad
+a^{\dagger}\ket{n}=\sqrt{n+1}\,\ket{n+1}
+$$
+
+대수만으로 $E_{n}=\hbar\omega(n+\tfrac12)$를 얻으며 미분방정식은 필요하지 않다.
+
+---
+
+### 7.3.4 바닥 상태와 영점 에너지
+
+바닥 상태는 $a\ket{0}=0$를 따른다. $x$ 공간에서는
+
+$$
+\left(\frac{x}{x_{0}} + i\,\frac{p}{p_{0}}\right)\phi_{0}(x) = 0
+$$
+
+$p\to -i\hbar\,\partial_{x}$를 적용하면 가우스 함수를 얻는다.
+
+$$
+\phi_{0}(x) = \frac{1}{\pi^{1/4}\,\sqrt{x_{0}}}\,\exp\!\left(-\frac{x^{2}}{2x_{0}^{2}}\right)
+$$
+
+피할 수 없이 $E_{0}=\tfrac12\hbar\omega$, 즉 **영점 에너지**가 남는다. 양자역학에서는 퍼텐셜이 최소인 곳에서도 완전히 정지하지 않는다.
+
+---
+
+### 7.3.5 위치와 운동량의 행렬 원소
+
+$x = \tfrac{x_{0}}{\sqrt{2}}(a+a^{\dagger})$와 $p = \tfrac{p_{0}}{\sqrt{2}}(a-a^{\dagger})/i$를 사용하면
+
+$$
+\langle n'|x|n\rangle = \frac{x_{0}}{\sqrt{2}}\sqrt{n+1}\,\delta_{n',\,n+1} + \frac{x_{0}}{\sqrt{2}}\sqrt{n}\,\delta_{n',\,n-1}
+$$
+
+$$
+\langle n'|p|n\rangle = \frac{i p_{0}}{\sqrt{2}}\sqrt{n+1}\,\delta_{n',\,n+1} - \frac{i p_{0}}{\sqrt{2}}\sqrt{n}\,\delta_{n',\,n-1}
+$$
+
+선택 규칙은 $\Delta n=\pm 1$만이 $x$ 또는 $p$를 통해 연결된다는 것이다. 이는 진동자의 쌍극자 패턴이다.
+
+---
+
+### 7.3.6 불확정성과 비리얼: 명료한 확인
+
+바닥 상태에 대해
+
+$$
+\Delta x^{2} = \frac{x_{0}^{2}}{2} = \frac{\hbar}{2m\omega},\qquad
+\Delta p^{2} = \frac{p_{0}^{2}}{2} = \frac{m\hbar\omega}{2},\qquad
+\Delta x\,\Delta p = \frac{\hbar}{2}
+$$
+
+최소 불확정성 상태이다. 어떤 정상 상태 $\ket{n}$에 대해서도 **양자 비리얼 정리**는
+
+$$
+\langle T\rangle = \langle V\rangle = \frac{E_{n}}{2}
+$$
+
+를 준다. 따라서 에너지의 절반은 운동 에너지에, 절반은 퍼텐셜 에너지에 들어가며 고전적 시간 평균과 정확히 같다.
+
+---
+
+### 7.3.7 결맞는 상태: 고전적 모습을 띤 양자 상태
+
+**결맞는 상태**를 $a$의 고유상태로 정의한다.
+
+$$
+a\ket{\alpha} = \alpha\ket{\alpha}
+$$
+
+수 상태로 전개하면
+
+$$
+\ket{\alpha} = e^{-|\alpha|^{2}/2}\sum_{n=0}^{\infty}\frac{\alpha^{n}}{\sqrt{n!}}\ket{n}
+$$
+
+시간 발전은 모양을 보존한다.
+
+$$
+\ket{\alpha(t)} = e^{-i\omega t/2}\ket{\alpha e^{-i\omega t}}
+$$
+
+기댓값은 고전적 운동을 따라간다.
+
+$$
+\langle x(t)\rangle = x_{0}\sqrt{2}\,\Re\!\left[\alpha e^{-i\omega t}\right],\qquad
+\langle p(t)\rangle = p_{0}\sqrt{2}\,\Im\!\left[\alpha e^{-i\omega t}\right]
+$$
+
+동시에 불확정성은 일정하고 최소인 $\Delta x\,\Delta p=\hbar/2$로 유지된다. 이 상태들은 위상 공간의 점에 가장 가까운 양자적 대응물이다.
+
+---
+
+### 7.3.8 강제 진동자와 구동 응답
+
+약한 구동 $H'(t) = -\,F(t)\,x$가 있으면 $a$의 하이젠베르크 방정식은 선형이며 다음을 준다.
+
+$$
+\frac{d a}{dt} = -\,i\omega a + \frac{i x_{0}}{\sqrt{2}\,\hbar}\,F(t)
+$$
+
+$\omega$ 근처의 진동수로 구동하면 결맞는 상태의 매개변수 $\alpha$가 이동하며, 감쇠나 유한한 상호작용 시간으로 제한되는 공명 성장이 일어난다. 이는 고전적 공명과 공동 양자 전기역학의 빛–물질 결합을 뒷받침하는 양자적 구조이다.
+
+---
+
+### 7.3.9 에르미트 도구: 점화식과 마디
+
+에르미트 다항식은 다음을 만족한다.
+
+$$
+H_{n+1}(\xi) = 2\xi\,H_{n}(\xi) - 2n\,H_{n-1}(\xi)
+$$
+
+또한
+
+$$
+\frac{d H_{n}}{d\xi} = 2n\,H_{n-1}(\xi)
+$$
+
+$H_{n}$의 영점은 실수이며 고전적 전환점 $\xi \approx \pm\sqrt{2n+1}$ 안에 있다. 이는 전환점 안에는 진동 영역이 있고 밖에는 지수적 꼬리가 있다는 WKB 관점을 예고한다.
+
+---
+
+### 7.3.10 양자의 생성: 장론 미리 보기
+
+$H=\hbar\omega(N+\tfrac12)$이므로 $a^{\dagger}$를 작용할 때마다 에너지가 **양자** 하나인 $\hbar\omega$만큼 올라간다. $a,a^{\dagger}$를 장의 모드 연산자로 승격하면 전자기장은 독립적인 진동자들의 집합이 되고, $a^{\dagger}$는 광자를 생성한다. 진동자 대수는 말 그대로 이차 양자화의 기초이다.
+
+---
+
+### 7.3.11 간단한 풀이 예제
+
+**(a) $\ket{n}$의 기댓값.**
+
+$x\propto a+a^{\dagger}$와 $N\ket{n}=n\ket{n}$를 사용하면
+
+$$
+\langle n|x|n\rangle = 0,\qquad
+\langle n|x^{2}|n\rangle = \left(n+\frac{1}{2}\right)x_{0}^{2}
+$$
+
+마찬가지로
+
+$$
+\langle n|p^{2}|n\rangle = \left(n+\frac{1}{2}\right)p_{0}^{2}
+$$
+
+$\langle T\rangle = \langle p^{2}\rangle/(2m) = \tfrac12 E_{n}$임을 확인하라.
+
+**(b) 전이 행렬 원소 $\langle n+1|x|n\rangle$.**
+
+$x=\tfrac{x_{0}}{\sqrt{2}}(a+a^{\dagger})$에서
+
+$$
+\langle n+1|x|n\rangle = \frac{x_{0}}{\sqrt{2}}\sqrt{n+1}
+$$
+
+이는 진동자와 유사한 전이의 쌍극자 선택 규칙과 선 세기를 결정한다.
+
+**(c) 결맞는 상태와 수 상태의 겹침.**
+
+푸아송 가중치는
+
+$$
+|\langle n|\alpha\rangle|^{2} = e^{-|\alpha|^{2}}\frac{|\alpha|^{2n}}{n!}
+$$
+
+평균 양자 수는 $\bar n = |\alpha|^{2}$이고 분산은 $\Delta n^{2}=|\alpha|^{2}$이다.
+
+---
+
+### 7.3.12 연습문제 모음
+
+- 멱급수로 에르미트 해를 유도하고 급수가 끝나는 조건을 보여 $E_{n}$를 얻어라.  
+- $a,a^{\dagger}$에서 출발해 $H$를 구성하고 미분방정식을 풀지 않고 $E_{n}=\hbar\omega(n+\tfrac12)$를 증명하라.  
+- $\Delta x$와 $\Delta p$를 $\phi_{0}$에 대해 계산하고 최소 불확정성 곱 $\hbar/2$를 확인하라.  
+- 결맞는 상태의 $\langle x\rangle$가 $x_{\text{cl}}(t)$를 따르는 동시에 $|\psi(x,t)|^{2}$는 일정한 가우스 폭을 유지함을 보여라.  
+- 선형 구동 $F\cos\Omega t$를 추가하여 $a(t)$를 구하고 공명 응답과 위상 지연을 확인하라.  
+- $x=\tfrac{x_{0}}{\sqrt{2}}(a+a^{\dagger})$를 사용하여 $\langle n'|x|n\rangle=0$임을 증명하라. 예외는 $n'=n\pm 1$인 경우이다.
+
+---
+
+## 7.4 각운동량과 중심 퍼텐셜
+
+수소를 다루기 전에 3차원 양자역학의 기하학적 엔진인 **각운동량**이 필요하다. 회전 대칭성은 보존되는 $\mathbf L$를 주고, 구면 조화 함수 $Y_\ell^m$는 각도 의존성을 담당하며, 방사상 슈뢰딩거 방정식에는 **원심 장벽**이 추가된다. 이 절에서는 모든 구대칭 문제에 사용할 연산자 대수, 사다리 연산자, 구면 조화 함수, 중심 퍼텐셜의 변수 분리를 구성한다.
+
+---
+
+### 7.4.1 각운동량 연산자와 대수
+
+궤도 각운동량을 정의하자.
+
+$$
+\boldsymbol L = \boldsymbol r \times \boldsymbol p,\qquad L_i = -\,i\hbar\,\epsilon_{ijk}\,x_j\,\partial_k
+$$
+
+교환자는 회전군의 구조를 담는다.
+
+$$
+[L_i,L_j] = i\hbar\,\epsilon_{ijk}\,L_k
+$$
+
+카시미르 연산자와 각 성분은 다음을 따른다.
+
+$$
+L^2 \equiv L_x^2+L_y^2+L_z^2,\qquad [L^2,L_i]=0
+$$
+
+$[L^2,L_i]=0$이므로 $L^2$와 한 성분, 관례적으로 $L_z$를 동시에 대각화할 수 있다.
+
+---
+
+### 7.4.2 사다리 연산자와 고윳값 구조
+
+다음을 도입하자.
+
+$$
+L_{\pm} \equiv L_x \pm i L_y
+$$
+
+이들은 다음을 만족한다.
+
+$$
+[L_z,L_{\pm}] = \pm \hbar\,L_{\pm},\qquad [L_+,L_-] = 2\hbar\,L_z
+$$
+
+$\ket{\ell m}$를 $L^2$와 $L_z$의 동시 고유상태라고 하자.
+
+$$
+L^2\ket{\ell m} = \hbar^2 \ell(\ell+1)\ket{\ell m},\qquad L_z\ket{\ell m} = \hbar m \ket{\ell m}
+$$
+
+사다리 연산자는 $m$를 바꾸며 $\ell$는 고정한다.
+
+$$
+L_{\pm}\ket{\ell m} = \hbar\,\sqrt{\ell(\ell+1)-m(m\pm 1)}\,\ket{\ell,m\pm 1}
+$$
+
+허용되는 양자수는
+
+$$
+\ell = 0,1,2,\dots,\qquad m=-\ell,-\ell+1,\dots,\ell
+$$
+
+이므로 $(2\ell+1)$중 축퇴가 각 $\ell$에 나타난다.
+
+---
+
+### 7.4.3 구면 조화 함수: 각도 파동함수
+
+위치 표현에서 동시 고유함수는 **구면 조화 함수** $Y_\ell^m(\theta,\phi)$이며 다음을 따른다.
+
+$$
+L^2\,Y_\ell^m = \hbar^2 \ell(\ell+1)\,Y_\ell^m,\qquad L_z\,Y_\ell^m = \hbar m\,Y_\ell^m
+$$
+
+단위 구면 위에서 정규직교성과 완비성을 가진다.
+
+$$
+\int_{0}^{2\pi}\!\!\int_{0}^{\pi} Y_{\ell}^{m}(\theta,\phi)^{\ast} Y_{\ell'}^{m'}(\theta,\phi)\,\sin\theta\,d\theta\,d\phi = \delta_{\ell\ell'}\delta_{mm'}
+$$
+
+$$
+\sum_{\ell=0}^{\infty}\sum_{m=-\ell}^{\ell} Y_{\ell}^{m}(\Omega)\,Y_{\ell}^{m}(\Omega')^{\ast} = \delta(\cos\theta-\cos\theta')\,\delta(\phi-\phi')
+$$
+
+짝홀성은 간단하다.
+
+$$
+Y_{\ell}^{m}(\pi-\theta,\phi+\pi) = (-1)^{\ell}\,Y_{\ell}^{m}(\theta,\phi)
+$$
+
+르장드르 연관 함수 $P_{\ell}^{m}$를 사용하면 명시적으로
+
+$$
+Y_{\ell}^{m}(\theta,\phi) = N_{\ell m}\,P_{\ell}^{m}(\cos\theta)\,e^{i m \phi}
+$$
+
+여기서 $N_{\ell m}$는 표준 정규화 상수이다.
+
+---
+
+### 7.4.4 구면 좌표의 라플라시안과 변수 분리
+
+3차원 라플라시안은
+
+$$
+\nabla^{2} = \frac{1}{r^{2}}\frac{\partial}{\partial r}\!\left(r^{2}\frac{\partial}{\partial r}\right) - \frac{L^{2}}{\hbar^{2} r^{2}}
+$$
+
+**중심 퍼텐셜** $V(r)$에서 시간 비의존 슈뢰딩거 방정식
+
+$$
+\left[-\,\frac{\hbar^{2}}{2m}\nabla^{2} + V(r)\right]\psi(\mathbf r) = E\,\psi(\mathbf r)
+$$
+
+은 가정 $\psi(r,\theta,\phi)=R_{n\ell}(r)\,Y_{\ell}^{m}(\theta,\phi)$로 분리된다. 각도 부분은 위의 구면 조화 함수를 주며, 방사상 부분은 다음을 따른다.
+
+$$
+-\,\frac{\hbar^{2}}{2m}\left[\frac{1}{r^{2}}\frac{d}{dr}\!\left(r^{2}\frac{dR}{dr}\right) - \frac{\ell(\ell+1)}{r^{2}} R\right] + V(r)\,R = E\,R
+$$
+
+$u(r)\equiv r\,R(r)$로 1차 미분을 없애면 더 간단해지며 **방사상 슈뢰딩거 방정식**을 얻는다.
+
+$$
+-\,\frac{\hbar^{2}}{2m}\,\frac{d^{2}u}{dr^{2}} + \left[V(r) + \frac{\hbar^{2}\ell(\ell+1)}{2m r^{2}}\right]u = E\,u
+$$
+
+괄호 안의 항은 **유효 퍼텐셜**이다.
+
+$$
+V_{\text{eff}}(r) = V(r) + \frac{\hbar^{2}\ell(\ell+1)}{2m r^{2}}
+$$
+
+여기에 양자적 원심 장벽 $\propto 1/r^{2}$가 들어 있다.
+
+---
+
+### 7.4.5 방사상 정규화와 경계 조건
+
+각도 함수가 정규화되어 있다고 가정하면 전체 정규화는 다음으로 줄어든다.
+
+$$
+\int_{0}^{\infty} |u(r)|^{2}\,dr = 1
+$$
+
+물리적인 해는 다음을 만족한다.
+
+- 원점에서의 정칙성: $u(r)\sim r^{\ell+1}$라는 거동을 $r\to 0$에서 보이며, 이는 유한한 $V(0)$에 해당한다.  
+- 결합 상태의 정규화 가능성: $u(r)\to 0$라는 거동을 $r\to \infty$에서 보인다.  
+- $E>0$에 대해 적절한 산란 점근형을 가진다.
+
+이 조건들이 $E$를 구속 퍼텐셜 $V(r)$에서 양자화한다.
+
+---
+
+### 7.4.6 회전 대칭성, 뇌터 정리, 축퇴
+
+$V(r)$가 중심 퍼텐셜이면 해밀토니안은 모든 회전 $U(R)=\exp\!\left(-\frac{i}{\hbar}\,\boldsymbol{\theta}\cdot\boldsymbol L\right)$와 교환한다. 양자 언어로 쓴 뇌터 정리는
+
+$$
+[H,\boldsymbol L]=\boldsymbol 0
+$$
+
+따라서 $\ell$와 $m$가 고유상태를 표시한다. 에너지는 일반적으로 $n$와 $\ell$에 의존하지만 **$m$에 대해 축퇴**하며 축퇴도는 $(2\ell+1)$이다. 해를 회전시키면 $m$ 값들이 같은 $\ell$ 다중항 안에서 섞일 뿐이기 때문이다.
+
+특별한 대칭성은 축퇴도를 더 크게 할 수 있다. 수소에서는 숨은 룽게–렌츠 대칭 때문에 $E$가 $n$에만 의존한다. 등방적인 3차원 진동자에서는 $E$가 $N=2n_{r}+\ell$에 의존한다.
+
+---
+
+### 7.4.7 회전의 생성자로서의 각운동량
+
+무한소 회전은 다음과 같이 작용한다.
+
+$$
+\delta \psi(\boldsymbol r) = -\,\frac{i}{\hbar}\,\delta\boldsymbol{\theta}\cdot\boldsymbol L\,\psi(\boldsymbol r)
+$$
+
+유한 회전 $R$에서 변환된 상태는 $U(R)\psi$이며, 좌표는 반대 방향으로 회전한다. 구면에서 $Y_{\ell}^{m}$는 $SO(3)$의 기약 표현을 이룬다. $R$ 아래에서는 성분들이 고정된 $\ell$ 안에서 위그너 $D$ 행렬 $D^{(\ell)}_{m'm}(R)$를 통해 섞인다.
+
+---
+
+### 7.4.8 궤도와 스핀, 그리고 덧셈: 미리 보기
+
+전자는 **궤도** 각운동량 $\boldsymbol L$와 **스핀** 각운동량 $\boldsymbol S$를 가진다. 총각운동량
+
+$$
+\boldsymbol J = \boldsymbol L + \boldsymbol S
+$$
+
+은 다른 각운동량과 같은 대수를 따른다. 두 각운동량이 결합하면 허용되는 총각운동량 $j$는 삼각형 규칙을 따르고, 상태는 **클레브슈–고르단 계수**로 전개된다. 뒤에서 미세 구조, 선택 규칙, 다입자계에 이 도구들을 사용한다.
+
+---
+
+### 7.4.9 간단한 풀이 예제
+
+**(a) 작은 $r$에서 $u(r)$의 거동.**  
+유한한 $V(0)$에서 방사상 방정식의 $r=0$ 근처 지배항은
+
+$$
+-\,\frac{\hbar^{2}}{2m}\,u''(r) + \frac{\hbar^{2}\ell(\ell+1)}{2m r^{2}}\,u(r) \approx 0
+$$
+
+$u\sim r^{s}$를 시도하면 $s(s-1)=\ell(\ell+1)$를 얻고, 해는 정칙인 $s=\ell+1$와 특이한 $s=-\ell$이다. $u\sim r^{\ell+1}$를 남긴다.
+
+**(b) 분리 가능한 상태에서 $L^{2}$의 기댓값.**  
+$\psi=R(r)Y_{\ell}^{m}(\theta,\phi)$에 대해
+
+$$
+\langle L^{2}\rangle = \hbar^{2}\ell(\ell+1)
+$$
+
+$R(r)$에 무관하다. 각도 부분이 $L$의 구조를 모두 담당하기 때문이다.
+
+**(c) 고정된 $\ell$에서 축퇴도 세기.**  
+집합 $\{Y_{\ell}^{m}\}_{m=-\ell}^{\ell}$가 $(2\ell+1)$차원 기약 표현을 생성함을 보여라. $L_{\pm}$를 $Y_{\ell}^{\ell}$와 $Y_{\ell}^{-\ell}$에 반복 적용하라.
+
+**(d) 유효 퍼텐셜 그리기.**  
+$V(r)=-k/r$인 쿨롱 퍼텐셜에서 $V_{\text{eff}}(r)=-k/r+\hbar^{2}\ell(\ell+1)/(2mr^{2})$를 그려 여러 $\ell$에 대한 고전적 전환점과 유사한 점 및 결합 상태 영역을 시각화하라.
+
+---
+
+### 7.4.10 최소 연습문제 모음
+
+- 구면 좌표의 $\nabla^{2}$에서 출발하여 $u(r)$의 방사상 방정식을 유도하고 $V_{\text{eff}}(r)$를 확인하라.  
+- $L_{\pm}$가 $\ket{\ell m}$에 작용하는 사다리 관계를 증명하고 $\langle \ell m|\ell m\rangle=1$를 요구하여 계수를 정규화하라.  
+- $Y_{\ell}^{m}$의 정규직교성을, 작은 $\ell$의 구체적 예 두 개를 구면에 걸쳐 적분하여 확인하라.  
+- 중심 사각 우물이 $V(r)=-V_{0}$인 영역은 $r<R$이고 그 밖에서는 $0$일 때, $u(r)$의 결합 상태 접합 조건을 $r=R$에서 쓰고 스펙트럼의 $\ell$ 의존성을 논하라.  
+- $[H,\boldsymbol L]=\boldsymbol 0$가 모든 $V(r)$에서 성립함을 보이고 이를 사용하여 $(2\ell+1)$ 축퇴가 $m$에 나타남을 논하라.
+
+---
+
+## 7.5 수소 원자: 쿨롱 문제 풀기
+
+이는 양자역학의 첫 완전한 3차원 승리이다. §7.4의 회전 대칭성과 쿨롱 퍼텐셜을 사용해 변수를 분리하고 **방사상 방정식**을 풀어 정확한 에너지 준위
+
+$$
+E_n = -\,\frac{\mu e^{4}}{2 (4\pi\varepsilon_0)^{2} \hbar^{2}}\,\frac{Z^{2}}{n^{2}} = -\,\frac{\mu c^{2}\alpha^{2}}{2}\,\frac{Z^{2}}{n^{2}}
+$$
+
+![수소의 결합 에너지 준위가 0을 향해 수렴한다. n이 2인 준위에서 1인 준위로 내려가는 전이는 광자를 방출한다.](/images/diagrams/atomic-levels.svg)
+
+와 $(n,\ell,m)$로 표시되는 명시적인 파동함수를 얻는다. 수소 문제가 잘 풀리는 이유는 수학에 추가적인 대칭성이 숨어 있기 때문이다. 축퇴도는 $n^{2}$이며 각 $n$에 해당한다. 여기서는 스핀을 무시한다.
+
+---
+
+### 7.5.1 설정과 변수 분리
+
+전하 $+Ze$인 원자핵과 전하 $-e$인 전자를 생각하자. **환산 질량**
+
+$$
+\mu \equiv \frac{m_e m_N}{m_e + m_N}
+$$
+
+과 쿨롱 상수
+
+$$
+k \equiv \frac{Z e^{2}}{4\pi\varepsilon_0}
+$$
+
+를 사용한다. **중심** 퍼텐셜 $V(r)=-k/r$의 시간 비의존 슈뢰딩거 방정식은 $\psi(r,\theta,\phi)=R_{n\ell}(r)\,Y_{\ell}^{m}(\theta,\phi)$로 분리된다. 방사상 함수 $u(r)\equiv r\,R(r)$는 다음을 따른다.
+
+$$
+-\,\frac{\hbar^{2}}{2\mu}\,\frac{d^{2}u}{dr^{2}} + \left[\frac{\hbar^{2}\ell(\ell+1)}{2\mu r^{2}} - \frac{k}{r}\right]u = E\,u
+$$
+
+결합 상태는 $E<0$이다.
+
+---
+
+### 7.5.2 무차원화와 해의 형태
+
+다음을 정의하자.
+
+$$
+\kappa \equiv \frac{\sqrt{-2\mu E}}{\hbar},\qquad \rho \equiv 2\kappa r
+$$
+
+다음 형태의 해를 찾는다.
+
+$$
+u(\rho) = \rho^{\ell+1}\,e^{-\rho/2}\,v(\rho)
+$$
+
+정칙성과 정규화 가능성은 $v(\rho)$가 **다항식**, 구체적으로 라게르 연관 다항식일 것을 요구한다.
+
+$$
+v(\rho) \propto L_{n-\ell-1}^{\,2\ell+1}(\rho)
+$$
+
+양자화 조건은 다음과 같이 나온다.
+
+$$
+\kappa = \frac{\mu k}{\hbar^{2}}\;\frac{1}{n},\qquad n=1,2,3,\dots
+$$
+
+여기에서 위에 제시한 스펙트럼을 얻는다.
+
+---
+
+### 7.5.3 보어 반지름, 길이 척도, 양자수
+
+환산 질량을 반영한 보어 반지름
+
+$$
+a_{\mu} \equiv \frac{4\pi\varepsilon_0\,\hbar^{2}}{\mu e^{2}}
+$$
+
+과 수소형 원자의 길이
+
+$$
+a \equiv \frac{a_{\mu}}{Z}
+$$
+
+를 도입한다. 양자수는 다음과 같다.
+
+- 주양자수 $n=1,2,\dots$  
+- 궤도 양자수 $\ell=0,1,\dots,n-1$  
+- 자기 양자수 $m=-\ell,-\ell+1,\dots,\ell$
+
+각 $n$에 대한 총축퇴도는
+
+$$
+\sum_{\ell=0}^{n-1} (2\ell+1) = n^{2}
+$$
+
+전자 스핀을 고려하여 두 배로 하면 $2n^{2}$이다.
+
+---
+
+### 7.5.4 방사상 파동함수와 정규화
+
+$a=a_{\mu}/Z$일 때 정규화된 수소형 원자의 방사상 함수는
+
+$$
+R_{n\ell}(r) = \frac{2}{n^{2}\,a^{3/2}}\,
+\sqrt{\frac{(n-\ell-1)!}{(n+\ell)!}}\;
+\exp\!\left(-\frac{r}{n a}\right)\,
+\left(\frac{2r}{n a}\right)^{\ell}\,
+L_{n-\ell-1}^{\,2\ell+1}\!\left(\frac{2r}{n a}\right)
+$$
+
+따라서
+
+$$
+\int_{0}^{\infty} |R_{n\ell}(r)|^{2}\,r^{2}\,dr = 1
+$$
+
+타당성 확인:
+
+- $1s$ $(n{=}1,\ell{=}0)$이면 $R_{10}(r) = 2 a^{-3/2} e^{-r/a}$를 얻는다.  
+- $2p$ $(n{=}2,\ell{=}1)$이면 $R_{21}(r) \propto r\,e^{-r/(2a)}$를 얻는다.
+
+---
+
+### 7.5.5 확률, 마디, 궤도의 모양
+
+**방사상 확률 밀도**는
+
+$$
+P_{n\ell}(r) = |R_{n\ell}(r)|^{2}\,r^{2}
+$$
+
+마디 수는 다음과 같다.
+
+- 각도 방향: $\ell$개의 마디 평면 또는 곡면이 $Y_{\ell}^{m}$에서 나온다.  
+- 반지름 방향: $n-\ell-1$개의 마디가 $R_{n\ell}$에서 나온다.
+
+봉우리는 $n$가 커지면 바깥으로 이동한다. $1s$에서는 $P$의 봉우리가 $r=a$에 있다.
+
+---
+
+### 7.5.6 유용한 기댓값
+
+$a=a_{\mu}/Z$로 표현하면
+
+$$
+\big\langle \frac{1}{r} \big\rangle_{n\ell} = \frac{1}{n^{2} a}
+$$
+
+$$
+\langle r \rangle_{n\ell} = \frac{a}{2}\,\left[3n^{2} - \ell(\ell+1)\right]
+$$
+
+$$
+\langle r^{2} \rangle_{n\ell} = a^{2}\,\frac{n^{2}}{2}\,\left[5n^{2} + 1 - 3\ell(\ell+1)\right]
+$$
+
+이는 원자 크기와 차폐 추정의 크기 차수를 알려 준다.
+
+---
+
+### 7.5.7 쌍극자 선택 규칙과 스펙트럼선
+
+$\hat{\boldsymbol d}=-e\boldsymbol r$인 전기 쌍극자 복사에 대해
+
+$$
+\Delta \ell = \pm 1,\qquad \Delta m = 0,\pm 1
+$$
+
+선 세기는 다음 행렬 원소에서 나온다.
+
+$$
+\langle n'\ell'm' | \boldsymbol r | n\ell m \rangle
+$$
+
+이는 각도 부분인 클레브슈–고르단 대수와 $R_{n\ell}(r)$로 구성한 방사상 적분으로 분해된다. 발머 및 라이먼 계열의 패턴과 편광 규칙을 재현한다.
+
+---
+
+### 7.5.8 룽게–렌츠 대칭과 $n$에만 의존하는 에너지
+
+쿨롱 문제에는 양자적으로 대칭화된 보존 **룽게–렌츠 벡터**가 있다.
+
+$$
+\boldsymbol A = \frac{1}{2\mu}\,(\boldsymbol p \times \boldsymbol L - \boldsymbol L \times \boldsymbol p) - k\,\hat{\boldsymbol r}
+$$
+
+$\boldsymbol L$와 $\boldsymbol A$는 함께 결합 상태에서 $SO(4)$ 대칭을 생성한다. 이는 $E_n$가 $n$에만 의존하고 $\ell$나 $m$에는 의존하지 않는 이유를 설명한다. 외부 장이나 상대론 등으로 이 대칭을 깨면 축퇴가 갈라진다.
+
+---
+
+### 7.5.9 실제의 갈라짐: 축퇴를 깨는 효과
+
+작은 효과들을 더하면 수소의 축퇴는 완벽하지 않다.
+
+- **환산 질량.** 이미 $\mu$로 포함했다. $R_{\text H}$를 조금 바꾸고 동위원소 이동을 만든다.  
+- **미세 구조.** 상대론적 운동 에너지 보정, 스핀–궤도 결합, 다윈 항은 뤼드베리 에너지의 $\alpha^{2}$ 정도로 준위를 갈라놓는다. §7.6의 섭동론으로 다룬다.  
+- **램 이동.** 양자 전기역학의 진공 요동은 $2S$와 $2P$ 준위를 갈라놓으며, 이 차이가 0이 아니라는 사실은 유명하다.  
+- **초미세 구조.** 양성자–전자 스핀 결합은 21 cm 선을 만든다. 자기 모멘트와 원점에서의 파동함수에 따라 크기가 정해진다.
+
+각 효과는 명확한 섭동적 흔적을 남기므로 수소는 정밀 물리학의 좋은 실험장이 된다.
+
+---
+
+### 7.5.10 간단한 풀이 예제
+
+**(a) $1s$의 가장 확률이 높은 반지름.**
+
+$P_{10}(r)=4 r^{2} a^{-3} e^{-2r/a}$를 최대화한다. 미분을 0으로 두면 $r=a$를 얻는다.
+
+**(b) 스펙트럼에서 구하는 뤼드베리 상수.**
+
+$n\to n'$ 사이의 전이에서 광자의 파수는
+
+$$
+\tilde\nu = \frac{E_n - E_{n'}}{hc} = R_{\infty}\,\frac{\mu}{m_e}\,Z^{2}\left(\frac{1}{n'^{2}} - \frac{1}{n^{2}}\right)
+$$
+
+여기서
+
+$$
+R_{\infty} = \frac{\alpha^{2} m_e c}{2h}
+$$
+
+**(c) $2p\to 1s$의 방사상 적분.**
+
+쌍극자 행렬 원소는 다음으로 줄어든다.
+
+$$
+\langle 1s||r||2p\rangle = \int_{0}^{\infty} R_{10}(r)\,r\,R_{21}(r)\,r^{2}\,dr
+$$
+
+명시적인 $R$를 대입하면 0이 아닌 값을 얻으며 $\Delta \ell=1$와 일치한다.
+
+**(d) 비리얼 정리로 구하는 $1/r$의 기댓값.**
+
+$V\propto 1/r$에서 비리얼 정리는 $\langle T\rangle = -E$와 $\langle V\rangle = 2E$를 주므로
+
+$$
+\left\langle \frac{1}{r} \right\rangle = \frac{-2E}{k} = \frac{1}{n^{2} a}
+$$
+
+위 공식과 일치한다.
+
+---
+
+### 7.5.11 최소 연습문제 모음
+
+- 방사상 방정식에서 출발해 $\rho=2\kappa r$를 대입하고, 라게르 급수가 끝나는 조건이 $n=\ell+1+n_{r}$와 $E_n\propto -1/n^{2}$를 줌을 보여라.  
+- $R_{10}(r)$와 $R_{21}(r)$를 명시적으로 유도하고 정규화하라.  
+- 축퇴도 계산 $\sum_{\ell=0}^{n-1}(2\ell+1)=n^{2}$를 증명하고 스핀을 포함하여 $2n^{2}$로 확장하라.  
+- 라게르 연관 다항식의 직교성으로 $\langle r \rangle_{n\ell}$를 계산하라.  
+- 위그너–에카르트 정리 또는 클레브슈–고르단 계수로 쌍극자 전이의 각운동량 선택 규칙을 구하라.  
+- 선도 상대론 항과 스핀–궤도 항을 사용하여 $n=2$ 준위의 미세 구조 갈라짐을 추정하라. §7.6의 예고이다.
+
+---
+
+## 7.6 시간 비의존 섭동론: 비축퇴, 축퇴, 첫 응용
+
+실제 계는 정확히 풀리는 경우가 드물지만 **거의** 풀리는 경우는 많다. 섭동론은 대각화할 수 있는 해밀토니안에서 출발하여 작은 항을 더한 뒤 에너지와 상태가 어떻게 이동하는지 추적하는 방법이다. 수소의 미세 구조, 제만 및 슈타르크 효과, 화학적 이동, 그리고 관심 있는 거의 모든 ‘작은 보정’을 계산하는 원동력이다.
+
+---
+
+### 7.6.1 설정과 급수 전개
+
+다음과 같이 두자.
+
+$$
+H(\lambda) = H_{0} + \lambda H'
+$$
+
+여기서 $H_{0}$는 고유값과 고유상태 쌍 $\{E_{n}^{(0)},\ket{n^{(0)}}\}$를 가진 풀 수 있는 해밀토니안이고, $H'$는 섭동이다. 급수해를 찾는다.
+
+$$
+E_{n} = E_{n}^{(0)} + \lambda E_{n}^{(1)} + \lambda^{2} E_{n}^{(2)} + \cdots
+$$
+
+$$
+\ket{n} = \ket{n^{(0)}} + \lambda \ket{n^{(1)}} + \lambda^{2}\ket{n^{(2)}} + \cdots
+$$
+
+**중간 정규화** $\langle n^{(0)}|n\rangle = 1$를 채택하면 $\langle n^{(0)}|n^{(k)}\rangle=0$가 $k\ge 1$에서 성립하여 식이 간결해진다.
+
+---
+
+### 7.6.2 비축퇴 섭동론
+
+$E_{n}^{(0)}$가 **비축퇴**라고 가정하자.
+
+**1차 에너지**
+
+$$
+E_{n}^{(1)} = \langle n^{(0)}| H' | n^{(0)} \rangle
+$$
+
+**1차 상태**
+
+$$
+\ket{n^{(1)}} = \sum_{m\neq n} \frac{\ket{m^{(0)}}\,\langle m^{(0)}|H'|n^{(0)}\rangle}{E_{n}^{(0)} - E_{m}^{(0)}}
+$$
+
+**2차 에너지**
+
+$$
+E_{n}^{(2)} = \sum_{m\neq n} \frac{|\langle m^{(0)}|H'|n^{(0)}\rangle|^{2}}{E_{n}^{(0)} - E_{m}^{(0)}}
+$$
+
+부호 확인: $H'$가 $n$를 더 높은 상태와 섞으면 분모가 음수이므로 $E_{n}$는 보통 **내려간다**.
+
+**선택 규칙**: 짝홀성이나 각운동량 대칭성으로 많은 행렬 원소가 0이 된다. 따라서 1차 이동은 0일 수 있고 2차 항이 선도항이 된다.
+
+---
+
+### 7.6.3 헬만–파인만 정리와 간편한 미분
+
+$H(\lambda)$가 매개변수 $\lambda$에 매끄럽게 의존하고 $\ket{n(\lambda)}$가 정확한 고유상태이면
+
+$$
+\frac{dE_{n}}{d\lambda} = \left\langle n(\lambda)\left|\frac{\partial H}{\partial \lambda}\right|n(\lambda)\right\rangle
+$$
+
+복잡한 파동함수를 미분할 필요가 없다. $H$의 **명시적인** 미분의 기댓값을 계산하면 된다. 분자 속 힘이나 외부 장에 따라 $E$가 어떻게 이동하는지 계산할 때 유용하다.
+
+---
+
+### 7.6.4 축퇴 섭동론
+
+여러 $H_{0}$ 고유상태가 같은 $E^{(0)}$를 가지면 단순한 섭동식은 분모가 0이 되어 발산한다. $H'$를 **축퇴 부분공간 안에서** 대각화하여 해결한다.
+
+$\{\ket{\phi_{a}}\}_{a=1}^{g}$를 $g$중 축퇴된 $H_{0}$의 고유공간에 대한 정규직교 기저라 하자. **세큘러 행렬**을 구성한다.
+
+$$
+W_{ab} \equiv \langle \phi_{a} | H' | \phi_{b} \rangle
+$$
+
+$W$를 대각화하여 고윳값 $\{\lambda_{\alpha}\}$와 고유벡터 $\{\mathbf c^{(\alpha)}\}$를 얻는다. 그러면
+
+$$
+E_{\alpha}^{(1)} = \lambda_{\alpha}
+$$
+
+$$
+\ket{\psi_{\alpha}^{(0)}} = \sum_{a=1}^{g} c^{(\alpha)}_{a}\,\ket{\phi_{a}}
+$$
+
+이렇게 최적화한 0차 상태에는 이미 지배적인 혼합이 들어 있다. 이후 고차항은 $\ket{\psi_{\alpha}^{(0)}}$를 사용하여 비축퇴 경우처럼 계산한다.
+
+**실용적인 원칙**: $H'$의 대칭성에 맞는 기저를 선택하라. 흔히 $W$가 블록 대각화되어, 예를 들어 $m$나 짝홀성이 고정된 블록으로 나뉘므로 계산이 쉬워진다.
+
+---
+
+### 7.6.5 첫 응용: 수소의 미세 구조, $\alpha^{4}$ 차수
+
+$Z e^{2}/4\pi\varepsilon_{0}r$이고 $Z=1$일 때 세 가지 상대론적 보정이 $H_{0}$에 더해진다.
+
+1) **상대론적 운동 에너지**
+
+$$
+H_{\mathrm{rel}} = -\,\frac{p^{4}}{8 m_{e}^{3} c^{2}}
+$$
+
+2) 토머스 인자를 포함한 **스핀–궤도 결합**
+
+$$
+H_{\mathrm{SO}} = \frac{1}{2 m_{e}^{2} c^{2}}\,\frac{1}{r}\frac{dV}{dr}\,\boldsymbol L\cdot \boldsymbol S
+$$
+
+쿨롱 퍼텐셜 $V(r)=-e^{2}/4\pi\varepsilon_{0}r$에서는 $\propto +\,\boldsymbol L\cdot\boldsymbol S/r^{3}$이다.
+
+3) **다윈 항**: 지터베베궁에서 생기는 접촉 항으로, $\ell=0$에서만 0이 아니다.
+
+$$
+H_{\mathrm{D}} = \frac{\hbar^{2}}{8 m_{e}^{2} c^{2}}\,\nabla^{2}V(r)
+$$
+
+수소 고유상태와 각운동량 대수로 기댓값을 합한다. 합은 $n$와 **총각운동량** $j=\ell\pm \tfrac12$에 의존하지만 $m$에는 의존하지 않으며, 교과서적인 미세 구조 이동을 준다.
+
+$$
+\Delta E_{n,j}^{(\mathrm{fs})} = -\,\frac{\mu c^{2}\,(Z\alpha)^{4}}{2 n^{3}}\left(\frac{1}{j+\tfrac12} - \frac{3}{4n}\right)
+$$
+
+여기서 $\mu$는 환산 질량이며 $\alpha\equiv e^{2}/4\pi\varepsilon_{0}\hbar c$이다. 미세 구조는 스핀을 포함한 $2n^{2}$중 축퇴를 $j$에 따라 갈라놓는다. 허용되는 각 각운동량 다중항에는 $2j+1$개의 자기 상태가 남으며 $m$로 표시된다. 주양자수와 총각운동량 양자수가 같고 궤도 각운동량만 다른 상태들은 이 차수에서 여전히 축퇴되어 있다.
+
+---
+
+### 7.6.6 제만 효과: 약한 자기장
+
+균일한 자기장 $\boldsymbol B = B\,\hat{\boldsymbol z}$를 더하자. 선도 결합은
+
+$$
+H'_{\mathrm{Z}} = \frac{\mu_{B}}{\hbar}\,(L_{z} + g_{s} S_{z})\,B
+$$
+
+이며 $g_{s}\approx 2$와 $\mu_{B}=e\hbar/2m_{e}$이다. LS 결합에서 준위는 $\ket{n\ell s j m_{j}}$로 표시되고 에너지 이동은 다음처럼 정리된다.
+
+$$
+\Delta E_{\mathrm{Z}} = \mu_{B}\,g_{J}\,m_{J}\,B
+$$
+
+여기서 **란데 인자**는
+
+$$
+g_{J} = 1 + \frac{j(j+1) + s(s+1) - \ell(\ell+1)}{2j(j+1)}
+$$
+
+$s=\tfrac12$에서 이는 익숙한 ‘이상’ 제만 패턴을 재현한다. 쌍극자 전이의 선택 규칙은 여전히 $\Delta m_{J}=0,\pm 1$이며, 편광은 $\pi$와 $\sigma^{\pm}$ 성분에 대응한다.
+
+**강한 장의 파셴–바크 효과 참고**: $\mu_{B}B$가 스핀–궤도 결합보다 커지면 $L$와 $S$가 분리되어 $L_{z}$와 $S_{z}$를 대각화하며 $J^{2}$를 사용하지 않는다. 이는 약한 장의 1차 섭동론 범위를 넘어선다.
+
+---
+
+### 7.6.7 슈타르크 효과: 전기장과 짝홀성
+
+정전기장 $\boldsymbol E=E\,\hat{\boldsymbol z}$에 대해
+
+$$
+H'_{\mathrm{S}} = e E z
+$$
+
+**짝홀성** 때문에 확정된 짝홀성을 가진 비축퇴 준위, 예를 들어 수소의 $1s$에서는 1차 이동이 사라진다. 따라서 선도 이동은 **2차**이다.
+
+$$
+\Delta E^{(2)} = \sum_{m\neq n} \frac{|\langle m^{(0)}|eEz|n^{(0)}\rangle|^{2}}{E_{n}^{(0)} - E_{m}^{(0)}}
+$$
+
+수소의 $1s$에서는 다음 이차 슈타르크 이동을 얻는다.
+
+$$
+\Delta E_{1s} = -\,\frac{1}{2}\,\alpha_{1s}\,E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,(4\pi\varepsilon_0)\,a_{0}^{3}
+$$
+
+여기서 $\alpha$는 **편극률**이고 $a_{0}$는 보어 반지름이다.
+
+**축퇴된 상태 집합의 선형 슈타르크 효과.** $H_{0}$에 반대 짝홀성의 축퇴가 있으면, 예를 들어 수소의 $n\ge 2$에서, $n$ 상태 집합에서 포물선 좌표 상태를 사용해 **축퇴 섭동론**을 적용한다. 1차 이동이 나타난다.
+
+$$
+\Delta E_{n,k,m} = \frac{3}{2}\,n\,e\,a_{0}\,E\,k
+$$
+
+여기서 $k=n_{1}-n_{2}$는 포물선 양자수이며 $n_{1}+n_{2}+|m|+1=n$를 만족한다. $n=2$에서는 $k=\pm 1$가 $m=0$에서 선형으로 갈라지지만, $|m|=1$ 상태는 1차에서 이동하지 않는다.
+
+---
+
+### 7.6.8 실용적인 계산 순서와 대칭성 활용
+
+- **좋은 양자수를 활용하라.** $H_{0}$와 $H'$ 모두와 교환하는 모든 연산자를 대각화하는 기저에서 계산하라.  
+- **위그너–에카르트 정리로 각도를 제거하라.** 쌍극자형 섭동 $r_{q}$에서는 각도 부분을 클레브슈–고르단 계수와 축약 행렬 원소로 분해하여 방사상 적분 하나만 계산하라.  
+- **선택 규칙을 확인하라.** 대칭성 때문에 1차가 0이면 바로 2차로 넘어가 계산량과 뜻밖의 오류를 줄여라.  
+- **처음부터 크기를 추정하라.** $H'$의 전형적인 행렬 원소를 $H_{0}$의 준위 간격과 비교하라. 그 비가 $\ll 1$가 아니면 섭동론으로 해결할 수 없다.
+
+---
+
+### 7.6.9 간단한 풀이 예제
+
+**(a) 수소 바닥 상태의 이차 슈타르크 효과**
+
+$np$ 결합 상태의 완비 집합과 연속체 p파 상태를 함께 사용하여 다음을 보여라.
+
+$$
+\Delta E_{1s}^{(2)} = -\,\frac{1}{2} \alpha_{1s} E^{2},\qquad \alpha_{1s} = \frac{9}{2}\,(4\pi\varepsilon_0)\,a_{0}^{3}
+$$
+
+개요: $\ell=1$인 중간 상태만 기여한다. $z\propto Y_{1}^{0}$가 $\ell$를 $\pm 1$만큼 바꾸기 때문이다. 방사상 합을 계산하거나 알려진 수소형 원자의 편극률을 사용하라.
+
+**(b) $2P_{3/2}$ 준위의 제만 갈라짐**
+
+$j=\tfrac32$이면 $g_{J}=\tfrac{4}{3}$이다. 허용되는 $m_{J}=\{-\tfrac32,-\tfrac12,\tfrac12,\tfrac32\}$는 간격 $\mu_{B}g_{J}B$인 등간격 선 네 개를 만든다.
+
+**(c) 미세 구조의 크기 차수**
+
+$n=2$에서 척도는
+
+$$
+|\Delta E^{(\mathrm{fs})}| \sim \mu c^{2}\,\alpha^{4}/16
+$$
+
+수소에서는 $10^{-4}\ \text{eV}$ 범위, 즉 수십 GHz인 마이크로파 영역에 해당한다.
+
+**(d) 2차 보정으로 보는 두 준위의 회피 교차**
+
+상태 쌍 $\{\ket{1},\ket{2}\}$에 대해 $E_{2}^{(0)}-E_{1}^{(0)}=\Delta$이고 비대각 원소가 $\langle 1|H'|2\rangle=V$이면 다음을 대각화한다.
+
+$$
+\begin{pmatrix}
+E_{1}^{(0)} & V \\
+V & E_{2}^{(0)}
+\end{pmatrix}
+$$
+
+그러면 정확한 $E_{\pm} = \tfrac{1}{2}(E_{1}^{(0)}+E_{2}^{(0)}) \pm \tfrac{1}{2}\sqrt{\Delta^{2}+4V^{2}}$를 얻는다. $|V|\ll |\Delta|$에서는 2차 이동 $\pm V^{2}/\Delta$를 재현한다. 이는 많은 ‘거의 축퇴된’ 섭동의 대수적 골격이다.
+
+---
+
+### 7.6.10 흔한 함정과 피하는 방법
+
+- **축퇴 공간에서 직교화를 잊는 것.** 항상 $H'$를 먼저 대각화하라. 그렇지 않으면 분모가 잘못된 결과를 준다.  
+- **혼합 후에도 섭동 전의 표지를 쓰는 것.** $W$를 대각화한 뒤의 ‘좋은’ 0차 상태는 $W$의 고유벡터이며 원래 기저가 아니다.  
+- **헬만–파인만 정리의 경계항.** 이 정리에는 정확한 고유상태가 필요하다. 변분 기저나 잘린 기저가 $\lambda$에 의존하면 풀라이형 보정을 추가해야 한다.  
+- **차수 세기.** 1차가 사라지면 2차가 지배적이면서도 여전히 ‘작을’ 수 있다. 급수를 믿기 전에 척도를 확인하라.
+
+---
+
+### 7.6.11 최소 연습문제 모음
+
+- 중간 정규화를 사용한 급수 가정에서 $E_{n}^{(1)}$, $\ket{n^{(1)}}$, $E_{n}^{(2)}$를 유도하라.  
+- 3중 축퇴 준위 $\{\ket{\phi_{1}},\ket{\phi_{2}},\ket{\phi_{3}}\}$와 섭동 $H'$에 대해 $W$를 구성하고 세큘러 방정식 $\det(W-\lambda I)=0$를 풀어 혼합된 고유켓을 구성하라.  
+- 란데 $g_{J}$ 공식을 $H'_{\mathrm{Z}}$에서 벡터 결합으로 계산하고, 특수한 경우 $S$($\ell=0$)와 $L$만 있는 극한($s=0$)을 확인하라.  
+- $1s$의 이차 슈타르크 이동을 $np$ 결합 상태에 대한 명시적 합과 연속체 p파 상태에 대한 적분으로 계산하거나, 동등한 완전한 리졸벤트 방법으로 계산하라.  
+- $H_{\mathrm{rel}}, H_{\mathrm{SO}}, H_{\mathrm{D}}$에서 출발하여 미세 구조 보정의 합이 $n$와 $j$에만 의존함을 보이고 위의 $\Delta E_{n,j}^{(\mathrm{fs})}$를 재현하라.
+
+---

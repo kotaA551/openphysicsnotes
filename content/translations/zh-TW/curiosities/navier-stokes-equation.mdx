@@ -1,0 +1,328 @@
+---
+description: "深入理解 Navier–Stokes 方程式、黏滯性、渦旋伸長與有限能量奇異性，並整理截至 2026 年 10 月 13 日 OpenAI 在光滑外力下的成果主張、Lean 形式化的檢視，以及仍未解決的無外力問題。"
+---
+## 1. 為什麼這個問題重要（千禧年難題）
+
+流過船身的水與流過機翼的空氣，都遵循同一種局部平衡：質量守恆，而力會改變動量。Navier–Stokes 方程式把這個想法寫成連續介質模型。寫下方程式，遠比證明它的每一個解可能如何演化容易。
+
+**研究狀態查核日期：2026 年 10 月 13 日。** 9 月 8 日，OpenAI 宣布構造出三維不可壓縮 Navier–Stokes 方程式在**光滑外力**作用下的有限時間爆破，並發布論文與 Lean 程式碼。這項主張針對 Clay 千禧年難題的 **C 與 D 兩種命題**。這是所宣稱的一項重大進展，但**並未**證明**無外力** Navier–Stokes 方程式會爆破。另行公布的無外力 Euler 成果涉及零黏度，不能與此混為一談。[OpenAI 公告，9 月 10 日更新](https://openai.com/index/navier-stokes-solution/)。
+
+在這裡，必須區分已宣布的結果、經檢查的形式化命題、可供閱讀的證明，以及數學界的接受程度。第 14 節整理了截至上述日期的評估狀態，包括 10 月的檢視。以下的物理說明，將解釋為什麼能量有界仍可能伴隨愈來愈劇烈的局部運動。
+
+---
+
+## 2. 連續場與守恆定律
+
+令 $\rho(\boldsymbol x,t)$ 為質量密度、$\boldsymbol v(\boldsymbol x,t)$ 為速度、$p(\boldsymbol x,t)$ 為壓力，$\boldsymbol{\sigma}$ 為 Cauchy 應力張量。單位質量所受的體積力記為 $\boldsymbol f$，例如重力。
+
+場在每個位置與時刻都指定一個數值；這是對許多分子取平均的描述。模型假設相關長度尺度夠大，使這種平均與局部應力定律都有意義。數學上的奇異性指的是連續介質方程式的性質，並不是預測真實分子會達到無限大的速率。
+
+### 2.1 質量守恆
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+第一項衡量局部累積了多少質量；散度衡量淨向外的質量通量。當密度固定時，質量守恆就化為速度的散度等於零。一小塊流體可以伸長、改變形狀，同時保持體積不變。
+
+### 2.2 動量守恆（Cauchy）
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+將應力分解成各向同性的壓力與黏滯部分：
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+物質導數 $D_t=\partial_t+\boldsymbol v\cdot\nabla$ 隨著流體微團一起移動。即使速度場不隨時間變化，流體微團仍可能加速：水進入較窄的通道時，會移到速度不同的區域。非線性輸送項 $(\boldsymbol v\cdot\nabla)\boldsymbol v$ 描述的正是這種變化。
+
+---
+
+## 3. 本構關係（牛頓流體）
+
+對各向同性的牛頓流體，
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+其中 $\mu$ 是動力黏度，$\lambda$ 是第二黏度係數；體積黏度為 $\zeta=\lambda+2\mu/3$。
+
+![靜止的下平板與移動的上平板之間，穩態層流的速度隨高度線性增加，呈現黏滯剪切與無滑移條件。](/images/diagrams/couette-flow.svg)
+
+當黏度係數在空間中為常數時，代入動量平衡式可得**可壓縮 Navier–Stokes 方程式**：
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+運動黏度定義為 $\nu \equiv \mu/\rho$，這裡假設 $\rho$ 固定。
+
+黏滯作用回應的是變形，而非均勻平移。其量綱為 $[\mu]=\mathrm{Pa\,s}$ 與 $[\nu]=\mathrm{m^2/s}$。在平板流動圖中，若兩板間距為 $h$、上平板速率為 $U$，則 $v_x(y)=Uy/h$，剪應力為 $\tau_{xy}=\mu U/h$。這個簡單的精確解是光滑的；奇異性主張是說，存在某些特定資料，使其對應的解形成奇異性，並不是說所有流動都會如此。
+
+---
+
+## 4. 不可壓縮形式
+
+當密度固定為 $\rho=\rho_0$，且
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+便得到
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+這個方程式表示：加速度等於壓力所產生的加速度、黏滯擴散與外加加速度之和。
+
+| 項目 | 意義 |
+| --- | --- |
+| $\partial_t\boldsymbol v$ | 在固定位置量到的變化 |
+| $(\boldsymbol v\cdot\nabla)\boldsymbol v$ | 流體微團穿越速度場時產生的變化 |
+| $-\nabla p/\rho_0$ | 壓力造成的力重新分配動量 |
+| $\nu\nabla^2\boldsymbol v$ | 黏滯作用使空間變化趨於平滑 |
+| $\boldsymbol f$ | 單位質量所受的外加力 |
+
+不可壓縮不代表速度為零，也不代表加速度為零。壓力作為約束，讓速度保持散度為零；在這個密度固定的模型中，它不是獨立的狀態方程式。
+
+對動量方程式取散度，可以得到**壓力的 Poisson 方程式**，並須搭配適當的邊界條件：
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. 渦量與螺旋度
+
+定義渦量 $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$。  
+對不可壓縮流動（$\nabla\!\cdot\!\boldsymbol v=0$）：
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+以分量表示：
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+$\omega_j \partial_j v_i$ 這一項就是**渦旋伸長**，只出現在三維情形。  
+螺旋度 $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ 可用來了解渦線的拓樸性質。
+
+沿軸向拉長的渦管可能變得更細、旋轉更強。在渦量方程式中，伸長可以放大旋轉，而黏滯性則使它擴散。單看其中任何一種作用，都不足以判定完整耦合的動力系統是否一直保持光滑。
+
+對真正的平面流動 $\boldsymbol v=(v_x(x,y),v_y(x,y),0)$，渦量垂直於平面，而且各場沿這個方向不變。因此 $(\boldsymbol\omega\cdot\nabla)\boldsymbol v=0$。這使二維流動少了一個重要的放大機制；但不代表每個三維渦旋都一定會爆破。
+
+![平面內的逆時針環流，其渦量指向紙面外，以圓圈中的圓點表示。](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. 能量平衡（不可壓縮情形）
+
+對光滑解，將動量方程式與 $\boldsymbol v$ 取內積，再於具有靜止無滑移邊界的區域 $\Omega$ 上積分。同樣的恆等式也適用於週期盒子，或在無窮遠具有足夠衰減的全空間情形：
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+當 $\boldsymbol f=\boldsymbol 0$ 時，動能單調遞減；黏滯耗散率為 $\nu\|\nabla \boldsymbol v\|_2^2$。
+
+這裡的能量已除以固定密度：物理上的動能等於 $\rho_0/2$ 乘上速度平方的積分。輸送與壓力只貢獻邊界通量，在上述假設下皆為零；分部積分則給出非負的黏滯項。移動的壁面或開放邊界會帶來額外的作功或通量項。
+
+### 6.1 為什麼有限能量不保證光滑性
+
+積分的界控制的是整體運動，不是最大的局部數值。為了說明尺度變化，選取一個固定、光滑、具有緊支撐且散度為零的向量場 $\boldsymbol\phi$，並令
+
+$$
+\boldsymbol v_\ell(\boldsymbol x)=\ell^{-1}\boldsymbol\phi(\boldsymbol x/\ell).
+$$
+
+因此，$\|\boldsymbol v_\ell\|_\infty=\ell^{-1}\|\boldsymbol\phi\|_\infty$ 在 $\ell\to0$ 時增大，而 $\|\boldsymbol v_\ell\|_2^2=\ell\|\boldsymbol\phi\|_2^2$ 反而減小。這些只是經過縮放的瞬間分布，**不是方程式的解，也不是爆破的證明**。它們說明，在愈來愈小的體積中出現愈來愈大的速率，並不一定違反能量的界。如何控制導數與集中現象，正是正則性問題額外的難處。
+
+---
+
+## 7. 無因次化與控制參數
+
+選取特徵尺度 $L$（長度）與 $U$（速率），定義
+$\boldsymbol x'=\boldsymbol x/L$、$t' = tU/L$、$\boldsymbol v'=\boldsymbol v/U$、$p'=p/(\rho U^2)$。
+
+不可壓縮方程式變成
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+其中**雷諾數**為
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+此處 $\boldsymbol f'=L\boldsymbol f/U^2$。擴散時間為 $L^2/\nu$，平流時間為 $L/U$；兩者之比就是 $\mathrm{Re}$。雷諾數大，表示在所選尺度下，平流比黏滯性的平滑作用快。它既不是通用的紊流門檻，也不是奇異性判準：幾何形狀、擾動與量測尺度同樣重要。例如，$U=0.1\,\mathrm{m/s}$、$L=0.01\,\mathrm m$ 且 $\nu=10^{-6}\,\mathrm{m^2/s}$ 時，得到 $\mathrm{Re}=1000$。
+
+其他可依需要引入的無因次數包括：
+
+- **馬赫數** $\mathrm{Ma}=U/c_s$（可壓縮性），
+- **福祿數** $\mathrm{Fr}=U/\sqrt{gL}$（重力），
+- **普朗特數** $\mathrm{Pr}=\nu/\kappa$（動量擴散與熱擴散的比較）。
+
+---
+
+## 8. 可壓縮 Navier–Stokes–Fourier 系統（概述）
+
+加入內能 $e$ 或溫度 $T$，並使用 Fourier 熱通量 $\boldsymbol q=-k_{\rm th} \nabla T$；其中熱傳導係數 $k_{\rm th}$ 與前述熱擴散係數 $\kappa$ 不同：
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+再以狀態方程式，例如理想氣體關係，封閉系統：$p=(\gamma-1)\rho e$。
+
+壓縮作功，以及動能轉換成內能的過程，此時都明確出現在方程式中。不可壓縮的千禧年難題並不解決這個不同系統中的震波形成、熱傳輸或正則性理論。
+
+---
+
+## 9. 數學理論（存在性與唯一性）
+
+**局部存在**表示解在初始時刻之後的某段時間內存在；**全域存在**表示解在往後所有時間都存在。**古典解**具有足夠的導數，能在每一點滿足方程式；這裡的**光滑**則指可微分至任意階。**弱解**滿足積分形式的方程式，將導數轉移到光滑的測試函數上。這些是不同層次的存在性要求。
+
+### 9.1 弱解（Leray–Hopf）
+在標準的全空間或週期設定下，若初始資料散度為零、能量有限，且外力符合允許的條件，Leray–Hopf 理論可給出**滿足能量不等式的全域弱解**。只要光滑解仍保持光滑，它就在相應的能量類中唯一，這稱為弱–強唯一性。因此，可能失去光滑性，並不代表所有廣義解都不再存在。[Fefferman 撰寫的官方問題說明](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf)。
+
+唯一性取決於解的類別、初始資料與外力。[Albritton、Brué 與 Colombo](https://arxiv.org/abs/2112.03116) 對某些外力證明了非唯一性。[Hou、Wang 與 Yang](https://arxiv.org/abs/2509.25116) 則報告了以電腦輔助得到的結果：在無外力但初始資料具有奇異性的情況下，解可以不唯一。不能把這些結果改稱為「光滑初始資料在無外力下發生爆破」。
+
+### 9.2 正則性判準（三維）
+
+- **渦量延拓判準（Beale–Kato–Majda 類型）：**在通常具有足夠正則性的全空間或週期設定中，若古典解的外力在跨越 $T$ 時仍足夠正則，那麼解若在 $T$ 失去正則性，就必須有
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+[Luo 對 Navier–Stokes 延拓判準的討論](https://arxiv.org/html/1803.05569) 陳述了無外力情形的判準；上述對外力的要求，是為了排除由奇異的外部輸入直接造成的失去正則性。
+- **Prodi–Serrin：**在外力符合適當條件時，能量類中的弱解若滿足 $\boldsymbol v \in L^p(0,T;L^q)$，且
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+則解具有正則性，並在 $(0,T]$ 上光滑。
+- **Caffarelli–Kohn–Nirenberg：**適當弱解（suitable weak solutions）在符合該定理的外力假設時，其奇異集合的一維拋物型 Hausdorff 測度為零。這是部分正則性的結果，並不證明奇異集合為空。[官方問題說明中的背景與參考文獻](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf)。
+
+這些都是有條件的敘述。它們指出什麼樣的控制足以防止失去正則性，並未替所有三維流動提供這種控制。上述指數反映自然的縮放 $\boldsymbol v_a(\boldsymbol x,t)=a\boldsymbol v(a\boldsymbol x,a^2t)$；在三維中，單靠能量範數並不具備臨界縮放性質。
+
+### 9.3 二維的全域正則性
+在標準的全空間或週期設定下，若資料光滑、符合相容性條件，且外力足夠正則，二維不可壓縮流動就會在每個有限時刻保持光滑。沒有外力時，渦量平方積分（enstrophy）$\int|\boldsymbol\omega|^2\,dV$ 不會增加；外力則會加入源項。少了渦旋伸長，使二維的控制遠比三維有力。
+
+### 9.4 可壓縮流動
+在特定條件下，遵循 $\gamma$ 次方律的氣體存在**全域有限能量弱解**，但正則性與唯一性仍有很大部分尚未解決。
+
+### 9.5 Clay 的四種命題究竟問什麼
+
+[官方表述](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf) 接受對以下四種命題中任一項的證明，黏度皆為正：
+
+| 命題 | 定義域 | 外力與問題 |
+| --- | --- | --- |
+| A | $\mathbb R^3$ | 外力為零；對所有允許的光滑初始資料，都存在全域光滑且能量有限的解 |
+| B | 週期空間 $\mathbb R^3/\mathbb Z^3$ | 外力為零；對所有允許的光滑週期初始資料，都存在全域光滑解 |
+| C | $\mathbb R^3$ | 存在某些允許的光滑資料與光滑、快速衰減的外力，使得不存在能量一致有界的全域光滑解 |
+| D | 週期空間 $\mathbb R^3/\mathbb Z^3$ | 存在某些允許的光滑週期資料與光滑週期外力，使得不存在全域光滑解 |
+
+在全空間中，初始資料與外力須符合指定的衰減條件；週期外力也須符合時間方向的衰減條件。C 與 D 允許非零外力，因此證明其中一項，在邏輯上並不會推翻無外力的命題 A 或 B。「解決 Clay 的一種命題」與「解決正則性的所有版本」是不同的主張。
+
+---
+
+## 10. 紊流與能譜
+
+在高 $\mathrm{Re}$ 的均勻、各向同性紊流中，K41 理論給出慣性區間的能譜
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+其中 $\varepsilon$ 為平均耗散率，$C_K\!\sim\! \mathcal O(1)$ 為 Kolmogorov 常數。
+
+**Kolmogorov 微尺度：**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+使用 K41 的估計 $\varepsilon\sim U^3/L$ 可得 $L/\eta\sim\mathrm{Re}^{3/4}$。要在三維中解析到這個尺度，網格點數大約需要達到 $\mathrm{Re}^{9/4}$ 的量級，這還沒計入時間步進的成本。這個啟發式估計，說明了為什麼會有解析度與建模選擇不同的**直接數值模擬（DNS）**、**大渦模擬（LES）**與**雷諾平均 Navier–Stokes（RANS）**方法。LES 與 RANS 都需要封閉假設，處理未解析的相關項。
+
+指數為 $-5/3$ 的能譜描述的是慣性區間中的統計模型，並不適用於每種流動或每個尺度。間歇性與邊界會使情況更加複雜。特別構造出的奇異解，既不會提供通用的紊流模型，也不會消除估計數值誤差的必要。
+
+---
+
+## 11. 邊界條件與幾何
+
+- **無滑移壁面：** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
+- **自由滑移：** $\boldsymbol n\!\cdot\!\boldsymbol v=0$、$\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
+- **週期盒子（環面）**，用於理論與 DNS  
+- **流入與流出邊界**，搭配適當的應力或壓力設定
+
+這些選擇會影響問題的適定性、能量收支與數值穩定性。
+
+週期盒子把相對的兩個面視為相接，沒有實際的壁面。全空間問題則以無窮遠的衰減條件取代壁面條件。這些幾何中的結果，不能自動套用到飛機表面或管道：邊界條件本來就是數學問題的一部分。
+
+---
+
+## 12. 數值方法速覽
+
+- **投影法：**先推進得到 $\boldsymbol v^\ast$，求解 $p$ 的 Poisson 方程式，再投影使 $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$。  
+- **能量穩定格式：**將對流項寫成斜對稱形式，可保留離散能量。  
+- **顯式平流與擴散格式的 CFL 限制：** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$。  
+- **散度控制：**使用散度為零的譜基底，或使用速度–壓力配對符合 inf–sup 穩定條件的混合有限元素。要讓散度精確為零，需要合適的函數空間；僅有 inf–sup 穩定性並不能保證這一點。
+
+模擬可以顯示一個不斷升高的峰值，但有限網格本身無法證明極限為無窮大。必須透過網格加密研究、離散化誤差控制與解析論證，才能區分真正的集中現象和數值不穩定。電腦輔助證明提供嚴格的界；形式化證明輔助系統則根據編碼的定義與假設，檢查推論是否成立。兩者都不只是高解析度動畫。
+
+---
+
+## 13. 關聯與延伸
+
+- **Euler 方程式：**令 $\nu=0$，就移除了黏滯擴散。取極限 $\nu\to0$ 本身也可能很微妙，尤其是在壁面附近。OpenAI 另行公布的無外力 Euler 成果，處理的是這個無黏滯方程式，並非正黏度下的無外力問題。[公告與獨立的 Euler 論文](https://openai.com/index/navier-stokes-solution/)。
+- **相對論流體力學：**直接套用 Navier–Stokes 會違反因果性；二階的 **Israel–Stewart** 理論，在輸送係數與流體狀態符合適當條件時，可以恢復因果性（[一個具有體積黏滯性的嚴格例子](https://arxiv.org/abs/1901.06701)）。  
+- **量子流體：**超流體中的 Navier–Stokes 類比，涉及雙流體模型與量子化渦旋。
+
+---
+
+## 14. 目前進展
+
+**截至 2026 年 10 月 13 日：**三維光滑外力下的構造已經公布，仍在接受檢視；三維無外力 Navier–Stokes 方程式的正則性仍未解決。這並未推翻二維正則性，也未否定光滑流動解在日常應用中的效用。
+
+### 14.1 精確主張與構造機制
+
+[OpenAI 論文](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf)的定理 1.1 敘述：對**每一個 $\nu>0$**，都存在一個在空間與時間上具有緊支撐的光滑外力，以及一個定義於 $\mathbb R^3\times[0,1)$、從靜止開始的光滑不可壓縮流動，使得
+
+$$
+\boldsymbol v(\cdot,0)=0,\qquad
+\sup_{0\le t<1}\|\boldsymbol v(t)\|_{L^2}<\infty,
+\qquad
+\limsup_{t\uparrow1}\|\boldsymbol v(t)\|_{L^\infty}=\infty.
+$$
+
+在時刻 1 之前，速度與壓力的空間支撐都限制在一個固定的緊緻區域內；外力則可以光滑地延伸跨越該時刻。論文宣稱證明了命題 C，並透過推論 10.6 的週期構造得到 D。其壓力定義已吸收固定密度的因子。
+
+所提出的機制，讓一個向內螺旋運動、同時沿軸向伸長的渦旋集中。振盪修正及其動量輸送，抵消了原本會出現奇異性的殘餘外力。任意選取一個會爆破的速度，再用方程式定義外力，並不足夠：外力及其**所有階導數**都必須在跨越奇異時刻時保持光滑。這裡只是對所宣稱構造的概念說明，並非獨立證明。
+
+「對每一種黏度，都存在一個外力」允許外力依賴黏度。它不表示同一個固定外力能克服所有黏度，也不表示任意微小的外力就足夠，更不表示起初靜止的流體可以在沒有能量輸入的情況下爆破。
+
+### 14.2 Lean、數學檢視與獎項
+
+[已公開的 Lean 儲存庫](https://github.com/openai/NavierStokesAndEuler)包含全空間與週期情形的目標命題，以及使用 Comparator 進行獨立檢查的說明。形式化檢查器驗證的是確切編碼的命題與假設之下的推論。這些定義是否表達了原本要解決的問題，以及論證如何對應書面證明，都是還需要檢視的事情。本筆記並未聲稱已重新建置或獨立驗證該 Lean 專案。
+
+**10 月 6 日**，[Bastounis、Circelli 與 Hansen](https://arxiv.org/abs/2610.08144) 發布了對自然語言論述與 Lean 之間對應關係的批評，包括引理 8.6 對導數的要求不同，以及引理 10.5 使用不同的壓力估計論證。這質疑的是：能否把形式化直接視為書面證明每一步都已獲得認證。這些批評本身**並不**推翻最終的有外力爆破定理，也不表明最終形式化命題有誤。
+
+**9 月 11 日**，[Clay 的回應](https://www.claymath.org/news/navier-stokes-announcement/)肯定了這項看似重大的突破，同時強調評估程序會刻意保持審慎、不求倉促。[獎項規則](https://www.claymath.org/millennium-problems/rules/)要求成果有符合資格的出版物、出版後至少經過兩年，且獲得數學界普遍接受，才會考慮授獎。不能只根據公告日期，就認定獎項等待期已經開始。本文沒有宣稱獎項已經頒發；OpenAI 表示無意申領。
+
+### 14.3 後續研究證明了什麼，又沒有證明什麼
+
+9 月的後續工作也必須依照其實際範圍來解讀。[Petrillo 與 Glimm](https://arxiv.org/abs/2609.23868) 明確區分有外力的結果與仍未解決的無外力問題。[Lei 與 Ren 的說明文章](https://arxiv.org/abs/2609.35406v2)研究剖面構造，將進一步的振盪抵消留待後續處理，並非完整的獨立驗證。[Constantin、Ignatova 與 Vicol](https://arxiv.org/abs/2609.20803v2) 則在特定的幾何、成長與外力假設下，得到可排除奇異性的正則性結果。它與嘗試移除這個機制中的外力有關，並不是所有解析外力流動都具有全域正則性的定理。
+
+現在值得追問的問題很明確：所宣稱的假設與結論是否已獲驗證？機制能否得到清楚透明的解釋？移除外力後，還有哪些部分能成立？紊流預測、各種解類別中弱解的唯一性，以及可壓縮流動，仍是各自獨立的問題。
+
+## 15. 檢查你的理解
+
+1. **均勻平移：**速度固定、壓力固定且外力為零時，不可壓縮方程式中的哪些項會消失？所有空間與時間導數都為零，因此任何正黏度都與這種運動相容。
+2. **能量與最大速率：**在第 6.1 節，令 $\boldsymbol y=\boldsymbol x/\ell$ 做變數變換。為什麼能量會依 $\ell$ 縮放？振幅平方貢獻 $\ell^{-2}$，而三維體積貢獻 $\ell^3$。
+3. **改變尺度：**保持 $U$ 與 $\nu$ 不變，若 $L$ 減半，雷諾數會如何改變？它也會減半；在較小尺度下，黏滯性的相對重要性提高。
+4. **閱讀定理：**為什麼命題 C 可以成立，而 A 仍未定？C 允許選取非零的光滑外力，A 則只處理外力為零的情況。
+5. **證明檢查器：**Lean 接受一個證明後，還需要檢查什麼？需要確認編碼的定義、假設與最終結論，是否對應原本的數學問題；與另一份文字論述的對應關係，也仍須檢視。
+
+---

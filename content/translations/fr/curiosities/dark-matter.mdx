@@ -1,0 +1,131 @@
+---
+description: "Rotation, lentilles et univers primordial : comprendre la matière noire, ses modèles, les calculs de masse, les recherches et leurs limites."
+---
+
+## 1. Preuves observationnelles
+
+La matière noire est une composante gravitationnelle proposée qui n'émet ni n'absorbe assez de lumière pour expliquer la masse qu'on lui attribue. La motivation est quantitative : la gravité nécessaire pour rendre compte des mouvements, des lentilles et des structures cosmiques dépasse celle des étoiles, du gaz et des autres matières ordinaires. Ces phénomènes distincts sont interprétés à l'aide de modèles dynamiques et gravitationnels. Ils ne constituent pas l'identification d'une nouvelle particule en laboratoire.
+
+« Noire » ne signifie ni objet noir, ni antimatière, ni énergie noire. Le gaz ordinaire froid peut lui aussi être difficile à observer. Identifier une matière noire non baryonique exige davantage que découvrir un objet peu lumineux : l'explication doit rendre compte de plusieurs observations indépendantes avec des paramètres compatibles.
+
+### Courbes de rotation
+
+Les décalages Doppler des spectres donnent les vitesses des étoiles et du gaz le long de la ligne de visée. La correction de l'inclinaison de la galaxie permet d'estimer sa courbe de rotation. Pour une orbite circulaire dans une distribution de masse newtonienne approximativement sphérique, la gravité fournit l'accélération centripète :
+
+$$
+\frac{v_c^2}{r}=\frac{GM(<r)}{r^2},\qquad M(<r)=\frac{rv_c^2}{G}.
+$$
+
+$M(<r)$ comprend **toute** la masse à l'intérieur de $r$, pas seulement les étoiles. À l'extérieur d'une distribution compacte, cette masse tend vers une constante et $v_c\propto r^{-1/2}$. Une vitesse presque constante implique au contraire $M(<r)\propto r$. En dérivant la masse sphérique contenue, on obtient
+
+$$
+\rho(r)=\frac{1}{4\pi r^2}\frac{dM}{dr}\simeq\frac{v_c^2}{4\pi G r^2}.
+$$
+
+Cette déduction vaut dans la région observée où la courbe est plate, pas jusqu'à l'infini : un profil perpétuel en $r^{-2}$ aurait une masse infinie. Les vraies galaxies possèdent des disques aplatis dont il faut calculer la gravité avec la géométrie appropriée. Rapport masse-luminosité stellaire, gaz, distance, inclinaison et mouvements non circulaires interviennent dans un ajustement sérieux. L'[article présentant SPARC](https://arxiv.org/abs/1606.09251) explique comment combiner photométrie et rotation du gaz.
+
+**Exemple calculé.** Considérons une galaxie sphérique idéalisée avec $v_c=200\,\mathrm{km\,s^{-1}}$ à $r=20\,\mathrm{kpc}$. Avec $G=4.30\times10^{-6}\,\mathrm{kpc}\,(\mathrm{km\,s^{-1}})^2M_\odot^{-1}$, on trouve $M(<r)\simeq1.86\times10^{11}M_\odot$. Si l'estimation indépendante des baryons dans ce rayon est $6\times10^{10}M_\odot$, le modèle exige environ $1.26\times10^{11}M_\odot$ supplémentaires. Ces nombres illustrent le raisonnement ; ils ne correspondent pas à l'ajustement d'une galaxie particulière.
+
+![Deux graphiques normalisés comparent une vitesse orbitale constante et une masse contenue croissante à une vitesse décroissante et une masse constante.](/images/diagrams/dark-matter-deep-rotation.svg)
+
+*Figure 1. Au-delà d'un rayon de référence, les courbes bleues continues suivent $v/v_0=1$ et $M/M_0=r/r_0$ ; les courbes orange en tirets suivent $v/v_0=(r/r_0)^{-1/2}$ et $M/M_0=1$. Le lien entre les panneaux suppose la symétrie sphérique. Ce sont des schémas, pas des observations.*
+
+**Amas et lentilles.** Les vitesses aléatoires des galaxies d'un amas relaxé donnent une autre estimation dynamique. La relation du viriel $2K+U\simeq0$ conduit à $M\sim R\sigma_v^2/G$, avec un coefficient dépendant de la géométrie. Un amas en fusion peut ne pas être à l'équilibre : appliquer cette estimation sans contrôle serait trompeur. Les lentilles utilisent plutôt les déformations d'images en arrière-plan. Dans l'approximation de champ faible et de lentille mince de la relativité générale, une lentille sphérique dévie la lumière de
+
+$$
+\alpha(b)=\frac{4G M_{\mathrm{2D}}(<b)}{c^2b}.
+$$
+
+$b$ est le paramètre d'impact et $M_{\mathrm{2D}}$ la masse projetée dans un cylindre, non la masse tridimensionnelle de la formule de rotation. La lentille n'a besoin ni de briller ni d'être en équilibre dynamique ; son analyse exige cependant un modèle de gravité, une géométrie et les distances des sources.
+
+L'amas de la Balle fournit une expérience de séparation : le gaz chaud, qui contient l'essentiel de la masse baryonique observée, ralentit lors de la collision, tandis que les galaxies se traversent largement. Les maxima de masse reconstruits par lentille sont plus proches des galaxies que du gaz. Cela soutient fortement une composante de masse supplémentaire relativement peu collisionnelle. Cela n'identifie pas les WIMP, ne démontre pas une auto-interaction exactement nulle et ne réfute pas toute théorie gravitationnelle imaginable. Voir l'[analyse originale](https://arxiv.org/abs/astro-ph/0608407).
+
+![Deux étapes schématiques d'une collision d'amas montrent le gaz se séparer des galaxies et des contours de masse obtenus par lentille.](/images/diagrams/dark-matter-deep-merger.svg)
+
+*Figure 2. À gauche, avant le passage, le gaz orange, les points noirs représentant les galaxies et les contours bleus de masse se superposent. À droite, le gaz reste plus central tandis que galaxies et contours s'écartent. Les flèches indiquent le mouvement. Ce schéma conceptuel n'est pas une reconstruction de l'amas de la Balle ; la taille des contours ne code pas une masse mesurée.*
+
+## 2. Paramètres cosmologiques
+
+Le paramètre de densité est $\Omega_i=\rho_i/\rho_{\mathrm{crit}}$, avec $\rho_{\mathrm{crit}}=3H_0^2/(8\pi G)$. Il compare la densité moyenne actuelle à une référence fixée par le taux d'expansion. Dans $\Omega_i h^2$, $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$ est sans dimension ; ce n'est pas la constante de Planck.
+
+Dans le modèle $\Lambda$CDM spatialement plat à six paramètres, l'[analyse finale de Planck](https://arxiv.org/abs/1807.06209) donne $\Omega_c h^2=0.120\pm0.001$, $\Omega_b h^2=0.0224\pm0.0001$ et $h\simeq0.674$ ; les incertitudes citées correspondent à 68 %. Donc $\Omega_c\simeq0.264$, $\Omega_b\simeq0.049$ et $\Omega_c/\Omega_b\simeq5.36$. Environ 84 % de la densité combinée de matière noire froide et de baryons est de la matière noire froide. Ces proportions sont déduites d'un modèle, non d'un comptage d'objets ; la petite contribution des neutrinos est distincte.
+
+Comment le fond diffus cosmologique distingue-t-il ces composantes ? Avant la recombinaison, photons et baryons formaient un fluide couplé : la pression s'opposait à la compression gravitationnelle et produisait des oscillations acoustiques. Les baryons ajoutent de l'inertie au fluide ; la matière noire peu collisionnelle fournit des potentiels gravitationnels sans subir cette pression photonique. Leurs abondances modifient différemment les pics et l'évolution des potentiels. L'ajustement des spectres de température, de polarisation et de lentille contraint donc les deux composantes.
+
+**Expérience de pensée.** Remplaçons la matière noire inférée par des baryons supplémentaires en conservant la densité totale. La gravité n'est pas seule à changer : le fluide acoustique est plus chargé et les réactions nucléaires primordiales rencontrent une densité baryonique différente. Le remplacement ne préserve donc généralement pas les observations. Après la recombinaison, les baryons tombent dans les puits de potentiel existants ; des particules se propageant trop rapidement effaceraient les germes à petite échelle. « Froide » désigne une faible dispersion initiale des vitesses aux échelles pertinentes, pas une température mesurée en laboratoire. Galaxies et lentilles testent la croissance ultérieure, avec les incertitudes dues à la rétroaction et au lien entre lumière et masse. [Cooke, Pettini & Steidel (2018)](https://arxiv.org/abs/1710.11129).
+
+## 3. Particules candidates
+
+Les observations contraignent abondance, regroupement et interactions. Elles laissent ouvertes diverses possibilités : une ou plusieurs espèces, un champ cohérent ou certains objets compacts. Un candidat doit vivre assez longtemps, être produit en quantité adéquate et respecter les contraintes cosmologiques et expérimentales.
+
+### (a) WIMP (particules massives interagissant faiblement)
+
+Un vestige thermique échangeait autrefois efficacement des particules avec le plasma chaud. Quand la température est devenue inférieure à son échelle de masse, la densité d'équilibre a diminué. L'expansion a fini par dépasser l'annihilation, laissant un reliquat. Pour une espèce simple identique à son antiparticule, de densité numérique $n$,
+
+$$
+\dot n+3Hn=-\langle\sigma v\rangle(n^2-n_{\mathrm{eq}}^2).
+$$
+
+$3Hn$ représente la dilution ; le membre droit représente la perte nette par annihilation, en incluant le processus inverse via $n_{\mathrm{eq}}$. Le découplage chimique se produit vers $n\langle\sigma v\rangle\sim H$, sans arrêt instantané des interactions. En domination radiative, avec entropie conservée et annihilation principalement indépendante de la vitesse, on utilise
+
+$$
+\Omega_\chi h^2\sim0.12\frac{2.2\times10^{-26}\,\mathrm{cm^3\,s^{-1}}}{\langle\sigma v\rangle}.
+$$
+
+Une annihilation plus efficace laisse moins de particules. Le coefficient dépend de la masse et de l'histoire thermique ; résonances, coannihilations et dépendance en vitesse exigent un calcul plus complet. Le [calcul de l'abondance résiduelle](https://arxiv.org/abs/1204.3622) quantifie cette dépendance. Le « miracle des WIMP » motive des recherches ; il ne garantit ni l'interaction faible ni une masse particulière entre GeV et TeV.
+
+### (b) Axions
+
+Le [mécanisme de Peccei–Quinn](https://doi.org/10.1103/PhysRevLett.38.1440) explique pourquoi les interactions fortes violent si peu CP. Le champ d'axion peut aussi stocker de l'énergie cosmique. Initialement déplacé du minimum de son potentiel, il commence à osciller lorsque l'expansion ralentit suffisamment. Dans un potentiel approximativement quadratique, ces oscillations se comportent en moyenne comme une matière sans pression. Une très petite masse peut donc être compatible avec un comportement froid : la production et l'impulsion comptent aussi.
+
+Une interaction possible, à une convention de signe près, est
+
+$$
+\mathcal L_{a\gamma\gamma}=g_{a\gamma\gamma}a\,\mathbf E\cdot\mathbf B.
+$$
+
+Dans un champ magnétique statique, un axion peut se convertir en photon. Une cavité résonante explore une bande étroite avec $h_{\mathrm P}\nu\simeq m_ac^2$, où $h_{\mathrm P}$ est la constante de Planck. Une énergie de repos de $4\,\mu\mathrm{eV}$ correspond à environ $0.97\,\mathrm{GHz}$. L'[expérience ADMX](https://arxiv.org/abs/1804.05750) illustre cette méthode. La seule hypothèse de matière noire ne fixe pas un intervalle universel de masse ; les particules génériques de type axion ne résolvent pas nécessairement le problème CP fort.
+
+### (c) Neutrinos stériles
+
+Ces fermions neutres hypothétiques n'ont pas l'interaction faible ordinaire, mais un mélange peut les relier aux neutrinos actifs. Une masse de l'ordre du keV peut produire de la matière noire tiède dans certains scénarios. La distribution des impulsions détermine l'effacement des petites structures ; la masse seule ne suffit pas. Le mélange permet aussi une désintégration radiative, testable en rayons X. La [proposition de production originale](https://arxiv.org/abs/hep-ph/9303287) est un modèle, pas l'observation d'une espèce stérile.
+
+### (d) Autres propositions
+
+La matière noire auto-interagissante échange de l'impulsion au sein de sa propre composante et peut modifier le centre des halos tout en restant faiblement couplée à la matière ordinaire. La [proposition originale](https://arxiv.org/abs/astro-ph/9909386) motive la comparaison entre galaxies naines et collisions d'amas. Une interaction dépendant de la vitesse peut les affecter différemment. Les champs ultralégers introduisent des effets ondulatoires ; les trous noirs primordiaux seraient des objets compacts gravitationnels plutôt que des particules élémentaires nouvelles. Chaque scénario doit préciser abondance et distribution de masse. Une contrainte dans un intervalle n'élimine pas toutes les versions et ne prouve aucun autre candidat.
+
+## 4. Stratégies de détection
+
+La **détection directe** recherche l'énergie transférée à un noyau ou un électron. Pour une cible constituée d'un seul isotope, le spectre de recul par unité de masse du détecteur s'écrit schématiquement
+
+$$
+\frac{dR}{dE_R}=\frac{\rho_\chi}{m_\chi m_N}\int_{v\geq v_{\min}}d^3v\,f(\mathbf v)\,v\,\frac{d\sigma_{\chi N}}{dE_R}.
+$$
+
+$\rho_\chi/m_\chi$ est la densité numérique locale, $f$ la distribution normalisée des vitesses dans le référentiel du détecteur, $m_N$ la masse du noyau et $E_R$ son énergie de recul. Il faut inclure rendements, seuils et bruits de fond. En diffusion élastique, $E_R^{\max}=2\mu_{\chi N}^2v^2/m_N$, avec $\mu_{\chi N}=m_\chi m_N/(m_\chi+m_N)$ et $c=1$. Les particules légères transfèrent peu d'énergie aux noyaux lourds, d'où l'intérêt de faibles seuils et des cibles sensibles aux électrons.
+
+Une courbe d'exclusion signifie que certaines masses et certains couplages prédisent trop d'événements dans les hypothèses retenues ; elle n'exclut pas toute matière noire. Comme référence historique, l'[analyse LZ de 4,2 tonnes-années](https://arxiv.org/abs/2410.17036) exclut une section efficace WIMP–nucléon indépendante du spin supérieure à $2.2\times10^{-48}\,\mathrm{cm^2}$ pour $40\,\mathrm{GeV}/c^2$, à 90 % de confiance dans son modèle. Ce n'est pas la quantité d'annihilation $\langle\sigma v\rangle$ de l'équation de découplage.
+
+La **détection indirecte** recherche photons, neutrinos ou particules chargées issus d'annihilation ou de désintégration. L'intensité dépend de l'intégrale de $\rho_\chi^2$ le long de la ligne de visée pour l'annihilation, de $\rho_\chi$ pour la désintégration. Profils de densité et sources astrophysiques ordinaires comptent. L'[analyse des galaxies naines de Fermi-LAT](https://arxiv.org/abs/1503.02641) montre comment une absence de signal contraint des états finaux précis.
+
+Les **collisionneurs** recherchent une production invisible par une impulsion transverse manquante compensée par les particules visibles. Neutrinos et effets instrumentaux produisent aussi cette signature. Même une nouvelle particule invisible devrait encore démontrer une longévité et une abondance cosmologiques compatibles. Résonateurs à axions, reculs nucléaires et collisionneurs sondent différents couplages ; leur concordance serait particulièrement instructive. [ATLAS (2021)](https://arxiv.org/abs/2102.10874).
+
+## 5. Alternatives à la matière noire
+
+MOND propose de modifier la relation entre gravité et baryons aux faibles accélérations. Dans une formulation sphérique simple,
+
+$$
+\mu(a/a_0)a=\frac{GM_b}{r^2},\qquad \mu(x)\to x\quad(x\ll1).
+$$
+
+Dans cette limite, avec $a=v_c^2/r$, on trouve $v_c^4=GM_ba_0$. Une accélération caractéristique proche de $10^{-10}\,\mathrm{m\,s^{-2}}$ relie ainsi vitesse asymptotique et masse baryonique. La relation observée, étroite, entre accélérations baryonique et dynamique doit être expliquée tant par la gravité modifiée que par la formation des galaxies avec matière noire ; voir l'[étude originale](https://arxiv.org/abs/1609.05917).
+
+Cette formule non relativiste ne décrit à elle seule ni lentilles ni univers primordial. Une théorie concurrente exige une formulation relativiste et des tests conjoints sur les amas, le fond diffus et la croissance des structures. Inversement, un bon ajustement cosmologique avec matière noire n'explique pas automatiquement chaque corrélation galactique. Il faut comparer des modèles complets avec leurs incertitudes, pas seulement une courbe de rotation particulièrement réussie.
+
+## 6. État des recherches
+
+**Vérification : 13 octobre 2026.** Dans le cadre gravitationnel standard, les indices d'une masse supplémentaire qui s'agrège sont solides ; son identité microscopique reste inconnue. Dire que toutes les analyses expérimentales sont simplement négatives serait désormais inexact. La [prépublication LZ de septembre 2026](https://arxiv.org/abs/2609.02823) rapporte un candidat de recul nucléaire d'environ 248 keV dans une fenêtre élargie, avec une tension globale de $2.6\sigma$ avec le seul bruit de fond après correction des essais multiples, contre un maximum local de $3.4\sigma$. C'est un excès intéressant, pas une découverte ni une probabilité que la matière noire existe. Il faut davantage de données, un examen des fonds et une cohérence indépendante.
+
+La diffusion de neutrinos compte déjà : l'[analyse LZ à basse énergie](https://arxiv.org/abs/2512.08065) étudie les reculs dus aux neutrinos solaires en parallèle des recherches de matière noire légère. Le « plancher des neutrinos » désigne une perte de discrimination et une amélioration plus lente de la sensibilité dans certaines recherches, non une barrière absolue. Spectre, temps, cibles et directions peuvent aider selon le signal. [O’Hare (2021)](https://arxiv.org/abs/2109.03116).
+
+Les questions ouvertes concernent le nombre de composantes, leur production, les auto-interactions et la part des tensions à petite échelle due au gaz et à la rétroaction stellaire. Il faut distinguer **observation** (spectre, vitesse, déformation), **inférence** (masse dans un modèle) et **hypothèse** (particule ou champ). La matière noire ne se réduit pas à un mot pour l'ignorance ; une abondance cosmologique précise ne constitue pas non plus une découverte de particule.

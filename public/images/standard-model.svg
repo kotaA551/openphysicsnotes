@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="100%" height="100%" role="img" aria-labelledby="title desc">
+  <title id="title">Standard Model of Particle Physics — Clean SVG Table</title>
+  <desc id="desc">Fermions arranged by generation and type, with gauge bosons and the Higgs shown to the right. Colors distinguish quarks, leptons, and bosons.</desc>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --stroke: #333333;
+      --grid: #888888;
+      --quark-up: #FDE2E2;
+      --quark-down: #FAC9C9;
+      --lepton-charged: #DDF5D6;
+      --lepton-neutrino: #E6F1FF;
+      --boson: #FFF4CC;
+      --higgs: #E9D8FD;
+      --label: #222222;
+      --muted: #666666;
+    }
+    text { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif; fill: var(--label); }
+    .hdr  { font-size: 28px; font-weight: 700; }
+    .sub  { font-size: 18px; fill: var(--muted); }
+    .gen  { font-size: 20px; font-weight: 600; }
+    .sym  { font-size: 38px; font-weight: 700; }
+    .name { font-size: 16px; }
+    .q    { font-size: 14px; fill: var(--muted); }
+    .panel-title { font-size: 20px; font-weight: 700; }
+    .legend { font-size: 14px; }
+    .small { font-size: 12px; }
+  </style>
+
+  <!-- Title -->
+  <text class="hdr" x="40" y="60">Standard Model (SM)</text>
+  <text class="sub" x="40" y="90">Gauge group: SU(3)<tspan baseline-shift="super" font-size="12">C</tspan> × SU(2)<tspan baseline-shift="super" font-size="12">L</tspan> × U(1)<tspan baseline-shift="super" font-size="12">Y</tspan></text>
+
+  <!-- Main grid parameters -->
+  <g id="fermions">
+    <!-- Generation headers -->
+    <text class="gen" x="260" y="130">Generation I</text>
+    <text class="gen" x="460" y="130">Generation II</text>
+    <text class="gen" x="660" y="130">Generation III</text>
+
+    <!-- Column grid lines -->
+    <g stroke="var(--grid)" stroke-width="1">
+      <line x1="200" y1="150" x2="800" y2="150"/>
+      <line x1="200" y1="260" x2="800" y2="260"/>
+      <line x1="200" y1="370" x2="800" y2="370"/>
+      <line x1="200" y1="480" x2="800" y2="480"/>
+      <line x1="200" y1="590" x2="800" y2="590"/>
+      <!-- Vertical separators -->
+      <line x1="200" y1="150" x2="200" y2="590"/>
+      <line x1="400" y1="150" x2="400" y2="590"/>
+      <line x1="600" y1="150" x2="600" y2="590"/>
+      <line x1="800" y1="150" x2="800" y2="590"/>
+    </g>
+
+    <!-- Row group labels -->
+    <text class="panel-title" x="110" y="225" text-anchor="middle" transform="rotate(-90 110 225)">Quarks</text>
+    <text class="panel-title" x="110" y="455" text-anchor="middle" transform="rotate(-90 110 455)">Leptons</text>
+
+    <!-- Cells: Up-type quarks (u, c, t) -->
+    <g>
+      <rect x="200" y="150" width="200" height="110" rx="10" fill="var(--quark-up)" stroke="var(--stroke)" />
+      <rect x="400" y="150" width="200" height="110" rx="10" fill="var(--quark-up)" stroke="var(--stroke)" />
+      <rect x="600" y="150" width="200" height="110" rx="10" fill="var(--quark-up)" stroke="var(--stroke)" />
+
+      <text class="sym"  x="300" y="200" text-anchor="middle">u</text>
+      <text class="name" x="300" y="225" text-anchor="middle">up quark</text>
+      <text class="q"    x="300" y="245" text-anchor="middle">Q = +2/3</text>
+
+      <text class="sym"  x="500" y="200" text-anchor="middle">c</text>
+      <text class="name" x="500" y="225" text-anchor="middle">charm quark</text>
+      <text class="q"    x="500" y="245" text-anchor="middle">Q = +2/3</text>
+
+      <text class="sym"  x="700" y="200" text-anchor="middle">t</text>
+      <text class="name" x="700" y="225" text-anchor="middle">top quark</text>
+      <text class="q"    x="700" y="245" text-anchor="middle">Q = +2/3</text>
+    </g>
+
+    <!-- Cells: Down-type quarks (d, s, b) -->
+    <g>
+      <rect x="200" y="260" width="200" height="110" rx="10" fill="var(--quark-down)" stroke="var(--stroke)" />
+      <rect x="400" y="260" width="200" height="110" rx="10" fill="var(--quark-down)" stroke="var(--stroke)" />
+      <rect x="600" y="260" width="200" height="110" rx="10" fill="var(--quark-down)" stroke="var(--stroke)" />
+
+      <text class="sym"  x="300" y="310" text-anchor="middle">d</text>
+      <text class="name" x="300" y="335" text-anchor="middle">down quark</text>
+      <text class="q"    x="300" y="355" text-anchor="middle">Q = −1/3</text>
+
+      <text class="sym"  x="500" y="310" text-anchor="middle">s</text>
+      <text class="name" x="500" y="335" text-anchor="middle">strange quark</text>
+      <text class="q"    x="500" y="355" text-anchor="middle">Q = −1/3</text>
+
+      <text class="sym"  x="700" y="310" text-anchor="middle">b</text>
+      <text class="name" x="700" y="335" text-anchor="middle">bottom quark</text>
+      <text class="q"    x="700" y="355" text-anchor="middle">Q = −1/3</text>
+    </g>
+
+    <!-- Cells: Charged leptons (e, μ, τ) -->
+    <g>
+      <rect x="200" y="370" width="200" height="110" rx="10" fill="var(--lepton-charged)" stroke="var(--stroke)" />
+      <rect x="400" y="370" width="200" height="110" rx="10" fill="var(--lepton-charged)" stroke="var(--stroke)" />
+      <rect x="600" y="370" width="200" height="110" rx="10" fill="var(--lepton-charged)" stroke="var(--stroke)" />
+
+      <text class="sym"  x="300" y="420" text-anchor="middle">e</text>
+      <text class="name" x="300" y="445" text-anchor="middle">electron</text>
+      <text class="q"    x="300" y="465" text-anchor="middle">Q = −1</text>
+
+      <text class="sym"  x="500" y="420" text-anchor="middle">μ</text>
+      <text class="name" x="500" y="445" text-anchor="middle">muon</text>
+      <text class="q"    x="500" y="465" text-anchor="middle">Q = −1</text>
+
+      <text class="sym"  x="700" y="420" text-anchor="middle">τ</text>
+      <text class="name" x="700" y="445" text-anchor="middle">tau</text>
+      <text class="q"    x="700" y="465" text-anchor="middle">Q = −1</text>
+    </g>
+
+    <!-- Cells: Neutrinos (ν_e, ν_μ, ν_τ) -->
+    <g>
+      <rect x="200" y="480" width="200" height="110" rx="10" fill="var(--lepton-neutrino)" stroke="var(--stroke)" />
+      <rect x="400" y="480" width="200" height="110" rx="10" fill="var(--lepton-neutrino)" stroke="var(--stroke)" />
+      <rect x="600" y="480" width="200" height="110" rx="10" fill="var(--lepton-neutrino)" stroke="var(--stroke)" />
+
+      <text class="sym"  x="300" y="530" text-anchor="middle">ν<tspan baseline-shift="sub" font-size="18">e</tspan></text>
+      <text class="name" x="300" y="555" text-anchor="middle">electron neutrino</text>
+      <text class="q"    x="300" y="575" text-anchor="middle">Q = 0</text>
+
+      <text class="sym"  x="500" y="530" text-anchor="middle">ν<tspan baseline-shift="sub" font-size="18">μ</tspan></text>
+      <text class="name" x="500" y="555" text-anchor="middle">muon neutrino</text>
+      <text class="q"    x="500" y="575" text-anchor="middle">Q = 0</text>
+
+      <text class="sym"  x="700" y="530" text-anchor="middle">ν<tspan baseline-shift="sub" font-size="18">τ</tspan></text>
+      <text class="name" x="700" y="555" text-anchor="middle">tau neutrino</text>
+      <text class="q"    x="700" y="575" text-anchor="middle">Q = 0</text>
+    </g>
+  </g>
+
+  <!-- Bosons panel -->
+  <g id="bosons">
+    <text class="panel-title" x="980" y="130" text-anchor="middle">Gauge Bosons &amp; Higgs</text>
+
+    <!-- Panel grid -->
+    <g stroke="var(--grid)" stroke-width="1">
+      <rect x="880" y="150" width="480" height="330" fill="none" />
+      <line x1="880" y1="260" x2="1360" y2="260"/>
+      <line x1="880" y1="370" x2="1360" y2="370"/>
+      <line x1="1120" y1="150" x2="1120" y2="480"/>
+      <line x1="1360" y1="150" x2="1360" y2="480"/>
+    </g>
+
+    <!-- Boson cells -->
+    <g>
+      <!-- Photon -->
+      <rect x="880" y="150" width="240" height="110" rx="10" fill="var(--boson)" stroke="var(--stroke)" />
+      <text class="sym"  x="1000" y="200" text-anchor="middle">γ</text>
+      <text class="name" x="1000" y="225" text-anchor="middle">photon</text>
+      <text class="q"    x="1000" y="245" text-anchor="middle">EM</text>
+
+      <!-- Gluon -->
+      <rect x="1120" y="150" width="240" height="110" rx="10" fill="var(--boson)" stroke="var(--stroke)" />
+      <text class="sym"  x="1240" y="200" text-anchor="middle">g</text>
+      <text class="name" x="1240" y="225" text-anchor="middle">gluon</text>
+      <text class="q"    x="1240" y="245" text-anchor="middle">strong</text>
+
+      <!-- W boson -->
+      <rect x="880" y="260" width="240" height="110" rx="10" fill="var(--boson)" stroke="var(--stroke)" />
+      <text class="sym"  x="1000" y="310" text-anchor="middle">W<tspan baseline-shift="super" font-size="20">±</tspan></text>
+      <text class="name" x="1000" y="335" text-anchor="middle">W boson</text>
+      <text class="q"    x="1000" y="355" text-anchor="middle">weak</text>
+
+      <!-- Z boson -->
+      <rect x="1120" y="260" width="240" height="110" rx="10" fill="var(--boson)" stroke="var(--stroke)" />
+      <text class="sym"  x="1240" y="310" text-anchor="middle">Z<tspan baseline-shift="super" font-size="20">0</tspan></text>
+      <text class="name" x="1240" y="335" text-anchor="middle">Z boson</text>
+      <text class="q"    x="1240" y="355" text-anchor="middle">weak</text>
+
+      <!-- Higgs (spanning full width) -->
+      <rect x="880" y="370" width="480" height="110" rx="10" fill="var(--higgs)" stroke="var(--stroke)" />
+      <text class="sym"  x="1120" y="420" text-anchor="middle">H</text>
+      <text class="name" x="1120" y="445" text-anchor="middle">Higgs boson</text>
+      <text class="q"    x="1120" y="465" text-anchor="middle">gives mass via symmetry breaking</text>
+    </g>
+  </g>
+
+  <!-- Legend -->
+  <g id="legend" transform="translate(40, 720)">
+    <rect x="0" y="0" width="20" height="20" fill="var(--quark-up)" stroke="var(--stroke)"/><text class="legend" x="30" y="15">Quarks (up-type)</text>
+    <rect x="220" y="0" width="20" height="20" fill="var(--quark-down)" stroke="var(--stroke)"/><text class="legend" x="250" y="15">Quarks (down-type)</text>
+    <rect x="500" y="0" width="20" height="20" fill="var(--lepton-charged)" stroke="var(--stroke)"/><text class="legend" x="530" y="15">Charged leptons</text>
+    <rect x="720" y="0" width="20" height="20" fill="var(--lepton-neutrino)" stroke="var(--stroke)"/><text class="legend" x="750" y="15">Neutrinos</text>
+    <rect x="920" y="0" width="20" height="20" fill="var(--boson)" stroke="var(--stroke)"/><text class="legend" x="950" y="15">Gauge bosons</text>
+    <rect x="1140" y="0" width="20" height="20" fill="var(--higgs)" stroke="var(--stroke)"/><text class="legend" x="1170" y="15">Higgs</text>
+  </g>
+
+  <!-- Footer note -->
+  <text class="small" x="40" y="860">Note: Electric charges shown in units of |e|. Neutrinos are displayed as distinct flavor states.</text>
+</svg>

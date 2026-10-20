@@ -1,0 +1,183 @@
+---
+description: "Why quantize geometry? Follow loop quantum gravity from connections and constraints to an area calculation, spin foams, a cosmological bounce, and unresolved tests."
+---
+
+## 1. Motivation
+
+General relativity (GR) makes geometry dynamical: matter and geometry influence one another. In units with $c=1$, and omitting the cosmological constant here,
+
+$$
+G_{\mu\nu}=8\pi G T_{\mu\nu}.
+$$
+
+Quantum theory successfully describes matter, but a quantum field on a prescribed curved spacetime does not yet quantize that spacetime. Near a classical singularity, treating geometry as a smooth classical background may fail. This motivates quantum gravity; it is not a proof that a particular quantization is correct, nor a theorem that every classical field must be quantized in one unique way.
+
+**Loop quantum gravity (LQG)** asks whether GR can be quantized without first fixing a background metric and expanding around it. “Nonperturbative” means that the construction does not start with a small gravitational disturbance on a chosen geometry. “Background independent” means that lengths and areas come from dynamical variables, not a fixed metric. A differentiable manifold and other mathematical choices still enter. See [Ashtekar and Lewandowski's foundational account](https://arxiv.org/abs/gr-qc/0404018).
+
+The characteristic scale is $\ell_P=\sqrt{\hbar G/c^3}$, about $1.6\times10^{-35}\,\mathrm{m}$. This dimensional combination indicates where quantum and gravitational effects may both matter. It does **not**, by itself, establish that space is a regular grid or that every distance has a minimum. LQG needs a state space, geometric operators, and consistent dynamics to make more specific statements.
+
+## 2. Canonical Quantization of GR
+
+The canonical approach describes data on a spatial slice $\Sigma$ and asks which data describe the same spacetime. In the ADM formulation the variables are a spatial metric $q_{ab}$ and its conjugate momentum $\pi^{ab}$. A foliation organizes the calculation; it is not a preferred physical clock.
+
+### Ashtekar Variables
+
+We use real **Ashtekar–Barbero** variables for Lorentzian GR in the time gauge, with nondegenerate triads and real $\gamma>0$. The original self-dual Ashtekar connection is complex: these are related formulations, not identical variables. [Barbero's real formulation](https://arxiv.org/abs/gr-qc/9410013) and [Holst's action](https://arxiv.org/abs/gr-qc/9511026) explain this canonical change.
+
+$$
+A_a^i=\Gamma_a^i(E)+\gamma K_a^i,
+\qquad E_i^a=\sqrt{q}\,e_i^a,
+\qquad E_i^aE_i^b=q\,q^{ab}.
+$$
+
+Here $q=\det(q_{ab})$, $e_i^a$ is an inverse triad, $\Gamma_a^i$ its compatible spin connection, and $K_a^i$ encodes extrinsic curvature: how the slice sits in spacetime. Spatial indices are $a,b$; $i$ labels an internal orthonormal frame. Thus $E$ carries spatial geometry and $A$ combines intrinsic connection with extrinsic curvature. Calling $E$ an “electric field” is a gauge-theory analogy; it is not electromagnetism.
+
+With $\kappa=8\pi G$ and $c=1$,
+
+$$
+\{A_a^i(x),E_j^b(y)\}=\kappa\gamma\,\delta_a^b\delta_j^i\delta^{(3)}(x,y).
+$$
+
+The dimensionless **Barbero–Immirzi parameter** $\gamma$ labels this canonical choice. Classical vacuum equations do not fix it. Its appearance in geometric spectra makes its quantum interpretation and physical determination important; an illustrative value is not a measured constant.
+
+## 3. Constraints
+
+These variables contain redundant descriptions. In vacuum, with zero cosmological constant and an overall nonzero normalization suppressed in $\mathcal H$,
+
+$$
+\mathcal G_i=D_aE_i^a\approx0,
+\qquad \mathcal V_a=E_i^bF^i_{ab}\approx0,
+$$
+
+$$
+\mathcal H=\frac{E_i^aE_j^b}{\sqrt{|\det E|}}
+\left(\epsilon^{ij}{}_{k}F^k_{ab}
+-2(1+\gamma^2)K^i_{[a}K^j_{b]}\right)\approx0.
+$$
+
+$F$ is the curvature of $A$ and $D$ its covariant derivative. The symbol $\approx0$ means equality on the constraint surface, not a small error. The Gauss constraint removes arbitrary rotations of the internal frame. The vector constraint generates spatial coordinate changes **up to a Gauss transformation**; a pure spatial-diffeomorphism generator includes the corresponding Gauss term. The Hamiltonian constraint implements changes of slicing, rather than ordinary evolution relative to an external universal time.
+
+Counting is informative: $A$ and $E$ give 18 phase-space components per point. Seven independent first-class constraints remove 14 phase-space components, leaving four, or two configuration degrees of freedom—the local gravitational polarizations. This is the regular classical vacuum count; boundaries and singular sectors need separate treatment.
+
+Quantization first builds **kinematics**, then implements constraints and the physical inner product. A spin network is therefore not automatically a physical solution. A relational observable might be the area of a matter-defined surface when a scalar clock has a specified value. Defining these and recovering the classical constraint algebra without an anomaly are central dynamical tasks. [Thiemann's quantum-constraint construction](https://arxiv.org/abs/gr-qc/9606089) is a concrete proposal, not a unique completed phenomenological theory.
+
+## 4. Holonomies and Fluxes
+
+The basic variables are smeared along curves and across surfaces:
+
+$$
+h_\ell[A]=\mathcal P\exp\!\left(\int_\ell A_a^i\tau_i\,dx^a\right),
+\qquad E(S,f)=\int_S f^i E_i^a\,dS_a.
+$$
+
+$\tau_i$ are generators of $\mathfrak{su}(2)$, $f^i$ a test field, and $\mathcal P$ orders noncommuting matrices along the path. A holonomy compares internal frames by parallel transport; it is an $SU(2)$ element, not a length. Flux measures oriented triad information through a surface. The sign in the exponential depends on the connection convention.
+
+As a thought experiment, transport a frame around a small closed loop. In a smooth classical geometry the leading departure of its holonomy from the identity encodes curvature through the loop. LQG uses finite transports as fundamental variables rather than assuming an operator $A(x)$ exists point by point. Holonomies act by multiplication and fluxes by derivatives on functions of holonomies. Their algebra is sensitive to path–surface intersections.
+
+The [holonomy–flux uniqueness theorem](https://arxiv.org/abs/gr-qc/0504147) singles out a representation under specified algebraic, covariance, and cyclic-state assumptions. It does not prove that every possible quantum gravity theory is LQG or choose the Hamiltonian.
+
+## 5. Spin Networks
+
+A gauge-invariant **spin network** consists of a graph, spins $j=0,\tfrac12,1,\ldots$ on its edges, and invariant tensors called **intertwiners** at its vertices. Spins label $SU(2)$ representations; they are not little rotating balls. An intertwiner combines incident representations into an invariant object, implementing the Gauss constraint. Graphs specify relations in quantum geometry; they need not form a regular physical lattice.
+
+For a surface crossing edges transversely away from vertices, the standard area operator has eigenvalues
+
+$$
+A(S)=8\pi\gamma\ell_P^2\sum_{p\in S\cap\Gamma}\sqrt{j_p(j_p+1)}.
+$$
+
+A flux at a puncture acts like an angular momentum generator, whose quadratic $SU(2)$ Casimir has eigenvalue $j(j+1)$. Taking its magnitude explains $\sqrt{j(j+1)}$. The [area-operator construction](https://arxiv.org/abs/gr-qc/9602046) establishes discreteness on the kinematic Hilbert space. Surfaces containing vertices require the more general expression. As [Dittrich and Thiemann explain](https://arxiv.org/abs/0708.1721), a kinematic spectrum alone does not determine the spectrum of every fully relational physical observable.
+
+### A worked area measurement
+
+Let a patch be punctured once by $j=\tfrac12$ and once by $j=1$, with no vertex on it. Then
+
+$$
+\frac{A}{8\pi\gamma\ell_P^2}
+=\sqrt{\tfrac12(\tfrac12+1)}+\sqrt{1(1+1)}
+=\frac{\sqrt3}{2}+\sqrt2\approx2.280.
+$$
+
+A single $j=\tfrac12$ contributes $4\pi\sqrt3\,\gamma\ell_P^2$. Two such punctures give $8\pi\sqrt3\,\gamma\ell_P^2$, whereas one $j=1$ gives $8\pi\sqrt2\,\gamma\ell_P^2$: equal sums of spin labels need not give equal areas. These are local contributions within an admissible network; the rest of the graph must satisfy intertwiner conditions. This is a calculation of possible outcomes within the quantization, not an observed grain size.
+
+![Two differently labeled edges cross a surface; their area contributions add as square roots of SU(2) Casimirs.](/images/diagrams/lqg-deep-area.svg)
+
+*The shaded patch has two transverse punctures. The geometry is schematic; the equation, not the drawn spacing, determines the area eigenvalue.*
+
+Volume is more subtle:
+
+$$
+\hat V(R)=\sum_{v\in R\cap\Gamma}\sqrt{|\hat q_v|}.
+$$
+
+$\hat q_v$ contains triple products of flux generators, orientation factors, and dimensional constants. It generally acts as a matrix on vertex intertwiner spaces. Fixed edge spins need not fix volume: an appropriate intertwiner basis is also needed. The [volume-operator construction](https://arxiv.org/abs/gr-qc/9711031) explains this distinction. Discrete geometric spectra imply neither equally sized cubes nor an automatically discrete external time.
+
+### From spin networks to spin foams
+
+A spin network describes boundary geometry. A **spin foam** is a labeled two-dimensional complex assigning amplitudes between such boundaries: graph edges sweep out faces and graph vertices trace edges of the complex. These are histories in a sum over quantum geometries, not nodes moving through pre-existing space.
+
+Schematically, on a chosen complex $\mathcal C$,
+
+$$
+Z_{\mathcal C}=\sum_{\{j_f,i_e\}}\prod_f A_f\prod_e A_e\prod_v A_v.
+$$
+
+Labels are summed; face, edge, and vertex amplitudes encode a model's dynamics. Boundary data and normalization are suppressed. The [EPRL construction](https://arxiv.org/abs/0711.0146) connects a four-dimensional spin-foam vertex to LQG boundary states through simplicity constraints. Specifying a finite complex is not yet establishing the full continuum theory.
+
+For suitable nondegenerate geometric boundary data, the large-spin asymptotics of a Euclidean EPRL four-simplex amplitude contain the Regge action, a discretized gravitational action. This [semiclassical consistency result](https://arxiv.org/abs/0902.1170) is valuable. It does not prove that every amplitude, refinement limit, or long-distance correlation function reproduces GR.
+
+## 6. Loop Quantum Cosmology (LQC)
+
+**LQC** applies loop-inspired quantization to symmetry-reduced cosmological systems. Imposing homogeneity before quantization discards infinitely many inhomogeneous modes. A theorem in this reduced system is not automatically a theorem in full LQG.
+
+Consider the standard spatially flat, homogeneous, isotropic model with a massless scalar and sharply peaked semiclassical states in the improved-dynamics prescription. Its effective equations include
+
+$$
+H^2=\frac{8\pi G}{3}\rho\left(1-\frac{\rho}{\rho_c}\right),
+\qquad \dot\rho=-3H(\rho+P),
+$$
+
+where $H=\dot a/a$, $P$ is pressure, and $\rho_c$ a model-dependent critical density of Planck order. The low-density limit recovers the ordinary flat Friedmann equation. The negative quadratic correction gives $H=0$ at $\rho_c$. The [improved-dynamics analysis](https://arxiv.org/abs/gr-qc/0607039) states its assumptions and studies the bounce analytically and numerically.
+
+### Deriving a bounce in the effective model
+
+Differentiation and energy conservation give, away from $H=0$ and then by continuous extension,
+
+$$
+\dot H=-4\pi G(\rho+P)\left(1-2\frac{\rho}{\rho_c}\right).
+$$
+
+At $\rho=\rho_c$, matter with $\rho+P>0$ has $\dot H>0$: contraction can pass to expansion. Merely finding $H=0$ would not prove a bounce. For a massless scalar, $P=\rho$ and $\rho\propto a^{-6}$. Choosing the bounce at $t=0$ gives the exact solution of these effective equations
+
+$$
+a(t)=a_B\left(1+\frac{t^2}{t_B^2}\right)^{1/6},
+\qquad \rho(t)=\frac{\rho_c}{1+t^2/t_B^2},
+\qquad t_B^{-2}=24\pi G\rho_c.
+$$
+
+Substitution verifies both equations: $H=t/[3(t_B^2+t^2)]$. At $t=\pm t_B$, $\rho=\rho_c/2$ and $a=2^{1/6}a_B$. The numerical value of $a_B$ depends on spatial-coordinate normalization; the finite density and transition from contraction to expansion carry the physical point.
+
+![A dimensionless effective scale factor reaches its minimum at the bounce while density reaches its maximum; both curves are symmetric about zero.](/images/diagrams/lqg-deep-bounce.svg)
+
+*Horizontal axis: $t/t_B$. Upper curve: $a/a_B$; lower curve: $\rho/\rho_c$. These are the effective massless-scalar solution, not observational data or a universal prediction for every cosmology.*
+
+Exactly solvable LQC permits stronger statements about classes of quantum states than this effective calculation alone: see [Ashtekar, Corichi and Singh](https://arxiv.org/abs/0710.3565). Extending conclusions to anisotropies, perturbations, different matter or quantizations, and the full theory needs additional arguments. A model bounce does not establish what preceded our observed hot early universe.
+
+## 7. Challenges and Open Questions
+
+- **Dynamics and constraints:** control the quantum Hamiltonian, its regularization choices, physical states, and inner product while preserving the appropriate gauge symmetries.
+- **Continuum and semiclassical limits:** derive smooth geometry and low-energy GR with matter from many excitations. Large spins on a fixed graph and refinement to many graph elements are different limits; both need consistent treatment.
+- **The Immirzi parameter:** determine which dependence on $\gamma$ survives in physical predictions. Matching black-hole entropy under stated counting assumptions is not an independent laboratory measurement of $\gamma$.
+- **Observations:** a CMB feature or gravitational-wave modification requires a specific effective model, initial state, and treatment of perturbations. Its robustness and distinction from ordinary astrophysics or other early-universe models must be demonstrated before calling it an LQG test.
+
+A snapshot of ongoing work is [Assanioussi and Livine's September 2026 revision](https://arxiv.org/abs/2601.21644v2): it analyzes classical Hamiltonian dynamics on small “candy” graphs as building blocks, explicitly leaving the detailed quantum regime for later work. This is progress on a controlled subsystem, not completion of full quantum dynamics or an empirical detection.
+
+### Common misconceptions
+
+**“The loops are strings.”** Holonomies are parallel-transport variables and network labels describe geometry, not the propagating strings of string theory. **“Background independence removes every assumption.”** Topology, variables, quantization, and boundaries still matter. **“A discrete area spectrum proves space is a pixel screen.”** The spectrum concerns an operator; states can be superpositions, with no preferred regular grid. **“The bounce proves there was a previous universe.”** It establishes a conditional model result, with no such observation supplied by the calculation.
+
+## Status
+
+Research checked through **13 October 2026**. LQG has precise kinematic constructions and substantial work on dynamics and reduced models. The linked papers establish mathematical results and model predictions; none supplies experimental confirmation that our spacetime has this proposed quantum structure. A controlled route from full dynamics to distinctive measured predictions remains a research objective.
+
+LQG emphasizes quantizing gravitational geometry without a fixed background metric. String theory begins from different degrees of freedom and also has nonperturbative formulations; saying that it is invariably background dependent oversimplifies the comparison. Assess each proposal by its assumptions, internal consistency, recovery of known physics, and observable consequences.

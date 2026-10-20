@@ -1,0 +1,202 @@
+---
+description: "Perché le stringhe possono contenere la gravità: fogli di universo, vincoli quantistici, dimensioni compatte, dualità e olografia con esempi e limiti."
+---
+
+## 1. Dai punti alle stringhe
+
+La relatività generale descrive la gravità mediante una metrica dinamica dello spaziotempo; la teoria quantistica dei campi descrive campi fluttuanti e particelle. Quantizzare piccole fluttuazioni della metrica funziona come **teoria efficace a bassa energia**, ma ordini perturbativi superiori richiedono sempre più controtermini con derivate superiori. La non rinormalizzabilità non invalida ogni previsione a bassa energia: limita l’estrapolazione a distanze arbitrariamente brevi. La teoria delle stringhe cerca una descrizione microscopica più completa.
+
+L’oggetto perturbativo di base è una **stringa** unidimensionale, la cui storia spazza un **foglio di universo** bidimensionale. Una particella puntiforme traccia una linea di universo. Eccitazioni quantistiche diverse possiedono masse e spin diversi; uno spettro appropriato di stringhe chiuse contiene uno stato senza massa di spin 2 con interazioni gravitazionali. Ciò motiva la teoria, ma non dimostra che la natura l’abbia scelta.
+
+![Una particella traccia una linea di universo; una stringa spazza un foglio con coordinate sigma e tau.](/images/diagrams/worldsheet.svg)
+
+*Il foglio rappresenta la storia della stringa, non due dimensioni aggiuntive dello spaziotempo.*
+
+Usiamo $\hbar=c=1$, lunghezza di stringa $\ell_s=\sqrt{\alpha'}$ e tensione $T=1/(2\pi\alpha')$. La tensione è energia per lunghezza, quindi $\alpha'$ ha dimensione di lunghezza al quadrato. L’accoppiamento adimensionale $g_s$ controlla separazione, unione ed espansione nelle topologie del foglio, non la tensione. Una stringa fondamentale non è un filo elastico fatto di atomi. Le lezioni di Tong sviluppano questi punti. [1](https://davidtong.org/teaching/string-theory/)
+
+## 2. Dinamica classica delle stringhe
+
+### Azione di Nambu–Goto
+
+Nello spaziotempo piatto con segnatura $(-,+,\ldots,+)$, $X^\mu(\tau,\sigma)$ specifica la posizione. La metrica indotta $\gamma_{ab}$ misura le distanze sul foglio:
+
+$$
+\gamma_{ab}=\partial_aX^\mu\partial_bX^\nu\eta_{\mu\nu},\qquad
+S_{\mathrm{NG}}=-T\int d^2\sigma\sqrt{-\det\gamma_{ab}}.
+$$
+
+Il determinante converte una regione di coordinate in area fisica; il segno riflette una superficie di tipo tempo. L’azione stazionaria dà un analogo relativistico di una superficie minima, senza minimizzare la lunghezza spaziale istantanea della stringa.
+
+### Azione di Polyakov
+
+Una metrica ausiliaria $h_{ab}$ rende l’azione quadratica nelle derivate. Variando questa metrica indipendente si ottiene il vincolo sul tensore energia-impulso del foglio:
+
+$$
+S_{\mathrm P}=-\frac T2\int d^2\sigma\sqrt{-h}\,h^{ab}\partial_aX^\mu\partial_bX_\mu,
+\qquad T_{ab}=\gamma_{ab}-\frac12h_{ab}h^{cd}\gamma_{cd}=0.
+$$
+
+Per una superficie non degenere, $h_{ab}$ risulta proporzionale a $\gamma_{ab}$; sostituendo si recupera Nambu–Goto. Il fattore resta libero: nella trasformazione locale di Weyl $h_{ab}\mapsto e^{2\omega}h_{ab}$, elemento di area e metrica inversa si compensano in due dimensioni. Riparametrizzazioni e simmetria di Weyl eliminano descrizioni ridondanti. È un’equivalenza classica; misura quantistica e anomalie richiedono ulteriori verifiche. [2](https://davidtong.org/pdfs/teaching/string-theory/string1.pdf)
+
+## 3. Quantizzazione ed espansione in modi
+
+Scegliamo localmente il gauge conforme $h_{ab}=\eta_{ab}$, mantenendo i vincoli. In uno spaziotempo bersaglio piatto,
+
+$$
+(\partial_\tau^2-\partial_\sigma^2)X^\mu=0.
+$$
+
+È un’equazione d’onda sul foglio, non l’affermazione che lo spaziotempo abbia due dimensioni. I moduli globali del foglio richiedono un trattamento separato.
+
+![Due profili periodici mostrano diverse eccitazioni oscillatorie di una stringa chiusa.](/images/diagrams/string-modes.svg)
+
+*Profili schematici di modi, non fotografie di una stringa quantistica.*
+
+### Espansione in modi (stringa chiusa)
+
+Per una coordinata non compatta adottiamo $0\leq\sigma<2\pi$ e condizioni periodiche:
+
+$$
+X^\mu=x^\mu+\alpha'p^\mu\tau
++i\sqrt{\frac{\alpha'}2}\sum_{n\ne0}\frac1n
+\left(\alpha_n^\mu e^{-in(\tau-\sigma)}+
+\tilde\alpha_n^\mu e^{-in(\tau+\sigma)}\right).
+$$
+
+I primi termini descrivono il centro di massa; le due famiglie di oscillatori viaggiano in direzioni opposte. La periodicità impone $n$ intero. Una convenzione di periodo $\pi$ sposta fattori due tra modo zero ed esponenti senza cambiare la fisica. Le coordinate compatte ammettono anche avvolgimenti.
+
+### Vincoli di Virasoro
+
+Le componenti di Fourier di $T_{ab}=0$ soddisfano classicamente $L_n=\tilde L_n=0$. L’algebra quantistica acquista un termine centrale. Nella quantizzazione covariante bosonica gli stati fisici soddisfano
+
+$$
+L_n|\psi\rangle=0\quad(n>0),\qquad (L_0-a)|\psi\rangle=0.
+$$
+
+e le corrispondenti condizioni nel settore con tilde. Non si possono annullare tutti i generatori quantistici come operatori. Le anomalie conformi di materia e fantasmi del fissaggio di gauge devono cancellarsi: $D-26=0$ nella stringa bosonica piatta, $D=10$ nella superstringa critica usuale. Gli sfondi curvi richiedono inoltre funzioni beta del foglio nulle. La simmetria classica di Weyl non basta a garantire una teoria conforme quantistica coerente. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf) [4](https://davidtong.org/pdfs/teaching/string-theory/string5.pdf)
+
+## 4. Spettro di massa
+
+Per una stringa bosonica chiusa non compattificata, le due condizioni di modo zero danno
+
+$$
+L_0=\frac{\alpha'p^2}{4}+N,\quad
+\tilde L_0=\frac{\alpha'p^2}{4}+\tilde N,\quad p^2=-M^2,
+$$
+
+$$
+N=\tilde N,\qquad M^2=\frac2{\alpha'}(N+\tilde N-2a),\qquad a=1.
+$$
+
+$N$ misura energia di eccitazione: il modo $n$ ha peso $n$, non conta semplicemente le stringhe. Per $(N,\tilde N)=(0,0)$, $M^2=-4/\alpha'$ segnala instabilità del vuoto bosonico; un tachione non è un messaggero superluminale utilizzabile. Il livello $(1,1)$ è senza massa; $(2,2)$ dà $M=2/\ell_s$. Questo esempio non predice le masse di elettrone e protone. I settori di superstringa hanno diverse costanti di ordinamento normale e proiezioni. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf)
+
+### Stati particolari
+
+Al livello $(1,1)$ i due indici di polarizzazione trasversale si decompongono in tensore simmetrico a traccia nulla (gravitone), tensore antisimmetrico (campo $B$) e scalare (dilatone). Le stringhe aperte possono fornire bosoni vettoriali senza massa, ma bosoni di gauge emergono anche da stringhe eterotiche chiuse: quelle aperte non sono l’unica via alle interazioni di gauge.
+
+La gravità è più di un’etichetta di spin. All’ordine dominante in $\alpha'$, con dilatone costante e campo $B$ nullo, la coerenza quantistica del foglio impone
+
+$$
+\beta^G_{\mu\nu}=\alpha'R_{\mu\nu}+O(\alpha'^2)=0.
+$$
+
+L’equazione dominante è quella di Einstein nel vuoto $R_{\mu\nu}=0$. Le correzioni di curvatura diventano importanti quando il raggio si avvicina a $\ell_s$; altri campi aggiungono termini. È una relazione controllata a bassa energia, non la prova che ogni singolarità sia risolta. [5](https://davidtong.org/pdfs/teaching/string-theory/string7.pdf)
+
+## 5. Le cinque teorie delle superstringhe
+
+Le cinque teorie familiari classificano **teorie perturbative supersimmetriche di stringhe in dieci dimensioni**, non tutti gli sfondi possibili. Fermioni sul foglio e proiezioni coerenti producono spettri supersimmetrici senza tachioni; aggiungere fermioni da solo non basta. La supersimmetria è qui una proprietà della costruzione, non una simmetria osservata della natura.
+
+### (1) Tipo I
+
+Stringhe aperte e chiuse non orientate, con 16 supercariche spaziotemporali. La cancellazione delle anomalie seleziona l’algebra di gauge solitamente chiamata $SO(32)$. Il settore aperto porta gradi di libertà di gauge, quello chiuso include la gravità.
+
+### (2) Tipo IIA
+
+Stringhe chiuse orientate, con 32 supercariche di chiralità spaziotemporali opposte. La descrizione usuale senza massa contiene metrica, dilatone, campo $B$ e potenziali di Ramond–Ramond $C_1,C_3$, con intensità di campo di grado pari.
+
+### (3) Tipo IIB
+
+Stringhe chiuse orientate, con 32 supercariche della stessa chiralità. I potenziali di Ramond–Ramond $C_0,C_2,C_4$ hanno intensità di campo di grado dispari; la cinque-forma è autoduale. Il grado del potenziale va distinto da quello della sua intensità di campo.
+
+### (4) Eterotica $SO(32)$
+
+Un settore bosonico sinistrorso e uno supersimmetrico destrorso condividono dieci coordinate bersaglio. La carica centrale sinistrorsa aggiuntiva deriva da gradi di libertà interni, non da sedici dimensioni spaziali macroscopiche ulteriori. Il nome convenzionale $SO(32)$ ha più precisamente forma globale $\mathrm{Spin}(32)/\mathbb Z_2$.
+
+### (5) Eterotica $E_8 \times E_8$
+
+L’altro reticolo di gauge coerente dà $E_8\times E_8$, ancora con 16 supercariche. La compattificazione può produrre teorie di gauge chirali, ma il nome non determina univocamente particelle e accoppiamenti osservati. Vi sono anche oggetti estesi oltre le stringhe perturbative: le D-brane sono dinamiche, ospitano estremi di stringhe aperte e portano carica di Ramond–Ramond nel tipo II. [6](https://arxiv.org/abs/hep-th/9503124) [13](https://arxiv.org/abs/hep-th/9510017)
+
+## 6. Teoria M e dualità
+
+Una **dualità** identifica osservabili in descrizioni diverse, rendendo spesso calcolabile un problema difficile. La dualità T scambia impulso compatto e avvolgimento; la S collega certi regimi di accoppiamento debole e forte. Non ogni modello possiede la semplice simmetria $g_s\mapsto1/g_s$.
+
+Il tipo IIA fortemente accoppiato sviluppa un’interpretazione a undici dimensioni con $R_{11}=g_s\ell_s$. Il cerchio cresce con l’accoppiamento; la supergravità in undici dimensioni è il limite di bassa energia. Queste relazioni motivano la **teoria M**, ma non forniscono una formulazione universale per sfondi arbitrari o una scoperta sperimentale dell’undicesima dimensione. [6](https://arxiv.org/abs/hep-th/9503124)
+
+### Compattificazione: un cerchio calcolabile
+
+Identifichiamo $Y\sim Y+2\pi R$. Una funzione d’onda univoca impone $e^{ip(Y+2\pi R)}=e^{ipY}$, dunque $p=n/R$ con $n$ intero. Una stringa chiusa può avvolgersi $w$ volte. Tensione per lunghezza dà l’energia $T(2\pi R|w|)=|w|R/\alpha'$.
+
+$$
+p_L=\frac nR+\frac{wR}{\alpha'},\qquad p_R=\frac nR-\frac{wR}{\alpha'},
+$$
+
+$$
+M^2=\left(\frac nR\right)^2+\left(\frac{wR}{\alpha'}\right)^2
++\frac2{\alpha'}(N+\tilde N-2),\qquad N-\tilde N-nw=0.
+$$
+
+$$
+M^2=p_R^2+\frac4{\alpha'}(N-1)=p_L^2+\frac4{\alpha'}(\tilde N-1).
+$$
+
+Qui $Y(\sigma+2\pi)=Y(\sigma)+2\pi wR$; $N$ conta le precedenti eccitazioni $\alpha_n$, $\tilde N$ quelle $\tilde\alpha_n$. L’ultima uguaglianza fissa il segno del vincolo sui livelli. Scambiare $R\leftrightarrow\alpha'/R$ e $n\leftrightarrow w$ preserva lo spettro. A $R=2\ell_s$ il contributo di impulso unitario è $1/(2\ell_s)$ e quello di un avvolgimento $2/\ell_s$; al raggio duale $\ell_s/2$ si scambiano. Sono contributi alla formula, non necessariamente la massa totale dello stato. [7](https://davidtong.org/pdfs/teaching/string-theory/string8.pdf)
+
+![Un cerchio grande e il suo duale piccolo scambiano i contributi di impulso e avvolgimento allo spettro di massa.](/images/diagrams/string-deep-duality.svg)
+
+*Blu: impulso $1/R$. Arancione: avvolgimento $R/\alpha'$. Uno schema di calcolo, non un’osservazione di dimensioni extra.*
+
+Nei modelli quadridimensionali, sei dimensioni spaziali compatte possiedono geometria, flussi e talvolta brane. Dimensioni e forme diventano campi scalari detti **moduli**. Stabilizzarli è essenziale: variazioni libere potrebbero alterare accoppiamenti o mediare forze a lungo raggio non osservate. «Troppo piccolo per vederlo» non è un modello completo.
+
+## 7. Corrispondenza AdS/CFT
+
+L’esempio più studiato di Maldacena collega stringhe IIB su $\mathrm{AdS}_5\times S^5$ alla teoria di super-Yang–Mills $\mathcal N=4$ in quattro dimensioni. AdS ha costante cosmologica negativa. La teoria sul bordo non contiene gravità dinamica, ma si propone che codifichi l’interno gravitazionale. [8](https://arxiv.org/abs/hep-th/9711200)
+
+$$
+Z_{\mathrm{string}}[\phi|_{\partial}=\phi_0]
+=\left\langle\exp\left(\int d^dx\,\phi_0\mathcal O\right)\right\rangle_{\mathrm{CFT}}.
+$$
+
+Il valore al bordo $\phi_0$ è sorgente dell’operatore $\mathcal O$; derivare rispetto alla sorgente produce funzioni di correlazione. Nella corrispondenza, la teoria sul bordo definisce non perturbativamente questo interno specifico. Non è una prova generale di tutte le dualità olografiche proposte. [9](https://arxiv.org/abs/hep-th/9802150)
+
+### Quando la geometria diventa un’approssimazione utile
+
+Siano $N_c$ il numero di colori della teoria di gauge $SU(N_c)$ e $L$ il raggio AdS. Con una normalizzazione comune,
+
+$$
+\lambda=g_{\mathrm{YM}}^2N_c,\qquad
+\frac{L^4}{\alpha'^2}=\lambda,\qquad g_s=\frac{\lambda}{4\pi N_c}.
+$$
+
+Un grande accoppiamento di 't Hooft $\lambda$ sopprime correzioni di lunghezza di stringa; $N_c$ sufficientemente grande a $\lambda$ fisso sopprime i loop di stringhe. La supergravità classica richiede entrambi. Fisica di gauge fortemente accoppiata può quindi corrispondere a gravità debolmente curva; accoppiamento di gauge debole non dà generalmente la stessa semplice geometria.
+
+![Anello sul bordo e disco interno illustrano le sorgenti; due disuguaglianze controllano separatamente l’approssimazione gravitazionale.](/images/diagrams/string-deep-holography.svg)
+
+*Il disco è una sezione spaziale schematica. Sorgente sul bordo e campo interno descrivono osservabili corrispondenti. $\lambda\gg1$ e $g_s\ll1$ controllano correzioni diverse, non costituiscono prove sperimentali.*
+
+## 8. Sfide e problemi aperti
+
+Tre domande differiscono: la costruzione è coerente? Una dualità collega due costruzioni? Una descrive il nostro universo? Risolvere le prime due non decide la terza. La nostra cosmologia non è il vuoto AdS esatto descritto sopra, e quella teoria di gauge non è il Modello standard.
+
+Il **paesaggio** comprende molti candidati di compattificazioni e vuoti. Numeri come $10^{500}$ sono stime dipendenti dal modello, non un conteggio stabilito di tutti gli universi fisici. Contare scelte di flussi non decide stabilità, selezione cosmologica o probabilità. Denef e Douglas esplicitano un preciso problema di conteggio e le sue ipotesi. [10](https://arxiv.org/abs/hep-th/0404116)
+
+### Che cosa mostrano gli indizi e quali sono i limiti
+
+Strominger e Vafa contarono stati protetti di una classe speciale di buchi neri estremali supersimmetrici in cinque dimensioni, riproducendo l’entropia dominante di Bekenstein–Hawking. Ciò collega stati quantistici e area dell’orizzonte, ma non conta direttamente gli stati di un buco nero astrofisico osservato né spiega integralmente l’evaporazione generica. [11](https://arxiv.org/abs/hep-th/9601029)
+
+In un lavoro pubblicato nel 2026, Cheung e collaboratori derivano particolari ampiezze di scattering di stringhe assumendo dinamica a livello albero, comportamento ultrasoffice ad alta energia e un insieme minimo di zeri dei residui. Il risultato riguarda quella classe di ampiezze, non una derivazione senza ipotesi del nostro universo o una conferma sperimentale. [12](https://arxiv.org/abs/2508.09246)
+
+I test richiedono modelli definiti: particelle aggiuntive, scale compatte, stringhe cosmiche e segnali cosmologici dipendono da ulteriori scelte. I difetti macroscopici chiamati stringhe cosmiche non sono automaticamente stringhe fondamentali. Rilevare supersimmetria o una dimensione extra non selezionerebbe unicamente questo quadro; escludere un intervallo accessibile di parametri non esclude tutte le compattificazioni. La scala delle stringhe non è universalmente fissata alla scala di Planck quadridimensionale.
+
+## Stato della ricerca
+
+Verificato fino al **13 ottobre 2026**: la teoria delle stringhe è candidata alla gravità quantistica, con calcoli potenti e indizi di dualità, ma senza conferma sperimentale diretta stabilita di stringhe fondamentali in natura. I risultati matematici vanno letti con le loro ipotesi; le affermazioni cosmologiche, giudicate tramite previsioni osservabili. Resta aperto il collegamento fra un vuoto controllato, una storia cosmologica e una fisica caratteristica e verificabile.

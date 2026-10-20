@@ -1,0 +1,3097 @@
+---
+title: "응집물질물리학"
+description: "결정과 포논, 전자 밴드에서 자성, 초전도, 위상 물질과 메조스코픽 수송까지 응집물질의 구조와 집단 현상을 살펴봅니다."
+---
+
+
+## 10.1 결정과 역공간
+
+결정 고체는 공간적으로 주기적이다. 주기성은 강력한 도구가 된다. 격자는 합을 선택 규칙으로 바꾸고, 푸리에 변환은 $k$를 양자화하며, 회절은 구조의 지문을 드러낸다. 이 절에서는 격자와 기저의 표현, 역격자 벡터, 브릴루앙 영역, 밀러 지수, 회절의 도구인 브래그·라우에·에발트 조건과 구조 인자를 정리한다. 면심입방과 체심입방의 쌍대성, 흔한 결정의 선택 규칙, 지수를 혼동하지 않는 간단한 방법도 연결한다.
+
+![정사각 격자와 그 역격자. 두 격자의 기본 벡터는 역기저 관계를 만족한다.](/images/diagrams/reciprocal-lattice.svg)
+
+---
+
+### 10.1.1 격자, 기저, 결정 구조
+
+**브라베 격자**는 다음 점들의 집합이다.
+
+$$
+\boldsymbol R = n_{1}\,\boldsymbol a_{1} + n_{2}\,\boldsymbol a_{2} + n_{3}\,\boldsymbol a_{3},\qquad n_{i}\in\mathbb Z
+$$
+
+여기서 세 **기본 벡터** $\boldsymbol a_{i}$는 선형 독립이다. **결정 구조**는 격자에 기본 단위격자 안의 위치 $\{\boldsymbol\tau_{j}\}$에 놓인 원자 기저를 **더한 것**이며, 원자들의 위치는 $\boldsymbol r = \boldsymbol R + \boldsymbol\tau_{j}$이다.
+
+- **위그너–자이츠 단위격자**: 다른 어떤 격자점보다 주어진 격자점에 더 가까운 점들의 집합이다.  
+- **관용 단위격자와 기본 단위격자**: 관용 입방 단위격자는 모양을 파악하기 쉽고, 기본 단위격자는 부피가 최소여서 이론에 유용하다.
+
+**유용한 팁**: ‘다이아몬드 격자’라고 부르지 말자. 다이아몬드는 두 점의 기저 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$를 갖는 **면심입방(fcc) 격자**이다.
+
+---
+
+### 10.1.2 대칭: 점군과 공간군 한눈에 보기
+
+- **점군**: 적어도 한 점을 고정하는 회전, 반사, 반전이다.  
+- **공간군**: 점군 연산에 **병진**, **나사 회전**, **미끄럼 반사**를 더한다.  
+- 3차원에는 **14개의 브라베 격자**, **32개의 결정학적 점군**, **230개의 공간군**이 있다. 밴드 이론에서는 주로 격자와 고대칭 $k$점의 작은군이 필요하다.
+
+---
+
+### 10.1.3 역격자와 브릴루앙 영역
+
+**역격자 기본 벡터** $\boldsymbol b_{i}$를 $\boldsymbol a_{i}\cdot \boldsymbol b_{j}=2\pi\delta_{ij}$로 정의한다. 벡터 형식으로 쓰면
+
+$$
+\boldsymbol b_{1} = 2\pi \frac{\boldsymbol a_{2}\times \boldsymbol a_{3}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{2} = 2\pi \frac{\boldsymbol a_{3}\times \boldsymbol a_{1}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})},\quad
+\boldsymbol b_{3} = 2\pi \frac{\boldsymbol a_{1}\times \boldsymbol a_{2}}{\boldsymbol a_{1}\cdot (\boldsymbol a_{2}\times \boldsymbol a_{3})}
+$$
+
+**역격자**는 정수 $(h,k,\ell)$에 대한 벡터 $\boldsymbol G = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}$로 이루어진다.
+
+**제1 브릴루앙 영역(BZ)**은 역격자의 위그너–자이츠 단위격자이다. $k$공간의 기본 단위격자이며 블로흐 파동벡터를 표현하는 자연스러운 영역이다.
+
+- 쌍대성: **fcc $\leftrightarrow$ bcc**. 면심입방의 역격자는 체심입방이며 그 역도 성립한다. 단순입방은 자기 쌍대이다.
+
+---
+
+### 10.1.4 한 줄로 보는 블로흐 정리
+
+주기적 퍼텐셜 $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$에서 단일 입자 고유상태는 **블로흐 파동**이다.
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R) = u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+파동벡터 $\boldsymbol k$는 제1 브릴루앙 영역 안에서 선택할 수 있다. $\boldsymbol k\to \boldsymbol k+\boldsymbol G$만큼 옮겨도 물리는 변하지 않는다.
+
+---
+
+### 10.1.5 면, 방향, 지수: 밀러 지수 속성 정리
+
+- **방향**은 $u\,\boldsymbol a_{1}+v\,\boldsymbol a_{2}+w\,\boldsymbol a_{3}$에 비례하는 격자 벡터를 대괄호 $[u\,v\,w]$로 나타낸다. 등가인 방향들의 집합은 $\langle u\,v\,w\rangle$로 쓴다.  
+- **면**은 소괄호 $(h\,k\,\ell)$, 즉 **밀러 지수**로 나타내며, $\boldsymbol a_{i}$축에서의 절편의 역수로 정의한다. 등가인 면들의 집합은 $\{h\,k\,\ell\}$이다.  
+- 평행한 면들의 집합 $(h\,k\,\ell)$의 **면간 거리**는 역격자 벡터 $\boldsymbol G_{hkl}$와 다음과 같이 연결된다.
+
+$$
+\boldsymbol G_{hkl} = h\,\boldsymbol b_{1} + k\,\boldsymbol b_{2} + \ell\,\boldsymbol b_{3}
+$$
+
+$$
+d_{hkl} = \frac{2\pi}{|\boldsymbol G_{hkl}|}
+$$
+
+**입방계**에서 $a_{1}=a\,\hat x$ 등이면 $d_{hkl}= a/\sqrt{h^{2}+k^{2}+\ell^{2}}$이다.
+
+**육방계**에서는 밑면의 대칭을 명확히 드러내기 위해 $i=-(h+k)$를 만족하는 밀러–브라베 지수 $(h\,k\,i\,\ell)$를 자주 쓴다.
+
+---
+
+### 10.1.6 회절: 브래그, 라우에, 에발트는 같은 내용이다
+
+탄성 산란은 $|\boldsymbol k|=|\boldsymbol k'|$를 보존하며, 역격자 벡터와 같은 결정 운동량 $\Delta\boldsymbol k=\boldsymbol k'-\boldsymbol k$를 전달한다.
+
+$$
+\Delta \boldsymbol k = \boldsymbol G
+$$
+
+실공간의 **브래그 조건**은
+
+$$
+2 d_{hkl}\,\sin\theta = n\,\lambda
+$$
+
+$k$공간의 **라우에 조건**은 정확히 $\boldsymbol k'-\boldsymbol k=\boldsymbol G$이다. **에발트 구** 작도에서는 $\boldsymbol k$의 꼬리를 기준으로 반지름 $|\boldsymbol k|=2\pi/\lambda$인 구를 그린다. 구 위에 놓이는 역격자점이 허용되는 회절 반사를 정한다.
+
+**구조 인자**에는 기저의 정보가 담긴다.
+
+$$
+F(\boldsymbol G) = \sum_{j=1}^{m} f_{j}\,e^{-i\boldsymbol G\cdot \boldsymbol\tau_{j}}
+$$
+
+여기서 $f_{j}$는 원자 형태 인자이다. 회절 세기는
+
+$$
+I(\boldsymbol G) \propto |F(\boldsymbol G)|^{2}
+$$
+
+격자에 대한 합은 $\boldsymbol G$가 역격자에 속하도록 강제하고, $F$는 그 반사가 실제로 나타나는지를 결정한다.
+
+---
+
+### 10.1.7 흔한 구조의 선택 규칙
+
+- $(0,0,0)$에 원자 하나가 있는 **단순입방(sc)**:
+
+$$
+F(\mathbf G)=f,\quad \text{체계적 소멸 없음}
+$$
+
+- 기저가 $\{(0,0,0),\,(\tfrac12,\tfrac12,\tfrac12)a\}$인 **체심입방(bcc)**:
+
+$$
+F = f\left[1 + e^{-i\pi(h+k+\ell)}\right] = 
+\begin{cases}
+2f & h+k+\ell\ \text{짝수} \\
+0 & h+k+\ell\ \text{홀수}
+\end{cases}
+$$
+
+- 기저가 $\{(0,0,0),\,(\tfrac12,\tfrac12,0)a,\,(\tfrac12,0,\tfrac12)a,\,(0,\tfrac12,\tfrac12)a\}$인 **면심입방(fcc)**:
+
+$$
+F = f\left[1 + e^{-i\pi(h+k)} + e^{-i\pi(h+\ell)} + e^{-i\pi(k+\ell)}\right] =
+\begin{cases}
+4f & h,k,\ell\ \text{모두 짝수 또는 모두 홀수} \\
+0 & \text{그 밖의 경우}
+\end{cases}
+$$
+
+- **NaCl(암염)**: 두 종류의 원자로 된 기저 $\{(0,0,0)\ \text{Na},\ (\tfrac12,\tfrac12,\tfrac12)a\ \text{Cl}\}$를 갖는 면심입방 격자이다. 그러면
+
+$$
+F = f_{\mathrm{Na}} + f_{\mathrm{Cl}}\,e^{-i\pi(h+k+\ell)}
+$$
+
+세기는 $f$의 대비에 따라 $h+k+\ell$와 함께 번갈아 달라진다.
+
+- **다이아몬드**: 기저 $\{(0,0,0),\,(\tfrac14,\tfrac14,\tfrac14)a\}$를 갖는 면심입방 격자이다. 추가 위상 때문에 면심입방의 소멸 규칙 외에도 계통적인 영점이 더 생긴다.
+
+---
+
+### 10.1.8 면심입방–체심입방 쌍대성과 고대칭 $k$점
+
+$\{\boldsymbol a_{i}\}$가 **면심입방** 벡터이면 역격자 벡터 $\{\boldsymbol b_{i}\}$는 $k$공간에서 **체심입방** 격자를 생성하며, 그 역도 성립한다. 표준적인 점의 이름을 익혀 두자.
+
+- **면심입방 브릴루앙 영역**: $\Gamma$는 중심, $X$는 정사각형 면의 중심, $L$는 육각형 면의 중심, $W$는 꼭짓점에 있다.  
+- **체심입방 브릴루앙 영역**: $\Gamma$, $H$, $N$, $P$점이 있다.  
+
+이곳에는 밴드의 극값과 축퇴가 자주 나타나며, 실험에서는 각도 분해 광전자 분광법(ARPES)과 양자 진동을 측정한다.
+
+---
+
+### 10.1.9 실공간과 역공간 기하의 요령
+
+- **부피 관계**:
+
+$$
+V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast} = (2\pi)^{3}
+$$
+
+- **면의 법선**: 역격자 벡터 $\boldsymbol G_{hkl}$는 $(hkl)$면에 **수직**이다.  
+- **두 면 사이의 각도**: $(h_{1}k_{1}\ell_{1})$면과 $(h_{2}k_{2}\ell_{2})$면 사이에는
+
+$$
+\cos\theta = \frac{\boldsymbol G_{1}\cdot \boldsymbol G_{2}}{|\boldsymbol G_{1}|\,|\boldsymbol G_{2}|}
+$$
+
+- 다시 보는 **면간 거리**: $d_{hkl}=2\pi/|\boldsymbol G_{hkl}|$.
+
+---
+
+### 10.1.10 간단한 풀이 예제
+
+**(a) 체심입방의 역격자는 면심입방이다**  
+한 변이 $a$인 체심입방 관용 단위격자와 기본 벡터 $\boldsymbol a_{1}=\tfrac a2(\hat y+\hat z-\hat x)$ 등에서 시작하자. $\boldsymbol b_{i}$를 계산하고, 역격자점이 한 변 $4\pi/a$인 관용 입방 단위격자의 꼭짓점과 면 중심에 놓임을 보여라.
+
+**(b) 입방계의 $d_{hkl}$**  
+$\boldsymbol G_{hkl}=(2\pi/a)(h\,\hat x + k\,\hat y + \ell\,\hat z)$를 이용하여 $d_{hkl}=a/\sqrt{h^{2}+k^{2}+\ell^{2}}$를 보여라. 브래그 조건에서 $2d\sin\theta=n\lambda$를 얻는다. 주어진 $\lambda/a$에 대해 $(111)$의 1차 회절 반사각을 구하라.
+
+**(c) 면심입방의 계통적 소멸**  
+$(100)$, $(110)$, $(111)$ 계열에 대해 $F$를 계산하고, 지수가 ‘모두 짝수’이거나 ‘모두 홀수’인 경우만 남음을 확인하라.
+
+**(d) 다이아몬드의 영점**  
+다이아몬드에서는 $F \propto \left[1 + e^{-i\pi(h+k+\ell)/2}\right]\times(\text{면심 입방 인자})$이다. X선 표와 일치하게 $(222)$는 소멸하지만 $(111)$는 허용됨을 보여라.
+
+**(e) 에발트 작도 스케치**  
+$\lambda=1.54\ \text{\AA}$(Cu K$\alpha$)에 대해, 역공간 면심입방 격자의 원점을 지나는 반지름 $2\pi/\lambda$인 원을 그려라. 주어진 결정 방향에서 원 위의 어떤 $\boldsymbol G$벡터가 회절 반사를 예측하는지 표시하라.
+
+---
+
+### 10.1.11 흔한 함정
+
+- **격자와 구조의 혼동**: 격자는 주기적인 골격이고, **기저**가 그 위에 원자를 놓는다.  
+- **역공간 단위의 오류**: 결정학에서는 $2\pi$가 없는 관례를 자주 쓰지만, 여기서는 $a_{i}\cdot b_{j}=2\pi\delta_{ij}$이다. 하나를 선택해 일관되게 사용하라.  
+- **밀러 지수와 방향 지수**: $(hkl)$는 면이고 $[uvw]$는 방향이다. 입방계에서는 $(hkl)\perp [hkl]$이지만 일반적으로는 그렇지 않다.  
+- **형태 인자 누락**: $F\neq 0$이더라도 $f_{j}(\boldsymbol G)$는 $|\boldsymbol G|$에 따라 감소하여 세기 분포를 바꾼다.  
+- **브릴루앙 영역의 혼동**: ‘축소 영역’ 방식은 $k$를 제1 브릴루앙 영역으로 접어 넣는다. 밴드가 중복되어 보이면 확장 영역과 축소 영역 그림을 혼동했을 가능성이 있다.
+
+---
+
+### 10.1.12 핵심 연습 문제
+
+- $\boldsymbol a_{i}$에서 역격자 벡터 $\boldsymbol b_{i}$를 유도하고 $V_{\mathrm{cell}}\,V_{\mathrm{cell}}^{\ast}=(2\pi)^{3}$를 증명하라.  
+- $\boldsymbol G$의 기하를 이용하여 라우에 조건 $\boldsymbol k'-\boldsymbol k=\boldsymbol G$와 브래그 법칙 $2d\sin\theta=n\lambda$가 동등함을 보여라.  
+- NaCl과 CsCl의 구조 인자와 선택 규칙을 계산하고, 각각에서 어떤 $(hkl)$가 소멸하는지 비교하라.  
+- $a$와 $c$를 갖는 육방 격자에서 $\boldsymbol b_{i}$를 쓰고, $d_{hkl}$를 $(h\,k\,i\,\ell)$로 나타내라.  
+- 주어진 $a$에 대해 면심입방의 고대칭점 $\Gamma$, $X$, $L$, $W$를 데카르트 $k$좌표로 나타내고 제1 브릴루앙 영역을 그려라.
+
+---
+
+## 10.2 격자 진동과 포논
+
+결정 속 원자는 조각상처럼 고정되어 있지 않고 흔들린다. 이 집단적인 흔들림을 양자화한 격자의 기준 모드가 **포논**이다. 이 절에서는 1차원 사슬에서 완전한 3차원 동역학 행렬로 나아가며 **음향** 가지와 **광학** 가지를 구분하고, 분산 관계·군속도·상태 밀도를 계산한 뒤 양자화한다. 열 수송, 비조화성, 그뤼나이젠 매개변수를 통한 열팽창, 전자–포논 결합, 중성자·라만·적외선 실험의 대표적 특징도 다룬다.
+
+---
+
+### 10.2.1 조화 격자: 준비
+
+$\boldsymbol R$는 브라베 격자점, $\kappa$는 단위격자 안의 기저 원자 지수라고 하자. 원자 $(\boldsymbol R,\kappa)$의 변위는 $\boldsymbol u_{\kappa}(\boldsymbol R,t)$이다. **조화 근사**에서 퍼텐셜 에너지는 변위의 이차식이다.
+
+$$
+U = \tfrac{1}{2}\sum_{\boldsymbol R\kappa\alpha}\sum_{\boldsymbol R'\kappa'\beta}
+\Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa\alpha}(\boldsymbol R)\,u_{\kappa'\beta}(\boldsymbol R')
+$$
+
+여기서 $\Phi$는 **힘 상수**이고 $\alpha,\beta\in\{x,y,z\}$이다. 뉴턴 방정식은
+
+$$
+M_{\kappa}\,\ddot u_{\kappa\alpha}(\boldsymbol R,t) = -\sum_{\boldsymbol R'\kappa'\beta} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R-\boldsymbol R')\,u_{\kappa'\beta}(\boldsymbol R',t)
+$$
+
+평면파 해 $u_{\kappa\alpha}(\boldsymbol R,t)=M_{\kappa}^{-1/2}e_{\kappa\alpha}(\boldsymbol q)\,e^{i(\boldsymbol q\cdot \boldsymbol R - \omega t)}$를 대입하면 다음 고유값 문제를 얻는다.
+
+$$
+\sum_{\kappa'\beta} D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q)\,e_{\kappa'\beta}(\boldsymbol q) = \omega^{2}(\boldsymbol q)\,e_{\kappa\alpha}(\boldsymbol q)
+$$
+
+여기서 **동역학 행렬**은
+
+$$
+D_{\kappa\alpha,\kappa'\beta}(\boldsymbol q) = \frac{1}{\sqrt{M_{\kappa}M_{\kappa'}}}
+\sum_{\boldsymbol R} \Phi_{\kappa\alpha,\kappa'\beta}(\boldsymbol R)\,e^{-i\boldsymbol q\cdot \boldsymbol R}
+$$
+
+단위격자당 원자가 $r$개이면 가지는 $3r$개이다. $\boldsymbol q\to 0$일 때 $\omega\to 0$가 되는 음향 가지 3개와 광학 가지 $3r-3$개로 나뉜다.
+
+---
+
+### 10.2.2 1차원 단원자 사슬: 가장 간단한 예
+
+질량 $m$인 입자들이 용수철 $K$로 연결되어 있고 격자 간격은 $a$이다. 격자점 $n$의 변위를 $u_{n}$라 하자. 운동방정식은
+
+$$
+m\,\ddot u_{n} = K\,(u_{n+1} - 2u_{n} + u_{n-1})
+$$
+
+해를 $u_{n}=u_{0}e^{i(nka-\omega t)}$로 놓으면 다음 분산 관계를 얻는다.
+
+$$
+\omega(k) = 2\sqrt{\frac{K}{m}}\;\left|\sin\frac{ka}{2}\right|
+$$
+
+핵심 결과는 다음과 같다.
+
+- **음향** 가지 하나만 있으며, $k=0$ 근처에서 선형이고 음속은 $v_{s}=a\sqrt{K/m}$이다.  
+- **브릴루앙 영역**은 $-\pi/a<k\le \pi/a$이며, $\omega(k)$는 $2\pi/a$를 주기로 반복된다.  
+- **군속도** $v_{g}(k)=\partial\omega/\partial k$가 에너지 흐름을 결정한다.
+
+한 가지에 대한 1차원 **상태 밀도**는
+
+$$
+g(\omega) = \frac{L}{\pi}\,\frac{1}{|d\omega/dk|}
+$$
+
+따라서 $d\omega/dk\to 0$가 되는 브릴루앙 영역 가장자리에서 $g(\omega)$가 발산한다. 이것이 판호베 특이점이다.
+
+---
+
+### 10.2.3 1차원 이원자 사슬: 음향 가지와 광학 가지
+
+두 질량 $m_{1},m_{2}$이 번갈아 놓이고 같은 용수철 $K$로 연결된다. 두 원자를 포함하는 단위격자 길이는 $a$이다. 최근접 이웃 결합에서 두 가지의 분산 관계는
+
+$$
+\omega^{2}(k) = K\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)
+\pm \sqrt{K^{2}\left(\frac{1}{m_{1}}+\frac{1}{m_{2}}\right)^{2} - \frac{4K^{2}}{m_{1}m_{2}}\sin^{2}\!\frac{ka}{2}}
+$$
+
+- **음의 부호**는 **음향** 가지이며, $k\to 0$일 때 $\omega\to 0$이다.  
+- **양의 부호**는 **광학** 가지이며 $\omega(k=0)=\sqrt{2K(1/m_{1}+1/m_{2})}$이다.
+
+$k=0$에서 음향 모드의 두 원자는 **같은 위상**으로, 광학 모드의 두 원자는 **반대 위상**으로 움직인다. 질량이 다르면 영역 경계에서 **간극**이 열린다.
+
+---
+
+### 10.2.4 3차원 결정: 편극과 음속
+
+$r=1$인 단원자 브라베 격자에는 음향 가지가 3개 있다. **종방향(LA)** 하나와 **횡방향(TA)** 두 개이다. $\boldsymbol q=0$ 근처에서 이들은 선형 분산 관계를 갖는 **음파**이다.
+
+$$
+\omega_{\text{LA}}(\boldsymbol q) \approx v_{L}|\boldsymbol q|,\qquad \omega_{\text{TA}}(\boldsymbol q) \approx v_{T}|\boldsymbol q|
+$$
+
+입방 결정의 입방축을 따라 전파할 때 속도는 탄성 상수와 질량 밀도 $\rho$에 다음과 같이 연결된다. 이는 연속체 극한이다.
+
+$$
+v_{L} = \sqrt{\frac{C_{11}}{\rho}},\qquad v_{T} = \sqrt{\frac{C_{44}}{\rho}}
+$$
+
+더 일반적으로는 크리스토펠 방정식이 방향에 따른 속도를 준다.
+
+$r>1$이면 **광학** 가지 $3r-3$개가 추가되며, 보통 영역 중심 근처에서 $\boldsymbol q$에 대한 분산이 약하다. 기저가 서로 반대 부호의 전하를 띠면 일부 광학 모드는 **적외선 활성**을 갖는다(§10.14 참조).
+
+---
+
+### 10.2.5 양자화: 보손으로서의 포논
+
+각 기준 모드 $(\boldsymbol q,s)$를 조화 진동자로 승격한다.
+
+$$
+H = \sum_{\boldsymbol q,s} \hbar\omega_{\boldsymbol q s}\left(b^{\dagger}_{\boldsymbol q s} b_{\boldsymbol q s} + \tfrac{1}{2}\right)
+$$
+
+여기서 $[b_{\boldsymbol q s},b^{\dagger}_{\boldsymbol q' s'}]=\delta_{\boldsymbol q\boldsymbol q'}\delta_{ss'}$이다. 변위 연산자는
+
+$$
+\boldsymbol u_{\kappa}(\boldsymbol R) = \sum_{\boldsymbol q,s} \sqrt{\frac{\hbar}{2M_{\kappa} N \omega_{\boldsymbol q s}}}\;
+\left[\boldsymbol e_{\kappa s}(\boldsymbol q)b_{\boldsymbol q s} e^{i\boldsymbol q\cdot \boldsymbol R} + \boldsymbol e_{\kappa s}^{\ast}(\boldsymbol q)b^{\dagger}_{\boldsymbol q s} e^{-i\boldsymbol q\cdot \boldsymbol R}\right]
+$$
+
+포논 점유수는 평형에서 화학 퍼텐셜 $\mu=0$인 보스 통계를 따른다.
+
+---
+
+### 10.2.6 열용량과 드바이 모형 다시 보기
+
+단위 부피당 총 포논 에너지는 $U/V=\sum_{s}\int d\omega\,\hbar\omega\,g_{s}(\omega)\,n_{B}(\omega)$이며 $n_{B}=(e^{\beta\hbar\omega}-1)^{-1}$이다. 낮은 $T$에서 음향 모드 $\Rightarrow$ 3차원의 **드바이 법칙** $C_{V}\propto T^{3}$을 준다. 높은 $T$에서는 $\Rightarrow$ 뒤롱–프티 결과 $3Nk_{B}$를 얻는다(완전한 드바이 적분은 §9.6 참조). 광학 모드의 간극에 열적으로 도달할 수 있게 되면 쇼트키형 봉우리가 더해진다.
+
+---
+
+### 10.2.7 열 수송: 운동론으로 구하는 $\kappa$
+
+결정에서 열은 주로 음향 포논이 나른다. 운동론에 따르면
+
+$$
+\kappa = \frac{1}{3}\sum_{s}\int d\omega\; g_s(\omega)\,C_{\omega s}\,v_{g}^{2}(\omega,s)\,\tau(\omega,s)
+$$
+
+여기서 단위 부피당 상태 밀도를 g로 쓰고, $C_{\omega s}=\hbar\omega\,\partial n_{B}/\partial T$는 모드의 열용량, $v_{g}=\partial\omega/\partial q$는 군속도, $\tau$는 수명이다. 산란 경로는 다음과 같다.
+
+- **포논–포논** 산란(비조화적): 결정 운동량을 보존하는 **정상(N)** 과정과, $\boldsymbol q_{1}+\boldsymbol q_{2}=\boldsymbol q_{3}+\boldsymbol G$가 되어 열전류를 약화시키는 **움클라프(U)** 과정으로 나뉜다.  
+- **경계** 산란: 나노 크기 또는 매우 낮은 $T$에서 지배적이다.  
+- **동위원소/무질서** 산란.  
+- 금속의 **포논–전자** 및 **포논–결함** 산란.
+
+경험적으로 $\kappa(T)$는 매우 낮은 $T$에서 $\sim T^{3}$처럼 증가하고(탄도/경계 제한), 최대값을 지난 뒤 높은 $T$에서 대략 $1/T$처럼 감소하는 경우가 많다(움클라프 제한).
+
+---
+
+### 10.2.8 비조화성, 진동수 이동, 수명
+
+실제 결정은 완벽히 조화적이지 않다. 삼차항과 사차항은 다음을 일으킨다.
+
+- **열팽창**(준조화 효과).  
+- **진동수 재규격화** $\omega(\boldsymbol q,T)$.  
+- 세 포논 및 네 포논 산란에 따른 **유한한 수명** $\tau_{\boldsymbol q s}$.
+
+유용한 거시적 척도로 **그뤼나이젠 매개변수**를 쓴다.
+
+$$
+\gamma_{\boldsymbol q s} \equiv -\frac{\partial \ln \omega_{\boldsymbol q s}}{\partial \ln V},\qquad
+\gamma \equiv \frac{\sum_{\boldsymbol q s} \gamma_{\boldsymbol q s} C_{\boldsymbol q s}}{\sum_{\boldsymbol q s} C_{\boldsymbol q s}}
+$$
+
+체적 **열팽창 계수** $\alpha$는 $\gamma$ 및 부피 탄성률 $B$와 다음 관계를 갖는다.
+
+$$
+\alpha = \frac{\gamma\,C_{V}}{B\,V}
+$$
+
+준조화 근사이며, 많은 단순 고체에 놀랄 만큼 잘 맞는다.
+
+---
+
+### 10.2.9 전자–포논 결합: 비저항과 쌍 형성의 배후에 있는 진동
+
+변위가 전자 해밀토니안 $H_{e}$를 변조하여 상호작용 $H_{e\text{-}ph}$를 만든다. 대표적인 두 유형은 다음과 같다.
+
+- **변형 퍼텐셜**(단거리): $\delta V \sim \Xi\,\nabla\cdot \boldsymbol u$가 종방향 음향 포논에 결합한다.  
+- **프뢸리히 결합**(장거리 극성): 이온 결정에서 종방향 광학(LO) 포논이 거시적 전기장을 만들어 전자와 강하게 결합한다.
+
+그 결과는 다음과 같다.
+
+- **금속 비저항**: 낮은 $T\ll \Theta_{D}$에서는 블로흐–그뤼나이젠 법칙 $\rho \propto T^{5}$을 따르며, 높은 $T$에서는 대략 $\rho\propto T$이다.  
+- **초전도**: 가상 포논 교환은 페르미 표면 근처에서 쿨롱 반발을 이길 수 있는 유효 인력을 제공한다(BCS).
+
+---
+
+### 10.2.10 불안정성과 연성 모드: 1차원의 파이얼스 전이
+
+1차원 금속의 전자 감수율은 $q=2k_{F}$에서 최대가 된다. 전자–포논 결합은 그 파동벡터의 포논을 연화시킨다. 임계 $T$ 아래에서 $\omega(2k_{F})\to 0$ **연성 모드**가 파동벡터 2kF의 격자 변형을 유도하고(반충전에서는 주기가 두 배가 되는 이합체화), 간극을 연다. 이것이 **파이얼스 전이**이다. 더 높은 차원의 전하 밀도파와 구조 전이도 비슷한 논리를 따른다.
+
+---
+
+### 10.2.11 포논의 실험적 특징
+
+- **비탄성 중성자 산란(INS)**: 동적 구조 인자 $S(\boldsymbol q,\omega)$를 측정하여 전체 $\omega(\boldsymbol q)$와 고유벡터를 지도화한다.  
+- **라만 분광법**: 영역 중심의 광학 포논을 조사하며 대칭 선택 규칙이 적용된다.  
+- **적외선(IR)** 흡수/반사율: 극성 결정의 적외선 활성 광학 포논은 $\Gamma$에서 LO와 TO로 갈라진다(리데인–삭스–텔러 관계).  
+- **브릴루앙 광산란**: 긴 파장의 음향 포논(GHz)을 조사한다.  
+- $T$에 따른 **비열**과 **열전도도**: 상태 밀도와 산란을 드러내는 벌크 열역학적 특징이다.
+
+---
+
+### 10.2.12 간단한 풀이 예제
+
+**(a) 단원자 사슬의 군속도**  
+$\omega(k)=2\sqrt{K/m}\,\left|\sin(ka/2)\right|$에서 $v_{g}(k)$를 계산하고, $k\to 0^{+}$일 때 $v_{g}\to v_{s}=a\sqrt{K/m}$임을 보여라.
+
+**(b) 상태 밀도의 가장자리 특이점**  
+$g(\omega)=(L/\pi)/|d\omega/dk|$를 이용하여 1차원 상태 밀도가 $k=\pi/a$에서 발산함을 보여라.
+
+**(c) $\Gamma$에서 이원자 사슬의 간극**  
+이원자 사슬의 $\omega_{\text{opt}}(0)$와 $\omega_{\text{ac}}(0)$를 계산하고 고유벡터를 해석하라.
+
+**(d) 드바이 $T^{3}$**  
+드바이 차단값 $q_{D}$까지 선형 분산 관계를 갖는 세 음향 가지를 가정하고 적분하여, 낮은 $T$에서 $C_{V}\propto T^{3}$를 구하라.
+
+**(e) 움클라프 문턱**  
+움클라프 과정이 일어나려면 $\boldsymbol q_{1}+\boldsymbol q_{2}$가 제1 브릴루앙 영역을 벗어나야 함을 보여라. 드바이 파동벡터 $q_{D}$인 단순입방 결정에서 이러한 $\boldsymbol q$가 열적으로 점유되기 시작하는 최소 온도를 추정하라.
+
+**(f) $\gamma$로부터 열팽창 구하기**  
+$F(T,V)=U_{\text{el}}(V)+\sum_{\boldsymbol q s}\left[\tfrac{1}{2}\hbar\omega_{\boldsymbol q s} + k_{B}T\ln(1-e^{-\beta\hbar\omega_{\boldsymbol q s}})\right]$에서 출발하여 준조화 근사에서 $\alpha=\gamma C_{V}/(BV)$임을 보여라.
+
+---
+
+### 10.2.13 흔한 함정
+
+- **‘광학 포논에는 이온이 필요하다.’** 그렇지 않다. 단위격자당 원자 $r>1$개만 있으면 된다. **적외선 활성**에는 극성이 필요하지만, 광학 포논 자체는 극성과 무관하게 존재한다.  
+- **위상속도와 군속도**: 에너지 수송에는 $\omega/k$가 아니라 $v_{g}=\partial\omega/\partial k$를 사용한다.  
+- **선택 규칙 누락**: 라만은 라만 활성 대칭만, 적외선은 적외선 활성 모드만 본다. 중성자는 핵의 위치와 자기 모멘트에 결합한다.  
+- **브릴루앙 영역 표현의 혼용**: 축소 영역과 확장 영역은 가지가 나타나는 위치를 바꾸지만 물리 자체는 바꾸지 않는다.  
+- **조화 근사의 과용**: 열 수송과 팽창에는 비조화성이 필요하다. $\kappa(T)$를 모형화할 때 정상 과정과 움클라프 과정을 포함하라.
+
+---
+
+### 10.2.14 핵심 연습 문제
+
+- 단원자 및 이원자 1차원 분산 관계를 유도하고 둘 다 제1 브릴루앙 영역 안에 그려라.  
+- 최근접 이웃 중심력을 갖는 두 원자 입방 기저의 $6\times 6$ 동역학 행렬을 구성하고, 고대칭선을 따라 $\omega(\boldsymbol q)$를 구하라.  
+- $d=1,2,3$에서 드바이 모형의 $g(\omega)$를 계산하고, 이에 대응하는 낮은 $T$에서의 비열 척도 법칙을 보여라.  
+- 경계, 동위원소, 움클라프 산란률에 마티센 법칙을 적용하여 합성 $\kappa(T)$ 곡선을 맞추고, 최대값이 나타나는 온도가 시료 크기에 따라 어떻게 변하는지 밝혀라.  
+- $v_{s}$와 $k_{F}$가 주어진 금속에서 블로흐–그뤼나이젠 온도와 $T^{5}$ 법칙의 전환점을 추정하라.
+
+---
+
+## 10.3 드루데–조머펠트 금속
+
+금속은 원자 규모에서는 복잡해 보이지만 전자는 놀라울 만큼 질서 있게 행동한다. **드루데**는 최초의 운동론적 모형을 제시했다(1900년). 고전적인 전자를 이따금 충돌하는, 전하를 띤 당구공들의 기체로 본 것이다. **조머펠트**는 페르미–디랙 통계로 주요 오류를 바로잡았다(1928년). 두 모형을 합치면 오늘날에도 직류·교류 전도도, 홀 효과, 자기장 속 수송, 비열, 파울리 상자성, 비데만–프란츠 법칙 등 놀라울 만큼 많은 금속 물리를 설명할 수 있다.
+
+---
+
+### 10.3.1 드루데 모형: 하나의 완화 시간으로 설명하는 다양한 현상
+
+(유효) 질량 $m^{\ast}$, 전하 $-e$인 전도 전자가 평균 시간 $\tau$마다 운동을 무작위화하는 충돌을 겪는다고 가정하자.
+
+장 $(\boldsymbol E,\boldsymbol B)$ 아래에서 평균 속도 $\boldsymbol v$의 **운동방정식(정상적인 구동)**은 다음과 같다.
+
+$$
+m^{\ast}\,\frac{d\boldsymbol v}{dt} = -e\left(\boldsymbol E + \boldsymbol v\times \boldsymbol B\right) - \frac{m^{\ast}\boldsymbol v}{\tau}
+$$
+
+- $B=0$에서 전류 밀도 $\boldsymbol J = -ne\,\boldsymbol v$일 때의 **직류 전도도**:
+
+$$
+\sigma_{0} = \frac{ne^{2}\tau}{m^{\ast}},\qquad \rho_{0} \equiv \frac{1}{\sigma_{0}} = \frac{m^{\ast}}{ne^{2}\tau}
+$$
+
+**이동도**를 $\mu \equiv e\tau/m^{\ast}$로 정의하면 $\sigma_{0}=ne\mu$이다.
+
+- 장 $\propto e^{-i\omega t}$에 대한 **교류(드루데) 전도도**:
+
+$$
+\sigma(\omega) = \frac{\sigma_{0}}{1 - i\omega\tau}
+$$
+
+실수부는 폭이 $1/\tau$인 로런츠 곡선이다. 허수부는 양의 진동수에서 양수이고 $\omega\sim 1/\tau$에서 최대가 된다.
+
+- **플라스마 진동수**(광학에서 자유 전자에 의한 극점):
+
+$$
+\omega_{p}^{2} = \frac{ne^{2}}{\varepsilon_{0} m^{\ast}}
+$$
+
+$\omega\ll\omega_{p}$에서는 금속이 빛을 반사하고, $\omega>\omega_{p}$에서는 유전체처럼 투과시킨다.
+
+- 좋은 도체 극한($\omega\tau\ll 1$)에서의 **표피 깊이**:
+
+$$
+\delta = \sqrt{\frac{2}{\mu_{0}\,\omega\,\sigma_{0}}}
+$$
+
+---
+
+### 10.3.2 홀 효과와 전도도 텐서
+
+$\boldsymbol B = B\hat z$일 때 드루데 해는 다음 전도도 텐서를 준다.
+
+$$
+\sigma = 
+\begin{pmatrix}
+\dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & -\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & 0 \\
+\dfrac{\sigma_{0}\,\omega_{c}\tau}{1+(\omega_{c}\tau)^{2}} & \dfrac{\sigma_{0}}{1+(\omega_{c}\tau)^{2}} & 0 \\
+0 & 0 & \sigma_{0}
+\end{pmatrix},
+\qquad
+\omega_{c} \equiv \frac{eB}{m^{\ast}}
+$$
+
+역행렬을 구하면 비저항 텐서를 얻는다. 핵심 결과 두 가지는 다음과 같다.
+
+- **홀 계수**(약한 자기장):
+
+$$
+R_{H} \equiv \frac{E_{y}}{J_{x}B} = -\,\frac{1}{ne}
+$$
+
+- **단일 밴드, 등방적** 드루데 모형에서 **자기저항**은 **0**이다. $\sigma_{xx}$가 감소해도 $\rho_{xx}(B)=\rho_{0}$이며, 텐서의 역행렬을 구하는 과정에서 그 효과가 상쇄되기 때문이다. 실제 물질에서는 여러 밴드, 비등방성 또는 $\tau(\boldsymbol k)$의 변화 때문에 유한한 자기저항이 나타난다.
+
+---
+
+### 10.3.3 드루데 열 수송과 비데만–프란츠 법칙 미리 보기
+
+간단한 운동론적 추정으로 전자 열전도도 $\kappa_{e}\sim \tfrac{1}{3} C_{e} v_{F}^{2}\tau$를 얻는다($v_{F}$를 도입한 뒤의 결과이다). 드루데 모형은 단순하게 다음 **비데만–프란츠 비**를 예측한다.
+
+$$
+\frac{\kappa_{e}}{\sigma T} \equiv L \stackrel{?}{=}\text{const}
+$$
+
+그러나 올바른 **로렌츠 수**는 **조머펠트** 통계를 적용해야만 얻을 수 있다.
+
+$$
+L_{0} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2}
+$$
+
+전자 기체를 양자화한 뒤 이를 제대로 유도할 것이다.
+
+---
+
+### 10.3.4 개선: 조머펠트 자유 전자 기체
+
+전자는 **페르미온**이다. 부피 $V$인 상자에 전자 $N$개를 넣고 **페르미 구**까지 운동량 상태를 채워 보자.
+
+- **페르미 파동벡터와 에너지**(스핀 축퇴도 $g=2$):
+
+$$
+k_{F} = \left(3\pi^{2} n\right)^{1/3},\qquad \epsilon_{F} = \frac{\hbar^{2} k_{F}^{2}}{2 m^{\ast}},\qquad v_{F}=\frac{\hbar k_{F}}{m^{\ast}}
+$$
+
+- 포물선형 밴드의 단위 부피당 **상태 밀도**:
+
+$$
+g(\epsilon) = \frac{1}{2\pi^{2}}\left(\frac{2m^{\ast}}{\hbar^{2}}\right)^{3/2}\sqrt{\epsilon}
+$$
+
+낮은 $T\ll T_{F}$에서는 $\epsilon_{F}$ 주변의 폭 $\sim k_{B}T$인 껍질만 열적으로 활성화된다. 이것이 고전적인 드루데 열역학의 대부분이 실패한 이유이다.
+
+---
+
+### 10.3.5 전자 비열: $T$에 선형 비례
+
+조머펠트 전개를 이용하면
+
+$$
+C_{e} = \gamma\,T,\qquad \gamma = \frac{\pi^{2}}{3}\,k_{B}^{2}\,g(\epsilon_{F})
+$$
+
+$T$에 선형인 전자 비열은 실험과 일치하며, 상온에서 $3n_{\mathrm{atom}}k_{B}$(n_atom은 원자 수 밀도)에 비해 매우 작다. 전자 중 $\sim (T/T_{F})$만 참여하기 때문이다.
+
+---
+
+### 10.3.6 올바르게 유도하는 비데만–프란츠 법칙
+
+페르미 통계를 적용한 운동론은 다음을 준다.
+
+$$
+\kappa_{e} = \frac{1}{3} v_{F}^{2}\tau\,C_{e}
+$$
+
+이를 $\sigma_{0}=ne^{2}\tau/m^{\ast}$ 및 $n=\int^{\epsilon_{F}} g(\epsilon)\,d\epsilon$와 결합하면, $\tau$가 에너지에 무관한 탄성 산란에 대해 다음을 얻는다.
+
+$$
+\frac{\kappa_{e}}{\sigma T} = \frac{\pi^{2}}{3}\left(\frac{k_{B}}{e}\right)^{2} \equiv L_{0}
+$$
+
+$L$가 $L_{0}$에서 벗어나면 비탄성 산란, $\tau$의 강한 에너지 의존성 또는 추가 열 운반자(포논, 마그논)가 있음을 알 수 있다.
+
+---
+
+### 10.3.7 파울리 상자성과 란다우 반자성 개요
+
+- 자기장 $B$에서 스핀 편극에 따른 **파울리 상자성**:
+
+$$
+\chi_{\text{Pauli}} = \mu_{0}\,\mu_{B}^{2}\,g(\epsilon_{F})
+$$
+
+작은 값이며, 가장 낮은 차수에서는 $T$에 무관하다.
+
+- 양자화를 일으키는 자기장에서 궤도 운동에 따른 **란다우 반자성**은
+
+$$
+\chi_{\text{Landau}} = -\frac{1}{3}\,\chi_{\text{Pauli}}
+$$
+
+이며, 자유 전자 기체의 결과이다. 실제 금속의 전체 $\chi$에는 내각 전자의 반자성과 경우에 따라 판플렉 항도 포함된다.
+
+---
+
+### 10.3.8 열전능과 모트 공식 한 줄 정리
+
+제벡 계수 $S$(온도 기울기가 만드는 전압)는 낮은 온도에서 고전적인 드루데 모형으로 올바르게 설명되지 않는다. 페르미 통계를 적용하면
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+이 **모트 공식**에 따라 $S$는 $\epsilon_{F}$ 근처의 입자–정공 비대칭과 산란을 민감하게 탐지한다.
+
+---
+
+### 10.3.9 드루데 모형의 오류와 조머펠트 모형의 성공 이유
+
+- **열용량**: 고전적인 드루데 모형은 $C_{e}\sim Nk_{B}$을 예측하지만, 실험값은 $C_{e}\propto T\ll Nk_{B}$이다. 조머펠트 모형이 이를 바로잡는다.  
+- **홀 계수의 부호**: 단일 밴드 드루데 모형에서는 $R_{H}=-1/ne$(전자)이다. 많은 물질에서는 정공형 페르미 표면이나 여러 밴드 사이의 보상 때문에 $R_{H}$가 **양수**이다.  
+- **자기저항**: 단일 밴드 드루데 모형에서는 0이지만, 실제로는 비등방성, 여러 포켓 또는 $\tau(\boldsymbol k)$ 때문에 유한하다.  
+- **고진동수 광학**: 드루데 모형만으로는 밴드 간 흡수와 속박 전하의 기여를 놓친다. 현실적인 $\varepsilon(\omega)$를 얻으려면 로런츠 진동자를 더해야 한다.
+
+---
+
+### 10.3.10 밴드 구조와 연결하기
+
+$m^{\ast}$를 페르미 표면 근처의 분산 관계 $\epsilon(\boldsymbol k)$에서 얻는 **밴드 유효 질량**으로 바꾼다.
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{\hbar^{2}}\left.\frac{\partial^{2}\epsilon(\boldsymbol k)}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{F}}
+$$
+
+$m^{\ast}$가 비등방적이면 $B=0$에서도 $\sigma$는 텐서이다. 실제 수송에서는 $\tau(\boldsymbol k)$를 이용하여 페르미 표면 주변에서 선형화한 **볼츠만** 이론을 쓴다(§10.7 참조).
+
+---
+
+### 10.3.11 광학 합 규칙과 스펙트럼 가중치
+
+포물선형 단일 밴드 드루데 모형에서 적분한 전도도 가중치는 운반자 밀도와 연결된다.
+
+$$
+\int_{0}^{\infty} d\omega\;\mathrm{Re}\,\sigma(\omega) = \frac{\pi ne^{2}}{2 m^{\ast}}
+$$
+
+상관계에서는 드루데 가중치가 억제되고 중적외선의 밴드 간 전이와 유사한 특징으로 옮겨갈 수 있다. 이를 준입자 가중치 감소의 징후로 해석하는 경우가 많다.
+
+---
+
+### 10.3.12 간단한 풀이 예제
+
+**(a) 믿을 만한 수치**  
+$n=8.5\times 10^{28}\ \mathrm{m^{-3}}$, $\tau=3\times 10^{-14}\ \mathrm{s}$, $m^{\ast}=m_{e}$라 하자. $\omega/2\pi=10\ \mathrm{GHz}$에서 $\sigma_{0}$, $\rho_{0}$, $\omega_{p}$, $\delta$를 계산하라.
+
+**(b) 홀 막대**  
+두께 $t$, 폭 $w$인 시료에서 전류 $I$가 $x$ 방향으로 흐르고 자기장은 $B\hat z$이다. 드루데 단일 밴드 극한에서 홀 전압의 크기 $V_{H} = I\,B/(ne\,t)$를 보여라. (a)의 물질 매개변수를 이용하여 구리의 $V_{H}$를 전류, 자기장, 두께의 함수로 나타내라.
+
+**(c) 조머펠트 $C_{e}$**  
+조머펠트 전개로 $C_{e}=\gamma T$를 유도하고 $\gamma$를 $n$와 $m^{\ast}$로 나타내라.
+
+**(d) 볼츠만 이론으로 구하는 비데만–프란츠 법칙**  
+탄성 불순물 산란을 포함한 볼츠만 방정식을 선형화하고, $\epsilon_{F}$ 근처에서 $\tau(\epsilon)$가 일정하면 $L=L_{0}$임을 보여라.
+
+**(e) 모트 열전능의 부호**  
+$\epsilon_{F}$ 근처에서 $\sigma(\epsilon)\propto \epsilon^{s}$라고 가정하여 $S = -(\pi^{2}/3)(k_{B}^{2}T/e)\,s/\epsilon_{F}$를 보이고, $S>0$와 $S<0$를 해석하라.
+
+---
+
+### 10.3.13 흔한 함정
+
+- **유효 질량 누락**: 수송 공식에는 맨질량 $m_{e}$ 대신 항상 밴드 구조에서 얻은 $m^{\ast}$를 사용하라.  
+- **$\sigma_{xx}$로 자기저항을 판단하기**: 단일 밴드 드루데 모형에서는 $\sigma_{xx}$가 감소하더라도 측정되는 $\rho_{xx}$가 $B$에 무관할 수 있다. 텐서의 역행렬을 구해야 한다.  
+- **$R_{H}=-1/ne$의 보편성 가정**: 여러 밴드 사이의 보상과 뒤틀린 페르미 표면은 부호를 바꾸거나 크기를 줄일 수 있다.  
+- **일정한 $\tau$ 근사의 남용**: 에너지 또는 각도에 의존하는 산란은 $L$, $S$, 자기저항을 바꾼다. 불순물 산란이 지배하는 낮은 $T$ 영역 밖에서는 주의해야 한다.  
+- **광학 질량과 수송 질량의 혼동**: 비등방적이거나 상호작용하는 계에서는 사이클로트론 질량, 열역학적 질량, 밴드 질량이 서로 다를 수 있다.
+
+---
+
+## 10.4 블로흐 정리와 밴드 구조
+
+주기적 퍼텐셜은 복잡한 원자 규모의 무질서를 단순한 운동량 공간 규칙으로 압축한다. 핵심은 **블로흐 정리**이다. 결정 속 전자는 격자 주기적인 포락선으로 변조된 평면파로 움직인다. 이로부터 브릴루앙 영역 경계에서 간극이 열리고, 분산 관계 $E_{n}(\boldsymbol k)$가 속도와 유효 질량을 정하며, ‘거의 자유 전자’와 ‘강결합’이라는 두 관점도 서로 반대쪽에서 확대해 본 같은 이야기가 된다.
+
+![금지된 에너지 구간이 가전자대와 전도대를 가르는 개략도. 에너지는 결정 운동량에 따라 주기적으로 변한다.](/images/diagrams/band-gap.svg)
+
+---
+
+### 10.4.1 블로흐 상태와 중심 방정식
+
+주기적 퍼텐셜 $V(\boldsymbol r+\boldsymbol R)=V(\boldsymbol r)$ 속 단일 전자에 대해
+
+$$
+\psi_{n\boldsymbol k}(\boldsymbol r) = e^{i\boldsymbol k\cdot \boldsymbol r}\,u_{n\boldsymbol k}(\boldsymbol r),\qquad u_{n\boldsymbol k}(\boldsymbol r+\boldsymbol R)=u_{n\boldsymbol k}(\boldsymbol r)
+$$
+
+격자 주기적인 부분을 역격자 벡터 $\boldsymbol G$로 전개하면
+
+$$
+u_{n\boldsymbol k}(\boldsymbol r) = \sum_{\boldsymbol G} c_{n}(\boldsymbol k+\boldsymbol G)\,e^{i\boldsymbol G\cdot \boldsymbol r}
+$$
+
+이고, 퍼텐셜은 $V(\boldsymbol r)=\sum_{\boldsymbol G} U_{\boldsymbol G}\,e^{i\boldsymbol G\cdot \boldsymbol r}$로 전개한다. 슈뢰딩거 방정식에 대입하면 **중심 방정식**을 얻는다.
+
+$$
+\left[\frac{\hbar^{2}}{2m}\,|\boldsymbol k+\boldsymbol G|^{2} - E\right] c(\boldsymbol k+\boldsymbol G) + \sum_{\boldsymbol G'} U_{\boldsymbol G-\boldsymbol G'}\,c(\boldsymbol k+\boldsymbol G') = 0
+$$
+
+이는 평면파 계수 $c$에 대한 무한 차원 선형 연립방정식이다. 적절히 잘라 계산하면 밴드를 얻는다.
+
+---
+
+### 10.4.2 영역 접기와 축소 영역·확장 영역
+
+자유 전자의 분산 관계는 포물선형인 $E=\hbar^{2}|\boldsymbol k|^{2}/2m$이다. 격자 표현에서 $\boldsymbol k$와 $\boldsymbol k+\boldsymbol G$는 같은 축소 파동벡터를 갖지만 서로 다른 밴드에 속할 수 있다. 다음 두 방식으로 나타낼 수 있다.
+
+- **확장 영역**: $k$공간에서 연속된 영역에 걸쳐 $E(\boldsymbol k)$를 표시한다.  
+- **축소 영역**: 모든 운동량을 제1 브릴루앙 영역으로 접어 넣는다. 복사본들은 지수 $n$로 구별되는 서로 다른 **밴드**가 된다.
+
+$V\neq 0$이면 접는 과정에서 축퇴했던 상태들이 **섞이고**, 교차점에 간극이 열린다.
+
+---
+
+### 10.4.3 브래그 반사에 따른 간극: 2×2 예시
+
+자유 전자에서 $\boldsymbol k$와 $\boldsymbol k'=\boldsymbol k-\boldsymbol G$가 축퇴하는 경계에서는 중심 방정식에 이 두 평면파만 남겨 보자. 고유값 문제는
+
+$$
+\begin{pmatrix}
+\epsilon_{\boldsymbol k} & U_{\boldsymbol G} \\
+U_{\boldsymbol G}^{\ast} & \epsilon_{\boldsymbol k'}
+\end{pmatrix}
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+= E
+\begin{pmatrix}
+c_{\boldsymbol k} \\ c_{\boldsymbol k'}
+\end{pmatrix}
+$$
+
+이며 $\epsilon_{\boldsymbol q}=\hbar^{2}|\boldsymbol q|^{2}/2m$이다. $\epsilon_{\boldsymbol k}=\epsilon_{\boldsymbol k'}$인 정확한 영역 경계에서 두 에너지는 다음과 같이 갈라진다.
+
+$$
+E_{\pm} = \epsilon_{0} \pm |U_{\boldsymbol G}|
+$$
+
+따라서 **밴드 간극**은
+
+$$
+E_{g} = 2\,|U_{\boldsymbol G}|
+$$
+
+요점: 역격자 벡터 $\boldsymbol G$에서 격자 퍼텐셜의 푸리에 성분이 클수록, 해당 브릴루앙 영역 면에서 더 큰 간극이 열린다.
+
+---
+
+### 10.4.4 크로니히–페니 모형 한 줄 정리: 1차원 직관
+
+1차원에서 델타 장벽이 주기적으로 배열되어 있을 때(격자 상수 $a$), 분산 관계는 다음 초월 관계식을 만족한다.
+
+$$
+\cos(ka) = \cos(\alpha a) + \frac{P}{\alpha a}\,\sin(\alpha a)
+$$
+
+여기서 우물 안에서는 $\alpha=\sqrt{2mE}/\hbar$이고, $P$는 장벽의 세기를 나타낸다. 우변의 절댓값이 $\le 1$인 영역은 **허용 밴드**, 1을 넘는 영역은 **금지된 간극**이다. $P$를 조절하면 거의 자유 전자($P\to 0$)에서 강결합($P\gg 1$)으로 연속적으로 옮겨간다.
+
+---
+
+### 10.4.5 군속도, 유효 질량, 상태 밀도
+
+밴드 분산 관계는 보기 좋은 그림에 그치지 않는다. 그 도함수에는 물리가 담겨 있다.
+
+- **군속도**
+
+$$
+\boldsymbol v_{n}(\boldsymbol k) = \frac{1}{\hbar}\,\nabla_{\boldsymbol k} E_{n}(\boldsymbol k)
+$$
+
+- 극값 근처의 **유효 질량 텐서**
+
+$$
+\left(m_{n}^{\ast}\right)^{-1}_{\alpha\beta} = \frac{1}{\hbar^{2}}\,\left.\frac{\partial^{2}E_{n}}{\partial k_{\alpha}\,\partial k_{\beta}}\right|_{\boldsymbol k_{0}}
+$$
+
+곡률 $\uparrow$ ⇒ 가벼운 질량, 곡률 $\downarrow$ ⇒ 무거운 질량. 가전자대 최대점 근처의 음의 곡률은 양전하와 양의 질량을 가진 **정공**이 수송을 담당함을 뜻한다.
+
+- 3차원의 스핀 축퇴된 단일 밴드에 대한 **상태 밀도**
+
+$$
+g(E) = \frac{1}{4\pi^{3}} \int_{E_{n}(\boldsymbol k)=E} \frac{dS_{k}}{|\nabla_{\boldsymbol k} E_{n}|}
+$$
+
+에너지 기울기가 0인 임계점에서는 판호베 비해석성이 나타난다. 발산 여부는 차원과 임계점의 종류에 달려 있으며, 일반적인 3차원 극값이나 안장점에서는 유한한 뾰족점이 생긴다.
+
+---
+
+### 10.4.6 거의 자유 전자와 강결합: 확대율은 달라도 같은 내용
+
+- **거의 자유 전자(NFE)**: 포물선에서 시작하여 교차점에 섭동적으로 간극을 연다. $|U_{\boldsymbol G}| \ll \epsilon_{F}$일 때 적합하다.  
+- **강결합(TB)**: 격자점 사이의 홉핑 $t$을 가진 국소화된 오비탈에서 시작한다. 결합·반결합 조합으로부터 밴드가 생긴다. 오비탈이 조밀하고 $t$이 격자점 에너지에 비해 작을 때 가장 적합하다.
+
+둘 다 같은 블로흐 이론의 극한이다. 거의 자유 전자 모형은 단순 금속의 간극 형성과 작은 질량을 설명한다. 강결합 모형은 공유 결합·이온 결합 고체의 밴드 모양을 잘 설명하며 §10.5에서 집중적으로 다룬다(바니에 함수도 여기서 등장한다).
+
+---
+
+### 10.4.7 $k\cdot p$ 방법: 밴드 가장자리 근처의 국소 전개
+
+고대칭점 $\boldsymbol k_{0}$ 근처에서 해밀토니안을 $H(\boldsymbol k)\approx H(\boldsymbol k_{0})+\frac{\hbar}{m}\,(\boldsymbol k-\boldsymbol k_{0})\cdot (\boldsymbol p+\hbar\boldsymbol k_{0}) + \cdots$로 전개하자. 2차 섭동으로부터
+
+$$
+\frac{1}{m^{\ast}_{\alpha\beta}} = \frac{1}{m}\delta_{\alpha\beta} + \frac{2}{m^{2}} \sum_{m\neq n} \frac{\operatorname{Re}\!\left[\langle n0|p_{\alpha}|m0\rangle \langle m0|p_{\beta}|n0\rangle\right]}{E_{n0}-E_{m0}}
+$$
+
+를 얻으며, $\{|m0\rangle\}$는 $\boldsymbol k_{0}$에서의 블로흐 상태이다. 이는 유효 질량을 밴드 간 행렬 원소 및 대칭 선택 규칙과 연결한다(예: 반도체의 무거운 정공과 가벼운 정공).
+
+---
+
+### 10.4.8 대칭, 축퇴, 스핀–궤도 결합의 역할
+
+- 결정 대칭은 고대칭 $k$점 및 선 위의 축퇴를 보호한다. 대칭을 깨뜨리면(변형, 외부장) 축퇴가 갈라진다.  
+- **반전**과 **시간 반전**이 함께 있으면 스핀이 있는 크라머스 이중항이 강제된다.  
+- **스핀–궤도 결합(SOC)**은 스핀과 궤도 성질을 섞는다. 반전 대칭이 깨지면 **라슈바**형 분할이 나타날 수 있다. 여기서는 간단히 다루고 §10.11에서 위상으로 돌아온다.
+
+---
+
+### 10.4.9 페르미 표면과 수송의 핵심
+
+**페르미 표면**은 등에너지 곡면 $E_{n}(\boldsymbol k)=\epsilon_{F}$이다. 그 곡률과 연결성은 다음을 결정한다.
+
+- 사이클로트론 질량과 양자 진동(더하스–판알펀, 슈브니코프–더하스)  
+- 비등방적 전도도와 홀 효과(페르미 표면 위의 속도와 수명을 통해)  
+- 밀도파 불안정성을 강화할 수 있는 네스팅 벡터
+
+블로흐 분산 관계와 산란 시간이 §10.7에서 다룰 수송의 핵심이다.
+
+---
+
+### 10.4.10 바니에 함수: 밴드의 실공간 표현
+
+브릴루앙 영역 전체에서 블로흐 상태를 유니터리 변환하면 단위격자 $\boldsymbol R$ 근처에 국소화된 **바니에 함수** $|n,\boldsymbol R\rangle$를 얻는다. 국소화할 수 있는 밴드 부분공간에서는 매끄러운 게이지를 선택한 뒤 퍼짐을 최소화하여 최대 국소화 바니에 함수를 구한다. 이 함수는 강결합 오비탈처럼 작용하며 모형 구성, 보간, 실공간 응답 계산에 매우 적합하다. §10.5에서 이를 더 발전시킨다.
+
+---
+
+### 10.4.11 ARPES와 밴드 지도화: $E(\boldsymbol k)$를 관측하는 방법
+
+**각도 분해 광전자 분광법(ARPES)**은 $E(\boldsymbol k)$의 점유된 부분을 직접 측정한다. 2차원 물질에서는 거의 그대로 관측되지만, 3차원에서는 $k_{z}$와 관련된 복잡함이 있다. 양자 진동 및 광학 전도도와 결합하면 실제 수송에 영향을 주는 저에너지 밴드 구조를 재구성할 수 있다.
+
+---
+
+### 10.4.12 간단한 풀이 예제
+
+**(a) 단일 푸리에 성분으로 구하는 간극 크기**  
+$G=2\pi/a$인 1차원 코사인 퍼텐셜 $V(x)=2U_{G}\cos(Gx)$를 생각하자. $k=G/2$에서 중심 방정식을 2×2로 잘라 계산하고 $E_{g}=2|U_{G}|$임을 보여라.
+
+**(b) 밴드 최소점 근처의 유효 질량**  
+1차원에서 $E(k)\approx E_{0}+\alpha k^{2}+\beta k^{4}$에 대해 $m^{\ast}=\hbar^{2}/(2\alpha)$를 구하고, $k^{4}$항이 상태 밀도를 비대칭으로 만들지만 최소점의 $m^{\ast}$는 바꾸지 않는 이유를 논하라.
+
+**(c) 2차원의 상태 밀도 특이점**  
+정사각 격자의 강결합 밴드 $E(\boldsymbol k)=-2t(\cos k_{x}a+\cos k_{y}a)$에서 안장점을 찾고, $g(E)$의 로그형 판호베 특이점을 보여라.
+
+**(d) 영역 접기 확인**  
+자유 전자 포물선에서 시작하여 $\pm G$만큼 접어 제1 브릴루앙 영역에 넣어라. 축퇴가 생기는 위치를 그리고, $U_{G}\neq 0$일 때 어떤 축퇴가 해소되는지 표시하라.
+
+**(e) 직접 간극 반도체의 $k\cdot p$**  
+반전 대칭을 가진 직접 간극 모형의 $\Gamma$에서, 패리티가 반대인 전도대와 가전자대 상태는 0이 아닌 운동량 행렬 원소를 허용하고 따라서 $k$에 선형인 밴드 간 결합을 허용함을 보여라. 다른 밴드와의 2차 결합이 비축퇴 전도대의 에너지와 질량을 어떻게 보정하는지 보여라.
+
+---
+
+### 10.4.13 흔한 함정
+
+- **축소 영역과 확장 영역의 혼용**: ‘교차’가 실제 교차인지, 단순히 접힌 복사본인지 구분하라.  
+- **곡률과 속도의 동일시**: 속도는 곡률이 아니라 1차 도함수이다. 평평한 밴드 $\Rightarrow$ 무거운 질량과 느린 운반자.  
+- **기저 누락**: 선택 규칙과 간극 크기는 원자 기저와 결합 정보를 담은 **푸리에 성분** $U_{\boldsymbol G}$에 달려 있다.  
+- **모든 곳에서 포물선형이라고 가정하기**: 유효 질량 맞춤은 극값 근처에서만 유효하다. 멀리 떨어지면 비포물선성과 비등방성이 중요하다.  
+- **큰 스핀–궤도 결합의 무시**: 무거운 원소나 반전 대칭이 깨진 결정에서는 스핀–궤도 결합이 밴드의 순서와 분할을 바꾼다. 이는 위상에 결정적이다.
+
+---
+
+### 10.4.14 핵심 연습 문제
+
+- 블로흐 전개로부터 중심 방정식을 유도하고, 유한한 $\boldsymbol G$ 집합에 대해 행렬 고유값 문제로 써라.  
+- 법선이 $\boldsymbol G$인 일반적인 영역 면에서 2×2 간극 형성 계산을 수행하여 $E_{g}=2|U_{\boldsymbol G}|$를 구하라.  
+- 타원체형 등에너지 곡면의 $m^{\ast}$ 텐서를 계산하고, 임의의 축 방향 자기장에서 사이클로트론 질량과의 관계를 구하라.  
+- 델타 장벽을 가진 1차원 크로니히–페니 모형에서 여러 $P$에 대한 허용 밴드를 그리고, 거의 자유 전자 극한과 강결합 극한을 식별하라.  
+- 벌집 격자의 간단한 강결합 모형으로 디랙 원뿔이 생기는 과정과 교대로 다른 부분격자 퍼텐셜이 질량 간극을 여는 과정을 보여라.
+
+---
+
+## 10.5 강결합과 바니에 함수: 국소 오비탈에서 밴드로
+
+전자가 ‘상용 여행객’보다 ‘집돌이’에 가까울 때는 **강결합(TB)** 관점이 적합하다. 국소화된 원자형 오비탈에서 시작하여 격자점 사이로 홉핑하게 하면, 실공간의 화학적 성질이 모양과 대칭을 정하는 밴드가 생긴다. **바니에 함수**는 블로흐 밴드의 명확한 정규 직교 실공간 표현으로, 모형 구성, 응답 계산, 외부장이나 무질서 추가에 매우 적합하다. 이 절에서는 강결합 모형을 처음부터 구성하고, 다중 오비탈과 슬레이터–코스터 규칙을 추가하며, 파이얼스 위상으로 자기장을 다루고, 바니에 함수가 분극과 가장자리 물리에 어떻게 연결되는지 보여 준다(SSH 모형 미리 보기).
+
+---
+
+### 10.5.1 오비탈에서 블로흐 합으로
+
+단위격자 $\boldsymbol R$의 기저 격자점 $\boldsymbol\tau_{\alpha}$을 중심으로 하는 오비탈 $\{\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})\}$를 선택하자. 오비탈 표지는 $\alpha$이다(예: $s,p_{x},p_{y},p_{z}$).
+
+**블로흐 합**을 구성하면
+
+$$
+\varphi_{\alpha\boldsymbol k}(\boldsymbol r) = \frac{1}{\sqrt{N}} \sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\alpha})}\,\phi_{\alpha}(\boldsymbol r-\boldsymbol R-\boldsymbol\tau_{\alpha})
+$$
+
+고유상태를 $\psi_{n\boldsymbol k}=\sum_{\alpha} c_{n\alpha}(\boldsymbol k)\,\varphi_{\alpha\boldsymbol k}$로 전개한다. 행렬 원소는
+
+$$
+H_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,t_{\alpha\beta}(\boldsymbol R),\qquad
+S_{\alpha\beta}(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot(\boldsymbol R+\boldsymbol\tau_{\beta}-\boldsymbol\tau_{\alpha})}\,s_{\alpha\beta}(\boldsymbol R)
+$$
+
+이며 **홉핑** $t_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|H|\phi_{\beta\boldsymbol R}\rangle$와 **겹침** $s_{\alpha\beta}(\boldsymbol R)\equiv\langle \phi_{\alpha 0}|\phi_{\beta\boldsymbol R}\rangle$를 포함한다. 다음 **일반화된** 고유값 문제를 푼다.
+
+$$
+H(\boldsymbol k)\,c_{n}(\boldsymbol k)=E_{n}(\boldsymbol k)\,S(\boldsymbol k)\,c_{n}(\boldsymbol k)
+$$
+
+**직교 강결합**에서는 $S=\mathbb I$로 근사한다.
+
+---
+
+### 10.5.2 1차원 단원자 사슬: 직교 강결합
+
+격자점당 오비탈 하나, 격자 상수 $a$, 격자점 에너지 $\varepsilon_{0}$, 최근접 이웃 홉핑 $-t$을 갖는다.
+
+$$
+E(k)=\varepsilon_{0}-2t\cos(ka)
+$$
+
+밴드 폭은 $W=4|t|$이다. $k=0$의 극값 근처에서 유효 질량은
+
+$$
+\frac{1}{m^{\ast}}=\frac{1}{\hbar^{2}}\frac{\partial^{2}E}{\partial k^{2}}=\frac{2ta^{2}}{\hbar^{2}}
+$$
+
+$t$의 부호는 밴드의 **곡률**과 어느 쪽 끝이 결합 또는 반결합 상태인지를 정한다.
+
+---
+
+### 10.5.3 이원자 사슬과 SSH 모형 미리 보기
+
+단위격자당 두 격자점이 있다. $0$에 $A$, $a/2$에 $B$가 놓이며 홉핑 $t_{1}$와 $t_{2}$가 교대로 나타난다. 단위격자 위상 게이지의 $(A,B)$ 기저에서
+
+$$
+H(k)=
+\begin{pmatrix}
+\varepsilon_{A} & -t_{1}-t_{2}\,e^{-ika} \\
+-t_{1}-t_{2}\,e^{ika} & \varepsilon_{B}
+\end{pmatrix}
+$$
+
+$\varepsilon_{A}=\varepsilon_{B}$일 때 분산 관계는
+
+$$
+E_{\pm}(k)=\varepsilon_{0}\pm \sqrt{t_{1}^{2}+t_{2}^{2}+2t_{1}t_{2}\cos(ka)}
+$$
+
+영역 경계 $k=\pi/a$의 간극은 $2|t_{1}-t_{2}|$이다. **SSH 극한**($\varepsilon_{A}=\varepsilon_{B}$)에서는 열린 경계 조건에서 $|t_{2}|>|t_{1}|$일 때 위상적 가장자리 상태가 나타난다. §10.11에서 위상을 다시 다룬다.
+
+---
+
+### 10.5.4 정사각 격자와 벌집 격자: 대표적 예
+
+**정사각 격자(오비탈 1개, 최근접 이웃)**
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t\big[\cos(k_{x}a)+\cos(k_{y}a)\big]
+$$
+
+**벌집 격자(그래핀, 격자점당 $p_{z}$ 1개, 최근접 이웃)**. 두 격자점 기저 $A,B$와 세 최근접 이웃 벡터 $\{\boldsymbol\delta_{i}\}$를 쓴다.
+
+$$
+H(\boldsymbol k)=
+\begin{pmatrix}
+0 & -t\,\sum_{i=1}^{3}e^{i\boldsymbol k\cdot \boldsymbol\delta_{i}} \\
+-t\,\sum_{i=1}^{3}e^{-i\boldsymbol k\cdot \boldsymbol\delta_{i}} & 0
+\end{pmatrix}
+$$
+
+고유값은
+
+$$
+E_{\pm}(\boldsymbol k)=\pm t\,\Big|1+e^{i\boldsymbol k\cdot \boldsymbol a_{1}}+e^{i\boldsymbol k\cdot \boldsymbol a_{2}}\Big|
+$$
+
+**디랙 원뿔** $K,K'$에서 접하며, 선형 분산 관계와 페르미 속도 $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$를 갖는다. 여기서 a는 삼각 브라베 격자의 격자 상수이다.
+
+---
+
+### 10.5.5 다중 오비탈 강결합과 슬레이터–코스터 규칙
+
+홉핑은 결합 방향에 대한 오비탈의 방향에 달려 있다. **슬레이터–코스터** 방법은 격자점 사이의 방향 코사인 $(l,m,n)$를 이용하여 두 중심 적분을 매개변수화한다.
+
+예를 들면 다음과 같다.
+
+- $s$–$s$: $t_{ss\sigma}$  
+- $s$–$p$: $p$축에 사영한 $t_{sp\sigma}\,(l,m,n)$  
+- $p$–$p$: $\sigma$ 및 $\pi$ 채널
+
+$\hat x$ 방향의 결합에서는
+
+$$
+\langle p_{x}|H|p_{x}\rangle = t_{pp\sigma},\qquad
+\langle p_{y}|H|p_{y}\rangle = \langle p_{z}|H|p_{z}\rangle = t_{pp\pi}
+$$
+
+교차 홉핑은 $\langle s|H|p_{x}\rangle\propto t_{sp\sigma}$에 적절한 방향 코사인을 곱한 형태이다. 이렇게 대칭을 체계적으로 정리하면 실제 결정의 $H(\boldsymbol k)$를 빠르게 쓸 수 있고, 허용되지 않는 홉핑도 피할 수 있다.
+
+---
+
+### 10.5.6 최근접 이웃을 넘어서: 판호베 특이점의 이동
+
+차근접 이웃 $t'$ 등을 더하면 곡률과 상태 밀도 특이점의 모양이 달라진다. 정사각 격자에서는
+
+$$
+E(\boldsymbol k)=\varepsilon_{0}-2t[\cos k_{x}a+\cos k_{y}a]-4t'\cos k_{x}a\cos k_{y}a
+$$
+
+$t'$를 조절하면 **판호베** 안장점이 $\epsilon_{F}$를 지나 이동한다. 층상 물질에서 불안정성(밀도파, 초전도)이 발생하는 흔한 경로이다.
+
+---
+
+### 10.5.7 자기장: 파이얼스 치환
+
+강결합 모형의 최소 결합은 홉핑에 붙는 **파이얼스 위상**으로 들어간다.
+
+$$
+t_{ij}\ \longrightarrow\ t_{ij}\,\exp\!\left(\frac{ie}{\hbar}\int_{\boldsymbol r_{i}}^{\boldsymbol r_{j}} \boldsymbol A\cdot d\boldsymbol\ell\right)
+$$
+
+따라서 한 격자 면을 둘러싼 위상각의 합은 $2\pi\Phi/\Phi_{0}$이다. 유리수 자기선속 $\Phi/\Phi_{0}=p/q$을 갖는 정사각 격자에서는 병진 대칭의 주기가 **자기 단위격자**로 커지고, 스펙트럼은 호프스태터의 나비 모양으로 갈라진다.
+
+---
+
+### 10.5.8 무질서와 실공간 그린 함수
+
+실제 물질에는 불순물이 있다. 격자점 무작위성 $\varepsilon_{i}$ 또는 결합 무작위성 $t_{ij}\to t_{ij}+\delta t_{ij}$를 추가하자. 실공간 강결합 해밀토니안은 다음에 매우 적합하다.
+
+- **앤더슨 국소화** 연구(§10.13 참조)  
+- 유한한 리본과 재귀적 그린 함수를 이용한 **표면/가장자리** 스펙트럼  
+- 란다우어–뷔티커 이론을 이용한 **수송**. 여기서 $G=(2e^{2}/h)\,T(E_{F})$이며, $T$는 실공간 강결합 모형과 리드로부터 구한다.
+
+---
+
+### 10.5.9 바니에 함수: 밴드의 국소화된 표현
+
+밴드(또는 밴드군) 부분공간의 블로흐 상태 $\{|\psi_{n\boldsymbol k}\rangle\}$가 주어졌을 때 **바니에 함수**를 다음과 같이 정의한다.
+
+$$
+|\,\boldsymbol R, n\,\rangle = \frac{1}{\sqrt{N}}\sum_{\boldsymbol k\in\mathrm{BZ}} e^{-i\boldsymbol k\cdot \boldsymbol R}\, \sum_{m} U_{mn}(\boldsymbol k)\,|\,\psi_{m\boldsymbol k}\rangle
+$$
+
+여기서 N은 단위격자 수이고, 블로흐 상태는 유한한 결정 전체에 대해 정규화되어 있으며, $U(\boldsymbol k)$는 부분공간 안의 **게이지** 유니터리 행렬이다. 성질은 다음과 같다.
+
+- **정규 직교**하며 **단위격자에 국소화**되어 있다. $U(\boldsymbol k)$의 선택이 퍼짐을 정한다.  
+- **최대 국소화 바니에 함수(MLWF)**는 총 퍼짐 $\Omega=\sum_{n}\big[\langle r^{2}\rangle_{n}-|\langle \boldsymbol r\rangle_{n}|^{2}\big]$를 최소화하도록 $U$를 선택한다.  
+- 위상이 자명한 고립 밴드에서는 지수적으로 국소화된 바니에 함수가 존재하며 밴드를 정확히 재현한다.
+
+**바니에 함수로부터 강결합 모형 구하기.** 홉핑은 바니에 함수 사이의 행렬 원소이다.
+
+$$
+t_{nm}(\boldsymbol R)=\langle \boldsymbol 0,n|H|\boldsymbol R,m\rangle
+$$
+
+**보간** $H(\boldsymbol k)=\sum_{\boldsymbol R} e^{i\boldsymbol k\cdot \boldsymbol R}\,t(\boldsymbol R)$은 제일원리 부분공간과 구분할 수 없는 밴드를 강결합 수준의 계산 비용으로 제공한다.
+
+---
+
+### 10.5.10 분극과 바니에 중심: 베리 위상의 역할
+
+절연체의 전자 분극 밀도는 바니에 **중심** $\boldsymbol r_{n}=\langle \boldsymbol 0,n|\hat{\boldsymbol r}| \boldsymbol 0,n\rangle$와 연결된다.
+
+$$
+\boldsymbol P = -\frac{e}{V_{\text{cell}}}\sum_{n}^{\text{occ}} \boldsymbol r_{n}\quad \text{분극 양자의 정수배 차이를 제외하고}
+$$
+
+동등한 **베리 위상 공식**은 블로흐 게이지를 이용한다. 실제로는 단열 변화 동안 바니에 중심의 흐름을 추적하여 분극의 차이와 압전 응답을 계산한다(§10.11에서 위상을 다시 다룬다).
+
+---
+
+### 10.5.11 강결합으로 보는 가장자리 물리: SSH 모형 15초 설명
+
+홉핑 $t_{1},t_{2}$이 교대로 나타나는 유한한 사슬을 열린 경계로 만들자. **위상적** 상 $|t_{2}|>|t_{1}|$에서 가장자리 모드는 $\sim (t_{1}/t_{2})^{x}$처럼 감쇠하며 x는 단위격자 수로 측정한다. 카이랄 대칭은 고립된 반무한계의 가장자리 모드를 $E=0$에 고정한다. 유한한 사슬에서는 가장자리 사이의 혼성화가 지수적으로 작은 대칭 분할을 만들 수 있고, 부분격자 대칭을 깨는 섭동도 에너지를 이동시킬 수 있다.
+
+---
+
+### 10.5.12 간단한 풀이 예제
+
+**(a) 1차원 코사인 밴드에서 바니에 함수 구하기**  
+직교 단일 오비탈 모형 $E(k)=\varepsilon_{0}-2t\cos ka$에서 역블로흐 변환으로 선택한 국소 오비탈 $w_{0}(x)$를 복원함을 보여라. 분산 관계만으로는 $K_{0}(|x|/\xi)$의 점근 형태도 $\xi\sim a\sqrt{t/\Delta}$도 정해지지 않는 이유를 설명하라. 블로흐 고유함수와 다른 밴드도 지정해야 한다.
+
+**(b) 그래핀의 페르미 속도**  
+벌집 격자의 최근접 이웃 해밀토니안을 $K$ 근처에서 선형화하여 $H_{\text{Dirac}}=\hbar v_{F}\,\boldsymbol\sigma\cdot \boldsymbol q$를 얻고 $v_{F}=\tfrac{\sqrt{3}}{2}at/\hbar$를 구하라.
+
+**(c) 입방 결합의 슬레이터–코스터 모형**  
+격자점당 $s$ 오비탈 하나와 $p$ 오비탈 세 개를 갖고 축 방향으로 최근접 이웃 결합이 있는 입방 결정에서, $t_{ss\sigma},t_{sp\sigma},t_{pp\sigma},t_{pp\pi}$를 이용하여 $H(\boldsymbol k)$를 써라.
+
+**(d) 파이얼스 위상 확인**  
+란다우 게이지 $\boldsymbol A=(0,Bx,0)$를 쓰는 정사각 격자에서, $\hat y$ 방향의 홉핑에 위상 $e^{i 2\pi \phi\, m}$가 붙음을 보여라. 여기서 $\phi\equiv \Phi/\Phi_{0}$이고 $m$는 $x$방향의 지수이다. 반면 $\hat x$방향의 홉핑은 실수로 남는다.
+
+**(e) 겹침의 중요성**  
+1차원 사슬에 최근접 이웃 겹침 $s$를 포함하고 일반화된 고유값 문제를 풀어, 분산 관계가 $E(k)=(\varepsilon_{0}-2t\cos ka)/(1+2s\cos ka)$가 됨을 보여라.
+
+**(f) SSH 가장자리 상태**  
+격자점 40개의 열린 SSH 사슬을 수치적으로 대각화하고(강결합), 간극 내부의 두 상태의 파동함수를 그려라. 지수적 국소화와 양쪽 끝에서의 패리티를 확인하라.
+
+---
+
+### 10.5.13 흔한 함정
+
+- **겹침 누락**: 많은 입문 강결합 모형은 $S=\mathbb I$로 둔다. 오비탈이 직교하지 않으면 일반화된 고유값 문제를 풀거나 먼저 직교화해야 한다.  
+- **허용되지 않는 홉핑**: 대칭이 행렬 원소를 금지하면 임의로 넣지 말라. 슬레이터–코스터 방법이나 군론으로 해당 항을 0으로 두어라.  
+- **바니에 함수의 부주의한 게이지 선택**: $\boldsymbol k$에 걸쳐 위상이 무작위이면 바니에 함수가 비국소화된다. 최대 국소화 바니에 함수는 게이지를 고정한다. 실공간 홉핑을 신뢰하기 전에 이 작업을 해야 한다.  
+- **자기선속을 확인하지 않는 파이얼스 치환**: 게이지와 무관하게 격자 면 하나를 둘러싼 연결 위상각의 합이 $2\pi\Phi/\Phi_{0}$인지 확인하라.  
+- **강결합 모형의 과적합**: 매개변수가 너무 많으면 물리가 가려지고 맞춤 구간 밖에서 결과가 불안정해진다. 최소 모형부터 시작하고, 데이터가 요구할 때만 더 먼 이웃을 추가하라.
+
+---
+
+### 10.5.14 핵심 연습 문제
+
+- 1차원 및 이원자 강결합 분산 관계를 구성하고 밴드 가장자리 근처의 유효 질량을 구하라.  
+- 벌집 격자의 최근접 이웃 해밀토니안을 쓰고 $K,K'$를 찾은 뒤, 선형화하여 디랙 해밀토니안과 $v_{F}$를 구하라.  
+- 슬레이터–코스터 방법으로 $pp\pi$와 $pp\sigma$ 부문을 포함한 그래핀의 $sp^{2}$ 강결합 모형을 구성하고, 평평한 판에서 $p_{z}$가 분리되는 이유를 논하라.  
+- 유리수 자기선속 $p/q$에서 정사각 격자 강결합 모형의 파이얼스 위상을 구현하고, $q\le 10$에 대한 호프스태터 스펙트럼을 그려라.  
+- 두 밴드 장난감 모형의 최대 국소화 바니에 함수를 만들고 $t(\boldsymbol R)$를 계산하여, 바니에 보간으로 얻은 $E(\boldsymbol k)$가 기계 정밀도까지 정확한 밴드와 일치함을 보여라.  
+- SSH 모형에서 이합체화가 이동할 때 바니에 중심의 변위로 분극 변화를 계산하고 베리 위상 결과와 비교하라.
+
+---
+
+## 10.6 반도체와 도핑
+
+반도체는 금속의 ‘고난도 모드’와 같다. 밴드 간극을 조절하거나 도펀트를 첨가하거나 빛을 비추기 전에는 운반자가 드물다. 이 절에서는 유효 질량 관점, 진성과 도핑 반도체의 통계, 아인슈타인 관계를 포함한 표류–확산, 재결합 경로, 광학적 특징, 최소한의 pn 접합 도구를 구성한다. 실제 밴드 구조에 충실하면서도 소자에 적용하기 쉽게 살펴본다.
+
+---
+
+### 10.6.1 밴드 가장자리, 유효 질량, 상태 밀도
+
+전도대 최소점과 가전자대 최대점 근처에서는
+
+$$
+E_{c}(\boldsymbol k) \approx E_{c0} + \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{e}^{\ast -1}\,\boldsymbol k,\qquad
+E_{v}(\boldsymbol k) \approx E_{v0} - \frac{\hbar^{2}}{2}\,\boldsymbol k^{\mathsf T} m_{h}^{\ast -1}\,\boldsymbol k
+$$
+
+밴드 간극을 $E_{g}=E_{c0}-E_{v0}$로 정의한다. 유효 질량 텐서 $m_{e}^{\ast},m_{h}^{\ast}$는 비등방적일 수 있다. 흔히 상태 밀도 질량 $m_{e}^{\ast,\mathrm{DOS}}, m_{h}^{\ast,\mathrm{DOS}}$를 써서 다음 3차원 상태 밀도를 정의한다.
+
+$$
+N_{c}(T) = 2\left(\frac{m_{e}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2},\qquad
+N_{v}(T) = 2\left(\frac{m_{h}^{\ast,\mathrm{DOS}} k_{B} T}{2\pi\hbar^{2}}\right)^{3/2}
+$$
+
+이 값들이 운반자 통계에 들어간다.
+
+
+---
+
+### 10.6.2 진성 운반자와 질량 작용 법칙
+
+페르미 준위가 $E_{F}$일 때, 비축퇴(볼츠만) 운반자 밀도는
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{F})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{F}-E_{v0})/k_{B}T}
+$$
+
+둘을 곱하면 **질량 작용 법칙**을 얻는다.
+
+$$
+np = n_{i}^{2},\qquad
+n_{i}(T) = \sqrt{N_{c}N_{v}}\;e^{-E_{g}/(2k_{B}T)} \propto T^{3/2}\,e^{-E_{g}/(2k_{B}T)}
+$$
+
+진성 결정에서는 $n=p=n_{i}$이며, $E_{F}$는 간극 중앙 근처에서 상태 밀도 질량에 따라 한쪽으로 치우친다.
+
+---
+
+### 10.6.3 도핑: 주개, 받개, 전하 중성
+
+치환형 도펀트는 얕은 수소형 준위를 추가한다. 유효 질량 이론에 따르면
+
+$$
+E_{D} \approx \frac{m_{e}^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{D}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{m_{e}^{\ast}}\,a_{0}
+$$
+
+받개도 $m_{h}^{\ast}$를 사용하면 비슷하다. 상온 $T$에서 얕은 도펀트는 보통 이온화되어 있다.
+
+주개 밀도 $N_{D}$와 받개 $N_{A}$를 갖는 n형 결정에서는
+
+$$
+n - p + N_{A}^{-} - N_{D}^{+} = 0
+$$
+
+비축퇴 영역에서 완전 이온화를 가정하면 $N_{D}^{+}\approx N_{D}$와 $N_{A}^{-}\approx N_{A}$이다. 그러면
+
+$$
+n \approx \frac{1}{2}\left[(N_{D}-N_{A}) + \sqrt{(N_{D}-N_{A})^{2} + 4 n_{i}^{2}}\right],\qquad
+p = \frac{n_{i}^{2}}{n}
+$$
+
+**다수 운반자** 극한 $N_{D}-N_{A}\gg n_{i}$에서는 $n\approx N_{D}-N_{A}$와 $p\approx n_{i}^{2}/n$이다.
+
+낮은 $T$에서는 부분 이온화로 인해 $n<N_{D}$인 **동결** 영역이 생긴다. 도펀트 준위의 페르미–디랙 점유율을 사용하라.
+
+---
+
+### 10.6.4 이동도, 산란, 전도도
+
+각 운반자는 이동도 $\mu$와 표류 속도 $\boldsymbol v_{d}=\pm \mu \boldsymbol E$를 갖는다. 전도도는
+
+$$
+\sigma = q\,(n\mu_{n} + p\mu_{p}),\qquad \rho = \frac{1}{\sigma}
+$$
+
+산란의 원인은 다음과 같다.
+
+- 격자(포논): 3차원에서 보통 $\mu \propto T^{-3/2}$  
+- 이온화된 불순물: 낮은 $T$에서 $\mu \propto T^{+3/2}$  
+- 산란률에 대한 마티센 법칙: $\mu^{-1}\approx \mu_{\mathrm{ph}}^{-1}+\mu_{\mathrm{imp}}^{-1}+\cdots$
+
+두 운반자가 있는 경우의 홀 계수(약한 자기장)는 보상 효과를 보여 준다.
+
+$$
+R_{H} = \frac{p\mu_{p}^{2} - n\mu_{n}^{2}}{q\,(n\mu_{n}+p\mu_{p})^{2}}
+$$
+
+그 부호는 이동도로 가중했을 때 어느 운반자 종류가 우세한지를 알려 준다.
+
+---
+
+### 10.6.5 표류–확산과 아인슈타인 관계
+
+표류–확산 운반자 전류 밀도는 다음과 같다.
+
+$$
+\boldsymbol J_{n} = q\,n\mu_{n}\boldsymbol E + q D_{n}\nabla n,\qquad
+\boldsymbol J_{p} = q\,p\mu_{p}\boldsymbol E - q D_{p}\nabla p
+$$
+
+비축퇴 통계에서는
+
+$$
+D_{n} = \frac{k_{B}T}{q}\,\mu_{n},\qquad
+D_{p} = \frac{k_{B}T}{q}\,\mu_{p}
+$$
+
+이 **아인슈타인 관계**는 요동–소산 관계가 반도체에서 나타난 형태이다.
+
+---
+
+### 10.6.6 재결합, 수명, 준페르미 준위
+
+비평형 상태(조명, 주입)에서는 전자와 정공을 **준페르미 준위** $E_{Fn},E_{Fp}$로 기술할 수 있다.
+
+$$
+n = N_{c}\,e^{-(E_{c0}-E_{Fn})/k_{B}T},\qquad
+p = N_{v}\,e^{-(E_{Fp}-E_{v0})/k_{B}T}
+$$
+
+순 재결합–생성 경로는 다음과 같다.
+
+- **복사(밴드 간)**: $R_{\mathrm{rad}} = B\,(np - n_{i}^{2})$  
+- **쇼클리–리드–홀(트랩 매개)**: 트랩 매개변수 $n_{1},p_{1}$에 대해 대략 $R_{\mathrm{SRH}} \approx \frac{np - n_{i}^{2}}{\tau_{p}(n+n_{1}) + \tau_{n}(p+p_{1})}$  
+- **오제**: $R_{\mathrm{Auger}} = C_{n} n (np-n_{i}^{2}) + C_{p} p (np-n_{i}^{2})$
+
+소신호 관계 $R\approx \delta n/\tau$를 통해 소수 운반자 수명 $\tau$를 정의한다. 수명은 확산 길이 $L=\sqrt{D\tau}$를 정하며, 이는 광다이오드와 태양 전지의 전하 수집을 좌우한다.
+
+---
+
+### 10.6.7 직접·간접 간극, 흡수, 엑시톤
+
+밴드 가장자리 근처의 광흡수 계수는 다음과 같다.
+
+- **직접 간극**: $\alpha(\hbar\omega)\propto \sqrt{\hbar\omega - E_{g}}$  
+- **간접 간극**: 포논의 도움을 받으며, $\alpha$가 완만하게 증가하고 온도 의존성을 보인다.
+
+전자–정공 쌍이 결합하면 수소형 계열을 갖는 **엑시톤**이 생긴다. 유효 질량 이론의 추정은
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}}\,\frac{1}{\varepsilon_{r}^{2}}\,13.6\ \mathrm{eV},\qquad
+a_{X}^{\ast} \approx \varepsilon_{r}\,\frac{m_{e}}{\mu^{\ast}}\,a_{0}
+$$
+
+이며, 환산 질량은 $\mu^{\ast}=(m_{e}^{\ast} m_{h}^{\ast})/(m_{e}^{\ast}+m_{h}^{\ast})$이다. 깨끗한 결정과 2차원 물질에서는 흡수 가장자리 부근에 엑시톤 봉우리가 나타난다.
+
+---
+
+### 10.6.8 pn 접합의 기초: 내장 전위, 공핍, 다이오드 법칙
+
+p 영역과 n 영역을 접합하면 운반자가 확산하여 이온화된 도펀트를 남기고, 내장 전기장을 갖는 **공핍 영역**을 형성한다. 평형에서는
+
+$$
+V_{\mathrm{bi}} = \frac{k_{B}T}{q}\,\ln\!\left(\frac{N_{A} N_{D}}{n_{i}^{2}}\right)
+$$
+
+공핍 영역에서 자유 전하를 무시하면(급격 접합), 인가 바이어스 $V$에서 전체 공핍 폭은
+
+$$
+W = \sqrt{\frac{2\varepsilon_{s}}{q}\,\frac{N_{A}+N_{D}}{N_{A}N_{D}}\,(V_{\mathrm{bi}} - V)}
+$$
+
+순방향 바이어스는 장벽을 낮춘다. 이상적인 **쇼클리 다이오드 방정식**은
+
+$$
+I = I_{0}\left(e^{qV/(k_{B}T)} - 1\right)
+$$
+
+이며 $I_{0}\propto n_{i}^{2}$는 확산 길이와 도핑 농도에 반비례하여 변한다. 역방향 바이어스에서는 항복 기구(제너/터널링 또는 애벌랜치)가 작동할 때까지 전류가 거의 $-I_{0}$에 고정된다.
+
+---
+
+### 10.6.9 금속–반도체 접촉: 옴 접촉과 쇼트키 접촉 간단 정리
+
+금속을 반도체 위에 놓으면 다음 둘 중 하나가 형성된다.
+
+- 장벽이 터널링하기에 충분히 얇거나 낮거나, 고농도 도핑으로 밴드가 휘어 주입이 쉬워지면 **옴 접촉**이 된다.  
+- 그렇지 않으면 정류 특성을 갖는 **쇼트키** 장벽이 생긴다. 장벽 높이는 금속의 일함수, 반도체의 전자 친화도, 계면의 준위 고정에 의해 정해진다.
+
+순방향 바이어스의 쇼트키 접촉을 통한 수송은 흔히 $I\propto T^{2} e^{-q\Phi_{B}/k_{B}T}\,(e^{qV/k_{B}T}-1)$인 열전자 방출을 따른다.
+
+---
+
+### 10.6.10 온도에 따른 세 영역
+
+도핑한 반도체에서 $T$가 증가하면 다음과 같이 변한다.
+
+1) **동결 영역**: 도펀트가 부분적으로 이온화되어 있으며 $n<N_{D}$이다.  
+2) **외인성 영역**: $n\approx N_{D}$(또는 $p\approx N_{A}$)이고 $np\approx n_{i}^{2}$인 평탄한 구간이다.  
+3) **진성 영역**: $n_{i}$가 지수적으로 증가하여 도펀트 밀도를 넘으면 $n\approx p\approx n_{i}$이다.
+
+$T$에 따른 비저항과 홀 효과 데이터로 활성화 에너지와 지배적인 산란을 알아낼 수 있다.
+
+---
+
+### 10.6.11 간단한 풀이 예제
+
+**(a) 진성 운반자 밀도**  
+$300\ \mathrm{K}$에서 $m_{e}^{\ast,\mathrm{DOS}}=0.26\,m_{e}$, $m_{h}^{\ast,\mathrm{DOS}}=0.39\,m_{e}$, $E_{g}=1.12\ \mathrm{eV}$가 주어졌을 때, 실리콘과 비슷한 간극을 갖는 이 예시 모형의 $n_{i}$를 $T^{3/2} e^{-E_{g}/2k_{B}T}$ 형태로 추정하라. 주어진 질량은 정확한 실리콘 상태 밀도 질량이 아니라 연습용 매개변수로 취급하라.
+
+**(b) 도핑한 Si의 페르미 준위**  
+$300\ \mathrm{K}$에서 $N_{D}=10^{16}\ \mathrm{cm^{-3}}$와 $n_{i}=10^{10}\ \mathrm{cm^{-3}}$일 때 $n,p$를 구하고, $n=N_{c} e^{-(E_{c0}-E_{F})/k_{B}T}$를 이용하여 $E_{c0}$에 대한 $E_{F}$의 위치를 찾아라.
+
+**(c) 아인슈타인 관계 확인**  
+$300\ \mathrm{K}$의 Si에서 측정된 $\mu_{n}=1350\ \mathrm{cm^{2}/Vs}$를 이용하여 $D_{n}$와 $\tau_{n}=1\ \mu\mathrm{s}$에 대한 확산 길이를 계산하라.
+
+**(d) 공핍 폭**  
+$N_{A}=10^{17}$, $N_{D}=10^{16}\ \mathrm{cm^{-3}}$, $\varepsilon_{s}=11.7\,\varepsilon_{0}$인 Si pn 접합에서 $V=0$ 및 $V=0.6\ \mathrm{V}$일 때의 $W$를 계산하라.
+
+**(e) 복사 재결합과 SRH 재결합**  
+$B=10^{-10}\ \mathrm{cm^{3}/s}$, $n=p=10^{15}\ \mathrm{cm^{-3}}$가 주어졌을 때 $R_{\mathrm{rad}}$를 추정하고, $\tau=1\ \mu\mathrm{s}$인 SRH 재결합률과 비교하라.
+
+---
+
+### 10.6.12 흔한 함정
+
+- **질량 작용 법칙 누락**: 평형에서는 도핑한 물질에서도 $np=n_{i}^{2}$이다. 이를 어기면 주입이나 조명이 있음을 뜻한다.  
+- **아인슈타인 관계의 적용 범위 초과**: 표준 관계 $D=\mu k_{B}T/q$에는 비축퇴 통계가 필요하다. 축퇴 반도체에는 페르미–디랙 보정이 필요하다.  
+- **완전 이온화 가정**: 낮은 $T$ 또는 더 깊은 도펀트 준위에서는 도펀트 점유율을 자체 일관되게 풀어야 한다.  
+- **상태 밀도 질량과 전도도 질량의 혼용**: $N_{c,v}(T)$에는 상태 밀도 질량이 필요하고, 수송에는 전도도 (텐서) 질량과 산란이 필요하다.  
+- **이상적 다이오드에 대한 맹신**: 실제 다이오드에는 직렬 저항, 공핍 영역의 재결합(이상 계수 $n_{\mathrm{id}}>1$), 계면 상태가 있다.
+
+---
+
+## 10.7 페르미 표면과 수송
+
+**페르미 표면(FS)**은 금속의 핵심 영역이다. 낮은 온도에서 전도도, 홀 효과, 자기저항, 양자 진동 등 거의 모든 수송 현상은 그 위에 있는 준입자에서 나온다. $k$공간의 기하가 실험실에서 측정 가능한 물리가 되는 것이다. 이 절에서는 준고전적 운동방정식, 볼츠만/체임버스 이론, 여러 밴드와 보상을 포함한 자기장 속 수송, 양자 진동 도구(온사거와 리프시츠–코세비치)를 구성한다. 페르미 표면의 위상적 구조(닫힌 궤도와 열린 궤도)가 자기장 응답을 어떻게 결정하는지도 살펴본다.
+
+---
+
+### 10.7.1 준고전적 운동방정식: 베리 효과는 나중에
+
+외부장 $(\boldsymbol E,\boldsymbol B)$에 놓인 밴드 $\epsilon(\boldsymbol k)$의 준고전적 동역학은
+
+$$
+\hbar\,\dot{\boldsymbol k} = -e\left(\boldsymbol E + \dot{\boldsymbol r}\times \boldsymbol B\right),\qquad
+\dot{\boldsymbol r} = \frac{1}{\hbar}\,\nabla_{\boldsymbol k}\epsilon(\boldsymbol k)
+$$
+
+$\boldsymbol E=0$이면 $k$공간에서 $\boldsymbol B$에 수직인 등에너지 곡선을 따라 **사이클로트론 운동**이 일어난다. 실공간 속도는 $\boldsymbol v=\dot{\boldsymbol r}$이다. 베리 곡률과 변칙 속도는 §10.11에서 다룬다.
+
+---
+
+### 10.7.2 사이클로트론 진동수와 질량
+
+닫힌 궤도의 진동수는
+
+$$
+\omega_{c} = \frac{eB}{m_{c}}
+$$
+
+이며, **사이클로트론 질량**은 $\boldsymbol B$에 수직인 해당 $k$공간 궤도의 면적 $A(E)$로 정해진다.
+
+$$
+m_{c}(E) = \frac{\hbar^{2}}{2\pi}\,\frac{\partial A(E)}{\partial E}\Big|_{E=\epsilon_{F}}
+$$
+
+등방적 포물선 $E=\hbar^{2}k^{2}/2m^{\ast}$에서는 $m_{c}=m^{\ast}$이다. 비등방적 타원체에서는 $m_{c}$가 자기장의 방향에 달려 있다.
+
+---
+
+### 10.7.3 볼츠만 수송: 완화 시간과 체임버스 공식
+
+정상적인 외부장에서 완화 시간 $\tau(\boldsymbol k)$를 사용하여 볼츠만 방정식을 선형화하면 전류는
+
+$$
+\boldsymbol J = -e \int \frac{d^{3}k}{4\pi^{3}}\,\boldsymbol v(\boldsymbol k)\,\delta f(\boldsymbol k),\qquad
+\delta f = -e\left(-\frac{\partial f_{0}}{\partial \epsilon}\right)\,\boldsymbol{\Lambda}\cdot \boldsymbol E
+$$
+
+**체임버스 공식**에서 벡터 평균 자유 행로는 궤도를 따른 과거 이력의 평균이다.
+
+$$
+\boldsymbol{\Lambda}(\boldsymbol k) = \int_{0}^{\infty} dt\; \exp\!\left[-\int_{0}^{t}\frac{dt'}{\tau(\boldsymbol k_{-t'})}\right]\,\boldsymbol v(\boldsymbol k_{-t})
+$$
+
+이로부터 전도도 텐서를 얻는다(개략적 형태).
+
+$$
+\sigma_{\alpha\beta} = \frac{e^{2}}{4\pi^{3}}\int_{\mathrm{FS}} \frac{dS}{\hbar |\boldsymbol v|}\, v_{\alpha}\,\Lambda_{\beta}
+$$
+
+여기서 벡터 평균 자유 행로는 앞의 이력 적분으로 정의한다. 등방적이며 단일 $\tau$를 갖는 금속에서는 드루데 결과로 환원된다.
+
+---
+
+### 10.7.4 홀 각, 이동도 텐서, 평균 자유 행로
+
+**이동도** $\boldsymbol{\mu}=\tau\,\boldsymbol m^{\ast -1}\,e$와 **홀 각** $\tan\theta_{H}=\sigma_{xy}/\sigma_{xx}\approx -\omega_{c}\tau$를 정의하자(단일 밴드). **평균 자유 행로**는
+
+$$
+\ell = v_{F}\,\tau,\qquad k_{F}\ell \gg 1 \ \text{잘 정의된 준입자의 경우}
+$$
+
+**이오페–레겔** 한계 $k_{F}\ell\sim 1$에 가까워지면 금속은 ‘나쁜 금속’이 되고, 준고전적 수송 이론이 무너지기 시작한다.
+
+---
+
+### 10.7.5 자기저항: 단일 밴드 드루데 모형에서 변화가 없는 이유
+
+$\tau$가 일정한 단일 등방적 밴드에서는 $\sigma_{xx}$가 감소해도 비저항 $\rho_{xx}$는 **자기장에 무관**하다. 텐서의 역행렬을 구하면 그 효과가 상쇄되기 때문이다. 실제 물질에서는 (i) 여러 종류의 운반자, (ii) 페르미 표면의 비등방성/뒤틀림, (iii) 각도에 의존하는 $\tau(\boldsymbol k)$, (iv) 열린 궤도 때문에 자기저항이 나타난다. 실용적인 요약은 **콜러 법칙**이다.
+
+$$
+\frac{\Delta \rho}{\rho_{0}} \equiv \frac{\rho(B)-\rho_{0}}{\rho_{0}} = F\!\left(\frac{B}{\rho_{0}}\right) \approx F(\omega_{c}\tau)
+$$
+
+하나의 산란 시간이 모든 것을 지배하면, 서로 다른 $T$에서 얻은 곡선을 $B/\rho_{0}(T)$에 대해 그렸을 때 하나의 곡선으로 겹친다.
+
+---
+
+### 10.7.6 두 밴드 모형: 전자와 정공
+
+$(n_{e},\mu_{e})$와 $(n_{h},\mu_{h})$를 각각 밀도와 이동도라 하고, $s_{e}=-1$와 $s_{h}=+1$를 전하의 부호라 하자. 전도도는 합해진다.
+
+$$
+\sigma_{xx} = \sum_{i=e,h} \frac{n_{i} e \mu_{i}}{1+(\mu_{i}B)^{2}},\qquad
+\sigma_{xy} = \sum_{i=e,h} \frac{s_{i} n_{i} e \mu_{i}^{2} B}{1+(\mu_{i}B)^{2}}
+$$
+
+역행렬을 구하면 $\rho_{xx},\rho_{xy}$를 얻는다. 주요 영역은 다음과 같다.
+
+- 높은 이동도에서 **보상** $n_{e}\approx n_{h}$ ⇒ 보상 영역에 걸쳐 크고 거의 이차적인 **비포화 자기저항**이 나타난다. 점근적으로도 포화하지 않으려면 정확한 보상이 필요하다.  
+- **우세한 운반자** $n_{e}\gg n_{h}$ ⇒ 이동도 차이가 약한 자기장에서의 부호를 뒤집지 않을 때만 홀 부호가 고정된다. 자기저항은 더 작고 포화하는 경향이 있다.
+
+$\rho_{xx}(B)$와 $\rho_{xy}(B)$에 여러 밴드 모형을 맞추는 것은 운반자의 종류와 이동도를 알아내는 기본적인 방법이다.
+
+---
+
+### 10.7.7 열린 궤도와 닫힌 궤도, 각도 의존성
+
+- 닫힌 페르미 표면 포켓 위의 **닫힌 궤도**는 통상적인 $\omega_{c}$와 진동을 만든다.  
+- **열린 궤도**(예: 뒤틀린 준1차원 면)에서는 운반자가 한 방향으로 계속 흘러갈 수 있다. 자기저항은 강한 **비등방성**을 보이며, 기하에 따라 포화 없이 선형 또는 이차적으로 증가할 수 있다.  
+- 층상 금속의 **AMRO**(각도 의존 자기저항 진동)는 $\boldsymbol B$가 기울어질 때 뒤틀린 준2차원 페르미 표면 위의 궤도 운동에서 생긴다. 표준적인 결맞은 원통 모형에서 층간 저항의 최대값은 뒤틀림이 정하는 **야마지 각**에서 나타난다.
+
+---
+
+### 10.7.8 양자 진동: 온사거와 리프시츠–코세비치
+
+란다우 양자화는 궤도 면적을 이산 준위로 바꾼다. **온사거 관계**는 ($1/B$에 대한) 진동 주파수 $F$를 $\boldsymbol B$에 수직인 페르미 표면의 극값 단면적 $A_{F}$와 연결한다.
+
+$$
+F = \frac{\hbar}{2\pi e}\,A_{F}
+$$
+
+**리프시츠–코세비치(LK)** 진폭에는 대표적인 인자 세 개가 있다.
+
+$$
+\Delta M,\ \Delta \rho \ \propto\ R_{T}\,R_{D}\,R_{S}\,\cos\!\left(2\pi\frac{F}{B} - \gamma\right)
+$$
+
+여기서
+
+$$
+R_{T} = \frac{X}{\sinh X},\quad X=\frac{2\pi^{2} k_{B} T}{\hbar \omega_{c}}
+$$
+
+$$
+R_{D} = \exp\!\left(-\frac{\pi}{\omega_{c}\tau}\right) = \exp\!\left(-\frac{2\pi^{2} k_{B} T_{D}}{\hbar \omega_{c}}\right)
+$$
+
+$$
+R_{S} = \cos\!\left(\frac{\pi g m_{c}}{2 m_{e}}\right)
+$$
+
+$R_{T}$는 $m_{c}$를 읽어 내는 **질량 그래프**를 주고, $R_{D}$는 산란에 대한 **딩글** 인자이며 반드시 수송 수명과 같지는 않은 양자 수명을 포함한다. $R_{S}$는 스핀 분할 변조이다. 위상 $\gamma$에는 디랙/바일 계의 베리 위상이 담길 수 있다(§10.11 참조).
+
+---
+
+### 10.7.9 사이클로트론 공명과 광학적 탐사
+
+깨끗한 시료에서는 교류장이 $\omega=n\,\omega_{c}$의 공명을 감지하여 $m_{c}$를 직접 알려 준다. **광학 전도도**는 드루데 부분과 밴드 간 기여로 나뉜다. **f 합 규칙**은 총 스펙트럼 가중치를 정한다(§10.3 참조). 층상 도체에서는 기울기 각에 따른 **층간 전도도**가 페르미 표면의 뒤틀림을 드러낸다.
+
+---
+
+### 10.7.10 실제 페르미 표면 측정: ARPES와 진동
+
+- **ARPES**는 $k_{\parallel}$에서 점유된 밴드와 페르미 표면의 윤곽을 직접 지도화한다. 2차원과 표면에는 매우 유용하지만 벌크 $k_{z}$에는 더 까다롭다.  
+- **양자 진동**은 **극값** 면적만 보지만, 정밀도가 매우 높고 벌크에 민감하다.  
+- **양자 진동의 각도 주사**로 $F(\theta)$에서 전체 페르미 표면 모양을 재구성한다. ARPES와 결합하면 포켓과 3차원 뒤틀림의 모호성을 해소할 수 있다.
+
+---
+
+### 10.7.11 열전 효과와 네른스트 효과의 단서
+
+페르미 표면 근처에서 **모트 공식**은 제벡 계수를 $\epsilon_{F}$에서의 전도도의 에너지 미분과 연결한다.
+
+$$
+S = -\frac{\pi^{2}}{3}\,\frac{k_{B}^{2}T}{e}\left.\frac{d\ln \sigma(\epsilon)}{d\epsilon}\right|_{\epsilon_{F}}
+$$
+
+**네른스트 효과**($B$에서 온도 기울기가 만드는 횡방향 전압)는 페르미 표면의 곡률과 준입자 수명의 비대칭에 극도로 민감하며, 작은 포켓이 있음을 일찍 알려 주는 경우가 많다.
+
+---
+
+### 10.7.12 강한 자기장과 양자 극한의 특성
+
+$B$가 매우 크면 운반자는 가장 낮은 몇 개의 란다우 준위에 모인다. **양자 극한**($n=0$만 점유)에서는 자기저항과 열전 현상이 드루데 모형과 다르게 행동하여, 때로 **$B$에 선형**이거나 부호가 뒤집힐 수 있다. 디랙/바일 물질에서는 $\boldsymbol E\parallel \boldsymbol B$일 때 카이랄 이상이 종방향 자기저항에 기여할 수 있다(자세한 내용은 §10.11).
+
+---
+
+### 10.7.13 간단한 풀이 예제
+
+**(a) 주파수에서 온사거 면적 구하기**  
+$\mathbf B\parallel \hat z$에서 $F=1.0\ \mathrm{kT}$를 측정했다. 극값 면적
+
+$$
+A_{F} = \frac{2\pi e}{\hbar} F \approx 0.095\ \text{\AA}^{-2}
+$$
+
+과 이에 해당하는 원형 페르미 파동벡터 $k_{F}=\sqrt{A_{F}/\pi}$를 계산하라.
+
+**(b) LK 질량 그래프**  
+고정된 $B$에서 $T$에 따른 진동 진폭이 주어졌을 때, $R_{T}=X/\sinh X$를 맞추어 $X=(2\pi^{2}k_{B}T m_{c})/(e\hbar B)$로부터 $m_{c}$를 구하라.
+
+**(c) 두 밴드 자기저항**  
+$n_{e}=n_{h}=5\times 10^{25}\ \mathrm{m^{-3}}$, $\mu_{e}=1.5\ \mathrm{m^{2}/Vs}$, $\mu_{h}=0.8\ \mathrm{m^{2}/Vs}$라 하자. $\rho_{xx}(B)$를 계산하고 수 테슬라까지 포화 없이 이차적으로 증가함을 보여라.
+
+**(d) AMRO/야마지 각**  
+층간 분산 관계 $-2t_{\perp}\cos k_{z}c$를 갖는 원통형 준2차원 페르미 표면에서, 결맞은 강자기장 궤도 평균 극한을 생각하자. 층간 자기저항의 최대값이 양의 정수 $\nu$에 대해 $\tan\theta \approx \pi (\nu-1/4)/(k_{F} c)$ 근처에서 나타나며, 각도 주기로부터 $k_{F}$를 얻음을 보여라.
+
+**(e) 이오페–레겔 한계 확인**  
+단일 밴드에서 $k_{F}=0.8\ \text{\AA}^{-1}$, $v_{F}=1.5\times 10^{5}\ \mathrm{m/s}$, $\rho_{0}=150\ \mu\Omega\ \mathrm{cm}$일 때, $\tau=m^{\ast}/(ne^{2}\rho_{0})$를 추정하고 $\ell=v_{F}\tau$를 계산한 뒤 $k_{F}\ell$에 대해 논하라.
+
+---
+
+### 10.7.14 흔한 함정
+
+- **질량의 혼용**: 비등방적이거나 여러 밴드가 있는 계에서는 $m^{\ast}$(밴드 곡률), $m_{c}$(사이클로트론), 광학/열역학적 질량이 서로 다르다.  
+- **텐서 역행렬 누락**: $\sigma_{xx}$의 경향은 $\rho_{xx}$로 일대일 대응하지 않는다. 항상 전체 텐서의 역행렬을 구하라.  
+- **단일 $\tau$ 가정**: 뜨거운/차가운 지점과 비등방적 산란은 콜러 곡선의 중첩을 깨뜨리고 여러 밴드의 자기저항처럼 보이게 한다.  
+- **진동 위상의 오독**: 베리 위상 추출에는 세심한 배경 제거와 지수 관례가 필요하다. 스핀 영점은 겉보기 위상을 바꿀 수 있다.  
+- **기하의 무시**: 이동도가 높은 보상 결정에서는 시료의 정렬 오차와 전류 집중이 거대한 선형 자기저항처럼 보일 수 있다.  
+- **열린 궤도를 놓치기**: ‘포화하는 자기저항’을 보고 불순물 탓으로 돌리지만, 실제 원인은 페르미 표면의 위상적 구조와 자기장 방향일 수 있다.
+
+---
+
+## 10.8 자성
+
+자성에는 크게 두 종류가 있다. 작은 양자 스핀들이 교환 상호작용으로 결합한 것처럼 행동하는 **국소화된** 모멘트와, 페르미 바다 자체가 편극되는 **순회 전자** 자성이다. 퀴리–바이스 법칙에서 스핀파와 강자성 공명까지, 이 절에서는 표준 도구를 구성한다. 하이젠베르크 모형과 교환 기구(직접 교환, 초교환, 이중 교환, RKKY), 스토너 강자성체, 강자성체/반강자성체의 마그논, 비등방성과 자구, 대칭을 깨는 장이 없는 1·2차원에서의 머민–바그너 금지를 다룬다. 수학은 간결하게, 결론은 활용하기 쉽게 정리한다.
+
+![이분 격자에서 평행한 스핀과 이웃끼리 교대로 반대 방향인 스핀의 비교.](/images/diagrams/magnetic-order.svg)
+
+---
+
+### 10.8.1 자기 모멘트, $g$ 인자, 단위
+
+전자는 스핀 $\boldsymbol S$의 기여를 가지며 궤도 $\boldsymbol L$의 기여도 가질 수 있다. 자기 모멘트 연산자는
+
+$$
+\boldsymbol{\mu} = -g_{S}\mu_{B}\,\boldsymbol S/\hbar - g_{L}\mu_{B}\,\boldsymbol L/\hbar
+$$
+
+이며 보어 마그네톤 $\mu_{B}=e\hbar/(2m_{e})$와 $g_{S}\approx 2$를 쓴다. 고체에서는 결정장에 의한 궤도 각운동량의 **소거**로 유효 스핀 모멘트만 남는 경우가 많고, 때로는 스핀–궤도 결합의 영향이 더해져 비등방성이 생긴다.
+
+**자화** $\boldsymbol M$는 단위 부피당 모멘트이다. 선형 응답에서는 $\boldsymbol M=\chi \boldsymbol H$로 감수율 $\chi$를 정의하며(등방적인 경우), $\boldsymbol B=\mu_{0}(\boldsymbol H+\boldsymbol M)$이다.
+
+---
+
+### 10.8.2 국소 모멘트 모형: 이징/하이젠베르크/XXZ
+
+격자 위의 국소화된 스핀 $\{\boldsymbol S_{i}\}$에 대한 최소 해밀토니안은 다음과 같다.
+
+- **이징**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,S_{i}^{z} S_{j}^{z} - h\sum_{i} S_{i}^{z}
+$$
+
+- **하이젠베르크(SU(2) 대칭)**
+
+$$
+H = -\sum_{\langle ij\rangle} J_{ij}\,\boldsymbol S_{i}\cdot \boldsymbol S_{j} + g\mu_{B} B \sum_{i} S_{i}^{z}
+$$
+
+- **XXZ 비등방성**
+
+$$
+H = -\sum_{\langle ij\rangle} \left[J_{\perp}\,(S_{i}^{x} S_{j}^{x}+S_{i}^{y} S_{j}^{y}) + J_{z}\,S_{i}^{z} S_{j}^{z}\right]
+$$
+
+여기서 스핀은 무차원량(각운동량을 $\hbar$로 나눈 값)이며, 각 최근접 이웃 결합은 한 번씩 센다. 아래의 $N$는 수 밀도를 뜻한다. 이 부호 관례에서는 $J>0$가 **강자성(FM)**을, $J<0$가 **반강자성(AFM)**을 선호한다.
+
+상자성체의 **퀴리–바이스** 현상론: 질서화 온도보다 높을 때
+
+$$
+\chi(T) = \frac{C}{T-\Theta_{\mathrm{CW}}},\qquad
+C = \frac{\mu_{0} N g^{2} \mu_{B}^{2} S(S+1)}{3k_{B}}
+$$
+
+$\Theta_{\mathrm{CW}}$의 부호는 강자성($>0$) 또는 반강자성($<0$) 교환 중 어느 쪽이 지배적인지 알려 준다.
+
+---
+
+### 10.8.3 교환 기구: $J$의 기원
+
+- **직접 교환**: 이웃한 국소 오비탈의 겹침이다. 파울리 원리와 쿨롱 상호작용 때문에 스핀이 평행할 때와 반평행할 때 에너지 차이가 생긴다.  
+- **초교환**: 비자성 리간드를 통한 가상 홉핑이다(예: TM–O–TM). 반충전 허바드형 상황에서는
+
+$$
+J \sim -\frac{4t^{2}}{U}
+$$
+
+이며, 흔히 **반강자성**이다.  
+- **이중 교환**(혼합 원자가 망간 산화물): 순회 전자가 홉핑을 극대화하도록 국소적인 내부 스핀을 정렬시켜 강자성과 금속성을 선호한다.  
+- **RKKY**(국소 모멘트가 있는 금속): 전도 전자가 진동하는 결합을 매개한다.
+
+$$
+J(r) \propto \frac{\cos(2k_{F} r)}{r^{3}}
+$$
+
+이는 복잡한 질서를 유도하거나, 무질서가 위상을 뒤섞으면 스핀 유리를 만든다.
+
+---
+
+### 10.8.4 순회 전자 강자성: 스토너 조건
+
+단순한 밴드에서 스핀 편극이 밴드를 $\pm \Delta/2$만큼 분리하면 교환 상호작용이 에너지를 낮춘다. **스토너** 평균장은 다음 조건을 준다.
+
+$$
+I\,N(\epsilon_{F}) > 1
+$$
+
+여기서 $I$는 상호작용 매개변수이고, $N(\epsilon_{F})$는 페르미 준위에서 스핀당 상태 밀도이다. 그 결과는 다음과 같다.
+
+- 유한한 **파울리 감수율**이 다음과 같이 강화된다.
+
+$$
+\chi = \frac{\chi_{0}}{1 - I N(\epsilon_{F})}
+$$
+
+- 대칭이 깨진 상에서 **스핀파 강성**이 나타난다(§10.8.6 참조).
+
+순회 전자 자성체에서는 밴드 구조와 상호작용이 얽혀 있다. ARPES, 양자 진동, 광학 합 규칙으로 이들을 구분할 수 있다.
+
+---
+
+### 10.8.5 평균장 질서화 온도
+
+배위수가 $z$이고 최근접 이웃 사이의 교환이 $J$인 격자에서 바이스 평균장은 다음을 예측한다.
+
+- **강자성 하이젠베르크**
+
+$$
+k_{B} T_{C}^{\mathrm{MF}} = \frac{1}{3}\,z J S(S+1)
+$$
+
+- **반강자성(이분 격자)**
+
+$$
+k_{B} T_{N}^{\mathrm{MF}} = \frac{1}{3}\,z |J| S(S+1)
+$$
+
+실제 $T_{C/N}$는 요동 때문에 낮아지며, 특히 낮은 차원이나 작은 $S$에서 그렇다.
+
+---
+
+### 10.8.6 강자성체의 스핀파: 마그논
+
+강자성 하이젠베르크 모형에서 작은 횡방향 진동은 **마그논**이다. 홀스타인–프리마코프 사상을 가장 낮은 차수에 적용하면
+
+$$
+H \approx E_{0} + \sum_{\boldsymbol k} \hbar \omega_{\boldsymbol k}\, b_{\boldsymbol k}^{\dagger} b_{\boldsymbol k}
+$$
+
+이며, $\boldsymbol k=0$ 근처의 분산 관계는
+
+$$
+\hbar \omega_{\boldsymbol k} \approx D\,k^{2} + \Delta_{\mathrm{ani}}
+$$
+
+여기서 $D$는 $J$와 격자 기하가 정하는 **스핀파 강성**이고, $\Delta_{\mathrm{ani}}$는 비등방성에서 나온다(그렇지 않으면 골드스톤 모드로 간극이 없다). 마그논의 열적 들뜸은 자화를 감소시킨다.
+
+$$
+M(T) \approx M(0)\left[1 - A\,T^{3/2}\right]
+$$
+
+이것이 3차원 강자성체의 **블로흐 $T^{3/2}$ 법칙**이다.
+
+3차원 마그논의 **비열**은 낮은 $T$에서 $C_{\mathrm{mag}}\propto T^{3/2}$에 비례한다(이차 분산 관계 → 상태 밀도 $\propto \sqrt{E}$).
+
+---
+
+### 10.8.7 반강자성체: 두 부분격자의 스핀파
+
+이분 격자 위의 공선 반강자성체에 선형 스핀파 이론을 적용하면, 작은 $k$에서 **선형** 분산 관계를 갖는 두 가지를 얻는다.
+
+$$
+\hbar \omega_{\boldsymbol k} \approx \hbar c\,|\boldsymbol k|
+$$
+
+속도 $c$는 $|J|$, $S$, 격자 간격에 달려 있다. 비등방성은 작은 간극을 만든다. 균일 감수율은 흔히 $T_{N}$에서 뾰족점을 보이며, 그 아래에서는 횡방향 성분과 종방향 성분이 다르다.
+
+---
+
+### 10.8.8 자기 비등방성, 자기소거장, 자구
+
+- 스핀–궤도 결합에서 비롯된 **자기결정 비등방성**은 자화 용이축이나 용이면을 선택한다. 최소 모형
+
+$$
+E_{\mathrm{ani}} = K_{1} \sin^{2}\theta + K_{2} \sin^{4}\theta + \cdots
+$$
+
+은 보자력과 자구 구조에 영향을 준다.  
+- **자기소거장**은 표면의 $\nabla\cdot \boldsymbol M$가 ‘자기 전하’처럼 작용하기 때문에 생긴다. 시료 모양이 자기소거 텐서 $\mathsf N$를 정하며, 그 장은 $\boldsymbol H_{d}=-\mathsf N \boldsymbol M$이다.  
+- **자구**는 벽 에너지와 정자기 에너지의 균형을 맞추기 위해 형성된다. **자구벽**의 폭은 $\delta \sim \sqrt{A/K}$, 에너지는 $\sigma \sim \sqrt{A K}$이며, $A$는 교환 강성이고 $K$는 비등방성이다.
+
+---
+
+### 10.8.9 강자성 공명(FMR)과 동역학
+
+자화의 동역학은 **란다우–리프시츠–길버트(LLG)** 방정식을 따른다.
+
+$$
+\frac{d\boldsymbol M}{dt} = -\gamma\mu_{0}\,\boldsymbol M\times \boldsymbol H_{\mathrm{eff}} + \frac{\alpha}{M_{s}}\,\boldsymbol M\times \frac{d\boldsymbol M}{dt}
+$$
+
+여기서 $\gamma$는 라디안/초/테슬라 단위의 양의 자기회전비 크기이고, $\alpha$는 감쇠이다. 면내 자화를 갖는 박막의 균일 모드에서는(키텔 공식의 간단한 경우)
+
+$$
+\omega^{2} = (\gamma\mu_{0})^{2}\,(H+H_{k})(H+H_{k}+M_{s})
+$$
+
+강자성 공명으로 비등방성장 $H_{k}$와 감쇠를 알아낸다.
+
+---
+
+### 10.8.10 차원: 머민–바그너와 코스털리츠–사울리스
+
+엄밀한 1·2차원에서 단거리 교환을 갖는 연속 대칭 자성체는 유한한 $T$에서 질서화할 수 없다. 간극이 없고 골드스톤 모드가 장거리 질서를 파괴하기 때문이다. 이것이 **머민–바그너 정리**이다. 이를 피하는 방법은 다음과 같다.
+
+- **비등방성**(이징형 이산화), 장거리 쌍극자 항 또는 층간 결합을 추가한다.  
+- 2차원 XY 모형에서는 통상적인 $T_{C}$ 대신, 소용돌이 쌍의 해리와 대수적 질서를 수반하는 **코스털리츠–사울리스** 전이가 예상된다.
+
+---
+
+### 10.8.11 자기장 속 수송 요약
+
+- 강자성체의 **변칙 홀 효과(AHE)**: $\rho_{xy}=R_{0}B + R_{s} M$이며, 내인성 베리 곡률 기구와 외인성 비대칭 산란/옆뛰기 기구가 있다.  
+- **스핀파와 비저항**: 강자성체에서 마그논 산란으로 인해 낮은 $T$에서 $T^{2}$ 또는 $T^{3/2}$의 기여가 추가된다.  
+- **스핀 열전자학**: 스핀 제벡 신호와 마그논 끌림 신호는 마그논과 전하/열 수송을 연결한다.
+
+---
+
+### 10.8.12 간단한 풀이 예제
+
+**(a) 퀴리–바이스 기울기**  
+$S=5/2$, $g=2$, 수 밀도 $N$가 주어졌을 때, 높은 $T$에서 $1/\chi(T)$의 기울기가 $C=\mu_{0} N g^{2}\mu_{B}^{2} S(S+1)/3k_{B}$인 $1/C$임을 보여라. 데이터를 맞추어 $N$ 또는 $S$를 구하라.
+
+**(b) 입방 강자성체의 스핀파 강성**  
+입방 격자(간격 $a$)의 최근접 이웃 하이젠베르크 모형에서 다음을 보여라.
+
+$$
+\hbar \omega_{\mathbf k} = J S z \left(1-\gamma_{\mathbf k}\right)
+$$
+
+여기서 $z=6$와 $\gamma_{\mathbf k}=\tfrac{1}{3}[\cos(k_{x}a)+\cos(k_{y}a)+\cos(k_{z}a)]$이다. 작은 $k$에 대해 전개하여 $D$를 구하라.
+
+**(c) 반강자성체의 두 부분격자 분산 관계**  
+최근접 이웃 교환 $J<0$를 갖는 초입방 이분 반강자성체에서, 작은 $k$에 대한 선형 마그논 속도 $c=|J|Sa\sqrt{2z}/\hbar$를 기하 인자까지 고려하여 유도하라.
+
+**(d) 스토너 강화**  
+$\chi/\chi_{0}=5$가 주어졌을 때 $I N(\epsilon_{F})$를 추정하고, 불안정 조건 $=1$에 얼마나 가까운지 논하라.
+
+**(e) 자구벽의 폭**  
+$A=1\times 10^{-11}\ \mathrm{J/m}$와 $K=5\times 10^{4}\ \mathrm{J/m^{3}}$를 이용하여 $\delta=\sqrt{A/K}$와 $\sigma\sim\sqrt{A K}$를 추정하라.
+
+**(f) RKKY 결합의 부호 변화**  
+$k_{F}=1.2\ \text{\AA}^{-1}$에 대해 $\cos(2k_{F} r)$의 처음 몇 영점과 부호 변화 위치를 계산하여, 어떤 거리에서 결합이 강자성과 반강자성 사이를 오가는지 확인하라.
+
+---
+
+### 10.8.13 흔한 함정
+
+- **$J$의 부호 관례**: 해밀토니안이 $-J \boldsymbol S_{i}\cdot \boldsymbol S_{j}$를 쓰는지 $+J$를 쓰는지 확인하라. 선택에 따라 강자성과 반강자성이 뒤집힌다.  
+- **퀴리–바이스 법칙의 과도한 적용**: 이는 **높은 $T$**에서의 법칙이다. $T_{C/N}$ 근처와 그 아래에서는 임계 요동이 평균장의 직선 관계를 깨뜨린다.  
+- **비등방성 무시**: 2차원에서는 비등방성이나 장거리 항이 없으면 유한한 $T$에서 질서가 없다. 작은 $K$도 큰 영향을 준다.  
+- **파울리와 퀴리의 혼동**: 순회 전자 상자성체(파울리)는 $T$에 무관한 $\chi$를 갖고, 국소 모멘트(퀴리)는 $1/T$처럼 변한다. 실제 화합물에는 둘 다 있을 수 있다.  
+- **자기소거 효과와 고유 특성의 혼동**: 보정 전 자화 곡선은 기하에 의존한다. 고유한 $M(H)$를 얻으려면 자기소거 효과를 보정하라.  
+- **마그논 간극을 놓치기**: 강자성/반강자성 스핀파 스펙트럼에서 관측되는 유한 진동수 절편은 비등방성 간극이나 제이만 간극을 나타낸다. 완전히 무간극인 모형으로 맞추지 말라.
+
+---
+
+### 10.8.14 핵심 연습 문제
+
+- 스핀 $S$에 대해 바이스 장 $H_{\mathrm{eff}}=\lambda M$로부터 퀴리–바이스 감수율을 유도하고, $\Theta_{\mathrm{CW}}$를 $\lambda$ 및 미시적인 $J$와 연결하라.  
+- 입방 하이젠베르크 강자성체의 $T_{C}^{\mathrm{MF}}$와 $M(T)$를 평균장에서 계산하라. 낮은 $T$에서의 블로흐 $T^{3/2}$와 비교하고 유효한 영역을 논하라.  
+- 1차원 강자성 사슬에 선형 스핀파 이론(홀스타인–프리마코프)을 적용하여 $\omega_{k}$를 구하고, 1차원 강자성체가 유한한 $T$에서 장거리 질서를 갖지 못하는 이유를 보여라(적외선 발산).  
+- LLG에서 출발하여 단축 비등방성을 가진 박막의 키텔 공식을 유도하고 $H_{k}=2K/\mu_{0} M_{s}$를 식별하라.  
+- 스토너 매개변수 $I$를 가진 단순한 포물선형 밴드에서, 평균장으로 $T$에 따른 자화 $m$를 계산하고 $(I N(\epsilon_{F}),T)$공간의 상도를 그려라.
+
+---
+
+## 10.9 초전도
+
+초전도체는 응집물질의 극적인 주인공이다. 임계 온도 아래에서 직류 저항을 사실상 0으로 낮추는 **동시에** 자기장을 밀어낸다(마이스너 효과). 미시적으로 전자는 **쿠퍼 쌍**을 이루고, 이 쌍들이 위상이 결맞은 양자 상태로 응축한다. 이 절에서는 현상론(런던, 마이스너), 중간 규모의 장 이론(긴즈부르크–란다우), 미시적인 BCS 결과(간극, $T_{c}$, 상태 밀도), 실제 관측 특징인 제1종과 제2종, 소용돌이, 임계 자기장/전류, 조지프슨 효과를 구성한다.
+
+---
+
+### 10.9.1 런던 방정식과 마이스너 효과
+
+먼저 현상론부터 살펴보자. 응축체의 위상이 균일하고 소용돌이가 없는 런던 게이지에서, 초전류 $\boldsymbol J_{s}$에 대한 **런던 방정식**은 다음과 같다($n_s$는 초전도 전자 밀도).
+
+$$
+\frac{\partial \boldsymbol J_{s}}{\partial t} = \frac{n_{s} e^{2}}{m}\,\boldsymbol E
+$$
+
+$$
+\boldsymbol J_{s} = -\frac{1}{\mu_{0}\lambda^{2}}\,\boldsymbol A,\qquad
+\lambda^{2} \equiv \frac{m}{\mu_{0} n_{s} e^{2}}
+$$
+
+맥스웰 방정식과 결합하여 $\boldsymbol J_{s}$를 제거하면 **자기장 차폐**를 얻는다.
+
+$$
+\nabla^{2}\boldsymbol B = \frac{\boldsymbol B}{\lambda^{2}}
+$$
+
+따라서 정자기장은 초전도체 안에서 $B(x)=B_{0} e^{-x/\lambda}$처럼 감쇠한다. 이 **마이스너 효과**는 초전도체를 이상적인 비초전도 완전 도체와 구별한다. 완전 도체는 냉각 당시 존재하던 $B$를 그대로 고정할 뿐이다.
+
+---
+
+### 10.9.2 긴즈부르크–란다우(GL) 이론
+
+GL 이론은 벡터 퍼텐셜에 최소 결합된 복소 질서 매개변수 $\psi(\boldsymbol r)$(쿠퍼 쌍 파동함수)에 대한 란다우 자유 에너지이다.
+
+$$
+\mathcal F[\psi,\boldsymbol A] = \alpha |\psi|^{2} + \frac{\beta}{2} |\psi|^{4}
++ \frac{1}{2m^{\ast}} \left| \left(-i\hbar \nabla - 2e\,\boldsymbol A\right)\psi \right|^{2}
++ \frac{|\boldsymbol B|^{2}}{2\mu_{0}}
+$$
+
+이를 최소화하면 **GL 방정식**을 얻는다.
+
+$$
+\alpha \psi + \beta |\psi|^{2}\psi + \frac{1}{2m^{\ast}}\left(-i\hbar \nabla - 2e\boldsymbol A\right)^{2}\psi = 0
+$$
+
+$$
+\boldsymbol J_{s} = \frac{2e}{m^{\ast}}\,\mathrm{Re}\left\{\psi^{\ast}\left(-i\hbar \nabla - 2e\boldsymbol A\right)\psi\right\}
+$$
+
+주요 GL 길이 척도는 다음과 같다.
+
+$$
+\xi = \sqrt{\frac{\hbar^{2}}{2 m^{\ast} |\alpha|}},\qquad
+\lambda = \sqrt{\frac{m^{\ast}}{4 \mu_{0} e^{2} |\psi|^{2}}}
+$$
+
+무차원 **GL 매개변수** $\kappa \equiv \lambda/\xi$로 초전도체를 분류한다.
+
+- $\kappa < 1/\sqrt{2}$이면 **제1종**: 하나의 임계 자기장 $H_{c}$를 가지며, 급격히 초전도성이 무너지기 전까지 완전한 마이스너 상태를 유지한다.  
+- $\kappa > 1/\sqrt{2}$이면 **제2종**: $H_{c1}$와 $H_{c2}$ 사이에서 소용돌이를 포함하는 혼합 상태가 된다.
+
+---
+
+### 10.9.3 BCS의 핵심: 쌍 형성, 간극, $T_{c}$
+
+BCS 이론은 $\epsilon_{F}$ 근처 전자 사이의 약한 지연 인력(예: 포논 매개 인력)이 아무리 약해도 **쿠퍼 불안정성**을 일으키고, 에너지 간극 $\Delta$를 갖는 쌍 형성 바닥상태를 만든다는 것을 보여 준다.
+
+절대영도 간극과 임계 온도(등방적 $s$파, 약한 결합)는 다음과 같다.
+
+$$
+\Delta(0) = 2\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+$$
+k_{B} T_{c} = 1.14\,\hbar \omega_{D}\,e^{-1/[V N(0)]}
+$$
+
+보편적인 BCS 비는
+
+$$
+\frac{2\Delta(0)}{k_{B} T_{c}} \approx 3.53
+$$
+
+준입자의 **상태 밀도**(스핀당)는 다음과 같이 변한다.
+
+$$
+N_{s}(E) = N(0)\,\mathrm{Re}\,\frac{|E|}{\sqrt{E^{2}-\Delta^{2}}}
+$$
+
+$E=\pm \Delta$에 결맞음 봉우리가 생긴다. 비열은 $\Delta C/C_{n}|_{T_{c}}=1.43$만큼 불연속적으로 변한다. 완전히 간극이 열린 $s$파에서는 낮은 $T$에서 활성화 형태 $C\sim e^{-\Delta/(k_{B}T)}$를 보인다.
+
+**BCS 결맞음 길이**(깨끗한 극한):
+
+$$
+\xi_{0} = \frac{\hbar v_{F}}{\pi \Delta(0)}
+$$
+
+---
+
+### 10.9.4 임계 자기장, 전류, 혼합 상태
+
+자유 에너지 밀도 $F_s,F_n$를 사용하면, 제1종 초전도체의 **열역학적 임계 자기장** $H_{c}(T)$는 $F_{n}(0)-F_{s}(0)=\mu_{0}H_{c}^{2}/2$를 만족한다.
+
+제2종에는 세 가지 척도가 있다.
+
+$$
+\mu_{0} H_{c1} \approx \frac{\Phi_{0}}{4\pi \lambda^{2}} \ln \kappa
+$$
+
+$$
+\mu_{0} H_{c2} = \frac{\Phi_{0}}{2\pi \xi^{2}}
+$$
+
+$$
+\Phi_{0} = \frac{h}{2e}
+$$
+
+$H_{c1}<H<H_{c2}$에서는 자기선속 양자 $\Phi_{0}$ 하나를 운반하는 **아브리코소프 소용돌이**를 통해 자기장이 침투한다. 소용돌이 중심부는 반지름 $\sim \xi$를 갖고 그 안에서 $|\psi|$가 억제된다. 순환 초전류는 $\lambda$의 길이에 걸쳐 감쇠한다. 고정 효과가 없는 깨끗한 물질에서는 소용돌이가 삼각 격자를 이룬다.
+
+**임계 전류 밀도**($T_{c}$ 근처의 GL 쌍 파괴 추정):
+
+$$
+J_{d} \sim \frac{H_{c}}{\lambda}
+$$
+
+실제로는 **소용돌이 운동**(자기선속 흐름)이 전류를 제한한다. 강한 고정 효과는 응용에 쓰이는 **임계 전류** $J_{c}\ll J_{d}$를 높인다.
+
+---
+
+### 10.9.5 자기선속 양자화와 위상 강성
+
+고리를 한 바퀴 돌았을 때 응축체 위상 $\varphi$가 한 값이어야 하므로
+
+$$
+\oint \nabla \varphi\cdot d\boldsymbol\ell = 2\pi n
+$$
+
+이를 초전류 관계와 결합하면 플럭소이드 양자화를 얻는다. 적분 경로가 다중 연결 초전도체의 깊은 내부에 놓여 초전류가 사라질 때 **자기선속 양자화** $\Phi=n\Phi_{0}$가 따른다. 위상의 강직성이 영구 전류와 조지프슨 효과의 기원이다.
+
+---
+
+### 10.9.6 조지프슨 효과
+
+얇은 장벽으로 분리된 두 초전도체(SIS)는 전압 없이 **초전류**를 흘릴 수 있다.
+
+- **직류 조지프슨 효과**:
+
+$$
+I = I_{c}\,\sin\phi
+$$
+
+여기서 $\phi$는 위상차이고 $I_{c}$는 임계 전류이다. 자기장이 있으면 폭 $W$인 접합 전체에서의 간섭이 **프라운호퍼 무늬** $I_{c}(B)\propto |\sin(\pi \Phi/\Phi_{0})/(\pi \Phi/\Phi_{0})|$를 만든다.
+
+- **교류 조지프슨 효과**: 직류 전압 $V$는 위상을 $\dot\phi = 2eV/\hbar$에 따라 변화시켜 다음 진동수의 교류 전류를 만든다.
+
+$$
+f = \frac{2e}{h}\,V
+$$
+
+마이크로파를 조사하면 전압 $V_{n}=n\,h f/(2e)$에 **샤피로 계단**이 생긴다. 두 접합을 고리로 연결하면 인가 자기선속에 대해 주기 $\Phi_{0}$를 갖는 **SQUID**가 되어, 극도로 민감한 자기장 측정이 가능하다.
+
+SNS 접합에서 간극 아래의 수송은 **안드레예프 반사**를 통해 이루어지며, 초전류를 운반하는 이산적인 안드레예프 속박 상태를 형성한다.
+
+---
+
+### 10.9.7 근접 효과와 메조스코픽 효과
+
+초전도체와 잘 접촉한 정상 금속에는 **근접 길이**(불순물 산란이 강한 극한에서 $L_{\phi}\sim \sqrt{\hbar D/k_{B}T}$)에 걸쳐 쌍 상관이 유도된다. NS 계면의 간극 아래 컨덕턴스는 안드레예프 반사로 강화되며, 완전히 투명한 접촉의 영 바이어스 이상적 BTK 극한에서는 2배에 가까워진다.
+
+---
+
+### 10.9.8 비전통적 초전도와 높은 $T_{c}$에 관한 참고
+
+모든 초전도체가 $s$파인 것은 아니다. **$d$파** 쌍 형성(구리 산화물)은 선 모양의 마디를 갖기 때문에 거듭제곱형 열역학(3차원에서 $C\sim T^{2}$)과 V자형 터널링 상태 밀도를 보인다. **$p$파**와 다른 특이한 상태는 위상적 조건에서 마요라나 속박 상태를 가질 수 있다. 많은 비전통적 경우에서 쌍을 묶는 ‘접착제’는 포논이 아니라 전자–전자 상호작용(스핀 요동)이며, BCS 비는 3.53에서 벗어난다.
+
+---
+
+### 10.9.9 실험적 특징
+
+- **수송**: $T_{c}$ 아래에서 영저항이다. 전류가 $J_{c}$를 넘거나 소용돌이가 움직일 때만 유한한 전압이 나타난다.  
+- **자화**: 마이스너 배제와 제2종에서 소용돌이 고정에 따른 비가역적 이력 현상이 나타난다.  
+- **열역학**: $T_{c}$에서 비열이 불연속적으로 변한다. $C/T$를 적분해 엔트로피를 구하고, 이어 엔트로피 차이를 적분해 응축 에너지를 구한다.  
+- **분광법**: 터널링/STM의 $\pm \Delta$ 결맞음 봉우리, ARPES의 간극 대칭, 광학 전도도에서 빠진 면적이 영진동수 델타 함수로 이동하는 현상(페럴–글러버–팅컴 합 규칙)을 관측한다.  
+- **마이크로파/THz**: 교류 전도도에는 초유체 델타 함수와 유한 진동수의 준입자 응답이 나타난다.  
+- **뮤온/NMR**: 완화율로부터 침투 깊이, 소용돌이 격자, 간극 대칭을 알아낸다.
+
+---
+
+### 10.9.10 간단한 풀이 예제
+
+**(a) 운반자 밀도에서 침투 깊이 구하기**  
+$\lambda^{2}=m/(\mu_{0} n_{s} e^{2})$를 이용하여 $n_{s}=10^{28}\ \mathrm{m^{-3}}$와 $m=m_{e}$에 대한 $\lambda$를 추정하라.
+
+**(b) $H_{c2}$ 추정**  
+제2종 초전도체가 $\xi=4\ \mathrm{nm}$를 갖는다. $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$를 계산하라.
+
+**(c) 간극과 $v_{F}$로 결맞음 길이 구하기**  
+$v_{F}=2.0\times 10^{5}\ \mathrm{m/s}$와 $\Delta(0)=1.5\ \mathrm{meV}$를 이용하여 $\xi_{0}=\hbar v_{F}/(\pi \Delta)$를 추정하고, $T_{c}$ 근처의 GL $\xi$와 비교하라.
+
+**(d) 조지프슨 진동수**  
+접합 양단의 $V=1.00\ \mathrm{mV}$에서 어떤 마이크로파 진동수가 나오는가? $f=(2e/h)V$를 이용하여 $f\approx 483.6\ \mathrm{GHz/mV}\times 1.00\ \mathrm{mV}$를 보여라.
+
+**(e) 고리에서의 자기선속 양자화**  
+면적 $A=20\ \mu\mathrm{m}^{2}$인 초전도 고리가 주기 $\Delta B$의 SQUID 진동을 보인다. $\Delta B=\Phi_{0}/A$를 확인하고 주기를 계산하라.
+
+**(f) 쌍 파괴 전류의 크기 차수**  
+$\mu_{0}H_{c}=0.2\ \mathrm{T}$와 $\lambda=120\ \mathrm{nm}$가 주어졌을 때 $J_{d}\sim H_{c}/\lambda$를 추정하고, 고정 효과로 제한되는 측정값 $J_{c}$와 비교하라.
+
+---
+
+### 10.9.11 흔한 함정
+
+- **마이스너 상태와 완전 도체의 구별**: 마이스너 상태의 초전도체는 *새로 인가한 장뿐 아니라 이미 존재하던 장도* 밀어낸다. 완전 도체는 냉각 당시 존재하던 장을 그대로 고정할 뿐이다.  
+- **$2e$ 누락**: 쿠퍼 쌍은 전하 $2e$를 운반한다. 자기선속 양자는 $h/e$가 아니라 $h/2e$이다.  
+- **제1종/제2종 혼동**: 분류에는 $\kappa=\lambda/\xi$를 쓴다. ‘자기장이 얼마나 강한가’가 아니라 계면 에너지의 부호에 관한 것이다.  
+- **소용돌이 무시**: 제2종에서 전류와 자기장이 있을 때 나타나는 유한 저항은 흔히 간극이 무너져서가 아니라 소용돌이가 움직이기 때문이다.  
+- **불순물이 많은 시료에 깨끗한 극한 공식 적용**: $\xi$와 $\lambda$는 불순물 산란으로 재규격화된다. 평균 자유 행로 $l$를 $\xi_{0}$와 비교하라.  
+- **$s$파 가정**: 간극 대칭은 중요하다. $C(T)$, $\lambda(T)$의 거듭제곱 법칙과 마디의 준입자는 비전통적 쌍 형성을 드러낸다.
+
+---
+
+### 10.9.12 핵심 연습 문제
+
+- 런던 방정식에서 $\nabla^{2}\boldsymbol B=\boldsymbol B/\lambda^{2}$를 유도하고 반공간에서 $B(x)$가 지수적으로 감쇠함을 보여라.  
+- GL 이론으로 정상 영역과 초전도 영역 사이의 표면 에너지를 계산하고, $\kappa=1/\sqrt{2}$에서 제1종/제2종 경계가 나옴을 재현하라.  
+- $\psi$의 단일값 조건과 초전류 관계로 플럭소이드 양자화를 유도하라. 초전류가 사라지는 경로에서 $\Phi_{0}=h/2e$와 자기선속 양자화를 구하라.  
+- 약한 결합의 BCS 간극 방정식을 이용하여 $\Delta(0)$와 비 $2\Delta(0)/k_{B}T_{c}$를 구하라.  
+- 자기장 안의 GL 방정식을 선형화하고 질서 매개변수를 란다우 준위에 대응시켜 $\mu_{0}H_{c2}=\Phi_{0}/(2\pi \xi^{2})$를 유도하라.  
+- 직사각형 조지프슨 접합의 프라운호퍼 $I_{c}(B)$ 포락선을 계산하고, 주기로부터 접합 면적을 구하라.
+
+---
+
+## 10.10 강상관과 모트 물리
+
+약하게 상호작용하는 전자가 차분하다면, 강하게 상관된 전자는 복잡한 드라마를 펼친다. 밴드 간극 없는 국소화, 거대한 유효 질량, 나쁜 금속 수송, 도핑을 몇 퍼센트 바꾸는 것만으로 eV 규모를 가로질러 옮겨가는 스펙트럼 가중치가 나타난다. 대표 주자는 **모트 절연체**이다. 밴드 이론으로는 전도해야 하는 반충전 밴드인데, 격자점 내 반발 $U$이 크면 전자들이 한 격자점을 함께 차지하려 하지 않아 절연체가 된다. 이 절에서는 허바드 모형 계열, 초교환과 $t$–$J$ 모형, 모트 전이(브링크먼–라이스와 슬레이터), 스펙트럼 가중치 이동, 다중 오비탈/훈트 물리, 동적 평균장 이론(DMFT) 입문을 다루고 쉽게 알아볼 수 있는 실험적 특징도 정리한다.
+
+---
+
+### 10.10.1 허바드 모형: 최소한의 복잡성
+
+격자 위에 전자를 놓고 진폭 $t$로 홉핑하게 하되, 이중 점유에 에너지 비용 $U$를 부과하자.
+
+$$
+H = -t \sum_{\langle i j \rangle,\sigma}\!\left(c^{\dagger}_{i\sigma} c_{j\sigma} + \text{h.c.}\right)
++ U \sum_{i} n_{i\uparrow} n_{i\downarrow} - \mu \sum_{i} n_{i}
+$$
+
+- **반충전**과 **$U/W \ll 1$**(밴드 폭 $W$)에서는, 질서화나 저차원 불안정성이 간극을 열지 않는 한 상자성 금속으로 기술할 수 있다.  
+- **$U/W \gg 1$**에서는 전하 운동이 동결된다. 각 격자점은 $U$를 피하기 위해 전자 하나만 갖기를 선호하므로, 국소 모멘트를 가진 모트 절연체가 된다.  
+- 반충전에서 벗어나도록 도핑하면 강하게 상호작용하는 배경 속에 이동 가능한 운반자가 생긴다. 그 결과 특이한 수송과, 일부 물질에서는 높은 $T_{c}$의 초전도가 나타난다.
+
+---
+
+### 10.10.2 허바드에서 하이젠베르크로: 초교환
+
+반충전에서 $U\gg t$이면 가상 홉핑이 이웃 스핀 사이의 유효 **반강자성** 교환을 만든다.
+
+$$
+H_{\text{eff}} = J \sum_{\langle i j\rangle} \boldsymbol S_{i}\cdot \boldsymbol S_{j},\qquad
+J = \frac{4 t^{2}}{U}
+$$
+
+이것이 **초교환**이다. 직관적으로, 평행한 스핀에서는 파울리 원리가 교환을 막지만, 반평행한 스핀은 가상적으로 이중 점유했다가 돌아올 수 있어 에너지가 낮아진다.
+
+---
+
+### 10.10.3 $t$–$J$ 모형: 도핑한 모트 계의 도구
+
+$U$를 크게 유지하면서 모트 절연체를 도핑하면 다음 제약된 모형을 얻는다.
+
+$$
+H_{tJ} = -t \sum_{\langle i j\rangle,\sigma}\! \left(\tilde c^{\dagger}_{i\sigma} \tilde c_{j\sigma}+\text{h.c.}\right)
++ J \sum_{\langle i j\rangle} \left(\boldsymbol S_{i}\cdot \boldsymbol S_{j} - \frac{1}{4}\,n_{i} n_{j}\right)
+$$
+
+여기서 $\tilde c$는 이중 점유를 금지한다. **이중 점유 금지** 제약이 핵심적인 어려움이며, 평균장, 보조 보손/페르미온 또는 수치적 방법으로 다룬다. 2차원에서는 운동 에너지와 스핀 단일항 형성 사이의 경쟁이 $d$파 쌍 형성 경향의 씨앗이 된다.
+
+---
+
+### 10.10.4 슬레이터와 모트: 절연체가 모두 같지 않은 이유
+
+반충전에서 간극이 생기는 경로는 두 가지이다.
+
+- **슬레이터 절연체**: 약한 결합의 반강자성체이다. 장거리 질서가 단위격자를 두 배로 만들어 밴드를 접고 평균장 간극 $\propto m$를 연다. 이 간극은 네엘 온도 $T_{N}$ 위에서 닫힌다.  
+- **모트 절연체**: 국소적 물리로부터 간극 $\sim U$가 생긴다. 장거리 질서가 **없어도**, 심지어 $T_{N}$ 위에서도 물질은 절연 상태를 유지한다.
+
+**실험에서 구별하는 방법**: 높은 $T$의 상이 여전히 큰 활성화 에너지를 가진 절연체이고, ARPES에서 화학 퍼텐셜로부터 멀리 떨어진 아래/위 허바드 밴드가 보이면 모트 계이다(예: NiO). 스펙트럼 재배열은 작고 간극이 정확히 $T_{N}$에서 닫히면 슬레이터에 가깝다.
+
+---
+
+### 10.10.5 스펙트럼 함수의 구조: 허바드 밴드와 준입자
+
+단일 전자 스펙트럼 함수 $A(\boldsymbol k,\omega)$를 정의하자. 모트 전이 근처의 상관 금속에서는
+
+- 가중치 $Z$를 갖는 좁은 **준입자(QP) 봉우리**가 페르미 준위를 가로지른다.  
+- 비결맞은 **허바드 밴드**는 $\omega \sim \pm U/2$에 놓이며 가중치 $1-Z$를 갖는다.
+
+**준입자 가중치**는
+
+$$
+Z = \left[1 - \left.\frac{\partial \mathrm{Re}\,\Sigma(\omega)}{\partial \omega}\right|_{\omega=0}\right]^{-1}
+$$
+
+이며, $\Sigma$는 자체 에너지이다. 상관이 강해지면 $Z \downarrow$이고 유효 질량은 $m^{\ast}\propto 1/Z \uparrow$가 되며, 모트 점에서 $Z\to 0$이다. 준입자는 사라지고 허바드 밴드만 남는다.
+
+---
+
+### 10.10.6 브링크먼–라이스 관점과 금속–절연체 전이
+
+상관을 다루는 페르미 액체 평균장에서 운동 에너지는 $Z$로 재규격화되며, 다음 조건에서 **모트 금속–절연체 전이(MIT)**가 일어난다.
+
+$$
+Z \to 0 \quad \text{다음 극한에서:} \quad U \to U_{c}^{-}
+$$
+
+$m^{\ast}$의 발산과 드루데 가중치의 소멸이 대표적 특징이다. 실제 3차원 격자에서는 유한한 $T$에서의 전이가 이력 현상을 동반하는 **1차 전이**인 경우가 많다. 금속과 절연체라는 두 해가 공존하며, 공존 영역은 임계 종점에서 끝난다. 동적 평균장 이론은 이를 잘 포착한다.
+
+---
+
+### 10.10.7 광학과 ARPES의 특징: 모트 성질을 알아보는 방법
+
+- **광학**: 드루데 가중치가 $Z$처럼 감소하는 반면 중적외선 특징과 허바드 밴드 흡수는 커진다. **스펙트럼 가중치 이동**은 전체 광학 f 합 규칙을 만족하면서도 저에너지 적분 구간 밖으로 가중치를 재분배한다. 도핑을 몇 퍼센트 바꾸면 가중치가 eV 규모를 가로질러 이동한다.  
+- **ARPES**: $E_{F}$ 근처의 결맞은 준입자 봉우리와 넓은 비결맞은 배경, 높은 에너지의 폭포형 구조가 나타난다. 모트 절연체를 도핑하면 위쪽 허바드 밴드에서 새로운 저에너지 상태를 끌어내어 분산 관계를 바꾼다(전자–포논 상호작용도 중요하면 강한 **꺾임** 구조가 나타난다).  
+- **수송**: 모트–이오페–레겔(MIR) 한계를 넘는 비저항(‘나쁜 금속’), 거대한 열전능 비대칭, $T$와 도핑에 따라 부호가 변하는 홀 계수가 나타난다.
+
+---
+
+### 10.10.8 전하 이동 절연체와 모트 절연체: 자넌–사와츠키–앨런
+
+전이 금속 산화물에서 가장 높은 점유 상태는 금속 $d$의 아래쪽 허바드 상태보다 리간드 $p$ 상태의 성격이 강할 수 있다. ($d$에서의) $U$를 **전하 이동 에너지** $\Delta$(O $2p$에서 TM $d$로 이동)와 비교하자.
+
+- **모트–허바드 절연체**: $\Delta > U$이다. 간극은 주로 아래쪽과 위쪽 $d$ 허바드 밴드 사이에 있다.  
+- **전하 이동 절연체**: $\Delta < U$이다. 간극은 O $p$와 위쪽 $d$ 밴드 사이에 있다. 정공을 도핑하면 산소형 상태에 들어간다(구리 산화물이 대표적이다).
+
+이 분류는 주기율표상 비슷한 원소로 이루어진 산화물들에서도 도핑 응답과 광학 흡수 가장자리가 크게 다른 이유를 설명한다.
+
+---
+
+### 10.10.9 훈트 금속과 다중 오비탈의 역할
+
+여러 오비탈이 활성화되어 있으면 **훈트 결합** $J_{H}$가 같은 원자의 스핀들을 정렬시킨다. 효과는 다음과 같다.
+
+- 오비탈 사이의 전하 요동을 억제하여 $U$가 중간 정도여도 $Z$를 낮춘다. 그 결과 무거운 준입자와 큰 산란을 가진 ‘**훈트 금속**’이 된다.  
+- 오비탈 선택성을 촉진한다. 일부 오비탈은 모트 국소화되지만 다른 오비탈은 순회 상태로 남는다(**오비탈 선택적 모트 상**).  
+- 결정장 및 스핀–궤도 결합과 경쟁하거나 협력한다. 루테늄 산화물, 철 기반 초전도체, 4d/5d 산화물에서 중요하다.
+
+---
+
+### 10.10.10 DMFT 한 페이지 정리: 국소 자체 에너지의 전역적 결과
+
+**동적 평균장 이론(DMFT)**은 격자 모형을 자체 일관된 환경(배스)에 결합된 **양자 불순물**에 대응시킨다. 자체 에너지는 **국소적**(운동량에 무관)이라고 둔다: $\Sigma(\boldsymbol k,\omega)\to \Sigma(\omega)$. 배위수가 무한할 때 정확하고 3차원에서도 놀라울 만큼 잘 맞는다.
+
+자체 일관성 조건(밴드 반폭 $D$인 베테 격자)은 다음과 같다.
+
+$$
+\Delta(\omega) = t^{2} G_{\text{loc}}(\omega),\qquad
+G_{\text{loc}}(\omega) = \int \frac{d\epsilon\,\rho_{0}(\epsilon)}{\omega+\mu-\Sigma(\omega)-\epsilon}
+$$
+
+여기서 $\Delta$는 불순물 혼성화이고 $\rho_{0}$는 비상호작용 상태 밀도이다. 불순물 문제 풀이 → $\Sigma$ 구하기 → $G_{\text{loc}}$ 재계산 → $\Delta$ 갱신 순서로 반복한다.
+
+**DMFT가 잘 설명하는 것**
+
+- 세 봉우리 스펙트럼(준입자와 허바드 밴드), $U_{c}$에서 $Z$의 소멸, 공존을 동반하는 1차 금속–절연체 전이.  
+- 나쁜 금속 거동을 포함한 비저항의 온도 변화.  
+- 도핑 비대칭과 스펙트럼 가중치 이동.  
+- LDA 밴드를 입력으로 사용하면(LDA+DMFT) V$_2$O$_3$, SrVO$_3$, 철 프닉타이드 등 실제 물질도 다룬다.
+
+---
+
+### 10.10.11 1차원의 반전: 루팅거 액체와 스핀–전하 분리
+
+엄밀한 1차원에서는 페르미 액체가 불안정하다. 상관으로 인해 스핀 모드와 전하 모드가 분리된 **루팅거 액체**가 생긴다. 특징으로는 거듭제곱형 터널링 상태 밀도, ARPES나 차가운 원자 모사계에서 관측되는 서로 다른 스핀 들뜸과 전하 들뜸의 속도가 있다. 1차원 허바드 모형은 **정확히 풀 수 있으며**(베테 가설), 반충전에서는 어떤 $U>0$에서도 모트 간극을 보인다.
+
+---
+
+### 10.10.12 곤도 효과, 무거운 페르미온, 곤도 격자 간단 소개
+
+금속 속 국소 모멘트는 **곤도 온도** $T_{K}$ 아래에서 전도 전자에 의해 차폐되어, $E_{F}$에 좁은 공명을 갖는 단일항을 형성한다. 이런 모멘트를 주기적으로 배열한 곤도 격자는 낮은 $T$에서 혼성화되어 $m^{\ast}\!\gg m_{e}$인 무거운 준입자를 만든다. 충전율과 대칭에 따라 무거운 페르미 액체, 비전통적 초전도 또는 곤도 절연체가 생길 수 있다. 자세한 내용은 별도의 절이 필요하다. 여기서의 핵심은 ‘상관은 밴드를 갈라놓기만 하는 것이 아니라 새롭게 **드러나게 할 수도 있다**’는 점이다.
+
+---
+
+### 10.10.13 간단한 풀이 예제
+
+**(a) 초교환의 부호와 척도**  
+반충전의 두 격자점 허바드 이합체에서 $t/U$에 대한 2차 섭동을 수행하여 $J=4t^{2}/U$와 반강자성인 이유를 보여라.
+
+**(b) 브링크먼–라이스 질량 발산**  
+금속–절연체 전이 근처에서 $Z=1-(U/U_{c})^{2}$를 가정하고, $U\to U_{c}^{-}$일 때 $m^{\ast}/m=1/Z$가 발산하며 드루데 가중치는 $Z$에 비례함을 보여라.
+
+**(c) DMFT 베테 자체 일관성**  
+반원형 상태 밀도 $\rho_{0}(\epsilon)=\frac{2}{\pi D^{2}}\sqrt{D^{2}-\epsilon^{2}}$와 $D=2t$을 이용하여 $\Delta(\omega)=t^{2}G_{\text{loc}}(\omega)$를 유도하라.
+
+**(d) 광학 스펙트럼 가중치 이동**  
+f 합 규칙을 이용하여 고정된 충전율에서 $U$가 증가할수록 적분한 저에너지 스펙트럼 가중치가 줄어드는 이유를 논하라. 도핑이 드루데 가중치를 복원하면서 동시에 중적외선 흡수를 만드는 과정을 그려라.
+
+**(e) ZSA 분류**  
+$U=6\ \mathrm{eV}$와 전하 이동 에너지 $\Delta=3\ \mathrm{eV}$가 주어졌을 때 절연체의 종류를 식별하고, 정공 도핑으로 O-$p$형 운반자가 생길지 TM-$d$형 운반자가 생길지 예측하라.
+
+**(f) 훈트 금속 장난감 모형**  
+$U$는 중간 정도이고 $J_{H}$는 유한한 두 오비탈 허바드–훈트 모형에서, $J_{H}=0$인 경우에 비해 오비탈 간 전하 요동이 억제되고 $Z$가 감소하는 이유를 정성적으로 설명하라.
+
+---
+
+### 10.10.14 흔한 함정
+
+- **모든 반강자성 절연체를 ‘모트’라고 부르기**: 간극이 $T_{N}$에서 닫히면 슬레이터일 가능성이 높다. 상자성 상을 확인하라.  
+- **큰 $U$이면 모든 충전율에서 절연체라고 생각하기**: 반충전에서 벗어나면 반드시 절연체가 되는 것은 아니며, 작은 $Z$를 갖는 **상관 금속**일 수 있다.  
+- **스펙트럼 가중치 이동 누락**: 단순한 밴드 관점에서는 도핑해도 저에너지 가중치가 보존되지만, 모트 계에서는 **그렇지 않다**.  
+- **상관계 맞춤에 밴드 유효 질량 사용**: 수송과 열역학에서 보는 것은 $m^{\ast}\sim m/Z$이다. 재규격화된 값을 사용하라.  
+- **운동량을 구별하지 않는 DMFT의 과도한 적용**: 단일 격자점 DMFT는 $k$에 의존하는 유사 간극이나 단거리 질서를 잘 포착하지 못한다. 클러스터 DMFT/DCA 또는 도표적 방법이 필요하다.  
+- **모트와 앤더슨의 혼동**: 상호작용에 의한 국소화(모트)는 무질서에 의한 국소화(앤더슨)와 다르다. 둘이 공존할 수도 있지만(모트–앤더슨), 판별법은 다르다(예: 상호작용 조절과 무질서 조절).
+
+---
+
+### 10.10.15 핵심 연습 문제
+
+- 반충전이고 $U\gg t$인 허바드 모형에서 출발하여 슈리퍼–울프 변환으로 하이젠베르크 $J=4t^{2}/U$를 유도하라.  
+- 허바드-I 자체 에너지를 구현하고, $U$가 증가하면서 위/아래 허바드 밴드가 나타나는 모습을 그려라. DMFT의 세 봉우리 구조와 비교하라.  
+- 반원형 상태 밀도에서 반복 섭동 이론으로 $T=0$의 DMFT 방정식을 풀고, $Z(U)$를 그려 $U_{c}$를 찾아라.  
+- 세 봉우리 장난감 모형(준입자와 허바드 밴드 두 개)에서 도핑에 따른 광학 전도도 변화를 계산하고 스펙트럼 가중치 이동을 확인하라.  
+- 표에 주어진 $U$와 $\Delta$를 사용하여 산화물을 모트–허바드 또는 전하 이동 절연체로 분류하고, 소량의 정공 도핑에 따른 제벡 계수의 부호와 크기 경향을 예측하라.  
+- 두 오비탈 허바드–훈트 평균장을 구성하고, $U$, $J_{H}$, 결정장 분할에 따라 오비탈 선택적 모트 상이 나타나는 영역을 지도화하라.
+
+---
+
+## 10.11 위상적 밴드 이론
+
+어떤 밴드 절연체는 ‘그저’ 평범한 간극만 갖는다. 다른 절연체는 보호된 경계 상태, 양자화된 응답, 베리 곡률의 특별한 능력을 숨기고 있다. 이것이 **위상적 밴드 이론**이다. $k$공간의 기하(베리 위상, 곡률)와 대칭(시간 반전, 반전, 카이랄)을 이용하여 상을 분류한다. 벌크 불변량은 가장자리 모드를 예측한다. 불변량을 바꾸려면 어딘가에서 간극이 닫혀야 하므로, 디랙 또는 바일 마디를 동반한 상전이가 나타난다. 필요한 도구를 구성해 보자.
+
+---
+
+### 10.11.1 베리 위상, 접속, 곡률
+
+$\boldsymbol k$에 대해 매끄러운 블로흐 밴드 $|u_{n\boldsymbol k}\rangle$에서
+
+- **베리 접속**
+
+$$
+\boldsymbol A_{n}(\boldsymbol k) \equiv i \langle u_{n\boldsymbol k} | \nabla_{\boldsymbol k} u_{n\boldsymbol k} \rangle
+$$
+
+- **베리 곡률**
+
+$$
+\boldsymbol\Omega_{n}(\boldsymbol k) \equiv \nabla_{\boldsymbol k} \times \boldsymbol A_{n}(\boldsymbol k)
+$$
+
+- 브릴루앙 영역(BZ)의 닫힌 경로 $\mathcal C$를 따른 **베리 위상**
+
+$$
+\gamma_{n}[\mathcal C] = \oint_{\mathcal C} \boldsymbol A_{n}\cdot d\boldsymbol k
+$$
+
+게이지에 관한 참고: $\boldsymbol A$는 $|u\rangle$의 위상 선택에 의존하지만, $\boldsymbol\Omega$와 $2\pi$를 법으로 하는 고리 위상은 의존하지 않는다. 1차원에서는 점유 밴드의 베리 위상이 **분극**을 정한다(현대적 분극 이론). $P$는 브릴루앙 영역 전체의 베리 위상이다(§10.5.10 참조).
+
+---
+
+### 10.11.2 천 수와 양자 홀 효과
+
+2차원에서 밴드 $n$의 **천 수**는
+
+$$
+C_{n} = \frac{1}{2\pi} \int_{\mathrm{BZ}} d^{2}k\; \Omega_{n,z}(\boldsymbol k)
+$$
+
+완전히 채워진 밴드 집합에서는
+
+$$
+\sigma_{xy} = -\frac{e^{2}}{h} \sum_{n\in \text{occ}} C_{n}
+$$
+
+이것이 TKNN의 정수 양자 홀 결과이다. **벌크** 위상 불변량이 **경계**의 카이랄 가장자리 모드 수를 예측한다. $C$가 바뀌려면 어딘가에서 간극이 닫혀야 한다.
+
+---
+
+### 10.11.3 변칙 홀 효과: $B$ 없는 베리 곡률
+
+$B=0$에서도 시간 반전 대칭(TRS)이 깨지면 **내인성 변칙 홀** 효과가 나타난다.
+
+$$
+\sigma_{xy}^{\mathrm{int}} = -\frac{e^{2}}{\hbar} \sum_{n} \int \frac{d^{3}k}{(2\pi)^{3}} f_{n\boldsymbol k}\,\Omega_{n,z}(\boldsymbol k)
+$$
+
+여기서 $f$는 페르미 함수이다. $\boldsymbol\Omega$를 파동 묶음을 휘게 하는 ‘$k$공간의 자기장’으로 생각하자(§10.7에서 베리 항을 미뤄 두었다).
+
+---
+
+### 10.11.4 1차원 감김수와 SSH 준비 운동
+
+$d_{z}=0$인 두 밴드 카이랄 대칭 1차원 모형 $H(k)=\boldsymbol d(k)\cdot\boldsymbol\sigma$에서 $\phi(k)=\arg[d_{x}+id_{y}]$를 정의하자. **감김수**
+
+$$
+\nu = \frac{1}{2\pi} \int_{-\pi/a}^{\pi/a} dk\; \partial_{k}\phi(k)
+$$
+
+는 $\boldsymbol d$가 원점을 몇 번 감싸는지 센다. 벌크 $\nu=1$는 SSH 사슬의 **가장자리 영모드**를 준다(§10.5.3).
+
+---
+
+### 10.11.5 2차원 디랙 질량 반전에서 천 절연체로: 홀데인 모형의 관점
+
+질량이 있는 단일 디랙 원뿔을 생각하자.
+
+$$
+H(\boldsymbol k)=v(k_{x}\sigma_{x}+k_{y}\sigma_{y}) + m\,\sigma_{z}
+$$
+
+격자 정칙화 전, 연속체 원뿔의 가전자대 기여는
+
+$$
+C = +\frac{1}{2}\,\mathrm{sgn}(m)
+$$
+
+벌집 격자처럼 카이랄성이 반대인 두 원뿔이 기여한다. 두 질량의 부호가 **반대**이면 전체 $C=\pm 1$이며, 하나의 카이랄 가장자리 채널을 가진 **천 절연체**가 된다.
+
+---
+
+### 10.11.6 시간 반전 대칭과 $\mathbb{Z}_{2}$ 위상 절연체
+
+시간 반전 대칭이 있으면(전자의 경우 $\mathcal T^{2}=-1$) 밴드는 **크라머스 쌍**을 이룬다. 2차원과 3차원 절연체는 **$\mathbb{Z}_{2}$** 지수인 $\nu$(2차원) 또는 $(\nu_{0};\nu_{1}\nu_{2}\nu_{3})$(3차원)로 분류된다. 반전 대칭이 있으면 **푸–케인 패리티** 방법으로 간단히 구할 수 있다.
+
+- 각 시간 반전 불변 운동량(TRIM) $\Gamma_{i}$에서 점유된 크라머스 쌍의 반전 고유값을 곱하여 $\delta_{i}$를 구한다.
+- 그러면
+
+$$
+(-1)^{\nu} = \prod_{i}\delta_{i}
+$$
+
+3차원 강한 지수는 $(-1)^{\nu_{0}}=\prod_{i}\delta_{i}$이다. 약한 지수의 자세한 내용은 생략한다. **강한 위상 절연체**($\nu_{0}=1$)는 모든 표면에 시간 반전 대칭으로 보호되는 홀수 개의 디랙 원뿔을 갖는다.
+
+반전 대칭이 없으면 베리 접속의 **윌슨 고리**(바니에 전하 중심의 흐름이라고도 함)를 계산한다. 혼성 바니에 중심들이 브릴루앙 영역을 가로질러 **감기면** 위상적 상이다.
+
+---
+
+### 10.11.7 벌크–경계 대응: 한 문장으로 보기
+
+비자명한 벌크 불변량 ⇒ 벌크 간극을 닫거나 보호 대칭을 깨지 않고서는 간극을 열 수 없는 견고한 경계 상태.  
+- 천 절연체($C$): $|C|$개의 **카이랄** 가장자리 모드(단방향).  
+- 2차원 $\mathbb{Z}_{2}$ 위상 절연체: **나선형** 가장자리(서로 반대 방향으로 전파하는 크라머스 쌍).  
+- 3차원 강한 위상 절연체: 홀수 개의 **표면 디랙 원뿔**.  
+- 결정 위상적 상(거울, 회전 대칭으로 보호됨)은 대칭에 따라 선택되는 경계 상태를 갖는다.
+
+---
+
+### 10.11.8 디랙과 바일 준금속: 간극 없는 위상
+
+간극이 없는 관련 계는 다음과 같다.
+
+- **바일 마디**는 정수 **카이랄 전하** $C=\pm 1$를 가진 3차원 베리 곡률의 단극자이다. $\boldsymbol k$공간에서 마디를 분리하려면 시간 반전 대칭이나 반전 대칭 중 하나가 깨져야 한다. 그 결과 표면의 **페르미 호**와 **카이랄 이상**($\boldsymbol E\parallel \boldsymbol B$일 때 음의 종방향 자기저항)이 나타난다. 이상 방정식은
+
+$$
+\partial_{t}\rho_{5} + \nabla\cdot \boldsymbol j_{5} = \frac{e^{2}}{2\pi^{2}\hbar^{2}}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+- **디랙 준금속**은 대칭으로 같은 위치에 고정된, 카이랄성이 반대인 바일 마디들을 겹친 것이다. 대칭을 깨면 바일 쌍으로 갈라진다.
+
+---
+
+### 10.11.9 라슈바 효과, 스핀–운동량 잠금, 표면 디랙 원뿔
+
+스핀–궤도 결합(SOC)과 깨진 반전 대칭은 **라슈바** 분할을 만든다.
+
+$$
+H_{R} = \alpha (\boldsymbol\sigma \times \boldsymbol k)\cdot \hat{\boldsymbol z}
+$$
+
+위상 절연체의 위상적 표면 상태는 **스핀–운동량 잠금**(나선형 배열)을 보여 비자성 무질서에 의한 후방 산란을 억제한다. 디랙 질량을 만드는 자기 섭동(예: 가장 단순한 표면 모형에서 수직 교환장)은 표면 디랙 원뿔에 간극을 열어 양자화된 자기전기 응답을 가능하게 한다(아래의 액시온 물리). 반면 면내 교환장은 원뿔을 이동시킬 수 있다.
+
+---
+
+### 10.11.10 액시온 전기역학과 자기전기 응답
+
+3차원 위상 절연체에서는 유효 전자기 작용에 다음이 더해진다.
+
+$$
+\mathcal L_{\theta} = \frac{\theta e^{2}}{2\pi h}\,\boldsymbol E\cdot \boldsymbol B
+$$
+
+시간 반전 대칭이 성립하면 $2\pi$를 법으로 하여 $\theta=0$(자명한 경우) 또는 $\pi$(강한 위상 절연체)이다. $\theta$가 $\pi$만큼 불연속적으로 변하는 표면에서 경계의 시간 반전 대칭을 명시적으로 깨면, **반양자화된** 표면 홀 컨덕턴스 $e^{2}/(2h)$를 얻는다.
+
+---
+
+### 10.11.11 윌슨 고리와 바니에 흐름: 불변량의 계산법
+
+닫힌 경로 $\mathcal C$를 따라 $\boldsymbol k$를 이산화하고 **윌슨 고리**를 구성한다.
+
+$$
+W[\mathcal C] = \mathcal P \exp\!\left(i\int_{\mathcal C}\! \mathsf A(\boldsymbol k)\cdot d\boldsymbol k\right)
+$$
+
+여기서 $\mathsf A$는 점유 부분공간의 비가환 베리 접속이다. $W$의 고유위상은 **바니에 중심**을 준다. 횡방향 $\boldsymbol k$에 따른 그 흐름은 천 위상(브릴루앙 영역 하나당 $\nu$가 $2\pi C$만큼 감김) 또는 $\mathbb{Z}_{2}$ 위상(짝 교환 횟수의 홀짝)을 드러낸다.
+
+---
+
+### 10.11.12 궤도 자화와 현대적 분극 이론: 다시 보는 베리 위상
+
+베리 위상의 두 가지 파생 결과는 다음과 같다.
+
+- 절연체의 **분극**은 브릴루앙 영역 전체에 걸친 점유 상태의 베리 위상이다. **변화량**만 물리적이며, 단열적인 순환 과정에서는 양자화된다(사울리스 펌프).
+- 결정의 **궤도 자화**는 $\boldsymbol\Omega$와 밴드 에너지를 포함하는 브릴루앙 영역 적분으로 표현할 수 있다. 이는 내인성 변칙 홀 효과 및 현대적 자기전기 계수와 연결된다.
+
+---
+
+### 10.11.13 대칭 분류 핵심표: 열 가지 분류법의 일부
+
+| 분류 | 대칭(시간 반전, 입자–정공, 카이랄) | 2차원 불변량 | 3차원 불변량 |
+|---|---|---|---|
+| A(대칭 없음) | –, –, – | $\mathbb{Z}$(천 수) | 0 |
+| AII($\mathcal T^{2}=-1$인 시간 반전 대칭) | ✓, –, – | $\mathbb{Z}_{2}$ | $\mathbb{Z}_{2}$(강한 $\nu_{0}$) |
+| AIII(카이랄 대칭만 있음) | –, –, ✓ | 0 | $\mathbb{Z}$(감김수) |
+
+완전한 **열 가지 분류법**은 초전도체(BdG)와 더 많은 불변량을 포함한다. 여기서는 전자를 다룰 때 주로 쓰는 분류에 집중한다.
+
+---
+
+### 10.11.14 실험적 특징
+
+- **수송**: 정수 양자 홀 평탄부, 천 절연체의 양자화된 가장자리 컨덕턴스, $\pi$ 베리 위상에 따른 약한 반국소화, 바일 물질의 음의 종방향 자기저항이 나타난다(기하에 의한 가짜 신호에 주의).  
+- **ARPES**: 표면 디랙 원뿔, 페르미 호, 라슈바 분할이 보인다. 스핀 분해 ARPES로 스핀 배열을 확인한다.  
+- **STM/STS**: 나선형 표면의 준입자 간섭(QPI)에서 $180^{\circ}$ 후방 산란이 사라지고, 란다우 준위 계열이 베리 위상 $\pi$를 드러낸다.  
+- **광학**: 자화된 위상 절연체 표면의 거대한 커/패러데이 각과, 비자명한 위상 이동을 갖는 사이클로트론 공명을 관측한다.  
+- **양자 진동**: 베리 위상과 연결된 위상 이동(란다우 지수 그래프의 절편)이 나타나지만, 스핀 분할에 주의해야 한다.
+
+---
+
+### 10.11.15 간단한 풀이 예제
+
+**(a) 두 밴드 디랙 모형의 천 수**  
+$H=v(k_{x}\sigma_{x}+k_{y}\sigma_{y})+m\sigma_{z}$에 대해 $\Omega_{z}(\boldsymbol k)$를 계산하고 적분하여 원뿔 하나당 $C=+\tfrac{1}{2}\mathrm{sgn}(m)$임을 보여라. 카이랄성이 반대이고 $m$의 부호도 반대인 두 비등가 원뿔은 $C=\pm 1$를 준다.
+
+**(b) 패리티 판정**  
+네 개의 2차원 TRIM에서 점유 크라머스 쌍의 반전 고유값이 $(+,+,+,-)$로 주어졌을 때 $(-1)^{\nu}=-1$를 계산하라. 위상적 상임을 알 수 있다.
+
+**(c) 윌슨 고리의 감김**  
+$C=1$인 천 밴드에서 $k_{y}$가 브릴루앙 영역을 가로지를 때 바니에 중심 각도 $\theta(k_{y})$가 $2\pi$만큼 전진함을 보여라. 자명한 밴드와 비교하라.
+
+**(d) SSH 끝 상태**  
+$H(k)=(t_{1}+t_{2}\cos ka)\sigma_{x}+t_{2}\sin ka\,\sigma_{y}$의 감김수를 계산하라. $|t_{2}|>|t_{1}|$일 때 $\nu=1$임을 보이고, 열린 사슬의 가장자리 스펙트럼을 그려라.
+
+**(e) 바일 단극자 전하**  
+바일 마디를 둘러싼 작은 구면을 지나는 $\boldsymbol\Omega$의 선속을 계산하고, $\pm 2\pi$와 같음(즉 전하 $\pm 1$)을 보여라.
+
+**(f) 액시온으로부터 표면 홀 응답 구하기**  
+표면이 자화되어 $\Delta\theta=\pi$인 위상 절연체를 가정하고, 경계를 가로질러 $\mathcal L_{\theta}$를 적분하여 $\sigma_{xy}=e^{2}/(2h)$를 구하라.
+
+---
+
+### 10.11.16 흔한 함정
+
+- **게이지 함정**: $\boldsymbol A$는 게이지에 의존한다. $\boldsymbol\Omega$와 $2\pi$를 법으로 하는 고리 위상만 물리적이다. 수치 계산에는 매끄러운 게이지나 윌슨 고리를 사용하라.  
+- **반전 대칭 없이 푸–케인 방법 사용**: 패리티를 이용한 간편법에는 반전 대칭이 필요하다. 그렇지 않으면 윌슨 고리나 바니에 중심의 흐름을 사용해야 한다.  
+- **라슈바 효과와 위상의 혼동**: 라슈바 분할만으로는 위상 절연체가 아니다. 벌크 간극과 비자명한 $\mathbb{Z}_{2}$ 지수가 필요하다.  
+- **진동 위상의 오독**: 란다우 부채꼴 도표에서 베리 위상을 추출하려면 제이만 효과, 뒤틀림, 3차원 기하를 고려해야 한다.  
+- **가장자리와 표면을 항상 동일시하기**: 상태는 대칭이 보호한다. 경계에서 대칭을 깨면 간극을 열 수 있다(예: 자기적 무질서로 위상 절연체 표면에 간극 형성).  
+- **시간 반전 대칭계의 천 수**: 시간 반전 대칭이 깨지지 않고 자기 질서가 없으면 점유 밴드의 **총** 천 수는 반드시 0이다. 그러나 $\mathbb{Z}_{2}$ 지수는 여전히 비자명할 수 있다.
+
+---
+
+### 10.11.17 핵심 연습 문제
+
+- 구보 공식에서 출발하여 TKNN 공식을 유도하고, 깨끗한 2차원 절연체에서 $\sigma_{xy}=-(e^{2}/h)\sum C_{n}$임을 보여라.  
+- 연결 변수를 이용하여 이산 브릴루앙 영역에서 천 수를 계산하는 방법을 구현하고 두 밴드 디랙 모형으로 검증하라.  
+- 반전 중심이 있고 스핀–궤도 결합을 가진 절연체에서, 표에 주어진 TRIM 패리티로 푸–케인 $\mathbb{Z}_{2}$를 계산한 뒤 윌슨 고리의 흐름으로 확인하라.  
+- 두 마디 바일 모형을 만들고 슬래브의 표면 그린 함수를 계산하여 페르미 호를 그려라.  
+- 3차원 위상 절연체의 디랙 원뿔에 표면 제이만 항을 추가하여 간극 형성과 반양자화된 홀 컨덕턴스를 보여라.  
+- 1차원 격자에서 단열적 사울리스 펌프를 모사하고, 양자화된 전하 수송이 $(k,t)$ 토러스의 천 수와 같음을 보여라.
+
+---
+
+## 10.12 메조스코픽 수송과 양자 결맞음
+
+도체의 크기를 결맞음 길이나 평균 자유 행로와 비슷할 정도로 줄이면, 수송은 ‘교통 흐름’에서 **파동 간섭**으로 바뀐다. 이것이 **메조스코픽** 영역이다. 전자는 소자 전체에 걸쳐 위상 결맞음을 유지하고, 컨덕턴스는 시료마다 다르지만 재현 가능해지며, 양자 잡음은 투과 통계를 드러낸다. 주요 도구는 **란다우어–뷔티커** 수송, **아하라노프–봄** 간섭, **약한 국소화/반국소화**, **보편적 컨덕턴스 요동**이다. 실험(양자 점접촉, 고리, 나노선)과 바로 적용할 수 있는 공식을 함께 살펴본다.
+
+---
+
+### 10.12.1 란다우어: 투과로 보는 컨덕턴스
+
+낮은 온도와 작은 바이어스에서 위상이 결맞은 두 단자 도체의 전류는 투과율 $\{T_{n}\}$를 가진 독립적인 양자 채널들이 운반한다.
+
+$$
+G = \frac{2e^{2}}{h}\sum_{n} T_{n}
+$$
+
+인자 2는 스핀 축퇴도이다(제이만 효과/스핀–궤도 결합으로 해소됨). 탄도 극한의 **양자 점접촉(QPC)**에서는 횡방향 모드가 하나씩 열리므로 $T_{n}\approx 1$이고
+
+$$
+G \approx N\,\frac{2e^{2}}{h}
+$$
+
+게이트 전압에 따라 **양자화된 컨덕턴스 계단**이 나타난다.
+
+**다단자(뷔티커) 관점.** 접촉 $\alpha,\beta$과 투과 확률 $T_{\alpha\beta}$가 있으면 선형 응답은
+
+$$
+I_{\alpha} = \frac{2e^{2}}{h}\sum_{\beta}\left( T_{\beta\alpha} V_{\alpha} - T_{\alpha\beta} V_{\beta} \right)
+$$
+
+이다. 이 식은 전류 보존을 만족시키고 접촉 기하를 자동으로 포함한다.
+
+---
+
+### 10.12.2 아하라노프–봄(AB) 효과와 위상 기억
+
+고리에서 두 경로는 자기선속 $\Phi$를 둘러싼다. 파동함수에는 $\Phi_{0}=h/e$인 상대 위상 $2\pi \Phi/\Phi_{0}$가 붙는다. 결과는 다음과 같다.
+
+- 컨덕턴스에 $h/e$ 주기의 **AB 진동**이 나타난다.  
+- 시간 반전 관계에 있는 고리 경로 쌍에서 **$h/2e$**의 **알트슐러–아로노프–스피바크(AAS)** 진동이 생긴다.
+
+간섭무늬의 가시도는 탈위상(전자–전자, 전자–포논, 외부 잡음)이 정하는 **위상 결맞음 길이** $L_{\phi}$에 따라 감소한다. 대략 길이 $L$의 간섭 고리를 따라 신호는 $\exp(-L/L_{\phi})$처럼 변한다.
+
+---
+
+### 10.12.3 산탄 잡음: 그 속의 계수 통계
+
+$T\to 0$에서도 전하가 이산적이므로 전류는 요동한다. 위상이 결맞은 도체에서는
+
+$$
+S_{I}(0) = 2 e V \frac{2e^{2}}{h}\sum_{n} T_{n}(1-T_{n})
+$$
+
+이며, $S_{I}(0)$는 영진동수 잡음 스펙트럼 밀도이고 $V$는 바이어스이다. **파노 인자**를 다음과 같이 정의한다.
+
+$$
+F \equiv \frac{S_{I}(0)}{2 e I} = \frac{\sum_{n} T_{n}(1-T_{n})}{\sum_{n} T_{n}}
+$$
+
+주요 경우: 탄도 평탄부 $T_{n}\approx 1$ ⇒ $F\approx 0$(잡음 억제), **확산 나노선** ⇒ $F=1/3$, 터널 접합 $T_{n}\ll 1$ ⇒ 푸아송형 $F\approx 1$.
+
+---
+
+### 10.12.4 약한 국소화(WL)와 반국소화(WAL)
+
+시간 반전 관계에 있는 확산 경로들의 양자 간섭은 후방 산란을 강화한다.
+
+- 시간 반전 대칭이 보존되고 스핀–궤도 결합이 약하면 **WL**이 나타난다. $B=0$에 **음의 자기 컨덕턴스 골**이 생긴다(양자 보정으로 컨덕턴스가 감소함).
+- 스핀–궤도 결합이 강하거나 $\pi$ 베리 위상이 있으면 **WAL**이 나타난다. **양의** 뾰족점이 생긴다(반국소화).
+
+2차원에서 $B=0$ 근처의 자기 컨덕턴스는 히카미–라킨–나가오카형 보정을 따른다(개략적 형태).
+
+$$
+\Delta \sigma(B) \sim \frac{e^{2}}{2\pi^{2}\hbar} \left[ f\!\left(\frac{B_{\phi}}{B}\right) - f\!\left(\frac{B_{\phi}+B_{\mathrm{so}}}{B}\right) - \cdots \right]
+$$
+
+여기서 $B_{\phi}\propto 1/L_{\phi}^{2}$이며, $B_{\mathrm{so}}$는 스핀–궤도 결합을 나타낸다. 스핀–궤도 결합이 없는 2차원에서 $B=0$ 보정은 다음과 같이 변한다.
+
+$$
+\Delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+평균 자유 행로는 $\ell$이다(반국소화에서는 부호가 뒤집힘).
+
+---
+
+### 10.12.5 보편적 컨덕턴스 요동(UCF)
+
+메조스코픽 컨덕턴스 $G(B)$ 또는 $G(V_{g})$에는 시료 고유의 간섭 때문에 **비주기적이지만 재현 가능한** 요동이 나타난다. 그 **분산**은 **보편적**이며(물질의 구체적 특성에 무관), 크기 차수는
+
+$$
+\mathrm{var}(G) \sim \left(\frac{e^{2}}{h}\right)^{2} \times \frac{1}{\beta}
+$$
+
+이다. 여기서 $\beta=1,2,4$는 직교(시간 반전 대칭), 유니터리(시간 반전 대칭 깨짐), 심플렉틱(강한 스핀–궤도 결합) 대칭 분류를 나타낸다. 정확한 계수는 차원과 종횡비에 달려 있지만 크기 차수는 고정되어 있으므로 ‘보편적’이라고 한다.
+
+---
+
+### 10.12.6 탈위상과 에너지 완화
+
+비탄성 과정 때문에 위상 결맞음이 사라진다.
+
+- **전자–전자** 산란(낮은 $T$에서 지배적): 흔히 $1/\tau_{\phi}\propto T^{p}$이며, $p$는 차원에 달려 있다(1차원에서는 선형보다 느리고, 확산적 2차원에서는 거의 선형).  
+- 더 높은 $T$에서의 **전자–포논** 산란: 보통 $q>2$인 $1/\tau_{\phi}\propto T^{q}$이다.  
+- **자기 불순물**: 스핀 뒤집힘은 결맞음을 파괴하며, $T$의 변화에 곤도 물리가 나타날 수 있다.
+
+WL/WAL 자기 컨덕턴스 또는 둘레 길이에 따른 AB 진폭 감쇠를 맞추어 $L_{\phi}=\sqrt{D\tau_{\phi}}$를 구하라.
+
+---
+
+### 10.12.7 접촉 저항과 4탐침 해결법
+
+란다우어 관점은 **완벽한** 1차원 도선에도 접촉으로 제한되는 저항
+
+$$
+R_{\mathrm{Q}} = \frac{h}{2e^{2}} \approx 12.9\ \mathrm{k}\Omega
+$$
+
+이 점유된 스핀 축퇴 채널마다 존재함을 일깨운다. 다단자 기하(홀 막대, 4탐침)는 접촉/계면 효과를 소자의 고유 투과 특성과 분리한다.
+
+---
+
+### 10.12.8 무작위 행렬의 보편성
+
+완전히 혼돈적이거나 강한 무질서를 갖지만 위상이 결맞은 공동(‘양자점’)의 투과 고유값 통계는 **위그너–다이슨 앙상블**을 따른다.
+
+- **GOE(β=1)**: 시간 반전 대칭이 있고 스핀–궤도 결합이 없음  
+- **GUE(β=2)**: 시간 반전 대칭이 깨짐  
+- **GSE(β=4)**: 강한 스핀–궤도 결합, 시간 반전 대칭 보존
+
+이는 $G$, **산탄 잡음**(예: 혼돈 공동의 $F=1/4$), 준위 간격(위그너 추정식)의 분포를 결정한다. 자기장과 스핀–궤도 결합 세기로 대칭 분류 사이의 전환을 조절할 수 있다.
+
+---
+
+### 10.12.9 메조스코픽 초전도: 나노 규모의 안드레예프 효과
+
+깨끗한 정상 금속–초전도체(NS) 계면에서 간극 아래의 수송은 **안드레예프 반사**로 일어난다. 전자가 정공으로 되돌아 반사되면서 응축체에 쿠퍼 쌍 하나를 더한다. 그 결과는 다음과 같다.
+
+- 완전히 투명한 NS 점접촉에서는 낮은 바이어스의 컨덕턴스가 **두 배**가 된다(BTK 극한).  
+- 짧은 SNS 접합의 **다중 안드레예프 반사(MAR)**는 $eV=2\Delta/n$에 부조화 간극 구조를 만든다.  
+- 근접 효과로 초전도성이 유도되고 스핀–궤도 결합과 제이만 장이 있는 나노선에서는, 매개변수를 조절하면 안드레예프 속박 상태가 **마요라나형** 영모드로 변할 수 있다(위상적 초전도 간단 소개).
+
+---
+
+### 10.12.10 메조스코픽에서 앤더슨으로: 척도 이론의 연결
+
+무질서가 강해지거나 차원이 낮아지면 간섭 보정(WL/WAL, UCF)이 커진다. 낮은 차원에서는
+
+- **1·2차원**: 직교 분류(스핀–궤도 결합도 자기장도 없음)의 비상호작용 전자는 $T=0$에서 아무리 약한 무질서에도 국소화된다.  
+- **3차원**: 임계 무질서에서 진정한 **금속–절연체 전이**가 일어날 수 있다.
+
+**무차원 컨덕턴스** $g \equiv G/(e^{2}/h)$는 척도 흐름 $d\ln g/d\ln L = \beta(g)$를 따른다. $\beta(g)$의 **부호**가 금속인지 절연체인지를 결정한다. §10.13에서 **앤더슨 국소화**와 척도 이론을 자세히 다룬다.
+
+---
+
+### 10.12.11 간단한 풀이 예제
+
+**(a) 란다우어 기초**  
+게이트가 열리면서 양자 점접촉에 $G=(2,4,6)\times e^{2}/h$의 평탄부가 나타난다. 점유 모드 수와 평탄부 사이의 기울어진 전이 구간에서 평균 $T_{n}$를 추정하라.
+
+**(b) 산탄 잡음의 세 가지 경우**  
+(i) $T\ll 1$인 터널 접합, (ii) 평탄부에 있는 탄도 양자 점접촉, (iii) 확산 도선의 $F$를 계산하라. $G$가 비슷해도 $F$로 구별할 수 있는 이유를 설명하라.
+
+**(c) AB와 AAS 비교**  
+둘레 $L$의 고리에서 진폭 $A_{1}\propto e^{-L/L_{\phi}}$인 $h/e$ 진동과, 더 약한 $h/2e$ 고조파 $A_{2}$가 나타난다. $A_{2}$가 $e^{-2L/L_{\phi}}$처럼 감쇠하는 이유를 논하라.
+
+**(d) WL 맞춤**  
+$B=0$에 날카로운 뾰족점이 있고 상부 게이트를 추가하면(스핀–궤도 결합 강화) 곡률이 반전되는 2차원 자기 컨덕턴스 곡선이 주어졌다. $L_{\phi}$와 $L_{\mathrm{so}}$의 경향을 정성적으로 맞추어라.
+
+**(e) UCF 척도 법칙**  
+$k_{B}T$가 사울리스 에너지 $E_{T}=\hbar D/L^{2}$를 넘을 때, 에너지 구간 $k_{B}T$에 걸친 열적 평균이 분산 $\mathrm{var}(G)$를 어떻게 줄이는지 보여라.
+
+**(f) 접촉 저항**  
+길이 $L\ll \ell$인 탄도 단일 모드 나노선에서 $R\approx R_{\mathrm{Q}}$가 측정된다. 4탐침 측정을 위해 **전압** 탐침 한 쌍을 추가하면 내부 저항이 거의 0으로 나오지만, 2탐침에서는 여전히 $\sim R_{\mathrm{Q}}$가 측정되는 이유를 설명하라.
+
+---
+
+### 10.12.12 흔한 함정
+
+- **접촉 누락**: 란다우어 컨덕턴스에는 접촉 저항이 포함된다. 유한한 2탐침 $R$를 ‘완벽한 도선’ 탓으로 돌리지 말라.  
+- **앙상블 요동과 시료 잡음의 혼동**: UCF는 무작위 깜빡임이 아니라 $B$ 또는 $V_{g}$에 대한 **재현 가능한** 지문이다. $B$ 구간에서 평균하여 그 위의 WL을 드러내라.  
+- **WL 부호 혼동**: WAL에는 강한 스핀–궤도 결합이나 $\pi$ 베리 위상(예: 위상적 표면)이 필요하다. 그렇지 않으면 WL을 예상하라.  
+- **파노 인자가 항상 $=1$라고 가정하기**: 푸아송형 산탄 잡음은 터널링에서만 나타난다. 탄도 및 확산 소자는 예측 가능한 방식으로 잡음을 억제한다.  
+- **위상 완화와 에너지 완화**: 탈위상은 에너지를 반드시 평형화하지 않고도 간섭을 없앤다. $\tau_{\phi}$를 에너지 완화 시간과 같다고 보지 말라.  
+- **HLN 과적합**: 2차원 WL/WAL 공식의 매개변수들은 서로 상관되어 있다. 과도하게 정밀한 수치보다 경향($L_{\phi}$, $L_{\mathrm{so}}$)을 신중하게 보고하라.
+
+---
+
+## 10.13 앤더슨 국소화와 척도 이론
+
+무질서를 강하게 하면 간섭은 더 이상 작은 효과가 아니다. 파동함수가 **국소화**되고 직류 수송이 사라지며 컨덕턴스가 지수적으로 작아진다. 이것이 **앤더슨 국소화**이다. 무질서와 간섭이 고유상태를 가두는 단일 입자 양자 상이다. 이 절에서는 앤더슨 모형, 척도 이론과 $\beta$ 함수, 3차원의 이동도 경계와 임계성, 대칭 분류의 차이(직교/유니터리/심플렉틱), 유한 크기와 다중 프랙털, 실험적 특징(가변 거리 홉핑, 쿨롱 간극, WL/WAL 자기장 응답), 빠른 계산법(전달 행렬, 사울리스 수, 비선형 시그마 모형 간단 소개)을 구성한다. 끝으로 다체 국소화를 짧게 살펴본다.
+
+---
+
+### 10.13.1 최소 모형
+
+격자 위의 강결합 **앤더슨 해밀토니안**은
+
+$$
+H = \sum_{i} \epsilon_{i}\,|i\rangle\langle i| + \sum_{\langle ij\rangle} t_{ij}\,|i\rangle\langle j|
+$$
+
+이며, 무작위 격자점 에너지 $\epsilon_{i}$는 폭 $W$의 분포(예: 상자 분포 $[-W/2,W/2]$)에서 뽑고, 단거리 홉핑은 $t_{ij}=t$이다. $W$와 밴드 폭 $W_{\mathrm{band}}\sim zt$가 경쟁한다.
+
+**직관적 기준.** 탄성 평균 자유 행로 $\ell$가 **이오페–레겔** 한계 $k_{F}\ell \sim 1$까지 줄어들면, 파동은 평균 자유 행로를 이동하는 동안에도 위상 결맞음을 유지할 수 없을 만큼 뒤섞인다. 이제 간섭이 지배한다.
+
+---
+
+### 10.13.2 확산에서 국소화로: 척도 가설
+
+크기 $L$인 초입방 시료의 **무차원 컨덕턴스** $g$를 정의하자.
+
+$$
+g(L) \equiv \frac{G(L)}{e^{2}/h} \sim h\,\nu(E_{F})\, D\, L^{d-2} \sim \frac{E_{T}}{\Delta}
+$$
+
+상태 밀도는 $\nu$, 확산 상수는 $D$, 사울리스 에너지는 $E_{T}=\hbar D/L^{2}$, 준위 간격은 $\Delta\sim [\nu L^{d}]^{-1}$이다. **단일 매개변수 척도** 가설(에이브러햄스–앤더슨–리차르델로–라마크리슈난)에 따르면
+
+$$
+\beta(g) \equiv \frac{d\ln g}{d\ln L}
+$$
+
+는 $g$와 대칭 분류에만 의존한다. 결과는 다음과 같다.
+
+- **$d=1$과 2(직교 분류)**: 모든 $g$에서 $\beta(g)<0$이다. 따라서 $T=0$에서 진정한 금속 고정점은 없다. 아무리 약한 무질서도 국소화를 일으킨다(2차원에서는 로그적으로 느리다).  
+- **$d=3$**: $\beta(g)$가 $g^{\ast}$에서 0을 지나므로 **금속–절연체 전이(MIT)**가 일어난다. 상관/국소화 길이
+
+$$
+\xi \sim |W-W_{c}|^{-\nu}
+$$
+
+는 임계 무질서 $W_{c}$에서 발산하며, 금속 쪽에서는 $g(L\!\gg\!\ell)\sim (L/\ell)^{d-2}$이다.
+
+대칭의 변화(유니터리/심플렉틱)는 $\beta$를 수정하며 2차원의 결론도 바꿀 수 있다(§10.13.6 참조).
+
+---
+
+### 10.13.3 이동도 경계와 3차원 임계성
+
+3차원에서 고유상태는 밴드 중심 근처에서 **확장**되어 있고 꼬리 부분에서 **국소화**될 수 있다. 둘을 구분하는 에너지가 **이동도 경계** $E_{c}(W)$이다. 무질서를 조절하면 $E_{c}$가 이동한다. $W=W_{c}$에서 $E_{c}$가 $E_{F}$에 도달하면 직류 수송이 사라진다.
+
+임계 거동(직교 분류, 비상호작용)은 다음과 같다.
+
+- **국소화 길이** $\xi\sim |W-W_{c}|^{-\nu}$와 보편적인 $\nu$  
+- 금속 쪽의 **전도도 척도 법칙**
+
+$$
+\sigma \sim \frac{e^{2}}{h}\, \xi^{2-d}\, \mathcal F\!\left(\frac{L}{\xi},\frac{L_{\phi}}{\xi}\right)
+$$
+
+$T=0$과 $L\to\infty$에서는 $\sigma \propto (W_{c}-W)^{\mu}$이며, 지수 $\mu$는 척도 법칙으로 $\nu$와 연결된다.
+
+---
+
+### 10.13.4 양자 보정: WL/WAL과 $\ln T$ 변화
+
+**확산** 영역($k_{F}\ell\gg 1$)에서는 시간 반전 관계에 있는 경로들의 간섭으로 **약한 국소화(WL)** 보정이 생긴다. 2차원 직교 분류에서 영자기장 보정은 다음과 같이 변한다.
+
+$$
+\delta \sigma(0) \sim -\frac{e^{2}}{\pi h}\,\ln\!\left(\frac{L_{\phi}}{\ell}\right)
+$$
+
+수직 자기장은 시간 반전 대칭을 깨고 WL을 **억제**하여, $B=0$ 부근에 **음의 자기저항 뾰족점**을 만든다(히카미–라킨–나가오카 선 모양). 스핀–궤도 결합이 강하면(심플렉틱 분류) 부호가 뒤집혀 **약한 반국소화(WAL)**가 된다.
+
+**상호작용**은 $\ln T$의 경향과 터널링 상태 밀도의 영바이어스 이상을 갖는 알트슐러–아로노프 보정을 더한다. WL과 AA가 함께 2차원 금속에서 관측되는 $\sigma(T)=\sigma_{0}+a\ln T$를 만드는 경우가 많다.
+
+---
+
+### 10.13.5 절연체 쪽: 홉핑과 쿨롱 간극
+
+상태가 길이 $\xi$로 국소화되면 직류 수송은 포논의 도움을 받는 **가변 거리 홉핑(VRH)**으로 이루어진다.
+
+- **모트 VRH**(장거리 쿨롱 간극 없음):
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{0}}{T}\right)^{\frac{1}{d+1}}\right]
+$$
+
+- **에프로스–시클로프스키 VRH**(쿨롱 상호작용이 상태 밀도에 연성 간극을 만듦):
+
+$$
+\rho(T) \sim \exp\!\left[\left(\frac{T_{1}}{T}\right)^{1/2}\right]
+$$
+
+가변 거리 홉핑에서는 자기장 응답이 크고 양수일 수 있다(파동함수 수축과 홉핑 경로의 간섭).
+
+---
+
+### 10.13.6 대칭 분류와 2차원의 변화
+
+2차원의 결과가 모두 같지는 않다. 전역 대칭에 달려 있다.
+
+- **직교(시간 반전 대칭, 스핀–궤도 결합 없음)**: $T=0$에서 모든 상태가 국소화되고, $\sigma$가 로그적으로 감소한다.  
+- **유니터리($B$가 시간 반전 대칭을 깸)**: 쿠퍼론이 억제된다. 2차원에서는 결국 국소화되지만, $\beta$의 음의 크기는 더 작다.  
+- **심플렉틱(강한 스핀–궤도 결합, 시간 반전 대칭 보존)**: **WAL**은 큰 $g$에서 $\beta(g)>0$를 만들며, 무질서나 운반자 밀도로 조절하는 진정한 **2차원 금속–절연체 전이**를 허용한다.
+
+다른 분류(카이랄, 보골류보프–드젠)에는 특수한 경우가 더 있다. 유니터리 분류 A 자체에서도 정수 **양자 홀** 평탄부 사이에는 국소화된 홀 평탄부를 연결하는 위상적 전이가 나타난다.
+
+---
+
+### 10.13.7 유한 크기 척도와 전달 행렬 방법
+
+수치적으로는 전달 행렬을 이용하여 폭 $M$인 넓은 막대의 **준1차원 국소화 길이** $\lambda_{M}(W)$를 계산한 뒤, 다음 곡선들을 중첩하여 $\nu$와 $W_{c}$를 구한다.
+
+$$
+\frac{\lambda_{M}}{M} = \mathcal F\!\left[(W-W_{c})\,M^{1/\nu}\right]
+$$
+
+서로 다른 $M$의 곡선은 $W_{c}$에서 교차하며 기울기로부터 $\nu$를 얻는다. 비상호작용 보편성 분류를 다루는 핵심 방법이다.
+
+---
+
+### 10.13.8 이동도 경계에서의 다중 프랙털
+
+임계 파동함수는 평면파도 지수적으로 국소화된 함수도 아니며 **다중 프랙털**이다. 진폭의 모멘트는 다음과 같이 변한다.
+
+$$
+P_{q} \equiv \sum_{i} |\psi(i)|^{2q} \sim L^{-D_{q}(q-1)}
+$$
+
+일반화 차원 $D_{q}$은 비자명한 스펙트럼을 이룬다(단순한 기하학적 차원 $d$가 아님). 다중 프랙털성은 참여율, 국소 상태 밀도 요동, 임계 컨덕턴스 분포에 나타난다.
+
+---
+
+### 10.13.9 장 이론 간단 소개: 비선형 시그마 모형
+
+도표적 방법과 무질서 평균으로 확산 모드(디퓨손/쿠퍼론)에 대한 **비선형 시그마 모형**을 얻는다. 결합 상수는 $g$를 추적한다. 재규격화는 $\beta(g)$, WL/WAL의 부호, 상호작용 보정(핀켈슈타인 확장)을 재현한다. 이는 척도 법칙과 보편성의 해석적 토대이다.
+
+---
+
+### 10.13.10 광학 수송과 교류 수송
+
+금속 쪽의 광학 전도도에는 무질서로 폭 $1/\tau$가 넓어진 드루데 봉우리가 있다. 임계점에 접근하면 드루데 가중치가 사라진다. 비상호작용 앤더슨 절연체에서 낮은 진동수의 교류 전도도는 거듭제곱 법칙으로 증가한다(모트 교류 홉핑). 상호작용과 쿨롱 간극은 지수를 바꾼다. 따라서 유한 진동수 측정으로 직류가 측정할 수 없을 만큼 작을 때도 $\xi$와 홉핑 척도를 알아낼 수 있다.
+
+---
+
+### 10.13.11 다체 국소화(MBL): 상호작용계에서 이어지는 이야기
+
+외부 환경(배스)과의 결합 **없이** 상호작용을 추가하면 유한한 에너지 밀도에서도 국소화가 지속될 수 있다.
+
+- **창발적인 국소 운동 적분(LIOM)**과 높은 들뜬 고유상태의 면적 법칙 얽힘  
+- 급랭 후 **로그적 얽힘 증가**  
+- **직류 수송의 부재**와 고유상태 열평형화의 실패
+
+다체 국소화에는 고립이 필요하다. 포논이나 리드는 결국 비국소화를 일으킨다. 그래도 차가운 원자와 메조스코픽 회로에서 나타나는 ‘다체 버전의 앤더슨’이라는 놀라운 상이다.
+
+---
+
+### 10.13.12 간단한 풀이 예제
+
+**(a) 사울리스 수**  
+비틀린 경계 조건에서 준위 에너지의 민감도(사울리스)를 평균 준위 간격과 비교하여 $g\simeq E_{T}/\Delta$를 보여라.
+
+**(b) 2차원 WL 기울기**  
+하나의 독립적인 스핀 채널에서 쿠퍼론 고리 적분으로 출발하여 2차원의 $\delta \sigma(0)=-(e^{2}/\pi h)\ln(L_{\phi}/\ell)$를 유도하고, 수직 $B$가 $L_{B}=\sqrt{\hbar/(2eB)}$를 통해 로그 발산을 잘라내는 이유를 설명하라.
+
+**(c) VRH 지수**  
+$d$차원에서 일정한 상태 밀도로부터 홉핑 거리와 에너지를 최적화하여 모트 VRH 지수 $1/(d+1)$를 구하라. 이어 쿨롱 간극 $g(E)\propto |E-E_{F}|^{d-1}$를 포함하여 에프로스–시클로프스키 $1/2$ 법칙을 구하라.
+
+**(d) 전달 행렬 곡선의 교차**  
+폭 $M=8,12,16$에 대해 $W$에 따른 $\lambda_{M}/M$를 그리고, $W_{c}$의 단일 교차점을 표시하라. 기울기 비로 $\nu$를 구하는 방법을 설명하라.
+
+**(e) 다중 프랙털 모멘트**  
+$L^{d}$ 격자 위의 고유상태 진폭이 주어졌을 때 $P_{2}$를 계산하고, 여러 크기에 대한 로그–로그 맞춤으로 유효 프랙털 차원 $D_{2}$를 구하라.
+
+**(f) 대칭 변화**  
+강한 스핀–궤도 결합을 추가하면 쿠퍼론 기여의 부호가 바뀌어 WAL이 나타나는 과정과, 작은 $B$가 시간 반전 대칭을 깨서 간섭 보정을 억제하는 이유를 정성적으로 논하라.
+
+---
+
+### 10.13.13 흔한 함정
+
+- **‘2차원은 무조건 모두 국소화된다.’** 강한 스핀–궤도 결합이 없는 직교 분류에서만 그렇다. 심플렉틱 2차원에서는 진정한 금속–절연체 전이가 가능하며, 양자 홀 효과는 위상적 임계성을 더한다.  
+- **가변 거리 홉핑과 활성화 간극의 혼동.** VRH 지수는 **비아레니우스형**이다. $T^{-\alpha}$에 대한 $(\ln \rho)$의 기울기로 차원과 쿨롱 간극 효과를 확인하라.  
+- **$k_{F}\ell\sim 1$를 전이와 동일시하기.** 이는 확산 물리의 경험적 경계이며 정확한 $W_{c}$가 아니다.  
+- **2차원에서 상호작용 무시.** 알트슐러–아로노프 항은 흔히 WL만큼 크다. 게이트로 조절한 스핀–궤도 결합에 따라 $\ln T$의 기울기가 뒤집힌다면, 상호작용의 부호 변화가 아니라 WAL이다.  
+- **유한 시료의 과도한 해석.** $L\ll \xi$이면 $\rho(L)$의 증가만으로 절연체임을 증명할 수 없다. 유한 크기 척도 분석을 하라.  
+- **다체 국소화는 앤더슨 국소화와 다르다.** 다체 국소화는 상호작용하는 높은 들뜬 상태의 현상이다. 앤더슨 국소화는 단일 입자 또는 비상호작용 고유상태의 성질이며 $T=0$에만 국한되지 않는다.
+
+---
+
+### 10.13.14 핵심 연습 문제
+
+- 드루데 확산에서 시작하여 2차원의 첫 양자 간섭 차수까지 $g(L)$와 $\beta$ 함수를 구성하라. 큰 $g$에서 직교 분류는 음수이고 심플렉틱 분류는 양수인 이유를 보여라.  
+- 히카미–라킨–나가오카 공식으로 $B=0$ 근처의 자기 컨덕턴스 $\Delta \sigma(B)$를 계산하고, 모의 데이터에서 $L_{\phi}$를 구하라.  
+- 합성 $\rho(T)$를 모트 VRH와 에프로스–시클로프스키 VRH에 각각 맞추어 쿨롱 간극의 존재 여부를 판정하라.  
+- 3차원 앤더슨 모형의 전달 행렬 코드를 구현하여 $\lambda_{M}/M$의 교차를 구하고, 데이터 중첩으로 $\nu$를 추정하라.  
+- $W\approx W_{c}$에서 $q=2,3$에 대해 $P_{q}$를 계산하고, 크기에 따른 다중 프랙털 척도 법칙을 확인하라.  
+- $D=\sigma/(e^{2}\nu)$와 $\Delta^{-1}=\nu L^{d}$를 대입하여 $g\sim E_{T}/\Delta$가 $g\sim \sigma L^{d-2}/(e^{2}/h)$로 환원됨을 보여라.
+
+---
+
+## 10.14 모아레 양자 물질과 2차원 물질
+
+원자 두께의 결정을 조금 비틀어 쌓으면 밴드 구조가 만화경처럼 변한다. **판데르발스(vdW) 이종구조**에서는 기하(비틀림), 정전기적 조건(이중 게이트), 대칭(정렬, 변형)을 비디오게임처럼 자유롭게 조절할 수 있다. 그 결과 **평평한 밴드**, **상관 절연체**, **비전통적 초전도**, **양자 변칙 홀 효과**, **모아레 엑시톤**이 나타난다. 모두 칩 위에서 재구성할 수 있도록 설계된 초격자 안에 존재한다.
+
+---
+
+### 10.14.1 왜 2차원이고, 왜 모아레인가
+
+- **2차원 결정**(그래핀, hBN, MoS$_2$·WSe$_2$ 같은 전이 금속 디칼코게나이드(TMD))은 박리하고, 쌓고, 회전시키고, 전극을 연결할 수 있다.
+- 층 사이의 약한 **판데르발스** 결합은 복잡한 계면 화학 반응 없이 임의의 이종구조를 만들 수 있게 한다.
+- 층 사이의 작은 **비틀림 각** $\theta$는 다음 주기를 가진 장파장 **모아레 초격자**를 만든다.
+
+$$
+L_{m} = \frac{a}{2\sin(\theta/2)}
+$$
+
+여기서 $a$는 단층의 격자 상수이다. $\theta \sim 1^{\circ}$이면 $L_{m}$는 수십 나노미터로, $a$에 비해 매우 크다. 따라서 운동량 공간이 미니 브릴루앙 영역으로 접히고 밴드가 평평해진다.
+
+---
+
+### 10.14.2 연속체 관점과 ‘마법의’ 평평한 밴드
+
+비틀린 이중층 그래핀(tBLG)의 **비스트리처–맥도널드** 연속체 모형은 두 층의 디랙 원뿔을 층간 터널링 $w$와 상대 회전 $\theta$로 결합한다. 다음을 정의하자.
+
+$$
+k_{\theta} = 2 k_{D} \sin(\theta/2),\qquad k_{D} = \frac{4\pi}{3a}
+$$
+
+그리고 무차원 결합은
+
+$$
+\alpha = \frac{w}{\hbar v_{F} k_{\theta}}
+$$
+
+**마법각**(첫 번째는 $\theta \approx 1.1^{\circ}$ 부근)에서는 $\alpha$가 디랙 속도를 거의 0으로 낮춘다. 밴드 폭 $W$는 수 meV로 줄어든다. 상호작용 $U$의 크기도 비슷해져 상관이 지배한다.
+
+상호작용 척도를 간단히 어림잡으면
+
+$$
+U \sim \frac{e^{2}}{4\pi \varepsilon_{0} \varepsilon_{r} L_{m}}
+$$
+
+이며, 작은 $\theta$에서 쉽게 10–50 meV 정도가 된다. 즉 $U/W \gg 1$이다.
+
+---
+
+### 10.14.3 모아레 허바드 모형과 위그너 물리
+
+모아레 퍼텐셜은 바니에 함수의 **유효 격자**를 정한다.
+
+- **tBLG**: 취약한 위상 때문에 엄밀하게 국소적인 강결합 모형이 복잡해진다. 그러나 저에너지 물리는 흔히 전하 중성점 근처에서 골짜기별로 분해한 천 밴드에 사영된다.
+- **TMD 이종 이중층**(예: 작은 비틀림을 가진 WSe$_2$/WS$_2$): 잘 국소화된 모아레 **삼각** 또는 **벌집** 격자를 이룬다. 비틀림/외부장으로 $t$를 조절할 수 있는 제대로 된 **허바드 모형**이다.
+
+낮은 충전율과 큰 $r_{s}$에서는 운동 에너지가 밀려나고 **위그너 결정**이나 일반화된 전하 질서가 나타날 수 있다. 경쟁하는 질서(모트, 전하 밀도파, 스핀/골짜기 편극)는 게이트와 변위장으로 조절한다.
+
+---
+
+### 10.14.4 모아레의 위상: 골짜기, 베리 곡률, 천 수
+
+TMD 단층에는 **골짜기에 따라 반대인 베리 곡률**이 있다. 적층과 모아레 접기를 이용하면 순 자기장 없이도 **천 밴드**를 설계할 수 있다. 골짜기별 홀 응답은
+
+$$
+\sigma_{xy}^{v} = -\frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K)} + \frac{e^{2}}{h} \sum_{n \in \text{occ}} C_{n}^{(K')}
+$$
+
+양쪽 골짜기가 똑같이 채워지면 시간 반전 대칭에 따라 총 천 수는 $C_{\text{tot}}=0$이어야 한다. 그러나 **자발적 골짜기 편극**은 그 균형을 깨뜨려, $B$가 0일 때도 **양자 변칙 홀 효과**를 만든다.
+
+반전 중심이 없는 적층 구조의 **베리 곡률 쌍극자**는 $E$의 2차 항에서 **비선형 홀** 신호를 만든다.
+
+---
+
+### 10.14.5 깨진 대칭: 상관 절연체, 초전도, 양자 변칙 홀 효과, 네마틱 질서
+
+이중 게이트로 모아레 단위격자당 운반자 밀도 $\nu$를 조절하면 다양한 상도가 펼쳐진다.
+
+- 정수 $\nu$에서 **상관 절연체**가 나타난다(모트형 또는 내부 자유도가 편극된 밴드 절연체).
+- 상관 상태에 약간 도핑하면 **비전통적 초전도**가 나타난다. **변위장**과 **쿨롱 차폐**에 대한 민감도는 일부 플랫폼에서 전자적 기구로 쌍이 형성됨을 시사한다.
+- 단일 골짜기 천 밴드가 교환 상호작용으로 편극되면 **양자 변칙 홀 효과(QAHE)**가 나타난다.
+- **네마틱성**: 수송과 STM에서 회전 대칭의 깨짐이 드러난다. 흔히 변형이나 상호작용에 의한 포메란추크형 불안정성과 연결된다.
+
+상태 밀도 $N(0)$를 갖는 평평한 밴드에서 쌍 형성을 위한 최소 유효 상호작용은
+
+$$
+k_{B}T_{c} \sim W\, \exp\!\left(-\frac{1}{\lambda_{\text{eff}}}\right),\qquad \lambda_{\text{eff}} \equiv V_{\text{eff}} N(0)
+$$
+
+좁은 $W$는 상태 밀도를 높여 적당한 $V_{\text{eff}}$만으로도 결합을 강화할 수 있지만, 동시에 $T_{c}$의 앞 계수도 줄인다. 약한 결합 추정만으로 높은 전이 온도가 보장되지는 않는다. 자세한 결과는 골짜기/스핀 구조와 형태 인자에 달려 있다.
+
+---
+
+### 10.14.6 TMD 엑시톤, 층간 엑시톤, 모아레 폴라리톤
+
+TMD 단층에는 약해진 차폐와 2차원 운동학 덕분에 강하게 결합된 **엑시톤**(수백 meV)이 존재한다. 서로 다른 TMD 두 개를 쌓으면 **제2형** 밴드 정렬이 생기고, 전자와 정공이 서로 다른 층에 있는 **층간 엑시톤**이 형성된다.
+
+- 긴 수명(ns–$\mu$s), 큰 **전기 쌍극자**, 면외 전기장의 공간 기울기에 따른 표류를 갖는다.
+- 비틀림이 있으면 모아레 퍼텐셜은 **엑시톤 미니밴드**와 **포획된 배열**(‘엑시톤 격자’)을 만든다.
+
+국소 유전 상수와 $1/r$ 쿨롱 퍼텐셜을 갖는 엄밀한 2차원 엑시톤의 수소형 바닥상태 결합 에너지 추정은 다음과 같다.
+
+$$
+E_{X} \approx \frac{\mu^{\ast}}{m_{e}} \frac{1}{\varepsilon_{r}^{2}} \times 54.4\ \mathrm{eV}
+$$
+
+실제 수치에는 **켈디시** 차폐 모형이 필요하지만, $\mu^{\ast}$와 $\varepsilon_{r}$에 따른 척도 관계가 핵심이다.
+
+엑시톤을 공동에 결합하면 조절 가능한 분산 관계와 상호작용을 갖는 **모아레 엑시톤–폴라리톤**을 얻는다.
+
+---
+
+### 10.14.7 스핀–골짜기 잠금과 밸리트로닉스
+
+TMD 단층에서는 스핀–궤도 결합이 스핀을 골짜기에 고정한다. **원편광**은 $K$와 $K'$를 선택적으로 여기하여 **골짜기 편극**을 가능하게 한다. 이중층에서 반전 대칭이 깨지거나 변위장을 인가하면, $B$ 없이도 $\boldsymbol E$에 수직인 **골짜기 홀** 전류를 조절할 수 있다. 유한한 베리 곡률 쌍극자 $\boldsymbol D$에서 **비선형 홀 효과**가 생긴다.
+
+$$
+\boldsymbol J^{(2\omega)} \propto \frac{e^{3}\tau}{\hbar^{2}(1+i\omega\tau)}\, [\hat{\boldsymbol z}\times\boldsymbol E(\omega)]\,[\boldsymbol D\cdot\boldsymbol E(\omega)]
+$$
+
+이는 자기장이 0일 때 2차 고조파 홀 전압으로 측정할 수 있다.
+
+---
+
+### 10.14.8 실험 조절 변수와 측정법
+
+- **조절 변수**: 비틀림 $\theta$, **변위장** $D$(이중 게이트), 모아레 단위격자당 운반자 밀도 $\nu$, **유전 환경**(hBN 두께, 가까운 금속 게이트), **변형**.
+- **수송**: $\nu$에 따른 종방향/홀 비저항, $B$ 아래의 란다우 부채꼴 도표, 모아레 페르미 표면 포켓을 읽어 내는 양자 진동.
+- **STM/STS**: 상태 밀도의 직접 측정, 간극 지도, 모아레 무늬와 국소 질서의 시각화.
+- **광학**: 엑시톤을 보는 광발광/반사율, 골짜기를 보는 원형 이색성, 동역학을 보는 펌프–탐침.
+- **정전용량/압축률**: 열역학적 상태 밀도와 대칭 깨짐(스핀/골짜기 편극 평탄부).
+- **자기 측정**: 양자 변칙 홀 평탄부, 천 밴드의 궤도 자화, 탐침 끝의 SQUID를 이용한 가장자리 모드 영상화.
+
+---
+
+### 10.14.9 최소 모형 구성법
+
+- 그래핀 계열에는 **연속체 디랙 모형과 주기적 터널링**을 결합한다. 몇 개의 매개변수 $(v_{F}, w_{0/1}, \theta)$로 평평한 밴드와 위상을 포착한다.
+- 삼각/벌집 격자 위 TMD 이중층에는 격자점 내 $U$, 최근접 이웃 $V$, 스핀–궤도 결합에서 비롯될 수 있는 훈트/이징 비등방성을 포함한 **모아레 허바드** 모형을 쓴다.
+- 내부 자유도의 대칭 깨짐에는 **하트리–포크**, 상관과 유한한 $T$의 스펙트럼에는 **DMFT/정확 대각화(ED)**, 천 수 추적에는 **베리 위상과 윌슨 고리**(§10.11 참조)를 쓴다.
+
+---
+
+### 10.14.10 간단한 풀이 예제
+
+**(a) 모아레 길이 척도**  
+그래핀에서 $a=0.246\ \mathrm{nm}$와 $\theta=1.1^{\circ}$라 하자. $L_{m}=a/[2\sin(\theta/2)]$를 계산하고, $\varepsilon_{r}=5$에 대한 $U \sim e^{2}/(4\pi \varepsilon_{0}\varepsilon_{r} L_{m})$를 추정하라.
+
+**(b) 마법각 매개변수**  
+$v_{F}=1.0\times 10^{6}\ \mathrm{m/s}$와 $w=110\ \mathrm{meV}$를 이용하여 $\theta=1.1^{\circ}$에서 $\alpha=w/(\hbar v_{F} k_{\theta})$를 계산하고, 밴드의 평평함에 대해 논하라.
+
+**(c) 삼각 격자 허바드 모형**  
+TMD 모아레에서 $t=2\ \mathrm{meV}$, $U=20\ \mathrm{meV}$라고 가정하자. $W\approx 9|t|$를 이용하여 $U/W$를 추정하고, 반충전에서 모트 절연체와 금속 중 무엇이 되는지 논하라.
+
+**(d) 골짜기 홀 효과의 부호**  
+$C=1$인 단일 골짜기 천 밴드가 완전히 편극되어 있으면, $B$가 0일 때 $e^{2}/h$ 단위의 $\sigma_{xy}$는 얼마인가? 서로 반대의 $C$를 가진 양쪽 골짜기가 채워진 경우와 비교하라.
+
+**(e) 층간 엑시톤 쌍극자**  
+층간 간격 $d=0.7\ \mathrm{nm}$에 대해 쌍극자 모멘트 $p=ed$와 $E=0.1\ \mathrm{V/nm}$에서의 슈타르크 이동 $\Delta E = -pE$를 추정하라.
+
+**(f) 비선형 홀 효과 추정**  
+베리 곡률 쌍극자 $|D|=0.1\ \text{\AA}$와 완화 시간 $\tau=0.1\ \mathrm{ps}$가 주어졌을 때, $E(\omega)=1\ \mathrm{kV/cm}$ 아래에서 2차 고조파 홀 전류의 크기 차수를 추정하라(척도 관계로 답해도 된다).
+
+---
+
+### 10.14.11 흔한 함정
+
+- **‘평평한 밴드는 마법각에서만 생긴다.’** 많은 모아레 플랫폼(TMD, hBN 위 그래핀)은 정확한 마법각 조절 없이도 좁은 밴드를 갖는다. 변위장과 유전 차폐는 밴드 폭을 크게 바꾼다.
+- **내부 자유도 무시**: 스핀, 골짜기, 층은 여러 ‘종류’의 자유도를 제공한다. 대칭이 깨지는 물리는 흔히 하나 또는 그 조합을 선택한다. 내부 자유도를 너무 일찍 축약하는 모형은 실제 질서를 놓친다.
+- **위상을 놓치기**: 골짜기 사이에서 총 천 수가 상쇄될 수 있다. 그래도 내부 자유도의 점유가 불균형하면 **골짜기** 홀 효과와 **궤도 자화**가 나타난다.
+- **바니에 함수 구성의 함정**: tBLG의 취약한 위상은 부분공간을 넓히지 않는 한 엄밀하게 국소적인 바니에 기저를 방해한다. 지나치게 작은 강결합 모형을 억지로 적용하지 말라.
+- **평균장 과적합**: 하트리–포크는 질서 형성을 선호한다. 열역학, 압축률, 무질서에 대한 견고성과 교차 검증하라.
+- **엑시톤 수소형 모형의 남용**: 2차원 차폐는 비국소적이다(켈디시). 수소형 추정은 척도를 알려 주는 지침이지 최종 수치가 아니다.
+
+---
+

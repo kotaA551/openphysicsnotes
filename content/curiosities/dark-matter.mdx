@@ -1,0 +1,131 @@
+---
+description: "How rotation, lensing and the early universe reveal dark matter: worked calculations, particle models, experimental limits and open questions."
+---
+
+## 1. Observational Evidence
+
+Dark matter is a proposed gravitating component that neither emits nor absorbs enough light to account for its inferred mass. The motivation is quantitative: the gravity needed to explain motions, lensing and cosmic structure exceeds that attributable to stars, gas and other ordinary matter. These are measurements of different phenomena, interpreted using dynamical and gravitational models. They are not a laboratory identification of a new particle.
+
+“Dark” does not mean black, antimatter, or dark energy. Ordinary cold gas can also be hard to see; identifying nonbaryonic dark matter requires more than finding an optically faint object. A viable explanation must fit several independent observations with compatible parameters.
+
+### Rotation Curves
+
+Spectral Doppler shifts give line-of-sight velocities of stars and gas. Correcting for a galaxy's inclination estimates its rotation curve. For a circular orbit in a Newtonian, approximately spherical mass distribution, gravity supplies centripetal acceleration:
+
+$$
+\frac{v_c^2}{r}=\frac{GM(<r)}{r^2},\qquad M(<r)=\frac{rv_c^2}{G}.
+$$
+
+Here $M(<r)$ includes **all** mass within $r$, not just stars. Outside a compact mass distribution, the enclosed mass approaches a constant and $v_c\propto r^{-1/2}$. A nearly constant speed instead implies $M(<r)\propto r$. Differentiating the spherical enclosed mass then gives
+
+$$
+\rho(r)=\frac{1}{4\pi r^2}\frac{dM}{dr}\simeq\frac{v_c^2}{4\pi G r^2}.
+$$
+
+This is a local inference over the observed flat region, not a halo profile valid to infinity: a perpetual $r^{-2}$ profile would have infinite mass. Real galaxies contain flattened discs, and their gravitational contribution must be calculated with disc geometry. Stellar mass-to-light ratios, gas, distance, inclination and noncircular motions all enter a serious fit. The [SPARC data paper](https://arxiv.org/abs/1606.09251) shows how photometry and gas rotation measurements are combined into mass models.
+
+**Worked example.** For an idealized spherical galaxy with $v_c=200\,\mathrm{km\,s^{-1}}$ at $r=20\,\mathrm{kpc}$, use $G=4.30\times10^{-6}\,\mathrm{kpc}\,(\mathrm{km\,s^{-1}})^2M_\odot^{-1}$. Then $M(<r)\simeq1.86\times10^{11}M_\odot$. If independently estimated baryons inside that radius total $6\times10^{10}M_\odot$, the model requires about $1.26\times10^{11}M_\odot$ of additional mass. The arithmetic illustrates the inference; these numbers are not a fit to a named galaxy.
+
+![Two normalized plots compare constant outer orbital speed and rising enclosed mass with a declining speed and constant enclosed mass.](/images/diagrams/dark-matter-deep-rotation.svg)
+
+*Figure 1. Beyond a reference radius, the solid blue curves have $v/v_0=1$ and $M/M_0=r/r_0$; dashed orange curves have $v/v_0=(r/r_0)^{-1/2}$ and $M/M_0=1$. The link between the two panels assumes spherical symmetry. Schematic curves, not observations.*
+
+**Clusters and lensing.** Random galaxy velocities in a relaxed cluster provide another dynamical mass estimate. The virial relation $2K+U\simeq0$ gives the scaling $M\sim R\sigma_v^2/G$, with a geometry-dependent coefficient. A merging cluster may not be in equilibrium, so applying that estimate blindly is unsafe. Lensing instead uses distortions of background images. In the weak-field, thin-lens approximation of general relativity, a spherical lens deflects light by
+
+$$
+\alpha(b)=\frac{4G M_{\mathrm{2D}}(<b)}{c^2b}.
+$$
+
+$b$ is the impact parameter and $M_{\mathrm{2D}}$ is projected mass inside a cylinder, not the three-dimensional mass in the rotation formula. Lensing does not require the lens to shine or be in dynamical equilibrium; it does require a gravity model and assumptions about geometry and source distances.
+
+The Bullet Cluster adds a separation experiment: colliding hot gas, which contains most of its observed baryonic mass, slows down, while galaxies largely pass through. The reconstructed lensing mass peaks lie nearer the galaxies than the gas. This strongly supports an additional, relatively collisionless mass component. It does not identify WIMPs, prove exactly zero self-interaction, or settle every conceivable gravity theory. See the [original lensing analysis](https://arxiv.org/abs/astro-ph/0608407).
+
+![Two schematic cluster snapshots show gas separating from galaxy positions and lensing mass contours after a collision.](/images/diagrams/dark-matter-deep-merger.svg)
+
+*Figure 2. Left: before passage, orange gas clouds, black galaxy points and blue lensing-mass contours overlap. Right: gas remains nearer the centre while galaxy points and mass contours move apart. Arrows indicate motion. This is a conceptual diagram, not a reconstructed Bullet Cluster image; contour size does not encode a measured mass.*
+
+## 2. Cosmological Parameters
+
+The density parameter is $\Omega_i=\rho_i/\rho_{\mathrm{crit}}$, where $\rho_{\mathrm{crit}}=3H_0^2/(8\pi G)$. It compares today's mean density with a reference density set by the expansion rate. In $\Omega_i h^2$, $h=H_0/(100\,\mathrm{km\,s^{-1}\,Mpc^{-1}})$ is dimensionless; it is not Planck's constant.
+
+Under the spatially flat six-parameter $\Lambda$CDM model, [Planck's final parameter analysis](https://arxiv.org/abs/1807.06209) gives $\Omega_c h^2=0.120\pm0.001$, $\Omega_b h^2=0.0224\pm0.0001$ and $h\simeq0.674$ (quoted errors are 68% intervals). Thus $\Omega_c\simeq0.264$, $\Omega_b\simeq0.049$, and $\Omega_c/\Omega_b\simeq5.36$. Roughly 84% of the combined cold-dark-matter-plus-baryon density is cold dark matter. These are model-based inferences, not percentages obtained by counting visible objects; the small neutrino contribution is separate.
+
+Why can the cosmic microwave background distinguish the components? Before recombination, photons and baryons formed a coupled fluid: pressure resisted gravitational compression and produced acoustic oscillations. Baryons add inertia to that fluid, whereas collisionless dark matter can supply gravitational potentials without sharing its photon pressure. Changing their abundances affects peak heights and the evolution of potentials differently. Fitting the full temperature, polarization and lensing spectra constrains both, rather than merely measuring one total gravitational mass.
+
+**A useful counterfactual.** Replace the inferred dark matter with extra baryons while keeping the total matter density fixed. Gravity is not the only thing that changes: the acoustic fluid becomes more heavily loaded and primordial nuclear reactions see a different baryon density. The replacement therefore cannot generally preserve the same observations. After recombination, baryons fall into existing potential wells; matter free streaming too rapidly would erase small-scale seeds. “Cold” describes a small primordial velocity dispersion on relevant structure scales, not a measured temperature of a laboratory sample. Galaxies and lensing test the later growth, with uncertainties from feedback and how luminous objects trace mass. [Cooke, Pettini & Steidel (2018)](https://arxiv.org/abs/1710.11129).
+
+## 3. Candidate Particles
+
+The evidence above constrains abundance, clustering and interactions. It leaves many microscopic possibilities: one particle species, several species, a coherent field, or some compact objects. A candidate must survive long enough, be produced in the right amount, and satisfy cosmological and laboratory constraints.
+
+### (a) WIMPs (Weakly Interacting Massive Particles)
+
+A thermal relic once exchanged particles efficiently with the hot plasma. As the universe cooled below its mass, the equilibrium number density fell. Expansion eventually outpaced annihilation, leaving a relic. For a simple self-conjugate species with number density $n$,
+
+$$
+\dot n+3Hn=-\langle\sigma v\rangle(n^2-n_{\mathrm{eq}}^2).
+$$
+
+The $3Hn$ term represents dilution; the right side is the net loss to annihilation, including the reverse process through $n_{\mathrm{eq}}$. Freeze-out occurs around $n\langle\sigma v\rangle\sim H$, not when interactions abruptly cease. With radiation domination, conserved entropy and predominantly velocity-independent annihilation, a useful scaling is
+
+$$
+\Omega_\chi h^2\sim0.12\frac{2.2\times10^{-26}\,\mathrm{cm^3\,s^{-1}}}{\langle\sigma v\rangle}.
+$$
+
+More efficient annihilation leaves fewer particles. The coefficient depends on mass and thermal history; resonances, coannihilation and velocity dependence require a fuller calculation. The [relic-abundance calculation](https://arxiv.org/abs/1204.3622) quantifies that dependence. The “WIMP miracle” is a motivation, not a prediction that the weak force or a particular GeV–TeV mass must be correct.
+
+### (b) Axions
+
+The [Peccei–Quinn mechanism](https://doi.org/10.1103/PhysRevLett.38.1440) addresses why strong interactions exhibit so little CP violation. Its axion field can also store cosmic energy. A field initially displaced from its potential minimum begins oscillating when expansion slows sufficiently; oscillations in an approximately quadratic potential behave, on average, like pressureless matter. Very low particle mass can therefore coexist with cold behaviour: production and momentum matter, not mass alone.
+
+One possible interaction, up to sign convention, is
+
+$$
+\mathcal L_{a\gamma\gamma}=g_{a\gamma\gamma}a\,\mathbf E\cdot\mathbf B.
+$$
+
+In a static magnetic field an axion can convert into a photon. A resonant cavity searches a narrow frequency band with $h_{\mathrm P}\nu\simeq m_ac^2$; $h_{\mathrm P}$ denotes Planck's constant. A $4\,\mu\mathrm{eV}$ rest energy corresponds to about $0.97\,\mathrm{GHz}$. [ADMX's experiment](https://arxiv.org/abs/1804.05750) illustrates this method. No universal axion mass interval follows from dark matter alone, and generic axion-like particles need not solve the strong CP problem.
+
+### (c) Sterile Neutrinos
+
+These hypothetical neutral fermions lack the ordinary weak interaction, though mixing can connect them to active neutrinos. A keV-scale mass can yield warm dark matter in suitable production scenarios. The momentum distribution determines how much small-scale structure is suppressed; mass alone is insufficient. Mixing also permits radiative decay, making X-ray spectra a test. The [original production proposal](https://arxiv.org/abs/hep-ph/9303287) is a model, not evidence for an observed sterile species.
+
+### (d) Other proposals
+
+Self-interacting dark matter exchanges momentum within the dark component, potentially changing halo centres while remaining weakly coupled to ordinary matter. The [original proposal](https://arxiv.org/abs/astro-ph/9909386) motivates comparing dwarf galaxies and cluster collisions. Velocity-dependent interactions can affect those systems differently. Ultralight fields introduce wave effects; primordial black holes would be compact gravitational objects rather than new elementary particles. Each needs a specified abundance and mass distribution: constraints on one range do not eliminate every version or establish another candidate.
+
+## 4. Detection Strategies
+
+**Direct detection** looks for energy transferred to a nucleus or electron. For a single target isotope, the recoil spectrum per detector mass is schematically
+
+$$
+\frac{dR}{dE_R}=\frac{\rho_\chi}{m_\chi m_N}\int_{v\geq v_{\min}}d^3v\,f(\mathbf v)\,v\,\frac{d\sigma_{\chi N}}{dE_R}.
+$$
+
+Here $\rho_\chi/m_\chi$ is local number density, $f$ is the normalized velocity distribution in the detector frame, $m_N$ the target-nucleus mass and $E_R$ the recoil energy. Efficiencies, thresholds and backgrounds must be folded in. For elastic scattering, $E_R^{\max}=2\mu_{\chi N}^2v^2/m_N$, where $\mu_{\chi N}=m_\chi m_N/(m_\chi+m_N)$ (use $c=1$). Light particles transfer little energy to a heavy nucleus, explaining the importance of low thresholds and electron-sensitive targets.
+
+An exclusion curve means “these masses and couplings predict too many events under these assumptions.” It does not show that all dark matter is absent. For a concrete historical benchmark, [LZ's 4.2 tonne-year analysis](https://arxiv.org/abs/2410.17036) excluded spin-independent WIMP–nucleon cross sections above $2.2\times10^{-48}\,\mathrm{cm^2}$ at $40\,\mathrm{GeV}/c^2$ at 90% confidence within its model. That scattering cross section is not the annihilation quantity $\langle\sigma v\rangle$ in the freeze-out equation.
+
+**Indirect detection** searches photons, neutrinos or charged particles from annihilation or decay. Annihilation intensity scales with a line-of-sight integral of $\rho_\chi^2$; decay with $\rho_\chi$. Density profiles and ordinary astrophysical sources matter. [Fermi-LAT's dwarf-galaxy analysis](https://arxiv.org/abs/1503.02641) illustrates how a nondetection constrains specified final states rather than every particle model.
+
+**Colliders** test invisible production through missing transverse momentum balanced by visible particles. Neutrinos and detector effects also produce missing momentum. Even a new invisible particle would need additional evidence for cosmological longevity and abundance before being identified as the dark matter. Axion resonators, nuclear recoils and collider events probe different couplings; agreement between them would be especially informative. [ATLAS (2021)](https://arxiv.org/abs/2102.10874).
+
+## 5. Alternatives to Dark Matter
+
+MOND asks whether the low-acceleration relation between gravity and baryons changes. In a simple spherical formulation,
+
+$$
+\mu(a/a_0)a=\frac{GM_b}{r^2},\qquad \mu(x)\to x\quad(x\ll1).
+$$
+
+In this limit, with $a=v_c^2/r$, one obtains $v_c^4=GM_ba_0$. Thus a characteristic acceleration near $10^{-10}\,\mathrm{m\,s^{-2}}$ connects an asymptotic speed to baryonic mass. The observed tight relation between baryonic and dynamical accelerations is an important empirical target for either modified gravity or galaxy formation within dark matter models; see the [original radial-acceleration study](https://arxiv.org/abs/1609.05917).
+
+This nonrelativistic formula alone specifies neither lensing nor the early universe. A competing theory needs a relativistic completion and simultaneous tests against clusters, the CMB and structure growth. Conversely, a successful large-scale dark matter fit does not automatically explain every galactic correlation. The comparison must involve complete models and their uncertainties, not only one unusually well-fitted rotation curve.
+
+## 6. Status
+
+**Research check: 13 October 2026.** Gravitational evidence for additional clustering mass is strong within the standard gravitational framework; a microscopic identity has not been established. It would now be inaccurate to describe every experimental analysis simply as a null result. [LZ's September 2026 preprint](https://arxiv.org/abs/2609.02823) reports one approximately 248 keV nuclear-recoil candidate in an extended energy search, with $2.6\sigma$ global tension with the background-only model after the look-elsewhere correction ($3.4\sigma$ maximum local significance). This is an interesting excess, not a discovery or a probability that dark matter is real. Confirmation requires more data, background scrutiny and independent consistency.
+
+Neutrino scattering is already relevant: [LZ's low-energy analysis](https://arxiv.org/abs/2512.08065) studies solar-neutrino nuclear recoils alongside light-dark-matter searches. The “neutrino floor” describes a loss of discrimination and slower sensitivity improvement in particular searches, not an absolute wall. Spectral, timing, target and directional information may help, depending on the signal model. [O’Hare (2021)](https://arxiv.org/abs/2109.03116).
+
+Open questions include whether dark matter has one component, how it was produced, whether it self-interacts, and how much apparent small-scale tension comes from gas dynamics and stellar feedback. A useful reading rule is to separate **observation** (a spectrum, velocity or image distortion), **inference** (mass given a model) and **hypothesis** (the particle or field producing it). Dark matter is not merely a name for ignorance, but neither is a precise cosmological abundance a particle discovery.

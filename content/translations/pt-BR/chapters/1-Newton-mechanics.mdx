@@ -1,0 +1,965 @@
+---
+description: "A mecânica de Newton, das três leis do movimento à gravitação: deduções, leis de conservação, órbitas e exercícios explicados."
+---
+
+## 1. O mundo antes de Newton — De Aristóteles a Galileu
+
+Antes de Newton, o movimento era uma questão de metafísica, não de matemática. A física de Aristóteles dominara a Europa por quase dois milênios:  
+
+- **A visão aristotélica de mundo**: Os objetos tinham um *lugar natural*. Uma pedra caía porque buscava a Terra; o fogo subia porque buscava os céus. O movimento exigia um *agente motor contínuo*. Se o empurrão cessasse, o movimento terminaria.  
+
+Esse modelo correspondia à intuição cotidiana, mas não resistia a uma análise rigorosa.  
+
+### O dilema aristotélico
+- Por que uma flecha continua voando depois de deixar a corda do arco?  
+- Por que os planetas não caem na Terra?  
+
+Os estudiosos medievais responderam com a “teoria do ímpeto”: uma força transmitida continuaria agindo por algum tempo antes de se dissipar. Era um passo em direção à inércia, mas ainda vinculava o movimento a “qualidades” metafísicas.  
+
+---
+
+### Entra em cena Galileu (1564–1642)
+
+Galileu Galilei abalou a ortodoxia aristotélica por meio de experimentos:  
+
+1. **O experimento do plano inclinado**  
+   Galileu fez esferas rolarem por planos inclinados para tornar mais lenta a ação da gravidade.  
+   Ele descobriu o movimento uniformemente acelerado; para a queda livre a partir do repouso, o deslocamento é:  
+
+   $$
+   s = \tfrac{1}{2} g t^2
+   $$  
+
+   em que $s$ é o deslocamento, $t$ é o tempo e $g$ é a aceleração da gravidade.  
+
+   → Em um dado local, a mesma aceleração gravitacional $g$ rege a queda livre, independentemente da massa do corpo que cai.  
+
+   > **Exercício 1.1**: Solte um martelo e uma pena no vácuo. Qual chega primeiro ao chão?  
+
+
+   > **Resposta**: Os dois chegam simultaneamente, pois a aceleração $g$ independe da massa.  
+
+
+2. **Lei da inércia (forma inicial)**  
+   Galileu observou que uma esfera rolando sobre um plano sem atrito não pararia sozinha.  
+   Se nenhuma força atuasse, sua velocidade permaneceria constante.  
+
+   $$
+   \frac{d \boldsymbol v }{dt} = 0 \quad \text{se } \boldsymbol F  = 0
+   $$  
+
+   Esse foi o embrião da primeira lei de Newton.  
+
+   > **Exercício 1.2**: Um disco desliza sobre gelo liso e perde velocidade lentamente. Que força o desacelera?  
+   > **Resposta**: O atrito com o gelo e a resistência do ar. Em uma superfície ideal sem atrito, ele nunca pararia.  
+
+---
+
+### Kepler e o enigma celeste
+
+Johannes Kepler (1571–1630) trouxe mais uma peça. Usando os dados de Tycho Brahe (1546–1601), extraiu três leis do movimento planetário:  
+
+1. Os planetas descrevem elipses com o Sol em um dos focos.  
+2. Eles varrem áreas iguais em tempos iguais.  
+3. O quadrado do período orbital é proporcional ao cubo do semieixo maior ($T^2 \propto a^3$).  
+
+Mas Kepler não tinha uma *causa*. Por que elipses? Por que $T^2 \propto a^3$? Ele descrevia os céus com elegância, mas não dispunha de um mecanismo.  
+
+---
+
+### Descartes e o sonho mecânico
+
+René Descartes (1596–1650) imaginou um universo semelhante a um relógio, preenchido por vórtices de matéria sutil que impulsionavam os planetas. Era poético, mas não verificável. Ainda assim, persistia o sonho de explicar o cosmos mecanicamente.  
+
+---
+
+### Um mundo à espera de Newton
+
+Assim, em meados do século XVII:  
+- Galileu fornecera leis do movimento terrestre.  
+- Kepler fornecera leis planetárias.  
+- Descartes fornecera uma filosofia mecanicista.  
+
+Mas ninguém as unificara.  
+Foi nesse cenário que Isaac Newton nasceu, em 1642, o ano da morte de Galileu.  
+
+---
+
+## 2. A origem das leis
+
+Newton não inventou a física, mas a organizou em um sistema. Assimilou a inércia de Galileu, as harmonias de Kepler e a mecânica de Descartes. Em 1687, publicou *Philosophiæ Naturalis Principia Mathematica* — os *Principia*.  
+
+Nessa obra, apresentou as três leis do movimento e a lei da gravitação universal.  
+
+Pela primeira vez, os movimentos terrestres e celestes eram regidos pelos mesmos princípios. Maçãs e luas obedeciam à mesma lei.  
+
+Ainda hoje, nos apoiamos nessa unificação.  
+
+
+
+## 3. A primeira lei – Inércia e isolamento
+
+A primeira lei do movimento de Newton aprofundou a ideia de inércia de Galileu:
+
+> “Todo corpo permanece em seu estado de repouso ou de movimento uniforme em linha reta, a menos que forças aplicadas a ele o obriguem a mudar esse estado.”
+
+### Formulação matemática
+
+Se nenhuma força resultante atua sobre um corpo:
+
+$$
+\frac{d \boldsymbol v }{dt} = 0 \quad \Rightarrow \quad \boldsymbol v  = \text{constante}
+$$
+
+De forma equivalente, em termos da posição:
+
+$$
+\boldsymbol r(t)  = \boldsymbol r_{0}  + \boldsymbol v_{0} t 
+$$
+
+Assim, um referencial inercial é aquele em que as leis de Newton valem e os objetos mantêm sua velocidade na ausência de forças.  
+
+### Demonstração pelo plano inclinado de Galileu
+Considere uma esfera que rola descendo uma rampa, atravessa uma superfície horizontal e sobe outra rampa:
+- Com atrito, ela sobe menos.  
+- Com menos atrito, sobe mais.  
+- No limite de atrito nulo, atingiria a mesma altura — ou, em uma superfície perfeitamente horizontal, continuaria para sempre.  
+
+Esse experimento mostra que o movimento uniforme não exige uma causa contínua.
+
+---
+
+### Exemplo 3.1 – Deslizamento no gelo
+**Problema**: Um disco de hóquei é lançado sobre gelo sem atrito com velocidade $v_0$. Que distância percorre em 10 s?  
+**Solução**: Como $a = 0$, a velocidade é constante:  
+$$x = v_0 t$$  
+Se $v_0 = 5 \,\text{m/s}$, após $t=10\,\text{s}$ ele percorreu $50 \,\text{m}$.  
+
+---
+
+## 4. A segunda lei – Força e genialidade
+
+A segunda lei de Newton fornece o vínculo causal:
+
+> “A variação do movimento é proporcional à força motora aplicada e ocorre na direção da reta ao longo da qual essa força atua.”
+
+Matematicamente:
+
+$$
+\boldsymbol F = m \boldsymbol a = m \frac{d^2 \boldsymbol r}{dt^2}
+$$
+
+$$
+\boldsymbol a = \frac{d \boldsymbol v}{dt} = \frac{d^2 \boldsymbol r}{dt^2}
+$$
+
+Essa única relação torna o universo calculável.
+
+### Dedução a partir da lagrangiana
+Considere a lagrangiana $L = T - V = \tfrac{1}{2} m \dot{\boldsymbol r}^2 - V(\boldsymbol r)$. 
+
+A lagrangiana é definida como a diferença entre a energia cinética $T$ e a energia potencial $V$.
+
+A equação de Euler–Lagrange:
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\boldsymbol r}}\right) - \frac{\partial L}{\partial \boldsymbol r} = 0
+$$
+
+fornece  
+
+$$
+m \ddot{\boldsymbol r} + \nabla V = 0 \quad \Rightarrow \quad m \ddot{\boldsymbol r} = \boldsymbol F
+$$
+
+Assim, a relação de Newton $F = ma$ surge naturalmente dos princípios variacionais.
+
+---
+
+### Simetria de translação temporal → Conservação da energia
+Se $L$ não depende explicitamente do tempo, a energia $E$, definida por
+
+$$
+E = \dot{\boldsymbol r} \cdot \frac{\partial L}{\partial \dot{\boldsymbol r}} - L
+$$
+
+é conservada.
+
+Para uma partícula:
+
+$$
+E = \tfrac{1}{2} m v^2 + V(\boldsymbol r) = \text{constante}
+$$
+
+Portanto, **simetria temporal = conservação da energia**.
+
+## Demonstração
+
+A partir da definição,
+
+$$
+E = \dot{q}_i \frac{\partial L}{\partial \dot{q}_i} - L,
+$$
+
+sua derivada temporal é
+
+$$
+\frac{dE}{dt} = \ddot{q}_i \frac{\partial L}{\partial \dot{q}_i}
++ \dot{q}_i \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)
+- \frac{dL}{dt}.
+$$
+
+Usando a equação de Euler–Lagrange
+
+$$
+\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right) 
+= \frac{\partial L}{\partial q_i},
+$$
+
+obtemos
+
+$$
+\frac{dE}{dt} = -\frac{\partial L}{\partial t}.
+$$
+
+Portanto, se $L$ não depende explicitamente do tempo,
+
+$$
+\frac{\partial L}{\partial t} = 0 \quad \Rightarrow \quad \frac{dE}{dt} = 0,
+$$
+
+e, assim, $E$ é conservada.
+
+Esse é um exemplo direto do **teorema de Noether**:  
+a simetria de translação temporal corresponde à conservação da energia.
+
+---
+
+### Exemplo 4.1 – Bloco em um plano inclinado
+
+![O peso atua verticalmente para baixo; a força normal é perpendicular à rampa. A componente tangencial do peso é mg sen theta.](/images/diagrams/inclined-plane.svg)
+
+**Problema**: Um bloco de massa $m$ desliza por um plano sem atrito inclinado de um ângulo $\theta$. Determine sua aceleração $a$.  
+
+
+**Solução**:  
+Força ao longo da rampa: $F = mg \sin\theta$  
+Segunda lei de Newton: $F = ma$  
+Logo, $a = g \sin\theta$.  
+
+
+Se $\theta = 30^\circ$, então $a = 4.9 \,\text{m/s}^2$.  
+
+---
+
+### Exemplo 4.2 – Pêndulo simples (ângulos pequenos)
+
+
+Considere um pêndulo simples formado por uma massa pontual $m$ presa a uma haste rígida e sem massa (ou a um fio) de comprimento $\ell$. O pivô não tem atrito, e o ângulo em relação à vertical é indicado por $\theta(t)$.
+
+![Um pêndulo está deslocado de um ângulo theta. A tração aponta para o pivô e o peso aponta para baixo.](/images/diagrams/pendulum.svg)
+
+A massa se move em um arco circular de raio $\ell$. Sua aceleração tangencial é
+
+$$
+a_{\text{tan}} = \ell \ddot{\theta},
+$$
+
+e o módulo de sua aceleração radial (centrípeta) é
+
+$$
+a_{\text{rad}} = \ell \dot{\theta}^{2}.
+$$
+
+Duas forças atuam sobre a massa:
+
+- A **tração** $T$ ao longo da haste.
+- A **força gravitacional** $mg$ verticalmente para baixo.
+
+A componente tangencial da força gravitacional é
+
+$$
+F_{\text{tan}} = -mg \sin\theta,
+$$
+
+em que o sinal negativo indica que a gravidade tende a restaurar o pêndulo à posição $\theta=0$.
+
+Aplicando a segunda lei de Newton na direção tangencial,
+
+$$
+m a_{\text{tan}} = \sum F_{\text{tan}},
+$$
+
+encontramos
+
+$$
+m(\ell \ddot{\theta}) = -mg \sin\theta.
+$$
+
+Simplificando,
+
+$$
+\ddot{\theta} + \frac{g}{\ell} \sin\theta = 0.
+$$
+
+Essa é a **equação de movimento não linear exata** de um pêndulo simples.
+
+Para pequenos deslocamentos angulares $|\theta|\ll 1$ (em radianos), podemos usar
+
+$$
+\sin\theta \approx \theta.
+$$
+
+A equação então se torna
+
+$$
+\boxed{ \ddot{\theta} + \frac{g}{\ell}\,\theta = 0 }.
+$$
+
+Essa é a conhecida **equação do oscilador harmônico simples**, com frequência angular
+
+$$
+\omega_0 = \sqrt{\tfrac{g}{\ell}}, \quad
+T = \frac{2\pi}{\omega_0} = 2\pi\sqrt{\tfrac{\ell}{g}}.
+$$
+
+- **Método do torque:**  
+  Em relação ao pivô, o torque da gravidade é
+
+  $$
+  \tau = -mg\ell \sin\theta,
+  $$
+
+  e, com momento de inércia $I=m\ell^2$,  
+
+  $$
+  I\ddot{\theta} = \tau \quad\Rightarrow\quad \ddot{\theta} + \frac{g}{\ell}\sin\theta=0.
+  $$
+
+- **Método lagrangiano:**  
+
+  $$
+  T = \tfrac{1}{2}m\ell^2\dot{\theta}^2, 
+  \quad V = mg\ell(1-\cos\theta),
+  $$
+
+  $$
+  L = T - V.
+  $$
+
+  A aplicação da equação de Euler–Lagrange fornece o mesmo resultado.
+
+Como
+
+$$
+\sin\theta = \theta - \tfrac{\theta^3}{6} + \cdots,
+$$
+
+o erro relativo é $\sim \theta^2/6$:
+
+- Para $\theta = 10^\circ \approx 0.17$ rad → erro $\approx 0.5\%$.
+- Para $\theta = 20^\circ \approx 0.35$ rad → erro $\approx 2\%$.
+
+Assim, a equação para pequenos ângulos é precisa para oscilações moderadas.
+
+
+Equação de movimento:  
+
+$$
+\ddot{\theta} + \frac{g}{l}\theta = 0
+$$
+
+Solução:  
+
+$$
+\theta(t) = \theta_0 \cos\!\left(\sqrt{\tfrac{g}{l}}\,t\right)
+$$  
+
+Período:  
+
+$$
+T = 2\pi \sqrt{\tfrac{l}{g}}
+$$  
+
+---
+
+## 5. A terceira lei – Simetria e oposição
+
+A **terceira lei** de Newton introduz a reciprocidade:
+
+> “A toda ação se opõe sempre uma reação de igual intensidade.”
+
+Matematicamente:
+
+$$
+\boldsymbol F_{12} = - \boldsymbol F_{21}
+$$
+
+### Demonstração → Conservação do momento linear
+Para um sistema de duas partículas:
+
+$$
+m_1 \ddot{\boldsymbol r}_1 = \boldsymbol F_{12}, \quad m_2 \ddot{\boldsymbol r}_2 = \boldsymbol F_{21}
+$$
+
+Somando:
+
+$$
+m_1 \ddot{\boldsymbol r}_1 + m_2 \ddot{\boldsymbol r}_2 = \boldsymbol F_{12} + \boldsymbol F_{21} = 0
+$$
+
+Portanto:
+
+$$
+\frac{d}{dt}(m_1 \dot{\boldsymbol r}_1 + m_2 \dot{\boldsymbol r}_2) = 0
+$$
+
+Assim, o **momento linear total $\boldsymbol P$ = $(m_1 \boldsymbol v_{1} + m_2 \boldsymbol v_{2})$ é conservado**.  
+Esse é o fundamento matemático das colisões e do recuo.
+
+---
+
+### Simetria de translação espacial → Conservação do momento linear
+Se a lagrangiana é invariante sob $\mathbf r \to \boldsymbol r + \epsilon$, então:
+
+$$
+\boldsymbol P = \frac{\partial L}{\partial \dot{\boldsymbol r}} = m \boldsymbol v
+$$
+
+é conservado.
+
+### Exemplo 5.1 – Colisão elástica
+**Problema**: Duas massas $m_1, m_2$ colidem elasticamente em uma dimensão. As velocidades iniciais são $v_1, v_2$. Determine $v_1', v_2'$.  
+
+**Solução**:  
+Momento linear:  
+
+$$
+m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'
+$$  
+
+Energia:  
+
+$$
+\tfrac{1}{2} m_1 v_1^2 + \tfrac{1}{2} m_2 v_2^2 = \tfrac{1}{2} m_1 (v_1')^2 + \tfrac{1}{2} m_2 (v_2')^2
+$$  
+
+Resolvendo:  
+
+$$
+v_1' = \frac{(m_1 - m_2)v_1 + 2 m_2 v_2}{m_1 + m_2}, \quad  
+v_2' = \frac{(m_2 - m_1)v_2 + 2 m_1 v_1}{m_1 + m_2}
+$$
+
+
+### Exemplo 5.2 – A equação do foguete (Tsiolkovski)
+
+Considere um foguete de massa instantânea $M(t)$ movendo-se com velocidade $v(t)$ no espaço livre (sem forças externas).  
+Durante um pequeno intervalo $dt$, o foguete expele uma massa $|dM|$ para trás com velocidade de exaustão $u$ em relação ao foguete.
+
+#### 1 Conservação do momento linear
+A variação do momento linear do foguete é
+
+$$
+dP_{\text{rocket}} = M\,dv + v\,dM.
+$$
+
+O combustível expelido tem velocidade $(v - u)$ no referencial inercial, de modo que seu momento linear é
+
+$$
+dP_{\text{exhaust}} = -(dM)(v - u).
+$$
+
+Aqui, $dM<0$, pois o foguete perde massa.  
+A conservação do momento linear total fornece
+
+$$
+M\,dv + v\,dM - (dM)(v - u) = 0,
+$$
+
+o que se simplifica para
+
+$$
+M\,dv = -u\,dM.
+$$
+
+#### 2 Forma diferencial
+Dividindo por $dt$,
+
+$$
+M \frac{dv}{dt} = -u \frac{dM}{dt}.
+$$
+
+#### 3 Integração
+Reescrevendo,
+
+$$
+dv = -u \frac{dM}{M}.
+$$
+
+Integrando de $(M_0,v_0)$ até $(M,v)$,
+
+$$
+\int_{v_0}^{v} dv' = -u \int_{M_0}^{M} \frac{dM'}{M'},
+$$
+
+o que fornece
+
+$$
+v - v_0 = u \ln\!\left(\frac{M_0}{M}\right).
+$$
+
+Assim, a equação geral do foguete é
+
+$$
+\boxed{\,v(t) = v_0 + u \ln\!\left(\tfrac{M_0}{M(t)}\right)\,}.
+$$
+
+#### 4 Observações sobre a interpretação
+- A forma simplificada
+
+  $$
+  v = u \ln\!\left(\tfrac{M_0}{M}\right)
+  $$
+
+  pressupõe $v_0=0$ (o foguete parte do repouso).
+- $u$ é a **velocidade de exaustão em relação ao foguete**. Alguns textos definem $u$ com sinal negativo (direção para trás), o que pode inverter sinais na fórmula.
+- Essa dedução pressupõe a ausência de forças externas (sem gravidade nem resistência do ar). Incluí-las modifica significativamente a equação.
+
+#### 5 Significado físico
+A equação mostra que a velocidade do foguete cresce **logaritmicamente** com a razão entre a massa inicial e a final:
+
+$$
+\frac{M_0}{M} = \text{“razão de massas”}.
+$$
+
+Uma velocidade de exaustão $u$ maior ou uma razão de massas maior leva a uma velocidade final mais alta.
+
+A equação do foguete decorre da conservação do momento linear.  
+Para um foguete de massa $M$ que expele uma massa $dm$ com velocidade $u$:  
+
+$$
+M \frac{dv}{dt} = -u \frac{dM}{dt}
+$$
+
+Integrando:  
+
+$$
+v = u \ln\!\left(\frac{M_0}{M}\right)
+$$
+
+Essa é a **equação do foguete de Tsiolkovski**.  
+
+---
+
+## 6. Por que essas leis ainda importam
+
+As três leis de Newton formam a base de todo curso de mecânica, de todo cálculo de engenharia e de toda órbita planejada por agências espaciais.  
+Mas também expressam **simetrias** profundas:
+
+- **Simetria de translação espacial → conservação do momento linear**  
+- **Simetria de rotação → conservação do momento angular**  
+- **Simetria de translação temporal → conservação da energia**  
+
+Veremos agora como elas surgem diretamente da formulação newtoniana.
+
+---
+
+## 7. Uma pergunta vinda dos céus
+
+Na década de 1670, Newton se perguntava: *O que mantém a Lua em sua órbita?*  
+Kepler havia fornecido as leis empíricas, mas não a causa. Newton percebeu que a mesma força que puxa uma maçã também governa a Lua.  
+
+Se a Lua, a uma distância $r \approx 60 R_\oplus$, cai em direção à Terra com aceleração $a = g/60^2$, então é a mesma **lei do inverso do quadrado** que atua perto da superfície.  
+
+---
+
+### Exemplo 7.1 – A aceleração da Lua
+**Problema**: Para a Terra, $g = 9.8 \,\text{m/s}^2$ e o raio é $R_\oplus = 6.4 \times 10^6 \,\text{m}$. Qual é a aceleração centrípeta da Lua a $r = 60 R_\oplus$?  
+
+**Solução**:  
+$$
+a = \frac{g}{60^2} \approx \frac{9.8}{3600} \approx 0.0027 \,\text{m/s}^2
+$$  
+
+Isso corresponde à aceleração centrípeta observada da Lua. Newton percebeu a conexão: **maçãs e luas obedecem à mesma lei**.  
+
+---
+
+## 8. A lei da gravitação universal
+
+Newton propôs:
+
+$$
+\boldsymbol F = - \frac{G m_1 m_2}{r^2} \hat r
+$$
+
+Toda massa atrai qualquer outra. Trata-se de uma força central, sempre dirigida ao longo da linha que une os corpos.
+
+---
+
+### Demonstração do teorema das cascas
+Newton demonstrou que:  
+- Uma casca esférica uniforme atrai uma partícula externa como se toda a massa estivesse concentrada em seu centro.  
+- No interior da casca, a força resultante é nula.  
+
+Isso exige cálculo e geometria, mas o resultado é profundo: no estudo do movimento orbital, os planetas podem ser tratados como massas pontuais.
+
+---
+
+### Exemplo 8.1 – Peso no monte Everest
+**Problema**: O raio da Terra é $R = 6.4 \times 10^6 \,\text{m}$ e a altura do Everest é $h = 8.8 \times 10^3 \,\text{m}$. Quanto a gravidade diminui no cume?  
+
+**Solução**:  
+$$
+g' = g \left(\frac{R}{R+h}\right)^2
+$$  
+$$
+\frac{g'}{g} \approx \left(\frac{6.4 \times 10^6}{6.4 \times 10^6 + 8.8 \times 10^3}\right)^2 \approx 0.997256
+$$  
+
+Nessa aproximação de uma Terra esférica, a gravidade é cerca de $0.274\%$ mais fraca no cume.  
+
+---
+
+## 9. Forças centrais e movimento orbital
+
+Para forças centrais:
+
+$$
+\boldsymbol L = \boldsymbol r \times m \boldsymbol v
+$$
+
+![Em uma órbita elíptica, a massa atrativa fica em um dos focos. A força aponta para o foco; a velocidade é tangente à órbita.](/images/diagrams/orbit.svg)
+
+Torque:
+
+$$
+\frac{d\boldsymbol L}{dt} = \boldsymbol r \times \boldsymbol F
+$$
+
+Mas, se $\boldsymbol F \parallel \boldsymbol r$, então $\boldsymbol r \times \boldsymbol F = 0$, de modo que:
+
+$$
+\frac{d\boldsymbol L}{dt} = 0 \quad \Rightarrow \quad \boldsymbol L = \text{const.}
+$$
+
+Assim, **simetria de rotação → conservação do momento angular**.
+
+---
+
+### Exemplo 9.1 – O sistema Terra–Sol
+**Problema**: Se a Terra estiver duas vezes mais distante do Sol, como sua velocidade deve mudar para conservar o momento angular?  
+
+**Solução**:  
+$L = mvr$ é constante, em que $v$ é a componente tangencial da velocidade. Se $r \to 2r$, então $v \to v/2$.  
+
+---
+
+## 10. O problema de Kepler revisitado
+
+Sob uma força que segue a lei do inverso do quadrado, a equação da órbita é:
+
+$$
+r(\theta) = \frac{p}{1 + e \cos \theta}
+$$
+
+em que $e$ é a excentricidade.  
+
+- $0 \leq e < 1$: elipse  
+- $e = 1$: parábola  
+- $e > 1$: hipérbole  
+
+---
+
+### Demonstração da segunda lei de Kepler
+Da conservação do momento angular:
+
+$$
+\frac{dA}{dt} = \frac{1}{2} r^2 \dot{\theta} = \frac{L}{2m} = \text{constante}
+$$
+
+Portanto, áreas iguais são varridas em tempos iguais.
+
+---
+
+### Exemplo 10.1 – Período de um satélite
+**Problema**: Um satélite orbita a Terra a uma altitude $h = R_\oplus$. Determine seu período.  
+
+**Solução**:  
+Raio orbital $a = 2R_\oplus = 1.28 \times 10^7 \,\text{m}$.  
+
+Terceira lei de Kepler:  
+$$
+T^2 = \frac{4\pi^2}{GM} a^3
+$$
+
+Com $GM = 3.986 \times 10^{14}$,  
+
+$$
+T \approx 1.44 \times 10^4 \,\text{s} \approx 4.00 \,\text{horas}
+$$  
+
+---
+
+## 11. As três leis de Kepler pelos olhos de Newton
+
+Newton deduziu as regras empíricas de Kepler:
+
+1. **Órbitas elípticas**: a partir da lei do inverso do quadrado.  
+2. **Áreas iguais em tempos iguais**: a partir da conservação do momento angular.  
+3. **Lei harmônica**:  
+
+$$
+T^2 = \frac{4\pi^2}{GM} a^3
+$$
+
+---
+
+### Exemplo 11.1 – Órbita de um cometa
+**Problema**: Um cometa em órbita parabólica ($e=1$) se aproxima do Sol. Qual é sua velocidade no periélio, à distância $r_p$?  
+
+**Solução**:  
+Para uma órbita parabólica, a energia específica é $E=0$:  
+
+$$
+\tfrac{1}{2} v^2 - \frac{GM}{r_p} = 0 \quad \Rightarrow \quad v = \sqrt{\frac{2GM}{r_p}}
+$$  
+
+Assim, cometas em órbitas parabólicas têm a velocidade de escape no periélio.  
+
+---
+## 12. O encontro com Halley
+
+Em 1684, Edmond Halley visitou Cambridge. Os astrônomos se perguntavam: *se a gravidade obedece à lei do inverso do quadrado, qual é a forma das órbitas planetárias?*  
+Halley perguntou a Newton. Newton respondeu: “Seria uma elipse.”  
+
+Essa observação casual deu origem aos **Principia**, financiados por Halley. Sem seu incentivo, a unificação das mecânicas terrestre e celeste poderia ter permanecido inédita.  
+
+### Exemplo 12.1 – Período do cometa Halley
+**Problema**: O cometa Halley tem semieixo maior $a = 17.8\,\text{AU}$. Determine seu período orbital.  
+
+**Solução**:  
+Terceira lei de Kepler (em UA e anos): $T^2 = a^3$  
+Logo, $T = \sqrt{(17.8)^3} \approx 75.1 \,\text{anos}$  
+Esse valor é próximo do período observado de cerca de 76 anos; perturbações planetárias fazem variar o intervalo entre os retornos.  
+
+---
+
+## 13. O universo como um relógio
+
+A mecânica de Newton revelou um cosmos semelhante a uma máquina: marés, eclipses e cometas previsíveis. O Iluminismo abraçou essa visão determinista de mundo.  
+
+Mas, por trás disso, estavam leis profundas de conservação — as **regras de funcionamento** do universo.  
+
+### Exemplo 13.1 – Marés
+**Problema**: Por que muitas costas apresentam duas marés altas por dia lunar?  
+**Resposta**: No modelo simplificado de maré de equilíbrio, a diferença da atração gravitacional da Lua entre pontos da Terra produz dois bojos, nos lados próximo e distante. A Terra gira através desse padrão em um dia lunar de cerca de 24 horas e 50 minutos. Costas reais podem apresentar marés semidiurnas, diurnas ou mistas, pois as bacias oceânicas, a geometria costeira e outros efeitos modificam a resposta.  
+
+---
+
+## 14. O legado da gravitação
+
+A gravitação de Newton orientou navios, calendários e, mais tarde, espaçonaves.  
+Até a relatividade de Einstein se reduz à lei de Newton nas escalas humanas.  
+
+### Exemplo 14.1 – Velocidade de escape
+**Problema**: Determine a velocidade de escape a partir da superfície da Terra.  
+
+**Solução**:  
+Conservação da energia:  
+$$
+\tfrac{1}{2} m v^2 - \frac{GMm}{R} = 0
+$$
+$$
+v = \sqrt{\frac{2GM}{R}} \approx 11.2 \,\text{km/s}
+$$  
+
+---
+
+## 15. Mecânica dos corpos rígidos
+
+A mecânica newtoniana se estende de partículas a corpos extensos.
+
+### 15.1 Rotação em torno de um eixo fixo
+
+Momento de inércia:  
+$$
+I = \sum_i m_i r_i^2
+$$  
+
+Energia cinética:  
+$$
+T = \tfrac{1}{2} I \omega^2
+$$  
+
+Momento angular:  
+$$
+L = I \omega
+$$  
+
+#### Exemplo 15.1 – Haste uniforme
+**Problema**: Uma haste uniforme de comprimento $L$ gira em torno de um eixo que passa por seu centro e é perpendicular à haste. Determine $I$.  
+
+**Solução**:  
+$$
+I = \int_{-L/2}^{L/2} x^2 \, \frac{M}{L} dx
+= \frac{M L^2}{12}
+$$  
+
+### 15.2 As equações de Euler
+
+Para a rotação geral de um corpo rígido, em componentes fixas no corpo, com $I$ sendo o tensor de inércia e a derivada temporal tomada nesse referencial:
+
+$$
+\frac{d}{dt}(I \mathbf \omega) + \mathbf \omega \times (I \mathbf \omega) = \mathbf \tau
+$$
+
+Essas equações descrevem piões, giroscópios e espaçonaves.
+
+#### Exemplo 15.2 – Giro de uma patinadora
+**Problema**: Uma patinadora recolhe os braços, reduzindo $I$ pela metade. O que acontece com $\omega$?  
+
+**Solução**:  
+O momento angular é conservado: $I \omega = \text{const.}$  
+Se $I \to I/2$, então $\omega \to 2\omega$.  
+Ela gira duas vezes mais rápido.  
+
+---
+
+## 16. Referenciais não inerciais
+
+As leis de Newton valem em referenciais inerciais. Mas, na Terra, que gira, precisamos acrescentar **forças fictícias**.
+
+### 16.1 Forças de Coriolis e centrífuga
+
+Em um referencial que gira com velocidade angular constante $\vec \Omega$, sem aceleração translacional de sua origem:  
+
+$$
+\boldsymbol a' = \boldsymbol a - 2 \boldsymbol \Omega \times \boldsymbol v' - \boldsymbol \Omega \times (\boldsymbol \Omega \times \boldsymbol r)
+$$  
+
+- $-2 \boldsymbol \Omega \times \boldsymbol v'$ = aceleração de Coriolis  
+- $-\boldsymbol \Omega \times (\boldsymbol \Omega \times \boldsymbol r)$ = aceleração centrífuga  
+
+### Exemplo 16.1 – Desvio de um corpo em queda
+**Problema**: Um corpo cai de uma altura $h$ na latitude $\phi$. Qual é seu desvio para leste devido à força de Coriolis?  
+
+**Solução (aproximada)**:  
+Tempo de queda $t = \sqrt{2h/g}$.  
+Aceleração para leste $\approx 2 \Omega \cos\phi \cdot v_z$, tomando $v_z$ positivo para baixo.  
+Deslocamento:  
+$$
+x \approx \tfrac{1}{3} \Omega \cos\phi \, g t^3
+$$  
+
+Para $h=100\,\text{m}, \phi=45^\circ$: $x \approx 2\,\text{cm}$.  
+
+### Exemplo 16.2 – Ciclones
+**Problema**: Por que os ciclones giram no sentido anti-horário no hemisfério norte?  
+
+**Resposta**: A força de Coriolis desvia o ar em movimento para a direita de sua trajetória. Em sistemas de baixa pressão, o ar que converge se curva no sentido anti-horário no norte e horário no sul.  
+
+---
+
+## 17. Newton, o ser humano
+
+Newton, o cientista, era brilhante; Newton, o homem, era complexo. Dedicou décadas não apenas à física, mas também à alquimia, à teologia e a disputas políticas.  
+Como mestre da Casa da Moeda, reformou a cunhagem inglesa e perseguiu falsificadores com precisão forense. Como presidente da Royal Society, promoveu a ciência inglesa — e, às vezes, esmagou rivais.  
+
+Ainda assim, sua mecânica transcendeu suas falhas pessoais: uma estrutura ao mesmo tempo duradoura e universal.
+
+### Exemplo 17.1 – A moeda de ouro da Casa da Moeda
+**Problema**: Se uma moeda falsa pesa 1% menos que uma verdadeira, como Newton detectaria isso com uma balança?  
+
+**Solução**: O equilíbrio estático de rotação exige torque resultante nulo, de modo que os dois torques gravitacionais se equilibram.  
+Uma diferença de massa de 1% causa um desequilíbrio mensurável quando comparada a um padrão de referência. A obsessão de Newton pela precisão fazia com que nenhum falsificador escapasse por muito tempo.  
+
+---
+
+## 18. Legado e transição
+
+Em 1727, quando Newton morreu, sua mecânica já se tornara o fundamento intelectual do Iluminismo.  
+Por 200 anos, engenheiros e astrônomos se apoiaram exclusivamente em Newton.  
+
+Mas surgiram fissuras:  
+- A precessão de Mercúrio contrariava as previsões de Newton.  
+- A luz, tratada por Newton como partículas, apresentava fenômenos ondulatórios.  
+- Átomos e elétrons exigiam regras quânticas.  
+
+### Exemplo 18.1 – A órbita de Mercúrio
+**Problema**: O periélio de Mercúrio apresenta uma precessão adicional de $43''$ por século em relação à previsão da gravitação de Newton. Por quê?  
+
+**Resposta**: A relatividade geral explica a correção: a curvatura do espaço-tempo modifica a lei de Newton em medidas de alta precisão.  
+
+### Exemplo 18.2 – Quando Newton falha
+- Em velocidades próximas à da luz → A relatividade especial substitui $F=ma$ por $F = dp/dt$, com $p=\gamma mv$.  
+- Em escalas atômicas → A mecânica quântica substitui trajetórias por funções de onda.  
+
+Ainda assim, Newton continua sendo a primeira aproximação:  
+- Para $v \ll c$ e em grandes escalas, Newton ainda é preciso o suficiente para guiar foguetes até Marte.  
+
+---
+
+## 19. Por que ainda estudamos mecânica newtoniana
+
+Apesar da relatividade e da física quântica, Newton ainda é ensinado primeiro, porque:  
+- Sua teoria é precisa nas escalas humanas.  
+- Ela fornece a gramática da física: traduzir palavras → equações → previsões.  
+- Ela revela a ligação entre simetria e leis de conservação.  
+
+### Revisão das simetrias e leis de conservação
+- Invariância por translações espaciais → conservação do momento linear  
+  $$\boldsymbol P = \sum m_i \boldsymbol v_i = \text{const.}$$  
+
+- Invariância por rotações → conservação do momento angular  
+  $$\boldsymbol L = \boldsymbol r \times m \boldsymbol v = \text{const.}$$  
+
+- Invariância por translações temporais → conservação da energia  
+  $$E = T + V = \text{const.}$$  
+
+Essas são as sementes do **teorema de Noether**, que floresceu plenamente no século XX.  
+
+### Exemplo 19.1 – Salto de bungee jump
+**Problema**: Uma pessoa de 70 kg salta presa a uma corda modelada como uma mola de constante $k=50\,\text{N/m}$ e comprimento não esticado $L=30\,\text{m}$. Determine o alongamento máximo.  
+
+**Solução**:  
+Conservação da energia:  
+$$
+mg(L+x) = \tfrac{1}{2}kx^2
+$$  
+Resolvendo a equação do segundo grau com $g=9.8\,\text{m/s}^{2}$: $x \approx 45.5\,\text{m}$.  
+Portanto, a queda máxima é $L+x \approx 75.5\,\text{m}$.  
+
+---
+
+## 20. Resumo
+
+- **Três leis do movimento**: inércia, força, reação.  
+- **Gravitação universal**: une a Terra e o céu.  
+- **Leis de conservação**: momento linear, momento angular e energia decorrem de simetrias.  
+- **Corpos rígidos e referenciais não inerciais**: ampliam as leis para a complexidade do mundo real.  
+- **Newton, o homem**: brilhante, falho, mas fundamental.  
+
+A visão de Newton não era a verdade final, mas o primeiro mapa matemático do universo.  
+Todo estudante que aprende mecânica passa a fazer parte dessa tradição.
+
+---
+
+# Epílogo
+
+Do pomar de maçãs de Woolsthorpe às espaçonaves que deixam o Sistema Solar, as equações de Newton perduram.  
+
+- Engenheiros ainda usam $F=ma$.  
+- Astrônomos ainda preveem órbitas com $T^2 \propto a^3$.  
+- Arquitetos ainda calculam cargas com a estática newtoniana.  
+
+Mesmo quando Einstein ou Schrödinger o superam, Newton nunca é descartado.  
+
+Ele escreveu certa vez:  
+
+> “Não sei como posso parecer ao mundo, mas, para mim mesmo, pareço ter sido apenas um menino brincando à beira-mar, encontrando uma pedra mais lisa ou uma concha mais bonita que o comum, enquanto o grande oceano da verdade permanecia inteiramente desconhecido diante de mim.”
+
+Quatro séculos depois, ainda exploramos esse oceano com a bússola que Newton nos deu.  
+
+---

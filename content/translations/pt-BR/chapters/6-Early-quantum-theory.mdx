@@ -1,0 +1,1906 @@
+---
+description: "Da lei de Planck a Bohr, ondas de matéria, spin e mecânica quântica: ideias, experimentos e cálculos que deram origem à teoria quântica."
+---
+
+## 6.1 Introdução: rachaduras no edifício clássico
+
+No fim do século XIX, a física se comportava como se já tivesse vencido o último desafio. A mecânica newtoniana governava o movimento, as equações de Maxwell governavam os campos e a termodinâmica governava o calor. Mas experimentos de precisão começaram a impor derrotas à teoria clássica. Um novo conjunto de regras estava a caminho: a teoria quântica.
+
+O que começou a falhar? Três pilares:
+
+1) **Radiação e calor.** O espectro de uma cavidade incandescente ideal, um corpo negro, não seguia as previsões clássicas. A equipartição e as ondas de Maxwell levavam a uma energia ultravioleta infinita — uma “catástrofe do ultravioleta”.
+
+2) **Luz e elétrons.** A luz incidente sobre um metal limpo arrancava elétrons segundo regras precisas que desafiavam uma interpretação puramente ondulatória.
+
+3) **Átomos e espectros.** Gases emitiam em frequências extremamente bem definidas, descritas por fórmulas simples. Mas qualquer elétron clássico em órbita de um núcleo deveria irradiar e espiralar para dentro.
+
+Essas rachaduras não eram casos marginais: era a física cotidiana se comportando de maneira estranha.
+
+---
+
+### 6.1.1 Os protagonistas entram em cena
+
+**Max Planck (1900).** Um purista da termodinâmica levado a romper com a tradição. Para ajustar os dados do corpo negro, quantizou a troca de energia em porções de $h\nu$. Pensou que fosse um artifício matemático; a natureza o levou ao pé da letra.
+
+**Albert Einstein (1905).** O funcionário do escritório de patentes explicitou a ideia radical: a própria luz vem em quanta, os fótons. Com isso, as regras do efeito fotoelétrico passaram a fazer sentido, e $E=h\nu$ saiu do corpo negro para entrar na matéria.
+
+**Ernest Rutherford (1911).** Depois de partículas alfa sofrerem desvios surpreendentes ao atravessar uma folha de ouro, ele substituiu o “pudim de passas” de Thomson pelo átomo nuclear. Mas um elétron clássico orbitando um núcleo minúsculo deveria irradiar energia e cair sobre ele. Átomos estáveis? A física clássica não os explicava.
+
+**Niels Bohr (1913).** Propôs que elétrons ocupam apenas órbitas especiais, com momento angular quantizado, e saltam entre elas absorvendo ou emitindo luz de frequências específicas. O espectro do hidrogênio se encaixou: uma vitória parcial, mas regras tão estranhas exigiam uma lógica mais profunda.
+
+**Louis de Broglie (1923–24).** Se a luz se comporta como partículas, talvez a matéria se comporte como ondas. Ele propôs $\lambda=h/p$, uma hipótese que pedia um teste experimental.
+
+---
+
+### 6.1.2 Os impasses clássicos — com pouca matemática
+
+**A catástrofe do corpo negro.** A equipartição clássica atribui a cada modo eletromagnético da cavidade uma energia média $k_B T$. A contagem dos modos fornece uma densidade espectral de energia que cresce segundo $\propto \nu^2$ e diverge em altas frequências. Os dados diziam o contrário: o espectro atinge um máximo e depois decai.
+
+Na seção 6.2, mostraremos que a introdução de quanta de energia leva à distribuição de Planck e elimina a divergência:
+
+$$
+u(\nu,T) = \frac{8\pi h \nu^{3}}{c^{3}}\,\frac{1}{\exp\!\left(\frac{h\nu}{k_B T}\right)-1}
+$$
+
+Nessa curva, não há catástrofe do ultravioleta.
+
+---
+
+**As regras do efeito fotoelétrico.** Os experimentos mostraram: (i) abaixo de uma frequência limiar não são emitidos elétrons, por mais intensa que seja a luz; (ii) acima do limiar, a energia cinética **máxima** dos elétrons varia linearmente com a frequência, não com a intensidade; (iii) a emissão é praticamente instantânea. A equação de Einstein,
+
+$$
+K_{\max} = h\nu - W
+$$
+
+explicou tudo, sendo $W$ a função trabalho. A intensidade controla quantos fótons chegam, não a energia individual deles.
+
+---
+
+**Espectros atômicos.** Balmer e Rydberg escreveram belas fórmulas empíricas para as linhas do hidrogênio. O átomo nuclear de Rutherford agravou o problema: elétrons orbitando um núcleo pequeno e carregado deveriam irradiar continuamente e borrar o espectro — uma contradição. Bohr **quantizou** o momento angular e os níveis de energia, produzindo linhas discretas e uma regra de frequência compatível com os dados de Rydberg. Mas por que aquelas órbitas? A velha teoria quântica funcionou por algum tempo e depois chegou a um impasse.
+
+---
+
+### 6.1.3 A ideia central: o discreto encontra a onda
+
+A história inicial da teoria quântica é uma sequência de momentos de “como assim, os dois?”:
+
+- A luz interfere como onda, mas troca energia como partícula.
+- Elétrons se comportam como partículas nas trajetórias, mas sofrem difração como ondas em cristais.
+- A energia nos átomos não forma um contínuo: é um conjunto de níveis com transições permitidas.
+
+O fio condutor é a **discretização**, que surge em sistemas antes modelados como contínuos. Ela aparece nos espectros, nos calores específicos, nos efeitos de limiar e na estabilidade.
+
+---
+
+### 6.1.4 Objetivos matemáticos para as próximas seções
+
+- **Espectro de Planck.** Contando quanta com peso $\exp(-nh\nu/k_B T)$, deduziremos a densidade de energia acima e recuperaremos a lei de Stefan–Boltzmann e a lei do deslocamento de Wien:
+
+$$
+\lambda_{\text{peak}}\,T = \text{constante}
+$$
+
+- **Equação fotoelétrica de Einstein.** Gráficos de $K_{\max}$ em função de $\,\nu$ são retas com inclinação $h$ e intercepto $-W$: foi assim que os primeiros experimentos mediram a constante de Planck com elétrons.
+
+- **Energias de Bohr.** Para átomos hidrogenoides com carga nuclear $+Ze$, em unidades SI e na aproximação de massa nuclear infinita, obteremos
+
+$$
+E_n = -\,\frac{m_e e^4}{2(4\pi\varepsilon_0)^2\hbar^2}\,\frac{Z^2}{n^2}
+$$
+
+e a frequência do fóton emitido em um salto $n\to n'$ obedecerá a $h\nu = E_n - E_{n'}$, com a constante de Rydberg surgindo naturalmente.
+
+- **Hipótese de de Broglie.** As relações $p=h/\lambda$ e $E=h\nu$ fazem a velocidade de grupo coincidir com a velocidade da partícula e preveem a difração de elétrons, posteriormente observada em laboratório.
+
+---
+
+### 6.1.5 O que chamamos de “teoria quântica inicial”
+
+Ficaremos principalmente em **1900–1925**: a **velha teoria quântica** (Planck → Einstein → Bohr–Sommerfeld → de Broglie) e seus experimentos decisivos (Franck–Hertz, Davisson–Germer e Stern–Gerlach). A mecânica quântica completa — as matrizes de Heisenberg e as ondas de Schrödinger, em 1925–26 — é a ponte para o próximo capítulo. Aqui prepararemos essa passagem: quando a intuição clássica finalmente cede e um cálculo quântico consistente se torna inevitável.
+
+---
+
+## 6.2 Radiação de corpo negro e a hipótese de Planck
+
+Foi na radiação de corpo negro que a física clássica tropeçou e a teoria quântica começou a surgir. Um **corpo negro** pode ser realizado como uma cavidade ideal com um pequeno orifício: a luz que entra sofre várias reflexões e é praticamente absorvida; a luz que sai carrega o espectro de equilíbrio das paredes. Na década de 1890, buscava-se prever a densidade de energia dessa radiação em função da frequência $\nu$ e da temperatura $T$ e explicar por que a curva medida sobe, atinge um máximo e depois cai, em vez de divergir. A equipartição clássica previa energia ultravioleta infinita; a natureza discordava, e Max Planck introduziu quanta para acertar a curva.
+
+![Densidade espectral de energia de Planck por frequência para três temperaturas, nas mesmas unidades arbitrárias. Curvas mais quentes têm máximos em frequências maiores e áreas maiores.](/images/diagrams/blackbody.svg)
+
+---
+
+### 6.2.1 O cenário experimental: a precisão desafia a teoria
+
+Laboratórios alemães — Lummer, Pringsheim, Rubens e Kurlbaum — construíram cavidades e detectores cuidadosamente calibrados. Em frequências moderadas e altas, os dados seguiam a **lei de Wien** muito bem; nas baixas frequências, ou longos comprimentos de onda, novas medidas começaram a **se afastar** da forma exponencial de Wien, exigindo uma fórmula melhor. Planck acompanhava esses gráficos intensamente: quando Rubens lhe mostrou novos dados de ondas longas em outubro de 1900, ele foi para casa e elaborou uma curva que concordava com tudo.
+
+Duas maneiras comuns de descrever o espectro usam a frequência ou o comprimento de onda. Elas se relacionam, mas não têm a mesma forma, porque $\nu=c/\lambda$ altera a medida de integração:
+
+$$
+u_\nu(\nu,T)\,|d\nu| = u_\lambda(\lambda,T)\,|d\lambda|
+$$
+
+Há duas formas usuais. Por frequência:
+
+$$
+u_\nu(\nu,T) \equiv \text{densidade de energia por unidade de frequência}
+$$
+
+Por comprimento de onda:
+
+$$
+u_\lambda(\lambda,T) \equiv \text{densidade de energia por unidade de comprimento de onda}
+$$
+
+Deduziremos primeiro $u_\nu$ e depois converteremos para $u_\lambda$.
+
+---
+
+### 6.2.2 Contagem de modos na cavidade: o fator $8\pi \nu^{2}/c^{3}$
+
+Considere uma cavidade cúbica com paredes perfeitamente condutoras. Ondas eletromagnéticas estacionárias só admitem determinados vetores de onda $\boldsymbol k$; cada modo permitido é um oscilador harmônico. Contar os modos entre $\nu$ e $\nu+d\nu$ fornece uma **densidade de estados** por unidade de volume:
+
+$$
+g(\nu)\,d\nu = \frac{8\pi \nu^{2}}{c^{3}}\,d\nu
+$$
+
+O fator $8\pi$ vem das cascas esféricas no espaço de $\boldsymbol k$ e dos dois estados de polarização. Esse fator é puramente geométrico e cinemático e é igual nas deduções clássica e quântica. A física entra ao decidir qual energia média atribuir a **cada** modo no equilíbrio.
+
+---
+
+### 6.2.3 A tentativa clássica: equipartição e catástrofe do ultravioleta
+
+Na mecânica estatística clássica, cada grau de liberdade quadrático contribui com $\tfrac{1}{2}k_B T$ para a energia média. Um oscilador harmônico, ou um modo, possui duas parcelas quadráticas, potencial e cinética. Portanto, a **energia média por modo** seria
+
+$$
+\langle \varepsilon \rangle_{\text{clássica}} = k_B T
+$$
+
+Multiplicando pela densidade de modos, obtemos a densidade espectral de energia:
+
+$$
+u_\nu^{\text{RJ}}(\nu,T) = g(\nu)\,\langle \varepsilon \rangle = \frac{8\pi \nu^{2}}{c^{3}}\,k_B T
+$$
+
+Essa é a **lei de Rayleigh–Jeans**. Funciona em baixas frequências, mas cresce como $\nu^{2}$ e diverge quando integrada sobre todas as frequências. Essa **catástrofe do ultravioleta** não é apenas um nome curioso: é a física clássica prevendo energia infinita em qualquer ambiente aquecido. A realidade não concorda.
+
+---
+
+### 6.2.4 A lei de Wien: uma boa meia-verdade
+
+Empiricamente, Wien propôs
+
+$$
+u_\nu^{\text{Wien}}(\nu,T) = A\,\nu^{3}\,\exp\!\left(-\,\frac{B\,\nu}{T}\right)
+$$
+
+com constantes $A,B$ ajustadas aos dados. Essa lei acerta a cauda de **alta frequência**, que decai exponencialmente, e implica a **lei do deslocamento** correta: a frequência do máximo varia linearmente com $T$. Mas falha em **baixas frequências**, nas quais os experimentos mostram $u_\nu\propto \nu^{2}T$, o comportamento de Rayleigh–Jeans, e não $\nu^{3}$. Wien acerta o ultravioleta, Rayleigh–Jeans acerta o infravermelho, e nenhum dos dois acerta o espectro inteiro.
+
+---
+
+### 6.2.5 A proposta de Planck: discretizar a troca de energia
+
+A ideia radical de Planck foi tratar as paredes da cavidade como um conjunto de **osciladores** microscópicos, ou ressonadores, que trocam energia com o campo de radiação **em pacotes discretos** de tamanho $h\nu$:
+
+$$
+\varepsilon_n = n\,h\nu,\qquad n=0,1,2,\dots
+$$
+
+Com pesos de Boltzmann, a função de partição de um oscilador de frequência $\nu$ é
+
+$$
+Z = \sum_{n=0}^\infty e^{-n h\nu/(k_B T)} = \frac{1}{1-e^{-h\nu/(k_B T)}}
+$$
+
+A energia média por oscilador é então
+
+$$
+\langle \varepsilon \rangle_{\text{Planck}} = -\,\frac{\partial}{\partial \beta}\ln Z 
+= \frac{h\nu}{e^{h\nu/(k_B T)}-1},\qquad \beta \equiv \frac{1}{k_B T}
+$$
+
+Multiplicando pela densidade de modos $g(\nu)$, obtemos o espectro completo:
+
+$$
+u_\nu(\nu,T) = \frac{8\pi h \nu^{3}}{c^{3}}\;\frac{1}{e^{h\nu/(k_B T)}-1}
+$$
+
+Essa é a **lei de Planck**, de 1900. Em baixas frequências, a expansão da exponencial recupera Rayleigh–Jeans; em altas frequências, recupera a exponencial de Wien. Uma única curva descreve os dois regimes.
+
+---
+
+### 6.2.6 Limites de baixa e alta frequência
+
+Defina $x \equiv h\nu/(k_B T)$.
+
+- **Baixa frequência** ($x\ll 1$): $e^{x}-1 \approx x$, portanto
+
+$$
+u_\nu \approx \frac{8\pi h \nu^{3}}{c^{3}}\,\frac{1}{x}
+= \frac{8\pi \nu^{2}}{c^{3}}\,k_B T
+$$
+
+que é a lei de Rayleigh–Jeans.
+
+- **Alta frequência** ($x\gg 1$): $e^{x}-1 \approx e^{x}$, portanto
+
+$$
+u_\nu \approx \frac{8\pi h \nu^{3}}{c^{3}}\,e^{-\,h\nu/(k_B T)}
+$$
+
+que é a lei de Wien com $A=8\pi h/c^{3}$ e $B=h/k_B$.
+
+A fórmula de Planck une, assim, os dois regimes que as leis clássica e empírica descreviam separadamente.
+
+
+---
+
+### 6.2.7 Energia total e lei de Stefan–Boltzmann
+
+Integre $u_\nu$ sobre todas as frequências para obter a **densidade total de energia** $u(T)$:
+
+$$
+u(T) = \int_{0}^{\infty} u_\nu(\nu,T)\,d\nu
+= \frac{8\pi h}{c^{3}}\int_{0}^{\infty}\frac{\nu^{3}\,d\nu}{e^{h\nu/(k_B T)}-1}
+$$
+
+Fazendo a mudança de variável $x=h\nu/(k_B T)$, temos $d\nu = (k_B T/h)\,dx$ e
+
+$$
+u(T) = \frac{8\pi (k_B T)^{4}}{h^{3} c^{3}} \int_{0}^{\infty}\frac{x^{3}\,dx}{e^{x}-1}
+$$
+
+A integral é um resultado conhecido:
+
+$$
+\int_{0}^{\infty}\frac{x^{3}\,dx}{e^{x}-1} = \frac{\pi^{4}}{15}
+$$
+
+Logo,
+
+$$
+u(T) = a\,T^{4},\qquad a \equiv \frac{8\pi^{5} k_B^{4}}{15\,h^{3} c^{3}}
+$$
+
+A **potência irradiada por unidade de área** de uma superfície negra resulta de $I=\tfrac{c}{4}u$, o fator cinemático para radiação isotrópica:
+
+$$
+I = \sigma T^{4},\qquad \sigma = \frac{2\pi^{5} k_B^{4}}{15\,h^{3} c^{2}}
+$$
+
+Essa é a **lei de Stefan–Boltzmann**, com sua constante $\sigma$ expressa em termos de $k_B,h,c$.
+
+---
+
+### 6.2.8 Onde está o máximo? A lei do deslocamento de Wien
+
+Maximize $u_\nu(\nu,T)$ em relação a $\nu$, mantendo $T$ fixo. Definindo $x=h\nu/(k_B T)$, a condição se reduz a
+
+$$
+\frac{d}{dx}\left(\frac{x^{3}}{e^{x}-1}\right)=0 \quad\Rightarrow\quad 
+3\,(e^{x}-1) - x\,e^{x} = 0
+$$
+
+Essa equação transcendental tem a raiz
+
+$$
+x_\ast \approx 2.821439\ldots
+$$
+
+Portanto, a **frequência do máximo** varia como
+
+$$
+\nu_{\text{peak}} = \frac{x_\ast k_B}{h}\,T
+$$
+
+Se, em vez disso, usarmos a forma em comprimento de onda
+
+$$
+u_\lambda(\lambda,T) = \frac{8\pi h c}{\lambda^{5}}\;\frac{1}{e^{hc/(\lambda k_B T)}-1}
+$$
+
+e maximizarmos em relação a $\lambda$, obtemos a **lei do deslocamento de Wien**
+
+$$
+\lambda_{\text{peak}}\,T = b
+$$
+
+com uma constante $b$ determinada pela raiz de uma equação transcendental ligeiramente diferente. Atenção: os máximos de $u_\nu$ e $u_\lambda$ **não** correspondem à mesma energia de fóton, porque o jacobiano $|d\nu/d\lambda|$ altera a forma da curva.
+
+---
+
+### 6.2.9 Conversão entre espectros por frequência e por comprimento de onda
+
+Use $u_\lambda\,|d\lambda| = u_\nu\,|d\nu|$ com $\nu=c/\lambda$ e $d\nu = -\,c/\lambda^{2}\,d\lambda$. Então,
+
+$$
+u_\lambda(\lambda,T) = u_\nu\!\left(\frac{c}{\lambda},T\right)\;\frac{c}{\lambda^{2}}
+$$
+
+Substituindo o $u_\nu$ de Planck, obtemos o $u_\lambda$ apresentado acima. O sinal negativo desaparece porque uma diminuição de $\lambda$ corresponde a um aumento de $\nu$.
+
+---
+
+### 6.2.10 A visão da mecânica estatística: por que a quantização importa
+
+Classicamente, a energia é contínua e a equipartição coloca $k_B T$ em cada modo, por maior que seja sua frequência. Na estatística quântica, a ocupação de um modo com espaçamento de energia $h\nu$ segue **Bose–Einstein**, com potencial químico nulo:
+
+$$
+\bar n(\nu) = \frac{1}{e^{h\nu/(k_B T)} - 1}
+$$
+
+A energia média por modo é $h\nu\,\bar n(\nu)$. Modos de alta frequência são exponencialmente difíceis de ocupar, pois é preciso fornecer $h\nu$ de uma vez; modos de baixa frequência se comportam classicamente porque $h\nu \ll k_B T$ torna $\bar n$ grande e leva a $\langle \varepsilon \rangle \to k_B T$. A catástrofe desaparece porque **o espaçamento discreto de energia suprime o ultravioleta**.
+
+---
+
+### 6.2.11 Planck: um revolucionário a contragosto
+
+Planck era profundamente ligado à termodinâmica e queria deduzir a lei empírica de Wien a partir de princípios. Depois que os dados de Rubens a contradisseram em baixos $\nu$, buscou uma interpolação que reproduzisse os dois limites e, em seguida, construiu uma justificativa estatística. Mais tarde, chamou a quantização de “ato de desespero”. O passo permaneceu. Em cinco anos, Einstein deu existência independente a esses pacotes de energia, os fótons, no efeito fotoelétrico. A constante $h$ de Planck deixou de ser um parâmetro de ajuste para se tornar uma constante fundamental da natureza.
+
+---
+
+### 6.2.12 Na prática: emissividade e superfícies reais
+
+Materiais reais não são corpos negros perfeitos. Se uma superfície tem **emissividade** $\epsilon(\nu,T)$ entre 0 e 1, sua radiância espectral é
+
+$$
+I_\nu^{\text{real}}(\nu,T) = \epsilon(\nu,T)\,I_\nu^{\text{negro}}(\nu,T)
+$$
+
+A lei de Kirchhoff da radiação térmica afirma que emissividade e absortividade são iguais em cada frequência. Por isso, cavidades com uma pequena abertura são efetivamente negras, mesmo quando as paredes não são: os raios refletem até serem absorvidos. É por isso que corpos negros de laboratório são cavidades.
+
+---
+
+### 6.2.13 Pequenos exemplos resolvidos
+
+**(a) Potência de uma estrela.** Aproximando uma estrela como um corpo negro de raio $R$ e temperatura superficial $T$, sua luminosidade é
+
+$$
+L = 4\pi R^{2}\,\sigma T^{4}
+$$
+
+**(b) Cor do máximo de emissão de um filamento.** Pela relação $\lambda_{\text{peak}}\,T=b$, dobrar $T$ reduz pela metade o comprimento de onda do máximo, deslocando-o do vermelho em direção ao azul. Fotografias registram essa mudança porque os sensores das câmeras ponderam a distribuição em comprimentos de onda $u_\lambda$.
+
+**(c) Densidade de fótons na cavidade.** O espectro do número de fótons é $n_\nu = u_\nu/(h\nu)$; portanto, a densidade numérica total é
+
+$$
+n(T) = \int_{0}^{\infty}\frac{u_\nu}{h\nu}\,d\nu 
+= \frac{8\pi}{c^{3}}\int_{0}^{\infty}\frac{\nu^{2}\,d\nu}{e^{h\nu/(k_B T)} - 1}
+$$
+
+A mudança de variável $x=h\nu/(k_B T)$ resulta em $n(T)\propto T^{3}$, com uma constante de proporcionalidade que envolve $\zeta(3)$.
+
+---
+
+### 6.2.14 O essencial para lembrar
+
+- A geometria fornece a densidade de modos $g(\nu) = 8\pi \nu^{2}/c^{3}$; a física fornece a energia média por modo.
+- Equipartição clássica $\Rightarrow$ Rayleigh–Jeans $\propto \nu^{2}T$ $\Rightarrow$ catástrofe do ultravioleta.
+- Planck: troca de energia em quanta $h\nu$ $\Rightarrow$ $\langle \varepsilon \rangle = h\nu/(e^{h\nu/(k_B T)}-1)$.
+- Multiplique os dois para obter a lei de Planck; integre para obter Stefan–Boltzmann, $I=\sigma T^{4}$; maximize para obter a lei do deslocamento de Wien.
+- A quantização não é um enfeite opcional: é o que torna a termodinâmica e o eletromagnetismo compatíveis em uma cavidade.
+
+---
+
+## 6.3 Efeito fotoelétrico e os quanta de luz de Einstein
+
+Ilumine um metal limpo, e elétrons podem sair. Ondas clássicas explicavam “mais luz → mais energia”, mas os experimentos do início do século XX diziam “primeiro a frequência, depois a intensidade”. Essa reviravolta levou Einstein a uma ideia ousada: a energia luminosa chega em pacotes discretos de tamanho $h\nu$. No efeito fotoelétrico, os fótons deixam de ser uma imagem e passam a fazer parte de uma contabilidade de energia.
+
+![A energia cinética máxima dos elétrons cresce linearmente com a frequência acima da frequência limiar nu zero, com inclinação h.](/images/diagrams/photoelectric.svg)
+
+---
+
+### 6.3.1 As regras experimentais: o que precisava ser explicado
+
+Os laboratórios encontraram um conjunto claro de fatos:
+
+- Existe uma **frequência limiar** $\nu_0$, abaixo da qual nenhum elétron é emitido, por mais intensa que seja a luz.
+- Acima do limiar, a **energia cinética máxima** dos elétrons emitidos depende linearmente da frequência, não da intensidade.
+- A **emissão é imediata dentro da resolução temporal experimental**, sem a longa espera para acumular energia prevista classicamente, mesmo em baixas intensidades.
+- A **corrente fotoelétrica**, proporcional ao número de elétrons por segundo, cresce com a intensidade luminosa para frequência fixa, até uma saturação determinada pelo aparelho.
+
+Essas regras são estranhas em uma descrição puramente ondulatória, na qual a energia se distribui pela frente de onda e pode se acumular continuamente.
+
+---
+
+### 6.3.2 A equação de Einstein
+
+A hipótese de Einstein de 1905: luz de frequência $\nu$ se comporta como um fluxo de quanta, os fótons, cada um com energia $h\nu$. Um elétron no sólido que absorve um fóton gasta parte dessa energia para escapar do material — a **função trabalho** $W$ — e fica com o restante como energia cinética. Assim,
+
+$$
+K_{\max} = h\nu - W
+$$
+
+A frequência limiar é, portanto,
+
+$$
+\nu_0 = \frac{W}{h}
+$$
+
+A intensidade controla quantos fótons chegam por segundo e, portanto, quantos elétrons podem ser emitidos por segundo, mas não a energia máxima de cada elétron. A frequência define o orçamento de energia por elétron.
+
+---
+
+### 6.3.3 Medindo $h$ e $W$ com potenciais de corte
+
+A energia cinética máxima é medida aplicando uma tensão retardadora $V_s$ que impede até os elétrons mais energéticos de chegar ao coletor. Por definição,
+
+$$
+e\,V_s = K_{\max}
+$$
+
+Combinando com a relação de Einstein, obtemos uma reta:
+
+$$
+e\,V_s = h\nu - W
+$$
+
+Assim, um gráfico de $V_s$ em função de $\nu$ tem inclinação $h/e$ e intercepto $-W/e$. Foi assim que os primeiros experimentos extraíram a constante de Planck e a função trabalho diretamente da energia dos elétrons.
+
+---
+
+### 6.3.4 Por que a descrição clássica por ondas falha
+
+Uma onda clássica deposita energia continuamente, a uma taxa proporcional à intensidade. Se isso fosse tudo, em baixas intensidades os elétrons precisariam de muito tempo para acumular energia suficiente para escapar, causando um atraso mensurável. Além disso, luz de **baixa frequência** suficientemente intensa deveria produzir o efeito, sem limiar. Nenhuma das duas coisas ocorre. Os dados indicam que a energia chega em pacotes, com cada elétron absorvendo no máximo um deles no regime considerado.
+
+---
+
+### 6.3.5 A confirmação relutante de Millikan
+
+Robert Millikan passou uma década tentando refutar a interpretação de Einstein com medidas de altíssima qualidade. Aperfeiçoou sistemas de vácuo, preparação de superfícies e eletrônica. O resultado foram retas excepcionalmente nítidas: $eV_s$ em função de $\nu$, com inclinação $h$ e intercepto no eixo da frequência em $W/h$. Millikan não gostava filosoficamente da ideia de fóton, mas seus dados não deixavam margem. Quando um crítico determinado testa uma teoria e ela resiste, a confirmação é forte.
+
+---
+
+### 6.3.6 Da intensidade ao fluxo: quantos elétrons?
+
+Mantenha $\nu$ fixo acima do limiar. Dobrar a intensidade dobra o fluxo de fótons na superfície. Se a superfície está limpa e os efeitos de carga espacial são controlados, a corrente de saturação $I_{\text{sat}}$ varia linearmente com a intensidade, pois cada fóton absorvido pode liberar no máximo um elétron. A fração que efetivamente escapa é a eficiência quântica $\eta$; assim,
+
+$$
+I_{\text{sat}} \approx \eta\,\frac{P}{h\nu}\,e
+$$
+
+em que $P$ é a potência óptica absorvida na área ativa. Valores reais de $\eta$ dependem do material, do estado da superfície e de os fotoelétrons serem retroespalhados ou capturados antes de chegar ao coletor.
+
+---
+
+### 6.3.7 Distribuição de energia e o papel do sólido
+
+$K_{\max}$ é o limite superior. A distribuição de energias cinéticas depende da estrutura de bandas e do espalhamento no sólido. Estados iniciais ocupados podem estar muito abaixo do nível de Fermi; alguns $k_B T$ caracterizam apenas o alargamento térmico perto desse nível, não toda a banda ocupada. Para uma energia de ligação inicial $E_B$ abaixo do nível de Fermi, o elétron sai com aproximadamente $h\nu-W-E_B$, menos as perdas inelásticas. Assim, os espectros são largos, enquanto elétrons próximos do nível de Fermi determinam o limite superior $h\nu-W$.
+
+---
+
+### 6.3.8 Tempo de voo e emissão “instantânea”
+
+A eletrônica rápida moderna confirma a ideia antiga: a emissão ocorre em picossegundos ou menos, de acordo com um processo de **um único fóton**, e não com uma longa acumulação. Na linguagem dos fótons, um único evento de absorção transfere $h\nu$ de uma vez; não é preciso esperar a energia se acumular.
+
+---
+
+### 6.3.9 Física de superfícies e controle da função trabalho
+
+A função trabalho $W$ é uma propriedade da superfície: depende do material, da face cristalina, da limpeza e dos adsorbatos. Metais alcalinos com $W$ baixo podem responder à luz vermelha; metais nobres limpos exigem luz azul ou ultravioleta. Revestimentos e tratamento com césio podem reduzir $W$, diminuindo $\nu_0=W/h$. Por isso, a preparação da superfície é fundamental para fototubos e fotocátodos.
+
+---
+
+### 6.3.10 Procedimento típico de análise no laboratório
+
+1) Ilumine uma superfície metálica recém-preparada com luz monocromática em várias frequências.
+2) Para cada $\nu$, varie a tensão do coletor para valores negativos até a corrente fotoelétrica cair a zero, encontrando $V_s$.
+3) Faça o gráfico de $eV_s$ em função de $\nu$ e ajuste uma reta para extrair a inclinação $h$ e o intercepto $-W$.
+4) Separadamente, meça a corrente de saturação em função da intensidade, com $\nu$ fixo, para confirmar a proporcionalidade entre contagem de elétrons e fluxo de fótons.
+
+Os dois experimentos investigam partes diferentes do modelo de Einstein: a **energia por fóton** e a contagem dos fótons.
+
+---
+
+### 6.3.11 E a intensidade com frequência fixa?
+
+Com $\nu>\nu_0$ fixo, aumentar a intensidade eleva o número de elétrons emitidos, ou a corrente, mas mantém a **energia máxima**, pois $h\nu$ não muda. Com intensidade fixa, aumentar a frequência eleva $K_{\max}$ linearmente. No gráfico de $V_s$ em função de $\nu$, a intensidade altera a amplitude da corrente fotoelétrica, mas não a inclinação ideal nem o intercepto.
+
+---
+
+### 6.3.12 Fótons, momento e verificações de consistência
+
+Fótons também carregam momento $p=h/\lambda$. Na fotoemissão de uma superfície plana, o momento do fóton costuma ser pequeno em comparação com os momentos de Fermi dos elétrons. Assim, $p$ é menos central que $h\nu$ para a energia de escape, mas a pressão de radiação e as forças produzidas pela luz se encaixam na mesma contabilidade. Fenômenos posteriores, como o **espalhamento Compton** de raios X, ampliam a descrição corpuscular ao mostrar desvios de comprimento de onda que exigem conservação tanto da energia quanto do momento do fóton. O efeito fotoelétrico é a entrada; Compton leva a ideia adiante.
+
+---
+
+### 6.3.13 Por que “um fóton → um elétron” exige ressalvas
+
+Com intensidades altas e pulsos curtos, pode ocorrer fotoemissão por **múltiplos fótons**: dois ou mais fótons se combinam para ejetar um elétron mesmo quando $h\nu$ está abaixo de $W$. A assinatura é uma dependência não linear da corrente com a intensidade. Os experimentos originais com iluminação contínua estavam no regime dominado pelo processo de um fóton, por isso a lei linear de Einstein os descrevia. A mecânica quântica abrange os dois regimes: basta mudar a intensidade.
+
+---
+
+### 6.3.14 Deduções rápidas
+
+**Limiar.** Faça $K_{\max}=0$ na lei de Einstein para obter $\nu_0=W/h$. Essa é uma forma direta de **definir** $W$ experimentalmente com luz.
+
+**Extração da inclinação.** De $eV_s=h\nu - W$, a inclinação de $V_s$ em função de $\nu$ é $h/e$. Medi-la fornece um valor de $h$ independente de ajustes de corpo negro ou de espectroscopia.
+
+**Unidades da função trabalho.** Se $W$ é dado em elétron-volts, a frequência limiar em hertz é
+
+$$
+\nu_0 = \frac{W\,\text{(eV)}}{h/e}
+$$
+
+e, em comprimento de onda,
+
+$$
+\lambda_0 = \frac{c}{\nu_0}
+$$
+
+É comum informar $\lambda_0$ de um fotocátodo porque, na engenharia, costuma-se trabalhar com comprimentos de onda.
+
+---
+
+### 6.3.15 Dispositivos fotoelétricos: da bancada à tecnologia
+
+- **Fotodiodos a vácuo e fotomultiplicadores.** Usam fotoemissão de um cátodo com $W$ baixo para produzir elétrons; nos fotomultiplicadores, eles são depois multiplicados por dínodos. O método de $V_s$ se relaciona com calibração de ganho e análise de ruído.
+- **Células solares — outro efeito.** Junções fotovoltaicas convertem luz em eletricidade por meio de pares **elétron–lacuna** e campos internos, não de fotoemissão no vácuo; ainda assim, a ideia de um limiar em $h\nu$ determina quais fótons podem ser absorvidos.
+- **Fontes ultrarrápidas de elétrons.** Lasers de femtossegundos induzem emissão por um ou poucos fótons, produzindo pulsos curtos de elétrons para difração e microscopia.
+
+---
+
+### 6.3.16 Revisão conceitual
+
+- **Transferência de energia corpuscular.** $h\nu$ por fóton, um fóton por evento primário de escape de elétron no regime de um fóton.
+- **Limiar do material.** A função trabalho $W$ define a barreira; $\nu_0=W/h$ é a frequência-chave.
+- **Limite superior linear.** $K_{\max}$ segue $h\nu-W$, independentemente da intensidade; o potencial de corte o mede como $eV_s$.
+- **Contagem versus energia.** A intensidade altera **quantos** elétrons saem; a frequência altera **quão energéticos** eles podem ser.
+
+A física quântica assume o controle justamente onde a física clássica insiste nas dependências erradas.
+
+---
+
+## 6.4 Espectros atômicos e o modelo de Bohr
+
+As linhas espectrais eram os primeiros códigos de identificação dos átomos: finas, reproduzíveis e reveladoras de uma estrutura interna. Muito antes de a mecânica quântica se tornar uma teoria completa, a espectroscopia cuidadosa organizou essas linhas em padrões simples de números inteiros. O maior sucesso da velha teoria quântica foi o modelo de Bohr de 1913: um átomo semiclássico com órbitas quantizadas que explicava o espectro do hidrogênio e apontava para uma descrição ondulatória mais profunda.
+
+![Os níveis de energia ligados do hidrogênio se aproximam de zero. Uma transição descendente de n igual a dois para n igual a um emite um fóton.](/images/diagrams/atomic-levels.svg)
+
+---
+
+### 6.4.1 Prelúdio empírico: padrões de Balmer–Rydberg
+
+As linhas visíveis do hidrogênio seguiam a fórmula de Balmer de 1885; logo Rydberg a generalizou para uma série de **números de onda**:
+
+$$
+\tilde\nu \equiv \frac{1}{\lambda} = R\,\left(\frac{1}{n_f^{2}} - \frac{1}{n_i^{2}}\right),\qquad n_i>n_f
+$$
+
+Aqui, $R$ é a constante de Rydberg, e $(n_i,n_f)$ são inteiros positivos que identificam os níveis inicial e final. Séries conhecidas:
+
+- **Lyman:** $n_f=1$ (ultravioleta).
+- **Balmer:** $n_f=2$ (visível; Hα é $n_i=3\to2$ em $\sim 656\,$nm).
+- **Paschen:** $n_f=3$ (infravermelho).
+
+Inicialmente, eram apenas padrões numéricos — surpreendentemente consistentes também em outros gases, quando se introduziam constantes efetivas adequadas.
+
+---
+
+### 6.4.2 O átomo de Rutherford e a falha clássica
+
+O modelo de espalhamento de Rutherford de 1911 revelou um núcleo pequeno e carregado. Elétrons clássicos em órbita são **cargas aceleradas**; segundo Maxwell, irradiam e espiralam para dentro. Isso prevê espectros contínuos e átomos instáveis. A natureza, porém, apresentava linhas discretas e estabilidade. É aí que entra Bohr.
+
+---
+
+### 6.4.3 Os postulados de Bohr
+
+O modelo de Bohr acrescentou três regras à mecânica clássica:
+
+1) **Estados estacionários.** Certas órbitas são permitidas e não irradiam, apesar da aceleração.
+2) **Quantum de ação.** O momento angular é quantizado:
+
+$$
+m_e v r = n\,\hbar,\qquad n=1,2,3,\dots
+$$
+
+3) **Condição de frequência.** A radiação ocorre apenas em saltos entre estados estacionários, com energia do fóton
+
+$$
+h\nu = E_i - E_f
+$$
+
+Essas regras adicionais eram ousadas e tinham um poder de previsão surpreendente para átomos de um elétron.
+
+---
+
+### 6.4.4 Coulomb e quantização: raios, velocidades e energias
+
+Para um núcleo de carga $+Ze$ e um elétron em uma órbita circular de raio $r$ e velocidade $v$, a força centrípeta é igual à atração de Coulomb:
+
+$$
+\frac{m_e v^{2}}{r} = \frac{1}{4\pi \varepsilon_0}\,\frac{Z e^{2}}{r^{2}}
+$$
+
+Combinando com a quantização $m_e v r = n\hbar$, eliminamos $v$ e obtemos $r_n$:
+
+$$
+r_n = \frac{4\pi \varepsilon_0\,\hbar^{2}}{m_e e^{2}}\,\frac{n^{2}}{Z}
+$$
+
+O prefator é o **raio de Bohr**
+
+$$
+a_0 \equiv \frac{4\pi \varepsilon_0\,\hbar^{2}}{m_e e^{2}} = \frac{\hbar}{m_e c\,\alpha}
+$$
+
+portanto, $r_n = \dfrac{n^{2}}{Z}\,a_0$. A velocidade orbital é
+
+$$
+v_n = \frac{Z\,\alpha\,c}{n}
+$$
+
+em que
+
+$$
+\alpha \equiv \frac{e^{2}}{4\pi \varepsilon_0 \hbar c}
+$$
+
+é a constante de estrutura fina. A energia total é a soma das energias cinética e potencial:
+
+$$
+E_n = \frac{1}{2} m_e v_n^{2} - \frac{1}{4\pi \varepsilon_0}\,\frac{Z e^{2}}{r_n}
+$$
+
+o que resulta em
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi \varepsilon_0)^{2} \hbar^{2}}\,\frac{Z^{2}}{n^{2}} 
+= -\,\frac{1}{2}\,m_e c^{2}\,\alpha^{2}\,\frac{Z^{2}}{n^{2}}
+$$
+
+Para o hidrogênio ($Z=1$), o estado fundamental tem energia
+
+$$
+E_1 = -\,13.6\,\text{eV}
+$$
+
+e os níveis variam como $-13.6\,\text{eV}/n^{2}$.
+
+---
+
+### 6.4.5 Dos níveis de Bohr à fórmula de Rydberg
+
+A condição de frequência de Bohr, com $E_i$ e $E_f$, fornece o número de onda do fóton:
+
+$$
+\tilde\nu = \frac{\nu}{c} = \frac{E_i - E_f}{h c} 
+= \frac{m_e c\,\alpha^{2}}{2 h}\,Z^{2}\left(\frac{1}{n_f^{2}} - \frac{1}{n_i^{2}}\right)
+$$
+
+Assim, no limite de **massa nuclear infinita**, a constante de Rydberg é
+
+$$
+R_\infty = \frac{\alpha^{2} m_e c}{2 h}
+$$
+
+No hidrogênio real, o elétron se move em torno do **centro de massa**; substituímos $m_e$ pela **massa reduzida**
+
+$$
+\mu = \frac{m_e m_N}{m_e + m_N}
+$$
+
+para obter
+
+$$
+R_{\text{H}} = R_\infty\,\frac{\mu}{m_e}
+$$
+
+Essa pequena correção produz **deslocamentos isotópicos** entre H e D.
+
+---
+
+### 6.4.6 Por que $m v r = n\hbar$ passou a parecer menos arbitrário
+
+Uma década depois, de Broglie propôs ondas de matéria com $\lambda = h/p$. Exigir um número inteiro de comprimentos de onda ao longo de uma órbita circular,
+
+$$
+2\pi r_n = n\,\lambda = n\,\frac{h}{p}
+$$
+
+implica
+
+$$
+p r_n = n\,\hbar
+$$
+
+isto é, a regra de Bohr. A imagem da **onda estacionária** explica intuitivamente por que apenas certos raios são permitidos: a interferência destrutiva exclui os demais. Essa lógica ondulatória será formalizada por Schrödinger no capítulo 7.
+
+---
+
+### 6.4.7 Princípio da correspondência e $n$ grande
+
+Bohr insistia que, para números quânticos grandes, as previsões quânticas devem se aproximar dos resultados clássicos. Para $n\gg1$, a **frequência orbital** do elétron se aproxima da **frequência de emissão** entre níveis vizinhos, e o padrão de transições permitidas reproduz as componentes de Fourier clássicas de uma órbita de Coulomb. Esse princípio da correspondência orientou a velha teoria quântica enquanto a mecânica completa ainda não existia.
+
+---
+
+### 6.4.8 Regras de seleção e intensidades: por que algumas linhas são fortes
+
+O modelo de Bohr localiza os níveis, mas não calcula as intensidades das linhas. Empiricamente, linhas fortes obedecem a **regras de seleção** relacionadas ao momento angular, como $\Delta l=\pm 1$, que mais tarde emergem dos elementos de matriz de transições dipolares na mecânica ondulatória. A velha teoria as inferia de padrões de radiação clássicos; a mecânica quântica as deduz de forma sistemática.
+
+---
+
+### 6.4.9 Pequenas deduções resolvidas
+
+**(a) Comprimento de onda de Lyman-α.** Para $n_i=2\to n_f=1$,
+
+$$
+\tilde\nu = R_{\text{H}}\left(1 - \frac{1}{4}\right) = \frac{3}{4} R_{\text{H}}
+$$
+
+portanto,
+
+$$
+\lambda_{\text{Ly}\alpha} = \frac{4}{3 R_{\text{H}}}
+$$
+
+Incluindo $\mu$, o resultado numérico é aproximadamente $121.6\,$nm.
+
+**(b) Linha Hα de Balmer.** Para $n_i=3\to n_f=2$,
+
+$$
+\tilde\nu = R_{\text{H}}\left(\frac{1}{4} - \frac{1}{9}\right) = \frac{5}{36} R_{\text{H}}
+$$
+
+portanto,
+
+$$
+\lambda_{\text{H}\alpha} = \frac{36}{5 R_{\text{H}}}
+$$
+
+com valor aproximado de $656.3\,$nm.
+
+**(c) Energia de ionização a partir do nível $n$.** Levando $n\to\infty$, a energia necessária é
+
+$$
+E_{\text{ion}}(n) = -E_n = \frac{13.6\,\text{eV}}{n^{2}}
+$$
+
+para o hidrogênio.
+
+---
+
+### 6.4.10 As elipses de Sommerfeld e a estrutura fina inicial
+
+Sommerfeld ampliou o modelo permitindo órbitas **elípticas** e quantizando as ações radial e angular. Uma correção relativística da relação entre massa e velocidade explicou parcialmente a **estrutura fina**, pequenas separações entre níveis, e o espaçamento anômalo de linhas próximas. A ideia era engenhosa, mas complicada, e chegou ao limite nos átomos de vários elétrons e nos detalhes de precisão.
+
+---
+
+### 6.4.11 Onde Bohr acerta e onde falha
+
+**Sucessos**
+
+- Prevê $E_n \propto -1/n^{2}$ e a estrutura grossa não relativística dominante dos espectros do hidrogênio e de íons hidrogenoides quando se inclui a massa reduzida; não fornece todas as correções de precisão.
+- Explica **limites de séries** e **energias de ionização**.
+- Antecipa de Broglie e cria uma ponte clara para a mecânica ondulatória.
+
+**Limitações**
+
+- Não explica **intensidades de linhas** nem **polarizações** a partir de primeiros princípios.
+- Não explica completamente a **estrutura fina** nem as anomalias do **efeito Zeeman**.
+- Falha para o **hélio** e outros átomos de vários elétrons.
+- Impõe por postulado que elétrons “acelerados” não irradiam, em vez de fornecer um mecanismo.
+
+Essas falhas apontam o caminho para uma equação de onda e para o spin.
+
+---
+
+### 6.4.12 Constantes e expressões úteis
+
+Expressões equivalentes e úteis:
+
+$$
+a_0 = \frac{4\pi \varepsilon_0 \hbar^{2}}{m_e e^{2}} = \frac{\hbar}{m_e c\,\alpha}
+$$
+
+$$
+E_n = -\,\frac{1}{2} m_e c^{2} \alpha^{2}\,\frac{Z^{2}}{n^{2}}
+$$
+
+$$
+R_\infty = \frac{\alpha^{2} m_e c}{2 h}
+$$
+
+Para um íon hidrogenoide de carga nuclear $Z$, substituir $R_{\text{H}}$ por $Z^{2} R_{\text{H}}$ e $E_n$ por $-13.6\,Z^{2}\,\text{eV}/n^{2}$ fornece uma aproximação. Para o resultado preciso com massa nuclear finita, use a constante de Rydberg calculada com a massa reduzida daquele núcleo.
+
+---
+
+### 6.4.13 Verificação conceitual: Bohr e a mecânica ondulatória
+
+Os raios $r_n$ de Bohr coincidem com máximos da probabilidade radial de estados hidrogenoides circulares com número quântico orbital $l=n-1$, na aproximação de massa nuclear infinita, e não de estados gerais do hidrogênio. O número quântico $n$ determina a energia coulombiana não relativística; $l$ e $m$ identificam estados angulares degenerados, suas formas e orientações. Interações adicionais podem remover essa degenerescência. Estados estacionários tornam-se **ondas estacionárias** em três dimensões. A condição de frequência do fóton permanece como **diferença de autovalores de energia**, enquanto regras de seleção surgem dos elementos de matriz do operador dipolo.
+
+---
+
+### 6.4.14 Conjunto básico de problemas
+
+- Deduza $r_n$ e $E_n$ do equilíbrio de forças e de $m v r=n\hbar$; confira $a_0$ numericamente.
+- A partir de $E_n$, recupere a fórmula de Rydberg e expresse $R_\infty$ em termos de $\alpha$.
+- Inclua a massa reduzida e estime o deslocamento isotópico H–D da linha Hα.
+- Use $v_n=Z\alpha c/n$ para verificar a validade não relativística ($v_1\approx \alpha c$ para H).
+
+---
+
+## 6.5 Espalhamento de Rutherford e o átomo nuclear
+
+Às vezes um único experimento derruba uma visão de mundo inteira. Foi o que fez o experimento da folha de ouro de Geiger e Marsden. Eles lançaram **partículas alfa**, núcleos de hélio, contra uma folha de ouro muito fina e contaram cintilações em uma tela. A maioria atravessava com pequenos desvios, mas uma fração surpreendente era espalhada em **grandes ângulos**, até para trás. Se a carga positiva estivesse distribuída pelo átomo, como no “pudim de passas” de Thomson, desvios grandes seriam praticamente impossíveis. Os dados exigiam um **núcleo** pequeno, concentrado e positivo.
+
+---
+
+### 6.5.1 O que foi medido e por que surpreendeu
+
+- **Feixe:** partículas alfa com energias de alguns MeV.
+- **Alvo:** folha de ouro com espessura inferior a um micrômetro, número atômico $Z=79$.
+- **Detector:** tela de sulfeto de zinco para contar cintilações individuais.
+- **Surpresa:** uma fração muito pequena sofria desvios de dezenas de graus ou mais, alguns próximos de $180^\circ$.
+
+Classicamente, uma carga positiva difusa produziria apenas pequenos desvios acumulados. Eventos de grande ângulo exigem uma interação intensa a curta distância com um centro compacto: um núcleo.
+
+---
+
+### 6.5.2 Repulsão de Coulomb e órbitas hiperbólicas
+
+Trate a interação como uma repulsão de Coulomb entre uma partícula alfa de carga $z e$, com $z=2$, e um núcleo de carga $+Ze$:
+
+$$
+V(r) = \frac{1}{4\pi\varepsilon_0}\,\frac{Z z e^2}{r}
+$$
+
+É conveniente definir
+
+$$
+k \equiv \frac{Z z e^2}{4\pi\varepsilon_0}
+$$
+
+As trajetórias não relativísticas são hipérboles. Para um projétil de energia cinética $E$, a relação entre o ângulo de espalhamento $\theta$ e o **parâmetro de impacto** $b$ é
+
+$$
+\theta = 2\,\arctan\!\left(\frac{k}{2 E b}\right)
+$$
+
+que pode ser invertida para
+
+$$
+b(\theta) = \frac{k}{2E}\,\cot\!\left(\frac{\theta}{2}\right)
+$$
+
+Aqui, $E=\tfrac{1}{2}\mu v^2$, com massa reduzida $\mu$; para um alvo muito pesado, $\mu\approx m_{\alpha}$, e para os referenciais vale laboratório $\approx$ centro de massa.
+
+---
+
+### 6.5.3 A seção de choque diferencial de Rutherford
+
+A grandeza mensurável é a distribuição angular, isto é, a **seção de choque diferencial**:
+
+$$
+\frac{d\sigma}{d\Omega} = \frac{b}{\sin\theta}\,\left|\frac{db}{d\theta}\right|
+$$
+
+Usando $b(\theta)$ acima e $db/d\theta = -\tfrac{k}{4E}\csc^2(\theta/2)$, obtemos a célebre fórmula de Rutherford:
+
+$$
+\frac{d\sigma}{d\Omega} = \left(\frac{k}{4E}\right)^{2}\,\csc^{4}\!\left(\frac{\theta}{2}\right)
+$$
+
+Dependências importantes:
+- $\propto Z^{2} z^{2}$: cargas nucleares maiores produzem espalhamento mais intenso.
+- $\propto E^{-2}$: energias de feixe maiores reduzem o espalhamento.
+- Em pequenos ângulos, a expressão diverge como $\theta^{-4}$.
+
+A dependência $1/\sin^{4}(\theta/2)$ concorda com os dados em um amplo intervalo, até outros efeitos — blindagem, forças nucleares ou relatividade — se tornarem relevantes.
+
+---
+
+### 6.5.4 Distância de máxima aproximação e escala nuclear
+
+Em uma aproximação **frontal** ($b=0$, $\theta=\pi$), a energia cinética se converte em potencial no ponto de retorno $r_{\min}$:
+
+$$
+E = \frac{k}{r_{\min}}
+$$
+
+portanto,
+
+$$
+r_{\min} = \frac{k}{E}
+$$
+
+Uma constante numérica útil é $e^{2}/(4\pi\varepsilon_{0}) \approx 1.44\ \text{eV}\cdot\text{nm}$. Para partículas alfa com $z=2$ em ouro ($Z=79$), $k \approx 79\times 2\times 1.44\ \text{eV}\cdot\text{nm} \approx 227.5\ \text{eV}\cdot\text{nm}$. Com $E=5\ \text{MeV}$,
+
+$$
+r_{\min} \approx \frac{227.5\ \text{eV}\cdot\text{nm}}{5\times 10^{6}\ \text{eV}} \approx 4.6\times 10^{-5}\ \text{nm} = 4.6\times 10^{-14}\ \text{m}
+$$
+
+Isso corresponde a dezenas de femtômetros, ordens de grandeza abaixo do tamanho atômico, de $\sim 10^{-10}\ \text{m}$. Energias maiores reduzem $r_{\min}$ a poucos femtômetros, a escala dos raios nucleares, compatível com um centro denso e **minúsculo**.
+
+---
+
+### 6.5.5 Das contagens às seções de choque em uma folha
+
+Para um alvo fino de densidade numérica atômica $n$ e espessura $t$, a taxa esperada no ângulo sólido $\Delta\Omega$, em torno de $\theta$, é
+
+$$
+\text{contagens} \propto N_{\text{beam}}\; n t\; \frac{d\sigma}{d\Omega}(\theta)\; \Delta\Omega
+$$
+
+“Fino” significa que o espalhamento único domina e a atenuação é desprezível. Para $t$ maior ou feixes menos energéticos, o **espalhamento múltiplo** borra a distribuição pura de Rutherford em pequenos ângulos.
+
+---
+
+### 6.5.6 Onde a descrição clássica precisa de ajustes
+
+- **Blindagem atômica em $\theta$ pequeno.** Para $b$ grande, o projétil vê um átomo quase neutro; elétrons ligados blindam a carga nuclear. O $Z$ efetivo diminui, limitando a divergência $\theta^{-4}$. Um ângulo de corte aproximado corresponde a parâmetros de impacto maiores que o comprimento de blindagem $\sim a_{0}/Z^{1/3}$.
+
+- **Tamanho nuclear e força forte em $\theta$ grande e $E$ alto.** Quando $r_{\min}$ chega a poucos femtômetros, o raio nuclear finito e a **interação forte** alteram o potencial puramente coulombiano. Desvios nos maiores ângulos ou energias trazem informações sobre a estrutura nuclear.
+
+- **Relatividade e spin.** Para elétrons rápidos como projéteis, é necessário o **espalhamento de Mott**, com correções da teoria de Dirac e efeitos de spin–órbita. A forma $\csc^{4}(\theta/2)$ permanece como base, mas com fatores dependentes do spin.
+
+- **Mecânica quântica.** O cálculo quântico, por ondas parciais ou aproximação de Born, reproduz a fórmula de Rutherford para potenciais de Coulomb — uma concordância notável entre as descrições clássica e quântica.
+
+---
+
+### 6.5.7 O que o experimento **demonstrou**
+
+1) **A carga positiva e a maior parte da massa ocupam um volume minúsculo** comparado ao átomo.
+2) Os elétrons ficam na região externa; o átomo é principalmente espaço vazio.
+3) O desvio de longo alcance é **coulombiano** e centrado, não um empurrão difuso.
+
+Esses resultados derrubaram o modelo do pudim de passas e estabeleceram o **átomo nuclear**, preparando o terreno para as órbitas quantizadas de Bohr (seção 6.4) e, depois, para a mecânica quântica completa.
+
+---
+
+### 6.5.8 Pequenas deduções resolvidas
+
+**(a) Seção de choque diferencial**
+
+Comece com $b(\theta)=\tfrac{k}{2E}\cot(\theta/2)$:
+
+$$
+\frac{d\sigma}{d\Omega}
+= \frac{b}{\sin\theta}\left|\frac{db}{d\theta}\right|
+= \left(\frac{k}{2E}\frac{\cot(\theta/2)}{\sin\theta}\right)\left(\frac{k}{4E}\csc^{2}\!\frac{\theta}{2}\right)
+= \left(\frac{k}{4E}\right)^{2} \csc^{4}\!\frac{\theta}{2}
+$$
+
+**(b) Rendimento integrado acima de um ângulo de corte $\theta_{0}$**
+
+Usando $d\sigma/d\Omega \propto \csc^{4}(\theta/2)$ e $d\Omega=2\pi\sin\theta\,d\theta$,
+
+$$
+\sigma(\theta>\theta_{0}) = 2\pi \int_{\theta_{0}}^{\pi}\! \left(\frac{k}{4E}\right)^{2} \csc^{4}\!\frac{\theta}{2}\,\sin\theta\,d\theta
+= \pi \left(\frac{k}{2E}\right)^{2}\,\cot^{2}\!\frac{\theta_{0}}{2}
+$$
+
+Isso é útil para estimar taxas de contagem quando o detector cobre um grande intervalo angular.
+
+**(c) Máxima aproximação para $b$ diferente de zero**
+
+Conservando energia e momento angular, com $L=\mu v b$, o ponto de retorno $r_{\min}$ satisfaz
+
+$$
+E = \frac{L^{2}}{2\mu r_{\min}^{2}} + \frac{k}{r_{\min}}
+$$
+
+Resolva a equação quadrática para $1/r_{\min}$ para relacionar a geometria, dada por $(b)$, à distância mínima alcançada pela partícula alfa.
+
+---
+
+### 6.5.9 Conjunto de problemas
+
+- Use $d\sigma/d\Omega$ para prever a razão entre contagens a $30^\circ$ e $60^\circ$, para o mesmo ângulo sólido do detector.
+- Para partículas alfa de $5\ \text{MeV}$ em Au, calcule $r_{\min}$ em $b=0$ e compare com o raio nuclear estimado por $R\approx r_{0} A^{1/3}$, com $r_{0}\sim 1.2\ \text{fm}$.
+- Inclua a blindagem impondo um parâmetro de impacto máximo igual ao comprimento de blindagem e mostre como isso regulariza a divergência em pequenos ângulos.
+- Deduza a relação entre as energias $E$ no laboratório e no centro de massa e mostre por que usar a energia de laboratório $E$ é uma excelente aproximação para alvos de $\text{Au}$.
+
+---
+
+**Resumo:** O experimento da folha de ouro mostrou que os átomos são principalmente espaço vazio, com um núcleo central pequeno, massivo e positivo. A matemática do espalhamento de Coulomb prevê uma lei angular precisa, sem parâmetros de ajuste:
+
+$$
+\frac{d\sigma}{d\Omega} = \left(\frac{Z z e^{2}}{16\pi\varepsilon_0 E}\right)^{2} \csc^{4}\!\left(\frac{\theta}{2}\right)
+$$
+
+Os eventos de grande ângulo observados tornaram inevitável o átomo nuclear. Ao aceitar um núcleo compacto, as órbitas quantizadas e os espectros discretos de Bohr deixam de parecer truques e passam a compor uma estrutura.
+
+---
+
+## 6.6 Ondas de matéria: de de Broglie a Davisson–Germer
+
+Se a luz pode agir como partículas, talvez partículas possam agir como ondas. Essa foi a ousada ideia de simetria de Louis de Broglie em 1923–24. Ele propôs que toda partícula material de momento $p$ tem um comprimento de onda $\lambda=h/p$. Uma ideia arriscada? Sim. Mas poucos anos depois a previsão se confirmou: elétrons sofreram difração em cristais como raios X, com ângulos medidos compatíveis com $\lambda=h/p$. Ondas de matéria não eram uma metáfora, mas uma realidade de laboratório.
+
+---
+
+### 6.6.1 A hipótese
+
+A relação de de Broglie é
+
+$$
+\lambda = \frac{h}{p}
+$$
+
+Juntamente com as relações do fóton $E=h\nu=\hbar \omega$ e $p=\hbar k$, propôs o **dicionário onda-partícula**:
+
+$$
+E = \hbar \omega,\qquad p = \hbar k
+$$
+
+As duas igualdades dizem: a uma energia e um momento $(E,\boldsymbol p)$ corresponde uma onda com frequência angular $\omega$ e vetor de onda $\boldsymbol k$.
+
+---
+
+### 6.6.2 Velocidades de fase e de grupo
+
+Para uma partícula livre com relação de dispersão $E(\boldsymbol p)$, defina
+
+$$
+\omega = \frac{E}{\hbar},\qquad \boldsymbol k = \frac{\boldsymbol p}{\hbar}
+$$
+
+Então,
+
+$$
+v_{\text{phase}} \equiv \frac{\omega}{k} = \frac{E}{p},\qquad
+\boldsymbol v_{\text{group}} \equiv \nabla_{\boldsymbol k}\,\omega = \nabla_{\boldsymbol p} E
+$$
+
+- **Relativisticamente**, $E=\gamma m c^{2}$ e $p=\gamma m v$ fornecem
+
+$$
+v_{\text{phase}} = \frac{c^{2}}{v},\qquad v_{\text{group}} = v
+$$
+
+A fase pode se mover mais rápido que a luz sem problema, pois não transporta informação; a velocidade de **grupo** é igual à da partícula.
+
+- **No caso não relativístico**, $E=p^{2}/(2m)$ fornece
+
+$$
+\omega = \frac{\hbar k^{2}}{2m},\qquad v_{\text{group}} = \frac{\hbar k}{m} = \frac{p}{m} = v
+$$
+
+Por isso, pacotes de ondas podem acompanhar o movimento de partículas.
+
+---
+
+### 6.6.3 Pacotes de ondas e incerteza: uma prévia
+
+Uma partícula localizada corresponde a uma superposição de ondas planas, um **pacote de ondas**. Se a dispersão de momento é $\Delta p$, isto é, uma dispersão em $k$, a largura espacial obedece a
+
+$$
+\Delta x \,\Delta p \gtrsim \frac{\hbar}{2}
+$$
+
+O pacote se move com $v_{\text{group}}$, mas **se dispersa** com o tempo para $E\propto k^{2}$ não relativístico, porque componentes com diferentes $k$ se movem a velocidades ligeiramente distintas. Essa é a origem da relação de incerteza e da dinâmica de Schrödinger.
+
+---
+
+### 6.6.4 Elétrons acelerados por um potencial: fórmulas úteis
+
+Ao acelerar um elétron por uma diferença de potencial $V$, ele ganha energia cinética $eV$. O momento **não relativístico** é
+
+$$
+p = \sqrt{2 m_e e V}
+$$
+
+portanto,
+
+$$
+\lambda = \frac{h}{\sqrt{2 m_e e V}}
+$$
+
+Uma fórmula numérica útil usa $\lambda$ em angstroms e a tensão aceleradora $V$ em volts:
+
+$$
+\lambda(\text{Å}) \approx \frac{12.27}{\sqrt{V(\text{V})}}
+$$
+
+Para tensões maiores, inclua a relatividade:
+
+$$
+\lambda = \frac{h c}{\sqrt{(eV)\,(eV + 2 m_e c^{2})}}
+$$
+
+Isso se reduz ao resultado não relativístico quando $eV \ll m_e c^{2}$.
+
+---
+
+### 6.6.5 Difração: cristais como redes para elétrons
+
+Um cristal é uma rede de difração tridimensional. Para planos separados por $d$, a interferência construtiva segue a **lei de Bragg**:
+
+$$
+n\,\lambda = 2 d \sin\theta,\qquad n=1,2,\dots
+$$
+
+Com $\lambda=h/p$, elétrons devem sofrer difração em ângulos determinados por $d$, assim como raios X. Era a evidência decisiva que a hipótese de de Broglie pedia.
+
+---
+
+### 6.6.6 Davisson–Germer e G. P. Thomson: as evidências
+
+**Davisson e Germer (1927).** Elétrons de dezenas de eV espalhados por um monocristal de níquel produziram máximos estreitos de intensidade em ângulos compatíveis com a lei de Bragg ao usar $\lambda=h/p$. Variar a tensão aceleradora deslocava os máximos conforme previsto por $\lambda\propto 1/\sqrt{V}$.
+
+**G. P. Thomson, também em 1927**, fez elétrons de energias em keV atravessarem folhas policristalinas finas e registrou **padrões de anéis**, a versão da difração de Bragg em pó. Dois caminhos independentes, uma conclusão: ondas de matéria são reais.
+
+Regra prática: $V\sim 150\ \text{V}$ fornece $\lambda\sim 1\ \text{Å}$, da ordem das distâncias interatômicas, ideal para difração em cristais.
+
+---
+
+### 6.6.7 De Bohr a de Broglie: ondas estacionárias
+
+O postulado de momento angular de Bohr, $m v r = n\hbar$, parece menos arbitrário quando exigimos **ondas estacionárias** em uma órbita circular:
+
+$$
+2\pi r = n\,\lambda = n\,\frac{h}{p}
+$$
+
+o que fornece
+
+$$
+p r = n\,\hbar
+$$
+
+A mesma quantização, agora com uma lógica ondulatória. Raios não permitidos são aqueles em que a fase não se ajusta, sendo excluídos pela interferência destrutiva. De Broglie forneceu a justificativa intuitiva que faltava ao modelo de Bohr.
+
+---
+
+### 6.6.8 A motivação de Schrödinger: por que uma equação de onda?
+
+Considere a dispersão livre $E=p^{2}/(2m)$ e o dicionário de de Broglie $E\to i\hbar\,\partial_t$, $\boldsymbol p\to -i\hbar\nabla$. Exija uma equação diferencial linear cujas soluções de onda plana tenham $\omega=\hbar k^{2}/(2m)$. Acrescentando um potencial, chegamos a
+
+$$
+i\hbar\,\frac{\partial \psi}{\partial t} = -\,\frac{\hbar^{2}}{2m}\,\nabla^{2}\psi + V\psi
+$$
+
+a **equação de Schrödinger** dependente do tempo. Em outras palavras, $E(\boldsymbol p)$ de de Broglie é a lei de dispersão que a equação diferencial parcial de Schrödinger realiza no espaço real.
+
+Uma visão complementar vem da teoria de Hamilton–Jacobi: escrevendo $\psi \sim \exp(i S/\hbar)$, $\nabla S$ se comporta como momento. **Fase** e **interferência** conectam a mecânica clássica à quântica.
+
+---
+
+### 6.6.9 Dupla fenda com elétrons: o experimento decisivo
+
+Envie elétrons individuais por duas fendas e registre os impactos um a um. Com o tempo, surge um **padrão de interferência** na tela; ao medir **por qual fenda** cada elétron passou, a interferência desaparece. O comprimento de onda corresponde a $\lambda=h/p$. A mensagem não é que elétrons se espalham como uma mancha: amplitudes de probabilidade **interferem**, com fases determinadas por diferenças de ação.
+
+---
+
+### 6.6.10 Tecnologia com ondas de matéria: microscopia e metrologia
+
+- **Microscópios eletrônicos.** A resolução varia aproximadamente como $\sim \lambda$. Trocar luz visível, $\sim 500\ \text{nm}$, por elétrons de 100 keV, com $\lambda\sim 0.004\ \text{nm}$ após correção relativística, torna rotineiras as imagens do nanomundo.
+- **LEED/RHEED.** A difração de elétrons de baixa energia e a difração de elétrons de alta energia por reflexão identificam estruturas de superfícies e acompanham seu crescimento em tempo real.
+- **Interferometria atômica.** Átomos neutros também possuem ondas de de Broglie; separá-las e recombiná-las permite medir gravidade, rotações e constantes fundamentais com precisão extraordinária.
+
+---
+
+### 6.6.11 Pequenos exemplos resolvidos
+
+**(a) Comprimento de onda de de Broglie a $54\ \text{eV}$.**
+
+Usando $\lambda(\text{Å})\approx 12.27/\sqrt{V(\text{V})}$,
+
+$$
+\lambda \approx \frac{12.27}{\sqrt{54}}\ \text{Å} \approx 1.67\ \text{Å}
+$$
+
+Isso está exatamente na faixa dos espaçamentos cristalinos; não surpreende que os primeiros máximos aparecessem com tensões modestas.
+
+**(b) Tensão para $\lambda=1.0\ \text{Å}$.**
+
+Invertendo a mesma regra:
+
+$$
+V \approx \left(\frac{12.27}{\lambda(\text{Å})}\right)^{2}\ \text{V} \approx 150\ \text{V}
+$$
+
+**(c) Verificação da velocidade de grupo não relativística.**
+
+Com $\omega=\hbar k^{2}/(2m)$,
+
+$$
+v_{\text{group}} = \frac{d\omega}{dk} = \frac{\hbar k}{m} = \frac{p}{m} = v
+$$
+
+O pacote se move como a partícula: a descrição é consistente.
+
+**(d) Estimativa do ângulo de Bragg.**
+
+Para $d=2.0\ \text{Å}$, $\lambda=1.0\ \text{Å}$ e primeira ordem $n=1$,
+
+$$
+\sin\theta = \frac{\lambda}{2d} = \frac{1}{4}\quad\Rightarrow\quad \theta \approx 14.5^\circ
+$$
+
+Experimentos reais incluem fatores geométricos, como os ângulos de incidência e detecção, mas a dependência está correta.
+
+---
+
+### 6.6.12 Sutilezas e limites
+
+- **Alargamento do pacote.** Pacotes não relativísticos se alargam com o tempo; feixes reais são continuamente colimados ou detectados antes de grande dispersão.
+- **Espalhamento e estados ligados.** Na difração elástica, o cristal funciona como uma grande rede de fase; em átomos, ondas estacionárias de estados ligados quantizam as energias.
+- **Partículas pesadas.** Para velocidade fixa, $\lambda=h/p$ diminui rapidamente com a massa; interferômetros de nêutrons e átomos usam velocidades pequenas para obter comprimentos de onda úteis.
+- **Elétrons relativísticos.** Use o $\lambda$ corrigido: a 100 keV, fórmulas não relativísticas subestimam o momento e superestimam $\lambda$.
+
+---
+
+### 6.6.13 Conjunto de problemas
+
+- Mostre que $v_{\text{phase}}\,v_{\text{group}}=c^{2}$ para uma partícula relativística livre.
+- Para um feixe de elétrons de $200\ \text{keV}$, calcule $\lambda$ com e sem correção relativística e compare.
+- Para um cristal cúbico de parâmetro de rede $a$, liste os espaçamentos $d$ dos planos $(100)$, $(110)$ e $(111)$ e preveja os ângulos de Bragg de primeira ordem para um $\lambda$ escolhido.
+- Construa um pacote gaussiano $\psi(x,0)$, evolua-o com o propagador livre de Schrödinger e obtenha a dependência temporal de sua largura quadrática média.
+
+---
+
+## 6.7 A velha teoria quântica: acertos e erros
+
+Antes de a mecânica quântica completa surgir em 1925–26, físicos remendavam a mecânica clássica com algumas regras ousadas. Quantizavam certas integrais, impunham regras de seleção e incorporavam a condição de frequência de Bohr. Essa **velha teoria quântica** explicava o espectro do hidrogênio e sugeria uma estrutura mais profunda, mas tropeçava em átomos de vários elétrons, intensidades e peculiaridades magnéticas. Esta seção faz o balanço: o que funcionou, o que falhou e o que passou para a mecânica quântica moderna.
+
+---
+
+### 6.7.1 O que significava “velha teoria quântica”
+
+A abordagem tinha três pilares:
+
+1) Existem **estados estacionários** que não irradiam enquanto o elétron percorre uma órbita de Coulomb.
+2) As **condições quânticas de Bohr–Sommerfeld** selecionam os movimentos permitidos.
+3) A **condição de frequência de Bohr** relaciona diferenças entre níveis à luz.
+
+Para níveis $E_n$, uma transição descendente $n\to n'$ emite um fóton com a energia abaixo; a absorção é a transição inversa:
+
+$$
+h\nu = E_n - E_{n'}
+$$
+
+O elemento matemático central era a quantização das **ações**.
+
+---
+
+### 6.7.2 Condições quânticas de Bohr–Sommerfeld
+
+Para um sistema com coordenadas separáveis $q_i$ e momentos conjugados $p_i$, as órbitas permitidas satisfazem
+
+$$
+\oint p_i\,dq_i = n_i\,h,\qquad n_i=0,1,2,\dots
+$$
+
+A integral de linha percorre um período completo do movimento na coordenada $q_i$. Defina as **variáveis de ação**
+
+$$
+J_i \equiv \oint p_i\,dq_i
+$$
+
+A regra é simplesmente $J_i = n_i h$. Essas $J_i$ são **invariantes adiabáticos**: permanecem constantes quando os parâmetros mudam lentamente, fato que Ehrenfest elevou ao **princípio adiabático**. As regras funcionam para dinâmica integrável e separável; fora desse domínio, perdem sua base.
+
+---
+
+### 6.7.3 Hidrogênio, agora de forma mais geral
+
+As órbitas circulares de Bohr são um caso particular. Com as elipses de Sommerfeld, o problema de Coulomb tem duas ações: a **radial** $J_r$ e a **angular** $J_\phi$. A quantização fornece
+
+$$
+J_\phi = \ell\,h,\qquad J_r = n_r\,h,\qquad n = n_r + \ell
+$$
+
+e a energia total depende apenas de $n$:
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi\varepsilon_0)^2 \hbar^2}\,\frac{1}{n^{2}}
+$$
+
+O número quântico principal $n$ já organiza os estados na velha teoria, embora ainda não exista uma função de onda para interpretar os nós. Sommerfeld também acrescentou uma correção relativística e obteve uma separação de **estrutura fina**, antecipando a teoria sistemática que Dirac desenvolveria.
+
+---
+
+### 6.7.4 Oscilador harmônico: o espectro “quase certo”
+
+Para um oscilador harmônico unidimensional de frequência angular $\omega$, a integral de ação resulta em
+
+$$
+J = \oint p\,dq = \frac{2\pi E}{\omega}
+$$
+
+Bohr–Sommerfeld exige $J = n h$, portanto,
+
+$$
+E_n = n\,\hbar\omega
+$$
+
+Isso está **perto** do resultado correto; a mecânica quântica moderna fornece $E_n=(n+\tfrac12)\hbar\omega$. A parcela $\tfrac12$ ausente é a **energia de ponto zero** do oscilador, um dos vários casos em que a velha teoria quântica erra por meia unidade.
+
+---
+
+### 6.7.5 Princípio da correspondência e regras de seleção
+
+O **princípio da correspondência** de Bohr orientava as hipóteses: no limite de números quânticos grandes, $n\gg 1$, as previsões quânticas devem se transformar nas clássicas. Para movimentos ligados, pode-se expandir uma trajetória clássica em componentes de Fourier e mostrar que as transições quânticas permitidas mais fortes tendem a frequências do espectro clássico. Essa lógica apoiou a **regra de seleção** dipolar empírica
+
+$$
+\Delta \ell = \pm 1
+$$
+
+e explicou por que transições com frequências muito diferentes são fracas. Mais tarde, o princípio ganhou forma matemática precisa na fórmula de dispersão de **Kramers–Heisenberg** e nas regras de soma.
+
+---
+
+### 6.7.6 Coeficientes $A$ e $B$ de Einstein: corpo negro a partir de transições
+
+Em 1916–17, Einstein formulou um modelo cinético de transições radiativas entre dois níveis, $1$ e $2$, com degenerescências $g_1,g_2$. Em um campo de radiação de densidade espectral de energia $\rho(\nu)$, as taxas são
+
+$$
+\text{absorção: } N_1 B_{12}\,\rho(\nu),\qquad
+\text{emissão estimulada: } N_2 B_{21}\,\rho(\nu),\qquad
+\text{emissão espontânea: } N_2 A_{21}
+$$
+
+O equilíbrio térmico e os fatores de Boltzmann $N_2/N_1=(g_2/g_1)\exp(-h\nu/k_B T)$ impõem
+
+$$
+\frac{A_{21}}{B_{21}} = \frac{8\pi h \nu^{3}}{c^{3}},\qquad
+\frac{g_1\,B_{12}}{g_2\,B_{21}} = 1
+$$
+
+e reproduzem a **lei de Planck** para $\rho(\nu)$. Foi a primeira aparição teórica da **emissão estimulada**, explorada décadas depois pelos lasers. A velha teoria quântica conseguia fazer o balanço da radiação.
+
+---
+
+### 6.7.7 Teoria da dispersão e primeiras regras de soma
+
+Kramers reformulou a dispersão óptica em termos de transições virtuais entre níveis. Usando a correspondência, deduziu polarizabilidades dependentes da frequência que reproduziam o comportamento clássico de Lorentz–Drude em baixas frequências, respeitando regras de seleção quânticas. Heisenberg e Born seguiram essa pista e substituíram amplitudes clássicas por **arranjos** de amplitudes de transição: a ponte para a **mecânica matricial**. Mesmo antes desse salto, **regras de soma** relacionando intensidades de osciladores a cargas já impunham restrições importantes aos espectros.
+
+---
+
+### 6.7.8 Sucessos termodinâmicos: calores específicos dos sólidos
+
+A equipartição clássica prevê uma capacidade térmica molar constante $C_V=3R$, a lei de Dulong–Petit. Dados em baixos $T$ contradizem essa previsão. O **modelo de Einstein**, de 1907, trata cada átomo como um oscilador quântico independente de frequência $\omega_E$:
+
+$$
+C_V = 3R\,\left(\frac{\theta_E}{T}\right)^2 \frac{e^{\theta_E/T}}{\left(e^{\theta_E/T}-1\right)^2},\qquad \theta_E \equiv \frac{\hbar\omega_E}{k_B}
+$$
+
+O modelo reproduz a queda, mas não a potência exata em baixos $T$. **Debye** o aprimorou quantizando modos acústicos até uma frequência de corte $\omega_D$, obtendo $C_V\propto T^3$ em baixos $T$ e $3R$ em altos $T$. Embora não façam parte da quantização orbital, esses sucessos mostraram que a **discretização** também corrige a termodinâmica.
+
+---
+
+### 6.7.9 Onde a velha teoria quântica falhou
+
+- **Hélio e átomos de vários elétrons.** O problema coulombiano de três corpos não possui integrais independentes de movimento suficientes para uma quantização simples das ações. Condições quânticas ad hoc produziam energias conflitantes e estruturas de termos erradas. O hélio permaneceu um problema até a chegada da mecânica ondulatória e do **spin**.
+
+- **Efeito Zeeman anômalo.** Em campos magnéticos fracos, muitas linhas espectrais se dividem em mais componentes do que a física clássica ou o momento angular orbital sozinho podem explicar. São necessários o **spin do elétron** e o acoplamento spin–órbita, ausentes na velha teoria.
+
+- **Intensidades e polarizações.** As posições dos níveis funcionavam para sistemas hidrogenoides; **intensidades de linhas**, **polarizações** e **tempos de vida** exigiam elementos de matriz de operadores entre funções de onda, ferramentas que a velha teoria não possuía.
+
+- **Radiação de cargas aceleradas.** A velha teoria declarava por postulado que órbitas estacionárias não irradiavam, embora cargas aceleradas irradiem na eletrodinâmica clássica. A regra funcionava fenomenologicamente, mas não tinha fundamento até a mecânica ondulatória substituir a “órbita” por uma **onda estacionária**.
+
+- **Sistemas não separáveis e caos.** A regra de quantização das ações requer coordenadas separáveis e toros invariantes fechados no espaço de fases. Muitos movimentos, como os de osciladores anarmônicos acoplados e moléculas em geral, não satisfazem isso. Sem uma equação diferencial parcial para $\psi$, o método para.
+
+- **Energia de ponto zero.** O termo ausente $\tfrac12\hbar\omega$ do oscilador apareceu em experimentos sensíveis a flutuações de baixa temperatura e, depois, na quantização de campos. A velha teoria não tinha uma regra universal para atribuí-lo.
+
+---
+
+### 6.7.10 O que sobreviveu na mecânica quântica moderna
+
+- **Ações e invariantes adiabáticos** tornaram-se as regras de quantização semiclássicas **WKB/EBK**:
+
+$$
+\oint p\,dq = \left(n + \frac{\mu}{4}\right)h
+$$
+
+Os **índices de Maslov** $\mu$ fornecem as meias unidades ausentes.
+
+- O **princípio da correspondência** continua como teste de consistência e fundamenta regras de soma, regras de seleção e aproximações semiclássicas.
+
+- Os **coeficientes $A$ e $B$ de Einstein** e as intensidades de osciladores continuam presentes na física atômica, nos lasers e no diagnóstico astrofísico.
+
+- Os **números quânticos** $(n,\ell,m)$ continuam sendo os rótulos; agora representam autovalores de operadores que comutam, em vez de áreas sob curvas.
+
+- As **ondas estacionárias de de Broglie** tornaram-se a teoria completa das **autofunções**, explicando estabilidade e probabilidades de radiação por sobreposições de funções, não por órbitas.
+
+---
+
+### 6.7.11 Pequenos exemplos resolvidos
+
+**(a) Ação no problema de Kepler**
+
+Para o potencial de Coulomb, a ação radial pode ser calculada entre o periastro e o apoastro. Encontramos $J_\phi=\ell h$ e
+
+$$
+J_r = h\,(n - \ell)
+$$
+
+Assim, $E$ depende apenas de $n$, reproduzindo $E_n\propto -1/n^2$ e a degenerescência em $\ell$. O acoplamento spin–órbita e o deslocamento de Lamb posteriormente removem partes dessa degenerescência.
+
+**(b) A metade ausente do oscilador**
+
+De $J=2\pi E/\omega$ e $J=n h$ resulta $E_n=n\hbar\omega$. Na aproximação WKB, cada ponto de retorno acrescenta uma fase $\pi/2$, mudando a regra para $J=(n+\tfrac12)h$ e corrigindo o resultado para $E_n=(n+\tfrac12)\hbar\omega$.
+
+**(c) Seleção dipolar**
+
+Expanda o momento dipolar de uma órbita circular clássica em modos de Fourier nos múltiplos da frequência orbital. O harmônico mais forte é o primeiro, refletindo $\Delta \ell=\pm 1$ e transições entre $n$ vizinhos no limite de $n$ grande.
+
+---
+
+### 6.7.12 Conjunto de problemas
+
+- A partir de $\oint p\,dq = n h$, deduza as energias $E_n$ do oscilador harmônico e compare com o resultado corrigido por WKB, $(n+\tfrac12)\hbar\omega$.
+- Para o movimento de Coulomb, calcule $J_\phi$ e $J_r$ e mostre que $E$ depende apenas de $n=n_r+\ell$.
+- Use as equações de taxas de Einstein para deduzir $\rho(\nu)$ e obter $A_{21}/B_{21}$ e $B_{12}/B_{21}$ em termos de $(g_1,g_2)$.
+- Mostre como a dispersão de Kramers se reduz ao modelo clássico de Lorentz quando $\hbar\omega \ll k_B T$ e as transições se tornam densas.
+- Identifique um sistema cujas variáveis não são separáveis e explique por que a quantização de Bohr–Sommerfeld não avança sem a mecânica ondulatória.
+
+---
+
+**Resumo:** A velha teoria quântica foi uma solução provisória brilhante. Escolheu os invariantes certos para quantizar, respeitou a correspondência com a física clássica e até antecipou a emissão estimulada. Mas, sem funções de onda, operadores e spin, não podia calcular intensidades, espectros de vários elétrons ou detalhes magnéticos. Seus sucessos formaram a base das matrizes de Heisenberg e das ondas de Schrödinger; suas falhas mostraram onde a teoria completa precisava crescer.
+
+---
+
+## 6.8 Spin, Stern–Gerlach e exclusão
+
+Nas décadas de 1910 e 1920, os átomos revelavam um segredo: o momento angular aparecia em meias unidades e havia um limite de lugares para elétrons. **Stern–Gerlach** dividiu feixes neutros em trajetórias discretas, o **spin** explicou as separações “anômalas” de Zeeman e o **princípio de exclusão de Pauli** organizou a tabela periódica e fundamentou a estabilidade da matéria. Esta seção apresenta o spin como um grau de liberdade quântico, seu momento magnético, a ação dos campos e por que a regra “dois férmions idênticos não ocupam o mesmo estado” sustenta a química e as anãs brancas.
+
+---
+
+### 6.8.1 Stern–Gerlach: a quantização espacial fica visível
+
+Em 1922, Otto Stern e Walther Gerlach enviaram um feixe de átomos neutros de prata por um campo magnético **não uniforme**. Classicamente, a componente do momento magnético ao longo do gradiente variaria continuamente, produzindo uma mancha. Em vez disso, observaram **duas** regiões separadas. Conclusão: a componente $z$ do momento angular é **quantizada**.
+
+A prata é adequada porque um único elétron de valência desemparelhado domina o momento magnético, enquanto o átomo permanece neutro, sem desvio pela força de Lorentz. A força é
+
+$$
+F_z = \mu_z\,\frac{\partial B_z}{\partial z}
+$$
+
+A separação em duas componentes mostra que $\mu_z$ só assume dois valores. Na linguagem atual, isso corresponde ao spin com $m_s=\pm \tfrac12$.
+
+---
+
+### 6.8.2 Spin $\tfrac12$: álgebra e autovalores
+
+Na mecânica quântica, as componentes do spin não comutam:
+
+$$
+[S_i,S_j]=i\hbar\,\epsilon_{ijk}\,S_k
+$$
+
+Para um elétron, o spin total e sua projeção em $z$ são
+
+$$
+S^2 = s(s+1)\hbar^2,\qquad s=\frac12
+$$
+
+$$
+S_z\,\ket{\uparrow}=\frac{\hbar}{2}\ket{\uparrow},\qquad
+S_z\,\ket{\downarrow}=-\frac{\hbar}{2}\ket{\downarrow}
+$$
+
+Uma representação matricial conveniente usa as **matrizes de Pauli** $\boldsymbol{\sigma}$, com $S_i=\tfrac{\hbar}{2}\sigma_i$:
+
+$$
+\sigma_x=\begin{pmatrix}0&1\\[2pt]1&0\end{pmatrix},\quad
+\sigma_y=\begin{pmatrix}0&-i\\[2pt]i&0\end{pmatrix},\quad
+\sigma_z=\begin{pmatrix}1&0\\[2pt]0&-1\end{pmatrix}
+$$
+
+Estados de spin são **espinores** de duas componentes. Rotações atuam por essas matrizes, e uma medição ao longo de qualquer eixo seleciona um de dois resultados.
+
+---
+
+### 6.8.3 Momento magnético, separação de Zeeman e precessão de Larmor
+
+O spin do elétron carrega um momento magnético:
+
+$$
+\boldsymbol{\mu}_s = -\,g_s\,\frac{e}{2m_e}\,\boldsymbol{S}
+$$
+
+A teoria de Dirac fornece $g_s\approx 2$, com pequenas correções da eletrodinâmica quântica. Defina o **magneton de Bohr**
+
+$$
+\mu_B \equiv \frac{e\hbar}{2m_e}
+$$
+
+Em um campo magnético uniforme $\boldsymbol{B}=B\hat{\boldsymbol{z}}$, a energia de interação é
+
+$$
+H_Z = -\,\boldsymbol{\mu}\cdot\boldsymbol{B} = g_s\,\mu_B\,m_s\,B
+$$
+
+Assim, um spin $\tfrac12$ se divide em dois níveis separados por
+
+$$
+\Delta E = g_s\,\mu_B\,B
+$$
+
+Os spins também **precessam** em torno de $\boldsymbol{B}$ com a **frequência de Larmor**, uma ideia de aparência clássica, mas exata quanticamente:
+
+$$
+\omega_L = \frac{g_s\,\mu_B\,B}{\hbar}
+$$
+
+Isso fundamenta a ressonância magnética (RMN/RPE) e aparece como frequências de batimento na dinâmica temporal do spin.
+
+---
+
+### 6.8.4 Zeeman normal e “anômalo”: o spin resolve
+
+A espectroscopia inicial encontrou separações de linhas em campos magnéticos que iam além do **tripleto normal de Zeeman**. A solução usa o momento angular total
+
+$$
+\boldsymbol{J}=\boldsymbol{L}+\boldsymbol{S}
+$$
+
+com um fator de Landé $g_J$ próprio de cada nível. O deslocamento de energia de Zeeman é
+
+$$
+\Delta E = \mu_B\,g_J\,m_J\,B
+$$
+
+com $m_J=-J,-J+1,\dots,J$. O spin explica os padrões “anômalos”: $g_J$ resulta da álgebra de acoplamento vetorial, e as regras de seleção $\Delta m_J=0,\pm 1$ determinam as multiplicidades e polarizações das linhas. Não são necessários artifícios adicionais.
+
+---
+
+### 6.8.5 Acoplamento spin–órbita e fator de Thomas
+
+Um elétron em movimento no campo nuclear vê, em seu referencial de repouso, um campo magnético que acopla $\boldsymbol{L}$ e $\boldsymbol{S}$:
+
+$$
+H_{SO} = \xi(r)\,\boldsymbol{L}\cdot\boldsymbol{S}
+$$
+
+Um tratamento relativístico cuidadoso acrescenta o fator $\tfrac12$ da **precessão de Thomas**, alinhando as previsões com a **estrutura fina** observada. Os termos se separam por $J$ mesmo com $n$ e $\ell$ fixos, como nos conhecidos dubletos dos espectros alcalinos.
+
+---
+
+### 6.8.6 Princípio de exclusão de Pauli: dois elétrons por orbital
+
+Em 1925, Wolfgang Pauli propôs: **dois férmions idênticos não podem ocupar o mesmo estado quântico**. Para elétrons em átomos, isso significa no máximo dois por orbital espacial, com **spins opostos**. Um estado de um elétron é identificado por $(n,\ell,m_\ell,m_s)$; a exclusão proíbe quádruplas repetidas. Sucessos imediatos:
+
+<figure className="study-figure" data-study-figure="pauli-periodic-table">
+<img src="/images/diagrams/pauli-periodic-table.svg" alt="Ocupações orbitais permitidas e proibidas, capacidades das subcamadas s/p/d/f e os três primeiros períodos, do hidrogênio ao argônio." loading="lazy" width="1000" height="815" />
+<figcaption>
+
+Cada estado completo de um elétron admite no máximo um elétron; um orbital espacial admite dois com spins opostos. A capacidade de uma camada, $2n^2$, difere do comprimento de um período. A ordem energética e a regra de Hund, além do princípio de Pauli, explicam o preenchimento do estado fundamental.
+
+- A: ✓ permite spins opostos em um orbital espacial; × proíbe spins iguais ou três elétrons nesse mesmo orbital.
+- B: s,p,d,f contêm 1,3,5,7 orbitais espaciais, com capacidades 2,6,10,14.
+- C: os períodos 1–3 contêm 2,8,8 elementos. São mostradas as configurações de He, Ne e Ar. Abaixo, as capacidades das camadas n=1–4 são 2,8,18,32; a capacidade 18 de n=3 não significa que o terceiro período tenha dezoito elementos.
+
+[Abrir a figura em tamanho completo](/images/diagrams/pauli-periodic-table.svg)
+
+</figcaption>
+</figure>
+
+- **Estrutura da tabela periódica.** Camadas e subcamadas se preenchem na ordem observada, com ajustes por correlação e blindagem, explicando a valência química. Dois elétrons por orbital fornecem as capacidades $2,\,8,\,18,\dots$ das camadas.
+- **Magnetismo.** A maioria dos elétrons tem spins emparelhados; spins desemparelhados produzem paramagnetismo. O **paramagnetismo de Pauli** dos elétrons de condução nos metais é fraco e quase independente da temperatura, em contraste com a lei de Curie para momentos localizados.
+- **Estabilidade da matéria.** Os elétrons não podem todos cair no orbital mais baixo. Férmions comprimidos produzem **pressão de degenerescência**, que resiste à compressão, das propriedades mecânicas dos metais à sustentação de **anãs brancas**.
+
+O fundamento mais profundo é o teorema **spin–estatística** da teoria quântica relativística de campos. Partículas de spin semi-inteiro, os férmions, têm funções de onda de muitos corpos antissimétricas e obedecem à estatística de **Fermi–Dirac**; partículas de spin inteiro, os bósons, são simétricas e obedecem à estatística de **Bose–Einstein**.
+
+---
+
+### 6.8.7 Distribuição de Fermi–Dirac e mar de Fermi
+
+Para férmions idênticos com energias de uma partícula $\epsilon$ e potencial químico $\mu$,
+
+<figure className="study-figure" data-study-figure="fermi-dirac-occupation">
+<img src="/images/diagrams/fermi-dirac-occupation.svg" alt="Ocupação de Fermi–Dirac entre zero e um: um degrau a temperatura zero e duas curvas suaves a temperatura finita que se cruzam na energia μ." loading="lazy" width="900" height="620" />
+<figcaption>
+
+O gráfico mostra a ocupação de um estado completo de uma partícula, incluindo o spin. μ é fixado para ilustrar e E₀ é uma escala de energia positiva arbitrária. A temperatura zero, $\mu=\varepsilon_F$; com número fixo de partículas, μ geralmente varia com a temperatura. A degenerescência de spin não multiplica essa probabilidade. As curvas descrevem um gás ideal em equilíbrio térmico.
+
+- O degrau tracejado é o limite a temperatura zero: ocupado abaixo de μ e vazio acima. Os extremos abertos deixam o valor na descontinuidade sem especificação.
+- A curva azul contínua tem $\tau=1/4$ e a laranja de traço e ponto $\tau=3/4$, com $\tau=k_B T/E_0$. Uma temperatura maior alarga a transição.
+- A qualquer temperatura positiva, $f(\mu)=1/2$. Esse ponto médio não fixa o valor do degrau a temperatura zero na descontinuidade.
+
+[Abrir a figura em tamanho completo](/images/diagrams/fermi-dirac-occupation.svg)
+
+</figcaption>
+</figure>
+
+$$
+\bar n(\epsilon) = \frac{1}{\exp\!\left(\frac{\epsilon-\mu}{k_B T}\right)+1}
+$$
+
+Em $T=0$, os estados são preenchidos até a **energia de Fermi** $\epsilon_F$. O fator 2 do spin $\tfrac12$ dobra a densidade de estados por energia, altera $\epsilon_F$ para densidade de partículas fixa e controla propriedades metálicas. A suscetibilidade paramagnética de Pauli de um metal simples varia com a densidade de estados em $\epsilon_F$: pequena, mas não nula.
+
+---
+
+### 6.8.8 Medições sucessivas de Stern–Gerlach
+
+Faça um feixe passar por três ímãs: SG$_z$, mantendo apenas $\uparrow$; depois SG$_x$, separando $\rightarrow$ e $\leftarrow$ e mantendo $\rightarrow$; por fim, SG$_z$ novamente. A última etapa mostra **tanto** $\uparrow$ quanto $\downarrow$. A medição em $x$ **prepara novamente** o estado de spin e apaga a informação anterior sobre $z$. Algebricamente,
+
+$$
+\ket{\uparrow_z}=\frac{1}{\sqrt2}\!\left(\ket{\rightarrow_x}+\ket{\leftarrow_x}\right)
+$$
+
+Assim, uma medição projetiva em $x$ torna aleatórios os resultados posteriores em $z$. É uma demonstração clara de que observáveis incompatíveis não têm simultaneamente valores bem definidos.
+
+---
+
+### 6.8.9 Por que Stern–Gerlach usou átomos neutros, não elétrons
+
+Por que não separar o spin de **elétrons**? Elétrons livres em campos não homogêneos sofrem grandes forças de Lorentz $q\,\boldsymbol{v}\times\boldsymbol{B}$ e, conforme o arranjo, forças elétricas em campos de borda, que encobrem a pequena separação devida a $\nabla(\boldsymbol{\mu}\cdot\boldsymbol{B})$. Átomos neutros evitam esses grandes desvios eletromagnéticos, permitindo observar a quantização.
+
+---
+
+### 6.8.10 Desvios pequenos, mas reais: $g-2$
+
+O valor $g_s=2$ de Dirac é extremamente preciso, mas não exato. A eletrodinâmica quântica acrescenta um pequeno **momento magnético anômalo**
+
+$$
+a_e \equiv \frac{g_s-2}{2}
+$$
+
+cujo termo dominante é $\alpha/(2\pi)$, com ordens superiores que exigem cálculos elaborados. Medidas precisas de $a_e$ testam o Modelo Padrão e ajudam a determinar a constante de estrutura fina $\alpha$.
+
+---
+
+### 6.8.11 Pequenos exemplos resolvidos
+
+**(a) Tamanho da separação de Zeeman**
+
+Para $B=1\ \text{T}$ e $g_s\approx 2$,
+
+$$
+\Delta E = g_s\,\mu_B\,B \approx 2\times 5.788\times 10^{-5}\ \text{eV/T}\times 1\ \text{T}\approx 1.16\times 10^{-4}\ \text{eV}
+$$
+
+A frequência correspondente, $\nu=\Delta E/h\sim 28\ \text{GHz}$, está na faixa de micro-ondas da RPE.
+
+**(b) Estimativa do desvio de Stern–Gerlach**
+
+Com gradiente $\partial B_z/\partial z = 10\ \text{T/m}$, tempo de voo $\tau=10^{-4}\ \text{s}$ e massa de um átomo de Ag, o impulso na direção $z$ é
+
+$$
+\Delta p_z \approx \mu_B\,\frac{\partial B_z}{\partial z}\,\tau
+$$
+
+A separação das manchas também depende do tempo de voo após o ímã. Com massa da prata $1.79\times10^{-25}\ \mathrm{kg}$, velocidade do feixe $500\ \mathrm{m/s}$ e tela $0.20\ \mathrm{m}$ após o ímã, esses valores dão separação de cerca de $0.047\ \mathrm{mm}$, incluindo o desvio dentro do ímã. Uma separação milimétrica exige outros parâmetros.
+
+**(c) Escala de uma anã branca**
+
+A pressão de degenerescência dos elétrons, $P\sim \frac{\hbar^2}{m_e} n_e^{5/3}$, equilibra a gravidade. Aumentar $n_e$ eleva $P$ sem aquecimento: a exclusão é literalmente sustentação estrutural. Os detalhes pertencem à astrofísica, mas a dependência vem do spin $\tfrac12$ e da antissimetria.
+
+---
+
+### 6.8.12 Conjunto de problemas
+
+- Deduza a separação em dois resultados de Stern–Gerlach usando os autovalores de $S_z$ e estime a separação das manchas para gradiente e tempo de voo dados.
+- A partir de $H_Z=-\boldsymbol{\mu}\cdot\boldsymbol{B}$ e $S_i=\tfrac{\hbar}{2}\sigma_i$, mostre que os espinores precessam com $\omega_L=g_s\mu_B B/\hbar$.
+- Usando as regras de adição vetorial, calcule $g_J$ para um símbolo de termo $^{2S+1}L_J$ e preveja componentes de Zeeman e polarizações.
+- Mostre como $H_{SO}=\xi(r)\,\boldsymbol{L}\cdot\boldsymbol{S}$ separa um multipleto $n,\ell$ em $J=\ell\pm \tfrac12$ e esboce as linhas permitidas pelas regras de seleção.
+- A partir da distribuição de Fermi–Dirac, deduza a densidade de elétrons e a energia de Fermi de um metal de elétrons livres a temperatura zero, incluindo a degenerescência de spin.
+
+---
+
+**Resumo:** O spin não é uma órbita minúscula, mas, para o elétron, um grau de liberdade intrínseco de dois estados, com álgebra, matrizes e momento magnético. Stern–Gerlach revelou sua discretização; padrões de Zeeman e estrutura fina confirmaram seu acoplamento a campos e ao movimento orbital. O princípio de exclusão de Pauli fez do spin um princípio estrutural: preenche camadas, determina a química e sustenta estrelas. Com a estatística de Fermi–Dirac e $g\approx 2$, temos a explicação moderna de um século de supostas “anomalias”.
+
+---
+
+## 6.9 Da velha teoria quântica às mecânicas ondulatória e matricial
+
+Em 1925, os remendos da velha teoria quântica já não bastavam. Regras de seleção funcionavam e os espectros concordavam em grande parte, mas intensidades, sistemas de vários elétrons e a lógica das regras exigiam uma nova abordagem. Quase ao mesmo tempo surgiram a **mecânica matricial de Heisenberg**, com Born e Jordan, e a **mecânica ondulatória de Schrödinger**. A mesma física, em formas muito diferentes. Em 1926, demonstrou-se sua equivalência, e a teoria quântica finalmente ganhou um cálculo consistente.
+
+---
+
+### 6.9.1 Da dispersão à reinterpretação
+
+O salto de Heisenberg começou com a **dispersão** óptica. Elétrons clássicos excitados pela luz oscilam e emitem em frequências de combinação. A velha teoria reformulou isso por meio de **frequências de transição** $\omega_{mn}=(E_m-E_n)/\hbar$ entre estados estacionários e **amplitudes** ligadas às intensidades das linhas. A “Umdeutung”, ou reinterpretação, de Heisenberg abandonou órbitas eletrônicas inobserváveis e manteve apenas dados **observáveis** de transições, organizados em arranjos $X_{mn}$ cujas linhas e colunas indicam níveis de energia. A composição de movimentos tornou-se multiplicação de matrizes. Saíram as trajetórias; entrou a **álgebra das transições**.
+
+---
+
+### 6.9.2 Mecânica matricial em uma página
+
+Observáveis são matrizes $A$ com elementos $A_{mn}$ na base de autoestados de energia. A dependência temporal contém as frequências de Bohr:
+
+$$
+A_{mn}(t) = A_{mn}\,e^{i\omega_{mn} t}
+$$
+
+A regra de produto que respeita a composição de transições é a multiplicação matricial. Com $x\to X$ e $p\to P$, a equação newtoniana $m\ddot x = -\partial V/\partial x$ torna-se
+
+$$
+m\,\ddot X = -\,\frac{\partial V(X)}{\partial X}
+$$
+
+As derivadas temporais atuam elemento a elemento por meio das fases, e exige-se consistência com o **princípio da correspondência** para números quânticos grandes. A estrutura crucial é o **comutador canônico**
+
+$$
+[X,P] \equiv X P - P X = i\hbar\,\mathbb I
+$$
+
+Ele não é um acréscimo opcional, mas o princípio algébrico que substitui os colchetes de Poisson. Com ele, o oscilador harmônico, o rotor e o espectro do hidrogênio podem ser tratados de forma puramente algébrica.
+
+---
+
+### 6.9.3 Incerteza a partir da não comutatividade
+
+Uma vez estabelecido $[X,P]=i\hbar$, as dispersões de observáveis incompatíveis não podem ambas ser reduzidas a zero. A desigualdade geral é
+
+$$
+\Delta A\,\Delta B \ge \frac{1}{2}\,\big|\langle [A,B] \rangle\big|
+$$
+
+Tomando $A=X$ e $B=P$, obtemos o conhecido limite
+
+$$
+\Delta x\,\Delta p \ge \frac{\hbar}{2}
+$$
+
+Isso não é imprecisão dos instrumentos, mas geometria no espaço de Hilbert. O limite segue de Cauchy–Schwarz e da álgebra de operadores, independentemente de qualquer “perturbação” postulada pela medição.
+
+---
+
+### 6.9.4 A mecânica ondulatória de Schrödinger
+
+Schrödinger chegou pelo caminho das **ondas**. Partindo de $E=\hbar\omega$ e $p=\hbar k$ de de Broglie, buscamos uma equação cujas soluções de onda plana tenham a dispersão correta. O resultado é a **equação de Schrödinger dependente do tempo**:
+
+$$
+i\hbar\,\frac{\partial \psi(\mathbf r,t)}{\partial t} = \left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\mathbf r)\right]\psi(\mathbf r,t)
+$$
+
+Buscar estados estacionários na forma $\psi(\mathbf r,t)=\phi(\mathbf r)\,e^{-iEt/\hbar}$ fornece a equação **independente do tempo**:
+
+$$
+\left[-\,\frac{\hbar^{2}}{2m}\,\nabla^{2} + V(\mathbf r)\right]\phi(\mathbf r) = E\,\phi(\mathbf r)
+$$
+
+As condições de contorno discretizam $E$ nos estados ligados e produzem as linhas espectrais que Bohr havia catalogado.
+
+---
+
+### 6.9.5 Regra de Born e o significado de $\psi$
+
+Max Born forneceu a chave interpretativa em 1926: $|\psi|^{2}$ é uma **densidade de probabilidade**. Valores esperados são obtidos por integrais com a ponderação adequada. Para um estado normalizado,
+
+$$
+\int |\psi(\mathbf r,t)|^{2}\,d^{3}r = 1
+$$
+
+e, para um operador $\hat A$ que atua sobre funções de onda,
+
+$$
+\langle A \rangle = \int \psi^{\ast}(\mathbf r,t)\,(\hat A \psi)(\mathbf r,t)\,d^{3}r
+$$
+
+A corrente de probabilidade e a equação de continuidade seguem da equação de Schrödinger, tornando consistente a interpretação probabilística.
+
+---
+
+### 6.9.6 Operadores e o dicionário canônico
+
+A mecânica ondulatória usa operadores diferenciais que reproduzem os comutadores matriciais:
+
+$$
+\hat x = x,\qquad \hat p = -\,i\hbar\,\nabla
+$$
+
+Eles satisfazem
+
+$$
+[\hat x_i,\hat p_j] = i\hbar\,\delta_{ij}\,\mathbb I
+$$
+
+Assim, a relação de incerteza e a álgebra dos observáveis coincidem com as da mecânica matricial. Potenciais tornam-se operadores de multiplicação $V(\hat x)$; a energia cinética torna-se $-\hbar^{2}\nabla^{2}/(2m)$. O **princípio da correspondência** é expresso formalmente por “substituir colchetes de Poisson por $(1/i\hbar)$ vezes os comutadores”.
+
+---
+
+### 6.9.7 Equivalência: duas representações da mesma teoria
+
+O próprio Schrödinger mostrou a equivalência unitária entre as mecânicas ondulatória e matricial. Na base das autofunções de energia $\{\phi_n\}$,
+
+$$
+A_{mn} = \int \phi_m^{\ast}(\mathbf r)\,(\hat A \phi_n)(\mathbf r)\,d^{3}r
+$$
+
+Essa integral é exatamente o elemento de matriz usado por Heisenberg, Born e Jordan. Inversamente, uma matriz $A_{mn}$ define $\hat A$ por sua ação nos coeficientes de expansão. Os espectros, as amplitudes de transição e as regras de seleção são os mesmos; muda apenas a representação. Dirac depois organizou isso na notação bra-ket e na teoria espectral, mas a equivalência essencial já está aqui.
+
+---
+
+### 6.9.8 Exemplos: oscilador harmônico e hidrogênio
+
+**Oscilador harmônico.** Na mecânica matricial, defina os operadores de escada
+
+$$
+a = \frac{1}{\sqrt{2\hbar m\omega}}\left(m\omega X + i P\right),\qquad
+a^{\dagger} = \frac{1}{\sqrt{2\hbar m\omega}}\left(m\omega X - i P\right)
+$$
+
+que satisfazem
+
+$$
+[a,a^{\dagger}] = 1
+$$
+
+O hamiltoniano torna-se
+
+$$
+H = \hbar\omega\left(a^{\dagger}a + \frac{1}{2}\right)
+$$
+
+fornecendo os autovalores
+
+$$
+E_n = \hbar\omega\left(n + \frac{1}{2}\right)
+$$
+
+A mecânica ondulatória resolve a equação diferencial e obtém a mesma escada e as mesmas energias. Aparecem polinômios de Hermite, mas o espectro é idêntico.
+
+**Hidrogênio.** Na mecânica ondulatória, a separação em coordenadas esféricas produz equações radiais com a quantização dos estados ligados:
+
+$$
+E_n = -\,\frac{m_e e^{4}}{2 (4\pi\varepsilon_0)^{2} \hbar^{2}}\,\frac{1}{n^{2}}
+$$
+
+As degenerescências correspondem à antiga dependência apenas de $n$. Na mecânica matricial, a simetria oculta de **Runge–Lenz** reproduz algebricamente o mesmo espectro $1/n^{2}$.
+
+---
+
+### 6.9.9 Teorema de Ehrenfest e limite clássico
+
+Valores esperados quânticos obedecem a equações que refletem o movimento clássico:
+
+$$
+\frac{d}{dt}\langle \hat x \rangle = \frac{\langle \hat p \rangle}{m},\qquad
+\frac{d}{dt}\langle \hat p \rangle = -\,\left\langle \frac{\partial V}{\partial x} \right\rangle
+$$
+
+Esse é o **teorema de Ehrenfest**. Quando o pacote é estreito e o potencial é suave, $\langle \partial V/\partial x\rangle\approx \partial V(\langle x\rangle)/\partial x$, e o centro do pacote segue Newton. É o princípio da correspondência expresso como dinâmica.
+
+---
+
+### 6.9.10 Estados estacionários, transições e regras de seleção
+
+Na linguagem ondulatória, estados estacionários $\phi_n$ são autofunções de energia. Sua dependência temporal é uma fase global $e^{-iE_n t/\hbar}$, de modo que valores esperados de observáveis sem dependência temporal explícita permanecem constantes. Ao excitar o sistema com um campo periódico fraco $H'=-\hat d\cdot \boldsymbol E_0\cos\omega t$, a teoria de perturbações dependente do tempo fornece taxas proporcionais ao módulo quadrado dos elementos de matriz $\langle m|\hat d|n\rangle$, projetados na polarização do campo, e uma ressonância em $\hbar\omega=E_m-E_n$. O operador dipolo impõe regras como $\Delta \ell=\pm 1$, reproduzindo as regras empíricas e calculando as intensidades a partir de primeiros princípios.
+
+---
+
+### 6.9.11 Comutadores, colchetes de Poisson e regras de quantização
+
+A ponte formal a partir da mecânica clássica usa
+
+$$
+\{A,B\}_{\text{PB}} \longrightarrow \frac{1}{i\hbar}\,[\hat A,\hat B]
+$$
+
+e promove variáveis canônicas $(x,p)$ a operadores que obedecem a $[x,p]=i\hbar$. Ao transformar expressões clássicas não lineares em operadores, surgem ambiguidades de ordenamento; prescrições iniciais de Born–Jordan e Weyl tentaram sistematizá-las. Na prática, simetrias e testes experimentais determinam a forma correta do operador. Para hamiltonianos quadráticos e potenciais centrais usuais, a substituição direta funciona sem dificuldades.
+
+---
+
+### 6.9.12 Pontos de vista variacional e espectral
+
+Schrödinger também formulou um princípio variacional: estados estacionários tornam estacionário o funcional
+
+$$
+\mathcal E[\phi] = \frac{\int \phi^{\ast}\left[-\frac{\hbar^{2}}{2m}\nabla^{2}+V\right]\phi\,d^{3}r}{\int |\phi|^{2}\,d^{3}r}
+$$
+
+Minimizar $\mathcal E$ sob normalização fornece o menor autovalor; impor ortogonalidade permite obter estados excitados. Essa é a base dos métodos modernos de **Rayleigh–Ritz**, centrais em cálculos atômicos, moleculares e de sólidos.
+
+---
+
+### 6.9.13 Contínuo, espalhamento e deslocamentos de fase
+
+Nem todos os espectros são discretos. Acima da energia de ligação, as soluções são estados de espalhamento normalizados a funções delta em energia ou momento. Em três dimensões, para $V(r)$ de curto alcance, as funções de onda assintóticas combinam ondas planas e **ondas esféricas emergentes**. A física está nos **deslocamentos de fase** das ondas parciais, $\delta_\ell(E)$, dos quais se obtêm as seções de choque. A mecânica matricial codifica os mesmos dados na **matriz $S$**, cuja unitariedade expressa a conservação da probabilidade.
+
+---
+
+### 6.9.14 O que mudou conceitualmente
+
+- **Observáveis como operadores.** Em vez de órbitas ocultas, as grandezas mensuráveis são espectros e valores esperados de operadores.
+- **Estados como vetores.** Um estado puro é descrito por um vetor em um espaço complexo com produto interno, evoluído por uma equação linear.
+- **Incompatibilidade pela álgebra.** A não comutatividade substitui a determinação simultânea clássica; a incerteza é estrutural, não instrumental.
+- **Probabilidades a partir de amplitudes.** A interferência envolve fases complexas de amplitudes, não apenas ondas no espaço.
+
+As regras antigas tornam-se consequências de uma única estrutura linear.
+
+---
+
+### 6.9.15 Conjunto básico de problemas
+
+- Usando Cauchy–Schwarz, mostre que $[x,p]=i\hbar$ implica $\Delta x\,\Delta p\ge \hbar/2$.
+- Resolva o poço quadrado infinito unidimensional com a equação de Schrödinger e obtenha energias e autofunções ortonormais.
+- Construa os operadores de escada do oscilador e prove $[a,a^{\dagger}]=1$ e $E_n=\hbar\omega(n+\tfrac12)$.
+- Para o hidrogênio, separe as variáveis em coordenadas esféricas e identifique os três números quânticos $(n,\ell,m)$ e suas degenerescências.
+- Deduza a regra de ouro de Fermi para uma perturbação periódica fraca e recupere a regra de seleção dipolar $\Delta \ell=\pm 1$.
+
+---
+
+**Resumo:** Heisenberg substituiu trajetórias pela álgebra das transições; Schrödinger substituiu órbitas por ondas cujo módulo quadrado é uma densidade de probabilidade. Born forneceu a regra de medição, os comutadores forneceram a lógica, e os dois formalismos mostraram-se equivalentes. A física quântica passou de regras adicionais engenhosas a uma teoria unificada que prevê espectros e dinâmica, calcula intensidades e explica a física clássica como um limite particular. O capítulo 7 aplicará essas ferramentas a sistemas canônicos e desenvolverá a teoria de perturbações usada na física e na química modernas.
+
+---

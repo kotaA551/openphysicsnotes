@@ -1,0 +1,326 @@
+---
+description: "Understand the Navier–Stokes equations, viscosity, vortex stretching and finite-energy singularities, with a dated guide to OpenAI's 2026 forced-flow claim, Lean scrutiny and the remaining unforced problem."
+---
+## 1. Why this matters (Millennium Problem)
+
+Water flowing around a boat and air flowing around a wing obey the same local balance: mass is conserved, and forces change momentum. The Navier–Stokes equations turn that idea into a continuum model. Writing the equations is much easier than proving what every solution can do.
+
+**Research status checked: 13 October 2026.** On 8 September, OpenAI announced a construction of finite-time blowup for three-dimensional incompressible Navier–Stokes with **a smooth external force**, accompanied by a paper and Lean code. It targets alternatives **C and D** of the Clay Millennium problem. This is a major claimed advance, but it does **not** establish blowup for the **unforced** Navier–Stokes equations. The separate unforced Euler result has zero viscosity and must not be confused with it. [OpenAI announcement, updated 10 September](https://openai.com/index/navier-stokes-solution/).
+
+The distinction between an announced result, a checked formal statement, a readable proof and community acceptance matters here. Section 14 gives the dated evaluation status, including October scrutiny. The physics below explains why bounded energy can coexist with increasingly extreme local motion.
+
+---
+
+## 2. Continuum Fields and Conservation Laws
+
+Let $\rho(\boldsymbol x,t)$ be mass density, $\boldsymbol v(\boldsymbol x,t)$ velocity, $p(\boldsymbol x,t)$ pressure, and $\boldsymbol{\sigma}$ the Cauchy stress. Body force per mass $\boldsymbol f$ (e.g. gravity).
+
+A field assigns a value to each position and time; it averages over many molecules. The model assumes that the relevant length scales are large enough for this averaging and for a local stress law to make sense. A mathematical singularity concerns the continuum equations; it is not a prediction that a real molecule reaches infinite speed.
+
+### 2.1 Mass conservation
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+The first term measures how much mass accumulates locally; the divergence measures the net outward mass flux. For constant density, mass conservation reduces to zero velocity divergence. A fluid parcel may stretch and change shape while keeping its volume.
+
+### 2.2 Momentum conservation (Cauchy)
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+Decompose stress into isotropic pressure and viscous part:
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+The material derivative $D_t=\partial_t+\boldsymbol v\cdot\nabla$ follows a moving parcel. Even a steady velocity field can accelerate a parcel: water entering a narrower passage moves into a region with a different velocity. That is the nonlinear transport term $(\boldsymbol v\cdot\nabla)\boldsymbol v$.
+
+---
+
+## 3. Constitutive Law (Newtonian Fluid)
+
+For an isotropic Newtonian fluid,
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+with dynamic viscosity $\mu$ and second viscosity coefficient $\lambda$; the bulk viscosity is $\zeta=\lambda+2\mu/3$.
+
+![Between a stationary lower plate and a moving upper plate, steady laminar velocity grows linearly with height. This illustrates viscous shear and no slip.](/images/diagrams/couette-flow.svg)
+
+For spatially constant viscosity coefficients, plugging into momentum balance gives the **compressible Navier–Stokes**:
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+Define kinematic viscosity $\nu \equiv \mu/\rho$ when $\rho$ is constant.
+
+Viscosity responds to deformation, not to uniform translation. Its dimensions are $[\mu]=\mathrm{Pa\,s}$ and $[\nu]=\mathrm{m^2/s}$. In the plate-flow diagram, a gap $h$ and upper-plate speed $U$ give $v_x(y)=Uy/h$ and shear stress $\tau_{xy}=\mu U/h$. This simple exact solution is smooth; a singularity claim is an existence statement about particular data, not a claim about every flow.
+
+---
+
+## 4. Incompressible Form
+
+For constant density $\rho=\rho_0$ and
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+we obtain
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+Read the equation as acceleration equals pressure acceleration, viscous diffusion and applied acceleration:
+
+| Term | Meaning |
+| --- | --- |
+| $\partial_t\boldsymbol v$ | Change measured at a fixed position |
+| $(\boldsymbol v\cdot\nabla)\boldsymbol v$ | Change caused by a parcel moving through the velocity field |
+| $-\nabla p/\rho_0$ | Pressure forces redistribute momentum |
+| $\nu\nabla^2\boldsymbol v$ | Viscosity smooths spatial variations |
+| $\boldsymbol f$ | Externally applied force per unit mass |
+
+Incompressibility does not require zero velocity or zero acceleration. Pressure acts as a constraint that keeps the velocity divergence free; it is not an independent equation of state in this constant-density model.
+
+Taking divergence of the momentum equation yields a **pressure Poisson equation** (with suitable BCs):
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. Vorticity and Helicity
+
+Define vorticity $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.  
+For incompressible flow ($\nabla\!\cdot\!\boldsymbol v=0$):
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+In components:
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+The term $\omega_j \partial_j v_i$ is **vortex stretching** (3D only).  
+Helicity $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ diagnoses topology of vortex lines.
+
+A vortex tube stretched along its axis can become thinner and more intense. In the vorticity equation, stretching can amplify rotation while viscosity diffuses it. Neither effect alone decides whether the full coupled dynamics remain smooth.
+
+For genuinely planar flow $\boldsymbol v=(v_x(x,y),v_y(x,y),0)$, vorticity points perpendicular to the plane and the fields do not vary in that direction. Thus $(\boldsymbol\omega\cdot\nabla)\boldsymbol v=0$. This removes a major amplification mechanism in two dimensions; it does not mean that every three-dimensional vortex must blow up.
+
+![Counterclockwise circulation in the plane has vorticity pointing out of the page, represented by a circled dot.](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. Energy Balance (Incompressible)
+
+For a smooth solution, multiply momentum by $\boldsymbol v$ and integrate over a domain $\Omega$ with a stationary no-slip boundary. The same identity holds in a periodic box or in all space with sufficient decay:
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+For $\boldsymbol f=\boldsymbol 0$, kinetic energy decays monotonically; viscosity dissipates as $\nu\|\nabla \boldsymbol v\|_2^2$.
+
+This energy is normalized by the constant density: physical kinetic energy is $\rho_0/2$ times the velocity-squared integral. Transport and pressure contribute only boundary fluxes that vanish under these assumptions; integration by parts gives the nonnegative viscous term. A moving wall or an open boundary supplies additional work or flux terms.
+
+### 6.1 Why finite energy does not guarantee smoothness
+
+An integral bound controls total motion, not its largest local value. As a scaling illustration, choose a fixed smooth compactly supported divergence-free field $\boldsymbol\phi$ and set
+
+$$
+\boldsymbol v_\ell(\boldsymbol x)=\ell^{-1}\boldsymbol\phi(\boldsymbol x/\ell).
+$$
+
+Then $\|\boldsymbol v_\ell\|_\infty=\ell^{-1}\|\boldsymbol\phi\|_\infty$ grows as $\ell\to0$, whereas $\|\boldsymbol v_\ell\|_2^2=\ell\|\boldsymbol\phi\|_2^2$ decreases. These are rescaled snapshots, **not a solution or a blowup proof**. They show why ever larger speeds in an ever smaller volume need not violate an energy bound. Controlling derivatives and concentration is the additional challenge of regularity.
+
+---
+
+## 7. Non-dimensionalization and Control Parameters
+
+Choose characteristic scales $L$ (length), $U$ (speed), define
+$\boldsymbol x'=\boldsymbol x/L$, $t' = tU/L$, $\boldsymbol v'=\boldsymbol v/U$, $p'=p/(\rho U^2)$.
+
+The incompressible equations become
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+with the **Reynolds number**
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+Here $\boldsymbol f'=L\boldsymbol f/U^2$. The diffusion time is $L^2/\nu$ and the advection time is $L/U$; their ratio is $\mathrm{Re}$. Large Reynolds number means that advection is fast compared with viscous smoothing at the chosen scale. It is neither a universal turbulence threshold nor a singularity criterion: geometry, disturbances and the scale being measured also matter. For example, $U=0.1\,\mathrm{m/s}$, $L=0.01\,\mathrm m$ and $\nu=10^{-6}\,\mathrm{m^2/s}$ give $\mathrm{Re}=1000$.
+
+Other dimensionless groups (as needed):
+- **Mach** $\mathrm{Ma}=U/c_s$ (compressibility),
+- **Froude** $\mathrm{Fr}=U/\sqrt{gL}$ (gravity),
+- **Prandtl** $\mathrm{Pr}=\nu/\kappa$ (momentum vs thermal diffusion).
+
+---
+
+## 8. Compressible Navier–Stokes–Fourier (Sketch)
+
+Include internal energy $e$ or temperature $T$, with Fourier heat flux $\boldsymbol q=-k_{\rm th} \nabla T$ (thermal conductivity $k_{\rm th}$, distinct from the thermal diffusivity $\kappa$ above):
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+Equation of state (e.g., ideal gas) closes the system: $p=(\gamma-1)\rho e$.
+
+The work of compression and conversion of kinetic energy to internal energy now matter explicitly. The incompressible Millennium problem does not settle shock formation, heat transport or the regularity theory of this different system.
+
+---
+
+## 9. Mathematical Theory (Existence/Uniqueness)
+
+**Local** existence means a solution exists for some interval after the initial time; **global** existence means for all future times. A **classical** solution has enough derivatives to satisfy the equations point by point; **smooth** here means differentiable to every order. A **weak** solution satisfies an integrated version, moving derivatives onto smooth test functions. These are different standards of existence.
+
+### 9.1 Weak solutions (Leray–Hopf)
+For divergence-free finite-energy initial data in the standard whole-space or periodic setting, and admissible forcing, Leray–Hopf theory provides **global weak solutions satisfying an energy inequality**. A smooth solution is unique within the corresponding energy class for as long as it remains smooth (weak–strong uniqueness). A possible loss of smoothness therefore does not mean that all generalized solutions cease to exist. [Fefferman's official problem description](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+Uniqueness depends on the solution class, initial data and force. [Albritton, Brué and Colombo](https://arxiv.org/abs/2112.03116) establish nonuniqueness for certain forces. [Hou, Wang and Yang](https://arxiv.org/abs/2509.25116) report computer-assisted nonuniqueness without forcing for singular initial data. Such results must not be relabeled as blowup from smooth unforced initial data.
+
+### 9.2 Regularity criteria (3D)
+- **Vorticity continuation criterion (Beale–Kato–Majda type):** for a classical solution in the usual sufficiently regular whole-space or periodic setting, with forcing sufficiently regular through $T$, breakdown at $T$ requires
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+[Luo's discussion of Navier–Stokes continuation criteria](https://arxiv.org/html/1803.05569) states the unforced criterion; the forcing qualification above excludes breakdown imposed by a singular external input.
+- **Prodi–Serrin:** an energy-class weak solution with suitable forcing is regular if $\boldsymbol v \in L^p(0,T;L^q)$ with
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+then the solution is smooth on $(0,T]$.
+- **Caffarelli–Kohn–Nirenberg:** suitable weak solutions, under the theorem's forcing hypotheses, have a singular set with zero one-dimensional parabolic Hausdorff measure. This is partial regularity; it does not prove the singular set is empty. [Background and references in the official problem description](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+These are conditional statements. They specify which control would prevent breakdown, rather than supplying that control for every three-dimensional flow. The exponents above reflect the natural scaling $\boldsymbol v_a(\boldsymbol x,t)=a\boldsymbol v(a\boldsymbol x,a^2t)$; in three dimensions, the energy norm alone does not have the critical scaling.
+
+### 9.3 Global regularity in 2D
+For smooth compatible data in the standard whole-space or periodic setting, with sufficiently regular forcing, two-dimensional incompressible flow remains smooth for every finite time. Without forcing, enstrophy $\int|\boldsymbol\omega|^2\,dV$ is nonincreasing; forcing adds a source term. The absence of vortex stretching makes its control much stronger than in 3D.
+
+### 9.4 Compressible flows
+Global **finite-energy weak solutions** exist (for $\gamma$-law gases under conditions), but regularity/uniqueness are largely open.
+
+### 9.5 What Clay's four alternatives actually ask
+
+The [official formulation](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf) accepts a proof of any one of four statements, with positive viscosity:
+
+| Alternative | Domain | Force and question |
+| --- | --- | --- |
+| A | $\mathbb R^3$ | Zero force; global smooth finite-energy solutions for all allowed smooth initial data |
+| B | Periodic $\mathbb R^3/\mathbb Z^3$ | Zero force; global smooth solutions for all allowed smooth periodic initial data |
+| C | $\mathbb R^3$ | Some allowed smooth data and smooth rapidly decaying force admit no global smooth solution with uniformly bounded energy |
+| D | Periodic $\mathbb R^3/\mathbb Z^3$ | Some allowed smooth periodic data and force admit no global smooth solution |
+
+In all space, initial data and forcing obey the stated decay conditions; the periodic force also obeys time-decay conditions. C and D allow a nonzero force, so proving one would not logically disprove the unforced statements A or B. “Solving a Clay alternative” and “settling every version of regularity” are different claims.
+
+---
+
+## 10. Turbulence and Spectra
+
+In high-$\mathrm{Re}$ homogeneous, isotropic turbulence (K41), the inertial-range energy spectrum
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+with mean dissipation rate $\varepsilon$ and Kolmogorov constant $C_K\!\sim\! \mathcal O(1)$.
+
+**Kolmogorov microscale:**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+Using the K41 estimate $\varepsilon\sim U^3/L$ gives $L/\eta\sim\mathrm{Re}^{3/4}$. Resolving this scale in three dimensions suggests a grid-point count of order $\mathrm{Re}^{9/4}$, before time-stepping costs. This heuristic motivates **direct numerical simulation (DNS)**, **large-eddy simulation (LES)** and **Reynolds-averaged Navier–Stokes (RANS)** approaches with different resolution and modeling choices. LES and RANS require closure assumptions for unresolved correlations.
+
+The $-5/3$ spectrum describes a statistical inertial-range model, not every flow or every scale. Intermittency and boundaries complicate that picture. A specially constructed singular solution would not provide a universal turbulence model or remove the need for numerical error estimates.
+
+---
+
+## 11. Boundary Conditions & Geometry
+
+- **No-slip wall:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$  
+- **Free-slip:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$  
+- **Periodic box (torus)** for theory/DNS  
+- **Inflow/Outflow** with appropriate stress/pressure specs
+
+Choice affects well-posedness, energy budget, and numerical stability.
+
+A periodic box identifies opposite faces; it has no physical walls. Whole-space decay replaces a wall condition at infinity. A result in these geometries cannot automatically be transferred to an aircraft surface or a pipe: the boundary conditions are part of the mathematical problem.
+
+---
+
+## 12. Numerics (one-page field guide)
+
+- **Projection methods:** advance $\boldsymbol v^\ast$, solve Poisson for $p$, project to $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.  
+- **Energy-stable schemes:** skew-symmetric convective form preserves discrete energy.  
+- **CFL constraint for explicit advection/diffusion schemes:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.  
+- **Divergence control:** divergence-free spectral bases, or mixed finite elements with inf–sup-stable velocity–pressure pairs. Exact divergence freedom requires suitable spaces; inf–sup stability alone does not guarantee it.
+
+A simulation can reveal a growing peak, but a finite grid cannot by itself establish an infinite limit. Refinement studies, control of discretization errors and an analytical argument are needed to distinguish genuine concentration from numerical instability. Computer-assisted proofs supply rigorous bounds; formal proof assistants check deductions from encoded definitions and assumptions. Neither is simply a high-resolution animation.
+
+---
+
+## 13. Connections and Extensions
+
+- **Euler equations:** setting $\nu=0$ removes viscous diffusion. Passing to the limit $\nu\to0$ can itself be delicate, especially near walls. OpenAI's separately announced unforced Euler result concerns this inviscid equation, not the unforced positive-viscosity problem. [Announcement and separate Euler paper](https://openai.com/index/navier-stokes-solution/).
+- **Relativistic hydrodynamics:** naive Navier–Stokes is acausal; second-order **Israel–Stewart** theories can restore causality under suitable conditions on transport coefficients and fluid states ([a rigorous bulk-viscous example](https://arxiv.org/abs/1901.06701)).  
+- **Quantum fluids:** superfluid N-S analogues with two-fluid models and quantized vortices.
+
+---
+
+## 14. Status
+
+**As of 13 October 2026:** the smoothly forced 3D construction has been announced and is under examination; unforced 3D Navier–Stokes regularity remains open. Two-dimensional regularity and the everyday usefulness of smooth-flow solutions are not overturned.
+
+### 14.1 The precise claim and its mechanism
+
+Theorem 1.1 of [OpenAI's paper](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf) states: for **every $\nu>0$**, there is a smooth force compactly supported in space and time and a smooth incompressible flow on $\mathbb R^3\times[0,1)$, starting from rest, for which
+
+$$
+\boldsymbol v(\cdot,0)=0,\qquad
+\sup_{0\le t<1}\|\boldsymbol v(t)\|_{L^2}<\infty,
+\qquad
+\limsup_{t\uparrow1}\|\boldsymbol v(t)\|_{L^\infty}=\infty.
+$$
+
+Velocity and pressure have fixed compact spatial support before time 1; the force extends smoothly through that time. The paper claims alternative C and, by its periodic construction in Corollary 10.6, D. Its pressure convention absorbs the constant density.
+
+The proposed mechanism concentrates an inward-spiraling, axially stretching vortex. Oscillatory corrections and their momentum transport cancel otherwise singular residual forces. Choosing any blowing-up velocity and defining a force from the equation is not enough: the force and **all its derivatives** must stay smooth through the singular time. This is a conceptual sketch of the claimed construction, not an independent proof.
+
+“For every viscosity there exists a force” allows the force to depend on viscosity. It does not mean one fixed force defeats every viscosity, that arbitrarily small forcing suffices, or that fluid initially at rest blows up with no energy input.
+
+### 14.2 Lean, mathematical scrutiny and the prize
+
+The [released Lean repository](https://github.com/openai/NavierStokesAndEuler) contains whole-space and periodic targets and instructions for independent checking with Comparator. A formal checker verifies deductions for the exact encoded statement and assumptions. Whether those definitions express the intended problem, and how the argument explains the written proof, are additional questions. These notes do not claim to have rebuilt or independently verified the Lean project.
+
+On **6 October**, [Bastounis, Circelli and Hansen](https://arxiv.org/abs/2610.08144) posted a critique of correspondence between the natural-language exposition and Lean: examples include different derivative requirements in Lemma 8.6 and a different pressure-estimate argument in Lemma 10.5. This challenges treating the formalization as automatic certification of every step of the written proof. It does **not**, by itself, refute the final forced-blowup theorem or show that the final formal statement is wrong.
+
+On **11 September**, [Clay's response](https://www.claymath.org/news/navier-stokes-announcement/) welcomed the apparent breakthrough while stressing its deliberately unhurried evaluation process. [Prize rules](https://www.claymath.org/millennium-problems/rules/) require a qualifying publication, at least two years after that publication and general mathematical acceptance before consideration. The announcement date alone does not start an established prize clock. No prize award is asserted here; OpenAI says it does not intend to claim it.
+
+### 14.3 What subsequent work does and does not establish
+
+The September follow-ups also require careful scope. [Petrillo and Glimm](https://arxiv.org/abs/2609.23868) explicitly separate the forced result from the remaining unforced problem. [Lei and Ren's exposition](https://arxiv.org/abs/2609.35406v2) studies the profile construction, with further oscillatory cancellation deferred; it is not a complete independent verification. [Constantin, Ignatova and Vicol](https://arxiv.org/abs/2609.20803v2) obtain a regularity obstruction under specific geometric, growth and forcing assumptions. This is relevant to attempts to remove the force from this mechanism, not a theorem of global regularity for all analytically forced flows.
+
+The productive questions are now precise: are the claimed hypotheses and conclusions verified, can the mechanism be explained transparently, and what survives when forcing is removed? Turbulence prediction, weak-solution uniqueness in every class and compressible flow remain separate problems.
+
+## 15. Check your understanding
+
+1. **Uniform translation:** for a constant velocity, constant pressure and zero force, which terms in the incompressible equation vanish? All spatial and time derivatives vanish, so any positive viscosity is consistent with this motion.
+2. **Energy versus maximum speed:** in Section 6.1, change variables $\boldsymbol y=\boldsymbol x/\ell$. Why does the energy scale as $\ell$? The squared amplitude contributes $\ell^{-2}$ and the three-dimensional volume contributes $\ell^3$.
+3. **Changing scale:** keeping $U$ and $\nu$ fixed, what happens to Reynolds number if $L$ halves? It halves; the relative importance of viscosity increases at the smaller scale.
+4. **Reading a theorem:** why can alternative C hold while A remains undecided? C permits a chosen nonzero smooth force, whereas A concerns only zero force.
+5. **A proof checker:** what else must be checked after Lean accepts a proof? That the encoded definitions, assumptions and final conclusion match the intended mathematical question; the correspondence with a separate exposition also needs review.
+
+---

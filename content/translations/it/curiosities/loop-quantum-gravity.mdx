@@ -1,0 +1,183 @@
+---
+description: "La gravità quantistica a loop: variabili, vincoli, calcolo dell’area, schiume di spin e rimbalzo cosmologico, distinguendo risultati, ipotesi e problemi aperti."
+---
+
+## 1. Motivazione
+
+Nella relatività generale (RG) la geometria è dinamica: materia e geometria si influenzano reciprocamente. In unità con $c=1$, omettendo qui la costante cosmologica,
+
+$$
+G_{\mu\nu}=8\pi G T_{\mu\nu}.
+$$
+
+La teoria quantistica descrive bene la materia, ma studiare un campo quantistico su uno spaziotempo curvo prescritto non quantizza ancora lo spaziotempo stesso. Vicino a una singolarità classica, l’approssimazione di una geometria liscia e classica potrebbe fallire. Questo motiva la gravità quantistica; non dimostra la correttezza di una particolare quantizzazione, né impone per teorema un unico modo di quantizzare ogni campo classico.
+
+La **gravità quantistica a loop (LQG)** cerca di quantizzare la RG senza fissare prima una metrica di fondo ed espandere intorno a essa. “Non perturbativa” significa che la costruzione non parte da piccole perturbazioni gravitazionali su una geometria scelta. “Indipendente dal fondo” significa che lunghezze e aree derivano dalle variabili dinamiche, non da una metrica fissa. Una varietà differenziabile e altre scelte matematiche restano necessarie. Si veda la [trattazione fondamentale di Ashtekar e Lewandowski](https://arxiv.org/abs/gr-qc/0404018).
+
+La scala caratteristica è $\ell_P=\sqrt{\hbar G/c^3}$, circa $1.6\times10^{-35}\,\mathrm{m}$. Questa combinazione dimensionale indica dove effetti quantistici e gravitazionali potrebbero diventare importanti insieme. **Da sola non dimostra** che lo spazio sia una griglia regolare o che ogni distanza abbia un minimo. Per affermazioni più precise servono uno spazio degli stati, operatori geometrici e una dinamica coerente.
+
+## 2. Quantizzazione canonica della RG
+
+L’approccio canonico descrive dati su una sezione spaziale $\Sigma$ e identifica quali rappresentano lo stesso spaziotempo. Nella formulazione ADM le variabili sono la metrica spaziale $q_{ab}$ e il momento coniugato $\pi^{ab}$. La foliazione organizza il calcolo, senza introdurre un orologio fisico privilegiato.
+
+### Variabili di Ashtekar
+
+Usiamo le variabili reali di **Ashtekar–Barbero** per la RG lorentziana nella gauge temporale, con triadi non degeneri e $\gamma>0$ reale. La connessione autoduale originaria di Ashtekar è complessa: le formulazioni sono collegate, ma le variabili non sono identiche. La [formulazione reale di Barbero](https://arxiv.org/abs/gr-qc/9410013) e l’[azione di Holst](https://arxiv.org/abs/gr-qc/9511026) spiegano questo cambiamento canonico.
+
+$$
+A_a^i=\Gamma_a^i(E)+\gamma K_a^i,
+\qquad E_i^a=\sqrt{q}\,e_i^a,
+\qquad E_i^aE_i^b=q\,q^{ab}.
+$$
+
+Qui $q=\det(q_{ab})$, $e_i^a$ è la triade inversa, $\Gamma_a^i$ la connessione di spin compatibile e $K_a^i$ codifica la curvatura estrinseca, cioè come la sezione si inserisce nello spaziotempo. $a,b$ sono indici spaziali, mentre $i$ identifica un riferimento ortonormale interno. $E$ contiene dunque la geometria spaziale e $A$ combina connessione intrinseca e curvatura estrinseca. Chiamare $E$ “campo elettrico” è un’analogia con le teorie di gauge, non elettromagnetismo.
+
+Con $\kappa=8\pi G$ e $c=1$,
+
+$$
+\{A_a^i(x),E_j^b(y)\}=\kappa\gamma\,\delta_a^b\delta_j^i\delta^{(3)}(x,y).
+$$
+
+Il **parametro di Barbero–Immirzi** $\gamma$, adimensionale, contraddistingue questa scelta canonica. Le equazioni classiche nel vuoto non lo fissano. La sua presenza negli spettri geometrici rende importanti l’interpretazione quantistica e la determinazione fisica. Un valore illustrativo non è una costante misurata.
+
+## 3. Vincoli
+
+Le variabili contengono descrizioni ridondanti. Nel vuoto, con costante cosmologica nulla e omettendo in $\mathcal H$ un fattore globale di normalizzazione non nullo,
+
+$$
+\mathcal G_i=D_aE_i^a\approx0,
+\qquad \mathcal V_a=E_i^bF^i_{ab}\approx0,
+$$
+
+$$
+\mathcal H=\frac{E_i^aE_j^b}{\sqrt{|\det E|}}
+\left(\epsilon^{ij}{}_{k}F^k_{ab}
+-2(1+\gamma^2)K^i_{[a}K^j_{b]}\right)\approx0.
+$$
+
+$F$ è la curvatura di $A$ e $D$ la sua derivata covariante. $\approx0$ significa uguaglianza sulla superficie dei vincoli, non un piccolo errore. Il vincolo di Gauss elimina le rotazioni arbitrarie del riferimento interno. Il vincolo vettoriale genera cambiamenti delle coordinate spaziali **a meno di una trasformazione di Gauss**; un generatore di diffeomorfismi spaziali puri include il corrispondente termine di Gauss. Il vincolo hamiltoniano implementa cambiamenti della foliazione, anziché un’evoluzione ordinaria rispetto a un tempo esterno universale.
+
+Il conteggio è istruttivo: $A$ ed $E$ danno 18 componenti dello spazio delle fasi per punto. Sette vincoli indipendenti di prima classe ne eliminano 14, lasciandone quattro, ossia due gradi di libertà di configurazione: le polarizzazioni gravitazionali locali. È il conteggio classico regolare nel vuoto; bordi e settori singolari richiedono un trattamento separato.
+
+La quantizzazione costruisce prima la **cinematica**, poi implementa i vincoli e il prodotto scalare fisico. Una rete di spin non è quindi automaticamente una soluzione fisica. Un’osservabile relazionale potrebbe essere l’area di una superficie definita dalla materia quando un orologio scalare assume un certo valore. Definire queste quantità e recuperare senza anomalie l’algebra classica dei vincoli sono compiti dinamici centrali. La [costruzione di Thiemann](https://arxiv.org/abs/gr-qc/9606089) è una proposta concreta, non un’unica teoria fenomenologica completata.
+
+## 4. Olonomie e flussi
+
+Le variabili fondamentali vengono integrate lungo curve e su superfici:
+
+$$
+h_\ell[A]=\mathcal P\exp\!\left(\int_\ell A_a^i\tau_i\,dx^a\right),
+\qquad E(S,f)=\int_S f^i E_i^a\,dS_a.
+$$
+
+$\tau_i$ sono generatori di $\mathfrak{su}(2)$, $f^i$ è un campo di prova e $\mathcal P$ ordina lungo il percorso matrici non commutative. L’olonomia confronta riferimenti interni attraverso il trasporto parallelo: è un elemento di $SU(2)$, non una lunghezza. Il flusso misura l’informazione orientata della triade attraverso una superficie. Il segno nell’esponenziale dipende dalla convenzione per la connessione.
+
+Immaginiamo di trasportare un riferimento lungo un piccolo circuito chiuso. In una geometria classica liscia, lo scarto principale dell’olonomia dall’identità codifica la curvatura attraverso il circuito. La LQG usa trasporti finiti come variabili fondamentali, senza presupporre un operatore $A(x)$ definito punto per punto. Sulle funzioni delle olonomie, le olonomie agiscono per moltiplicazione e i flussi per derivazione. La loro algebra dipende dalle intersezioni fra percorsi e superfici.
+
+Il [teorema di unicità dell’algebra olonomia–flusso](https://arxiv.org/abs/gr-qc/0504147) seleziona una rappresentazione sotto precise ipotesi algebriche, di covarianza e di stato ciclico. Non dimostra che ogni possibile teoria della gravità quantistica sia LQG, né sceglie l’hamiltoniana.
+
+## 5. Reti di spin
+
+Una **rete di spin** invariante di gauge consiste in un grafo, spin $j=0,\tfrac12,1,\ldots$ sugli archi e tensori invarianti, detti **intertwiner**, ai vertici. Gli spin identificano rappresentazioni di $SU(2)$, non piccole sfere rotanti. Un intertwiner combina le rappresentazioni incidenti in un oggetto invariante, implementando il vincolo di Gauss. I grafi specificano relazioni nella geometria quantistica, senza dover formare un reticolo fisico regolare.
+
+Per una superficie che interseca trasversalmente gli archi lontano dai vertici, gli autovalori dell’operatore standard di area sono
+
+$$
+A(S)=8\pi\gamma\ell_P^2\sum_{p\in S\cap\Gamma}\sqrt{j_p(j_p+1)}.
+$$
+
+Il flusso in un punto d’intersezione agisce come un generatore di momento angolare. Il Casimir quadratico di $SU(2)$ ha autovalore $j(j+1)$; prenderne il modulo spiega $\sqrt{j(j+1)}$. La [costruzione dell’operatore di area](https://arxiv.org/abs/gr-qc/9602046) dimostra la discretezza nello spazio di Hilbert cinematico. Superfici contenenti vertici richiedono un’espressione più generale. Come spiegano [Dittrich e Thiemann](https://arxiv.org/abs/0708.1721), uno spettro cinematico non determina da solo quello di ogni osservabile fisica completamente relazionale.
+
+### Un esempio di misura dell’area
+
+Una porzione di superficie priva di vertici è attraversata una volta da $j=\tfrac12$ e una volta da $j=1$. Si ottiene
+
+$$
+\frac{A}{8\pi\gamma\ell_P^2}
+=\sqrt{\tfrac12(\tfrac12+1)}+\sqrt{1(1+1)}
+=\frac{\sqrt3}{2}+\sqrt2\approx2.280.
+$$
+
+Una singola intersezione con $j=\tfrac12$ contribuisce $4\pi\sqrt3\,\gamma\ell_P^2$. Due danno $8\pi\sqrt3\,\gamma\ell_P^2$, mentre una con $j=1$ dà $8\pi\sqrt2\,\gamma\ell_P^2$. Somme uguali delle etichette di spin non garantiscono dunque aree uguali. Sono contributi locali in una rete ammissibile; il resto del grafo deve rispettare le condizioni degli intertwiner. Il calcolo descrive esiti possibili nella quantizzazione adottata, non una granularità dello spazio già osservata.
+
+![Due archi con spin diversi attraversano una superficie; i contributi all’area sommano le radici degli autovalori del Casimir di SU(2).](/images/diagrams/lqg-deep-area.svg)
+
+*La porzione ombreggiata ha due intersezioni trasversali. La geometria è schematica: l’autovalore dell’area dipende dalla formula, non dalla distanza disegnata.*
+
+Il volume è più delicato:
+
+$$
+\hat V(R)=\sum_{v\in R\cap\Gamma}\sqrt{|\hat q_v|}.
+$$
+
+$\hat q_v$ contiene prodotti tripli di generatori di flusso, fattori di orientazione e costanti dimensionali. In generale agisce come una matrice nello spazio degli intertwiner del vertice. Fissare gli spin degli archi non fissa necessariamente il volume: occorre anche una base appropriata di intertwiner. La [costruzione degli operatori di volume](https://arxiv.org/abs/gr-qc/9711031) chiarisce questa distinzione. Spettri geometrici discreti non implicano cubi identici né un tempo esterno automaticamente discreto.
+
+### Dalle reti alle schiume di spin
+
+Una rete di spin descrive la geometria di bordo. Una **schiuma di spin** è un complesso bidimensionale etichettato che assegna ampiezze fra tali bordi: gli archi del grafo spazzano facce e i suoi vertici tracciano archi del complesso. Sono storie in una somma sulle geometrie quantistiche, non vertici in movimento dentro uno spazio preesistente.
+
+Su un complesso scelto $\mathcal C$, schematicamente,
+
+$$
+Z_{\mathcal C}=\sum_{\{j_f,i_e\}}\prod_f A_f\prod_e A_e\prod_v A_v.
+$$
+
+Si sommano le etichette; ampiezze di facce, archi e vertici codificano la dinamica del modello. Dati al bordo e normalizzazione sono omessi. La [costruzione EPRL](https://arxiv.org/abs/0711.0146) collega un vertice di schiuma di spin quadridimensionale agli stati di bordo della LQG mediante vincoli di semplicità. Specificare un complesso finito non stabilisce ancora l’intera teoria del continuo.
+
+Per dati geometrici di bordo appropriati e non degeneri, l’asintotica di grandi spin dell’ampiezza di un 4-simplesso EPRL euclideo contiene l’azione di Regge, un’azione gravitazionale discretizzata. Questo [risultato di coerenza semiclassica](https://arxiv.org/abs/0902.1170) è significativo. Non prova che ogni ampiezza, limite di raffinamento o funzione di correlazione a grande distanza riproduca la RG.
+
+## 6. Cosmologia quantistica a loop (LQC)
+
+La **LQC** applica una quantizzazione ispirata ai loop a sistemi cosmologici ridotti per simmetria. Imporre l’omogeneità prima della quantizzazione elimina infiniti modi disomogenei. Un teorema nel sistema ridotto non è automaticamente un teorema della LQG completa.
+
+Consideriamo il modello standard spazialmente piatto, omogeneo e isotropo, con uno scalare senza massa e stati semiclassici fortemente concentrati nella prescrizione di dinamica migliorata. Le sue equazioni efficaci comprendono
+
+$$
+H^2=\frac{8\pi G}{3}\rho\left(1-\frac{\rho}{\rho_c}\right),
+\qquad \dot\rho=-3H(\rho+P),
+$$
+
+Qui $H=\dot a/a$, $P$ è la pressione e $\rho_c$ una densità critica dipendente dal modello, di ordine planckiano. A bassa densità si recupera l’equazione di Friedmann piatta ordinaria; la correzione quadratica negativa dà $H=0$ a $\rho_c$. L’[analisi della dinamica migliorata](https://arxiv.org/abs/gr-qc/0607039) esplicita le ipotesi e studia il rimbalzo analiticamente e numericamente.
+
+### Derivare un rimbalzo nel modello efficace
+
+Derivando e usando la conservazione dell’energia si ottiene, dapprima per $H\ne0$ e poi per estensione continua,
+
+$$
+\dot H=-4\pi G(\rho+P)\left(1-2\frac{\rho}{\rho_c}\right).
+$$
+
+A $\rho=\rho_c$, materia con $\rho+P>0$ ha $\dot H>0$: la contrazione può passare all’espansione. Trovare soltanto $H=0$ non dimostrerebbe un rimbalzo. Per lo scalare senza massa, $P=\rho$ e $\rho\propto a^{-6}$. Ponendo il rimbalzo a $t=0$, la soluzione esatta di queste equazioni efficaci è
+
+$$
+a(t)=a_B\left(1+\frac{t^2}{t_B^2}\right)^{1/6},
+\qquad \rho(t)=\frac{\rho_c}{1+t^2/t_B^2},
+\qquad t_B^{-2}=24\pi G\rho_c.
+$$
+
+La sostituzione dà $H=t/[3(t_B^2+t^2)]$ e verifica entrambe le equazioni. A $t=\pm t_B$, $\rho=\rho_c/2$ e $a=2^{1/6}a_B$. Il valore numerico di $a_B$ dipende dalla normalizzazione delle coordinate spaziali; i punti fisici sono la densità finita e il passaggio dalla contrazione all’espansione.
+
+![Il fattore di scala efficace adimensionale raggiunge il minimo al rimbalzo mentre la densità raggiunge il massimo; entrambe le curve sono simmetriche rispetto all’istante zero.](/images/diagrams/lqg-deep-bounce.svg)
+
+*Asse orizzontale: $t/t_B$. Curva superiore: $a/a_B$; inferiore: $\rho/\rho_c$. È la soluzione efficace dello scalare senza massa, non dati osservativi né una previsione universale per ogni cosmologia.*
+
+La LQC esattamente risolvibile permette affermazioni più forti su classi di stati quantistici rispetto a questo solo calcolo efficace: si vedano [Ashtekar, Corichi e Singh](https://arxiv.org/abs/0710.3565). Estendere i risultati ad anisotropie, perturbazioni, altra materia o quantizzazioni e alla teoria completa richiede ulteriori argomenti. Un rimbalzo di modello non stabilisce ciò che precedette l’universo primordiale caldo osservato.
+
+## 7. Difficoltà e questioni aperte
+
+- **Dinamica e vincoli:** controllare l’hamiltoniana quantistica, le scelte di regolarizzazione, gli stati fisici e il prodotto scalare preservando le simmetrie di gauge appropriate.
+- **Continuo e limite semiclassico:** derivare geometria liscia e RG a bassa energia con materia da molte eccitazioni. Grandi spin su un grafo fisso e raffinamento con più elementi sono limiti diversi da trattare coerentemente.
+- **Parametro di Immirzi:** determinare quale dipendenza da $\gamma$ sopravvive nelle previsioni fisiche. Accordare l’entropia di un buco nero sotto specifiche ipotesi di conteggio non è una misura indipendente di laboratorio.
+- **Osservazioni:** una caratteristica del fondo cosmico a microonde o una modifica delle onde gravitazionali richiede modello efficace, stato iniziale e trattamento delle perturbazioni specifici. Robustezza e distinzione dall’astrofisica convenzionale o da altri modelli primordiali vanno dimostrate prima di parlare di test della LQG.
+
+Un esempio del lavoro attuale è la [revisione di settembre 2026 di Assanioussi e Livine](https://arxiv.org/abs/2601.21644v2): studia la dinamica hamiltoniana classica di piccoli grafi “candy” come elementi costitutivi, lasciando esplicitamente il regime quantistico dettagliato a ricerche successive. È progresso su un sottosistema controllato, non il completamento della dinamica quantistica né una scoperta empirica.
+
+### Equivoci comuni
+
+**“I loop sono stringhe.”** Le olonomie sono variabili di trasporto parallelo; le etichette della rete descrivono geometria, non stringhe propaganti. **“L’indipendenza dal fondo elimina ogni ipotesi.”** Topologia, variabili, quantizzazione e bordi restano importanti. **“L’area discreta prova che lo spazio è uno schermo a pixel.”** Lo spettro appartiene a un operatore; gli stati possono essere sovrapposizioni, senza griglia regolare privilegiata. **“Il rimbalzo prova un universo precedente.”** È un risultato condizionale del modello; il calcolo non fornisce questa osservazione.
+
+## Stato della ricerca
+
+Ricerca verificata fino al **13 ottobre 2026**. La LQG possiede costruzioni cinematiche precise e molti studi su dinamica e modelli ridotti. Gli articoli collegati stabiliscono risultati matematici e previsioni di modelli; nessuno conferma sperimentalmente che il nostro spaziotempo abbia la struttura quantistica proposta. Un percorso controllato dalla dinamica completa a previsioni misurate e distinguibili resta un obiettivo di ricerca.
+
+La LQG privilegia la quantizzazione della geometria gravitazionale senza metrica di fondo fissa. La teoria delle stringhe parte da altri gradi di libertà e ha anche formulazioni non perturbative; descriverla come invariabilmente dipendente dal fondo semplifica eccessivamente il confronto. Ogni proposta va valutata per ipotesi, coerenza interna, recupero della fisica nota e conseguenze osservabili.

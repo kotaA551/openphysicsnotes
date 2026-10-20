@@ -1,0 +1,183 @@
+---
+description: "Comprendre la gravité quantique à boucles : variables, contraintes, calcul d’aire, mousses de spins et rebond cosmologique, avec leurs hypothèses et limites."
+---
+
+## 1. Motivation
+
+En relativité générale (RG), la géométrie est dynamique : matière et géométrie s’influencent mutuellement. Avec $c=1$, et en omettant ici la constante cosmologique,
+
+$$
+G_{\mu\nu}=8\pi G T_{\mu\nu}.
+$$
+
+La théorie quantique décrit efficacement la matière, mais étudier un champ quantique sur un espace-temps courbe prescrit ne quantifie pas encore cet espace-temps. Près d’une singularité classique, l’approximation d’une géométrie lisse et classique pourrait échouer. Cela motive la gravité quantique ; ce n’est ni la preuve qu’une quantification particulière est correcte, ni un théorème exigeant une unique façon de quantifier tout champ classique.
+
+La **gravité quantique à boucles (LQG)** cherche à quantifier la RG sans fixer d’abord une métrique de fond puis développer autour d’elle. « Non perturbative » signifie que la construction ne part pas d’une petite perturbation gravitationnelle d’une géométrie choisie. « Indépendante du fond » signifie que les longueurs et les aires proviennent des variables dynamiques, non d’une métrique fixe. Une variété différentiable et d’autres choix mathématiques demeurent nécessaires. Voir l’[exposé fondateur d’Ashtekar et Lewandowski](https://arxiv.org/abs/gr-qc/0404018).
+
+L’échelle caractéristique est $\ell_P=\sqrt{\hbar G/c^3}$, soit environ $1.6\times10^{-35}\,\mathrm{m}$. Cette combinaison dimensionnelle indique où effets quantiques et gravitationnels pourraient être simultanément importants. Elle ne démontre **à elle seule** ni une grille régulière d’espace, ni un minimum pour toute distance. Des affirmations plus précises exigent un espace d’états, des opérateurs géométriques et une dynamique cohérente.
+
+## 2. Quantification canonique de la RG
+
+L’approche canonique décrit les données sur une tranche spatiale $\Sigma$ et identifie celles qui représentent le même espace-temps. Dans la formulation ADM, les variables sont la métrique spatiale $q_{ab}$ et son impulsion conjuguée $\pi^{ab}$. Le feuilletage organise le calcul sans introduire d’horloge physique privilégiée.
+
+### Variables d’Ashtekar
+
+Nous utilisons les variables réelles d’**Ashtekar–Barbero** pour la RG lorentzienne en jauge temporelle, avec des triades non dégénérées et $\gamma>0$ réel. La connexion autoduale originale d’Ashtekar est complexe : ces formulations sont liées, mais leurs variables ne sont pas identiques. La [formulation réelle de Barbero](https://arxiv.org/abs/gr-qc/9410013) et l’[action de Holst](https://arxiv.org/abs/gr-qc/9511026) expliquent ce changement canonique.
+
+$$
+A_a^i=\Gamma_a^i(E)+\gamma K_a^i,
+\qquad E_i^a=\sqrt{q}\,e_i^a,
+\qquad E_i^aE_i^b=q\,q^{ab}.
+$$
+
+Ici $q=\det(q_{ab})$, $e_i^a$ est la triade inverse, $\Gamma_a^i$ sa connexion de spin compatible et $K_a^i$ encode la courbure extrinsèque, donc l’insertion de la tranche dans l’espace-temps. $a,b$ sont des indices spatiaux ; $i$ désigne un repère orthonormé interne. Ainsi, $E$ porte la géométrie spatiale et $A$ combine connexion intrinsèque et courbure extrinsèque. Appeler $E$ « champ électrique » relève d’une analogie avec les théories de jauge, pas de l’électromagnétisme.
+
+Avec $\kappa=8\pi G$ et $c=1$,
+
+$$
+\{A_a^i(x),E_j^b(y)\}=\kappa\gamma\,\delta_a^b\delta_j^i\delta^{(3)}(x,y).
+$$
+
+Le **paramètre de Barbero–Immirzi** $\gamma$, sans dimension, caractérise ce choix canonique. Les équations classiques du vide ne le fixent pas. Sa présence dans les spectres géométriques rend importantes son interprétation quantique et sa détermination physique. Une valeur illustrative n’est pas une constante mesurée.
+
+## 3. Contraintes
+
+Les variables contiennent des descriptions redondantes. Dans le vide, avec une constante cosmologique nulle et en omettant un facteur global non nul dans $\mathcal H$,
+
+$$
+\mathcal G_i=D_aE_i^a\approx0,
+\qquad \mathcal V_a=E_i^bF^i_{ab}\approx0,
+$$
+
+$$
+\mathcal H=\frac{E_i^aE_j^b}{\sqrt{|\det E|}}
+\left(\epsilon^{ij}{}_{k}F^k_{ab}
+-2(1+\gamma^2)K^i_{[a}K^j_{b]}\right)\approx0.
+$$
+
+$F$ est la courbure de $A$ et $D$ sa dérivée covariante. $\approx0$ signifie l’égalité sur la surface des contraintes, non une petite erreur. La contrainte de Gauss élimine les rotations arbitraires du repère interne. La contrainte vectorielle engendre les changements de coordonnées spatiales **à une transformation de Gauss près** ; un générateur de difféomorphismes spatiaux purs comprend le terme de Gauss correspondant. La contrainte hamiltonienne met en œuvre les changements de feuilletage, plutôt qu’une évolution ordinaire par rapport à un temps extérieur universel.
+
+Le comptage est instructif : $A$ et $E$ donnent 18 composantes d’espace des phases par point. Sept contraintes indépendantes de première classe en retirent 14, laissant quatre composantes, soit deux degrés de liberté de configuration : les polarisations gravitationnelles locales. Ce comptage classique concerne le vide régulier ; bords et secteurs singuliers exigent une étude distincte.
+
+La quantification construit d’abord la **cinématique**, puis implémente les contraintes et le produit scalaire physique. Un réseau de spins n’est donc pas automatiquement une solution physique. Une observable relationnelle pourrait être l’aire d’une surface définie par la matière lorsqu’une horloge scalaire atteint une valeur donnée. Définir ces grandeurs et retrouver l’algèbre classique des contraintes sans anomalie sont des tâches dynamiques centrales. La [construction de Thiemann](https://arxiv.org/abs/gr-qc/9606089) est une proposition concrète, non une théorie phénoménologique unique et achevée.
+
+## 4. Holonomies et flux
+
+Les variables fondamentales sont intégrées le long de courbes et sur des surfaces :
+
+$$
+h_\ell[A]=\mathcal P\exp\!\left(\int_\ell A_a^i\tau_i\,dx^a\right),
+\qquad E(S,f)=\int_S f^i E_i^a\,dS_a.
+$$
+
+$\tau_i$ sont des générateurs de $\mathfrak{su}(2)$, $f^i$ un champ test, et $\mathcal P$ ordonne les matrices non commutatives selon le chemin. L’holonomie compare les repères internes par transport parallèle : c’est un élément de $SU(2)$, pas une longueur. Le flux mesure l’information orientée de la triade à travers une surface. Le signe dans l’exponentielle dépend de la convention choisie pour la connexion.
+
+Imaginons le transport d’un repère autour d’une petite boucle fermée. Dans une géométrie classique lisse, l’écart dominant de l’holonomie à l’identité encode la courbure traversant la boucle. La LQG emploie des transports finis comme variables fondamentales sans supposer un opérateur $A(x)$ défini point par point. Sur les fonctions d’holonomies, les holonomies agissent par multiplication et les flux par dérivation. Leur algèbre dépend des intersections entre chemins et surfaces.
+
+Le [théorème d’unicité de l’algèbre holonomie–flux](https://arxiv.org/abs/gr-qc/0504147) sélectionne une représentation sous des hypothèses précises d’algèbre, de covariance et d’état cyclique. Il ne prouve pas que toute théorie de gravité quantique soit la LQG et ne choisit pas l’hamiltonien.
+
+## 5. Réseaux de spins
+
+Un **réseau de spins** invariant de jauge comprend un graphe, des spins $j=0,\tfrac12,1,\ldots$ sur les arêtes et des tenseurs invariants, les **entrelaceurs**, aux sommets. Les spins désignent des représentations de $SU(2)$, non de petites billes en rotation. Un entrelaceur combine les représentations incidentes en un objet invariant, mettant en œuvre la contrainte de Gauss. Les graphes spécifient des relations dans la géométrie quantique, sans nécessairement former un réseau physique régulier.
+
+Pour une surface coupant transversalement les arêtes loin des sommets, l’opérateur d’aire standard possède les valeurs propres
+
+$$
+A(S)=8\pi\gamma\ell_P^2\sum_{p\in S\cap\Gamma}\sqrt{j_p(j_p+1)}.
+$$
+
+Le flux à une perforation agit comme un générateur de moment cinétique. Le Casimir quadratique de $SU(2)$ a pour valeur propre $j(j+1)$ ; prendre sa norme explique $\sqrt{j(j+1)}$. La [construction de l’opérateur d’aire](https://arxiv.org/abs/gr-qc/9602046) établit la discrétisation sur l’espace de Hilbert cinématique. Une surface contenant des sommets exige l’expression plus générale. Comme l’expliquent [Dittrich et Thiemann](https://arxiv.org/abs/0708.1721), un spectre cinématique ne détermine pas à lui seul celui de toute observable physique entièrement relationnelle.
+
+### Un calcul de mesure d’aire
+
+Une portion de surface sans sommet est perforée une fois par $j=\tfrac12$ et une fois par $j=1$. Alors
+
+$$
+\frac{A}{8\pi\gamma\ell_P^2}
+=\sqrt{\tfrac12(\tfrac12+1)}+\sqrt{1(1+1)}
+=\frac{\sqrt3}{2}+\sqrt2\approx2.280.
+$$
+
+Une perforation $j=\tfrac12$ contribue $4\pi\sqrt3\,\gamma\ell_P^2$. Deux donnent $8\pi\sqrt3\,\gamma\ell_P^2$, tandis qu’une perforation $j=1$ donne $8\pi\sqrt2\,\gamma\ell_P^2$. Des sommes égales d’étiquettes de spin ne garantissent donc pas des aires égales. Ces contributions sont locales dans un réseau admissible ; le reste du graphe doit satisfaire ses conditions d’entrelacement. On calcule des résultats possibles dans la quantification choisie, non une granularité observée de l’espace.
+
+![Deux arêtes de spins différents traversent une surface ; leurs contributions à l’aire additionnent les racines des valeurs du Casimir de SU(2).](/images/diagrams/lqg-deep-area.svg)
+
+*La portion ombrée comporte deux perforations transversales. La géométrie est schématique ; l’équation, non l’espacement dessiné, détermine la valeur propre de l’aire.*
+
+Le volume est plus subtil :
+
+$$
+\hat V(R)=\sum_{v\in R\cap\Gamma}\sqrt{|\hat q_v|}.
+$$
+
+$\hat q_v$ contient des produits triples de générateurs de flux, des facteurs d’orientation et des constantes dimensionnées. Il agit généralement comme une matrice dans l’espace des entrelaceurs du sommet. Fixer les spins des arêtes ne fixe donc pas nécessairement le volume ; il faut aussi une base d’entrelaceurs appropriée. La [construction des opérateurs de volume](https://arxiv.org/abs/gr-qc/9711031) explique cette différence. Des spectres géométriques discrets n’impliquent ni des cubes identiques ni un temps extérieur automatiquement discret.
+
+### Des réseaux aux mousses de spins
+
+Un réseau de spins décrit une géométrie de bord. Une **mousse de spins** est un complexe bidimensionnel étiqueté attribuant des amplitudes entre ces bords : les arêtes du graphe balayent des faces, ses sommets tracent des arêtes du complexe. Ce sont des histoires dans une somme sur les géométries quantiques, non des sommets se déplaçant dans un espace préexistant.
+
+Sur un complexe choisi $\mathcal C$, on écrit schématiquement
+
+$$
+Z_{\mathcal C}=\sum_{\{j_f,i_e\}}\prod_f A_f\prod_e A_e\prod_v A_v.
+$$
+
+Les étiquettes sont sommées ; amplitudes des faces, arêtes et sommets encodent la dynamique du modèle. Données de bord et normalisation sont omises ici. La [construction EPRL](https://arxiv.org/abs/0711.0146) relie un sommet de mousse de spins à quatre dimensions aux états de bord de la LQG par des contraintes de simplicité. Spécifier un complexe fini n’établit pas encore la théorie complète du continuum.
+
+Pour des données géométriques de bord adéquates et non dégénérées, l’asymptotique à grands spins de l’amplitude d’un 4-simplexe EPRL euclidien contient l’action de Regge, une action gravitationnelle discrétisée. Ce [résultat de cohérence semi-classique](https://arxiv.org/abs/0902.1170) est précieux. Il ne prouve pas que toute amplitude, limite de raffinement ou fonction de corrélation à longue distance retrouve la RG.
+
+## 6. Cosmologie quantique à boucles (LQC)
+
+La **LQC** applique une quantification inspirée des boucles à des systèmes cosmologiques réduits par symétrie. Imposer l’homogénéité avant quantification élimine une infinité de modes inhomogènes. Un théorème du système réduit n’est donc pas automatiquement un théorème de la LQG complète.
+
+Considérons le modèle standard spatialement plat, homogène et isotrope, avec un scalaire sans masse et des états semi-classiques fortement concentrés dans la prescription de dynamique améliorée. Ses équations effectives comprennent
+
+$$
+H^2=\frac{8\pi G}{3}\rho\left(1-\frac{\rho}{\rho_c}\right),
+\qquad \dot\rho=-3H(\rho+P),
+$$
+
+où $H=\dot a/a$, $P$ est la pression et $\rho_c$ une densité critique dépendante du modèle, d’ordre planckien. À faible densité, on retrouve l’équation de Friedmann plate ordinaire ; la correction quadratique négative impose $H=0$ à $\rho_c$. L’[analyse de la dynamique améliorée](https://arxiv.org/abs/gr-qc/0607039) explicite les hypothèses et étudie le rebond analytiquement et numériquement.
+
+### Déduire un rebond dans le modèle effectif
+
+Différenciation et conservation de l’énergie donnent, d’abord pour $H\ne0$, puis par prolongement continu,
+
+$$
+\dot H=-4\pi G(\rho+P)\left(1-2\frac{\rho}{\rho_c}\right).
+$$
+
+À $\rho=\rho_c$, une matière avec $\rho+P>0$ a $\dot H>0$ : la contraction peut devenir expansion. Trouver seulement $H=0$ ne prouverait pas le rebond. Pour le scalaire sans masse, $P=\rho$ et $\rho\propto a^{-6}$. En plaçant le rebond à $t=0$, la solution exacte de ces équations effectives est
+
+$$
+a(t)=a_B\left(1+\frac{t^2}{t_B^2}\right)^{1/6},
+\qquad \rho(t)=\frac{\rho_c}{1+t^2/t_B^2},
+\qquad t_B^{-2}=24\pi G\rho_c.
+$$
+
+La substitution donne $H=t/[3(t_B^2+t^2)]$ et vérifie les deux équations. À $t=\pm t_B$, $\rho=\rho_c/2$ et $a=2^{1/6}a_B$. La valeur numérique de $a_B$ dépend de la normalisation des coordonnées spatiales ; les points physiques sont la densité finie et le passage de la contraction à l’expansion.
+
+![Le facteur d’échelle effectif adimensionné atteint son minimum au rebond tandis que la densité atteint son maximum ; les deux courbes sont symétriques autour de zéro.](/images/diagrams/lqg-deep-bounce.svg)
+
+*Axe horizontal : $t/t_B$. Courbe supérieure : $a/a_B$ ; inférieure : $\rho/\rho_c$. Il s’agit de la solution effective du scalaire sans masse, pas de données observées ni d’une prédiction universelle pour toutes les cosmologies.*
+
+La LQC exactement soluble permet des énoncés plus forts sur certaines classes d’états quantiques que ce seul calcul effectif : voir [Ashtekar, Corichi et Singh](https://arxiv.org/abs/0710.3565). Étendre ces conclusions aux anisotropies, perturbations, autres matières ou quantifications et à la théorie complète exige des arguments supplémentaires. Un rebond de modèle ne détermine pas ce qui précédait l’univers primordial chaud observé.
+
+## 7. Difficultés et questions ouvertes
+
+- **Dynamique et contraintes :** maîtriser l’hamiltonien quantique, les choix de régularisation, les états physiques et le produit scalaire en préservant les symétries de jauge appropriées.
+- **Continuum et limite semi-classique :** déduire une géométrie lisse et la RG à basse énergie avec matière à partir de nombreuses excitations. Grands spins sur un graphe fixe et raffinement par ajout d’éléments sont des limites distinctes à traiter de façon cohérente.
+- **Paramètre d’Immirzi :** déterminer quelle dépendance en $\gamma$ subsiste dans les prédictions physiques. Ajuster l’entropie d’un trou noir sous certaines hypothèses de comptage n’est pas une mesure indépendante en laboratoire.
+- **Observations :** une structure du fond diffus cosmologique ou une modification des ondes gravitationnelles exige un modèle effectif, un état initial et un traitement des perturbations précis. Il faut démontrer robustesse et distinction avec l’astrophysique habituelle ou d’autres modèles primordiaux avant de parler de test de LQG.
+
+La [révision de septembre 2026 d’Assanioussi et Livine](https://arxiv.org/abs/2601.21644v2) illustre le travail en cours : elle analyse la dynamique hamiltonienne classique de petits graphes « candy » comme éléments de construction, en réservant explicitement le régime quantique détaillé à des travaux ultérieurs. C’est un progrès sur un sous-système contrôlé, non une dynamique quantique complète ni une détection empirique.
+
+### Malentendus fréquents
+
+**« Les boucles sont des cordes. »** Les holonomies sont des variables de transport parallèle ; les étiquettes du réseau décrivent la géométrie, pas des cordes en propagation. **« L’indépendance du fond élimine toutes les hypothèses. »** Topologie, variables, quantification et bords restent importants. **« Une aire discrète prouve que l’espace est un écran de pixels. »** Le spectre concerne un opérateur ; les états peuvent être des superpositions, sans grille régulière privilégiée. **« Le rebond prouve l’existence d’un univers précédent. »** C’est un résultat conditionnel du modèle, sans observation correspondante fournie par le calcul.
+
+## État de la recherche
+
+Recherche vérifiée jusqu’au **13 octobre 2026**. La LQG dispose de constructions cinématiques précises et d’importants travaux sur la dynamique et les modèles réduits. Les articles cités établissent des résultats mathématiques et des prédictions de modèles ; aucun n’apporte une confirmation expérimentale de cette structure quantique proposée pour notre espace-temps. Un chemin contrôlé de la dynamique complète vers des prédictions mesurées et distinctives demeure un objectif de recherche.
+
+La LQG privilégie la quantification de la géométrie gravitationnelle sans métrique de fond fixe. La théorie des cordes part d’autres degrés de liberté et possède aussi des formulations non perturbatives ; la dire invariablement dépendante du fond simplifie excessivement la comparaison. Évaluons chaque proposition selon ses hypothèses, sa cohérence interne, la récupération de la physique connue et ses conséquences observables.

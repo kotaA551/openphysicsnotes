@@ -1,0 +1,326 @@
+---
+description: "Navier–Stokes verstehen: Viskosität, Wirbelstreckung und Singularitäten bei endlicher Energie sowie OpenAIs Ankündigung von 2026 mit äußerer Kraft, die Lean-Debatte und das offene Problem ohne Kraft."
+---
+## 1. Warum das wichtig ist: ein Millennium-Problem
+
+Wasser, das ein Boot umströmt, und Luft, die einen Flügel umströmt, gehorchen derselben lokalen Bilanz: Masse bleibt erhalten, und Kräfte verändern den Impuls. Die Navier–Stokes-Gleichungen machen daraus ein Kontinuumsmodell. Die Gleichungen aufzuschreiben ist wesentlich einfacher, als zu beweisen, wie sich jede ihrer Lösungen verhalten kann.
+
+**Forschungsstand geprüft am 13. Oktober 2026.** Am 8. September kündigte OpenAI eine Konstruktion einer Singularität in endlicher Zeit für die dreidimensionalen inkompressiblen Navier–Stokes-Gleichungen mit **einer glatten äußeren Kraft** an, begleitet von einem Artikel und Lean-Code. Sie zielt auf die Alternativen **C und D** des Millennium-Problems von Clay. Das ist ein bedeutender beanspruchter Fortschritt, belegt aber **keine** Singularität für die Navier–Stokes-Gleichungen **ohne äußere Kraft**. Das separat angekündigte Euler-Ergebnis ohne äußere Kraft betrifft verschwindende Viskosität und darf damit nicht verwechselt werden. [OpenAI-Ankündigung, aktualisiert am 10. September](https://openai.com/index/navier-stokes-solution/).
+
+Hier kommt es auf den Unterschied zwischen einem angekündigten Ergebnis, einer geprüften formalen Aussage, einem lesbaren Beweis und der Anerkennung durch die Fachwelt an. Abschnitt 14 beschreibt den datierten Stand der Prüfung einschließlich der kritischen Untersuchung im Oktober. Die folgenden physikalischen Grundlagen erklären, warum beschränkte Energie mit immer extremeren lokalen Bewegungen vereinbar ist.
+
+---
+
+## 2. Kontinuumsfelder und Erhaltungssätze
+
+Seien $\rho(\boldsymbol x,t)$ die Massendichte, $\boldsymbol v(\boldsymbol x,t)$ die Geschwindigkeit, $p(\boldsymbol x,t)$ der Druck und $\boldsymbol{\sigma}$ der Cauchy-Spannungstensor. Die Volumenkraft pro Masseneinheit ist $\boldsymbol f$, etwa die Schwerkraft.
+
+Ein Feld ordnet jedem Ort und Zeitpunkt einen Wert zu; dabei wird über viele Moleküle gemittelt. Das Modell setzt voraus, dass die relevanten Längenskalen groß genug sind, damit diese Mittelung und ein lokales Spannungsgesetz sinnvoll sind. Eine mathematische Singularität betrifft die Kontinuumsgleichungen; sie sagt nicht voraus, dass ein reales Molekül unendliche Geschwindigkeit erreicht.
+
+### 2.1 Massenerhaltung
+$$
+\partial_t \rho + \nabla\!\cdot(\rho \boldsymbol v) = 0.
+$$
+
+Der erste Term beschreibt die lokale Ansammlung von Masse; die Divergenz misst den resultierenden nach außen gerichteten Massenfluss. Bei konstanter Dichte bedeutet Massenerhaltung, dass die Divergenz der Geschwindigkeit null ist. Ein Fluidelement kann sich strecken und seine Form ändern, während sein Volumen erhalten bleibt.
+
+### 2.2 Impulserhaltung (Cauchy)
+$$
+\rho\left(\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\right)
+= \nabla\!\cdot \boldsymbol{\sigma} + \rho \boldsymbol f .
+$$
+
+Zerlege die Spannung in isotropen Druck und einen viskosen Anteil:
+$$
+\boldsymbol{\sigma} = -p\,\boldsymbol I + \boldsymbol{\tau}.
+$$
+
+Die materielle Ableitung $D_t=\partial_t+\boldsymbol v\cdot\nabla$ folgt einem bewegten Fluidelement. Selbst ein stationäres Geschwindigkeitsfeld kann ein solches Element beschleunigen: Wasser, das in eine engere Passage strömt, gelangt in einen Bereich mit anderer Geschwindigkeit. Dies beschreibt der nichtlineare Transportterm $(\boldsymbol v\cdot\nabla)\boldsymbol v$.
+
+---
+
+## 3. Materialgesetz für ein Newtonsches Fluid
+
+Für ein isotropes Newtonsches Fluid gilt
+$$
+\boldsymbol{\tau} = 2\mu\,\boldsymbol S + \lambda\,(\nabla\!\cdot\!\boldsymbol v)\,\boldsymbol I,
+\qquad
+\boldsymbol S \equiv \tfrac12\left(\nabla \boldsymbol v + \nabla \boldsymbol v^{\!\top}\right),
+$$
+mit der dynamischen Viskosität $\mu$ und dem zweiten Viskositätskoeffizienten $\lambda$; die Volumenviskosität ist $\zeta=\lambda+2\mu/3$.
+
+![Zwischen einer ruhenden unteren Platte und einer bewegten oberen Platte wächst die stationäre laminare Geschwindigkeit linear mit der Höhe. Das veranschaulicht viskose Scherung und die Haftbedingung.](/images/diagrams/couette-flow.svg)
+
+Für räumlich konstante Viskositätskoeffizienten ergibt das Einsetzen in die Impulsbilanz die **kompressiblen Navier–Stokes-Gleichungen**:
+$$
+\rho\left(\partial_t \boldsymbol v + \boldsymbol v\!\cdot\!\nabla \boldsymbol v\right)
+= -\nabla p + \mu \nabla^2 \boldsymbol v + (\mu+\lambda)\,\nabla(\nabla\!\cdot\!\boldsymbol v) + \rho \boldsymbol f .
+$$
+
+Bei konstanter Dichte $\rho$ definiert man die kinematische Viskosität $\nu \equiv \mu/\rho$.
+
+Viskosität reagiert auf Verformung, nicht auf gleichförmige Translation. Ihre Dimensionen sind $[\mu]=\mathrm{Pa\,s}$ und $[\nu]=\mathrm{m^2/s}$. Im Plattenströmungsdiagramm ergeben ein Abstand $h$ und eine Geschwindigkeit $U$ der oberen Platte das Profil $v_x(y)=Uy/h$ und die Schubspannung $\tau_{xy}=\mu U/h$. Diese einfache exakte Lösung ist glatt; die Behauptung einer Singularität ist eine Existenzaussage für bestimmte Daten, keine Aussage über jede Strömung.
+
+---
+
+## 4. Inkompressible Form
+
+Für konstante Dichte $\rho=\rho_0$ und
+$$
+\nabla\!\cdot\!\boldsymbol v = 0,
+$$
+folgt
+$$
+\partial_t \boldsymbol v + (\boldsymbol v\!\cdot\!\nabla)\boldsymbol v
+= -\tfrac{1}{\rho_0}\,\nabla p + \nu \nabla^2 \boldsymbol v + \boldsymbol f,
+\qquad
+\nabla\!\cdot\!\boldsymbol v = 0.
+$$
+
+Die Gleichung besagt: Beschleunigung ist die Summe aus Druckbeschleunigung, viskoser Diffusion und äußerer Beschleunigung.
+
+| Term | Bedeutung |
+| --- | --- |
+| $\partial_t\boldsymbol v$ | Änderung an einem festen Ort |
+| $(\boldsymbol v\cdot\nabla)\boldsymbol v$ | Änderung dadurch, dass sich ein Fluidelement durch das Geschwindigkeitsfeld bewegt |
+| $-\nabla p/\rho_0$ | Druckkräfte verteilen Impuls um |
+| $\nu\nabla^2\boldsymbol v$ | Viskosität glättet räumliche Unterschiede |
+| $\boldsymbol f$ | Von außen angelegte Kraft pro Masseneinheit |
+
+Inkompressibilität verlangt weder verschwindende Geschwindigkeit noch verschwindende Beschleunigung. Der Druck wirkt als Zwangsgröße, die das Geschwindigkeitsfeld divergenzfrei hält; in diesem Modell mit konstanter Dichte ist er keine eigenständige Zustandsgleichung.
+
+Die Divergenz der Impulsgleichung liefert eine **Poisson-Gleichung für den Druck** mit geeigneten Randbedingungen:
+$$
+\nabla^2 p = -\rho_0\,\nabla\!\cdot\!\big[(\boldsymbol v\!\cdot\!\nabla)\boldsymbol v\big] + \rho_0\,\nabla\!\cdot\!\boldsymbol f .
+$$
+
+---
+
+## 5. Wirbelstärke und Helizität
+
+Definiere die Wirbelstärke $\boldsymbol{\omega} \equiv \nabla \times \boldsymbol v$.
+Für inkompressible Strömung ($\nabla\!\cdot\!\boldsymbol v=0$) gilt:
+$$
+\partial_t \boldsymbol{\omega}
+= \nabla\times(\boldsymbol v \times \boldsymbol{\omega}) + \nu \nabla^2 \boldsymbol{\omega}
++ \nabla \times \boldsymbol f .
+$$
+In Komponenten:
+$$
+\partial_t \omega_i + v_j\partial_j \omega_i
+= \omega_j \partial_j v_i + \nu \partial_{jj} \omega_i + (\nabla\times\boldsymbol f)_i .
+$$
+Der Term $\omega_j \partial_j v_i$ beschreibt die **Wirbelstreckung**, die nur in drei Dimensionen auftritt.
+Die Helizität $H\equiv\int \boldsymbol v\!\cdot\!\boldsymbol{\omega}\,dV$ gibt Aufschluss über die Topologie der Wirbellinien.
+
+Eine entlang ihrer Achse gestreckte Wirbelröhre kann dünner und intensiver werden. In der Wirbelgleichung kann die Streckung die Rotation verstärken, während die Viskosität sie durch Diffusion verteilt. Keiner der beiden Effekte entscheidet allein darüber, ob die gesamte gekoppelte Dynamik glatt bleibt.
+
+Bei einer wirklich ebenen Strömung $\boldsymbol v=(v_x(x,y),v_y(x,y),0)$ steht die Wirbelstärke senkrecht zur Ebene, und die Felder ändern sich in dieser Richtung nicht. Deshalb gilt $(\boldsymbol\omega\cdot\nabla)\boldsymbol v=0$. In zwei Dimensionen entfällt damit ein wichtiger Verstärkungsmechanismus; daraus folgt nicht, dass jeder dreidimensionale Wirbel eine Singularität entwickeln muss.
+
+![Bei einer Zirkulation gegen den Uhrzeigersinn in der Ebene weist die Wirbelstärke aus der Zeichenebene heraus, dargestellt durch einen eingekreisten Punkt.](/images/diagrams/vorticity.svg)
+
+---
+
+## 6. Energiebilanz für inkompressible Strömung
+
+Für eine glatte Lösung bildet man das Skalarprodukt der Impulsgleichung mit $\boldsymbol v$ und integriert über ein Gebiet $\Omega$ mit ruhendem Rand und Haftbedingung. Dieselbe Identität gilt in einem periodischen Kasten oder im ganzen Raum bei hinreichendem Abklingen:
+$$
+\tfrac12 \tfrac{d}{dt}\int_\Omega |\boldsymbol v|^2\,dV
++ \nu \int_\Omega |\nabla \boldsymbol v|^2\,dV
+= \int_\Omega \boldsymbol f\!\cdot\!\boldsymbol v\,dV .
+$$
+
+Für $\boldsymbol f=\boldsymbol 0$ nimmt die kinetische Energie monoton ab; die viskose Dissipation beträgt $\nu\|\nabla \boldsymbol v\|_2^2$.
+
+Diese Energie ist durch die konstante Dichte normiert: Die physikalische kinetische Energie ist $\rho_0/2$ mal dem Integral des Geschwindigkeitsquadrats. Transport und Druck liefern nur Randflüsse, die unter diesen Voraussetzungen verschwinden; partielle Integration ergibt den nichtnegativen viskosen Term. Eine bewegte Wand oder ein offener Rand liefert zusätzliche Arbeits- oder Flussterme.
+
+### 6.1 Warum endliche Energie keine Glattheit garantiert
+
+Eine Integralschranke kontrolliert die gesamte Bewegung, nicht ihren größten lokalen Wert. Zur Veranschaulichung der Skalierung wähle ein festes glattes, kompakt getragenes und divergenzfreies Feld $\boldsymbol\phi$ und setze
+
+$$
+\boldsymbol v_\ell(\boldsymbol x)=\ell^{-1}\boldsymbol\phi(\boldsymbol x/\ell).
+$$
+
+Dann wächst $\|\boldsymbol v_\ell\|_\infty=\ell^{-1}\|\boldsymbol\phi\|_\infty$ für $\ell\to0$, während $\|\boldsymbol v_\ell\|_2^2=\ell\|\boldsymbol\phi\|_2^2$ abnimmt. Das sind umskalierte Momentaufnahmen, **keine Lösung und kein Singularitätsbeweis**. Sie zeigen, warum immer größere Geschwindigkeiten in einem immer kleineren Volumen eine Energieschranke nicht verletzen müssen. Ableitungen und Konzentration zu kontrollieren ist die zusätzliche Herausforderung der Regularitätstheorie.
+
+---
+
+## 7. Entdimensionierung und Kontrollparameter
+
+Wähle die charakteristischen Skalen $L$ für die Länge und $U$ für die Geschwindigkeit und definiere
+$\boldsymbol x'=\boldsymbol x/L$, $t' = tU/L$, $\boldsymbol v'=\boldsymbol v/U$, $p'=p/(\rho U^2)$.
+
+Die inkompressiblen Gleichungen werden damit zu
+$$
+\partial_{t'} \boldsymbol v' + (\boldsymbol v'\!\cdot\!\nabla')\boldsymbol v'
+= -\nabla' p' + \tfrac{1}{\mathrm{Re}}\nabla'^2 \boldsymbol v' + \boldsymbol f',
+\quad \nabla'\!\cdot\!\boldsymbol v' = 0,
+$$
+mit der **Reynolds-Zahl**
+$$
+\mathrm{Re} = \frac{U L}{\nu}.
+$$
+
+Hier ist $\boldsymbol f'=L\boldsymbol f/U^2$. Die Diffusionszeit beträgt $L^2/\nu$, die Advektionszeit $L/U$; ihr Verhältnis ist $\mathrm{Re}$. Eine große Reynolds-Zahl bedeutet, dass die Advektion auf der gewählten Skala schnell gegenüber der viskosen Glättung ist. Sie ist weder eine universelle Turbulenzschwelle noch ein Singularitätskriterium: Auch Geometrie, Störungen und die betrachtete Skala spielen eine Rolle. Beispielsweise ergeben $U=0.1\,\mathrm{m/s}$, $L=0.01\,\mathrm m$ und $\nu=10^{-6}\,\mathrm{m^2/s}$ den Wert $\mathrm{Re}=1000$.
+
+Weitere dimensionslose Kennzahlen, je nach Anwendung:
+- **Mach-Zahl** $\mathrm{Ma}=U/c_s$ (Kompressibilität),
+- **Froude-Zahl** $\mathrm{Fr}=U/\sqrt{gL}$ (Schwerkraft),
+- **Prandtl-Zahl** $\mathrm{Pr}=\nu/\kappa$ (Impulsdiffusion im Verhältnis zur Wärmediffusion).
+
+---
+
+## 8. Kompressible Navier–Stokes–Fourier-Gleichungen im Überblick
+
+Man ergänzt die innere Energie $e$ oder die Temperatur $T$ mit dem Fourierschen Wärmestrom $\boldsymbol q=-k_{\rm th} \nabla T$. Die Wärmeleitfähigkeit $k_{\rm th}$ ist von der oben verwendeten Temperaturleitfähigkeit $\kappa$ zu unterscheiden:
+$$
+\partial_t (\rho e) + \nabla\!\cdot(\rho e\,\boldsymbol v)
+= -p\,\nabla\!\cdot\!\boldsymbol v + \boldsymbol{\tau}:\nabla \boldsymbol v - \nabla\!\cdot\!\boldsymbol q .
+$$
+Eine Zustandsgleichung, etwa die eines idealen Gases, schließt das System: $p=(\gamma-1)\rho e$.
+
+Kompressionsarbeit und die Umwandlung von kinetischer in innere Energie werden nun ausdrücklich berücksichtigt. Das inkompressible Millennium-Problem entscheidet nicht über Stoßbildung, Wärmetransport oder die Regularitätstheorie dieses anderen Systems.
+
+---
+
+## 9. Mathematische Theorie: Existenz und Eindeutigkeit
+
+**Lokale** Existenz bedeutet, dass eine Lösung auf einem gewissen Intervall nach dem Anfangszeitpunkt existiert; **globale** Existenz bedeutet Existenz für alle zukünftigen Zeiten. Eine **klassische** Lösung besitzt genügend Ableitungen, um die Gleichungen punktweise zu erfüllen; **glatt** bedeutet hier differenzierbar bis zu jeder Ordnung. Eine **schwache** Lösung erfüllt eine integrierte Fassung, in der Ableitungen auf glatte Testfunktionen übertragen werden. Das sind unterschiedliche Anforderungen an Existenz.
+
+### 9.1 Schwache Lösungen nach Leray–Hopf
+Für divergenzfreie Anfangsdaten mit endlicher Energie im üblichen Ganzraum- oder periodischen Fall und zulässige äußere Kräfte liefert die Leray–Hopf-Theorie **globale schwache Lösungen, die eine Energieungleichung erfüllen**. Eine glatte Lösung ist innerhalb der entsprechenden Energieklasse eindeutig, solange sie glatt bleibt (schwach-starke Eindeutigkeit). Ein möglicher Verlust der Glattheit bedeutet deshalb nicht, dass alle verallgemeinerten Lösungen aufhören zu existieren. [Feffermans offizielle Problembeschreibung](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+Eindeutigkeit hängt von Lösungsklasse, Anfangsdaten und Kraft ab. [Albritton, Brué und Colombo](https://arxiv.org/abs/2112.03116) beweisen Nichteindeutigkeit für bestimmte Kräfte. [Hou, Wang und Yang](https://arxiv.org/abs/2509.25116) berichten über computergestützt nachgewiesene Nichteindeutigkeit ohne äußere Kraft für singuläre Anfangsdaten. Solche Ergebnisse dürfen nicht als Singularitätsbildung aus glatten Anfangsdaten ohne äußere Kraft bezeichnet werden.
+
+### 9.2 Regularitätskriterien in 3D
+- **Fortsetzungskriterium über die Wirbelstärke vom Beale–Kato–Majda-Typ:** Bei einer klassischen Lösung im üblichen hinreichend regulären Ganzraum- oder periodischen Fall, deren äußere Kraft bis einschließlich $T$ hinreichend regulär ist, erfordert ein Zusammenbruch zur Zeit $T$
+$$
+\int_0^T \|\boldsymbol{\omega}(\cdot,t)\|_{L^\infty}\,dt = \infty .
+$$
+[Luos Erörterung von Fortsetzungskriterien für Navier–Stokes](https://arxiv.org/html/1803.05569) formuliert das Kriterium ohne äußere Kraft; die obige Voraussetzung an die Kraft schließt einen durch eine singuläre äußere Einwirkung verursachten Zusammenbruch aus.
+- **Prodi–Serrin:** Eine schwache Lösung in der Energieklasse mit geeigneter äußerer Kraft ist regulär, wenn $\boldsymbol v \in L^p(0,T;L^q)$ mit
+$$
+\frac{2}{p} + \frac{3}{q} \le 1,\quad q>3,
+$$
+gilt; dann ist die Lösung auf $(0,T]$ glatt.
+- **Caffarelli–Kohn–Nirenberg:** Geeignete schwache Lösungen haben unter den Kraftvoraussetzungen des Satzes eine singuläre Menge mit verschwindendem eindimensionalem parabolischem Hausdorff-Maß. Das ist partielle Regularität; es beweist nicht, dass die singuläre Menge leer ist. [Hintergrund und Literatur in der offiziellen Problembeschreibung](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf).
+
+Dies sind bedingte Aussagen. Sie benennen die Kontrolle, die einen Zusammenbruch verhindern würde, liefern diese Kontrolle aber nicht für jede dreidimensionale Strömung. Die obigen Exponenten spiegeln die natürliche Skalierung $\boldsymbol v_a(\boldsymbol x,t)=a\boldsymbol v(a\boldsymbol x,a^2t)$ wider; in drei Dimensionen hat die Energienorm allein nicht die kritische Skalierung.
+
+### 9.3 Globale Regularität in 2D
+Für glatte kompatible Daten im üblichen Ganzraum- oder periodischen Fall und hinreichend reguläre äußere Kräfte bleiben zweidimensionale inkompressible Strömungen für jede endliche Zeit glatt. Ohne äußere Kraft nimmt die Enstrophie $\int|\boldsymbol\omega|^2\,dV$ nicht zu; eine Kraft fügt einen Quellterm hinzu. Das Fehlen der Wirbelstreckung erlaubt eine wesentlich stärkere Kontrolle als in 3D.
+
+### 9.4 Kompressible Strömungen
+Globale **schwache Lösungen mit endlicher Energie** existieren unter bestimmten Voraussetzungen für Gase mit $\gamma$-Gesetz. Regularität und Eindeutigkeit sind jedoch weitgehend offen.
+
+### 9.5 Was Clays vier Alternativen tatsächlich verlangen
+
+Die [offizielle Formulierung](https://www.claymath.org/wp-content/uploads/2022/06/navierstokes.pdf) akzeptiert einen Beweis einer beliebigen der folgenden vier Aussagen bei positiver Viskosität:
+
+| Alternative | Gebiet | Kraft und Fragestellung |
+| --- | --- | --- |
+| A | $\mathbb R^3$ | Keine äußere Kraft; globale glatte Lösungen mit endlicher Energie für alle zulässigen glatten Anfangsdaten |
+| B | Periodisches $\mathbb R^3/\mathbb Z^3$ | Keine äußere Kraft; globale glatte Lösungen für alle zulässigen glatten periodischen Anfangsdaten |
+| C | $\mathbb R^3$ | Bestimmte zulässige glatte Daten und eine glatte, schnell abklingende Kraft erlauben keine globale glatte Lösung mit gleichmäßig beschränkter Energie |
+| D | Periodisches $\mathbb R^3/\mathbb Z^3$ | Bestimmte zulässige glatte periodische Daten und eine glatte periodische Kraft erlauben keine globale glatte Lösung |
+
+Im ganzen Raum erfüllen Anfangsdaten und Kraft die angegebenen Abklingbedingungen; auch für die periodische Kraft gelten zeitliche Abklingbedingungen. C und D erlauben eine von null verschiedene Kraft. Ein Beweis einer dieser Alternativen würde die Aussagen A oder B ohne äußere Kraft daher nicht logisch widerlegen. „Eine Clay-Alternative lösen“ und „jede Fassung des Regularitätsproblems entscheiden“ sind unterschiedliche Behauptungen.
+
+---
+
+## 10. Turbulenz und Spektren
+
+Bei homogener isotroper Turbulenz mit hoher $\mathrm{Re}$-Zahl (K41) lautet das Energiespektrum im Trägheitsbereich
+$$
+E(k) = C_K\,\varepsilon^{2/3} k^{-5/3},
+$$
+mit der mittleren Dissipationsrate $\varepsilon$ und der Kolmogorov-Konstante $C_K\!\sim\! \mathcal O(1)$.
+
+**Kolmogorov-Mikroskala:**
+$$
+\eta \sim \left(\frac{\nu^3}{\varepsilon}\right)^{1/4}.
+$$
+
+Mit der K41-Abschätzung $\varepsilon\sim U^3/L$ folgt $L/\eta\sim\mathrm{Re}^{3/4}$. Die Auflösung dieser Skala in drei Dimensionen legt eine Gitterpunktzahl der Größenordnung $\mathrm{Re}^{9/4}$ nahe, noch ohne den Aufwand für Zeitschritte. Diese Heuristik motiviert **direkte numerische Simulation (DNS)**, **Großwirbelsimulation (LES)** und **Reynolds-gemittelte Navier–Stokes-Verfahren (RANS)** mit unterschiedlichen Entscheidungen zu Auflösung und Modellierung. LES und RANS benötigen Schließungsannahmen für nicht aufgelöste Korrelationen.
+
+Das $-5/3$-Spektrum beschreibt ein statistisches Modell des Trägheitsbereichs, nicht jede Strömung oder jede Skala. Intermittenz und Ränder erschweren dieses Bild. Eine speziell konstruierte singuläre Lösung würde weder ein universelles Turbulenzmodell liefern noch numerische Fehlerabschätzungen überflüssig machen.
+
+---
+
+## 11. Randbedingungen und Geometrie
+
+- **Wand mit Haftbedingung:** $\boldsymbol v|_{\partial\Omega}=\boldsymbol 0$
+- **Freies Gleiten:** $\boldsymbol n\!\cdot\!\boldsymbol v=0$, $\boldsymbol n\!\cdot\!\boldsymbol{\tau}\!\cdot\!\boldsymbol t=0$
+- **Periodischer Kasten (Torus)** für Theorie und DNS
+- **Ein- und Ausströmung** mit geeigneten Vorgaben für Spannung oder Druck
+
+Die Wahl beeinflusst die Wohlgestelltheit, die Energiebilanz und die numerische Stabilität.
+
+Ein periodischer Kasten identifiziert gegenüberliegende Flächen; er besitzt keine physischen Wände. Im ganzen Raum ersetzt das Abklingen im Unendlichen eine Wandbedingung. Ein Ergebnis in diesen Geometrien lässt sich nicht automatisch auf eine Flugzeugoberfläche oder ein Rohr übertragen: Die Randbedingungen gehören zum mathematischen Problem.
+
+---
+
+## 12. Numerik: ein kompakter Leitfaden
+
+- **Projektionsverfahren:** Berechne zunächst $\boldsymbol v^\ast$, löse die Poisson-Gleichung für $p$ und projiziere auf $\nabla\!\cdot\!\boldsymbol v^{n+1}=0$.
+- **Energiestabile Verfahren:** Eine schiefsymmetrische Form des Konvektionsterms erhält die diskrete Energie.
+- **CFL-Bedingung für explizite Advektions-/Diffusionsverfahren:** $\Delta t \lesssim \min\{\Delta x/U, \Delta x^2/\nu\}$.
+- **Kontrolle der Divergenz:** divergenzfreie Spektralbasen oder gemischte finite Elemente mit inf–sup-stabilen Geschwindigkeits-Druck-Paaren. Exakte Divergenzfreiheit erfordert geeignete Räume; inf–sup-Stabilität allein garantiert sie nicht.
+
+Eine Simulation kann einen wachsenden Spitzenwert zeigen, doch ein endliches Gitter kann allein keinen unendlichen Grenzwert beweisen. Verfeinerungsstudien, die Kontrolle von Diskretisierungsfehlern und ein analytisches Argument sind nötig, um echte Konzentration von numerischer Instabilität zu unterscheiden. Computergestützte Beweise liefern rigorose Schranken; formale Beweisassistenten prüfen Schlussfolgerungen aus kodierten Definitionen und Voraussetzungen. Beides ist mehr als eine hochaufgelöste Animation.
+
+---
+
+## 13. Verbindungen und Erweiterungen
+
+- **Euler-Gleichungen:** Mit $\nu=0$ entfällt die viskose Diffusion. Schon der Grenzübergang $\nu\to0$ kann schwierig sein, besonders in Wandnähe. Das von OpenAI separat angekündigte Euler-Ergebnis ohne äußere Kraft betrifft diese reibungsfreie Gleichung, nicht das Problem ohne äußere Kraft bei positiver Viskosität. [Ankündigung und separater Euler-Artikel](https://openai.com/index/navier-stokes-solution/).
+- **Relativistische Hydrodynamik:** Die naive Navier–Stokes-Theorie ist akausal; **Israel–Stewart-Theorien** zweiter Ordnung können unter geeigneten Bedingungen an Transportkoeffizienten und Fluidzustände Kausalität herstellen ([ein rigoroses Beispiel mit Volumenviskosität](https://arxiv.org/abs/1901.06701)).
+- **Quantenfluide:** superfluide Entsprechungen der Navier–Stokes-Gleichungen mit Zweiflüssigkeitsmodellen und quantisierten Wirbeln.
+
+---
+
+## 14. Stand der Forschung
+
+**Stand 13. Oktober 2026:** Die dreidimensionale Konstruktion mit glatter äußerer Kraft wurde angekündigt und wird geprüft; die Regularität der dreidimensionalen Navier–Stokes-Gleichungen ohne äußere Kraft bleibt offen. Die zweidimensionale Regularität und die alltägliche Nützlichkeit glatter Strömungslösungen werden dadurch nicht aufgehoben.
+
+### 14.1 Die genaue Behauptung und ihr Mechanismus
+
+Satz 1.1 in [OpenAIs Artikel](https://cdn.openai.com/pdf/32d9f210-8b73-45e0-91bc-82a30aef8a9a/navier-stokes.pdf) besagt: Für **jedes $\nu>0$** gibt es eine glatte, in Raum und Zeit kompakt getragene Kraft und eine glatte inkompressible Strömung auf $\mathbb R^3\times[0,1)$, die aus dem Ruhezustand startet und für die gilt:
+
+$$
+\boldsymbol v(\cdot,0)=0,\qquad
+\sup_{0\le t<1}\|\boldsymbol v(t)\|_{L^2}<\infty,
+\qquad
+\limsup_{t\uparrow1}\|\boldsymbol v(t)\|_{L^\infty}=\infty.
+$$
+
+Geschwindigkeit und Druck haben vor dem Zeitpunkt 1 einen festen kompakten räumlichen Träger; die Kraft lässt sich glatt über diesen Zeitpunkt hinaus fortsetzen. Der Artikel beansprucht Alternative C und über die periodische Konstruktion in Korollar 10.6 auch D. In seiner Druckkonvention ist die konstante Dichte bereits aufgenommen.
+
+Der vorgeschlagene Mechanismus konzentriert einen nach innen spiralenden und axial gestreckten Wirbel. Oszillierende Korrekturen und ihr Impulstransport heben ansonsten singuläre Restkräfte auf. Eine beliebige explodierende Geschwindigkeit zu wählen und aus der Gleichung eine Kraft zu definieren reicht nicht: Die Kraft und **alle ihre Ableitungen** müssen über den Singularitätszeitpunkt hinweg glatt bleiben. Dies ist eine anschauliche Skizze der beanspruchten Konstruktion, kein unabhängiger Beweis.
+
+„Für jede Viskosität existiert eine Kraft“ erlaubt, dass die Kraft von der Viskosität abhängt. Es bedeutet nicht, dass eine einzige feste Kraft jede Viskosität überwindet, dass beliebig kleine Kräfte genügen oder dass ein anfangs ruhendes Fluid ohne Energiezufuhr eine Singularität entwickelt.
+
+### 14.2 Lean, mathematische Prüfung und der Preis
+
+Das [veröffentlichte Lean-Repository](https://github.com/openai/NavierStokesAndEuler) enthält Zielaussagen für den ganzen Raum und den periodischen Fall sowie Anleitungen zur unabhängigen Prüfung mit Comparator. Ein formaler Prüfer verifiziert Schlussfolgerungen für die exakt kodierte Aussage und ihre Voraussetzungen. Ob diese Definitionen das beabsichtigte Problem ausdrücken und wie das Argument den schriftlichen Beweis erklärt, sind zusätzliche Fragen. Diese Notizen beanspruchen nicht, das Lean-Projekt neu gebaut oder unabhängig verifiziert zu haben.
+
+Am **6. Oktober** veröffentlichten [Bastounis, Circelli und Hansen](https://arxiv.org/abs/2610.08144) eine Kritik an der Übereinstimmung zwischen der natürlichsprachlichen Darstellung und Lean: Beispiele sind unterschiedliche Ableitungsanforderungen in Lemma 8.6 und ein anderes Argument für die Druckabschätzung in Lemma 10.5. Dies stellt infrage, ob die Formalisierung automatisch jeden Schritt des schriftlichen Beweises zertifiziert. Für sich genommen **widerlegt** es aber **nicht** den abschließenden Satz zur Singularitätsbildung mit äußerer Kraft und zeigt auch nicht, dass die abschließende formale Aussage falsch ist.
+
+Am **11. September** begrüßte [Clay in seiner Reaktion](https://www.claymath.org/news/navier-stokes-announcement/) den augenscheinlichen Durchbruch und betonte zugleich sein bewusst ohne Eile durchgeführtes Bewertungsverfahren. Die [Preisregeln](https://www.claymath.org/millennium-problems/rules/) verlangen vor einer Berücksichtigung eine qualifizierende Veröffentlichung, mindestens zwei Jahre seit dieser Veröffentlichung und allgemeine Anerkennung in der mathematischen Fachwelt. Allein das Ankündigungsdatum setzt keine feststehende Preisfrist in Gang. Hier wird keine Preisvergabe behauptet; OpenAI erklärt, den Preis nicht beanspruchen zu wollen.
+
+### 14.3 Was nachfolgende Arbeiten belegen und was nicht
+
+Auch bei den Folgearbeiten vom September muss der Geltungsbereich genau betrachtet werden. [Petrillo und Glimm](https://arxiv.org/abs/2609.23868) trennen das Ergebnis mit äußerer Kraft ausdrücklich vom weiterhin offenen Problem ohne äußere Kraft. [Die Darstellung von Lei und Ren](https://arxiv.org/abs/2609.35406v2) untersucht die Profilkonstruktion und verschiebt weitere oszillatorische Auslöschung auf später; sie ist keine vollständige unabhängige Verifikation. [Constantin, Ignatova und Vicol](https://arxiv.org/abs/2609.20803v2) erhalten ein Regularitätsergebnis, das unter bestimmten geometrischen Annahmen sowie Wachstums- und Kraftvoraussetzungen die Singularitätsbildung ausschließt. Das ist für Versuche relevant, die Kraft aus diesem Mechanismus zu entfernen, aber kein Satz über globale Regularität aller Strömungen mit analytischer äußerer Kraft.
+
+Die produktiven Fragen sind damit präzise: Sind die beanspruchten Voraussetzungen und Schlussfolgerungen verifiziert, lässt sich der Mechanismus transparent erklären, und was bleibt erhalten, wenn die äußere Kraft entfällt? Turbulenzvorhersage, Eindeutigkeit schwacher Lösungen in jeder Klasse und kompressible Strömung bleiben eigenständige Probleme.
+
+## 15. Prüfe dein Verständnis
+
+1. **Gleichförmige Translation:** Welche Terme der inkompressiblen Gleichung verschwinden bei konstanter Geschwindigkeit, konstantem Druck und fehlender äußerer Kraft? Alle räumlichen und zeitlichen Ableitungen verschwinden, sodass jede positive Viskosität mit dieser Bewegung vereinbar ist.
+2. **Energie und Höchstgeschwindigkeit:** Führe in Abschnitt 6.1 den Variablenwechsel $\boldsymbol y=\boldsymbol x/\ell$ durch. Warum skaliert die Energie wie $\ell$? Die quadrierte Amplitude liefert $\ell^{-2}$, das dreidimensionale Volumen $\ell^3$.
+3. **Skalenänderung:** Was geschieht bei festem $U$ und $\nu$ mit der Reynolds-Zahl, wenn $L$ halbiert wird? Sie halbiert sich; auf der kleineren Skala gewinnt die Viskosität relativ an Bedeutung.
+4. **Einen Satz lesen:** Warum kann Alternative C gelten, während A unentschieden bleibt? C erlaubt eine gewählte glatte, von null verschiedene Kraft; A betrifft ausschließlich den Fall ohne äußere Kraft.
+5. **Ein Beweisprüfer:** Was muss noch geprüft werden, nachdem Lean einen Beweis akzeptiert hat? Ob die kodierten Definitionen, Voraussetzungen und die abschließende Aussage zur beabsichtigten mathematischen Frage passen; auch die Übereinstimmung mit einer separaten Darstellung muss geprüft werden.
+
+---

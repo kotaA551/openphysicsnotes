@@ -1,0 +1,40 @@
+type BookItem = {
+  title: string;
+  author?: string;
+  note?: string;
+  href: string;
+  image?: string;
+};
+
+export default function RelatedBooks({ items, heading = "Further Reading" }: { items: BookItem[]; heading?: string }) {
+  return (
+    <section className="mt-8">
+      <h2 className="text-lg mb-2">{heading}</h2>
+      <ul className="flex flex-col flex-wrap gap-4">
+        {items.map((book, i) => (
+          <li key={i}>
+            <a href={book.href} target="_blank" rel="noopener noreferrer" className="block">
+              {book.image && (
+                <img
+                  src={book.image}
+                  alt={book.title}
+                  className="mb-2 w-full h-auto object-contain"
+                />
+              )}
+            <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-4 hover:opacity-80">
+              <p className="font-semibold text-lg">{book.title}</p>
+              {book.author && (
+                <p className="text-sm">{book.author}</p>
+              )}
+              {book.note && (
+                <p className="font-bold text-gray-600 text-md no-underline">{book.note}</p>
+              )}
+            </div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+

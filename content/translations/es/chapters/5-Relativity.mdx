@@ -1,0 +1,1550 @@
+---
+description: "Relatividad especial y general: transformaciones de Lorentz, espacio-tiempo, causalidad, dinámica, campos, principio de equivalencia y pruebas experimentales."
+---
+
+## 5.1 Relatividad galileana y desaparición del éter
+
+La relatividad especial no cayó del cielo. Surgió del éxito y posterior fracaso de un marco anterior: la relatividad galileana. En esta sección construiremos ese marco, lo confrontaremos con el electromagnetismo, veremos dónde falla y entenderemos por qué hubo que abandonar el éter.
+
+---
+
+### 5.1.1 El barco de Galileo: el principio de relatividad original
+
+Galileo nos pidió imaginar un barco que se desliza suavemente por un mar tranquilo. Bajo cubierta zumban moscas, caen gotas y una llave lanzada vuelve a la mano como si el barco estuviera en reposo. De estas observaciones extrajo un principio:
+
+> **Relatividad galileana:** Las leyes de la mecánica tienen la misma forma en cualquier sistema inercial que se mueva con velocidad constante respecto de otro.
+
+---
+
+### 5.1.2 Matemática de las transformaciones de Galileo
+
+Sean dos sistemas inerciales S y S' relacionados por una velocidad relativa uniforme v a lo largo del eje x. La transformación es
+
+$$
+\begin{aligned}
+t' &= t,\\
+x' &= x - v t,\\
+y' &= y,\\
+z' &= z
+\end{aligned}
+$$
+
+Las velocidades se transforman como
+
+$$
+\begin{aligned}
+u'_x &= u_x - v,\\
+u'_y &= u_y,\\
+u'_z &= u_z
+\end{aligned}
+$$
+
+Las aceleraciones son invariantes
+
+$$
+\boldsymbol a' = \boldsymbol a
+$$
+
+Una consecuencia célebre es la regla de suma de velocidades
+
+$$
+u_x = u'_x + v
+$$
+
+Como la aceleración es igual en todos los sistemas inerciales, la segunda ley de Newton $m\boldsymbol a=\boldsymbol F$ conserva su forma siempre que las fuerzas dependan de posiciones y velocidades relativas de manera compatible con estas reglas.
+
+---
+
+### 5.1.3 Donde las ondas chocan con Galileo
+
+Consideremos una ecuación de ondas unidimensional
+
+$$
+\frac{\partial^2 \phi}{\partial x^2} - \frac{1}{c^2}\,\frac{\partial^2 \phi}{\partial t^2} = 0
+$$
+
+Bajo una transformación de Galileo $x' = x - v t,\; t' = t$, las derivadas se mezclan y la ecuación en S' queda
+
+$$
+\frac{\partial^2 \phi}{\partial x'^2}
+- \frac{1}{c^2}\left(\frac{\partial}{\partial t'} - v\,\frac{\partial}{\partial x'}\right)^{\!2}\phi = 0
+$$
+
+que no tiene la misma forma. En cinemática galileana, una ecuación de ondas especifica implícitamente un medio privilegiado: la velocidad de la onda se mide respecto de él. Para el sonido, el medio es el aire, y un observador en el suelo mide aproximadamente $c_{\text{sound}}\pm v$.
+
+Las ecuaciones de Maxwell en el vacío predicen ondas electromagnéticas con velocidad c, pero no introducen ningún medio material. Intentar encajar a Maxwell en un mundo galileano sugiere que distintos observadores deberían medir $c\pm v$, algo que los experimentos no respaldaron.
+
+---
+
+### 5.1.4 La hipótesis del éter
+
+Los físicos del siglo XIX propusieron un medio tan sutil que llenaba el espacio sin frenar a los planetas: el **éter luminífero**. La luz sería una vibración transversal de este éter, igual que el sonido es una vibración del aire; por tanto, c sería la velocidad respecto del éter y se aplicaría la suma galileana ordinaria.
+
+En su experimento de 1851 con agua en movimiento, Fizeau envió luz a través de ella y encontró que la velocidad de la luz no se sumaba simplemente como $c/n \pm v$, sino que quedaba modificada por un **factor de arrastre de Fresnel**. Una forma compacta de expresar la velocidad efectiva observada era
+
+$$
+v_{\text{luz en el agua}} \approx \frac{c}{n} + v\left(1 - \frac{1}{n^2}\right)
+$$
+
+Se interpretó como un arrastre parcial del éter por la materia. El éter sobrevivió: golpeado, remendado y nunca observado directamente.
+
+---
+
+### 5.1.5 Michelson–Morley: el resultado nulo que resonó
+
+Si la Tierra se mueve a través de un éter estacionario, debería existir un viento de éter. La luz que viaja a favor o en contra de ese viento tendría tiempos de recorrido ligeramente distintos de los de la luz que lo atraviesa perpendicularmente. El interferómetro de Michelson–Morley (1887) dividía un haz, enviaba sus partes por brazos perpendiculares, las recombinaba y buscaba desplazamientos de las franjas al girar el instrumento. No encontraron prácticamente ningún desplazamiento. Las repeticiones en distintas épocas del año dieron de nuevo resultados nulos. El efecto esperado de orden $v^2/c^2$ a velocidades orbitales no apareció.
+
+Se acumularon otros experimentos: Trouton–Noble intentaron detectar un momento de fuerza sobre un condensador cargado en movimiento; Kennedy–Thorndike examinaron la estabilidad de frecuencia con una geometría distinta. Resultados nulos una y otra vez. Si existe un éter, es indetectable no solo dinámicamente, sino también cinemáticamente.
+
+---
+
+### 5.1.6 Los intentos de rescate de Lorentz: contracción y tiempo local
+
+Antes de Einstein, las mejores mentes intentaron salvar el éter modificando la materia en lugar del espacio-tiempo. George FitzGerald y Hendrik Lorentz propusieron que los objetos se contraen en la dirección del movimiento por un factor
+
+$$
+\sqrt{1 - \frac{v^2}{c^2}}
+$$
+
+Lorentz fue más allá. Para preservar las ecuaciones del electromagnetismo, introdujo un recurso matemático que llamó tiempo local y descubrió después la transformación completa que mantiene invariantes las ecuaciones de Maxwell
+
+$$
+\begin{aligned}
+t' &= \gamma\!\left(t - \frac{v x}{c^2}\right),\\
+x' &= \gamma (x - v t),\\
+y' &= y,\\
+z' &= z,\\
+\gamma &= \frac{1}{\sqrt{1 - v^2/c^2}}
+\end{aligned}
+$$
+
+Lorentz seguía imaginando un éter real y trataba estas relaciones como un efecto que lo ocultaba. Matemáticamente había encontrado la simetría correcta. Conceptualmente, el éter se había convertido en un espectador sin papel medible.
+
+---
+
+### 5.1.7 Por qué la relatividad galileana falla para la luz
+
+Ya podemos formular claramente el conflicto. La cinemática galileana supone tiempo absoluto y suma simple de velocidades. La electrodinámica de Maxwell predice una velocidad de onda universal c en el vacío. Los experimentos no detectan $c\pm v$ ni viento de éter alguno. Mantener la estructura galileana exige una conspiración de contracción de longitudes, alteraciones de relojes y fuerzas dinámicas que cancele todo efecto observable, para todos los materiales, orientaciones, estaciones y dispositivos; resulta poco plausible. La alternativa es conservar c y los resultados nulos y sustituir la cinemática por otra que respete una c universal.
+
+---
+
+### 5.1.8 Anatomía del fallo: una comparación resuelta
+
+Sea un pulso de luz que se mueve a lo largo de +x en el sistema S
+
+$$
+x = c t
+$$
+
+Bajo una transformación de Galileo con $x' = x - v t,\; t' = t$, la misma línea de universo se convierte en
+
+$$
+x' = (c - v) t'
+$$
+
+de modo que la velocidad medida sería $c - v$. Ese es el choque con Maxwell.
+
+En cambio, bajo una transformación de Lorentz, la misma línea de universo sigue siendo de tipo luz y satisface $x' = c t'$ para todo observador inercial, porque las transformaciones de Lorentz son precisamente las aplicaciones lineales que dejan inalterado el cono de luz.
+
+---
+
+### 5.1.9 ¿Qué ocurre con Doppler, la aberración y Fizeau?
+
+Tres fenómenos que suelen confundirse encajan con la relatividad cuando se analizan cuidadosamente. 
+
+El desplazamiento Doppler es un cambio de frecuencia observada debido al movimiento relativo; su fórmula relativista se reduce a la clásica a bajas velocidades y concuerda con datos astronómicos de altas velocidades. 
+
+La aberración de la luz estelar es el desplazamiento aparente de las estrellas debido a la velocidad finita de la luz y al movimiento terrestre; es compatible con la relatividad y no requiere un viento de éter dentro de los instrumentos. 
+
+El resultado de Fizeau con agua en movimiento surge de la suma relativista de velocidades para la luz en un medio móvil de índice de refracción $n$ y no necesita ninguna sustancia etérea.
+
+---
+
+### 5.1.10 Revisión conceptual: ¿qué sobrevive de Galileo?
+
+La idea central de Galileo —la física es la misma en todos los sistemas inerciales— sobrevive. Lo que cambia es su realización. En cinemática galileana, el tiempo es absoluto y el grupo de transformaciones preserva $t$. En cinemática relativista, el invariante es el intervalo espacio-temporal
+
+$$
+\Delta s^2 = c^2 \Delta t^2 - \Delta x^2 - \Delta y^2 - \Delta z^2
+$$
+
+y el grupo de transformaciones (el grupo de Lorentz) preserva esta magnitud.
+
+---
+
+### 5.1.11 La desaparición del éter y su sustituto
+
+A comienzos del siglo XX, el éter se había reducido a un armazón metafísico que no explicaba nada ni predecía nada nuevo. El artículo de Einstein de 1905 hizo algo radical haciendo lo mínimo: descartó el éter, conservó solo dos principios —relatividad y c constante— y mostró que la matemática de Lorentz se deduce de ellos. Espacio y tiempo se convirtieron en espacio-tiempo; los campos eléctrico y magnético, en aspectos de un tensor; la simultaneidad perdió su carácter absoluto. El sustituto del éter fue una nueva geometría, no un material nuevo. Las ondas electromagnéticas son perturbaciones del campo electromagnético; la métrica del espacio-tiempo determina su estructura de conos de luz, no un éter material.
+
+---
+
+### 5.1.12 Ideas principales
+
+- Las transformaciones de Galileo codifican tiempo absoluto y suma simple de velocidades; mantienen invariantes las leyes de Newton, pero fallan para las ecuaciones de Maxwell.  
+- La hipótesis del éter intentó reconciliar una c universal con la cinemática galileana y se derrumbó ante experimentos nulos de gran precisión.  
+- Lorentz encontró matemáticamente la simetría correcta; Einstein la convirtió en física al elevar la invariancia de c a principio y retirar el éter.  
+- De Galileo permanece el propio principio de relatividad, realizado ahora mediante el grupo de Lorentz y un intervalo espacio-temporal invariante.
+
+---
+
+## 5.2 Relatividad especial: postulados y cinemática
+
+La relatividad especial se construye sobre dos principios sencillos y mucho valor. Los principios son 
+
+![El mismo pulso luminoso viaja verticalmente en el sistema de reposo del reloj y diagonalmente en un sistema donde el reloj se mueve horizontalmente.](/images/diagrams/light-clock.svg)
+
+(i) el **principio de relatividad**: las leyes de la física tienen la misma forma en todos los sistemas inerciales;
+
+(ii) la **constancia de la velocidad de la luz**: todo observador inercial mide que la luz en el vacío se mueve a velocidad $c$, 
+
+independientemente del movimiento de la fuente o del observador. De ellos se deduce la estructura conocida del espacio-tiempo.
+
+---
+
+### 5.2.1 Sincronizar relojes y el fin de la simultaneidad absoluta
+
+Einstein propuso un procedimiento físico para definir la simultaneidad. Para sincronizar relojes distantes, se envía un pulso de luz de A a B y de vuelta, y se ajusta B para que la ida y la vuelta duren lo mismo. Esta construcción depende del sistema de referencia, porque distintos observadores inerciales cortan el espacio-tiempo de manera distinta. Por tanto, la simultaneidad no es absoluta: depende del movimiento. Medir el tiempo se convierte en geometría.
+
+---
+
+### 5.2.2 Deducción de la transformación de Lorentz
+
+Consideremos dos sistemas $S$ y $S'$ en **configuración estándar**: $S'$ se mueve con velocidad constante $v$ a lo largo del eje $x$ de $S$, y sus orígenes coinciden en $t=t'=0$. La homogeneidad e isotropía del espacio-tiempo implican una relación **lineal** entre coordenadas. Exigir que la línea de universo de un pulso luminoso a lo largo de $+x$ sea $x=ct$ en $S$ y $x'=ct'$ en $S'$ fija la transformación salvo un factor de escala. Este queda determinado por la relatividad, la isotropía espacial y la reciprocidad de las transformaciones, con normalización a la identidad en $v=0$. El resultado es
+
+$$
+\begin{aligned}
+x' &= \gamma (x - v t),\\
+t' &= \gamma \!\left(t - \frac{v x}{c^{2}}\right),\\
+y' &= y,\qquad z' = z,\\
+\gamma &= \frac{1}{\sqrt{1 - v^{2}/c^{2}}}
+\end{aligned}
+$$
+
+La transformación inversa (intercambiando $v\to -v$) es
+
+$$
+\begin{aligned}
+x &= \gamma (x' + v t'),\\
+t &= \gamma \!\left(t' + \frac{v x'}{c^{2}}\right),\\
+y &= y',\qquad z = z'
+\end{aligned}
+$$
+
+Bajo estas hipótesis, las transformaciones preservan el intervalo espacio-temporal y el cono de luz.
+
+---
+
+### 5.2.3 Intervalo invariante y tiempo propio
+
+De la transformación de Lorentz se obtiene el intervalo espacio-temporal invariante de Lorentz
+
+$$
+\Delta s^{2} = c^{2}\Delta t^{2} - \Delta x^{2} - \Delta y^{2} - \Delta z^{2}
+$$
+
+Para una línea de universo de tipo tiempo, definimos el tiempo propio $d\tau$ mediante $c^{2} d\tau^{2} = ds^{2}$. Integrar a lo largo de una trayectoria proporciona el tiempo experimentado por el reloj móvil. Como $ds^{2}$ es invariante, todos los observadores inerciales coinciden en $\tau$ para la misma línea de universo.
+
+---
+
+### 5.2.4 Dilatación temporal, contracción de longitudes y cambio de simultaneidad
+
+Un reloj de luz transportado por un observador móvil, o directamente la transformación, da
+
+$$
+\Delta t = \gamma\, \Delta \tau
+$$
+
+Un reloj en movimiento marcha más despacio por un factor $\gamma$. Para una varilla de longitud en reposo $L_{0}$ alineada con el eje $x$, medir sus extremos simultáneamente en $S$ da
+
+$$
+L = \frac{L_{0}}{\gamma}
+$$
+
+La simultaneidad depende del sistema. Dos sucesos separados por $(\Delta t,\,\Delta x)$ en $S$ tienen en $S'$ una separación temporal dada por
+
+$$
+\Delta t' = \gamma \!\left(\Delta t - \frac{v\,\Delta x}{c^{2}}\right)
+$$
+
+Aunque $\Delta t=0$ en $S$ (simultáneos allí), en general $\Delta t'\neq 0$ en $S'$. Ese es el contenido operativo de la relatividad de la simultaneidad.
+
+---
+
+### 5.2.5 Suma de velocidades y componentes transversales
+
+Las velocidades no se suman linealmente. Diferenciar la transformación de Lorentz proporciona las reglas de **suma de velocidades de Einstein**. Para una partícula con componentes de velocidad $(u_x,u_y,u_z)$ en $S$, la velocidad observada en $S'$ es
+
+$$
+u'_x = \frac{u_x - v}{1 - \dfrac{v\,u_x}{c^{2}}}
+$$
+
+$$
+u'_y = \frac{u_y}{\gamma \!\left(1 - \dfrac{v\,u_x}{c^{2}}\right)},\qquad
+u'_z = \frac{u_z}{\gamma \!\left(1 - \dfrac{v\,u_x}{c^{2}}\right)}
+$$
+
+Para movimiento colineal, la ley de composición se reduce a
+
+$$
+u \oplus v = \frac{u + v}{1 + \dfrac{u v}{c^{2}}}
+$$
+
+Por muchas velocidades sublumínicas que se combinen, el resultado sigue siendo $<c$.
+
+A menudo conviene usar la rapidez hiperbólica $\eta$, definida por $\beta \equiv v/c = \tanh \eta$. Entonces
+
+$$
+\gamma = \cosh \eta,\qquad \gamma\beta = \sinh \eta
+$$
+
+y las velocidades colineales se componen sumando rapideces hiperbólicas,
+
+$$
+\eta_{\text{total}} = \eta_{1} + \eta_{2}
+$$
+
+Esto convierte la cinemática en una geometría hiperbólica sencilla.
+
+---
+
+### 5.2.6 Geometría de los diagramas de Minkowski
+
+Los sucesos son puntos; las líneas de universo son curvas. El cono de luz de cualquier suceso divide el espacio-tiempo en futuro y pasado de tipo tiempo (dentro del cono), región de tipo espacio (fuera) y separación de tipo luz (sobre el cono). La causalidad exige que las señales permanezcan dentro de los conos de luz o sobre ellos. Las transformaciones de Lorentz actúan como rotaciones hiperbólicas que mantienen fijos los conos e inclinan las secciones de tiempo constante; por eso cambia la simultaneidad, pero no la velocidad de la luz.
+
+<figure className="study-figure" data-study-figure="minkowski-introduction">
+<img src="/images/diagrams/minkowski-introduction.svg" alt="Diagrama espaciotemporal con x horizontal, ct vertical, dos conos de luz, una línea de universo de tipo tiempo y los sucesos A, B y C." loading="lazy" width="880" height="720" />
+<figcaption>
+
+Ambos ejes usan la misma unidad de longitud. Los rayos de luz discontinuos tienen pendientes ±1. Los intervalos se miden desde O; una señal causal solo puede conectar O con sucesos situados sobre sus conos de luz o en su interior. Las señales emitidas en O solo alcanzan su cono futuro; los sucesos del cono pasado pueden influir en O.
+
+- A: $(ct,x)=(2,1/2)$; intervalo de tipo tiempo, $\Delta s^2=15/4$.
+- B: $(ct,x)=(1,1)$; intervalo de tipo luz, $\Delta s^2=0$.
+- C: $(ct,x)=(1/2,2)$; intervalo de tipo espacio, $\Delta s^2=-15/4$.
+- La línea de universo azul tiene velocidad constante $v=c/4$ y pasa por A.
+
+[Abrir la figura a tamaño completo](/images/diagrams/minkowski-introduction.svg)
+
+</figcaption>
+</figure>
+
+---
+
+### 5.2.7 Las «paradojas» habituales y su solución matemática
+
+**Situación de los gemelos.** Un gemelo viaja a gran velocidad y vuelve más joven. Su línea de universo tiene menor tiempo propio porque cambia de sistema inercial (hay aceleración no nula al dar la vuelta). El tiempo propio es la integral de $d\tau$ a lo largo de la trayectoria, no un eslogan ingenuo como «allí el tiempo pasa más despacio».
+
+**Situación del granero y la escalera.** Una escalera rápida cabe en un granero corto debido a $L=L_0/\gamma$ en el sistema del granero. En el sistema de la escalera, las puertas no se cierran simultáneamente; la relatividad de la simultaneidad preserva la causalidad. La fórmula de transformación de $\Delta t'$ dada arriba contiene toda la explicación.
+
+**Imán y conductor.** Una carga en movimiento cerca de un cable neutro experimenta un campo eléctrico en su propio sistema y una fuerza magnética en el del laboratorio; ambos surgen de un único tensor electromagnético bajo una transformación de Lorentz. La cinemática y los campos son consistentes.
+
+---
+
+### 5.2.8 Identidades algebraicas útiles
+
+El factor de Lorentz satisface
+
+$$
+\gamma^{2} (1 - \beta^{2}) = 1,\qquad \gamma^{2} - (\gamma\beta)^{2} = 1
+$$
+
+Para velocidades pequeñas $v\ll c$, desarrollamos
+
+$$
+\gamma \approx 1 + \tfrac{1}{2}\beta^{2} + \tfrac{3}{8}\beta^{4} + \cdots
+$$
+
+El efecto Doppler relativista para movimiento directamente a lo largo de la línea de visión usa el factor Doppler
+
+$$
+\mathcal{D} = \sqrt{\frac{1+\beta}{1-\beta}}
+$$
+
+de modo que la frecuencia observada satisface $\nu_{\text{obs}}=\mathcal{D}\,\nu_{\text{emit}}$ para el acercamiento y $\nu_{\text{obs}}=\nu_{\text{emit}}/\mathcal{D}$ para el alejamiento.
+
+---
+
+### 5.2.9 Ideas principales
+
+- En configuración estándar, con las hipótesis usuales de simetría, los dos postulados dan la transformación de Lorentz que preserva el intervalo espacio-temporal y el cono de luz.  
+- Dilatación temporal, contracción de longitudes y cambio de simultaneidad son distintas caras de la misma transformación.  
+- La suma de velocidades impide una composición superlumínica; la rapidez hiperbólica linealiza las transformaciones de Lorentz colineales.  
+- El intervalo invariante sustenta el tiempo propio y la causalidad; la geometría de Minkowski es el lenguaje natural de la cinemática.
+
+A continuación reformularemos la dinámica —momento lineal, energía y $E=m c^{2}$— en este marco geométrico.
+
+---
+
+## 5.3 Espacio-tiempo de Minkowski y causalidad
+
+La relatividad especial convierte la cinemática en geometría. Espacio y tiempo no figuran en registros separados: forman un único escenario de cuatro dimensiones, el **espacio-tiempo de Minkowski**, cuya geometría codifica la causalidad. En esta sección definiremos la métrica, clasificaremos separaciones de tipo tiempo, espacio y luz, introduciremos cuadrivectores y transformaciones de Lorentz como rotaciones hiperbólicas, y extraeremos reglas prácticas para leer diagramas espacio-temporales.
+
+---
+
+### 5.3.1 Sucesos, coordenadas y métrica
+
+Un **suceso** es un punto del espacio-tiempo con coordenadas $x^\mu = (ct,\,x,\,y,\,z)$. Las letras latinas denotarán vectores espaciales $\mathbf x=(x,y,z)$; los índices griegos recorren $0,1,2,3$. En coordenadas cartesianas inerciales, la métrica de Minkowski es
+
+$$
+\eta_{\mu\nu}=\mathrm{diag}(1,\,-1,\,-1,\,-1)
+$$
+
+El intervalo invariante al cuadrado entre dos sucesos próximos $x^\mu$ y $x^\mu+dx^\mu$ es
+
+$$
+ds^2 = \eta_{\mu\nu}\,dx^\mu dx^\nu = c^2 dt^2 - d\mathbf x^2
+$$
+
+Todos los observadores inerciales calculan el mismo $ds^2$. Este único escalar codifica lo físicamente significativo de las separaciones.
+
+---
+
+### 5.3.2 Conos de luz y los tres tipos de separación
+
+Para cualquier par de sucesos A y B, el signo de $s^2$ clasifica su relación:
+
+![Con signatura métrica más menos menos menos, los intervalos de tipo tiempo están dentro del cono de luz, los de tipo espacio fuera y los de tipo luz sobre su frontera.](/images/diagrams/light-cone.svg)
+
+
+- **Tipo tiempo:** $s^2>0$. Existe un sistema en el que los sucesos ocurren en el mismo punto espacial, pero en tiempos distintos; un viajero más lento que la luz puede ir de A a B.  
+- **Tipo luz (nulo):** $s^2=0$. Solo una señal luminosa puede conectarlos.  
+- **Tipo espacio:** $s^2<0$. Existe un sistema en el que los sucesos son simultáneos, pero ocurren en lugares distintos; ninguna señal puede conectarlos sin superar $c$.
+
+En cualquier suceso, el conjunto $ds^2=0$ forma el **cono de luz**, con generatrices $x=\pm ct$ (en $1+1$ dimensiones). El interior es de tipo tiempo; el exterior, de tipo espacio. Las transformaciones de Lorentz preservan este cono, de modo que todos los observadores inerciales coinciden en las posibilidades causales aunque discrepen sobre tiempos y distancias.
+
+---
+
+### 5.3.3 Tiempo propio y líneas de universo
+
+Una **línea de universo** es una curva $x^\mu(\lambda)$ que describe la historia de un objeto. Para movimiento de tipo tiempo, el reloj que transporta mide el tiempo propio
+
+$$
+d\tau = \frac{1}{c}\,\sqrt{ds^2} = \sqrt{dt^2 - \frac{d\mathbf x^{\,2}}{c^2}}
+$$
+
+Al integrar se obtiene el tiempo transcurrido en ese reloj:
+
+$$
+\Delta \tau = \int_{\text{path}} d\tau
+$$
+
+Entre todas las curvas de tipo tiempo que conectan los mismos extremos en espacio-tiempo plano, el movimiento inercial maximiza $\Delta\tau$. Esta afirmación geométrica resuelve la situación de los gemelos: el viajero sigue una trayectoria no inercial con menor tiempo propio.
+
+---
+
+### 5.3.4 Cuadrivelocidad y cuadriaceleración
+
+Definimos la **cuadrivelocidad**
+
+$$
+u^\mu \equiv \frac{dx^\mu}{d\tau}
+$$
+
+Usando $ds^2=c^2 d\tau^2$ se obtiene la normalización
+
+$$
+\eta_{\mu\nu} u^\mu u^\nu = c^2
+$$
+
+Escribiendo la velocidad espacial $\mathbf v=d\mathbf x/dt$ y $\gamma=1/\sqrt{1-v^2/c^2}$, resulta
+
+$$
+u^\mu = \gamma(c,\,\mathbf v)
+$$
+
+La **cuadriaceleración** $a^\mu = du^\mu/d\tau$ satisface una identidad de ortogonalidad
+
+$$
+\eta_{\mu\nu} u^\mu a^\nu = 0
+$$
+
+lo que significa que la aceleración es puramente «de tipo espacio» en el sistema instantáneo de reposo. Estas herramientas simplifican la dinámica relativista (§5.4).
+
+---
+
+### 5.3.5 Transformaciones de Lorentz como rotaciones hiperbólicas
+
+Una transformación de Lorentz sin rotación espacial a lo largo de $x$ con velocidad $v$ puede escribirse usando $\beta=v/c$ y $\gamma=1/\sqrt{1-\beta^2}$:
+
+$$
+\begin{aligned}
+ct' &= \gamma\,(ct - \beta x)\\
+x'  &= \gamma\,(x  - \beta ct)\\
+y'  &= y\\
+z'  &= z
+\end{aligned}
+$$
+
+<figure className="study-figure" data-study-figure="lorentz-axes">
+<img src="/images/diagrams/lorentz-axes.svg" alt="Diagrama de Minkowski con los ejes x y ct y los ejes inclinados x′ y ct′ para una transformación de Lorentz con β=0,42." loading="lazy" width="720" height="360" />
+<figcaption>
+
+Este es un diagrama espaciotemporal de Minkowski. Una transformación de Lorentz inclina ambos ejes primados hacia el rayo de luz; no es una rotación euclídea ordinaria. Aquí $\beta=v/c=0.42$ y x y ct usan la misma escala de longitud.
+
+- El eje temporal móvil cumple $x'=0$, por lo que $x=\beta ct$.
+- El eje espacial móvil cumple $ct'=0$, por lo que $ct=\beta x$; representa la simultaneidad en el sistema móvil.
+- La diagonal discontinua es un rayo de luz a 45°, ya que las escalas de los ejes son iguales.
+
+[Abrir la figura a tamaño completo](/images/diagrams/lorentz-axes.svg)
+
+</figcaption>
+</figure>
+
+La matriz $\Lambda^\mu{}_\nu$ de esta transformación obedece la condición de invariancia
+
+$$
+\eta_{\alpha\beta}\,\Lambda^\alpha{}_\mu\,\Lambda^\beta{}_\nu = \eta_{\mu\nu}
+$$
+
+Es análogo a cómo las rotaciones ordinarias preservan longitudes euclídeas. En efecto, si definimos la rapidez hiperbólica $\eta$ mediante $\beta=\tanh\eta$, entonces
+
+$$
+\gamma=\cosh\eta,\qquad \gamma\beta=\sinh\eta
+$$
+
+y la transformación se convierte en una rotación hiperbólica en el plano $ct$–$x$. Componer transformaciones colineales simplemente suma rapideces hiperbólicas. Por eso la composición de velocidades tiene la forma no lineal de Einstein y, sin embargo, sigue siendo asociativa en el espacio de rapideces hiperbólicas.
+
+---
+
+### 5.3.6 Cómo leer diagramas de Minkowski
+
+Un diagrama de Minkowski muestra $ct$ verticalmente y $x$ horizontalmente. Los rayos de luz trazan rectas de pendientes $\pm 45^\circ$ (pues $x=\pm ct$ en unidades con $c=1$). Algunas reglas prácticas:
+
+
+1. **Ejes de un sistema móvil.** El eje $x'$ es la recta de sucesos con $t'=0$, inclinada hacia arriba; el eje $ct'$ es la línea de universo $x'=0$, inclinada hacia la derecha. Los dos ejes son simétricos respecto del cono de luz.  
+2. **Secciones de simultaneidad.** Las rectas de $t'$ constante no son horizontales salvo que $v=0$; así se hace visible la relatividad de la simultaneidad.  
+3. **Calibración de unidades.** La **hipérbola unidad** $ct=\sqrt{x^2+c^2\tau^2}$ codifica las marcas de tiempo propio; los diagramas de Loedel usan una escala simétrica para dibujar ambos sistemas con el mismo ángulo del cono de luz.  
+4. **Prueba de causalidad.** Si un suceso B queda fuera del cono de luz de A, ninguna línea de universo con $|v|<c$ conecta A con B. El orden de pares de tipo espacio puede invertirse bajo transformaciones de Lorentz; el de pares de tipo tiempo, no.
+
+Los diagramas son más que dibujos: permiten calcular orden temporal, dilatación temporal, contracción de longitudes y cambios de simultaneidad.
+
+---
+
+### 5.3.7 Causalidad, imposibilidad de señalización y por qué $c$ es una velocidad límite
+
+Supongamos que existiera una señal con velocidad $u>c$ en algún sistema. Puede encontrarse una transformación de Lorentz que invierta el orden temporal de emisión y recepción para una separación de tipo espacio. Junto con la posibilidad de «enviar señales en ambos sentidos», esto crea un bucle causal cerrado: una paradoja. La relatividad especial lo evita prohibiendo la señalización superlumínica: las líneas de universo físicas son de tipo tiempo o nulas, nunca de tipo espacio. Como consecuencia, no existen cuerpos perfectamente rígidos; tirar bruscamente de un extremo de una varilla no puede afectar simultáneamente al otro, porque la información sobre tensiones se propaga a las velocidades del sonido en el material $<c$.
+
+La microcausalidad en teoría de campos es la contraparte cuántica: los operadores observables locales conmutan a separaciones de tipo espacio, lo que impide que las mediciones realizadas allí transmitan señales entre sí.
+
+---
+
+### 5.3.8 Energía-momento como cuadrivector (avance)
+
+Más adelante usaremos el **cuadrivector energía-momento**
+
+$$
+p^\mu = \left(\frac{E}{c},\,\boldsymbol p\right)
+$$
+
+con invariante
+
+$$
+p_\mu p^\mu = \left(\frac{E}{c}\right)^2 - \boldsymbol p^{\,2} = m^2 c^2
+$$
+
+Esta única relación codifica la energía en reposo $E_0=mc^2$ y la relación de dispersión $E^2=(pc)^2+(mc^2)^2$. Conservar $p^\mu$ en las interacciones permite formular la dinámica de manera compacta e independiente del sistema de referencia.
+
+---
+
+### 5.3.9 Movimiento acelerado en espacio-tiempo plano
+
+Incluso sin gravedad podemos tratar observadores acelerados. Una línea de universo con **aceleración propia constante** $a$ en la dirección $x$ traza una hipérbola,
+
+$$
+\begin{aligned}
+ct(\tau) &= \frac{c^2}{a}\,\sinh\!\left(\frac{a\tau}{c}\right)\\
+x(\tau)  &= \frac{c^2}{a}\,\cosh\!\left(\frac{a\tau}{c}\right)
+\end{aligned}
+$$
+
+que permanece asintótica a las rectas de luz $x=\pm ct$. La aceleración propia es la que mide un acelerómetro; es invariante, a diferencia de la aceleración coordenada, que depende del sistema.
+
+Los sistemas acelerados introducen **coordenadas de Rindler** y horizontes incluso en espacio-tiempo plano, pasos útiles hacia el principio de equivalencia (§5.7).
+
+---
+
+### 5.3.10 Tensores y manejo de índices (herramientas mínimas)
+
+Un cuadrivector se transforma como $A'^\mu=\Lambda^\mu{}_\nu A^\nu$. Para bajar y subir índices se usan $\eta_{\mu\nu}$ y su inversa:
+
+$$
+A_\mu = \eta_{\mu\nu} A^\nu,\qquad A^\mu = \eta^{\mu\nu} A_\nu
+$$
+
+Los escalares invariantes de Lorentz se construyen contrayendo índices; por ejemplo, $A_\mu B^\mu$. El campo electromagnético aparece como un tensor antisimétrico $F_{\mu\nu}$; escribir las ecuaciones de Maxwell en este lenguaje expone la simetría y preserva automáticamente la causalidad, porque las transformaciones $F_{\mu\nu}$ mantienen intactos los conos de luz.
+
+---
+
+### 5.3.11 Qué cambia y qué permanece
+
+- **Cambia:** intervalos temporales, longitudes y secciones de simultaneidad entre sistemas.  
+- **Permanece:** el cono de luz, el intervalo $ds^2$, el tiempo propio $\tau$ y el orden causal de los sucesos relacionados por separaciones de tipo tiempo.
+
+Este es el lema del razonamiento relativista: calcular primero los invariantes; lo demás es perspectiva.
+
+---
+
+### 5.3.12 Esquemas rápidos para problemas
+
+1) **¿Puede A influir en B?** Calcula $s^2$. Si $s^2<0$, no. Si $s^2=0$, solo con luz. Si $s^2>0$, sí, mediante movimiento sublumínico.  
+2) **¿Cuánto envejece el viajero?** Integra $d\tau=\sqrt{1-v^2/c^2}\,dt$ a lo largo del perfil real de velocidades.  
+3) **¿Qué ve un observador móvil?** Aplica la transformación de Lorentz, vuelve a dibujar los ejes y usa las fórmulas de simultaneidad y contracción de longitudes según corresponda.
+
+---
+
+**En resumen:** El espacio-tiempo de Minkowski expresa la relatividad como geometría. La métrica $ds^2=c^2dt^2-d\mathbf x^2$ define los conos de luz y el tiempo propio; las transformaciones de Lorentz son rotaciones hiperbólicas que preservan esos conos. La causalidad se convierte en una restricción geométrica —las líneas de universo deben permanecer dentro de los conos de luz o sobre ellos— y la dinámica en una historia de cuadrivectores que se transforman covariantemente. Al pensar en intervalos, conos y rapideces hiperbólicas, las paradojas desaparecen y los cálculos se simplifican.
+
+---
+
+## 5.4 Dinámica relativista
+
+La cinemática nos dijo cómo se transforman las coordenadas. La dinámica pregunta cómo se comportan momento lineal, energía y fuerzas para que las leyes sean iguales para todo observador inercial. La idea rectora es sencilla: construirlo todo con objetos invariantes o covariantes de Lorentz, de modo que las predicciones físicas no dependan del sistema.
+
+---
+
+### 5.4.1 Cuadrimomento y relación energía-momento
+
+Definimos la **cuadrivelocidad** y el **cuadrimomento**
+
+$$
+u^\mu \equiv \frac{dx^\mu}{d\tau}, \qquad
+p^\mu \equiv m u^\mu
+$$
+
+con $d\tau$ como tiempo propio. Usando $u^\mu u_\mu = c^2$, tenemos
+
+$$
+p^\mu = \gamma \,(m c,\, m \mathbf v), \qquad
+\gamma \equiv \frac{1}{\sqrt{1 - v^2/c^2}}
+$$
+
+La componente temporal define la energía
+
+$$
+E \equiv p^0 c = \gamma m c^2
+$$
+
+y la parte espacial define el momento lineal
+
+$$
+\boldsymbol p \equiv \gamma m \boldsymbol v
+$$
+
+La norma invariante de $p^\mu$ proporciona la relación fundamental
+
+$$
+p_\mu p^\mu = m^2 c^2
+$$
+
+o, escrita en escalares,
+
+$$
+E^2 = (p c)^2 + (m c^2)^2
+$$
+
+A bajas velocidades se reduce a las formas newtonianas conocidas. Desarrollando $\gamma$ para $v \ll c$,
+
+$$
+E = \gamma m c^2 \approx m c^2 + \tfrac{p^2}{2m} + \cdots
+$$
+
+la energía cinética newtoniana aparece como primera corrección por encima de la energía en reposo $m c^2$.
+
+---
+
+### 5.4.2 Trabajo, potencia y ley relativista de la fuerza
+
+Conservamos las definiciones newtonianas, pero usamos $\boldsymbol p$ y $E$ relativistas:
+
+$$
+\boldsymbol F \equiv \frac{d\boldsymbol p}{dt}, \qquad
+\frac{dE}{dt} = \boldsymbol F \cdot \boldsymbol v
+$$
+
+Con $\boldsymbol p=\gamma m \boldsymbol v$ se obtiene
+
+$$
+\boldsymbol F = \gamma m \boldsymbol a + \gamma^3 m \frac{\boldsymbol v\,(\boldsymbol v\!\cdot\!\boldsymbol a)}{c^2}
+$$
+
+Descomponer en partes paralelas y perpendiculares a $\mathbf v$ da las reglas compactas
+
+$$
+a_\parallel = \frac{F_\parallel}{\gamma^3 m}, \qquad
+a_\perp     = \frac{F_\perp}{\gamma   m}
+$$
+
+Así, cuando las velocidades se aproximan a $c$, una misma fuerza aplicada produce menos aceleración, especialmente en la dirección del movimiento. El límite de velocidad es, por tanto, dinámico además de cinemático.
+
+A menudo resulta más claro expresar la fuerza mediante un cuadrivector. Definimos la cuadrifuerza
+
+$$
+K^\mu \equiv \frac{dp^\mu}{d\tau}
+$$
+
+que satisface automáticamente una identidad de ortogonalidad
+
+$$
+K^\mu u_\mu = 0
+$$
+
+porque $p^\mu p_\mu$ es constante. En §5.5 lo particularizaremos a partículas cargadas en campos electromagnéticos.
+
+---
+
+### 5.4.3 Principio de acción y lagrangiano de la partícula libre
+
+La dinámica relativista surge de una acción geométrica. Para una partícula neutra,
+
+$$
+S = - m c \int ds
+$$
+
+En un sistema dado, $ds = c\,dt\,\sqrt{1 - v^2/c^2}$, de modo que el lagrangiano es
+
+$$
+L_0 = - m c^2 \sqrt{1 - \frac{v^2}{c^2}}
+$$
+
+De él se deducen el momento canónico y el hamiltoniano:
+
+$$
+\boldsymbol p = \frac{\partial L_0}{\partial \boldsymbol v} = \gamma m \boldsymbol v
+$$
+
+$$
+H = \boldsymbol p \cdot \boldsymbol v - L_0 = \gamma m c^2 = E
+$$
+
+Así, las relaciones energía-momento no son hipótesis, sino consecuencias del principio variacional construido con la longitud invariante de las líneas de universo.
+
+Cuando una partícula tiene carga $q$ e interactúa con un cuadripotencial electromagnético $A_\mu=(\phi/c,\,-\boldsymbol A)$, la acción de acoplamiento mínimo añade $-q\int A_\mu dx^\mu$. En variables ordinarias, el lagrangiano queda
+
+$$
+L = - m c^2 \sqrt{1 - \frac{v^2}{c^2}} + q\,\boldsymbol v\cdot\boldsymbol A - q\,\phi
+$$
+
+cuyas ecuaciones de Euler–Lagrange proporcionan la fuerza de Lorentz en forma covariante (como se muestra en §5.5).
+
+---
+
+### 5.4.4 Balance de momento lineal y energía en colisiones
+
+Como el cuadrimomento se conserva,
+
+$$
+\sum_{\text{in}} p^\mu = \sum_{\text{out}} p^\mu
+$$
+
+Esta única ecuación vectorial codifica la conservación del momento lineal ordinario y de la energía en todos los sistemas. Elevar ambos lados al cuadrado produce relaciones invariantes útiles para reacciones de partículas.
+
+Un invariante clave es la **variable de Mandelstam $s$** para dos partículas de cuadrimomentos $p_1,p_2$:
+
+$$
+s \equiv (p_1 + p_2)^2
+$$
+
+En el sistema del centro de momentos (CM), $s = (E_{\text{CM}}/c)^2$, de modo que $E_{\text{CM}} = \sqrt{s}\,c$. En un laboratorio donde el blanco $b$ está en reposo y el haz $a$ tiene energía $E_a$,
+
+$$
+s = m_a^2 c^2 + m_b^2 c^2 + 2 m_b E_a
+$$
+
+o, de manera más transparente,
+
+$$
+s c^2 = m_a^2 c^4 + m_b^2 c^4 + 2 m_b c^2 E_a
+$$
+
+En el umbral para producir partículas finales de masa total en reposo $M_{\text{final}}$, la energía cinética en el CM es justo nula, por lo que
+
+$$
+s_{\text{th}} = M_{\text{final}}^{\,2} c^2
+$$
+
+y la energía del haz requerida en el laboratorio es
+
+$$
+E_{a,\text{th}} = \frac{M_{\text{final}}^{\,2} c^4 - \left(m_a^2 + m_b^2\right) c^4}{2 m_b c^2}
+$$
+
+Como ejemplo concreto, consideremos $p + p \to p + p + \pi^0$ con un protón en reposo. Tomando $m_p$ y $m_\pi$ como masas en reposo, $M_{\text{final}} = 2 m_p + m_\pi$, y la fórmula anterior da un umbral de energía total del haz de unos 1,22 GeV, correspondiente a un umbral de energía cinética de unos 0,28 GeV.
+
+---
+
+### 5.4.5 Sistema del centro de momentos y masa invariante de un sistema
+
+Para cualquier sistema aislado, definimos el **cuadrimomento total**
+
+$$
+P^\mu \equiv \sum_i p_i^\mu
+$$
+
+El invariante
+
+$$
+M_{\text{sys}}^2 c^2 \equiv P_\mu P^\mu
+$$
+
+es la **masa invariante** del sistema. En el sistema CM, $\boldsymbol P=\boldsymbol 0$, de modo que $M_{\text{sys}} c^2 = E_{\text{CM}}$. Es crucial que $M_{\text{sys}}$ no sea solo la suma de masas en reposo: incluye energías cinéticas y de enlace. Por ejemplo, una caja con radiación tiene mayor $M_{\text{sys}}$ que la caja vacía, porque los fotones transportan energía y momento lineal aunque sus masas individuales en reposo sean nulas.
+
+---
+
+### 5.4.6 Partículas sin masa y dispersión
+
+Para $m=0$, la relación invariante queda
+
+$$
+E = p c
+$$
+
+La cuadrivelocidad no está definida para líneas de universo de tipo luz, pero el cuadrimomento permanece finito y se transforma correctamente. La energía de un fotón se relaciona con la frecuencia mediante $E=h\nu$, coherente con $p=h/\lambda$ y con las ondas de Maxwell que se mueven a $c$. Las partículas con masa no pueden alcanzar $c$ porque eso requeriría $\gamma \to \infty$ y, por tanto, energía infinita.
+
+---
+
+### 5.4.7 Dinámica con restricciones y reacción de radiación (una mirada)
+
+Para partículas cargadas, la ley de la fuerza de Lorentz se escribe en forma de vectores tridimensionales (deducida covariantemente en §5.5)
+
+$$
+\frac{d\boldsymbol p}{dt} = q\left(\boldsymbol E + \boldsymbol v \times \boldsymbol B\right), \qquad
+\frac{dE}{dt} = q\,\boldsymbol E\cdot\boldsymbol v
+$$
+
+Como las cargas aceleradas radian, al aumentar la precisión aparece una fuerza adicional de **reacción de radiación**. Su expresión clásica (Abraham–Lorentz–Dirac) es sutil y puede producir soluciones desbocadas; en la práctica se usan aproximaciones consistentes con los campos externos. La idea clave para la dinámica es que la energía perdida por radiación debe contabilizarse en $dE/dt$.
+
+---
+
+### 5.4.8 Aceleración propia y movimiento hiperbólico
+
+Una trayectoria con **aceleración propia constante** $a$ a lo largo de $x$ satisface
+
+$$
+\begin{aligned}
+ct(\tau) &= \frac{c^2}{a}\,\sinh\!\left(\frac{a\tau}{c}\right)\\
+x(\tau)  &= \frac{c^2}{a}\,\cosh\!\left(\frac{a\tau}{c}\right)
+\end{aligned}
+$$
+
+Diferenciar proporciona la velocidad
+
+$$
+v(\tau) = \frac{dx}{dt} = c\,\tanh\!\left(\frac{a\tau}{c}\right)
+$$
+
+Así, incluso con aceleración propia constante, la aceleración coordenada disminuye cuando $v$ se aproxima a $c$, respetando asintóticamente el límite de velocidad mientras el tiempo propio se acumula más despacio.
+
+---
+
+### 5.4.9 Herramientas rápidas para problemas
+
+- Usa $p^\mu=(E/c,\,\boldsymbol p)$ y conserva el cuadrimomento; eleva al cuadrado una vez si quieres respuestas independientes del sistema.  
+- Para cohetes o haces, calcula la potencia con $dE/dt=\boldsymbol F\cdot\boldsymbol v$ y relaciona el empuje con $d\boldsymbol p/dt$.  
+- Elige el sistema CM para minimizar el álgebra; vuelve al sistema original con las fórmulas de Lorentz de §5.3.  
+- Recuerda que $M_{\text{sys}}$ incluye energía cinética y de enlace; la «masa de un sistema» es un invariante, no solo la suma de las masas en reposo de sus constituyentes.
+
+---
+
+**En resumen:** La dinámica relativista reúne energía y momento lineal en un único cuadrivector que obedece $E^2=(pc)^2+(mc^2)^2$. Las fuerzas cambian el momento mediante $d\boldsymbol p/dt$ y realizan trabajo a un ritmo $\mathbf F\cdot\mathbf v$, mientras la cuadrifuerza covariante $K^\mu=dp^\mu/d\tau$ mantiene la ortogonalidad con $u^\mu$. Las colisiones se simplifican en términos de invariantes como $s$ y la masa del sistema $M_{\text{sys}}$. Todo es geometría: conserva cuadrivectores y respeta el cono de luz, y la dinámica se vuelve tan directa como la cinemática.
+
+---
+
+## 5.5 Electromagnetismo en forma relativista
+
+La teoría de Maxwell ya revela su carácter relativista. Aquí haremos explícita esa simetría: reuniremos $\boldsymbol E$ y $\boldsymbol B$ en un único **tensor de campo**, escribiremos las ecuaciones y fuerzas en **forma cuadridimensional** y mostraremos los invariantes en los que coinciden todos los observadores.
+
+---
+
+### 5.5.1 Cuadricorriente, cuadripotencial y tensor de campo
+
+Combinamos densidad de carga y corriente en la **cuadricorriente**
+$$
+J^\mu \equiv \left(c\rho,\,\boldsymbol J\right)
+$$
+
+Combinamos los potenciales escalar y vectorial en el **cuadripotencial**
+$$
+A^\mu \equiv \left(\frac{\phi}{c},\,\boldsymbol A\right)
+$$
+
+Definimos el **tensor del campo electromagnético** antisimétrico
+$$
+F_{\mu\nu} \equiv \partial_\mu A_\nu - \partial_\nu A_\mu
+$$
+
+Con métrica $\eta_{\mu\nu}=\mathrm{diag}(1,-1,-1,-1)$ (unidades SI),
+$$
+F^{0i} = -\frac{E_i}{c},\qquad
+F^{ij} = -\,\epsilon^{ijk} B_k
+$$
+
+Así, $\boldsymbol E$ y $\boldsymbol B$ no son entidades separadas, sino facetas distintas del mismo tensor.
+
+---
+
+### 5.5.2 Las ecuaciones de Maxwell como dos leyes tensoriales breves
+
+Las cuatro ecuaciones de Maxwell se reducen a solo dos:
+$$
+\partial_\mu F^{\mu\nu} = \mu_0 J^\nu
+$$
+
+$$
+\partial_{[\alpha} F_{\beta\gamma]} = 0
+$$
+
+Usando el tensor dual $\tilde F^{\mu\nu} \equiv \tfrac12 \epsilon^{\mu\nu\alpha\beta} F_{\alpha\beta}$, la segunda línea se convierte en
+$$
+\partial_\mu \tilde F^{\mu\nu} = 0
+$$
+
+Escritas así, su covariancia de Lorentz es manifiesta: las ecuaciones conservan la misma forma en todo sistema inercial.
+
+---
+
+### 5.5.3 La fuerza de Lorentz en una línea
+
+Una partícula de carga $q$ y cuadrivelocidad $u^\mu$ obedece
+$$
+\frac{dp^\mu}{d\tau} = q\,F^\mu{}_{\ \nu}\,u^\nu
+$$
+
+Separar las partes temporal y espacial proporciona la forma tridimensional conocida
+$$
+\frac{d\boldsymbol p}{dt} = q\left(\boldsymbol E + \boldsymbol v \times \boldsymbol B\right),\qquad
+\frac{dE}{dt} = q\,\boldsymbol E\cdot\boldsymbol v
+$$
+
+Una ecuación covariante, válida en todos los sistemas.
+
+---
+
+### 5.5.4 Simetría gauge y ecuaciones de ondas
+
+Las transformaciones gauge dejan inalterada la física:
+$$
+A_\mu \rightarrow A_\mu + \partial_\mu \chi
+$$
+
+En el **gauge de Lorenz**
+$$
+\partial_\mu A^\mu = 0
+$$
+
+las ecuaciones de Maxwell se reducen a ecuaciones de ondas para el potencial:
+$$
+\square A^\mu = \mu_0 J^\mu
+$$
+
+donde $\square \equiv \partial_\mu\partial^\mu = \frac{1}{c^2}\frac{\partial^2}{\partial t^2}-\nabla^2$ es el d’alembertiano.
+
+---
+
+### 5.5.5 Cómo se transforman los campos: las transformaciones de Lorentz mezclan $\,\boldsymbol E$ y $\,\boldsymbol B$
+
+La relatividad trata «eléctrico» y «magnético» como descomposiciones de un tensor que dependen del sistema de referencia. Para una transformación de Lorentz con velocidad $\boldsymbol v$,
+$$
+\boldsymbol E'_{\parallel} = \boldsymbol E_{\parallel},\qquad
+\boldsymbol B'_{\parallel} = \boldsymbol B_{\parallel}
+$$
+
+$$
+\boldsymbol E'_{\perp} = \gamma\left(\boldsymbol E_{\perp} + \boldsymbol v \times \boldsymbol B\right),\qquad
+\boldsymbol B'_{\perp} = \gamma\left(\boldsymbol B_{\perp} - \frac{\boldsymbol v \times \boldsymbol E}{c^2}\right)
+$$
+
+Para una transformación a lo largo de $x$ con velocidad $v$,
+$$
+\begin{aligned}
+E'_x &= E_x\\
+E'_y &= \gamma\!\left(E_y - v B_z\right)\\
+E'_z &= \gamma\!\left(E_z + v B_y\right)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+B'_x &= B_x\\
+B'_y &= \gamma\!\left(B_y + \frac{v}{c^2} E_z\right)\\
+B'_z &= \gamma\!\left(B_z - \frac{v}{c^2} E_y\right)
+\end{aligned}
+$$
+
+Un campo puramente eléctrico en un sistema aparece, en general, como una mezcla de campos eléctrico y magnético en otro.
+
+---
+
+### 5.5.6 Dos invariantes de Lorentz (diagnóstico independiente del sistema)
+
+Dos escalares de Lorentz independientes caracterizan el campo:
+$$
+\mathcal I_1 \equiv F_{\mu\nu}F^{\mu\nu}
+$$
+
+$$
+\mathcal I_2 \equiv \tfrac12 \epsilon^{\mu\nu\alpha\beta}F_{\mu\nu}F_{\alpha\beta}
+$$
+
+En variables SI,
+$$
+\mathcal I_1 = 2\!\left(\boldsymbol B^2 - \frac{\boldsymbol E^2}{c^2}\right),\qquad
+\mathcal I_2 = -\,\frac{4}{c}\,\boldsymbol E\cdot\boldsymbol B
+$$
+
+Para una onda plana,
+$$
+\boldsymbol E \perp \boldsymbol B,\qquad |\boldsymbol E| = c\,|\boldsymbol B|,\qquad \boldsymbol E\cdot\boldsymbol B = 0
+$$
+
+por lo que $\mathcal I_1=\mathcal I_2=0$ (un **campo nulo**). Si $\mathcal I_1<0$ y $\mathcal I_2=0$, existe un sistema donde el campo es puramente eléctrico; si $\mathcal I_1>0$ y $\mathcal I_2=0$, existe uno donde es puramente magnético.
+
+---
+
+### 5.5.7 Energía-momento y tensiones del campo
+
+Reunimos energía, momento lineal y tensiones en el **tensor de energía-momento electromagnético**
+$$
+T^{\mu\nu} = \frac{1}{\mu_0}\!\left(-F^{\mu\alpha}F^\nu{}_{\alpha}
++ \tfrac14 \eta^{\mu\nu} F^{\alpha\beta}F_{\alpha\beta}\right)
+$$
+
+Su conservación o falta de conservación en presencia de fuentes se expresa como
+$$
+\partial_\mu T^{\mu\nu} = -\,F^{\nu\lambda} J_\lambda
+$$
+
+Componentes:
+$$
+T^{00} = \frac{1}{2}\varepsilon_0 \boldsymbol E^2 + \frac{1}{2\mu_0}\boldsymbol B^2
+$$
+
+$$
+T^{0i} = \frac{1}{c} S_i,\qquad
+\boldsymbol S = \frac{1}{\mu_0}\,\boldsymbol E \times \boldsymbol B
+$$
+
+Así, $T^{00}$ es la densidad de energía, mientras $T^{0i}$ es igual a $S_i/c$ para el **vector de Poynting** $\boldsymbol S$. La densidad de momento lineal es $S_i/c^2$. El bloque espacial $T^{ij}$ es el tensor de flujo de momento, el negativo del tensor de tensiones de Maxwell habitual, y describe presiones y tensiones del campo.
+
+---
+
+### 5.5.8 Densidad lagrangiana (una línea que lo gobierna todo)
+
+El origen en teoría de campos cabe en una línea:
+$$
+\mathcal L = -\,\frac{1}{4\mu_0}\,F^{\mu\nu}F_{\mu\nu} - J^\mu A_\mu
+$$
+
+Variar $A_\mu$ proporciona las ecuaciones de Maxwell; la simetría gauge conduce, mediante el teorema de Noether, a la conservación de la carga $\partial_\mu J^\mu=0$.
+
+---
+
+### 5.5.9 Campos de cargas en movimiento: por qué aparece el magnetismo
+
+Aplicar una transformación de Lorentz a un campo estático de Coulomb produce un campo eléctrico comprimido anisotrópicamente **más** un campo magnético. En otras palabras,
+$$
+\text{campo magnético} = \text{campo eléctrico visto desde un sistema de referencia en movimiento}
+$$
+
+El magnetismo no es una fuerza separada: es una parte de $F_{\mu\nu}$ que depende del sistema de referencia.
+
+---
+
+### 5.5.10 Recapitulación rápida
+
+- El campo es $F_{\mu\nu}$, las fuentes son $J^\mu$ y el potencial es $A^\mu$.  
+- Ecuaciones de Maxwell: $\partial_\mu F^{\mu\nu}=\mu_0 J^\nu$ y $\partial_\mu \tilde F^{\mu\nu}=0$.  
+- Fuerza de Lorentz: $dp^\mu/d\tau = q F^\mu{}_{\ \nu} u^\nu$.  
+- Las transformaciones de Lorentz mezclan $\boldsymbol E$ y $\boldsymbol B$, pero los invariantes $\mathcal I_1,\mathcal I_2$ permanecen fijos.  
+- La energía y el momento fluyen mediante $T^{\mu\nu}$; $\boldsymbol S=(1/\mu_0)\boldsymbol E\times\boldsymbol B$.
+
+---
+
+**En resumen:** El electromagnetismo se expresa mediante un tensor $F_{\mu\nu}$, en lugar de dos campos separados. Las transformaciones de Lorentz cambian el aspecto de $\boldsymbol E$ y $\boldsymbol B$, no la física. Escribir todo en forma cuadridimensional hace evidente la covariancia, aclara qué es invariante y convierte largos cálculos vectoriales en geometría compacta.
+
+---
+
+## 5.6 Óptica relativista y tecnología
+
+La relatividad especial modifica el aspecto de la luz cuando fuentes u observadores se mueven deprisa. El resultado es un pequeño conjunto de herramientas —**Doppler**, **aberración** y **concentración direccional**— que explica fenómenos desde los chorros de cuásares hasta la luz de aceleradores y permite tecnologías desde el GPS hasta las fuentes de rayos X sincrotrón. Esta sección reúne las fórmulas principales, muestra los invariantes y esboza sus aplicaciones.
+
+---
+
+### 5.6.1 Doppler relativista: el cambio de frecuencia como cinemática
+
+Para movimiento estrictamente a lo largo de la línea de visión, sea $v$ la velocidad radial con signo, positiva para acercamiento y negativa para alejamiento (definimos $\beta \equiv v/c$). Entonces la frecuencia observada se relaciona con la emitida mediante el **factor Doppler**
+$$
+\mathcal D \equiv \sqrt{\frac{1+\beta}{1-\beta}}
+$$
+
+Las fuentes que se acercan presentan desplazamiento al azul; las que se alejan, al rojo:
+$$
+\nu_{\text{obs}}=\mathcal D\,\nu_{\text{emit}}
+$$
+
+A bajas velocidades se reduce al desplazamiento clásico. Para movimiento relativo puramente **transversal** (la fuente se mueve lateralmente), persiste un desplazamiento al rojo debido solo a la dilatación temporal:
+$$
+\nu_{\text{obs}}=\frac{\nu_{\text{emit}}}{\gamma},\qquad \gamma=\frac{1}{\sqrt{1-\beta^2}}
+$$
+
+---
+
+### 5.6.2 Aberración de la luz: de dónde parecen llegar los rayos
+
+El movimiento del observador desplaza las direcciones aparentes de las fuentes hacia la dirección del viaje; la dirección de llegada de una fuente es opuesta a la dirección de propagación del fotón. En la siguiente fórmula, $\theta$ es el ángulo de propagación del fotón respecto del eje $x$ en $S$, y $\theta'$ el correspondiente ángulo en $S'$, que se mueve con velocidad $v$ a lo largo de $+x$:
+
+$$
+\cos\theta'=\frac{\cos\theta-\beta}{1-\beta\cos\theta}
+$$
+
+Equivalentemente,
+
+$$
+\tan\!\left(\frac{\theta'}{2}\right)=\sqrt{\frac{1+\beta}{1-\beta}}\;\tan\!\left(\frac{\theta}{2}\right)
+$$
+
+La luz estelar aparece desplazada (aberración) y los patrones de radiación se **concentran hacia delante** a $\gamma$ elevada.
+
+---
+
+### 5.6.3 Concentración direccional y transformación de intensidad
+
+La intensidad específica satisface un potente invariante:
+
+$$
+\frac{I_\nu}{\nu^3}\ \text{es invariante de Lorentz}
+$$
+
+Por tanto, para una transformación con factor Doppler $\mathcal D$,
+
+$$
+I_\nu = \mathcal D^{3}\, I'_{\nu'},\qquad \nu=\mathcal D\,\nu'
+$$
+
+Integrar sobre la frecuencia (intensidad bolométrica) da
+
+$$
+I=\mathcal D^{4}\,I'
+$$
+
+Este **efecto faro** hace que los chorros relativistas parezcan mucho más brillantes cuando apuntan cerca de nuestra línea de visión y más débiles cuando apuntan en sentido contrario. No se crean fotones: la transformación simplemente redistribuye la densidad en el espacio de fases.
+
+---
+
+### 5.6.4 Radiación sincrotrón y de curvatura
+
+Las partículas cargadas forzadas a seguir trayectorias curvas radian. En movimiento circular de radio $\rho$ a velocidad ultrarrelativista, el espectro alcanza su máximo cerca de la **frecuencia crítica**
+
+$$
+\omega_c=\frac{3}{2}\,\gamma^{3}\,\frac{c}{\rho}
+$$
+
+La potencia total radiada en un movimiento con curvatura $\rho$ depende intensamente de $\gamma$,
+
+$$
+P \propto \frac{q^{2} c}{\rho^{2}}\,\gamma^{4}
+$$
+
+(salvo el prefactor SI habitual). Dos consecuencias clave: (i) electrones de alta energía en campos magnéticos producen **radiación sincrotrón** de banda ancha (de radio a rayos X); y (ii) anillos de almacenamiento y onduladores se convierten en fuentes de luz intensas y ajustables (instalaciones sincrotrón y láseres de electrones libres, FEL), usadas en cristalografía de proteínas, ciencia de materiales y nanolitografía.
+
+---
+
+### 5.6.5 Temperaturas de brillo y espectros (reglas rápidas)
+
+Para un emisor con ley de potencias $I'_{\nu'}\propto \nu'^{\,\alpha}$, el espectro observado bajo una transformación de Lorentz obedece
+
+$$
+I_\nu \propto \mathcal D^{3-\alpha}\,\nu^{\,\alpha}
+$$
+
+La emisión isótropa en reposo se vuelve anisótropa: los ángulos aparentes de apertura varían como $\sim 1/\gamma$ y las escalas temporales de variabilidad se reducen por $1/\mathcal D$ (compresión temporal). Estas relaciones sustentan las inferencias de factores de Lorentz del movimiento conjunto en blázares y estallidos de rayos gamma.
+
+---
+
+### 5.6.6 Radar y lidar a gran velocidad: el acercamiento no se calcula «sumando sin más»
+
+Cuando las plataformas se mueven relativísticamente, las frecuencias de batido medidas por radar o lidar siguen la misma álgebra Doppler. Para un radar monoestático con blanco que se acerca a velocidad $v$ a lo largo de la línea de visión, el desplazamiento de ida y vuelta se acumula dos veces:
+
+$$
+\nu_{\text{beat}} \approx \left(\mathcal D^{2}-1\right)\,\nu_{\text{tx}}
+$$
+
+En el límite de $v$ pequeña, se reduce a la conocida fórmula $2v/c$. Para $v$ grande, usa el valor exacto de $\mathcal D$ para evitar sesgos sistemáticos.
+
+---
+
+### 5.6.7 GPS y relojes: ingeniería con relatividad
+
+La navegación moderna depende de medir el tiempo. En relatividad especial, un reloj que se mueve a velocidad $v$ marcha más despacio por $\gamma$:
+
+$$
+\frac{\Delta t_{\text{sat}}}{\Delta t_{\text{ground}}} \approx \frac{1}{\gamma} \approx 1-\frac{v^{2}}{2c^{2}}
+$$
+
+Así, los relojes de satélite se retrasan por la velocidad orbital (relatividad especial), pero se adelantan por su mayor potencial gravitatorio (relatividad general, §5.8). El software de vuelo preajusta sus frecuencias y corrige continuamente el tiempo con modelos relativistas; sin ellos, los errores de posición crecerían kilómetros por día.
+
+---
+
+### 5.6.8 Imágenes a velocidades relativistas: del experimento mental al laboratorio
+
+Si una cámara pasa junto a una escena a una velocidad próxima a $c$, la aberración concentra la mayoría de los fotones en un cono frontal, los desplazamientos Doppler cambian los espectros y la **rotación de Terrell** (un efecto geométrico) hace que los objetos parezcan girados en vez de aplastados. Análogos de laboratorio muestran partes de estos efectos: los paquetes de electrones relativistas «ven» pulsos láser desplazados por Doppler hasta rayos X (fuentes Compton inversas), lo que permite generar rayos X de forma compacta.
+
+---
+
+### 5.6.9 Cherenkov frente a Doppler: no confundirlos
+
+La radiación Cherenkov aparece cuando una carga se mueve por un **medio** más rápido que la **velocidad de fase de la luz en ese medio**. No es superlumínica en el vacío ni viola la relatividad. En cambio, el Doppler relativista y la aberración son cinemática del vacío. Ambos aparecen en detectores y astrofísica, pero responden a preguntas distintas.
+
+---
+
+### 5.6.10 Hoja de referencia práctica
+
+- **Factor Doppler:** $\displaystyle \mathcal D=\sqrt{\frac{1+\beta}{1-\beta}}$; usa $\nu_{\text{obs}}=\mathcal D\,\nu_{\text{emit}}$.  
+- **Doppler transversal:** $\displaystyle \nu_{\text{obs}}=\nu_{\text{emit}}/\gamma$.  
+- **Aberración:** $\displaystyle \cos\theta'=\frac{\cos\theta-\beta}{1-\beta\cos\theta}$.  
+- **Intensidad:** $I_\nu/\nu^{3}$ invariante $\Rightarrow\ I_\nu=\mathcal D^{3} I'_{\nu'}$; bolométrica $I=\mathcal D^{4} I'$.  
+- **Sincrotrón:** $\displaystyle \omega_c=(3/2)\gamma^{3} c/\rho$; potencia $\propto \gamma^{4}/\rho^{2}$.
+
+---
+
+**En resumen:** La cinemática relativista lleva los conos de luz a la ingeniería cotidiana. Doppler y aberración determinan qué frecuencias detectamos y dónde aparecen las fuentes; la concentración direccional y los invariantes de intensidad determinan su brillo; las fórmulas sincrotrón gobiernan la radiación de cargas que se desvían. Unas pocas relaciones explican los chorros cósmicos, permiten fuentes luminosas ultrabrillantes y mantienen preciso el mapa del teléfono.
+
+---
+
+## 5.7 Principio de equivalencia: hacia la relatividad general
+
+La relatividad especial reconstruyó la cinemática como geometría. La gravedad completa la reforma cambiando la propia geometría. La puerta de entrada es el **principio de equivalencia** de Einstein: localmente, un campo gravitatorio uniforme es indistinguible de un sistema uniformemente acelerado. De esta única idea surgen el desplazamiento gravitatorio al rojo, la universalidad de la caída libre y, finalmente, las ecuaciones de campo de la relatividad general.
+
+---
+
+### 5.7.1 Masa inercial y gravitatoria: la pista
+
+En mecánica newtoniana aparecen dos masas: la **inercial** $m_{\mathrm i}$ (resistencia a la aceleración) y la **gravitatoria** $m_{\mathrm g}$ (intensidad con la que atrae la gravedad). Los experimentos muestran que son iguales con asombrosa precisión, de modo que el movimiento en un campo gravitatorio es independiente de la composición. Esta **universalidad de la caída libre** sugiere que la gravedad es una propiedad del espacio-tiempo que afecta del mismo modo a toda la materia, más que una fuerza en el sentido habitual.
+
+Einstein tomó la igualdad $m_{\mathrm g}=m_{\mathrm i}$ como postulado y preguntó: ¿qué visión del mundo hace natural esta identidad?
+
+---
+
+### 5.7.2 El ascensor de Einstein: desplazamiento al rojo y desviación de la luz sin gravedad
+
+Imaginemos un pequeño laboratorio (un ascensor) en el espacio profundo, inicialmente en reposo. Encendamos sus cohetes para que acelere hacia arriba con aceleración constante $a$. Un láser en el suelo emite hacia arriba; cuando la luz llega al techo, este ha ganado velocidad y observa un **desplazamiento Doppler al rojo**. Para una altura $h$, el desplazamiento relativo es
+
+$$
+\frac{\Delta \nu}{\nu} \approx -\,\frac{a h}{c^{2}}
+$$
+
+Sustituye $a$ por $g$ y obtendrás el **desplazamiento gravitatorio al rojo** en un campo uniforme:
+
+$$
+\frac{\Delta \nu}{\nu} \approx -\,\frac{g h}{c^{2}}
+$$
+
+En el mismo laboratorio, hagamos otro experimento: enviar un pulso horizontal de luz por la cabina. Durante el tiempo de vuelo $t\approx \ell/c$, la cabina acelera hacia arriba respecto del haz, así que la luz **parece curvarse hacia abajo** dentro de ella. Por equivalencia, también debería desviarse cerca de una masa. El experimento mental del ascensor ya sugiere las predicciones esenciales de la RG.
+
+---
+
+### 5.7.3 Sistemas inerciales locales: la gravedad puede eliminarse por transformación, pero solo localmente
+
+En cualquier suceso espacio-temporal pueden elegirse coordenadas que hagan que la física parezca la relatividad especial a primer orden. Técnicamente, en un punto $P$ existen **coordenadas inerciales locales** con
+
+$$
+g_{\mu\nu}(P)=\eta_{\mu\nu},\qquad \partial_\alpha g_{\mu\nu}(P)=0
+$$
+
+En ese sistema, los cuerpos de prueba en caída libre siguen líneas rectas a través de $P$ y los relojes se comportan como en relatividad especial, **localmente**. No puede hacerse desaparecer la gravedad en todas partes, porque permanecen las segundas derivadas de la métrica (curvatura). Estas codifican los **efectos de marea**.
+
+---
+
+### 5.7.4 Geodésicas: la caída libre como las trayectorias más rectas posibles
+
+En RG, la caída libre es movimiento **geodésico**, no movimiento «impulsado por una fuerza»: curvas que extremizan el tiempo propio en una variedad curva. La ecuación de movimiento es
+
+$$
+\frac{d^{2}x^{\mu}}{d\tau^{2}}
++ \Gamma^{\mu}{}_{\alpha\beta}\,\frac{dx^{\alpha}}{d\tau}\,\frac{dx^{\beta}}{d\tau} = 0
+$$
+
+Aquí, $\Gamma^{\mu}{}_{\alpha\beta}$ son los símbolos de Christoffel construidos con $g_{\mu\nu}$. En espacio-tiempo plano pueden anularse globalmente; en espacio-tiempo curvo se anulan solo en un punto al pasar a un sistema inercial local.
+
+---
+
+### 5.7.5 Curvatura y mareas: desviación geodésica
+
+Dos partículas cercanas en caída libre, con separación $\xi^\mu$ y cuadrivelocidad $u^\mu$, obedecen la ecuación de **desviación geodésica**
+
+$$
+\frac{D^{2}\xi^{\mu}}{D\tau^{2}} = -\,R^{\mu}{}_{\nu\alpha\beta}\,u^{\nu}\,\xi^{\alpha}\,u^{\beta}
+$$
+
+$R^{\mu}{}_{\nu\alpha\beta}$ es el tensor de curvatura de Riemann. Si $R^{\mu}{}_{\nu\alpha\beta}=0$, las líneas de universo de caída libre inicialmente paralelas permanecen paralelas (sin aceleración de marea inducida por curvatura). Una curvatura no nula las hace converger o divergir: **eso** es la gravedad en RG. El «campo gravitatorio» es geometría, no un vector.
+
+---
+
+### 5.7.6 De la equivalencia a las ecuaciones de campo
+
+Einstein buscó las ecuaciones de campo más sencillas que
+
+1) se reduzcan a la gravedad newtoniana para campos débiles y velocidades pequeñas,  
+2) conserven energía y momento, y  
+3) sean generalmente covariantes (válidas en cualquier sistema de coordenadas).
+
+La respuesta es la **ecuación de campo de Einstein**
+
+$$
+G_{\mu\nu} \equiv R_{\mu\nu} - \tfrac{1}{2} R\,g_{\mu\nu}
+= \frac{8\pi G}{c^{4}}\,T_{\mu\nu}
+$$
+
+Opcionalmente puede añadirse una constante cosmológica $\Lambda$ en el lado izquierdo $(-\Lambda g_{\mu\nu})$; la omitiremos por sencillez. $T_{\mu\nu}$ es el tensor de energía-momento de materia y campos. Geometría $G_{\mu\nu}$ a la izquierda, fuentes $T_{\mu\nu}$ a la derecha: el lema es «**la materia indica al espacio-tiempo cómo curvarse; el espacio-tiempo indica a la materia cómo moverse**».
+
+---
+
+### 5.7.7 Límite newtoniano: recuperar la ley de Poisson
+
+Consideremos un campo estático débil tal que la componente métrica sea
+
+$$
+g_{00} \approx 1 + \frac{2\Phi}{c^{2}}
+$$
+
+donde $\Phi$ es el potencial newtoniano con $|\Phi|/c^{2}\ll 1$. Introducimos esta forma en las ecuaciones de campo y conservamos el orden más bajo en $1/c^{2}$. Se obtiene
+
+$$
+\nabla^{2}\Phi = 4\pi G\,\rho
+$$
+
+y las trayectorias de caída libre se reducen a $\boldsymbol a = -\nabla\Phi$. La RG supera la comprobación básica: contiene a Newton como límite de movimiento lento y campo débil.
+
+---
+
+### 5.7.8 Dilatación temporal gravitatoria y desplazamiento al rojo: tiempo propio en un campo estático
+
+Para una métrica estacionaria, un reloj con coordenadas espaciales fijas mide el tiempo propio
+
+$$
+d\tau = \sqrt{g_{00}}\,dt
+$$
+
+Cerca de la Tierra, con $g_{00}\approx 1+2\Phi/c^{2}$ y una pequeña diferencia de potencial ascendente $\Delta\Phi\approx g\,\Delta h$, el desplazamiento relativo de frecuencia de la luz recibida por encima del emisor es
+
+$$
+\frac{\Delta \nu}{\nu} \approx -\,\frac{\Delta \Phi}{c^{2}} \approx -\,\frac{g\,\Delta h}{c^{2}}
+$$
+
+Por eso los relojes de los satélites GPS (mayor $\Phi$) marchan más rápido que relojes idénticos en tierra y deben preajustarse y corregirse.
+
+---
+
+### 5.7.9 Sistemas acelerados y coordenadas de Rindler: preparación en espacio-tiempo plano
+
+Los observadores uniformemente acelerados en espacio-tiempo plano cubren una **cuña de Rindler**. Una carta conveniente en $1+1$ dimensiones usa parámetros $(\rho,\eta)$ relacionados con las coordenadas inerciales $(ct,x)$ mediante
+
+$$
+ct = \rho\,\sinh\!\left(\frac{a\eta}{c}\right),\qquad
+x  = \rho\,\cosh\!\left(\frac{a\eta}{c}\right)
+$$
+
+En estas coordenadas, la métrica se escribe
+
+$$
+ds^{2} = \left(\frac{a\rho}{c^{2}}\right)^{2} c^{2} d\eta^{2} - d\rho^{2}
+$$
+
+Los relojes situados en distintos $\rho$ marchan a ritmos distintos, imitando el desplazamiento gravitatorio al rojo. La equivalencia nos dice que muchos efectos de «sistemas acelerados» tienen análogos gravitatorios cuando la curvatura es pequeña en el laboratorio.
+
+---
+
+### 5.7.10 Desviación de la luz, retraso y perihelio (avances)
+
+La RG completa predice efectos cuantitativos que pueden expresarse mediante la métrica. Para un rayo luminoso que pasa junto a una masa $M$ con parámetro de impacto $b$, el ángulo de desviación es
+
+$$
+\Delta\theta \approx \frac{4 G M}{c^{2} b}
+$$
+
+Las señales que pasan cerca de una masa experimentan un **retraso temporal de Shapiro** adicional, ligado a $g_{00}$ y a la curvatura espacial. Las órbitas ligadas en espacio-tiempo curvo precesan; el avance del perihelio de Mercurio (tras restar las perturbaciones planetarias) concuerda con la RG. Reuniremos las pruebas clásicas en §5.8.
+
+---
+
+### 5.7.11 Qué afirma realmente el principio de equivalencia
+
+- **Equivalencia débil (universalidad de la caída libre):** cuerpos de prueba con autogravedad despreciable siguen las mismas trayectorias dadas idénticas condiciones iniciales en un campo gravitatorio determinado.  
+- **Equivalencia de Einstein:** en cualquier sistema local en caída libre, la física no gravitatoria se reduce a la relatividad especial; los resultados son independientes de dónde y cuándo se realiza el experimento.
+
+La equivalencia **no** afirma que pueda eliminarse la gravedad por transformación en todas partes ni que «la gravedad sea una fuerza ficticia». Afirma que localmente pueden eliminarse los efectos gravitatorios mediante caída libre, dejando solo la curvatura (términos de marea) como contenido invariante.
+
+---
+
+### 5.7.12 Herramientas mínimas para problemas
+
+- A partir de una métrica dada $g_{\mu\nu}$, calcula $d\tau=\sqrt{g_{00}}\,dt$ para relojes en reposo y compara sus ritmos.  
+- Para movimiento lento en un campo débil, extrae $\Phi$ de $g_{00}\approx 1+2\Phi/c^{2}$ y recupera los límites newtonianos.  
+- Para seguir la caída libre, plantea la ecuación geodésica con $\Gamma^{\mu}{}_{\alpha\beta}(g)$ e intégrala, o usa magnitudes conservadas derivadas de simetrías (vectores de Killing).
+
+---
+
+**En resumen:** El principio de equivalencia reformula la gravedad como geometría. Localmente puede eliminarse el campo cayendo libremente, pero no la curvatura: los efectos de marea son el residuo real e invariante. Exigir una teoría que respete la equivalencia, conserve energía-momento y recupere a Newton conduce a la ecuación de Einstein $G_{\mu\nu}=(8\pi G/c^{4})T_{\mu\nu}$. Del desplazamiento al rojo a la desviación de la luz y al ritmo de los relojes orbitales, el experimento mental del ascensor se convierte en una teoría completa del espacio-tiempo curvo.
+
+---
+
+## 5.8 Pruebas y fronteras
+
+La relatividad atrae pruebas experimentales, no se juzga por impresiones. Desde la órbita de Mercurio hasta las ondas gravitacionales y las imágenes de agujeros negros, sigue superando pruebas cada vez más exigentes. Esta sección recorre las clásicas y avanza hacia fronteras donde la precisión, la gravedad intensa o las escalas cósmicas ponen a prueba el modelo.
+
+---
+
+### 5.8.1 Pruebas clásicas en campo débil
+
+**Avance del perihelio de Mercurio.** La gravedad newtoniana más las perturbaciones planetarias deja sin explicar un pequeño exceso. Para una órbita ligada de semieje mayor $a$ y excentricidad $e$ alrededor de una masa $M$, la RG predice por órbita
+
+$$
+\Delta\varphi \approx \frac{6\pi G M}{c^{2} a\,(1-e^{2})}
+$$
+
+**Desviación de la luz.** Un rayo luminoso que pasa cerca de una masa $M$ con parámetro de impacto $b$ se desvía en
+
+$$
+\Delta\theta \approx \frac{4 G M}{c^{2} b}
+$$
+
+Esto duplica la estimación ingenua de partícula newtoniana, porque la curvatura del espacio-tiempo curva tanto el tiempo como el espacio.
+
+**Desplazamiento gravitatorio al rojo.** En un campo estático débil, los relojes a mayor potencial marchan más rápido, mientras que la luz que se propaga hacia arriba se recibe con menor frecuencia que la emitida. Para una pequeña diferencia de altura ascendente $h$ cerca de la Tierra, con aceleración $g$, el desplazamiento de frecuencia del fotón es
+
+$$
+\frac{\Delta\nu}{\nu} \approx -\,\frac{g\,h}{c^{2}}
+$$
+
+**Retraso temporal de Shapiro.** Las señales de radar que pasan cerca de un cuerpo masivo llegan más tarde de lo esperado en geometría euclídea. Para un viaje de ida y vuelta junto a una masa $M$ con geometría adecuada,
+
+$$
+\Delta t \propto \frac{G M}{c^{3}}\,\ln\!\left(\frac{\text{distancias del trayecto}}{\text{parámetro de impacto}}\right)
+$$
+
+El logaritmo es la firma característica de la RG.
+
+---
+
+### 5.8.2 Pruebas del principio de equivalencia
+
+Si todos los cuerpos de prueba sin carga caen del mismo modo, el **parámetro de Eötvös** debe ser diminuto
+
+$$
+\eta \equiv \frac{2\,|a_{1}-a_{2}|}{a_{1}+a_{2}}
+$$
+
+Las balanzas de torsión modernas, los interferómetros atómicos y las mediciones láser de la distancia lunar limitan $\eta$ a valores extremadamente pequeños, manteniendo el ascensor de Einstein indistinguible de un laboratorio en caída libre.
+
+---
+
+### 5.8.3 Púlsares binarios y radiación gravitacional
+
+Una binaria compacta pierde energía orbital por ondas gravitacionales y reduce su período. En RG, la derivada del período depende de la **masa de chirp** $M_{c}$
+
+$$
+M_{c} \equiv \frac{(m_{1} m_{2})^{3/5}}{(m_{1}+m_{2})^{1/5}}
+$$
+
+Para una binaria casi circular con período orbital $P$,
+
+$$
+\dot P = -\,\frac{192\pi}{5}\left(\frac{G M_{c}}{c^{3}}\right)^{5/3}\left(\frac{2\pi}{P}\right)^{5/3}
+$$
+
+La temporización de púlsares mediante radio concuerda con esta predicción y mide $M_{c}$ con claridad. La RG radiativa en campo intenso supera la prueba.
+
+---
+
+### 5.8.4 Ondas gravitacionales directas y chirps
+
+Los interferómetros miden una deformación relativa adimensional $h=\Delta L/L$ cuando pasan las ondulaciones. Para una espiral de aproximación casi circular, la frecuencia de las ondas gravitacionales $f$ aumenta según
+
+$$
+\dot f = \frac{96}{5}\,\pi^{8/3}\left(\frac{G M_{c}}{c^{3}}\right)^{5/3} f^{11/3}
+$$
+
+De $f(t)$ se extrae $M_{c}$; al combinarlo con la amplitud medida y la orientación de la fuente se estiman distancias sin una escalera cósmica de distancias. La triangulación entre detectores localiza las fuentes; la polarización y la fase ponen a prueba los modelos de formas de onda de la RG.
+
+---
+
+### 5.8.5 Agujeros negros y gravedad intensa
+
+Definimos el **radio de Schwarzschild**
+
+$$
+r_{s} \equiv \frac{2 G M}{c^{2}}
+$$
+
+Los anillos de luz, las órbitas circulares estables más internas y las fuerzas de marea cerca de $r_{s}$ exploran la métrica donde la curvatura es grande. La interferometría de muy larga base resuelve estructuras a escala del horizonte; las órbitas estelares alrededor de núcleos galácticos cartografían el espacio-tiempo y prueban el paradigma de ausencia de pelo mediante precesiones y desplazamientos al rojo.
+
+---
+
+### 5.8.6 Arrastre de sistemas de referencia y efectos geodésicos
+
+Una masa en rotación arrastra los sistemas inerciales. Alrededor de un cuerpo de momento angular $\boldsymbol J$, la tasa de precesión gravitomagnética de un giróscopo es aproximadamente
+
+$$
+\boldsymbol{\Omega}_{\text{LT}} \sim \frac{G\,\boldsymbol J}{c^{2} r^{3}}
+$$
+
+La precesión geodésica surge del movimiento por el espacio-tiempo curvo. Los giróscopos en satélites y el seguimiento de sus nodos orbitales miden ambos efectos en el campo terrestre y concuerdan bien con la RG.
+
+---
+
+### 5.8.7 Relatividad en tecnología: relojes, navegación y enlaces
+
+La dilatación temporal y el desplazamiento gravitatorio al rojo no son opcionales en ingeniería. Los ritmos de los relojes de satélite se preajustan y corrigen con relatividad especial y general para mantener consistentes las ecuaciones de medida de distancias a niveles de metros o menores. Los enlaces de transferencia de tiempo por fibra y microondas incorporan estas correcciones; los experimentos de transporte de relojes atómicos confirman los desfases predichos.
+
+---
+
+### 5.8.8 Lenguaje posnewtoniano parametrizado (PPN)
+
+Para comparar alternativas a la RG, los observables de campo débil se expresan con parámetros como $\gamma$ y $\beta$. Por ejemplo, la desviación de la luz es proporcional a $1+\gamma$; el avance del perihelio depende de una combinación de $\gamma$ y $\beta$. La RG predice $\gamma=\beta=1$. Las pruebas en el sistema solar y con púlsares sitúan estos parámetros extremadamente cerca de sus valores de RG.
+
+---
+
+### 5.8.9 Velocidad de propagación, dispersión y masa del gravitón
+
+Una velocidad de propagación gravitatoria distinta de $c$ puede comprobarse mediante tiempos de llegada; la dispersión exige específicamente propagación dependiente de la frecuencia, como ocurre si el gravitón tiene masa $m_{g}$. Un gravitón con masa obedece
+
+$$
+E^{2} = p^{2} c^{2} + m_{g}^{2} c^{4}
+$$
+
+lo que hace que las ondas de mayor frecuencia de una misma fuente lleguen antes que las de menor frecuencia. Las formas de onda observadas y los sucesos multimensajero restringen muy fuertemente cualquier dispersión, en concordancia con una propagación a $c$ dentro de fracciones diminutas.
+
+---
+
+### 5.8.10 Fronteras cosmológicas
+
+A las mayores escalas, la RG junto con componentes sencillas de materia produce soluciones de universo en expansión. Introducir una constante cosmológica $\Lambda$ da una expansión acelerada. La geometría se encuentra con el contenido energético mediante la **ecuación de Friedmann** para el factor de escala $a(t)$
+
+$$
+\left(\frac{\dot a}{a}\right)^{2} = \frac{8\pi G}{3}\,\rho - \frac{k c^{2}}{a^{2}} + \frac{\Lambda c^{2}}{3}
+$$
+
+Las relaciones distancia–desplazamiento al rojo, las lentes y el crecimiento de estructuras ponen a prueba la RG a lo largo del tiempo cósmico. Las desviaciones aparecerían como tensiones entre estas sondas.
+
+---
+
+### 5.8.11 Dónde podría aparecer nueva física
+
+- **Desviaciones en campo intenso.** Los sobretonos de relajación de fusiones de agujeros negros ponen a prueba el espectro esperado de una métrica de Kerr.  
+- **Límites del principio de equivalencia.** Campos ultraligeros o acoplamientos con el sector oscuro podrían inducir aceleraciones dependientes de la composición o variaciones temporales de las constantes.  
+- **Gravedad a distancias cortas.** Experimentos de laboratorio buscan desviaciones de la ley del inverso del cuadrado desde escalas milimétricas hasta micrométricas.  
+- **Simetría de Lorentz.** Los rayos cósmicos de alta energía y la temporización precisa buscan violaciones diminutas en el sector gravitatorio.
+
+Hasta ahora, los resultados nulos mantienen a la RG en cabeza, pero el espacio de parámetros sigue reduciéndose.
+
+---
+
+### 5.8.12 Herramientas mínimas para problemas
+
+- Calcula una precesión semejante a la de Mercurio con $\Delta\varphi$ y compárala con una elipse newtoniana a lo largo de muchas órbitas.  
+- A partir de una trayectoria luminosa rasante, estima la desviación y el retraso de Shapiro con las fórmulas de esta sección.  
+- Para una binaria con masas y período dados, usa $\dot P$ y $\dot f$ para predecir la evolución de la forma de onda y el tiempo de aproximación en espiral.  
+- Dados dos relojes a alturas $\Delta h$, evalúa el desplazamiento gravitatorio al rojo y relaciónalo con los preajustes del GPS.
+
+---
+
+**En resumen:** La relatividad ha sobrevivido a un siglo de examen minucioso: las órbitas precesan, la luz se desvía y retrasa, los relojes cambian de ritmo, las binarias emiten chirps y los horizontes proyectan sombras como indican las ecuaciones. Las fronteras actuales son la precisión y los extremos: micras en el laboratorio, megapársecs en el cosmos y curvaturas cerca de $r_{s}$. Dondequiera que exploremos, el procedimiento es el mismo: calcular invariantes, respetar el cono de luz y dejar que la métrica indique a la materia cómo moverse.
+
+---

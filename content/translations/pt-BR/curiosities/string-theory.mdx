@@ -1,0 +1,202 @@
+---
+description: "Por que cordas podem conter gravidade: folhas de universo, vínculos quânticos, dimensões compactas, dualidades e holografia com cálculos e limites explícitos."
+---
+
+## 1. Dos pontos às cordas
+
+A relatividade geral descreve a gravidade por uma métrica dinâmica do espaço-tempo; a teoria quântica de campos descreve campos flutuantes e suas partículas. Quantizar pequenas flutuações da métrica funciona como **teoria efetiva de baixas energias**, mas ordens superiores exigem cada vez mais contratermos com derivadas superiores. A não renormalizabilidade não invalida todas as previsões de baixa energia: limita a extrapolação para distâncias arbitrariamente curtas. A teoria das cordas busca uma descrição microscópica mais completa.
+
+Seu objeto perturbativo básico é uma **corda** unidimensional, cuja história varre uma **folha de universo** bidimensional. Uma partícula pontual traça uma linha de universo. Diferentes excitações quânticas possuem massas e spins distintos; um espectro adequado de cordas fechadas contém um estado sem massa de spin 2 com interações gravitacionais. Isso motiva a teoria, mas não demonstra que a natureza a escolheu.
+
+![Uma partícula traça uma linha de universo; uma corda varre uma folha de universo com coordenadas sigma e tau.](/images/diagrams/worldsheet.svg)
+
+*A folha representa a história da corda, não duas dimensões adicionais do espaço-tempo.*
+
+Usamos $\hbar=c=1$, comprimento de corda $\ell_s=\sqrt{\alpha'}$ e tensão $T=1/(2\pi\alpha')$. Tensão é energia por comprimento, portanto $\alpha'$ tem dimensão de comprimento ao quadrado. O acoplamento adimensional $g_s$ controla divisão, união e a expansão em topologias da folha, não a tensão. Uma corda fundamental também não é um fio elástico feito de átomos. As notas de Tong desenvolvem essas bases. [1](https://davidtong.org/teaching/string-theory/)
+
+## 2. Dinâmica clássica das cordas
+
+### Ação de Nambu–Goto
+
+No espaço-tempo plano de assinatura $(-,+,\ldots,+)$, $X^\mu(\tau,\sigma)$ especifica a posição. A métrica induzida $\gamma_{ab}$ mede distâncias na folha:
+
+$$
+\gamma_{ab}=\partial_aX^\mu\partial_bX^\nu\eta_{\mu\nu},\qquad
+S_{\mathrm{NG}}=-T\int d^2\sigma\sqrt{-\det\gamma_{ab}}.
+$$
+
+O determinante converte uma região de coordenadas em área física; seu sinal reflete uma superfície temporal. A ação estacionária fornece um análogo relativístico de superfície mínima, não a minimização do comprimento espacial instantâneo da corda.
+
+### Ação de Polyakov
+
+Uma métrica auxiliar $h_{ab}$ torna a ação quadrática nas derivadas. Variar essa métrica independente fornece o vínculo do tensor de energia e momento da folha:
+
+$$
+S_{\mathrm P}=-\frac T2\int d^2\sigma\sqrt{-h}\,h^{ab}\partial_aX^\mu\partial_bX_\mu,
+\qquad T_{ab}=\gamma_{ab}-\frac12h_{ab}h^{cd}\gamma_{cd}=0.
+$$
+
+Numa superfície não degenerada, o vínculo torna $h_{ab}$ proporcional a $\gamma_{ab}$. Substituir recupera Nambu–Goto. A proporcionalidade permanece livre: na transformação local de Weyl $h_{ab}\mapsto e^{2\omega}h_{ab}$, o elemento de área e a métrica inversa se compensam em duas dimensões. Reparametrizações e simetria de Weyl removem descrições redundantes. A equivalência é clássica; medida quântica e anomalias exigem cuidados adicionais. [2](https://davidtong.org/pdfs/teaching/string-theory/string1.pdf)
+
+## 3. Quantização e expansão em modos
+
+Escolhemos localmente o calibre conforme $h_{ab}=\eta_{ab}$, preservando os vínculos. Num espaço-tempo alvo plano, resulta
+
+$$
+(\partial_\tau^2-\partial_\sigma^2)X^\mu=0.
+$$
+
+É uma equação de onda na folha, não a afirmação de que o espaço-tempo tem duas dimensões. Os módulos globais da folha precisam de tratamento separado.
+
+![Dois perfis periódicos ilustram diferentes excitações oscilatórias de uma corda fechada.](/images/diagrams/string-modes.svg)
+
+*Perfis esquemáticos de modos, não fotografias de uma corda quântica.*
+
+### Expansão em modos (corda fechada):
+
+Para uma coordenada não compacta, adotamos $0\leq\sigma<2\pi$ e condições periódicas:
+
+$$
+X^\mu=x^\mu+\alpha'p^\mu\tau
++i\sqrt{\frac{\alpha'}2}\sum_{n\ne0}\frac1n
+\left(\alpha_n^\mu e^{-in(\tau-\sigma)}+
+\tilde\alpha_n^\mu e^{-in(\tau+\sigma)}\right).
+$$
+
+Os primeiros termos descrevem o centro de massa; as duas famílias de osciladores viajam em sentidos opostos. A periodicidade exige $n$ inteiro. Na convenção de período $\pi$, fatores dois mudam de lugar entre o modo zero e os expoentes, sem alterar a física. Coordenadas compactas também admitem enrolamento.
+
+### Vínculos de Virasoro
+
+As componentes de Fourier de $T_{ab}=0$ satisfazem classicamente $L_n=\tilde L_n=0$. A álgebra quântica ganha um termo central. Na quantização covariante bosônica, estados físicos satisfazem
+
+$$
+L_n|\psi\rangle=0\quad(n>0),\qquad (L_0-a)|\psi\rangle=0.
+$$
+
+e condições correspondentes no setor com til. Não se pode anular todos os geradores quânticos como operadores. As anomalias conformes da matéria e dos fantasmas da fixação de calibre devem se cancelar: $D-26=0$ para a corda bosônica plana, $D=10$ para a supercorda crítica usual. Fundos curvos também exigem funções beta da folha nulas. A simetria clássica de Weyl não basta para garantir uma teoria quântica conforme consistente. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf) [4](https://davidtong.org/pdfs/teaching/string-theory/string5.pdf)
+
+## 4. Espectro de massas
+
+Para uma corda bosônica fechada não compactificada, as duas condições de modo zero dão
+
+$$
+L_0=\frac{\alpha'p^2}{4}+N,\quad
+\tilde L_0=\frac{\alpha'p^2}{4}+\tilde N,\quad p^2=-M^2,
+$$
+
+$$
+N=\tilde N,\qquad M^2=\frac2{\alpha'}(N+\tilde N-2a),\qquad a=1.
+$$
+
+$N$ mede energia de excitação: o modo $n$ recebe peso $n$, em vez de simplesmente contar cordas. Para $(N,\tilde N)=(0,0)$, $M^2=-4/\alpha'$ sinaliza instabilidade desse vácuo bosônico. Um táquion não é um mensageiro superluminal utilizável. O nível $(1,1)$ não tem massa; $(2,2)$ dá $M=2/\ell_s$. Esse cálculo ilustrativo não prevê massas de elétrons ou prótons. Setores de supercordas têm interceptos e projeções diferentes. [3](https://davidtong.org/pdfs/teaching/string-theory/string2.pdf)
+
+### Estados especiais:
+
+Os dois índices transversais de polarização em $(1,1)$ se decompõem em tensor simétrico sem traço (gráviton), tensor antissimétrico (campo $B$) e escalar (dilaton). Cordas abertas podem fornecer bósons vetoriais sem massa, mas bósons de calibre também surgem em cordas heteróticas fechadas; cordas abertas não são a única origem de interações de calibre.
+
+A gravidade não é apenas uma classificação de spin. Na ordem dominante em $\alpha'$, com dilaton constante e campo $B$ nulo, a consistência quântica da folha requer
+
+$$
+\beta^G_{\mu\nu}=\alpha'R_{\mu\nu}+O(\alpha'^2)=0.
+$$
+
+A equação dominante é a equação de Einstein no vácuo $R_{\mu\nu}=0$. Correções de curvatura superior importam quando o raio de curvatura se aproxima de $\ell_s$; outros campos acrescentam termos. Trata-se de uma relação controlada de baixa energia, não de prova de resolução de todas as singularidades. [5](https://davidtong.org/pdfs/teaching/string-theory/string7.pdf)
+
+## 5. As cinco teorias de supercordas
+
+As cinco teorias conhecidas classificam **teorias perturbativas de cordas supersimétricas em dez dimensões**, não todos os fundos possíveis. Férmions na folha e projeções consistentes produzem espectros supersimétricos sem táquions; apenas acrescentar férmions não garante isso. Supersimetria é aqui propriedade da construção, não uma simetria observada na natureza.
+
+### (1) Tipo I
+
+Cordas abertas e fechadas não orientadas, com 16 supercargas no espaço-tempo. O cancelamento de anomalias seleciona a álgebra de calibre usualmente chamada $SO(32)$. O setor aberto contém os graus de liberdade de calibre; o fechado contém a gravidade.
+
+### (2) Tipo IIA
+
+Cordas fechadas orientadas, com 32 supercargas de quiralidades opostas no espaço-tempo. A descrição sem massa usual contém métrica, dilaton, campo $B$ e potenciais de Ramond–Ramond $C_1,C_3$, com intensidades de campo de grau par.
+
+### (3) Tipo IIB
+
+Cordas fechadas orientadas, com 32 supercargas da mesma quiralidade. Os potenciais de Ramond–Ramond $C_0,C_2,C_4$ têm intensidades de campo de grau ímpar; a intensidade de cinco-forma é autodual. Grau do potencial e grau da intensidade de campo são distintos.
+
+### (4) Heterótica $SO(32)$
+
+Um setor bosônico que se propaga para a esquerda e um supersimétrico para a direita compartilham dez coordenadas do espaço-tempo alvo. A carga central adicional à esquerda vem de graus de liberdade internos, não de dezesseis dimensões espaciais macroscópicas adicionais. O nome convencional $SO(32)$ corresponde mais precisamente à forma global $\mathrm{Spin}(32)/\mathbb Z_2$.
+
+### (5) Heterótica $E_8 \times E_8$
+
+A outra rede de calibre consistente fornece $E_8\times E_8$, também com 16 supercargas. Compactificações podem produzir teorias de calibre quirais, mas esse nome não fixa unicamente partículas e acoplamentos observados. Há ainda objetos extensos além das cordas perturbativas: D-branas são objetos dinâmicos onde cordas abertas podem terminar e que carregam carga de Ramond–Ramond nas teorias tipo II. [6](https://arxiv.org/abs/hep-th/9503124) [13](https://arxiv.org/abs/hep-th/9510017)
+
+## 6. Teoria M e dualidades
+
+Uma **dualidade** identifica observáveis de descrições diferentes, frequentemente tornando calculável um problema difícil. Dualidade T troca momento compacto e enrolamento; dualidade S conecta determinados regimes de acoplamento fraco e forte. Nem todo modelo possui a simetria simples $g_s\mapsto1/g_s$.
+
+O tipo IIA fortemente acoplado admite uma interpretação em onze dimensões com $R_{11}=g_s\ell_s$. O círculo cresce com o acoplamento; a supergravidade em onze dimensões é o limite de baixa energia. Essas relações motivam a **teoria M**, mas não fornecem uma formulação universal para fundos arbitrários nem uma descoberta experimental da décima primeira dimensão. [6](https://arxiv.org/abs/hep-th/9503124)
+
+### Compactificação: um círculo que podemos calcular
+
+Identifique $Y\sim Y+2\pi R$. Uma função de onda unívoca exige $e^{ip(Y+2\pi R)}=e^{ipY}$, logo $p=n/R$ com $n$ inteiro. Uma corda fechada também pode dar $w$ voltas. Tensão vezes comprimento fornece a energia de enrolamento $T(2\pi R|w|)=|w|R/\alpha'$.
+
+$$
+p_L=\frac nR+\frac{wR}{\alpha'},\qquad p_R=\frac nR-\frac{wR}{\alpha'},
+$$
+
+$$
+M^2=\left(\frac nR\right)^2+\left(\frac{wR}{\alpha'}\right)^2
++\frac2{\alpha'}(N+\tilde N-2),\qquad N-\tilde N-nw=0.
+$$
+
+$$
+M^2=p_R^2+\frac4{\alpha'}(N-1)=p_L^2+\frac4{\alpha'}(\tilde N-1).
+$$
+
+Aqui $Y(\sigma+2\pi)=Y(\sigma)+2\pi wR$; $N$ conta as excitações $\alpha_n$ anteriores e $\tilde N$ conta $\tilde\alpha_n$. A última igualdade fixa o sinal da condição de níveis. Trocar $R\leftrightarrow\alpha'/R$ e $n\leftrightarrow w$ preserva o espectro. Para $R=2\ell_s$, a contribuição de momento unitário é $1/(2\ell_s)$ e a de uma volta é $2/\ell_s$; no raio dual $\ell_s/2$, elas se invertem. São contribuições à fórmula, não necessariamente a massa total do estado. [7](https://davidtong.org/pdfs/teaching/string-theory/string8.pdf)
+
+![Um círculo grande e seu dual pequeno trocam as contribuições de momento e enrolamento ao espectro de massas.](/images/diagrams/string-deep-duality.svg)
+
+*Azul: contribuição de momento $1/R$. Laranja: enrolamento $R/\alpha'$. É um esquema de cálculo, não uma observação de dimensões extras.*
+
+Em modelos quadridimensionais, seis dimensões espaciais compactas têm geometria, fluxos e possivelmente branas. Seus tamanhos e formas tornam-se campos escalares chamados **módulos**. Estabilizá-los importa: variações livres poderiam alterar acoplamentos ou mediar forças de longo alcance não observadas. “Pequeno demais para ver” não constitui um modelo completo.
+
+## 7. Correspondência AdS/CFT
+
+O exemplo mais estudado de Maldacena relaciona cordas tipo IIB em $\mathrm{AdS}_5\times S^5$ à teoria de super-Yang–Mills $\mathcal N=4$ em quatro dimensões. AdS tem constante cosmológica negativa. A teoria de fronteira não contém gravidade dinâmica, mas se propõe que codifique o interior gravitacional. [8](https://arxiv.org/abs/hep-th/9711200)
+
+$$
+Z_{\mathrm{string}}[\phi|_{\partial}=\phi_0]
+=\left\langle\exp\left(\int d^dx\,\phi_0\mathcal O\right)\right\rangle_{\mathrm{CFT}}.
+$$
+
+O valor de fronteira $\phi_0$ é fonte do operador $\mathcal O$; derivadas na fonte fornecem funções de correlação. Pela correspondência, a teoria de fronteira define não perturbativamente esse interior específico. Isso não é uma prova geral de todas as dualidades holográficas propostas. [9](https://arxiv.org/abs/hep-th/9802150)
+
+### Quando a geometria se torna uma aproximação útil
+
+Sejam $N_c$ o número de cores da teoria de calibre $SU(N_c)$ e $L$ o raio de AdS. Numa normalização usual,
+
+$$
+\lambda=g_{\mathrm{YM}}^2N_c,\qquad
+\frac{L^4}{\alpha'^2}=\lambda,\qquad g_s=\frac{\lambda}{4\pi N_c}.
+$$
+
+Acoplamento de 't Hooft $\lambda$ grande suprime correções de comprimento de corda; $N_c$ suficientemente grande com $\lambda$ fixo suprime laços de cordas. A supergravidade clássica requer ambos. Física de calibre fortemente acoplada pode corresponder à gravidade de curvatura fraca; acoplamento de calibre fraco geralmente não oferece a mesma geometria simples.
+
+![Anel de fronteira e disco interior ilustram a correspondência de fontes; duas desigualdades controlam separadamente a aproximação gravitacional.](/images/diagrams/string-deep-holography.svg)
+
+*O disco é uma seção espacial esquemática. Fonte na fronteira e campo interior descrevem observáveis correspondentes. $\lambda\gg1$ e $g_s\ll1$ controlam correções distintas, não evidência experimental.*
+
+## 8. Desafios e questões em aberto
+
+Três perguntas diferem: a construção é consistente? Uma dualidade relaciona duas construções? Alguma descreve nosso universo? Acertar as duas primeiras não resolve a terceira. Nossa cosmologia não é o vácuo AdS exato acima, e a teoria de calibre não é o Modelo Padrão.
+
+A **paisagem** reúne muitos candidatos a compactificações e vácuos. Números como $10^{500}$ são estimativas dependentes do modelo, não uma contagem estabelecida de todos os universos físicos. Contar fluxos não resolve estabilidade, seleção cosmológica ou probabilidades. Denef e Douglas explicitam um problema concreto de contagem e suas hipóteses. [10](https://arxiv.org/abs/hep-th/0404116)
+
+### O que as evidências mostram e o que não mostram
+
+Strominger e Vafa contaram estados protegidos de uma classe especial de buracos negros extremais supersimétricos em cinco dimensões, reproduzindo a entropia de Bekenstein–Hawking dominante. Isso liga estados quânticos à área do horizonte, mas não conta diretamente estados de um buraco negro astrofísico observado nem explica completamente a evaporação genérica. [11](https://arxiv.org/abs/hep-th/9601029)
+
+Cheung e colaboradores, em trabalho publicado em 2026, derivam amplitudes específicas de espalhamento de cordas assumindo dinâmica em nível de árvore, comportamento ultrasuave em altas energias e um conjunto mínimo de zeros dos resíduos. O resultado vale para essa classe de amplitudes; não deriva nosso universo sem hipóteses nem confirma experimentalmente a teoria. [12](https://arxiv.org/abs/2508.09246)
+
+Testes exigem modelos especificados: partículas extras, escalas de compactificação, cordas cósmicas e sinais cosmológicos requerem escolhas adicionais. Defeitos macroscópicos chamados cordas cósmicas não são automaticamente cordas fundamentais. Descobrir supersimetria ou uma dimensão extra não selecionaria unicamente essa estrutura; excluir uma região acessível de parâmetros não exclui todas as compactificações. A escala de cordas também não é universalmente fixada na escala de Planck quadridimensional.
+
+## Situação atual
+
+Verificado até **13 de outubro de 2026**: a teoria das cordas é candidata à gravidade quântica, com cálculos poderosos e evidências de dualidade, mas sem confirmação experimental direta estabelecida de cordas fundamentais na natureza. Seus resultados matemáticos devem ser lidos com as hipóteses; suas afirmações cosmológicas, avaliadas por previsões observáveis. A tarefa aberta é ligar um vácuo controlado e uma história cosmológica a uma física característica e testável.
