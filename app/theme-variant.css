@@ -1,0 +1,8 @@
+/* Explicit choices override the OS. Without a choice, CSS follows the device
+   immediately, including live changes and when JavaScript is unavailable. */
+@custom-variant theme-dark {
+  &:where([data-theme="dark"], [data-theme="dark"] *) { @slot; }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]), :root:not([data-theme="light"]) *) { @slot; }
+  }
+}

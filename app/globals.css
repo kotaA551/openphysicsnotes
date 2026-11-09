@@ -1,6 +1,7 @@
+@reference "./theme-variant.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-:root{--ink:#302720;--muted:#776d63;--accent:#6b3d17;--line:#e8e4e2;--paper:#fcfdfb;--wash:#f0f5f2}
+:root{color-scheme:light;--ink:#302720;--muted:#776d63;--accent:#6b3d17;--line:#e8e4e2;--paper:#fcfdfb;--wash:#f0f5f2}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,"Noto Sans",sans-serif;-webkit-font-smoothing:antialiased}button,a,summary{-webkit-tap-highlight-color:transparent}button,summary{cursor:pointer}a{text-underline-offset:4px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px}button{font:inherit}.site-shell{min-height:100dvh;display:flex;flex-direction:column}.site-header{height:72px;position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:12px;padding:0 32px;background:#fcfdfbf2;backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:18px;font-weight:650;letter-spacing:-.6px;text-decoration:none;color:var(--ink)}.brand img{border-radius:7px}.icon-button{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:transparent;display:inline-flex;align-items:center;justify-content:center;color:var(--ink)}.icon-button:hover{background:var(--wash)}.language-menu{margin-left:auto;position:relative}.language-menu summary{list-style:none;font-size:15px;font-weight:600}.language-menu summary::-webkit-details-marker{display:none}.language-divider{padding:0 3px;color:#98aaa6;font-weight:400}.language-options{position:absolute;right:0;top:52px;width:230px;padding:10px;background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 45px #18372d18;max-height:calc(100dvh - 100px);overflow:auto}.language-options p{padding:8px 12px;margin:0;color:var(--muted);font-size:12px}.language-options button{display:flex;justify-content:space-between;width:100%;padding:10px 12px;border:0;border-radius:8px;background:white;text-align:left;font-size:14px}.language-options button:hover,.language-options button[aria-pressed=true]{background:var(--wash);color:var(--accent)}.site-body{display:flex;flex:1;width:100%;margin:auto}.desktop-sidebar{flex:0 0 268px;border-right:1px solid var(--line);padding:30px 18px;position:sticky;top:72px;height:calc(100dvh - 72px);overflow:auto}.nav-section+.nav-section{margin-top:30px}.nav-section h2{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 12px;margin:0 0 12px}.nav-section nav{display:grid;gap:3px}.nav-section a{display:flex;gap:10px;align-items:baseline;padding:9px 12px;font-size:15px;line-height:1.5;border-radius:8px;text-decoration:none;color:var(--muted)}.nav-section a:hover{background:var(--wash);color:var(--ink)}.nav-section a[aria-current=page]{background:#e8f1eb;color:var(--accent);font-weight:600}.nav-number{font-size:13px;opacity:.65;font-variant-numeric:tabular-nums;min-width:16px}
 .main-content{min-width:0;flex:1;padding:60px clamp(24px,5vw,80px) 80px;outline:none}
 .main-content > * { width: 100%; max-width: 850px; margin-inline: auto; }
@@ -82,10 +83,9 @@
 
 .prose img[src^="/images/diagrams/"]{display:block;width:100%;max-width:720px;height:auto;margin:2rem auto;border:1px solid var(--line);background:#fbfdfd}
 
-/* Follow the device appearance without a stored theme or a hydration script.
-   The light palette above remains unchanged. */
-@media (prefers-color-scheme: dark) {
-  :root {
+/* Reuse the existing dark palette for either an explicit Dark choice or system. */
+:root {
+  @variant theme-dark {
     color-scheme: dark;
     --ink: #e9e5df;
     --muted: #b9b0a6;
@@ -99,33 +99,91 @@
     --on-accent: #1c241f;
     --accent-hover: #efc99f;
   }
-
-  .site-header { background: #151b18f2; }
-  .brand img, .site-footer img { background: #fbfdfd; }
-  .icon-button, .sidebar-toggle { border-color: var(--control-line); }
-  .sidebar-toggle:hover { border-color: var(--accent); }
-  .language-divider, .topic-list .arrow { color: var(--muted); }
-  .language-options {
+}
+.site-header {
+  @variant theme-dark {
+    background: #151b18f2;
+  }
+}
+.brand img, .site-footer img {
+  @variant theme-dark {
+    background: #fbfdfd;
+  }
+}
+.icon-button, .sidebar-toggle {
+  @variant theme-dark {
+    border-color: var(--control-line);
+  }
+}
+.sidebar-toggle:hover {
+  @variant theme-dark {
+    border-color: var(--accent);
+  }
+}
+.language-divider, .topic-list .arrow {
+  @variant theme-dark {
+    color: var(--muted);
+  }
+}
+.language-options {
+  @variant theme-dark {
     background: var(--surface);
     box-shadow: 0 14px 45px #00000066;
   }
-  .language-options button { background: var(--surface); color: var(--ink); }
-  .language-options button:hover,
-  .language-options button[aria-pressed=true] {
+}
+.language-options button {
+  @variant theme-dark {
+    background: var(--surface);
+    color: var(--ink);
+  }
+}
+.language-options button:hover, .language-options button[aria-pressed=true] {
+  @variant theme-dark {
     background: var(--selected);
     color: var(--accent);
   }
-  .nav-section a[aria-current=page] { background: var(--selected); }
-  .nav-number { opacity: 1; color: var(--muted); }
-  .primary-link { color: var(--on-accent); }
-  .primary-link:hover { background: var(--accent-hover); }
-  .mobile-drawer { color: var(--ink); }
-  .mobile-drawer::backdrop { background: #00000099; }
-  .skip-link { background: var(--surface); color: var(--ink); }
-
-  /* Cover every typography color, including bold, captions, lists and tables.
+}
+.nav-section a[aria-current=page] {
+  @variant theme-dark {
+    background: var(--selected);
+  }
+}
+.nav-number {
+  @variant theme-dark {
+    opacity: 1;
+    color: var(--muted);
+  }
+}
+.primary-link {
+  @variant theme-dark {
+    color: var(--on-accent);
+  }
+}
+.primary-link:hover {
+  @variant theme-dark {
+    background: var(--accent-hover);
+  }
+}
+.mobile-drawer {
+  @variant theme-dark {
+    color: var(--ink);
+  }
+}
+.mobile-drawer {
+  @variant theme-dark {
+    &::backdrop { background: #00000099; }
+  }
+}
+.skip-link {
+  @variant theme-dark {
+    background: var(--surface);
+    color: var(--ink);
+  }
+}
+/* Cover every typography color, including bold, captions, lists and tables.
      The same variables also serve the About and Privacy pages. */
-  .prose {
+.prose {
+  @variant theme-dark {
     --tw-prose-body: var(--ink);
     --tw-prose-headings: var(--ink);
     --tw-prose-lead: var(--muted);
@@ -145,5 +203,12 @@
     --tw-prose-th-borders: var(--control-line);
     --tw-prose-td-borders: var(--line);
   }
-  .prose blockquote { border-color: var(--control-line); }
 }
+.prose blockquote {
+  @variant theme-dark {
+    border-color: var(--control-line);
+  }
+}
+
+/* Theme choice shares the language control design and stays inside narrow screens. */
+.theme-options{width:190px;max-width:calc(100vw - 76px)}

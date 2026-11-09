@@ -7,6 +7,7 @@ import 'katex/dist/katex.min.css';
 import Script from 'next/script';
 import Analytics from '@/components/Analytics';
 import { Suspense } from 'react';
+import { themeInitScript } from '@/lib/theme';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -61,7 +62,10 @@ export default function RootDocument({ children, locale }: { children: React.Rea
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <script id="opn-theme-init" dangerouslySetInnerHTML={{ __html: themeInitScript }}/>
+      </head>
       <body>
         {/* Google Analytics (GA4) */}
         {gaId && (

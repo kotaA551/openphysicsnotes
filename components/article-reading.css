@@ -1,3 +1,4 @@
+@reference "../app/theme-variant.css";
 /* Only MDX root headings annotated by article-layout.mjs participate. Quoted
    headings, callouts, figures, reading lists and discussion UI keep their CSS.
    Section/subsection metrics match the Groups, Lie Algebras & Gauge Theory
@@ -49,14 +50,41 @@
   margin-block: 2em;
 }
 
-@media (prefers-color-scheme: dark) {
-  /* Authored figures retain their original colors. A light backing keeps
+/* Authored figures retain their original colors. A light backing keeps
      transparent drawings and labels readable without filtering the asset. */
-  .prose img { background: #fbfdfd; color: #243d48; }
 
-  /* These existing utility classes are used by RelatedBooks and Callout. */
-  .prose .text-gray-600 { color: var(--muted); }
-  .prose .bg-blue-50 { background: #1b2b38; border-color: #7da7c5; }
-  .prose .bg-amber-50 { background: #332b1e; border-color: #bda16c; }
-  .prose .bg-emerald-50 { background: #1d3028; border-color: #78ad92; }
+.prose img {
+  @variant theme-dark {
+    background: #fbfdfd;
+    color: #243d48;
+  }
+}
+
+/* These existing utility classes are used by RelatedBooks and Callout. */
+
+.prose .text-gray-600 {
+  @variant theme-dark {
+    color: var(--muted);
+  }
+}
+
+.prose .bg-blue-50 {
+  @variant theme-dark {
+    background: #1b2b38;
+    border-color: #7da7c5;
+  }
+}
+
+.prose .bg-amber-50 {
+  @variant theme-dark {
+    background: #332b1e;
+    border-color: #bda16c;
+  }
+}
+
+.prose .bg-emerald-50 {
+  @variant theme-dark {
+    background: #1d3028;
+    border-color: #78ad92;
+  }
 }

@@ -70,3 +70,10 @@ export function deviceLanguageLabel(locale: Locale) {
   };
   return labels[locale];
 }
+
+// Menu labels are localized; the three appearance names match the requested UI.
+export const themeLabels: Record<Locale, string> = {
+  en: 'Choose theme', fr: 'Choisir le thème', de: 'Design auswählen',
+  it: 'Scegli tema', es: 'Elegir tema', 'pt-BR': 'Escolher tema',
+  'zh-CN': '选择主题', 'zh-TW': '選擇主題', ja: 'テーマを選択', ko: '테마 선택',
+};

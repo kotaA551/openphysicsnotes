@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import HeaderSearch from './HeaderSearch';
+import ThemeMenu from './ThemeMenu';
 import { usePathname, useRouter } from 'next/navigation';
 import { chapters } from '@/lib/chapters';
 import { curiosities } from '@/lib/curiosities';
@@ -63,7 +64,8 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
         <span translate="no">Open Physics Notes</span>
       </Link>
       <HeaderSearch key={locale} locale={locale}/>
-      <details ref={languageMenu} className="language-menu" onKeyDown={event => { if (event.key === 'Escape') { languageMenu.current?.removeAttribute('open'); languageButton.current?.focus(); } }}>
+      <ThemeMenu locale={locale}/>
+      <details ref={languageMenu} name="header-preferences" className="language-menu" onKeyDown={event => { if (event.key === 'Escape') { languageMenu.current?.removeAttribute('open'); languageButton.current?.focus(); } }}>
         <summary ref={languageButton} className="icon-button" aria-label={t.language} title={t.language}>
           <span aria-hidden="true">A<span className="language-divider">/</span>文</span>
         </summary>
