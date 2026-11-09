@@ -28,7 +28,20 @@ temporary directory. It covers explicit/OS appearance combinations, persistence,
 keyboard dismissal and activation, menu exclusivity, nine widths from 320 to
 1280 pixels, locale and article navigation, and JavaScript-disabled OS fallback.
 
-On this checkout the production build currently stops before compilation because
-node_modules.link-backup is a pre-existing broken link (ENOENT from Next's file
-scan). The link and installed dependencies were left unchanged. Development
-compilation, real Chromium checks, TypeScript and the regression tests pass.
+## Static release verification (2026-11-09)
+
+The static production export passed in an isolated Git worktree, including all
+230 canonical pages, 200 article editions, ten search indexes and 78,608 math
+expressions. All 28 regression tests and TypeScript checks passed. Real headless
+Chromium tested the exported site across the appearance/OS matrix, persistence,
+keyboard dismissal, menu exclusivity, nine viewport widths, locale/article
+navigation and JavaScript-disabled system fallback. Desktop and mobile dark-mode
+screenshots were visually reviewed. No runtime or hydration errors were reported.
+
+The nine removed legacy image files have no active source references. Every
+local image referenced by the generated pages was checked against the export.
+
+The original checkout still contains the pre-existing broken
+node_modules.link-backup junction. It and the installed dependencies were left
+unchanged; the separate release worktree avoids scanning that backup link. Use
+Node.js 22 or newer for the optional Chromium check, which uses global WebSocket.
