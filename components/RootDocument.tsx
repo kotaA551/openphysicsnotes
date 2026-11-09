@@ -5,8 +5,6 @@ import type { Metadata } from 'next';
 import SiteShell from '@/components/SiteShell';
 import 'katex/dist/katex.min.css';
 import Script from 'next/script';
-import Analytics from '@/components/Analytics';
-import { Suspense } from 'react';
 import { themeInitScript } from '@/lib/theme';
 
 export const metadata: Metadata = {
@@ -78,14 +76,11 @@ export default function RootDocument({ children, locale }: { children: React.Rea
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${gaId}', {
-                page_path: window.location.pathname,
-              });
+              // GA4 Enhanced Measurement owns history-based page views.
+              // Configure once; do not also send route-change page views here.
+              gtag('config', '${gaId}');
             `}</Script>
 
-            <Suspense fallback={null}>
-              <Analytics />
-            </Suspense>
           </>
         )}
 
