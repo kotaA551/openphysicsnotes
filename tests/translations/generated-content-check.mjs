@@ -46,7 +46,7 @@ for(const locale of locales)for(const kind of ['chapters','curiosities'])for(con
   let internalLinks=0;
   for(const [tag]of matches(newBody,/<a\b[^>]*>/g)){
    const href=attrs(tag).href;if(!href||/^(?:mailto:|tel:)/.test(href))continue;
-   const url=new URL(href,`https://www.openphysicsnotes.com${route}`);if(url.origin!=='https://www.openphysicsnotes.com')continue;
+   const url=new URL(href,`https://openphysicsnotes.com${route}`);if(url.origin!=='https://openphysicsnotes.com')continue;
    const target=pages.get(decodeURIComponent(url.pathname));
    if(target){if(url.hash)assert.ok(target.ids.has(decodeURIComponent(url.hash.slice(1))),`missing fragment ${href}`);internalLinks++;}
    else assert.ok(fs.existsSync(path.join('public',decodeURIComponent(url.pathname))),`missing internal target ${href}`);

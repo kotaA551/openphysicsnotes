@@ -14,6 +14,19 @@ const robots = load('app/robots.ts').default;
 const navierStokesLocales = ['en', 'fr', 'de', 'it', 'es', 'pt-BR', 'zh-CN', 'zh-TW', 'ja', 'ko'];
 const expectedArticleLocales = () => navierStokesLocales;
 
+test('all SEO URLs use the HTTPS apex domain and static search stays unindexed', () => {
+  assert.equal(siteUrl, 'https://openphysicsnotes.com');
+  for (const locale of locales) {
+    const meta = pageMetadata('Example', 'Description', '/about', locale);
+    const urls = [meta.alternates.canonical, ...Object.values(meta.alternates.languages), meta.openGraph.url,
+      ...meta.openGraph.images.map(image => image.url), ...meta.twitter.images.map(image => image.url)];
+    for (const url of urls) assert.equal(new URL(url).origin, 'https://openphysicsnotes.com');
+  }
+  const headers = fs.readFileSync('public/_headers', 'utf8').split('\r').join('');
+  assert.ok(headers.startsWith('/search/*\n'));
+  assert.ok(headers.includes('  X-Robots-Tag: noindex\n'));
+});
+
 test('Next serializes root and article alternate URLs exactly as the sitemap uses them', async () => {
   for (const path of ['/', '/about', '/chapters/8-Quantum-field-theory']) {
     const meta = pageMetadata('Example', 'Description', path, 'en');

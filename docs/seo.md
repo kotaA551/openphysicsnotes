@@ -1,5 +1,17 @@
 # International SEO checks
 
+The canonical origin is https://openphysicsnotes.com (without www). The shared
+siteUrl in lib/seo.ts controls canonical links, reciprocal hreflang, sitemap,
+robots.txt, Open Graph/Twitter images and LearningResource JSON-LD. Keep the
+existing permanent www-to-apex redirect at the hosting layer, preserving paths
+and query strings. Do not add an opposite apex-to-www redirect.
+
+Cloudflare Pages builds with npm run build:static and publishes out. The
+public/_headers file preserves JSON content type and noindex on /search/* after
+static export; Next route response headers alone are not emitted by a static
+export. The main HTML pages remain indexable. Verify the deployment and public
+responses separately after a successful build.
+
 English URLs remain at the root. Static pages have ten translated variants; articles advertise only editions with their own complete translated MDX. All 12 chapters and 8 curiosities now have editions in English, French, German, Italian, Spanish, Brazilian Portuguese, Simplified Chinese, Traditional Chinese, Japanese and Korean. This gives 200 real article editions, zero English fallback pages, and 230 canonical sitemap URLs including the homepage, About and Privacy variants.
 
 `translatedArticleLocales` supplies article availability. `languageAlternates` supplies the same absolute, reciprocal hreflang cluster (including itself and English `x-default`) to page metadata and the sitemap. Translated articles are self-canonical. English fallback articles keep `noindex, follow`, remain crawlable, point to the English canonical, and are excluded from alternate-language clusters and the sitemap.

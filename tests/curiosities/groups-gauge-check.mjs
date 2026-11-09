@@ -102,7 +102,7 @@ for(const locale of languages)try {
     const indexArticle=index.articles.find(a=>a.href===route);assert.equal(indexArticle?.contentLocale,locale);
     const results=search(prepareIndex(index),indexArticle.title);assert.ok(results.some(r=>r.href.startsWith(route+'#')),'search title finds article');
     for(const result of results.filter(r=>r.href.startsWith(route+'#')))assert.ok(doc.getElementById(decodeURIComponent(result.href.split('#')[1])),'search result target exists');
-    const meta=doc.querySelector('link[rel="canonical"]');assert.equal(meta.href,'https://www.openphysicsnotes.com'+route);
+    const meta=doc.querySelector('link[rel="canonical"]');assert.equal(meta.href,'https://openphysicsnotes.com'+route);
     assert.equal(doc.querySelectorAll('link[rel="alternate"][hreflang]').length,11);
     report.renderedPanels=panels.length;report.search='passed';dom.window.close();
   }

@@ -8,7 +8,7 @@ import { typescriptLoader } from '../seo/load-typescript.mjs';
 const commit=process.argv[2];assert.match(commit||'',/^[a-f0-9]{40}$/);
 const load=typescriptLoader(),{locales,localePath}=load('lib/i18n.ts');
 const {prepareIndex,search}=load('lib/search/engine.ts');
-const slug='groups-lie-algebras-gauge-theory',base='https://www.openphysicsnotes.com';
+const slug='groups-lie-algebras-gauge-theory',base='https://openphysicsnotes.com';
 const dist=process.env.NEXT_BUILD_DIR||'.next',reports=[],errors=[],assets=new Set();
 const hash=data=>crypto.createHash('sha256').update(data).digest('hex');
 async function get(url){const response=await fetch(url,{signal:AbortSignal.timeout(60000),cache:'no-store',headers:{'User-Agent':'OpenPhysicsNotes-release-verification'}});assert.equal(response.status,200,url);return {response,bytes:Buffer.from(await response.arrayBuffer())};}

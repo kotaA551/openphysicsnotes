@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { localePath, locales, type Locale } from './i18n';
 import { loadArticle, translatedArticleLocales, type ArticleKind } from './articles';
 
-export const siteUrl = 'https://www.openphysicsnotes.com';
+export const siteUrl = 'https://openphysicsnotes.com';
 export const socialImage = '/images/eyecatch.png';
 
 // Open Graph uses language_TERRITORY, independently of our language-only URLs.
