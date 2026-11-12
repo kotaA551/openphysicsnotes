@@ -1,0 +1,15 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Space Map · Earth-centered atlas</title>  <script type="module" crossorigin src="/space-map/assets/stars-BadInwK7.js"></script>
+  <link rel="modulepreload" crossorigin href="/space-map/assets/coordinates-JD4ppqEU.js">
+  <link rel="stylesheet" crossorigin href="/space-map/assets/stars-CN9rpazz.css">
+<script>addEventListener('error',e=>{if(e instanceof ErrorEvent&&parent!==window)parent.postMessage({type:'space-map-error'},location.origin)});addEventListener('unhandledrejection',()=>{if(parent!==window)parent.postMessage({type:'space-map-error'},location.origin)});</script></head><body><canvas id="space" aria-label="Interactive three-dimensional Earth-centered coordinate map"></canvas>
+<header><span class="brand">✦ SPACE MAP</span><span class="tag">EARTH-CENTERED ATLAS / 001</span></header>
+<aside class="panel"><div class="eyebrow">REFERENCE FRAME</div><h1>A universe,<br>seen from Earth.</h1><p class="intro">Explore direction and distance from the center of our planet.</p>
+<label for="frame">Coordinate system</label><select id="frame"><option value="earth">Earth-fixed · Greenwich +X</option><option value="inertial">Equatorial reference · J2000 +X</option></select>
+<div class="axes"><span class="x">X <small id="xlabel">0° longitude, equator</small></span><span class="y">Y <small id="ylabel">90° E, equator</small></span><span class="z">Z <small id="zlabel">North Pole</small></span></div>
+<label for="object">Explore an object</label><select id="object"></select>
+<div id="measurements"></div><div class="rule"></div>
+<details><summary>Place a coordinate</summary><form id="point"><label>Distance r (light-years)<input id="r" type="number" min="0.000001" max="100000000000" value="10" step="any" required></label><div class="columns"><label>Polar angle θ (°)<input id="theta" type="number" min="0" max="180" value="60" step="any" required></label><label>Azimuth φ (°)<input id="phi" type="number" min="0" max="360" value="45" step="any" required></label></div><button type="submit">Place point</button></form><p class="fine">Fixed in the selected frame. θ is measured from +Z; φ goes from +X toward +Y.</p></details>
+</aside><section class="timeline"><div><label for="time">OBSERVATION TIME · UTC</label><input id="time" type="datetime-local" step="1"></div><button id="play">▶ Play</button><select id="rate" aria-label="Playback speed"><option value="60">1 min / sec</option><option value="3600" selected>1 hour / sec</option></select><button id="now">Now</button></section>
+<div class="view"><button id="reset">Reset view</button><label><input id="grid" type="checkbox" checked> Coordinate grid</label></div>
+<footer><span>Drag to orbit · Scroll to zoom · Click a star</span><span>LOGARITHMIC DISTANCE · SIZES EXAGGERATED</span></footer>
+<div class="disclaimer">Educational prototype. Approximate J2000 catalog directions and distances; no live ephemerides, precession, parallax or proper motion. Not a navigation instrument.</div></body></html>

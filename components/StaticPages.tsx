@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import TopicIndex from './TopicIndex';
+import SpaceMapEmbed from './SpaceMapEmbed';
 import { localePath, messages, type Locale } from '@/lib/i18n';
 export function HomeContent({ locale }: { locale: Locale }) {
  const t = messages(locale);
- return <><section className="hero"><p className="eyebrow">{t.eyebrow}</p><h1 translate="no">Open Physics Notes</h1><p className="intro">{t.intro}</p><p className="description">{t.description}</p></section><TopicIndex locale={locale}/></>;
+ return <><section className="hero"><p className="eyebrow">{t.eyebrow}</p><h1 translate="no">Open Physics Notes</h1><p className="intro">{t.intro}</p><p className="description">{t.description}</p></section><TopicIndex locale={locale}/><SpaceMapEmbed locale={locale}/></>;
 }
 export function AboutContent({ locale }: { locale: Locale }) {
  const t = messages(locale);
