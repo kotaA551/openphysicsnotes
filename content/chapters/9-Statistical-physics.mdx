@@ -1,4 +1,6 @@
 
+**Find a specific result:** [Lattice-gas mean-field density](#982a-lattice-gas-mean-field-density-and-critical-temperature) · [1D Ising partition function: periodic and open chains](#992-1d-chain-transfer-matrix-exact-solution).
+
 ## 9.1 Foundations: From Microstates to Thermodynamics
 
 Statistical physics is the art of predicting **macroscopic** laws from **microscopic** uncertainty. We never know the exact $10^{23}$-body state; instead we organize ignorance into **ensembles** whose averages reproduce temperature, pressure, magnetization, and friends. This section builds the core: microstates vs macrostates, the fundamental postulate, the three standard ensembles, and the thermodynamic limit. We also show how the **information-theoretic** view turns “maximum entropy” into the unique engine behind the familiar distributions.
@@ -1604,6 +1606,43 @@ Specific heat has a **finite jump** (no divergence): $\alpha_{\text{MF}}=0$
 
 ---
 
+### 9.8.2A Lattice gas: mean-field density and critical temperature
+
+A lattice gas has occupation numbers $n_i\in\{0,1\}$ and mean occupation $\rho=\langle n_i\rangle$, with $0<\rho<1$. Let each occupied nearest-neighbor pair attract with energy $-\epsilon$, where $\epsilon>0$, and count each pair once. At chemical potential $\mu$, the grand-canonical energy is
+
+$$
+\mathcal H-\mu\mathcal N=-\epsilon\sum_{\langle ij\rangle}n_i n_j-\mu\sum_i n_i.
+$$
+
+For $N_s$ sites with coordination number $z$, the homogeneous mean-field grand potential per site is
+
+$$
+\omega(\rho)=\frac{\Omega_{\mathrm{MF}}}{N_s}
+=-\frac{z\epsilon}{2}\rho^2-\mu\rho
++k_BT\left[\rho\ln\rho+(1-\rho)\ln(1-\rho)\right].
+$$
+
+The factor $1/2$ avoids counting a bond twice. Setting its density derivative to zero gives the self-consistency equation:
+
+$$
+0=\frac{\partial\omega}{\partial\rho}
+=-z\epsilon\rho-\mu+k_BT\ln\frac{\rho}{1-\rho},
+\qquad
+\rho=\frac{1}{1+\exp[-(z\epsilon\rho+\mu)/(k_BT)]}.
+$$
+
+For a simple cubic lattice, $z=6$, so the exponent contains $6\epsilon\rho+\mu$. If several stationary solutions exist, the stable homogeneous phase minimizes $\omega$; solving the equation alone does not establish stability. At zero attraction, it reduces to the independent-site result $\rho=[1+e^{-\mu/(k_BT)}]^{-1}$.
+
+Since $\omega''=-z\epsilon+k_BT/[\rho(1-\rho)]$, the mean-field critical point satisfies
+
+$$
+\rho_c=\frac12,\qquad k_BT_c=\frac{z\epsilon}{4},\qquad \mu_c=-\frac{z\epsilon}{2}.
+$$
+
+The change of variables $n_i=(1+\sigma_i)/2$ maps this model to the [Ising model](#99-the-ising-model-transfer-matrices-duality-and-exact-2d-criticality), with $J=\epsilon/4$ and spin field $h=\mu/2+z\epsilon/4$. These critical values are mean-field predictions, not exact results for every lattice. In particular, the exact one-dimensional short-range model has no finite-temperature transition.
+
+---
+
 ### 9.8.3 Landau free energy: symmetry dictates the form
 
 Write an **analytic** expansion in the order parameter consistent with symmetries. For an Ising-like scalar $m$ in a uniform system
@@ -1847,6 +1886,20 @@ Its eigenvalues are
 $$
 \lambda_{\pm} = e^{K}\cosh \tilde h \pm \sqrt{e^{2K}\sinh^{2}\tilde h + e^{-2K}}
 $$
+
+**Periodic versus open boundary conditions.** For the ring, $\sigma_{N+1}=\sigma_1$: the last spin couples back to the first. Summing the product of transfer-matrix elements around this closed chain gives
+
+$$
+Z_N^{\mathrm{periodic}}=\operatorname{Tr}(T^N)=\lambda_+^N+\lambda_-^N.
+$$
+
+In zero field, the exact finite-$N$ result is
+
+$$
+Z_N^{\mathrm{periodic}}=(2\cosh K)^N+(2\sinh K)^N.
+$$
+
+An open chain has only $N-1$ bonds and no closing bond. In zero field its partition function is $Z_N^{\mathrm{open}}=2(2\cosh K)^{N-1}$, not $\operatorname{Tr}(T^N)$. The bulk free energy agrees in the thermodynamic limit, but the finite-chain partition functions differ. The zero-field correlator and correlation length below refer to the ferromagnetic chain ($J>0$) in that limit, rather than an exact finite-ring correlator.
 
 Thermodynamics in the $N\to\infty$ limit is governed by $\lambda_{+}$:
 
